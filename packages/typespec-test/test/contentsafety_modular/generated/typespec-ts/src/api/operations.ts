@@ -36,6 +36,11 @@ import {
   _pagedTextBlocklistItemDeserializer,
 } from "../models/models.js";
 import {
+  PagedAsyncIterableIterator,
+  buildPagedAsyncIterator,
+} from "../static-helpers/pagingHelpers.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import {
   ListTextBlocklistItemsOptionalParams,
   GetTextBlocklistItemOptionalParams,
   RemoveBlocklistItemsOptionalParams,
@@ -49,11 +54,6 @@ import {
   ShieldPromptOptionalParams,
   AnalyzeTextOptionalParams,
 } from "./options.js";
-import {
-  PagedAsyncIterableIterator,
-  buildPagedAsyncIterator,
-} from "../static-helpers/pagingHelpers.js";
-import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -83,10 +83,7 @@ export function _listTextBlocklistItemsSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
@@ -137,10 +134,7 @@ export function _getTextBlocklistItemSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
@@ -162,12 +156,7 @@ export async function getTextBlocklistItem(
   blocklistItemId: string,
   options: GetTextBlocklistItemOptionalParams = { requestOptions: {} },
 ): Promise<TextBlocklistItem> {
-  const result = await _getTextBlocklistItemSend(
-    context,
-    blocklistName,
-    blocklistItemId,
-    options,
-  );
+  const result = await _getTextBlocklistItemSend(context, blocklistName, blocklistItemId, options);
   return _getTextBlocklistItemDeserialize(result);
 }
 
@@ -192,10 +181,6 @@ export function _removeBlocklistItemsSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
       body: removeTextBlocklistItemsOptionsSerializer(body),
     });
 }
@@ -218,12 +203,7 @@ export async function removeBlocklistItems(
   body: RemoveTextBlocklistItemsOptions,
   options: RemoveBlocklistItemsOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _removeBlocklistItemsSend(
-    context,
-    blocklistName,
-    body,
-    options,
-  );
+  const result = await _removeBlocklistItemsSend(context, blocklistName, body, options);
   return _removeBlocklistItemsDeserialize(result);
 }
 
@@ -248,10 +228,7 @@ export function _addOrUpdateBlocklistItemsSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: addOrUpdateTextBlocklistItemsOptionsSerializer(body),
     });
 }
@@ -274,12 +251,7 @@ export async function addOrUpdateBlocklistItems(
   body: AddOrUpdateTextBlocklistItemsOptions,
   options: AddOrUpdateBlocklistItemsOptionalParams = { requestOptions: {} },
 ): Promise<AddOrUpdateTextBlocklistItemsResult> {
-  const result = await _addOrUpdateBlocklistItemsSend(
-    context,
-    blocklistName,
-    body,
-    options,
-  );
+  const result = await _addOrUpdateBlocklistItemsSend(context, blocklistName, body, options);
   return _addOrUpdateBlocklistItemsDeserialize(result);
 }
 
@@ -300,10 +272,7 @@ export function _listTextBlocklistsSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
@@ -347,15 +316,7 @@ export function _deleteTextBlocklistSend(
       allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
-  return context
-    .path(path)
-    .delete({
-      ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
-    });
+  return context.path(path).delete({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _deleteTextBlocklistDeserialize(
@@ -375,11 +336,7 @@ export async function deleteTextBlocklist(
   blocklistName: string,
   options: DeleteTextBlocklistOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _deleteTextBlocklistSend(
-    context,
-    blocklistName,
-    options,
-  );
+  const result = await _deleteTextBlocklistSend(context, blocklistName, options);
   return _deleteTextBlocklistDeserialize(result);
 }
 
@@ -404,10 +361,7 @@ export function _createOrUpdateTextBlocklistSend(
     .patch({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/merge-patch+json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: textBlocklistSerializer(resource),
     });
 }
@@ -430,12 +384,7 @@ export async function createOrUpdateTextBlocklist(
   resource: TextBlocklist,
   options: CreateOrUpdateTextBlocklistOptionalParams = { requestOptions: {} },
 ): Promise<TextBlocklist> {
-  const result = await _createOrUpdateTextBlocklistSend(
-    context,
-    blocklistName,
-    resource,
-    options,
-  );
+  const result = await _createOrUpdateTextBlocklistSend(context, blocklistName, resource, options);
   return _createOrUpdateTextBlocklistDeserialize(result);
 }
 
@@ -458,10 +407,7 @@ export function _getTextBlocklistSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
@@ -505,10 +451,7 @@ export function _analyzeImageSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: analyzeImageOptionsSerializer(body),
     });
 }
@@ -553,10 +496,7 @@ export function _detectTextProtectedMaterialSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: detectTextProtectedMaterialOptionsSerializer(body),
     });
 }
@@ -601,10 +541,7 @@ export function _shieldPromptSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: shieldPromptOptionsSerializer(body),
     });
 }
@@ -649,10 +586,7 @@ export function _analyzeTextSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: analyzeTextOptionsSerializer(body),
     });
 }

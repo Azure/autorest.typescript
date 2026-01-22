@@ -9,7 +9,6 @@ options:
     azure-sdk-for-js: false
     is-typespec-test: true
     enable-operation-group: true
-    is-modular-library: true
     # temporary only support legacy client for additional properties in modular
     compatibility-mode: true
     package-details:

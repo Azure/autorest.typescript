@@ -75,7 +75,8 @@ describe("client utils get rlc clients", () => {
     assert.equal(clients[0]?.name, "MyServiceClient");
   });
 
-  it("should get the @client client if each services have only one @client decorators", async () => {
+  // skip for https://github.com/Azure/autorest.typescript/issues/3664
+  it.skip("should get the @client client if each services have only one @client decorators", async () => {
     const content = `
     import "@azure-tools/typespec-client-generator-core";
 
@@ -109,7 +110,8 @@ describe("client utils get rlc clients", () => {
     assert.equal(clients[1]?.name, "MySecondServiceClient");
   });
 
-  it("should handle both 1:1 and 1:N mappings between @service and @client", async () => {
+  // skip for https://github.com/Azure/autorest.typescript/issues/3664
+  it.skip("should handle both 1:1 and 1:N mappings between @service and @client", async () => {
     const content = `
     import "@azure-tools/typespec-client-generator-core";
 

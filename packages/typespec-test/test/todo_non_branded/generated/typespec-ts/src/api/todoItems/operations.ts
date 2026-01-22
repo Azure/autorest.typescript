@@ -20,6 +20,11 @@ import {
   todoItemPatchSerializer,
 } from "../../models/todoItems/models.js";
 import {
+  PagedAsyncIterableIterator,
+  buildPagedAsyncIterator,
+} from "../../static-helpers/pagingHelpers.js";
+import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
+import {
   TodoItemsDeleteOptionalParams,
   TodoItemsUpdateOptionalParams,
   TodoItemsGetOptionalParams,
@@ -27,11 +32,6 @@ import {
   TodoItemsCreateJsonOptionalParams,
   TodoItemsListOptionalParams,
 } from "./options.js";
-import {
-  PagedAsyncIterableIterator,
-  buildPagedAsyncIterator,
-} from "../../static-helpers/pagingHelpers.js";
-import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -53,20 +53,10 @@ export function _$deleteSend(
       allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
-  return context
-    .path(path)
-    .delete({
-      ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
-    });
+  return context.path(path).delete({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _$deleteDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _$deleteDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -118,17 +108,12 @@ export function _updateSend(
     .patch({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/merge-patch+json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: todoItemPatchSerializer(patch),
     });
 }
 
-export async function _updateDeserialize(
-  result: PathUncheckedResponse,
-): Promise<TodoItem> {
+export async function _updateDeserialize(result: PathUncheckedResponse): Promise<TodoItem> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -165,16 +150,11 @@ export function _getSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
-export async function _getDeserialize(
-  result: PathUncheckedResponse,
-): Promise<TodoItem> {
+export async function _getDeserialize(result: PathUncheckedResponse): Promise<TodoItem> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -207,17 +187,12 @@ export function _createFormSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "multipart/form-data",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: toDoItemMultipartRequestSerializer(body),
     });
 }
 
-export async function _createFormDeserialize(
-  result: PathUncheckedResponse,
-): Promise<TodoItem> {
+export async function _createFormDeserialize(result: PathUncheckedResponse): Promise<TodoItem> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -254,10 +229,7 @@ export function _createJsonSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: {
         item: todoItemSerializer(item),
         attachments: !options?.attachments
@@ -267,9 +239,7 @@ export function _createJsonSend(
     });
 }
 
-export async function _createJsonDeserialize(
-  result: PathUncheckedResponse,
-): Promise<TodoItem> {
+export async function _createJsonDeserialize(result: PathUncheckedResponse): Promise<TodoItem> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -314,16 +284,11 @@ export function _listSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
-export async function _listDeserialize(
-  result: PathUncheckedResponse,
-): Promise<_TodoPage> {
+export async function _listDeserialize(result: PathUncheckedResponse): Promise<_TodoPage> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);

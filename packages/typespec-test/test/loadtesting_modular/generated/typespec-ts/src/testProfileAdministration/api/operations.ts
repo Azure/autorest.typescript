@@ -10,16 +10,16 @@ import {
   _pagedTestProfileDeserializer,
 } from "../../models/models.js";
 import {
+  PagedAsyncIterableIterator,
+  buildPagedAsyncIterator,
+} from "../../static-helpers/pagingHelpers.js";
+import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
+import {
   ListTestProfilesOptionalParams,
   GetTestProfileOptionalParams,
   DeleteTestProfileOptionalParams,
   CreateOrUpdateTestProfileOptionalParams,
 } from "./options.js";
-import {
-  PagedAsyncIterableIterator,
-  buildPagedAsyncIterator,
-} from "../../static-helpers/pagingHelpers.js";
-import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -53,10 +53,7 @@ export function _listTestProfilesSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
@@ -104,10 +101,7 @@ export function _getTestProfileSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
@@ -147,20 +141,10 @@ export function _deleteTestProfileSend(
       allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
-  return context
-    .path(path)
-    .delete({
-      ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
-    });
+  return context.path(path).delete({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _deleteTestProfileDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _deleteTestProfileDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -200,10 +184,7 @@ export function _createOrUpdateTestProfileSend(
     .patch({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/merge-patch+json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: testProfileSerializer(body),
     });
 }
@@ -226,11 +207,6 @@ export async function createOrUpdateTestProfile(
   body: TestProfile,
   options: CreateOrUpdateTestProfileOptionalParams = { requestOptions: {} },
 ): Promise<TestProfile> {
-  const result = await _createOrUpdateTestProfileSend(
-    context,
-    testProfileId,
-    body,
-    options,
-  );
+  const result = await _createOrUpdateTestProfileSend(context, testProfileId, body, options);
   return _createOrUpdateTestProfileDeserialize(result);
 }

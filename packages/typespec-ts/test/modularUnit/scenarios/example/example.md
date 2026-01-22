@@ -38,6 +38,12 @@ These are the models that are generated. The language tag `ts models` is used to
 the test host that the content of the code block represents the entire generated `models.ts` file.
 
 ```ts models
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Example */
 export interface Example {
   id: string;
@@ -53,6 +59,12 @@ export function exampleDeserializer(item: any): Example {
 You can also extract a specific model interface using `ts models interface <model name>`:
 
 ```ts models interface Example
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Example */
 export interface Example {
   id: string;
@@ -81,8 +93,8 @@ You can extract the entire operations file using `ts operations`:
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { Example, exampleDeserializer } from "../models/models.js";
-import { ReadOptionalParams } from "./options.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -108,16 +120,11 @@ export function _readSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
-export async function _readDeserialize(
-  result: PathUncheckedResponse,
-): Promise<Example> {
+export async function _readDeserialize(result: PathUncheckedResponse): Promise<Example> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);

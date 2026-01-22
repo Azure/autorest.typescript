@@ -10,12 +10,9 @@ import {
   MultivariateOperations,
   _getMultivariateOperations,
 } from "./classic/multivariate/index.js";
-import {
-  UnivariateOperations,
-  _getUnivariateOperations,
-} from "./classic/univariate/index.js";
-import { Pipeline } from "@azure/core-rest-pipeline";
+import { UnivariateOperations, _getUnivariateOperations } from "./classic/univariate/index.js";
 import { KeyCredential } from "@azure/core-auth";
+import { Pipeline } from "@azure/core-rest-pipeline";
 
 export { AnomalyDetectorClientOptionalParams } from "./api/anomalyDetectorContext.js";
 

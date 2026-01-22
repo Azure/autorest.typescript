@@ -48,47 +48,45 @@ Operations
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { listCredentialsRequestSerializer } from "../models/models.js";
-import { PostOptionalParams } from "./options.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import { PostOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
 export function _postSend(
   context: Client,
-  options: PostOptionalParams = { requestOptions: {} }
+  options: PostOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "{/PATH_PARAM}{?QUERY_PARAM}",
     {
       PATH_PARAM: options["pathParam"],
-      QUERY_PARAM: options?.queryParam
+      QUERY_PARAM: options?.queryParam,
     },
     {
-      allowReserved: options?.requestOptions?.skipUrlEncoding
-    }
-  );
-  return context.path(path).post({
-    ...operationOptionsToRequestParameters(options),
-    contentType: "application/json",
-    headers: {
-      ...(options?.headerParam !== undefined
-        ? { header_param: options?.headerParam }
-        : {}),
-      ...options.requestOptions?.headers
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
-    body: !options["listCredentialsRequest"]
-      ? options["listCredentialsRequest"]
-      : listCredentialsRequestSerializer(options["listCredentialsRequest"])
-  });
+  );
+  return context
+    .path(path)
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      headers: {
+        ...(options?.headerParam !== undefined ? { header_param: options?.headerParam } : {}),
+        ...options.requestOptions?.headers,
+      },
+      body: !options["listCredentialsRequest"]
+        ? options["listCredentialsRequest"]
+        : listCredentialsRequestSerializer(options["listCredentialsRequest"]),
+    });
 }
 
-export async function _postDeserialize(
-  result: PathUncheckedResponse
-): Promise<void> {
+export async function _postDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -100,7 +98,7 @@ export async function _postDeserialize(
 /** show example demo */
 export async function post(
   context: Client,
-  options: PostOptionalParams = { requestOptions: {} }
+  options: PostOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _postSend(context, options);
   return _postDeserialize(result);
@@ -135,12 +133,13 @@ import { TestingClient } from "@azure/internal-test";
  * x-ms-original-file: 2021-10-01-preview/json.json
  */
 async function post(): Promise<void> {
-  const client = new TestingClient();
+  const endpoint = process.env.TESTING_ENDPOINT || "";
+  const client = new TestingClient(endpoint);
   await client.post({
     listCredentialsRequest: { serviceName: "SSH", propertyName: "name" },
     queryParam: "query",
     headerParam: "header",
-    pathParam: "path"
+    pathParam: "path",
   });
 }
 

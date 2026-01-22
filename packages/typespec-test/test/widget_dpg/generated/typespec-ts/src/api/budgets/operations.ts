@@ -10,13 +10,13 @@ import {
   sapUserSerializer,
   sapUserDeserializer,
 } from "../../models/models.js";
+import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
+import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   BudgetsContinueOptionalParams,
   BudgetsGetBudgetsOptionalParams,
   BudgetsCreateOrReplaceOptionalParams,
 } from "./options.js";
-import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
-import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -35,9 +35,7 @@ export function _$continueSend(
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _$continueDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _$continueDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -78,16 +76,11 @@ export function _getBudgetsSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
-export async function _getBudgetsDeserialize(
-  result: PathUncheckedResponse,
-): Promise<Widget[]> {
+export async function _getBudgetsDeserialize(result: PathUncheckedResponse): Promise<Widget[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -128,18 +121,13 @@ export function _createOrReplaceSend(
     .put({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: sapUserSerializer(resource),
     });
 }
 
-export async function _createOrReplaceDeserialize(
-  result: PathUncheckedResponse,
-): Promise<SAPUser> {
-  const expectedStatuses = ["201", "200"];
+export async function _createOrReplaceDeserialize(result: PathUncheckedResponse): Promise<SAPUser> {
+  const expectedStatuses = ["201", "200", "202"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
@@ -154,16 +142,10 @@ export function createOrReplace(
   resource: SAPUser,
   options: BudgetsCreateOrReplaceOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<SAPUser>, SAPUser> {
-  return getLongRunningPoller(
-    context,
-    _createOrReplaceDeserialize,
-    ["201", "200"],
-    {
-      updateIntervalInMs: options?.updateIntervalInMs,
-      abortSignal: options?.abortSignal,
-      getInitialResponse: () =>
-        _createOrReplaceSend(context, name, resource, options),
-      resourceLocationConfig: "original-uri",
-    },
-  ) as PollerLike<OperationState<SAPUser>, SAPUser>;
+  return getLongRunningPoller(context, _createOrReplaceDeserialize, ["201", "200", "202"], {
+    updateIntervalInMs: options?.updateIntervalInMs,
+    abortSignal: options?.abortSignal,
+    getInitialResponse: () => _createOrReplaceSend(context, name, resource, options),
+    resourceLocationConfig: "original-uri",
+  }) as PollerLike<OperationState<SAPUser>, SAPUser>;
 }

@@ -6,8 +6,10 @@ import {
 } from "ts-morph";
 import {
   SdkClientType,
+  SdkCredentialParameter,
+  SdkEndpointParameter,
   SdkHttpParameter,
-  SdkParameter,
+  SdkMethodParameter,
   SdkServiceOperation
 } from "@azure-tools/typespec-client-generator-core";
 
@@ -20,6 +22,8 @@ import { SdkContext } from "../../utils/interfaces.js";
 import { getClassicalClientName } from "./namingHelpers.js";
 import { getTypeExpression } from "../type-expressions/get-type-expression.js";
 import { isCredentialType } from "./typeHelpers.js";
+import { CloudSettingHelpers } from "../static-helpers-metadata.js";
+import { resolveReference } from "../../framework/reference.js";
 
 interface ClientParameterOptions {
   onClientOnly?: boolean;
@@ -29,6 +33,12 @@ interface ClientParameterOptions {
   skipEndpointTemplate?: boolean;
   apiVersionAsRequired?: boolean;
 }
+
+type SdkParameter =
+  | SdkMethodParameter
+  | SdkEndpointParameter
+  | SdkCredentialParameter
+  | SdkHttpParameter;
 
 export function getClientParameters(
   client: SdkClientType<SdkServiceOperation>,
@@ -42,7 +52,7 @@ export function getClientParameters(
     apiVersionAsRequired: true
   }
 ) {
-  const clientParams: (SdkParameter | SdkHttpParameter)[] = [];
+  const clientParams: SdkParameter[] = [];
   for (const property of client.clientInitialization.parameters) {
     if (
       property.type.kind === "union" &&
@@ -60,24 +70,22 @@ export function getClientParameters(
     }
   }
 
-  const hasDefaultValue = (p: SdkParameter | SdkHttpParameter) =>
+  const hasDefaultValue = (p: SdkParameter) =>
     p.clientDefaultValue || p.__raw?.defaultValue || p.type.kind === "constant";
-  const isRequired = (p: SdkParameter | SdkHttpParameter) =>
-    !p.optional &&
-    ((!hasDefaultValue(p) &&
+  const isRequired = (p: SdkParameter) =>
+    // Special case: when apiVersionAsRequired is true, apiVersion should always be considered required
+    (options.apiVersionAsRequired && p.isApiVersionParam) ||
+    (!p.optional &&
+      !hasDefaultValue(p) &&
       !(
         p.type.kind === "endpoint" &&
         p.type.templateArguments[0] &&
         hasDefaultValue(p.type.templateArguments[0])
-      )) ||
-      (options.apiVersionAsRequired && p.isApiVersionParam));
-  const isOptional = (p: SdkParameter | SdkHttpParameter) =>
-    p.optional || hasDefaultValue(p);
-  const skipCredentials = (p: SdkParameter | SdkHttpParameter) =>
-    p.kind !== "credential";
-  const skipMethodParam = (p: SdkParameter | SdkHttpParameter) =>
-    p.kind !== "method";
-  const armSpecific = (p: SdkParameter | SdkHttpParameter) =>
+      ));
+  const isOptional = (p: SdkParameter) => p.optional || hasDefaultValue(p);
+  const skipCredentials = (p: SdkParameter) => p.kind !== "credential";
+  const skipMethodParam = (p: SdkParameter) => p.kind !== "method";
+  const armSpecific = (p: SdkParameter) =>
     !(p.kind === "endpoint" && dpgContext.arm);
   const filters = [
     options.requiredOnly ? isRequired : undefined,
@@ -91,7 +99,6 @@ export function getClientParameters(
   const params = clientParams.filter((p) =>
     filters.every((filter) => !filter || filter(p))
   );
-
   return params;
 }
 
@@ -132,7 +139,7 @@ export function getClientParametersDeclaration(
 
 function getClientParameterTypeExpression(
   context: SdkContext,
-  parameter: SdkParameter | SdkHttpParameter
+  parameter: SdkParameter
 ) {
   // Special handle to work around the fact that TCGC creates a union type for endpoint. The reason they do this
   // is to provide a way for users to either pass the value to fill in the template of the whole endpoint. Basically they are
@@ -149,9 +156,7 @@ function getClientParameterTypeExpression(
   return getTypeExpression(context, parameter.type);
 }
 
-export function getClientParameterName(
-  parameter: SdkParameter | SdkHttpParameter
-) {
+export function getClientParameterName(parameter: SdkParameter) {
   // We have been calling this endpointParam, so special handling this here to make sure there are no unexpected side effects
   if (
     (parameter.type.kind === "union" &&
@@ -169,9 +174,18 @@ export function buildGetClientEndpointParam(
   context: StatementedNode,
   dpgContext: SdkContext,
   client: SdkClientType<SdkServiceOperation>
-): string {
-  const coreEndpointParam = `options.endpoint`;
-
+): { endpointParamName: string; assignedOptionalParams?: Set<string> } {
+  const assignedOptionalParams = new Set<string>();
+  let coreEndpointParam = "";
+  if (dpgContext.rlcOptions?.flavor === "azure") {
+    const cloudSettingSuffix = dpgContext.arm
+      ? ` ?? ${resolveReference(CloudSettingHelpers.getArmEndpoint)}(options.cloudSetting)`
+      : "";
+    coreEndpointParam = `options.endpoint${cloudSettingSuffix}`;
+  } else {
+    // unbranded does not have the deprecated baseUrl parameter
+    coreEndpointParam = `options.endpoint`;
+  }
   // Special case: endpoint URL not defined
   const endpointParam = getClientParameters(client, dpgContext, {
     onClientOnly: true,
@@ -196,8 +210,10 @@ export function buildGetClientEndpointParam(
           context.addStatements(
             `const ${paramName} = options.${paramName} ?? ${defaultValue};`
           );
+          assignedOptionalParams.add(paramName);
         } else if (templateParam.optional) {
           context.addStatements(`const ${paramName} = options.${paramName};`);
+          assignedOptionalParams.add(paramName);
         }
         parameterizedEndpointUrl = parameterizedEndpointUrl.replace(
           `{${templateParam.name}}`,
@@ -206,7 +222,7 @@ export function buildGetClientEndpointParam(
       }
       const endpointUrl = `const endpointUrl = ${coreEndpointParam} ?? \`${parameterizedEndpointUrl}\`;`;
       context.addStatements(endpointUrl);
-      return "endpointUrl";
+      return { endpointParamName: "endpointUrl", assignedOptionalParams };
     } else if (endpointParam.type.kind === "endpoint") {
       const clientDefaultValue =
         endpointParam.type.templateArguments[0]?.clientDefaultValue;
@@ -218,14 +234,14 @@ export function buildGetClientEndpointParam(
             : `String(${getClientParameterName(endpointParam)})`;
       const endpointUrl = `const endpointUrl = ${coreEndpointParam} ?? ${defaultValueStr};`;
       context.addStatements(endpointUrl);
-      return "endpointUrl";
+      return { endpointParamName: "endpointUrl" };
     }
     const endpointUrl = `const endpointUrl = ${coreEndpointParam} ?? String(${getClientParameterName(endpointParam)});`;
     context.addStatements(endpointUrl);
-    return "endpointUrl";
+    return { endpointParamName: "endpointUrl" };
   }
 
-  return "endpointUrl";
+  return { endpointParamName: "endpointUrl" };
 }
 
 /**
@@ -233,12 +249,14 @@ export function buildGetClientEndpointParam(
  *
  * @param context - context in which the options are being passed; statements will be added to this context
  *                  to help build the options shape
+ * @param apiVersionParamName - the name of the api version parameter in options (e.g., "apiVersion" or "version")
  * @returns - an expression representing the options to be passed in to getClient
  */
 export function buildGetClientOptionsParam(
   context: StatementedNode,
   emitterOptions: ModularEmitterOptions,
-  endpointParam: string
+  endpointParam: string,
+  apiVersionParamName?: string
 ): string {
   const userAgentOptions = buildUserAgentOptions(
     context,
@@ -248,7 +266,9 @@ export function buildGetClientOptionsParam(
   const loggingOptions = buildLoggingOptions(emitterOptions.options.flavor);
   const credentials = buildCredentials(emitterOptions, endpointParam);
 
-  let expr = "const { apiVersion: _, ...updatedOptions } = {";
+  // Use the actual api version parameter name for destructuring, defaulting to "apiVersion"
+  const apiVersionDestructure = apiVersionParamName ?? "apiVersion";
+  let expr = `const { ${apiVersionDestructure}: _, ...updatedOptions } = {`;
 
   expr += "...options,";
 

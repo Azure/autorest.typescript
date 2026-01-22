@@ -13,8 +13,8 @@ op read(@path pathParam: string, @query("key-name")
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { ReadOptionalParams } from "./options.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -50,9 +50,7 @@ export function _readSend(
     });
 }
 
-export async function _readDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _readDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -69,14 +67,7 @@ export async function read(
   parameters: string,
   options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _readSend(
-    context,
-    pathParam,
-    keyName,
-    keyVersion,
-    parameters,
-    options,
-  );
+  const result = await _readSend(context, pathParam, keyName, keyVersion, parameters, options);
   return _readDeserialize(result);
 }
 ```

@@ -9,8 +9,8 @@ op continue(): void;
 ## classicClient
 
 ```ts classicClient
-import { ContinueOptionalParams } from "./api/options.js";
 import { $continue } from "./api/operations.js";
+import { ContinueOptionalParams } from "./api/options.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
 export { TestingClientOptionalParams } from "./api/testingContext.js";
@@ -20,10 +20,7 @@ export class TestingClient {
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
 
-  constructor(
-    endpointParam: string,
-    options: TestingClientOptionalParams = {},
-  ) {
+  constructor(endpointParam: string, options: TestingClientOptionalParams = {}) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
@@ -40,9 +37,7 @@ export class TestingClient {
    *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
    *         to the operation to override the generated name.
    */
-  continue(
-    options: ContinueOptionalParams = { requestOptions: {} },
-  ): Promise<void> {
+  continue(options: ContinueOptionalParams = { requestOptions: {} }): Promise<void> {
     return $continue(this._client, options);
   }
 }

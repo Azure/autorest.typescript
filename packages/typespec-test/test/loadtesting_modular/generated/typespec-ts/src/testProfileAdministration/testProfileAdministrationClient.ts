@@ -7,21 +7,21 @@ import {
   TestProfileAdministrationClientOptionalParams,
 } from "./api/index.js";
 import { TestProfile } from "../models/models.js";
-import {
-  ListTestProfilesOptionalParams,
-  GetTestProfileOptionalParams,
-  DeleteTestProfileOptionalParams,
-  CreateOrUpdateTestProfileOptionalParams,
-} from "./api/options.js";
+import { PagedAsyncIterableIterator } from "../static-helpers/pagingHelpers.js";
 import {
   listTestProfiles,
   getTestProfile,
   deleteTestProfile,
   createOrUpdateTestProfile,
 } from "./api/operations.js";
-import { PagedAsyncIterableIterator } from "../static-helpers/pagingHelpers.js";
-import { Pipeline } from "@azure/core-rest-pipeline";
+import {
+  ListTestProfilesOptionalParams,
+  GetTestProfileOptionalParams,
+  DeleteTestProfileOptionalParams,
+  CreateOrUpdateTestProfileOptionalParams,
+} from "./api/options.js";
 import { TokenCredential } from "@azure/core-auth";
+import { Pipeline } from "@azure/core-rest-pipeline";
 
 export { TestProfileAdministrationClientOptionalParams } from "./api/testProfileAdministrationContext.js";
 
@@ -75,11 +75,6 @@ export class TestProfileAdministrationClient {
     body: TestProfile,
     options: CreateOrUpdateTestProfileOptionalParams = { requestOptions: {} },
   ): Promise<TestProfile> {
-    return createOrUpdateTestProfile(
-      this._client,
-      testProfileId,
-      body,
-      options,
-    );
+    return createOrUpdateTestProfile(this._client, testProfileId, body, options);
   }
 }

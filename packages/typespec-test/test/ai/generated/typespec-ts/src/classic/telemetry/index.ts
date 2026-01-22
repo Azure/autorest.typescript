@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 
 import { AIProjectContext } from "../../api/aiProjectContext.js";
-import { GetAppInsightsResponse } from "../../models/models.js";
-import { TelemetryGetAppInsightsOptionalParams } from "../../api/telemetry/options.js";
 import { getAppInsights } from "../../api/telemetry/operations.js";
+import { TelemetryGetAppInsightsOptionalParams } from "../../api/telemetry/options.js";
+import { GetAppInsightsResponse } from "../../models/models.js";
 
 /** Interface representing a Telemetry operations. */
 export interface TelemetryOperations {
@@ -24,9 +24,7 @@ function _getTelemetry(context: AIProjectContext) {
   };
 }
 
-export function _getTelemetryOperations(
-  context: AIProjectContext,
-): TelemetryOperations {
+export function _getTelemetryOperations(context: AIProjectContext): TelemetryOperations {
   return {
     ..._getTelemetry(context),
   };

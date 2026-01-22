@@ -16,22 +16,7 @@ import {
   MetricNamespaceCollection,
   TimeSeriesElement,
 } from "../models/models.js";
-import {
-  StopTestRunOptionalParams,
-  ListTestRunsOptionalParams,
-  ListMetricsOptionalParams,
-  ListMetricNamespacesOptionalParams,
-  ListMetricDefinitionsOptionalParams,
-  ListMetricDimensionValuesOptionalParams,
-  GetTestRunFileOptionalParams,
-  GetTestRunOptionalParams,
-  GetServerMetricsConfigOptionalParams,
-  GetAppComponentsOptionalParams,
-  DeleteTestRunOptionalParams,
-  CreateOrUpdateServerMetricsConfigOptionalParams,
-  CreateOrUpdateAppComponentsOptionalParams,
-  CreateOrUpdateTestRunOptionalParams,
-} from "./api/options.js";
+import { PagedAsyncIterableIterator } from "../static-helpers/pagingHelpers.js";
 import {
   stopTestRun,
   listTestRuns,
@@ -48,9 +33,24 @@ import {
   createOrUpdateAppComponents,
   createOrUpdateTestRun,
 } from "./api/operations.js";
-import { PagedAsyncIterableIterator } from "../static-helpers/pagingHelpers.js";
-import { Pipeline } from "@azure/core-rest-pipeline";
+import {
+  StopTestRunOptionalParams,
+  ListTestRunsOptionalParams,
+  ListMetricsOptionalParams,
+  ListMetricNamespacesOptionalParams,
+  ListMetricDefinitionsOptionalParams,
+  ListMetricDimensionValuesOptionalParams,
+  GetTestRunFileOptionalParams,
+  GetTestRunOptionalParams,
+  GetServerMetricsConfigOptionalParams,
+  GetAppComponentsOptionalParams,
+  DeleteTestRunOptionalParams,
+  CreateOrUpdateServerMetricsConfigOptionalParams,
+  CreateOrUpdateAppComponentsOptionalParams,
+  CreateOrUpdateTestRunOptionalParams,
+} from "./api/options.js";
 import { TokenCredential } from "@azure/core-auth";
+import { Pipeline } from "@azure/core-rest-pipeline";
 
 export { LoadTestRunClientOptionalParams } from "./api/loadTestRunContext.js";
 
@@ -98,14 +98,7 @@ export class LoadTestRunClient {
     timespan: string,
     options: ListMetricsOptionalParams = { requestOptions: {} },
   ): PagedAsyncIterableIterator<TimeSeriesElement> {
-    return listMetrics(
-      this._client,
-      testRunId,
-      metricname,
-      metricNamespace,
-      timespan,
-      options,
-    );
+    return listMetrics(this._client, testRunId, metricname, metricNamespace, timespan, options);
   }
 
   /** List the metric namespaces for a load test run. */
@@ -122,12 +115,7 @@ export class LoadTestRunClient {
     metricNamespace: string,
     options: ListMetricDefinitionsOptionalParams = { requestOptions: {} },
   ): Promise<MetricDefinitionCollection> {
-    return listMetricDefinitions(
-      this._client,
-      testRunId,
-      metricNamespace,
-      options,
-    );
+    return listMetricDefinitions(this._client, testRunId, metricNamespace, options);
   }
 
   /** List the dimension values for the given metric dimension name. */
@@ -198,16 +186,9 @@ export class LoadTestRunClient {
   createOrUpdateServerMetricsConfig(
     testRunId: string,
     body: TestRunServerMetricConfig,
-    options: CreateOrUpdateServerMetricsConfigOptionalParams = {
-      requestOptions: {},
-    },
+    options: CreateOrUpdateServerMetricsConfigOptionalParams = { requestOptions: {} },
   ): Promise<TestRunServerMetricConfig> {
-    return createOrUpdateServerMetricsConfig(
-      this._client,
-      testRunId,
-      body,
-      options,
-    );
+    return createOrUpdateServerMetricsConfig(this._client, testRunId, body, options);
   }
 
   /** Add an app component to a test run by providing the resource Id, name and type. */

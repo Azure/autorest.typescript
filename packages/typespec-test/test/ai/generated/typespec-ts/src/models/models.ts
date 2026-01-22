@@ -1,34 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
-  CodeInterpreterToolDefinition,
-  FileSearchToolDefinition,
-  ThreadStreamEvent,
-  RunStreamEvent,
-  RunStepStreamEvent,
-  MessageStreamEvent,
-  ErrorEvent,
-  DoneEvent,
-} from "./agents/models.js";
-
-/** Alias for _MessageAttachmentTool */
-export type _MessageAttachmentTool =
-  | CodeInterpreterToolDefinition
-  | FileSearchToolDefinition;
-
-export function _messageAttachmentToolSerializer(
-  item: _MessageAttachmentTool,
-): any {
-  return item;
-}
-
-export function _messageAttachmentToolDeserializer(
-  item: any,
-): _MessageAttachmentTool {
-  return item;
-}
-
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** Response from the Workspace - Get operation */
 export interface GetWorkspaceResponse {
   /** A unique identifier for the resource */
@@ -39,9 +17,7 @@ export interface GetWorkspaceResponse {
   properties: WorkspaceProperties;
 }
 
-export function getWorkspaceResponseDeserializer(
-  item: any,
-): GetWorkspaceResponse {
+export function getWorkspaceResponseDeserializer(item: any): GetWorkspaceResponse {
   return {
     id: item["id"],
     name: item["name"],
@@ -55,9 +31,7 @@ export interface WorkspaceProperties {
   applicationInsights: string;
 }
 
-export function workspacePropertiesDeserializer(
-  item: any,
-): WorkspaceProperties {
+export function workspacePropertiesDeserializer(item: any): WorkspaceProperties {
   return {
     applicationInsights: item["applicationInsights"],
   };
@@ -69,9 +43,7 @@ export interface ListConnectionsResponse {
   value: GetConnectionResponse[];
 }
 
-export function listConnectionsResponseDeserializer(
-  item: any,
-): ListConnectionsResponse {
+export function listConnectionsResponseDeserializer(item: any): ListConnectionsResponse {
   return {
     value: getConnectionResponseArrayDeserializer(item["value"]),
   };
@@ -95,15 +67,11 @@ export interface GetConnectionResponse {
   properties: InternalConnectionPropertiesUnion;
 }
 
-export function getConnectionResponseDeserializer(
-  item: any,
-): GetConnectionResponse {
+export function getConnectionResponseDeserializer(item: any): GetConnectionResponse {
   return {
     id: item["id"],
     name: item["name"],
-    properties: internalConnectionPropertiesUnionDeserializer(
-      item["properties"],
-    ),
+    properties: internalConnectionPropertiesUnionDeserializer(item["properties"]),
   };
 }
 
@@ -118,9 +86,7 @@ export interface InternalConnectionProperties {
   target: string;
 }
 
-export function internalConnectionPropertiesDeserializer(
-  item: any,
-): InternalConnectionProperties {
+export function internalConnectionPropertiesDeserializer(item: any): InternalConnectionProperties {
   return {
     authType: item["authType"],
     category: item["category"],
@@ -170,8 +136,7 @@ export type ConnectionType =
   | "CognitiveSearch";
 
 /** Connection properties for connections with API key authentication */
-export interface InternalConnectionPropertiesApiKeyAuth
-  extends InternalConnectionProperties {
+export interface InternalConnectionPropertiesApiKeyAuth extends InternalConnectionProperties {
   /** Authentication type of the connection target */
   authType: "ApiKey";
   /** Credentials will only be present for authType=ApiKey */
@@ -195,17 +160,14 @@ export interface CredentialsApiKeyAuth {
   key: string;
 }
 
-export function credentialsApiKeyAuthDeserializer(
-  item: any,
-): CredentialsApiKeyAuth {
+export function credentialsApiKeyAuthDeserializer(item: any): CredentialsApiKeyAuth {
   return {
     key: item["key"],
   };
 }
 
 /** Connection properties for connections with AAD authentication (aka `Entra ID passthrough`) */
-export interface InternalConnectionPropertiesAADAuth
-  extends InternalConnectionProperties {
+export interface InternalConnectionPropertiesAADAuth extends InternalConnectionProperties {
   /** Authentication type of the connection target */
   authType: "AAD";
 }
@@ -221,8 +183,7 @@ export function internalConnectionPropertiesAADAuthDeserializer(
 }
 
 /** Connection properties for connections with SAS authentication */
-export interface InternalConnectionPropertiesSASAuth
-  extends InternalConnectionProperties {
+export interface InternalConnectionPropertiesSASAuth extends InternalConnectionProperties {
   /** Authentication type of the connection target */
   authType: "SAS";
   /** Credentials will only be present for authType=ApiKey */
@@ -262,9 +223,7 @@ export interface GetAppInsightsResponse {
   properties: AppInsightsProperties;
 }
 
-export function getAppInsightsResponseDeserializer(
-  item: any,
-): GetAppInsightsResponse {
+export function getAppInsightsResponseDeserializer(item: any): GetAppInsightsResponse {
   return {
     id: item["id"],
     name: item["name"],
@@ -278,9 +237,7 @@ export interface AppInsightsProperties {
   connectionString: string;
 }
 
-export function appInsightsPropertiesDeserializer(
-  item: any,
-): AppInsightsProperties {
+export function appInsightsPropertiesDeserializer(item: any): AppInsightsProperties {
   return {
     connectionString: item["ConnectionString"],
   };
@@ -329,8 +286,14 @@ export function evaluationDeserializer(item: any): Evaluation {
       ? item["systemData"]
       : systemDataDeserializer(item["systemData"]),
     status: item["status"],
-    tags: item["tags"],
-    properties: item["properties"],
+    tags: !item["tags"]
+      ? item["tags"]
+      : Object.fromEntries(Object.entries(item["tags"]).map(([k, p]: [string, any]) => [k, p])),
+    properties: !item["properties"]
+      ? item["properties"]
+      : Object.fromEntries(
+          Object.entries(item["properties"]).map(([k, p]: [string, any]) => [k, p]),
+        ),
     evaluators: evaluatorConfigurationRecordDeserializer(item["evaluators"]),
   };
 }
@@ -353,17 +316,12 @@ export function inputDataDeserializer(item: any): InputData {
 }
 
 /** Alias for InputDataUnion */
-export type InputDataUnion =
-  | ApplicationInsightsConfiguration
-  | Dataset
-  | InputData;
+export type InputDataUnion = ApplicationInsightsConfiguration | Dataset | InputData;
 
 export function inputDataUnionSerializer(item: InputDataUnion): any {
   switch (item.type) {
     case "app_insights":
-      return applicationInsightsConfigurationSerializer(
-        item as ApplicationInsightsConfiguration,
-      );
+      return applicationInsightsConfigurationSerializer(item as ApplicationInsightsConfiguration);
 
     case "dataset":
       return datasetSerializer(item as Dataset);
@@ -376,9 +334,7 @@ export function inputDataUnionSerializer(item: InputDataUnion): any {
 export function inputDataUnionDeserializer(item: any): InputDataUnion {
   switch (item.type) {
     case "app_insights":
-      return applicationInsightsConfigurationDeserializer(
-        item as ApplicationInsightsConfiguration,
-      );
+      return applicationInsightsConfigurationDeserializer(item as ApplicationInsightsConfiguration);
 
     case "dataset":
       return datasetDeserializer(item as Dataset);
@@ -456,9 +412,7 @@ export interface SystemData {
 
 export function systemDataDeserializer(item: any): SystemData {
   return {
-    createdAt: !item["createdAt"]
-      ? item["createdAt"]
-      : new Date(item["createdAt"]),
+    createdAt: !item["createdAt"] ? item["createdAt"] : new Date(item["createdAt"]),
     createdBy: item["createdBy"],
     createdByType: item["createdByType"],
     lastModifiedAt: !item["lastModifiedAt"]
@@ -472,9 +426,7 @@ export function evaluatorConfigurationRecordSerializer(
 ): Record<string, any> {
   const result: Record<string, any> = {};
   Object.keys(item).map((key) => {
-    result[key] = !item[key]
-      ? item[key]
-      : evaluatorConfigurationSerializer(item[key]);
+    result[key] = !item[key] ? item[key] : evaluatorConfigurationSerializer(item[key]);
   });
   return result;
 }
@@ -484,9 +436,7 @@ export function evaluatorConfigurationRecordDeserializer(
 ): Record<string, EvaluatorConfiguration> {
   const result: Record<string, any> = {};
   Object.keys(item).map((key) => {
-    result[key] = !item[key]
-      ? item[key]
-      : evaluatorConfigurationDeserializer(item[key]);
+    result[key] = !item[key] ? item[key] : evaluatorConfigurationDeserializer(item[key]);
   });
   return result;
 }
@@ -501,23 +451,23 @@ export interface EvaluatorConfiguration {
   dataMapping?: Record<string, string>;
 }
 
-export function evaluatorConfigurationSerializer(
-  item: EvaluatorConfiguration,
-): any {
-  return {
-    id: item["id"],
-    initParams: item["initParams"],
-    dataMapping: item["dataMapping"],
-  };
+export function evaluatorConfigurationSerializer(item: EvaluatorConfiguration): any {
+  return { id: item["id"], initParams: item["initParams"], dataMapping: item["dataMapping"] };
 }
 
-export function evaluatorConfigurationDeserializer(
-  item: any,
-): EvaluatorConfiguration {
+export function evaluatorConfigurationDeserializer(item: any): EvaluatorConfiguration {
   return {
     id: item["id"],
-    initParams: item["initParams"],
-    dataMapping: item["dataMapping"],
+    initParams: !item["initParams"]
+      ? item["initParams"]
+      : Object.fromEntries(
+          Object.entries(item["initParams"]).map(([k, p]: [string, any]) => [k, p]),
+        ),
+    dataMapping: !item["dataMapping"]
+      ? item["dataMapping"]
+      : Object.fromEntries(
+          Object.entries(item["dataMapping"]).map(([k, p]: [string, any]) => [k, p]),
+        ),
   };
 }
 
@@ -592,8 +542,14 @@ export function evaluationScheduleDeserializer(item: any): EvaluationSchedule {
       ? item["systemData"]
       : systemDataDeserializer(item["systemData"]),
     provisioningState: item["provisioningState"],
-    tags: item["tags"],
-    properties: item["properties"],
+    tags: !item["tags"]
+      ? item["tags"]
+      : Object.fromEntries(Object.entries(item["tags"]).map(([k, p]: [string, any]) => [k, p])),
+    properties: !item["properties"]
+      ? item["properties"]
+      : Object.fromEntries(
+          Object.entries(item["properties"]).map(([k, p]: [string, any]) => [k, p]),
+        ),
     isEnabled: item["isEnabled"],
     evaluators: evaluatorConfigurationRecordDeserializer(item["evaluators"]),
     trigger: triggerUnionDeserializer(item["trigger"]),
@@ -661,9 +617,7 @@ export function recurrenceTriggerSerializer(item: RecurrenceTrigger): any {
   return {
     frequency: item["frequency"],
     interval: item["interval"],
-    schedule: !item["schedule"]
-      ? item["schedule"]
-      : recurrenceScheduleSerializer(item["schedule"]),
+    schedule: !item["schedule"] ? item["schedule"] : recurrenceScheduleSerializer(item["schedule"]),
   };
 }
 
@@ -771,39 +725,24 @@ export interface _PagedEvaluationSchedule {
   nextLink?: string;
 }
 
-export function _pagedEvaluationScheduleDeserializer(
-  item: any,
-): _PagedEvaluationSchedule {
+export function _pagedEvaluationScheduleDeserializer(item: any): _PagedEvaluationSchedule {
   return {
     value: evaluationScheduleArrayDeserializer(item["value"]),
     nextLink: item["nextLink"],
   };
 }
 
-export function evaluationScheduleArraySerializer(
-  result: Array<EvaluationSchedule>,
-): any[] {
+export function evaluationScheduleArraySerializer(result: Array<EvaluationSchedule>): any[] {
   return result.map((item) => {
     return evaluationScheduleSerializer(item);
   });
 }
 
-export function evaluationScheduleArrayDeserializer(
-  result: Array<EvaluationSchedule>,
-): any[] {
+export function evaluationScheduleArrayDeserializer(result: Array<EvaluationSchedule>): any[] {
   return result.map((item) => {
     return evaluationScheduleDeserializer(item);
   });
 }
-
-/** Alias for _ */
-export type _ =
-  | ThreadStreamEvent
-  | RunStreamEvent
-  | RunStepStreamEvent
-  | MessageStreamEvent
-  | ErrorEvent
-  | DoneEvent;
 
 /** Azure AI API versions */
 export enum KnownVersions {

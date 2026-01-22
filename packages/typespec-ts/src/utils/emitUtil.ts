@@ -5,10 +5,14 @@ import {
   isAzurePackage,
   RLCModel
 } from "@azure-tools/rlc-common";
-import { CompilerHost, Program } from "@typespec/compiler";
+import { CompilerHost, Program, NoTarget } from "@typespec/compiler";
 import { dirname, join } from "path";
 import { format } from "prettier";
-import { prettierJSONOptions, prettierTypeScriptOptions } from "../lib.js";
+import {
+  prettierJSONOptions,
+  prettierTypeScriptOptions,
+  reportDiagnostic
+} from "../lib.js";
 
 export async function emitModels(rlcModels: RLCModel, program: Program) {
   const schemaOutput = buildSchemaTypes(rlcModels);
@@ -78,8 +82,15 @@ async function emitFile(
         isJson ? prettierJSONOptions : prettierTypeScriptOptions
       );
     } catch (e) {
-      console.error(`Failed to format file: ${filePath}`);
-      throw e;
+      reportDiagnostic(program, {
+        code: "file-formatting-error",
+        format: {
+          filePath: filePath,
+          error: String(e)
+        },
+        target: NoTarget
+      });
+      // Continue with unformatted content rather than crashing
     }
   }
   await host.mkdirp(dirname(filePath));

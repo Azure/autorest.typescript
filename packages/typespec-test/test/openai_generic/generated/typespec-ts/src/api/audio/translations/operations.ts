@@ -27,10 +27,7 @@ export function _createSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "multipart/form-data",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: createTranslationRequestSerializer(audio),
     });
 }

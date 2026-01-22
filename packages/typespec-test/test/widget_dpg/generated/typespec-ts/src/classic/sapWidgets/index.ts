@@ -2,18 +2,6 @@
 // Licensed under the MIT License.
 
 import { SAPWidgetServiceContext } from "../../api/sapWidgetServiceContext.js";
-import { Widget, SAPUser, AnalyzeResult } from "../../models/models.js";
-import {
-  SAPWidgetsAnalyzeWidgetOptionalParams,
-  SAPWidgetsDeleteWidgetOptionalParams,
-  SAPWidgetsUpdateWidgetOptionalParams,
-  SAPWidgetsCreateOrReplaceOptionalParams,
-  SAPWidgetsCreateWidgetOptionalParams,
-  SAPWidgetsGetWidgetOptionalParams,
-  SAPWidgetsQueryWidgetsPagesOptionalParams,
-  SAPWidgetsListWidgetsPagesOptionalParams,
-  SAPWidgetsSAPListWidgetsOptionalParams,
-} from "../../api/sapWidgets/options.js";
 import {
   analyzeWidget,
   deleteWidget,
@@ -25,6 +13,18 @@ import {
   listWidgetsPages,
   sapListWidgets,
 } from "../../api/sapWidgets/operations.js";
+import {
+  SAPWidgetsAnalyzeWidgetOptionalParams,
+  SAPWidgetsDeleteWidgetOptionalParams,
+  SAPWidgetsUpdateWidgetOptionalParams,
+  SAPWidgetsCreateOrReplaceOptionalParams,
+  SAPWidgetsCreateWidgetOptionalParams,
+  SAPWidgetsGetWidgetOptionalParams,
+  SAPWidgetsQueryWidgetsPagesOptionalParams,
+  SAPWidgetsListWidgetsPagesOptionalParams,
+  SAPWidgetsSAPListWidgetsOptionalParams,
+} from "../../api/sapWidgets/options.js";
+import { Widget, SAPUser, AnalyzeResult } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 
@@ -36,18 +36,12 @@ export interface SAPWidgetsOperations {
     options?: SAPWidgetsAnalyzeWidgetOptionalParams,
   ) => Promise<AnalyzeResult>;
   /** Delete a widget by ID. */
-  deleteWidget: (
-    id: string,
-    options?: SAPWidgetsDeleteWidgetOptionalParams,
-  ) => Promise<void>;
+  deleteWidget: (id: string, options?: SAPWidgetsDeleteWidgetOptionalParams) => Promise<void>;
   /**
    * Update the contents of the widget. The widget ID is required in the input, but cannot be changed. All other fields
    * are optional and will be updated within the widget if provided.
    */
-  updateWidget: (
-    id: string,
-    options?: SAPWidgetsUpdateWidgetOptionalParams,
-  ) => Promise<Widget>;
+  updateWidget: (id: string, options?: SAPWidgetsUpdateWidgetOptionalParams) => Promise<Widget>;
   /** Long-running resource create or replace operation template. */
   createOrReplace: (
     name: string,
@@ -66,10 +60,7 @@ export interface SAPWidgetsOperations {
     options?: SAPWidgetsCreateWidgetOptionalParams,
   ) => Promise<Widget>;
   /** Get a widget by ID. */
-  getWidget: (
-    id: string,
-    options?: SAPWidgetsGetWidgetOptionalParams,
-  ) => Promise<Widget>;
+  getWidget: (id: string, options?: SAPWidgetsGetWidgetOptionalParams) => Promise<Widget>;
   queryWidgetsPages: (
     page: number,
     pageSize: number,
@@ -97,18 +88,12 @@ export interface SAPWidgetsOperations {
 
 function _getSAPWidgets(context: SAPWidgetServiceContext) {
   return {
-    analyzeWidget: (
-      id: string,
-      options?: SAPWidgetsAnalyzeWidgetOptionalParams,
-    ) => analyzeWidget(context, id, options),
-    deleteWidget: (
-      id: string,
-      options?: SAPWidgetsDeleteWidgetOptionalParams,
-    ) => deleteWidget(context, id, options),
-    updateWidget: (
-      id: string,
-      options?: SAPWidgetsUpdateWidgetOptionalParams,
-    ) => updateWidget(context, id, options),
+    analyzeWidget: (id: string, options?: SAPWidgetsAnalyzeWidgetOptionalParams) =>
+      analyzeWidget(context, id, options),
+    deleteWidget: (id: string, options?: SAPWidgetsDeleteWidgetOptionalParams) =>
+      deleteWidget(context, id, options),
+    updateWidget: (id: string, options?: SAPWidgetsUpdateWidgetOptionalParams) =>
+      updateWidget(context, id, options),
     createOrReplace: (
       name: string,
       resource: SAPUser,
@@ -151,9 +136,7 @@ function _getSAPWidgets(context: SAPWidgetServiceContext) {
   };
 }
 
-export function _getSAPWidgetsOperations(
-  context: SAPWidgetServiceContext,
-): SAPWidgetsOperations {
+export function _getSAPWidgetsOperations(context: SAPWidgetServiceContext): SAPWidgetsOperations {
   return {
     ..._getSAPWidgets(context),
   };

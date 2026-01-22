@@ -33,7 +33,7 @@ namespace Client.Structure.Service;
 
 enum Versions {
   /** Version 2022-08-31 */
-  @useDependency(Azure.Core.Versions.v1_0_Preview_2)
+  
   `2022-08-30`,
 }
 
@@ -63,7 +63,10 @@ import { logger } from "../logger.js";
 import { ClientType } from "../models/models.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 
-export interface ServiceContext extends Client {}
+export interface ServiceContext extends Client {
+  /** Need to be set as 'default', 'multi-client', 'renamed-operation', 'two-operation-group' in client. */
+  clientParam?: ClientType;
+}
 
 /** Optional parameters for the client. */
 export interface ServiceClientOptionalParams extends ClientOptions {
@@ -73,28 +76,25 @@ export interface ServiceClientOptionalParams extends ClientOptions {
 
 export function createService(
   endpointParam: string,
-  options: ServiceClientOptionalParams = {}
+  options: ServiceClientOptionalParams = {},
 ): ServiceContext {
   const clientParam = options.clientParam ?? "default";
-  const endpointUrl =
-    options.endpoint ?? `${endpointParam}/client/structure/${clientParam}`;
+  const endpointUrl = options.endpoint ?? `${endpointParam}/client/structure/${clientParam}`;
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
-  const userAgentPrefix = prefixFromOptions
-    ? `${prefixFromOptions} azsdk-js-api`
-    : `azsdk-js-api`;
+  const userAgentPrefix = prefixFromOptions ? `${prefixFromOptions} azsdk-js-api` : `azsdk-js-api`;
   const { apiVersion: _, ...updatedOptions } = {
     ...options,
     userAgentOptions: { userAgentPrefix },
-    loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info }
+    loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
   };
   const clientContext = getClient(endpointUrl, undefined, updatedOptions);
   clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   if (options.apiVersion) {
     logger.warning(
-      "This client does not support client api-version, please change it at the operation level"
+      "This client does not support client api-version, please change it at the operation level",
     );
   }
-  return clientContext;
+  return { ...clientContext, clientParam } as ServiceContext;
 }
 ```
 
@@ -133,7 +133,7 @@ namespace Client.Structure.Service;
 
 enum Versions {
   /** Version 2022-08-31 */
-  @useDependency(Azure.Core.Versions.v1_0_Preview_2)
+  
   `2022-08-30`,
 }
 
@@ -163,38 +163,38 @@ import { logger } from "../logger.js";
 import { ClientType } from "../models/models.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 
-export interface ServiceContext extends Client {}
-
-/** Optional parameters for the client. */
-export interface ServiceClientOptionalParams extends ClientOptions {
+export interface ServiceContext extends Client {
   /** Need to be set as 'default', 'multi-client', 'renamed-operation', 'two-operation-group' in client. */
   clientParam?: ClientType;
 }
 
-export function createService(
-  options: ServiceClientOptionalParams = {}
-): ServiceContext {
+/** Optional parameters for the client. */
+export interface ServiceClientOptionalParams extends ClientOptions {
+  /** Need to be set as 'http://localhost:3000' in client. */
+  endpointParam?: string;
+  /** Need to be set as 'default', 'multi-client', 'renamed-operation', 'two-operation-group' in client. */
+  clientParam?: ClientType;
+}
+
+export function createService(options: ServiceClientOptionalParams = {}): ServiceContext {
   const endpointParam = options.endpointParam ?? "http://localhost:3000";
   const clientParam = options.clientParam ?? "default";
-  const endpointUrl =
-    options.endpoint ?? `${endpointParam}/client/structure/${clientParam}`;
+  const endpointUrl = options.endpoint ?? `${endpointParam}/client/structure/${clientParam}`;
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
-  const userAgentPrefix = prefixFromOptions
-    ? `${prefixFromOptions} azsdk-js-api`
-    : `azsdk-js-api`;
+  const userAgentPrefix = prefixFromOptions ? `${prefixFromOptions} azsdk-js-api` : `azsdk-js-api`;
   const { apiVersion: _, ...updatedOptions } = {
     ...options,
     userAgentOptions: { userAgentPrefix },
-    loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info }
+    loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
   };
   const clientContext = getClient(endpointUrl, undefined, updatedOptions);
   clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   if (options.apiVersion) {
     logger.warning(
-      "This client does not support client api-version, please change it at the operation level"
+      "This client does not support client api-version, please change it at the operation level",
     );
   }
-  return clientContext;
+  return { ...clientContext, clientParam } as ServiceContext;
 }
 ```
 
@@ -233,7 +233,7 @@ namespace Client.Structure.Service;
 
 enum Versions {
   /** Version 2022-08-31 */
-  @useDependency(Azure.Core.Versions.v1_0_Preview_2)
+  
   `2022-08-30`,
 }
 
@@ -265,7 +265,10 @@ import { logger } from "../logger.js";
 import { ClientType } from "../models/models.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 
-export interface TestServiceContext extends Client {}
+export interface TestServiceContext extends Client {
+  /** Need to be set as 'default', 'multi-client', 'renamed-operation', 'two-operation-group' in client. */
+  clientParam?: ClientType;
+}
 
 /** Optional parameters for the client. */
 export interface TestServiceClientOptionalParams extends ClientOptions {
@@ -275,27 +278,24 @@ export interface TestServiceClientOptionalParams extends ClientOptions {
 
 export function createTestService(
   endpointParam: string,
-  options: TestServiceClientOptionalParams = {}
+  options: TestServiceClientOptionalParams = {},
 ): TestServiceContext {
   const clientParam = options.clientParam ?? "default";
-  const endpointUrl =
-    options.endpoint ?? `${endpointParam}/client/structure/${clientParam}`;
+  const endpointUrl = options.endpoint ?? `${endpointParam}/client/structure/${clientParam}`;
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
-  const userAgentPrefix = prefixFromOptions
-    ? `${prefixFromOptions} azsdk-js-api`
-    : `azsdk-js-api`;
+  const userAgentPrefix = prefixFromOptions ? `${prefixFromOptions} azsdk-js-api` : `azsdk-js-api`;
   const { apiVersion: _, ...updatedOptions } = {
     ...options,
     userAgentOptions: { userAgentPrefix },
-    loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info }
+    loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
   };
   const clientContext = getClient(endpointUrl, undefined, updatedOptions);
   clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   if (options.apiVersion) {
     logger.warning(
-      "This client does not support client api-version, please change it at the operation level"
+      "This client does not support client api-version, please change it at the operation level",
     );
   }
-  return clientContext;
+  return { ...clientContext, clientParam } as TestServiceContext;
 }
 ```

@@ -3,16 +3,23 @@ import { Project, SourceFile } from "ts-morph";
 import { getClassicalClientName } from "./helpers/namingHelpers.js";
 import { ModularEmitterOptions } from "./interfaces.js";
 import { resolveReference } from "../framework/reference.js";
-import { MultipartHelpers, PagingHelpers } from "./static-helpers-metadata.js";
+import {
+  CloudSettingHelpers,
+  MultipartHelpers,
+  PagingHelpers
+} from "./static-helpers-metadata.js";
 import {
   SdkClientType,
-  SdkContext,
   SdkServiceOperation
 } from "@azure-tools/typespec-client-generator-core";
 import { getModularClientOptions } from "../utils/clientUtils.js";
 import { getMethodHierarchiesMap } from "../utils/operationUtil.js";
 import { join } from "path/posix";
 import { useContext } from "../contextManager.js";
+import { reportDiagnostic } from "../lib.js";
+import { NoTarget } from "@typespec/compiler";
+import { isLroOnlyOperation } from "./helpers/operationHelpers.js";
+import { SdkContext } from "../utils/interfaces.js";
 
 export function buildRootIndex(
   context: SdkContext,
@@ -38,15 +45,25 @@ export function buildRootIndex(
   );
 
   if (!clientFile) {
-    throw new Error(
-      `Couldn't find client file: ${srcPath}/${normalizeName(
-        clientName,
-        NameType.File
-      )}.ts`
-    );
+    reportDiagnostic(context.program, {
+      code: "client-file-not-found",
+      format: {
+        filePath: `${srcPath}/${normalizeName(clientName, NameType.File)}.ts`
+      },
+      target: NoTarget
+    });
+    return; // Skip exporting this client but continue with others
   }
 
   exportClassicalClient(client, rootIndexFile, subfolder ?? "");
+  exportSimplePollerLike(
+    context,
+    clientMap,
+    rootIndexFile,
+    project,
+    srcPath,
+    subfolder
+  );
   exportRestoreHelpers(
     rootIndexFile,
     project,
@@ -68,6 +85,7 @@ export function buildRootIndex(
 
   exportPagingTypes(context, rootIndexFile);
   exportFileContentsType(context, rootIndexFile);
+  exportAzureCloudTypes(context, rootIndexFile);
 }
 
 function exportModels(
@@ -91,6 +109,15 @@ function exportModels(
   }
 }
 
+function exportAzureCloudTypes(context: SdkContext, rootIndexFile: SourceFile) {
+  if (context.arm) {
+    addExportsToRootIndexFile(rootIndexFile, [
+      resolveReference(CloudSettingHelpers.AzureClouds),
+      resolveReference(CloudSettingHelpers.AzureSupportedClouds)
+    ]);
+  }
+}
+
 /**
  * This is a temporary solution for adding paging exports. Eventually we will have the binder generate the exports automatically.
  */
@@ -99,18 +126,11 @@ function exportPagingTypes(context: SdkContext, rootIndexFile: SourceFile) {
     return;
   }
 
-  const existingExports = getExistingExports(rootIndexFile);
-  const namedExports = [
+  addExportsToRootIndexFile(rootIndexFile, [
     resolveReference(PagingHelpers.PageSettings),
     resolveReference(PagingHelpers.ContinuablePage),
     resolveReference(PagingHelpers.PagedAsyncIterableIterator)
-  ];
-
-  const newNamedExports = getNewNamedExports(namedExports, existingExports);
-
-  if (newNamedExports.length > 0) {
-    addExportsToRootIndexFile(rootIndexFile, newNamedExports);
-  }
+  ]);
 }
 
 function hasPaging(context: SdkContext): boolean {
@@ -139,14 +159,9 @@ function exportFileContentsType(
       )
     )
   ) {
-    const existingExports = getExistingExports(rootIndexFile);
-    const namedExports = [resolveReference(MultipartHelpers.FileContents)];
-
-    const newNamedExports = getNewNamedExports(namedExports, existingExports);
-
-    if (newNamedExports.length > 0) {
-      addExportsToRootIndexFile(rootIndexFile, newNamedExports);
-    }
+    addExportsToRootIndexFile(rootIndexFile, [
+      resolveReference(MultipartHelpers.FileContents)
+    ]);
   }
 }
 
@@ -171,10 +186,49 @@ function getNewNamedExports(
 
 function addExportsToRootIndexFile(
   rootIndexFile: SourceFile,
-  newNamedExports: string[]
+  namedExports: string[]
 ) {
-  rootIndexFile.addExportDeclaration({
-    namedExports: newNamedExports
+  const existingExports = getExistingExports(rootIndexFile);
+  const newNamedExports = getNewNamedExports(namedExports, existingExports);
+  if (newNamedExports.length > 0) {
+    rootIndexFile.addExportDeclaration({
+      namedExports: newNamedExports
+    });
+  }
+}
+
+function exportSimplePollerLike(
+  context: SdkContext,
+  clientMap: [string[], SdkClientType<SdkServiceOperation>],
+  indexFile: SourceFile,
+  project: Project,
+  srcPath: string,
+  subfolder: string = "",
+  isTopLevel: boolean = false
+) {
+  const [_, client] = clientMap;
+
+  const methodMap = getMethodHierarchiesMap(context, client);
+  const hasLro = Array.from(methodMap.values()).some((operations) => {
+    return operations.some(isLroOnlyOperation);
+  });
+  if (!hasLro || context.rlcOptions?.compatibilityLro !== true) {
+    return;
+  }
+  const helperFile = project.getSourceFile(
+    `${srcPath}/${
+      subfolder && subfolder !== "" ? subfolder + "/" : ""
+    }static-helpers/simplePollerHelpers.ts`
+  );
+  if (!helperFile) {
+    return;
+  }
+  const moduleSpecifier = `./${
+    isTopLevel && subfolder && subfolder !== "" ? subfolder + "/" : ""
+  }static-helpers/simplePollerHelpers.js`;
+  indexFile.addExportDeclaration({
+    moduleSpecifier,
+    namedExports: ["SimplePollerLike"]
   });
 }
 
@@ -288,7 +342,7 @@ function exportModules(
     }
 
     const exported = [...indexFile.getExportedDeclarations().keys()];
-
+    const serializerOrDeserializerRegex = /.*(Serializer|Deserializer)(_\d+)?$/;
     const namedExports = [...modelsFile.getExportedDeclarations().entries()]
       .filter((exDeclaration) => {
         if (exDeclaration[0].startsWith("_")) {
@@ -304,8 +358,7 @@ function exportModules(
           if (
             moduleName === "models" &&
             ex.getKindName() === "FunctionDeclaration" &&
-            (exDeclaration[0].endsWith("Serializer") ||
-              exDeclaration[0].endsWith("Deserializer"))
+            serializerOrDeserializerRegex.test(exDeclaration[0])
           ) {
             return false;
           }
@@ -341,6 +394,7 @@ function exportModules(
 }
 
 export function buildSubClientIndexFile(
+  context: SdkContext,
   clientMap: [string[], SdkClientType<SdkServiceOperation>],
   emitterOptions: ModularEmitterOptions
 ) {
@@ -360,10 +414,25 @@ export function buildSubClientIndexFile(
   const clientFile = project.getSourceFile(clientFilePath);
 
   if (!clientFile) {
-    throw new Error(`Couldn't find client file: ${clientFilePath}`);
+    reportDiagnostic(context.program, {
+      code: "client-file-not-found",
+      format: {
+        filePath: clientFilePath
+      },
+      target: NoTarget
+    });
+    return; // Skip exporting this client but continue with others
   }
 
   exportClassicalClient(client, subClientIndexFile, subfolder ?? "", true);
+  exportSimplePollerLike(
+    context,
+    clientMap,
+    subClientIndexFile,
+    project,
+    srcPath,
+    subfolder
+  );
   exportRestoreHelpers(
     subClientIndexFile,
     project,

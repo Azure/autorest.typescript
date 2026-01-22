@@ -9,7 +9,6 @@ options:
     flavor: azure
     azure-sdk-for-js: false
     is-typespec-test: true
-    is-modular-library: true
     package-details:
       name: "@msinternal/body-optionality"
       description: "Parameter Body Optionality Test Service"

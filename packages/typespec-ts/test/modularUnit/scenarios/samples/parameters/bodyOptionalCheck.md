@@ -75,12 +75,9 @@ Should generate operations correctly:
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import {
-  bodyParameterSerializer,
-  _readResponseDeserializer,
-} from "../models/models.js";
-import { ReadOptionalParams } from "./options.js";
+import { bodyParameterSerializer, _readResponseDeserializer } from "../models/models.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -110,13 +107,8 @@ export function _readSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
-      body: !options["widget"]
-        ? options["widget"]
-        : bodyParameterSerializer(options["widget"]),
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
+      body: !options["widget"] ? options["widget"] : bodyParameterSerializer(options["widget"]),
     });
 }
 
@@ -158,7 +150,8 @@ import { TestingClient } from "@azure/internal-test";
  * x-ms-original-file: 2021-10-01-preview/json.json
  */
 async function read(): Promise<void> {
-  const client = new TestingClient();
+  const endpoint = process.env.TESTING_ENDPOINT || "";
+  const client = new TestingClient(endpoint);
   const result = await client.read("required path param", "required query", {
     widget: { name: "body name" },
     optionalQuery: "renamed optional query",

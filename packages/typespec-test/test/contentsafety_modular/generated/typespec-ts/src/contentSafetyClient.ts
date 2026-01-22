@@ -7,20 +7,19 @@ import {
   ContentSafetyClientOptionalParams,
 } from "./api/index.js";
 import {
-  AnalyzeTextOptions,
-  AnalyzeTextResult,
-  ShieldPromptOptions,
-  ShieldPromptResult,
-  DetectTextProtectedMaterialOptions,
-  DetectTextProtectedMaterialResult,
-  AnalyzeImageOptions,
-  AnalyzeImageResult,
-  TextBlocklist,
-  AddOrUpdateTextBlocklistItemsOptions,
-  TextBlocklistItem,
-  AddOrUpdateTextBlocklistItemsResult,
-  RemoveTextBlocklistItemsOptions,
-} from "./models/models.js";
+  listTextBlocklistItems,
+  getTextBlocklistItem,
+  removeBlocklistItems,
+  addOrUpdateBlocklistItems,
+  listTextBlocklists,
+  deleteTextBlocklist,
+  createOrUpdateTextBlocklist,
+  getTextBlocklist,
+  analyzeImage,
+  detectTextProtectedMaterial,
+  shieldPrompt,
+  analyzeText,
+} from "./api/operations.js";
 import {
   ListTextBlocklistItemsOptionalParams,
   GetTextBlocklistItemOptionalParams,
@@ -36,22 +35,23 @@ import {
   AnalyzeTextOptionalParams,
 } from "./api/options.js";
 import {
-  listTextBlocklistItems,
-  getTextBlocklistItem,
-  removeBlocklistItems,
-  addOrUpdateBlocklistItems,
-  listTextBlocklists,
-  deleteTextBlocklist,
-  createOrUpdateTextBlocklist,
-  getTextBlocklist,
-  analyzeImage,
-  detectTextProtectedMaterial,
-  shieldPrompt,
-  analyzeText,
-} from "./api/operations.js";
+  AnalyzeTextOptions,
+  AnalyzeTextResult,
+  ShieldPromptOptions,
+  ShieldPromptResult,
+  DetectTextProtectedMaterialOptions,
+  DetectTextProtectedMaterialResult,
+  AnalyzeImageOptions,
+  AnalyzeImageResult,
+  TextBlocklist,
+  AddOrUpdateTextBlocklistItemsOptions,
+  TextBlocklistItem,
+  AddOrUpdateTextBlocklistItemsResult,
+  RemoveTextBlocklistItemsOptions,
+} from "./models/models.js";
 import { PagedAsyncIterableIterator } from "./static-helpers/pagingHelpers.js";
-import { Pipeline } from "@azure/core-rest-pipeline";
 import { KeyCredential, TokenCredential } from "@azure/core-auth";
+import { Pipeline } from "@azure/core-rest-pipeline";
 
 export { ContentSafetyClientOptionalParams } from "./api/contentSafetyContext.js";
 
@@ -91,12 +91,7 @@ export class ContentSafetyClient {
     blocklistItemId: string,
     options: GetTextBlocklistItemOptionalParams = { requestOptions: {} },
   ): Promise<TextBlocklistItem> {
-    return getTextBlocklistItem(
-      this._client,
-      blocklistName,
-      blocklistItemId,
-      options,
-    );
+    return getTextBlocklistItem(this._client, blocklistName, blocklistItemId, options);
   }
 
   /** Remove blocklistItems from a text blocklist. You can remove at most 100 BlocklistItems in one request. */
@@ -114,12 +109,7 @@ export class ContentSafetyClient {
     body: AddOrUpdateTextBlocklistItemsOptions,
     options: AddOrUpdateBlocklistItemsOptionalParams = { requestOptions: {} },
   ): Promise<AddOrUpdateTextBlocklistItemsResult> {
-    return addOrUpdateBlocklistItems(
-      this._client,
-      blocklistName,
-      body,
-      options,
-    );
+    return addOrUpdateBlocklistItems(this._client, blocklistName, body, options);
   }
 
   /** Get all text blocklists details. */
@@ -143,12 +133,7 @@ export class ContentSafetyClient {
     resource: TextBlocklist,
     options: CreateOrUpdateTextBlocklistOptionalParams = { requestOptions: {} },
   ): Promise<TextBlocklist> {
-    return createOrUpdateTextBlocklist(
-      this._client,
-      blocklistName,
-      resource,
-      options,
-    );
+    return createOrUpdateTextBlocklist(this._client, blocklistName, resource, options);
   }
 
   /** Returns text blocklist details. */

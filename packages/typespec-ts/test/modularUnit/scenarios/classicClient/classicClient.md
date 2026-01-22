@@ -22,7 +22,6 @@ namespace Client.Structure.Service;
 
 enum Versions {
   /** Version 2022-08-31 */
-  @useDependency(Azure.Core.Versions.v1_0_Preview_2)
   `2022-08-30`,
 }
 
@@ -41,8 +40,8 @@ ignoreWeirdLine: false
 ## classicClient
 
 ```ts classicClient
-import { FooOptionalParams } from "./api/options.js";
 import { foo } from "./api/operations.js";
+import { FooOptionalParams } from "./api/options.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
 export { TestServiceClientOptionalParams } from "./api/testServiceContext.js";
@@ -52,10 +51,7 @@ export class TestServiceClient {
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
 
-  constructor(
-    endpointParam: string,
-    options: TestServiceClientOptionalParams = {},
-  ) {
+  constructor(endpointParam: string, options: TestServiceClientOptionalParams = {}) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`

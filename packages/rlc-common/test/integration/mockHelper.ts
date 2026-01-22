@@ -20,7 +20,6 @@ export type TestModelConfig = {
   hasPaging?: boolean;
   isModularLibrary?: boolean;
   azureSdkForJs?: boolean;
-  shouldUsePnpmDep?: boolean;
   azureArm?: boolean;
   hasSubscriptionId?: boolean;
   addCredentials?: boolean;
@@ -58,7 +57,6 @@ export function createMockModel(config: TestModelConfig = {}): RLCModel {
       azureArm: config.azureArm ?? false,
       hasSubscriptionId: config.hasSubscriptionId ?? false,
       addCredentials: config.addCredentials ?? false,
-      shouldUsePnpmDep: config.shouldUsePnpmDep ?? false
     },
     helperDetails: {
       hasPaging: config.hasPaging ?? false,

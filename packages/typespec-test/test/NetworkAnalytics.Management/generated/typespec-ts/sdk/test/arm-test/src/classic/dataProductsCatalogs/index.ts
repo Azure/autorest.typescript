@@ -2,17 +2,17 @@
 // Licensed under the MIT License.
 
 import { NetworkAnalyticsApiContext } from "../../api/networkAnalyticsApiContext.js";
-import { DataProductsCatalog } from "../../models/models.js";
-import {
-  DataProductsCatalogsListBySubscriptionOptionalParams,
-  DataProductsCatalogsListByResourceGroupOptionalParams,
-  DataProductsCatalogsGetOptionalParams,
-} from "../../api/dataProductsCatalogs/options.js";
 import {
   listBySubscription,
   listByResourceGroup,
   get,
 } from "../../api/dataProductsCatalogs/operations.js";
+import {
+  DataProductsCatalogsListBySubscriptionOptionalParams,
+  DataProductsCatalogsListByResourceGroupOptionalParams,
+  DataProductsCatalogsGetOptionalParams,
+} from "../../api/dataProductsCatalogs/options.js";
+import { DataProductsCatalog } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 
 /** Interface representing a DataProductsCatalogs operations. */
@@ -35,17 +35,14 @@ export interface DataProductsCatalogsOperations {
 
 function _getDataProductsCatalogs(context: NetworkAnalyticsApiContext) {
   return {
-    listBySubscription: (
-      options?: DataProductsCatalogsListBySubscriptionOptionalParams,
-    ) => listBySubscription(context, options),
+    listBySubscription: (options?: DataProductsCatalogsListBySubscriptionOptionalParams) =>
+      listBySubscription(context, options),
     listByResourceGroup: (
       resourceGroupName: string,
       options?: DataProductsCatalogsListByResourceGroupOptionalParams,
     ) => listByResourceGroup(context, resourceGroupName, options),
-    get: (
-      resourceGroupName: string,
-      options?: DataProductsCatalogsGetOptionalParams,
-    ) => get(context, resourceGroupName, options),
+    get: (resourceGroupName: string, options?: DataProductsCatalogsGetOptionalParams) =>
+      get(context, resourceGroupName, options),
   };
 }
 

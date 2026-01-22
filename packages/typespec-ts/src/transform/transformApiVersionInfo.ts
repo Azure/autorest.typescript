@@ -30,7 +30,7 @@ export function transformApiVersionInfo(
     queryVersionDetail || pathVersionDetail
       ? Boolean(
           pathVersionDetail?.isCrossedVersion ||
-            queryVersionDetail?.isCrossedVersion
+          queryVersionDetail?.isCrossedVersion
         )
       : undefined;
   const defaultValue =
@@ -75,7 +75,8 @@ export function getOperationApiVersion(
     }
     const params = route.parameters.parameters.filter(
       (p) =>
-        (p.type === "query" || p.type === "path") && isApiVersion(dpgContext, p)
+        (p.type === "query" || p.type === "path") &&
+        isApiVersion(dpgContext, p.param)
     );
     params.map((p) => {
       const type = getSchemaForType(dpgContext, p.param.type, {

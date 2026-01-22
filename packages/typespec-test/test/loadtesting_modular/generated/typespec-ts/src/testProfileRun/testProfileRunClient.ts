@@ -7,13 +7,7 @@ import {
   TestProfileRunClientOptionalParams,
 } from "./api/index.js";
 import { TestProfileRun } from "../models/models.js";
-import {
-  StopTestProfileRunOptionalParams,
-  ListTestProfileRunsOptionalParams,
-  GetTestProfileRunOptionalParams,
-  DeleteTestProfileRunOptionalParams,
-  CreateOrUpdateTestProfileRunOptionalParams,
-} from "./api/options.js";
+import { PagedAsyncIterableIterator } from "../static-helpers/pagingHelpers.js";
 import {
   stopTestProfileRun,
   listTestProfileRuns,
@@ -21,9 +15,15 @@ import {
   deleteTestProfileRun,
   createOrUpdateTestProfileRun,
 } from "./api/operations.js";
-import { PagedAsyncIterableIterator } from "../static-helpers/pagingHelpers.js";
-import { Pipeline } from "@azure/core-rest-pipeline";
+import {
+  StopTestProfileRunOptionalParams,
+  ListTestProfileRunsOptionalParams,
+  GetTestProfileRunOptionalParams,
+  DeleteTestProfileRunOptionalParams,
+  CreateOrUpdateTestProfileRunOptionalParams,
+} from "./api/options.js";
 import { TokenCredential } from "@azure/core-auth";
+import { Pipeline } from "@azure/core-rest-pipeline";
 
 export { TestProfileRunClientOptionalParams } from "./api/testProfileRunContext.js";
 
@@ -83,15 +83,8 @@ export class TestProfileRunClient {
   createOrUpdateTestProfileRun(
     testProfileRunId: string,
     body: TestProfileRun,
-    options: CreateOrUpdateTestProfileRunOptionalParams = {
-      requestOptions: {},
-    },
+    options: CreateOrUpdateTestProfileRunOptionalParams = { requestOptions: {} },
   ): Promise<TestProfileRun> {
-    return createOrUpdateTestProfileRun(
-      this._client,
-      testProfileRunId,
-      body,
-      options,
-    );
+    return createOrUpdateTestProfileRun(this._client, testProfileRunId, body, options);
   }
 }

@@ -232,6 +232,10 @@ class BinderImp implements Binder {
       this.resolveDependencyReferences(file);
       const importStructures = this.imports.get(file);
       if (importStructures) {
+        // Sort imports in place by module specifier to ensure consistent ordering
+        importStructures.sort((a, b) =>
+          a.moduleSpecifier < b.moduleSpecifier ? -1 : 1
+        );
         for (const importStructure of importStructures) {
           file.addImportDeclaration(importStructure);
         }
@@ -299,7 +303,7 @@ class BinderImp implements Binder {
   }
 
   private cleanUnreferencedHelpers(sourceRoot: string) {
-    const usedHelperFiles = new Set<SourceFile>();
+    const usedHelperNames: string[] = [];
     for (const helper of this.staticHelpers.values()) {
       const sourceFile = helper[SourceFileSymbol];
       if (!sourceFile) {
@@ -311,16 +315,24 @@ class BinderImp implements Binder {
       const referencedHelper = this.references.get(refkey(helper));
 
       if (referencedHelper?.size) {
-        usedHelperFiles.add(sourceFile);
+        usedHelperNames.push(sourceFile.getBaseNameWithoutExtension());
       }
+    }
+
+    function isFileUnused(file: SourceFile) {
+      const name = file.getBaseNameWithoutExtension();
+
+      // If one of the used helpers' name is a prefix of this file, the file likely represents a platform-specific implementation of the helper
+      // so it should be marked as used even if the file has no direct references.
+      return !usedHelperNames.some((s) => name.startsWith(s));
     }
 
     this.project
       //normalizae the final path to adapt to different systems
       .getSourceFiles(
-        normalizePath(path.join(sourceRoot, "static-helpers/**/*.ts"))
+        normalizePath(path.join(sourceRoot, "static-helpers/**/*.*ts"))
       )
-      .filter((helperFile) => !usedHelperFiles.has(helperFile))
+      .filter(isFileUnused)
       .forEach((helperFile) => helperFile.delete());
   }
 }

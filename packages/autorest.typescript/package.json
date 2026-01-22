@@ -1,6 +1,6 @@
 {
   "name": "@autorest/typescript",
-  "version": "6.0.43",
+  "version": "6.0.55",
   "scripts": {
     "build": "tsc -p . && npm run copyFiles",
     "build:test:browser:rlc": "tsc -p tsconfig.browser-test.json && ts-node test/commands/prepare-deps.ts --browser && webpack --config webpack.config.test.js --env mode=rlc",
@@ -77,7 +77,7 @@
     "source-map-support": "^0.5.16",
     "ts-morph": "^23.0.0",
     "@azure/core-auth": "^1.6.0",
-    "@azure-tools/rlc-common": "workspace:^0.41.1"
+    "@azure-tools/rlc-common": "workspace:^0.48.0"
   },
   "devDependencies": {
     "@azure-tools/test-recorder": "^3.0.0",
@@ -90,7 +90,6 @@
     "@types/fs-extra": "^9.0.13",
     "@types/js-yaml": "3.12.1",
     "@types/mocha": "^5.2.7",
-    "@types/node": "^18.0.0",
     "@types/sinon": "^10.0.0",
     "@types/xmlbuilder": "0.0.34",
     "@types/yargs": "^17.0.10",
@@ -101,7 +100,6 @@
     "chai-as-promised": "^7.1.1",
     "chalk": "^4.0.0",
     "directory-tree": "^2.2.7",
-    "eslint": "^8.18.0",
     "karma": "^6.3.18",
     "karma-chrome-launcher": "^3.1.0",
     "karma-mocha": "^2.0.1",
@@ -112,11 +110,9 @@
     "npm-run-all": "^4.1.5",
     "path-browserify": "^1.0.1",
     "puppeteer": "^22.2.0",
-    "rimraf": "^5.0.0",
     "sinon": "^10.0.0",
     "source-map-loader": "^1.0.0",
     "ts-node": "^8.5.2",
-    "typescript": "~5.8.2",
     "wait-port": "^0.2.6",
     "webpack": "^5.72.0",
     "webpack-cli": "^4.9.2",

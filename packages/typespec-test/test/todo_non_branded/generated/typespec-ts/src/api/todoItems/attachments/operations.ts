@@ -15,15 +15,15 @@ import {
   _pageTodoAttachmentDeserializer,
 } from "../../../models/todoItems/models.js";
 import {
-  TodoItemsAttachmentsCreateFileAttachmentOptionalParams,
-  TodoItemsAttachmentsCreateJsonAttachmentOptionalParams,
-  TodoItemsAttachmentsListOptionalParams,
-} from "./options.js";
-import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../../static-helpers/pagingHelpers.js";
 import { expandUrlTemplate } from "../../../static-helpers/urlTemplate.js";
+import {
+  TodoItemsAttachmentsCreateFileAttachmentOptionalParams,
+  TodoItemsAttachmentsCreateJsonAttachmentOptionalParams,
+  TodoItemsAttachmentsListOptionalParams,
+} from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -35,9 +35,7 @@ export function _createFileAttachmentSend(
   context: Client,
   itemId: number,
   body: FileAttachmentMultipartRequest,
-  options: TodoItemsAttachmentsCreateFileAttachmentOptionalParams = {
-    requestOptions: {},
-  },
+  options: TodoItemsAttachmentsCreateFileAttachmentOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/items/{itemId}/attachments",
@@ -53,10 +51,6 @@ export function _createFileAttachmentSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "multipart/form-data",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
       body: fileAttachmentMultipartRequestSerializer(body),
     });
 }
@@ -85,16 +79,9 @@ export async function createFileAttachment(
   context: Client,
   itemId: number,
   body: FileAttachmentMultipartRequest,
-  options: TodoItemsAttachmentsCreateFileAttachmentOptionalParams = {
-    requestOptions: {},
-  },
+  options: TodoItemsAttachmentsCreateFileAttachmentOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _createFileAttachmentSend(
-    context,
-    itemId,
-    body,
-    options,
-  );
+  const result = await _createFileAttachmentSend(context, itemId, body, options);
   return _createFileAttachmentDeserialize(result);
 }
 
@@ -102,9 +89,7 @@ export function _createJsonAttachmentSend(
   context: Client,
   itemId: number,
   contents: TodoAttachment,
-  options: TodoItemsAttachmentsCreateJsonAttachmentOptionalParams = {
-    requestOptions: {},
-  },
+  options: TodoItemsAttachmentsCreateJsonAttachmentOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/items/{itemId}/attachments",
@@ -120,10 +105,6 @@ export function _createJsonAttachmentSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
       body: todoAttachmentSerializer(contents),
     });
 }
@@ -152,16 +133,9 @@ export async function createJsonAttachment(
   context: Client,
   itemId: number,
   contents: TodoAttachment,
-  options: TodoItemsAttachmentsCreateJsonAttachmentOptionalParams = {
-    requestOptions: {},
-  },
+  options: TodoItemsAttachmentsCreateJsonAttachmentOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _createJsonAttachmentSend(
-    context,
-    itemId,
-    contents,
-    options,
-  );
+  const result = await _createJsonAttachmentSend(context, itemId, contents, options);
   return _createJsonAttachmentDeserialize(result);
 }
 
@@ -183,10 +157,7 @@ export function _listSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 

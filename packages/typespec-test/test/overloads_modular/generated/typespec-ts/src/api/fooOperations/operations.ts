@@ -2,11 +2,11 @@
 // Licensed under the MIT License.
 
 import { WidgetManagerContext as Client } from "../index.js";
+import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   FooOperationsGetAvatarAsJpegOptionalParams,
   FooOperationsGetAvatarAsPngOptionalParams,
 } from "./options.js";
-import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -33,17 +33,11 @@ export function _getAvatarAsJpegSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "image/jpeg",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
       body: image,
     });
 }
 
-export async function _getAvatarAsJpegDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _getAvatarAsJpegDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -81,17 +75,11 @@ export function _getAvatarAsPngSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "image/png",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
       body: image,
     });
 }
 
-export async function _getAvatarAsPngDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _getAvatarAsPngDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);

@@ -258,18 +258,20 @@ export async function emitClientFactoryFromTypeSpec(
     needAzureCore = false,
     mustEmptyDiagnostic = true,
     withRawContent = false,
-    needNamespaces = false
+    needNamespaces = false,
+    needTCGC = false
   }: {
     needAzureCore?: boolean;
     mustEmptyDiagnostic?: boolean;
     withRawContent?: boolean;
     needNamespaces?: boolean;
+    needTCGC?: boolean;
   } = {}
 ) {
   const context = await rlcEmitterFor(tspContent, {
     needNamespaces,
     needAzureCore,
-    needTCGC: false,
+    needTCGC,
     withRawContent
   });
   const program = context.program;
@@ -386,7 +388,9 @@ export async function emitModularModelsFromTypeSpec(
     withRawContent = false,
     needAzureCore = false,
     mustEmptyDiagnostic = true,
-    needTCGC = false
+    needTCGC = false,
+    withVersionedApiVersion = false,
+    needArmTemplate = false
   } = options;
   if (options["experimental-extensible-enums"] === undefined) {
     options["experimental-extensible-enums"] = false;
@@ -398,7 +402,9 @@ export async function emitModularModelsFromTypeSpec(
     needNamespaces: true,
     needAzureCore,
     needTCGC,
-    withRawContent
+    withRawContent,
+    withVersionedApiVersion,
+    needArmTemplate
   });
   const dpgContext = await createDpgContextTestHelper(
     context.program,
@@ -638,6 +644,7 @@ export async function emitModularClientFromTypeSpec(
     dpgContext.sdkPackage.clients.length > 0 &&
     dpgContext.sdkPackage.clients[0]
   ) {
+    emitTypes(dpgContext, { sourceRoot: "" });
     renameClientName(dpgContext.sdkPackage.clients[0], modularEmitterOptions);
     const clientMap = Array.from(getClientHierarchyMap(dpgContext));
     buildApiOptions(dpgContext, clientMap[0]!, modularEmitterOptions);

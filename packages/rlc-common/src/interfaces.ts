@@ -254,8 +254,7 @@ export interface RLCOptions {
   compatibilityQueryMultiFormat?: boolean;
   typespecTitleMap?: Record<string, string>;
   hasSubscriptionId?: boolean;
-  //TODO should remove this after finish the release tool test
-  shouldUsePnpmDep?: boolean;
+  compatibilityLro?: boolean;
 }
 
 export interface ServiceInfo {
@@ -335,6 +334,7 @@ export interface PackageDetails {
   nameWithoutScope?: string;
   description?: string;
   version?: string;
+  isVersionUserProvided?: boolean;
 }
 export interface OperationParameter {
   operationGroup: string;

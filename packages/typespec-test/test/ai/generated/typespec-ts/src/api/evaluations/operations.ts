@@ -15,6 +15,11 @@ import {
   _pagedEvaluationScheduleDeserializer,
 } from "../../models/models.js";
 import {
+  PagedAsyncIterableIterator,
+  buildPagedAsyncIterator,
+} from "../../static-helpers/pagingHelpers.js";
+import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
+import {
   EvaluationsDisableScheduleOptionalParams,
   EvaluationsListScheduleOptionalParams,
   EvaluationsCreateOrReplaceScheduleOptionalParams,
@@ -24,11 +29,6 @@ import {
   EvaluationsCreateOptionalParams,
   EvaluationsGetOptionalParams,
 } from "./options.js";
-import {
-  PagedAsyncIterableIterator,
-  buildPagedAsyncIterator,
-} from "../../static-helpers/pagingHelpers.js";
-import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -51,20 +51,10 @@ export function _disableScheduleSend(
       allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
-  return context
-    .path(path)
-    .patch({
-      ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
-    });
+  return context.path(path).patch({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _disableScheduleDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _disableScheduleDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -142,9 +132,7 @@ export function _createOrReplaceScheduleSend(
   context: Client,
   name: string,
   resource: EvaluationSchedule,
-  options: EvaluationsCreateOrReplaceScheduleOptionalParams = {
-    requestOptions: {},
-  },
+  options: EvaluationsCreateOrReplaceScheduleOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/evaluations/schedules/{name}{?api%2Dversion}",
@@ -188,16 +176,9 @@ export async function createOrReplaceSchedule(
   context: Client,
   name: string,
   resource: EvaluationSchedule,
-  options: EvaluationsCreateOrReplaceScheduleOptionalParams = {
-    requestOptions: {},
-  },
+  options: EvaluationsCreateOrReplaceScheduleOptionalParams = { requestOptions: {} },
 ): Promise<EvaluationSchedule> {
-  const result = await _createOrReplaceScheduleSend(
-    context,
-    name,
-    resource,
-    options,
-  );
+  const result = await _createOrReplaceScheduleSend(context, name, resource, options);
   return _createOrReplaceScheduleDeserialize(result);
 }
 
@@ -283,9 +264,7 @@ export function _updateSend(
     });
 }
 
-export async function _updateDeserialize(
-  result: PathUncheckedResponse,
-): Promise<Evaluation> {
+export async function _updateDeserialize(result: PathUncheckedResponse): Promise<Evaluation> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -335,9 +314,7 @@ export function _listSend(
     });
 }
 
-export async function _listDeserialize(
-  result: PathUncheckedResponse,
-): Promise<_PagedEvaluation> {
+export async function _listDeserialize(result: PathUncheckedResponse): Promise<_PagedEvaluation> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -379,17 +356,12 @@ export function _createSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: evaluationSerializer(evaluation),
     });
 }
 
-export async function _createDeserialize(
-  result: PathUncheckedResponse,
-): Promise<Evaluation> {
+export async function _createDeserialize(result: PathUncheckedResponse): Promise<Evaluation> {
   const expectedStatuses = ["201"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -437,9 +409,7 @@ export function _getSend(
     });
 }
 
-export async function _getDeserialize(
-  result: PathUncheckedResponse,
-): Promise<Evaluation> {
+export async function _getDeserialize(result: PathUncheckedResponse): Promise<Evaluation> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);

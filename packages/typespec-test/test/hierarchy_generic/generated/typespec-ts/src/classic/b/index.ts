@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 
 import { FooContext } from "../../api/fooContext.js";
-import { BA } from "../../models/b/models.js";
-import { BOp1OptionalParams } from "../../api/b/options.js";
 import { op1 } from "../../api/b/operations.js";
+import { BOp1OptionalParams } from "../../api/b/options.js";
+import { BA } from "../../models/b/models.js";
 import { BCOperations, _getBCOperations } from "./c/index.js";
 import { BEOperations, _getBEOperations } from "./e/index.js";
 
@@ -17,8 +17,7 @@ export interface BOperations {
 
 function _getB(context: FooContext) {
   return {
-    op1: (body: BA, options?: BOp1OptionalParams) =>
-      op1(context, body, options),
+    op1: (body: BA, options?: BOp1OptionalParams) => op1(context, body, options),
   };
 }
 

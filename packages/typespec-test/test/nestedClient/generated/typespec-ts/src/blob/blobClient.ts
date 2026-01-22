@@ -1,13 +1,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
-  createBlob,
-  BlobContext,
-  BlobClientOptionalParams,
-} from "./api/index.js";
-import { DownloadOptionalParams } from "./api/options.js";
+import { createBlob, BlobContext, BlobClientOptionalParams } from "./api/index.js";
 import { download } from "./api/operations.js";
+import { DownloadOptionalParams } from "./api/options.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
 export { BlobClientOptionalParams } from "./api/blobContext.js";
@@ -34,9 +30,7 @@ export class BlobClient {
     this.pipeline = this._client.pipeline;
   }
 
-  download(
-    options: DownloadOptionalParams = { requestOptions: {} },
-  ): Promise<void> {
+  download(options: DownloadOptionalParams = { requestOptions: {} }): Promise<void> {
     return download(this._client, options);
   }
 }

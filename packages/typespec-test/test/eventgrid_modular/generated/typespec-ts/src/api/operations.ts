@@ -19,6 +19,7 @@ import {
   renewCloudEventLocksResultDeserializer,
   cloudEventArraySerializer,
 } from "../models/models.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   RenewCloudEventLocksOptionalParams,
   RejectCloudEventsOptionalParams,
@@ -28,7 +29,6 @@ import {
   PublishCloudEventsOptionalParams,
   PublishCloudEventOptionalParams,
 } from "./options.js";
-import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -296,10 +296,7 @@ export function _receiveCloudEventsSend(
     .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
@@ -321,12 +318,7 @@ export async function receiveCloudEvents(
   eventSubscriptionName: string,
   options: ReceiveCloudEventsOptionalParams = { requestOptions: {} },
 ): Promise<ReceiveResult> {
-  const result = await _receiveCloudEventsSend(
-    context,
-    topicName,
-    eventSubscriptionName,
-    options,
-  );
+  const result = await _receiveCloudEventsSend(context, topicName, eventSubscriptionName, options);
   return _receiveCloudEventsDeserialize(result);
 }
 
@@ -351,10 +343,7 @@ export function _publishCloudEventsSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/cloudevents-batch+json; charset=utf-8",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: cloudEventArraySerializer(events),
     });
 }
@@ -377,12 +366,7 @@ export async function publishCloudEvents(
   events: CloudEvent[],
   options: PublishCloudEventsOptionalParams = { requestOptions: {} },
 ): Promise<PublishResult> {
-  const result = await _publishCloudEventsSend(
-    context,
-    topicName,
-    events,
-    options,
-  );
+  const result = await _publishCloudEventsSend(context, topicName, events, options);
   return _publishCloudEventsDeserialize(result);
 }
 
@@ -407,10 +391,7 @@ export function _publishCloudEventSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/cloudevents+json; charset=utf-8",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: cloudEventSerializer(event),
     });
 }
@@ -433,11 +414,6 @@ export async function publishCloudEvent(
   event: CloudEvent,
   options: PublishCloudEventOptionalParams = { requestOptions: {} },
 ): Promise<PublishResult> {
-  const result = await _publishCloudEventSend(
-    context,
-    topicName,
-    event,
-    options,
-  );
+  const result = await _publishCloudEventSend(context, topicName, event, options);
   return _publishCloudEventDeserialize(result);
 }

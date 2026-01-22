@@ -37,6 +37,12 @@ compatibility-mode: true
 Generated Models.
 
 ```ts models
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface SimpleModel */
 export interface SimpleModel extends Record<string, number | string> {
   propA: string;
@@ -51,7 +57,7 @@ export function simpleModelSerializer(item: SimpleModel): any {
 export type _SimpleModelAdditionalProperty = number | string;
 
 export function _simpleModelAdditionalPropertySerializer(
-  item: _SimpleModelAdditionalProperty
+  item: _SimpleModelAdditionalProperty,
 ): any {
   return item;
 }
@@ -96,6 +102,12 @@ compatibility-mode: true
 Generated Models.
 
 ```ts models
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface SimpleModel */
 export interface SimpleModel {
   additionalProperties: string;
@@ -107,7 +119,7 @@ export function simpleModelSerializer(item: SimpleModel): any {
   return {
     additionalProperties: item["additionalProperties"],
     propA: item["propA"],
-    propB: item["propB"]
+    propB: item["propB"],
   };
 }
 ```
@@ -152,6 +164,12 @@ Generated Models.
 ```ts models
 import { serializeRecord } from "../static-helpers/serialization/serialize-record.js";
 
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface SimpleModel */
 export interface SimpleModel {
   propA: string;
@@ -162,9 +180,9 @@ export interface SimpleModel {
 
 export function simpleModelSerializer(item: SimpleModel): any {
   return {
-    ...serializeRecord(item.additionalProperties),
+    ...serializeRecord(item.additionalProperties ?? {}),
     propA: item["propA"],
-    propB: item["propB"]
+    propB: item["propB"],
   };
 }
 
@@ -177,12 +195,8 @@ export interface ComplexModel {
 
 export function complexModelSerializer(item: ComplexModel): any {
   return {
-    ...serializeRecord(
-      item.additionalProperties,
-      undefined,
-      simpleModelSerializer
-    ),
-    propA: simpleModelSerializer(item["propA"])
+    ...serializeRecord(item.additionalProperties ?? {}, undefined, simpleModelSerializer),
+    propA: simpleModelSerializer(item["propA"]),
   };
 }
 ```
@@ -233,7 +247,7 @@ export interface SimpleModel {
 }
 
 export function simpleModelSerializer(item: SimpleModel): any {
-  return { ...serializeRecord(item.additionalProperties) };
+  return { ...serializeRecord(item.additionalProperties ?? {}) };
 }
 
 /** model interface ComplexModel */
@@ -245,7 +259,7 @@ export interface ComplexModel extends SimpleModel {
 export function complexModelSerializer(item: ComplexModel): any {
   return {
     ...serializeRecord(
-      item.additionalProperties,
+      item.additionalProperties ?? {},
       undefined,
       simpleModelSerializer
     )
@@ -287,6 +301,12 @@ Generated Models.
 ```ts models
 import { serializeRecord } from "../static-helpers/serialization/serialize-record.js";
 
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface SimpleModel */
 export interface SimpleModel {
   propA: string;
@@ -298,12 +318,12 @@ export interface SimpleModel {
 export function simpleModelSerializer(item: SimpleModel): any {
   return {
     ...serializeRecord(
-      item.additionalProperties,
+      item.additionalProperties ?? {},
       undefined,
-      _simpleModelAdditionalPropertySerializer
+      _simpleModelAdditionalPropertySerializer,
     ),
     propA: item["propA"],
-    propB: item["propB"]
+    propB: item["propB"],
   };
 }
 
@@ -311,7 +331,7 @@ export function simpleModelSerializer(item: SimpleModel): any {
 export type _SimpleModelAdditionalProperty = string | number | boolean;
 
 export function _simpleModelAdditionalPropertySerializer(
-  item: _SimpleModelAdditionalProperty
+  item: _SimpleModelAdditionalProperty,
 ): any {
   return item;
 }
@@ -364,6 +384,12 @@ Generated Models.
 ```ts models
 import { serializeRecord } from "../static-helpers/serialization/serialize-record.js";
 
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface SimpleModel */
 export interface SimpleModel {
   additionalProperties: Record<string, number>;
@@ -375,10 +401,10 @@ export interface SimpleModel {
 
 export function simpleModelSerializer(item: SimpleModel): any {
   return {
-    ...serializeRecord(item.additionalPropertiesBag),
+    ...serializeRecord(item.additionalPropertiesBag ?? {}),
     additionalProperties: item["additionalProperties"],
     propA: item["propA"],
-    propB: item["propB"]
+    propB: item["propB"],
   };
 }
 
@@ -392,10 +418,10 @@ export interface FooModel extends BarModel {
 
 export function fooModelSerializer(item: FooModel): any {
   return {
-    ...serializeRecord(item.additionalPropertiesBag),
+    ...serializeRecord(item.additionalPropertiesBag ?? {}),
     additionalProperties: item["additionalProperties"],
     propA: item["propA"],
-    propB: item["propB"]
+    propB: item["propB"],
   };
 }
 

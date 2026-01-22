@@ -107,8 +107,8 @@ export function isMediaTypeJsonMergePatch(
   if (Array.isArray(mediaType)) {
     return Boolean(
       mediaType.length === 1 &&
-        mediaType[0] &&
-        isMediaTypeJsonMergePatch(mediaType[0])
+      mediaType[0] &&
+      isMediaTypeJsonMergePatch(mediaType[0])
     );
   }
   const mt = parseMediaType(mediaType);
@@ -133,13 +133,25 @@ export function isMediaTypeMultipartFormData(
   if (Array.isArray(mediaType)) {
     return Boolean(
       mediaType.length === 1 &&
-        mediaType[0] &&
-        isMediaTypeMultipartFormData(mediaType[0])
+      mediaType[0] &&
+      isMediaTypeMultipartFormData(mediaType[0])
     );
   }
 
   const mt = parseMediaType(mediaType);
   return mt ? mt.type === multipart && mt.subtype === formData : false;
+}
+
+/**
+ * Checks if the media type is any multipart type (multipart/mixed, multipart/form-data, etc.)
+ */
+export function isMediaTypeMultipart(mediaType: string | string[]): boolean {
+  if (Array.isArray(mediaType)) {
+    return mediaType.some((mt) => isMediaTypeMultipart(mt));
+  }
+
+  const mt = parseMediaType(mediaType);
+  return mt ? mt.type === multipart : false;
 }
 
 export function hasMediaType(

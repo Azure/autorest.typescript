@@ -8,6 +8,7 @@ import hbs from "handlebars";
 import { NameType, normalizeName } from "../helpers/nameUtils.js";
 import { isAzurePackage } from "../helpers/packageUtil.js";
 import { getClientName } from "../helpers/nameConstructors.js";
+import { readFileSync } from "fs";
 
 const azureReadmeRLCTemplate = `# {{ clientDescriptiveName }} library for JavaScript
 
@@ -136,7 +137,7 @@ npm install {{ clientPackageName }}
 To create a client object to access the {{ serviceName }} API, you will need the \`endpoint\` of your {{ serviceName }} resource and a \`credential\`. The {{ clientDescriptiveName }} can use Azure Active Directory credentials to authenticate.
 You can find the endpoint for your {{ serviceName }} resource in the [Azure Portal][azure_portal].
 
-You can authenticate with Azure Active Directory using a credential from the [@azure/identity][azure_identity] library or [an existing AAD Token](https://github.com/Azure/azure-sdk-for-js/blob/master/sdk/identity/identity/samples/AzureIdentityExamples.md#authenticating-with-a-pre-fetched-access-token).
+You can authenticate with Azure Active Directory using a credential from the [@azure/identity][azure_identity] library or [an existing AAD Token](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/identity/identity/samples/AzureIdentityExamples.md#authenticating-with-a-pre-fetched-access-token).
 
 To use the [DefaultAzureCredential][defaultazurecredential] provider shown below, or other credential providers provided with the Azure SDK, please install the \`@azure/identity\` package:
 
@@ -288,6 +289,11 @@ npm install {{ clientPackageName }}
 \`\`\`
 `;
 
+const apiReferenceTemplate = `{{#if apiRefURL}}
+- [API reference documentation]({{ apiRefURL }})
+{{/if}}
+`;
+
 /**
  * Meta data information about the service, the package, and the client.
  */
@@ -357,6 +363,34 @@ export function buildReadmeFile(model: RLCModel) {
   };
 }
 
+export function updateReadmeFile(
+  model: RLCModel,
+  existingReadmeFilePath: string
+): { path: string; content: string } | undefined {
+  try {
+    const existingContent = readFileSync(existingReadmeFilePath, "utf8");
+    const metadata = createMetadata(model) ?? {};
+
+    const newApiRefLink = hbs
+      .compile(apiReferenceTemplate, { noEscape: true })(metadata)
+      .trim();
+
+    if (!newApiRefLink) {
+      return { path: "README.md", content: existingContent };
+    }
+
+    const apiRefRegex =
+      /^- \[API reference documentation\]\(https:\/\/learn\.microsoft\.com\/javascript\/api\/[^)]+\)$/m;
+    const updatedContent = existingContent.replace(apiRefRegex, (match) =>
+      match ? newApiRefLink : match
+    );
+
+    return { path: "README.md", content: updatedContent };
+  } catch {
+    return;
+  }
+}
+
 /**
  * Returns meta data information about the service, the package, and the client.
  * @param codeModel - include the client details
@@ -392,9 +426,18 @@ function createMetadata(model: RLCModel): Metadata | undefined {
   const clientClassName = getClientName(model);
   const serviceName = getServiceName(model);
   let apiRefUrlQueryParameter: string = "";
-  packageDetails.version = packageDetails.version ?? "1.0.0-beta.1";
-  if (packageDetails?.version.includes("beta")) {
-    apiRefUrlQueryParameter = "?view=azure-node-preview";
+  if (
+    !packageDetails?.isVersionUserProvided &&
+    model.apiVersionInfo?.defaultValue
+  ) {
+    if (model.apiVersionInfo?.defaultValue?.toLowerCase().includes("preview")) {
+      apiRefUrlQueryParameter = "?view=azure-node-preview";
+    }
+  } else {
+    packageDetails.version = packageDetails.version ?? "1.0.0-beta.1";
+    if (packageDetails?.version.includes("beta")) {
+      apiRefUrlQueryParameter = "?view=azure-node-preview";
+    }
   }
 
   return {

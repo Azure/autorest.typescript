@@ -2,10 +2,7 @@
 // Licensed under the MIT License.
 
 import { DemoServiceContext as Client } from "../index.js";
-import {
-  _test3RequestSerializer,
-  _test4RequestSerializer,
-} from "../../models/models.js";
+import { _test3RequestSerializer, _test4RequestSerializer } from "../../models/models.js";
 import {
   ATest4OptionalParams,
   ATest3OptionalParams,
@@ -35,9 +32,7 @@ export function _test4Send(
     });
 }
 
-export async function _test4Deserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _test4Deserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -73,9 +68,7 @@ export function _test3Send(
     });
 }
 
-export async function _test3Deserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _test3Deserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -109,9 +102,7 @@ export function _test2Send(
     });
 }
 
-export async function _test2Deserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _test2Deserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -145,9 +136,7 @@ export function _test1Send(
     });
 }
 
-export async function _test1Deserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _test1Deserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);

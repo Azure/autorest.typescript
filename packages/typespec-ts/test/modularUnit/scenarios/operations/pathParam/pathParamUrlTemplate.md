@@ -44,6 +44,7 @@ The config would be like:
 
 ```yaml
 needAzureCore: true
+withVersionedApiVersion: true
 ```
 
 ## Operations
@@ -51,8 +52,8 @@ needAzureCore: true
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { KeyBundle, keyBundleDeserializer } from "../models/models.js";
-import { UpdateKeyOptionalParams } from "./options.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import { UpdateKeyOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -83,17 +84,12 @@ export function _updateKeySend(
     .patch({
       ...operationOptionsToRequestParameters(options),
       contentType: "text/plain",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: parameters,
     });
 }
 
-export async function _updateKeyDeserialize(
-  result: PathUncheckedResponse,
-): Promise<KeyBundle> {
+export async function _updateKeyDeserialize(result: PathUncheckedResponse): Promise<KeyBundle> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -110,13 +106,7 @@ export async function updateKey(
   parameters: string,
   options: UpdateKeyOptionalParams = { requestOptions: {} },
 ): Promise<KeyBundle> {
-  const result = await _updateKeySend(
-    context,
-    keyName,
-    keyVersion,
-    parameters,
-    options,
-  );
+  const result = await _updateKeySend(context, keyName, keyVersion, parameters, options);
   return _updateKeyDeserialize(result);
 }
 ```

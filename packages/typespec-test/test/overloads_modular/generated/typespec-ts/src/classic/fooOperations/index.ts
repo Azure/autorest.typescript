@@ -2,14 +2,11 @@
 // Licensed under the MIT License.
 
 import { WidgetManagerContext } from "../../api/widgetManagerContext.js";
+import { getAvatarAsJpeg, getAvatarAsPng } from "../../api/fooOperations/operations.js";
 import {
   FooOperationsGetAvatarAsJpegOptionalParams,
   FooOperationsGetAvatarAsPngOptionalParams,
 } from "../../api/fooOperations/options.js";
-import {
-  getAvatarAsJpeg,
-  getAvatarAsPng,
-} from "../../api/fooOperations/operations.js";
 
 /** Interface representing a FooOperations operations. */
 export interface FooOperationsOperations {
@@ -27,14 +24,10 @@ export interface FooOperationsOperations {
 
 function _getFooOperations(context: WidgetManagerContext) {
   return {
-    getAvatarAsJpeg: (
-      image: Uint8Array,
-      options?: FooOperationsGetAvatarAsJpegOptionalParams,
-    ) => getAvatarAsJpeg(context, image, options),
-    getAvatarAsPng: (
-      image: Uint8Array,
-      options?: FooOperationsGetAvatarAsPngOptionalParams,
-    ) => getAvatarAsPng(context, image, options),
+    getAvatarAsJpeg: (image: Uint8Array, options?: FooOperationsGetAvatarAsJpegOptionalParams) =>
+      getAvatarAsJpeg(context, image, options),
+    getAvatarAsPng: (image: Uint8Array, options?: FooOperationsGetAvatarAsPngOptionalParams) =>
+      getAvatarAsPng(context, image, options),
   };
 }
 

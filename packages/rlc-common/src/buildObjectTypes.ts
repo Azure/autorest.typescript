@@ -413,7 +413,7 @@ function getDiscriminatorProperty(
         model.options?.sourceFrom === "Swagger"
           ? discriminators
           : schemaUsage.includes(SchemaContext.Output)
-            ? objectSchema.discriminator?.outputTypeName ?? inputTypeName
+            ? (objectSchema.discriminator?.outputTypeName ?? inputTypeName)
             : inputTypeName
     };
   }
@@ -586,8 +586,8 @@ function getPropertySignatures(
 function isBinaryArray(schema: Schema): boolean {
   return Boolean(
     isArraySchema(schema) &&
-      (schema.items?.typeName?.includes("NodeJS.ReadableStream") ||
-        schema.items?.outputTypeName?.includes("NodeJS.ReadableStream"))
+    (schema.items?.typeName?.includes("NodeJS.ReadableStream") ||
+      schema.items?.outputTypeName?.includes("NodeJS.ReadableStream"))
   );
 }
 

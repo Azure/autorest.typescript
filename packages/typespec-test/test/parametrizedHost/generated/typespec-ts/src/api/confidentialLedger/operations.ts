@@ -2,12 +2,9 @@
 // Licensed under the MIT License.
 
 import { ParametrizedHostContext as Client } from "../index.js";
-import {
-  Collection,
-  collectionArrayDeserializer,
-} from "../../models/models.js";
-import { ConfidentialLedgerListCollectionsOptionalParams } from "./options.js";
+import { Collection, collectionArrayDeserializer } from "../../models/models.js";
 import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
+import { ConfidentialLedgerListCollectionsOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -17,9 +14,7 @@ import {
 
 export function _listCollectionsSend(
   context: Client,
-  options: ConfidentialLedgerListCollectionsOptionalParams = {
-    requestOptions: {},
-  },
+  options: ConfidentialLedgerListCollectionsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/app/collections{?api%2Dversion}",
@@ -34,10 +29,7 @@ export function _listCollectionsSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
@@ -55,9 +47,7 @@ export async function _listCollectionsDeserialize(
 /** Collection ids are user-created collections of ledger entries */
 export async function listCollections(
   context: Client,
-  options: ConfidentialLedgerListCollectionsOptionalParams = {
-    requestOptions: {},
-  },
+  options: ConfidentialLedgerListCollectionsOptionalParams = { requestOptions: {} },
 ): Promise<Collection[]> {
   const result = await _listCollectionsSend(context, options);
   return _listCollectionsDeserialize(result);

@@ -14,8 +14,8 @@ Should normal path parameter:
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { ReadOptionalParams } from "./options.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -36,14 +36,10 @@ export function _readSend(
       allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
-  return context
-    .path(path)
-    .get({ ...operationOptionsToRequestParameters(options) });
+  return context.path(path).get({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _readDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _readDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);

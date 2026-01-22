@@ -1,9 +1,28 @@
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import {
   SdkBodyParameter,
-  SdkModelPropertyType,
+  SdkCredentialParameter,
+  SdkEndpointParameter,
+  SdkMethodParameter,
+  SdkModelType,
   SdkType
 } from "@azure-tools/typespec-client-generator-core";
+import {
+  getPropertyWithOverrides,
+  ModelOverrideOptions
+} from "../serialization/serializeUtils.js";
+import { getAllAncestors, getAllProperties } from "./operationHelpers.js";
+import { SdkContext } from "../../utils/interfaces.js";
+
+export function getDirectSubtypes(type: SdkModelType) {
+  if (!type.discriminatedSubtypes) {
+    return [];
+  }
+  // Filter out subtypes that extend from other discriminated subtypes (hierarchical inheritance)
+  return Object.values(type.discriminatedSubtypes).filter(
+    (subtype) => subtype.baseModel === type
+  );
+}
 
 export function getAdditionalPropertiesType(
   type: SdkType | undefined
@@ -71,7 +90,7 @@ export function isDateTimeTypeKind(kind: string): boolean {
 }
 
 export function isCredentialType(
-  type: SdkType | SdkModelPropertyType
+  type: SdkEndpointParameter | SdkCredentialParameter | SdkMethodParameter
 ): boolean {
   return type.kind === "credential";
 }
@@ -80,15 +99,25 @@ export function isCredentialType(
  * Builds a property name mapper between the serializedName and the name of the property.
  * Return empty map if the type is not a model.
  */
-export function buildPropertyNameMapper(model: SdkType) {
+export function buildPropertyNameMapper(
+  context: SdkContext,
+  model: SdkType,
+  overrides?: ModelOverrideOptions
+) {
   const mapper = new Map<string, string>();
   if (model.kind !== "model") {
     return mapper;
   }
-  for (const prop of model.properties) {
-    if (prop.kind !== "property") {
+  const allProperties = getAllProperties(
+    context,
+    model,
+    getAllAncestors(model)
+  );
+  for (const p of allProperties) {
+    if (p.kind !== "property") {
       continue;
     }
+    const prop = getPropertyWithOverrides(p, overrides);
     mapper.set(
       prop.serializationOptions.json?.name || prop.name,
       normalizeName(prop.name, NameType.Property)
@@ -103,9 +132,11 @@ export function buildPropertyNameMapper(model: SdkType) {
  * @returns
  */
 export function isSpreadBodyParameter(body: SdkBodyParameter) {
-  const methodParams = body.correspondingMethodParams;
+  const methodParams = body.methodParameterSegments;
   return (
     methodParams.length > 1 ||
-    (methodParams.length === 1 && methodParams[0]?.type !== body.type)
+    (methodParams.length === 1 &&
+      methodParams[0]?.length === 1 &&
+      methodParams[0][0]?.type !== body.type)
   );
 }

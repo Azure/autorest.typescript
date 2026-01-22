@@ -34,61 +34,55 @@ export function buildAzureMonorepoPackage(config: AzureMonorepoInfoConfig) {
  * Builds the dependencies for an Azure package that will be hosted in the azure-sdk-for-js mono repo.
  */
 export function getAzureMonorepoDependencies(config: AzureMonorepoInfoConfig) {
-  //TODO should remove all the shouldUsePnpmDep codes after finish the release tool test
-  const { hasLro, dependencies, withTests, shouldUsePnpmDep } = config;
+  const { hasLro, dependencies, withTests } = config;
 
+  // revert this change after sdk repo update.
   const runtimeDeps = {
     ...dependencies,
-    "@azure-rest/core-client": !shouldUsePnpmDep ? "^2.1.0" : "workspace:^",
+    "@azure-rest/core-client": "^2.3.1",
     ...(hasLro && {
-      "@azure/abort-controller": !shouldUsePnpmDep ? "^2.1.2" : "workspace:^"
+      "@azure/abort-controller": "^2.1.2"
     }),
-    "@azure/core-auth": !shouldUsePnpmDep ? "^1.9.0" : "workspace:^",
+    "@azure/core-auth": "^1.9.0",
     ...(hasLro && {
-      "@azure/core-lro": !shouldUsePnpmDep ? "^3.0.0" : "workspace:^"
+      "@azure/core-lro": "^3.1.0"
     }),
-    "@azure/core-rest-pipeline": !shouldUsePnpmDep ? "^1.18.2" : "workspace:^",
-    "@azure/core-util": !shouldUsePnpmDep ? "^1.11.0" : "workspace:^",
-    "@azure/logger": !shouldUsePnpmDep ? "^1.1.4" : "workspace:^",
-    tslib: !shouldUsePnpmDep ? "^2.8.1" : "catalog:"
+    "@azure/core-rest-pipeline": "^1.20.0",
+    "@azure/core-util": "^1.12.0",
+    "@azure/logger": "^1.2.0",
+    tslib: "^2.8.1"
   };
 
   const testDeps = withTests
     ? {
-        "@vitest/browser": !shouldUsePnpmDep ? "^3.0.9" : "catalog:testing",
-        "@vitest/coverage-istanbul": !shouldUsePnpmDep
-          ? "^3.0.9"
-          : "catalog:testing",
-        dotenv: !shouldUsePnpmDep ? "^16.0.0" : "catalog:testing",
-        playwright: !shouldUsePnpmDep ? "^1.50.1" : "catalog:testing",
-        typescript: !shouldUsePnpmDep ? "~5.8.2" : "catalog:",
-        vitest: !shouldUsePnpmDep ? "^3.0.9" : "catalog:testing"
+        "@vitest/browser-playwright": "catalog:testing",
+        "@vitest/coverage-istanbul": "catalog:testing",
+        dotenv: "catalog:testing",
+        playwright: "catalog:testing",
+        typescript: "catalog:",
+        vitest: "catalog:testing"
       }
     : {
-        typescript: !shouldUsePnpmDep ? "~5.8.2" : "catalog:"
+        typescript: "catalog:"
       };
 
   return {
     dependencies: runtimeDeps,
     devDependencies: {
-      "@azure-tools/test-credential": !shouldUsePnpmDep
-        ? "^2.0.0"
-        : "workspace:^",
-      "@azure-tools/test-recorder": !shouldUsePnpmDep
-        ? "^4.1.0"
-        : "workspace:^",
-      "@azure-tools/test-utils-vitest": !shouldUsePnpmDep
-        ? "^1.0.0"
-        : "workspace:^",
-      "@azure/dev-tool": !shouldUsePnpmDep ? "^1.0.0" : "workspace:^",
-      "@azure/eslint-plugin-azure-sdk": !shouldUsePnpmDep
-        ? "^3.0.0"
-        : "workspace:^",
-      "@azure/identity": !shouldUsePnpmDep ? "^4.6.0" : "catalog:internal",
-      "@types/node": !shouldUsePnpmDep ? "^20.0.0" : "catalog:",
-      eslint: !shouldUsePnpmDep ? "^9.9.0" : "catalog:",
+      "@azure-tools/test-credential": "workspace:^",
+      "@azure-tools/test-recorder": "workspace:^",
+      "@azure-tools/test-utils-vitest": "workspace:^",
+      "@azure/dev-tool": "workspace:^",
+      tshy: "catalog:",
+      "@azure/eslint-plugin-azure-sdk": "workspace:^",
+      "@azure/identity": "catalog:internal",
+      "@types/node": "catalog:",
+      "cross-env": "catalog:",
+      eslint: "catalog:",
+      prettier: "catalog:",
+      rimraf: "catalog:",
       ...(config.specSource === "Swagger" && {
-        autorest: !shouldUsePnpmDep ? "latest" : "catalog:"
+        autorest: "catalog:"
       }),
       ...testDeps
     }
@@ -159,38 +153,34 @@ function addSwaggerMetadata(
 
 function getAzureMonorepoScripts(config: AzureMonorepoInfoConfig) {
   const esmScripts = getEsmScripts(config);
-  const cjsScripts = getCjsScripts(config);
   const skipLinting = config.azureArm && config.isModularLibrary;
+  const buildSampleScripts = config.azureArm
+    ? "tsc -p tsconfig.samples.json && dev-tool samples publish -f"
+    : "tsc -p tsconfig.samples.json";
   return {
-    ...getCommonPackageScripts(config),
-    "build:samples": config.withSamples
-      ? "tsc -p tsconfig.samples.json && dev-tool samples publish -f"
-      : "echo skipped",
-    "check-format": `dev-tool run vendored prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" ${
+    ...getCommonPackageScripts(),
+    "build:samples": config.withSamples ? buildSampleScripts : "echo skipped",
+    "check-format": `prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" ${
       config.withSamples ? '"samples-dev/*.ts"' : ""
     }`,
     clean:
-      "dev-tool run vendored rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
+      "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
     "execute:samples": config.withSamples
       ? "dev-tool samples run samples-dev"
       : "echo skipped",
-    "extract-api":
-      "dev-tool run vendored rimraf review && dev-tool run extract-api",
-    format: `dev-tool run vendored prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" ${
+    "extract-api": "rimraf review && dev-tool run extract-api",
+    format: `prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" ${
       config.withSamples ? '"samples-dev/*.ts"' : ""
     }`,
-    "integration-test:browser": "echo skipped",
-    "integration-test:node": "echo skipped",
     "generate:client": "echo skipped",
     "test:browser":
-      "npm run clean && npm run build:test && npm run unit-test:browser && npm run integration-test:browser",
+      "dev-tool run build-test && dev-tool run test:vitest --browser",
     "lint:fix": skipLinting
       ? "echo skipped"
       : "eslint package.json src test --fix --fix-type [problem,suggestion]",
     lint: skipLinting ? "echo skipped" : "eslint package.json src test",
-    pack: `${config.shouldUsePnpmDep ? "pnpm" : "npm"} pack 2>&1`,
+    pack: `pnpm pack 2>&1`,
     ...esmScripts,
-    ...cjsScripts,
     "update-snippets": "dev-tool run update-snippets"
   };
 }
@@ -201,35 +191,11 @@ function getEsmScripts({ moduleKind }: AzureMonorepoInfoConfig) {
   }
 
   return {
-    "build:test": "echo skipped",
     build:
       "npm run clean && dev-tool run build-package && dev-tool run extract-api",
-    "test:node":
-      "npm run clean && dev-tool run build-package && npm run unit-test:node && npm run integration-test:node",
-    test: "npm run clean && dev-tool run build-package && npm run unit-test:node && npm run unit-test:browser && npm run integration-test",
-    "unit-test:browser":
-      "npm run build:test && dev-tool run test:vitest --browser",
-    "unit-test:node": "dev-tool run test:vitest"
-  };
-}
-
-function getCjsScripts({ moduleKind }: AzureMonorepoInfoConfig) {
-  if (moduleKind !== "cjs") {
-    return {};
-  }
-
-  return {
-    build: "npm run clean && tsc -p . && dev-tool run extract-api",
-    "build:node":
-      "tsc -p . && dev-tool run vendored cross-env ONLY_NODE=true rollup -c 2>&1",
-    "build:test": "tsc -p .",
-    "build:debug": "tsc -p . && dev-tool run extract-api",
-    "integration-test:browser": "dev-tool run test:browser",
-    "integration-test:node":
-      "dev-tool run test:node-js-input -- --timeout 5000000 'dist-esm/test/**/*.spec.js'",
-    "unit-test:node":
-      "dev-tool run test:node-ts-input -- --timeout 1200000 --exclude 'test/**/browser/*.spec.ts' 'test/**/*.spec.ts'",
-    "unit-test:browser": "dev-tool run test:browser"
+    "test:node": "dev-tool run test:vitest",
+    "test:node:esm": "dev-tool run test:vitest --esm",
+    test: "npm run test:node && npm run test:browser"
   };
 }
 

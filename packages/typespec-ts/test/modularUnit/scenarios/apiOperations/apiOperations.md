@@ -136,6 +136,12 @@ op uploadFile(
 ## Models \_UploadFileRequest
 
 ```ts models interface _UploadFileRequest
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface _UploadFileRequest */
 export interface _UploadFileRequest {
   name: string;
@@ -208,7 +214,7 @@ export async function uploadFile(
 }
 ```
 
-# should handle contentTypes has multiple form data array in parameters
+# should handle contentTypes has multiple form data with part array in parameters
 
 ## TypeSpec
 
@@ -233,6 +239,12 @@ import {
   createFilePartDescriptor
 } from "../static-helpers/multipartHelpers.js";
 
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface _UploadFilesRequest */
 export interface _UploadFilesRequest {
   files: Array<
@@ -317,6 +329,7 @@ op downloadFile(): {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
+import { getBinaryResponse } from "../static-helpers/serialization/get-binary-response.js";
 import { DownloadFileOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -353,7 +366,8 @@ export async function downloadFile(
   context: Client,
   options: DownloadFileOptionalParams = { requestOptions: {} }
 ): Promise<Uint8Array> {
-  const result = await _downloadFileSend(context, options);
+  const streamableMethod = _downloadFileSend(context, options);
+  const result = await getBinaryResponse(streamableMethod);
   return _downloadFileDeserialize(result);
 }
 ```
@@ -378,6 +392,7 @@ op downloadFile(): {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
+import { getBinaryResponse } from "../static-helpers/serialization/get-binary-response.js";
 import { DownloadFileOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -414,12 +429,13 @@ export async function downloadFile(
   context: Client,
   options: DownloadFileOptionalParams = { requestOptions: {} }
 ): Promise<Uint8Array> {
-  const result = await _downloadFileSend(context, options);
+  const streamableMethod = _downloadFileSend(context, options);
+  const result = await getBinaryResponse(streamableMethod);
   return _downloadFileDeserialize(result);
 }
 ```
 
-# should handle contentTypes has multiple form data in response
+# should handle contentTypes has multiple form data with part array in response
 
 ## TypeSpec
 
@@ -438,12 +454,22 @@ op downloadFile(): {
 ## Models
 
 ```ts models
+import { FileContents } from "../static-helpers/multipartHelpers.js";
 import { stringToUint8Array } from "@azure/core-util";
 
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface _DownloadFileResponse */
 export interface _DownloadFileResponse {
   name: string;
-  file: Uint8Array[];
+  file: Array<
+    | FileContents
+    | { contents: FileContents; contentType?: string; filename?: string }
+  >;
 }
 
 export function _downloadFileResponseDeserializer(
@@ -495,7 +521,7 @@ export async function _downloadFileDeserialize(
     throw createRestError(result);
   }
 
-  return _downloadFileResponseDeserializer(result.body);
+  return _downloadFileResponseDeserializer(result.body) as any;
 }
 
 export async function downloadFile(
@@ -510,7 +536,7 @@ export async function downloadFile(
 }
 ```
 
-# should handle contentTypes has multiple form data array in response
+# should handle contentTypes has multiple form data with array part in response
 
 ## TypeSpec
 
@@ -522,8 +548,8 @@ scalar BinaryBytes extends bytes;
 op downloadFile(): {
   @header contentType: "multipart/form-data";
   @multipartBody body: {
-    name: HttpPart<string>;
-    file: HttpPart<BinaryBytes>[];
+    name: HttpPart<string[]>;
+    file: HttpPart<BinaryBytes>;
   };
 };
 ```
@@ -531,22 +557,34 @@ op downloadFile(): {
 ## Models
 
 ```ts models
+import { FileContents } from "../static-helpers/multipartHelpers.js";
 import { stringToUint8Array } from "@azure/core-util";
 
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface _DownloadFileResponse */
 export interface _DownloadFileResponse {
-  name: string;
-  file: Uint8Array[];
+  name: string[];
+  file:
+    | FileContents
+    | { contents: FileContents; contentType?: string; filename?: string };
 }
 
 export function _downloadFileResponseDeserializer(
   item: any
 ): _DownloadFileResponse {
   return {
-    name: item["name"],
-    file: item["file"].map((p: any) => {
-      return typeof p === "string" ? stringToUint8Array(p, "base64") : p;
-    })
+    name: item["name"].map((p: any) => {
+      return p;
+    }),
+    file:
+      typeof item["file"] === "string"
+        ? stringToUint8Array(item["file"], "base64")
+        : item["file"]
   };
 }
 ```
@@ -580,23 +618,23 @@ export function _downloadFileSend(
 export async function _downloadFileDeserialize(
   result: PathUncheckedResponse
 ): Promise<{
-  name: string;
-  file: Uint8Array[];
+  name: string[];
+  file: Uint8Array;
 }> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return _downloadFileResponseDeserializer(result.body);
+  return _downloadFileResponseDeserializer(result.body) as any;
 }
 
 export async function downloadFile(
   context: Client,
   options: DownloadFileOptionalParams = { requestOptions: {} }
 ): Promise<{
-  name: string;
-  file: Uint8Array[];
+  name: string[];
+  file: Uint8Array;
 }> {
   const result = await _downloadFileSend(context, options);
   return _downloadFileDeserialize(result);
@@ -685,8 +723,8 @@ op test(...ApiVersionParameter): string;
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { TestOptionalParams } from "./options.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import { TestOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -774,8 +812,8 @@ export function createTesting(
 ## classicClient
 
 ```ts classicClient
-import { TestOptionalParams } from "./api/options.js";
 import { test } from "./api/operations.js";
+import { TestOptionalParams } from "./api/options.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
 export { TestingClientOptionalParams } from "./api/testingContext.js";
@@ -834,8 +872,8 @@ withRawContent: false
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { TestOptionalParams } from "./options.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import { TestOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -923,8 +961,8 @@ export function createTesting(
 ## classicClient
 
 ```ts classicClient
-import { TestOptionalParams } from "./api/options.js";
 import { test } from "./api/operations.js";
+import { TestOptionalParams } from "./api/options.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
 export { TestingClientOptionalParams } from "./api/testingContext.js";
@@ -977,8 +1015,8 @@ op test1(): string;
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { Test1OptionalParams, TestOptionalParams } from "./options.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import { Test1OptionalParams, TestOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -1095,8 +1133,8 @@ export function createTesting(
 ## classicClient
 
 ```ts classicClient
-import { Test1OptionalParams, TestOptionalParams } from "./api/options.js";
 import { test1, test } from "./api/operations.js";
+import { Test1OptionalParams, TestOptionalParams } from "./api/options.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
 export { TestingClientOptionalParams } from "./api/testingContext.js";
@@ -1133,5 +1171,246 @@ export class TestingClient {
   ): Promise<string> {
     return test(this._client, apiVersion, options);
   }
+}
+```
+
+# Should generate LRO for ARM operation
+
+Sample generation should arm template and operations successfully.
+
+## TypeSpec
+
+This is tsp definition.
+
+```tsp
+import "@typespec/http";
+import "@typespec/rest";
+import "@typespec/versioning";
+import "@azure-tools/typespec-azure-core";
+import "@azure-tools/typespec-azure-resource-manager";
+
+using TypeSpec.Http;
+using TypeSpec.Rest;
+using TypeSpec.Versioning;
+using Azure.Core;
+using Azure.ResourceManager;
+using Azure.ResourceManager.Foundations;
+using OpenAPI;
+
+/** Microsoft.Contoso Resource Provider management API. */
+@armProviderNamespace
+@service(#{
+  title: "Microsoft.Contoso management service",
+})
+@versioned(Microsoft.Contoso.Versions)
+namespace Microsoft.Contoso;
+
+/** The available API versions. */
+enum Versions {
+  /** 2021-10-01-preview version */
+  @armCommonTypesVersion(Azure.ResourceManager.CommonTypes.Versions.v5)
+  v2021_10_01_preview: "2021-10-01-preview",
+}
+
+interface Operations extends Azure.ResourceManager.Operations {}
+
+@doc("FileShareSnapshot resource")
+@parentResource(FileShare)
+model FileShareSnapshot
+  is Azure.ResourceManager.ProxyResource<FileShareSnapshotProperties> {
+  ...ResourceNameParameter<
+    Resource = FileShareSnapshot,
+    KeyName = "name",
+    NamePattern = "^([a-z]|[0-9])([a-z]|[0-9]|(-(?!-))){1,61}([a-z]|[0-9])$",
+    SegmentName = "fileShareSnapshots"
+  >;
+}
+model FileShareProperties {
+  mountName?: string;
+
+  hostName?: string;
+}
+
+@doc("File share resource")
+model FileShare is Azure.ResourceManager.TrackedResource<FileShareProperties> {
+  @doc("The resource name of the file share, as seen by the administrator through Azure Resource Manager.")
+  @pattern("^([a-z]|[0-9])([a-z]|[0-9]|(-(?!-))){1,61}([a-z]|[0-9])$")
+  @key("resourceName")
+  @path
+  @segment("fileShares")
+  name: string;
+}
+
+
+model FileShareSnapshotProperties {
+  initiatorId?: string;
+}
+
+@armResourceOperations
+interface FileShareSnapshots {
+ updateFileShareSnapshot is ArmCustomPatchAsync<
+    FileShareSnapshot,
+    ResourceUpdateModel<FileShareSnapshot, FileShareSnapshotProperties>,
+    BaseParameters<FileShareSnapshot>,
+    Response = ArmAcceptedLroResponse<LroHeaders = ArmAsyncOperationHeader &
+      ArmLroLocationHeader<FinalResult = FileShareSnapshot> &
+      Azure.Core.Foundations.RetryAfterHeader>
+  >;
+}
+```
+
+The config would be like:
+
+```yaml
+withRawContent: true
+```
+
+## Operations
+
+```ts operations
+import { ContosoContext as Client } from "./index.js";
+import {
+  _OperationListResult,
+  _operationListResultDeserializer,
+  Operation,
+  errorResponseDeserializer,
+  FileShareSnapshotUpdate,
+  fileShareSnapshotUpdateSerializer,
+  FileShareSnapshot,
+  fileShareSnapshotDeserializer
+} from "../models/models.js";
+import {
+  PagedAsyncIterableIterator,
+  buildPagedAsyncIterator
+} from "../static-helpers/pagingHelpers.js";
+import { getLongRunningPoller } from "../static-helpers/pollingHelpers.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import {
+  UpdateFileShareSnapshotOptionalParams,
+  ListOptionalParams
+} from "./options.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters
+} from "@azure-rest/core-client";
+import { PollerLike, OperationState } from "@azure/core-lro";
+
+export function _updateFileShareSnapshotSend(
+  context: Client,
+  resourceGroupName: string,
+  resourceName: string,
+  name: string,
+  properties: FileShareSnapshotUpdate,
+  options: UpdateFileShareSnapshotOptionalParams = { requestOptions: {} }
+): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Contoso/fileShares/{resourceName}/fileShareSnapshots/{name}{?api%2Dversion}",
+    {
+      subscriptionId: context.subscriptionId,
+      resourceGroupName: resourceGroupName,
+      resourceName: resourceName,
+      name: name,
+      "api%2Dversion": context.apiVersion
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding
+    }
+  );
+  return context.path(path).patch({
+    ...operationOptionsToRequestParameters(options),
+    contentType: "application/json",
+    body: fileShareSnapshotUpdateSerializer(properties)
+  });
+}
+
+export async function _updateFileShareSnapshotDeserialize(
+  result: PathUncheckedResponse
+): Promise<FileShareSnapshot> {
+  const expectedStatuses = ["202", "200", "201"];
+  if (!expectedStatuses.includes(result.status)) {
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
+  }
+
+  return fileShareSnapshotDeserializer(result.body);
+}
+
+/** Update a FileShareSnapshot */
+export function updateFileShareSnapshot(
+  context: Client,
+  resourceGroupName: string,
+  resourceName: string,
+  name: string,
+  properties: FileShareSnapshotUpdate,
+  options: UpdateFileShareSnapshotOptionalParams = { requestOptions: {} }
+): PollerLike<OperationState<FileShareSnapshot>, FileShareSnapshot> {
+  return getLongRunningPoller(
+    context,
+    _updateFileShareSnapshotDeserialize,
+    ["202", "200", "201"],
+    {
+      updateIntervalInMs: options?.updateIntervalInMs,
+      abortSignal: options?.abortSignal,
+      getInitialResponse: () =>
+        _updateFileShareSnapshotSend(
+          context,
+          resourceGroupName,
+          resourceName,
+          name,
+          properties,
+          options
+        ),
+      resourceLocationConfig: "location"
+    }
+  ) as PollerLike<OperationState<FileShareSnapshot>, FileShareSnapshot>;
+}
+
+export function _listSend(
+  context: Client,
+  options: ListOptionalParams = { requestOptions: {} }
+): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/providers/Microsoft.Contoso/operations{?api%2Dversion}",
+    {
+      "api%2Dversion": context.apiVersion
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding
+    }
+  );
+  return context.path(path).get({
+    ...operationOptionsToRequestParameters(options),
+    headers: { accept: "application/json", ...options.requestOptions?.headers }
+  });
+}
+
+export async function _listDeserialize(
+  result: PathUncheckedResponse
+): Promise<_OperationListResult> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
+  }
+
+  return _operationListResultDeserializer(result.body);
+}
+
+/** List the operations for the provider */
+export function list(
+  context: Client,
+  options: ListOptionalParams = { requestOptions: {} }
+): PagedAsyncIterableIterator<Operation> {
+  return buildPagedAsyncIterator(
+    context,
+    () => _listSend(context, options),
+    _listDeserialize,
+    ["200"],
+    { itemName: "value", nextLinkName: "nextLink" }
+  );
 }
 ```

@@ -15,9 +15,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing PrivateEndPointConnections operations. */
-export class PrivateEndPointConnectionsImpl
-  implements PrivateEndPointConnections
-{
+export class PrivateEndPointConnectionsImpl implements PrivateEndPointConnections {
   private readonly client: DataFactoryClient;
 
   /**

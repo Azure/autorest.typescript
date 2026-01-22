@@ -10,13 +10,13 @@ import {
   GetConnectionResponse,
   getConnectionResponseDeserializer,
 } from "../../models/models.js";
+import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   ConnectionsGetConnectionWithSecretsOptionalParams,
   ConnectionsGetConnectionOptionalParams,
   ConnectionsListConnectionsOptionalParams,
   ConnectionsGetWorkspaceOptionalParams,
 } from "./options.js";
-import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -28,9 +28,7 @@ export function _getConnectionWithSecretsSend(
   context: Client,
   connectionName: string,
   ignored: string,
-  options: ConnectionsGetConnectionWithSecretsOptionalParams = {
-    requestOptions: {},
-  },
+  options: ConnectionsGetConnectionWithSecretsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/connections/{connectionName}/listsecrets{?api%2Dversion}",
@@ -47,10 +45,7 @@ export function _getConnectionWithSecretsSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: { ignored: ignored },
     });
 }
@@ -71,16 +66,9 @@ export async function getConnectionWithSecrets(
   context: Client,
   connectionName: string,
   ignored: string,
-  options: ConnectionsGetConnectionWithSecretsOptionalParams = {
-    requestOptions: {},
-  },
+  options: ConnectionsGetConnectionWithSecretsOptionalParams = { requestOptions: {} },
 ): Promise<GetConnectionResponse> {
-  const result = await _getConnectionWithSecretsSend(
-    context,
-    connectionName,
-    ignored,
-    options,
-  );
+  const result = await _getConnectionWithSecretsSend(context, connectionName, ignored, options);
   return _getConnectionWithSecretsDeserialize(result);
 }
 
@@ -103,10 +91,7 @@ export function _getConnectionSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
@@ -151,10 +136,7 @@ export function _listConnectionsSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
@@ -195,10 +177,7 @@ export function _getWorkspaceSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 

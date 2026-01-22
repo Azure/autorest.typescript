@@ -30,6 +30,8 @@ import {
   Embeddings,
   embeddingsDeserializer,
 } from "../models/models.js";
+import { getBinaryResponse } from "../static-helpers/serialization/get-binary-response.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   GetEmbeddingsOptionalParams,
   GenerateSpeechFromTextOptionalParams,
@@ -41,7 +43,6 @@ import {
   GetAudioTranscriptionAsResponseObjectOptionalParams,
   GetAudioTranscriptionAsPlainTextOptionalParams,
 } from "./options.js";
-import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -70,10 +71,7 @@ export function _getEmbeddingsSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: embeddingsOptionsSerializer(body),
     });
 }
@@ -121,10 +119,7 @@ export function _generateSpeechFromTextSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      headers: {
-        accept: "application/octet-stream",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/octet-stream", ...options.requestOptions?.headers },
       body: speechGenerationOptionsSerializer(body),
     });
 }
@@ -147,12 +142,8 @@ export async function generateSpeechFromText(
   body: SpeechGenerationOptions,
   options: GenerateSpeechFromTextOptionalParams = { requestOptions: {} },
 ): Promise<Uint8Array> {
-  const result = await _generateSpeechFromTextSend(
-    context,
-    deploymentId,
-    body,
-    options,
-  );
+  const streamableMethod = _generateSpeechFromTextSend(context, deploymentId, body, options);
+  const result = await getBinaryResponse(streamableMethod);
   return _generateSpeechFromTextDeserialize(result);
 }
 
@@ -177,10 +168,7 @@ export function _getImageGenerationsSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: imageGenerationOptionsSerializer(body),
     });
 }
@@ -203,12 +191,7 @@ export async function getImageGenerations(
   body: ImageGenerationOptions,
   options: GetImageGenerationsOptionalParams = { requestOptions: {} },
 ): Promise<ImageGenerations> {
-  const result = await _getImageGenerationsSend(
-    context,
-    deploymentId,
-    body,
-    options,
-  );
+  const result = await _getImageGenerationsSend(context, deploymentId, body, options);
   return _getImageGenerationsDeserialize(result);
 }
 
@@ -233,10 +216,7 @@ export function _getChatCompletionsSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: chatCompletionsOptionsSerializer(body),
     });
 }
@@ -263,12 +243,7 @@ export async function getChatCompletions(
   body: ChatCompletionsOptions,
   options: GetChatCompletionsOptionalParams = { requestOptions: {} },
 ): Promise<ChatCompletions> {
-  const result = await _getChatCompletionsSend(
-    context,
-    deploymentId,
-    body,
-    options,
-  );
+  const result = await _getChatCompletionsSend(context, deploymentId, body, options);
   return _getChatCompletionsDeserialize(result);
 }
 
@@ -293,10 +268,7 @@ export function _getCompletionsSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: completionsOptionsSerializer(body),
     });
 }
@@ -323,12 +295,7 @@ export async function getCompletions(
   body: CompletionsOptions,
   options: GetCompletionsOptionalParams = { requestOptions: {} },
 ): Promise<Completions> {
-  const result = await _getCompletionsSend(
-    context,
-    deploymentId,
-    body,
-    options,
-  );
+  const result = await _getCompletionsSend(context, deploymentId, body, options);
   return _getCompletionsDeserialize(result);
 }
 
@@ -336,9 +303,7 @@ export function _getAudioTranslationAsResponseObjectSend(
   context: Client,
   deploymentId: string,
   body: AudioTranslationOptions,
-  options: GetAudioTranslationAsResponseObjectOptionalParams = {
-    requestOptions: {},
-  },
+  options: GetAudioTranslationAsResponseObjectOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/deployments/{deploymentId}/audio/translations{?api%2Dversion}",
@@ -355,10 +320,7 @@ export function _getAudioTranslationAsResponseObjectSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "multipart/form-data",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: audioTranslationOptionsSerializer(body),
     });
 }
@@ -379,9 +341,7 @@ export async function getAudioTranslationAsResponseObject(
   context: Client,
   deploymentId: string,
   body: AudioTranslationOptions,
-  options: GetAudioTranslationAsResponseObjectOptionalParams = {
-    requestOptions: {},
-  },
+  options: GetAudioTranslationAsResponseObjectOptionalParams = { requestOptions: {} },
 ): Promise<AudioTranslation> {
   const result = await _getAudioTranslationAsResponseObjectSend(
     context,
@@ -396,9 +356,7 @@ export function _getAudioTranslationAsPlainTextSend(
   context: Client,
   deploymentId: string,
   body: AudioTranslationOptions,
-  options: GetAudioTranslationAsPlainTextOptionalParams = {
-    requestOptions: {},
-  },
+  options: GetAudioTranslationAsPlainTextOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/deployments/{deploymentId}/audio/translations{?api%2Dversion}",
@@ -436,16 +394,9 @@ export async function getAudioTranslationAsPlainText(
   context: Client,
   deploymentId: string,
   body: AudioTranslationOptions,
-  options: GetAudioTranslationAsPlainTextOptionalParams = {
-    requestOptions: {},
-  },
+  options: GetAudioTranslationAsPlainTextOptionalParams = { requestOptions: {} },
 ): Promise<string> {
-  const result = await _getAudioTranslationAsPlainTextSend(
-    context,
-    deploymentId,
-    body,
-    options,
-  );
+  const result = await _getAudioTranslationAsPlainTextSend(context, deploymentId, body, options);
   return _getAudioTranslationAsPlainTextDeserialize(result);
 }
 
@@ -453,9 +404,7 @@ export function _getAudioTranscriptionAsResponseObjectSend(
   context: Client,
   deploymentId: string,
   body: AudioTranscriptionOptions,
-  options: GetAudioTranscriptionAsResponseObjectOptionalParams = {
-    requestOptions: {},
-  },
+  options: GetAudioTranscriptionAsResponseObjectOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/deployments/{deploymentId}/audio/transcriptions{?api%2Dversion}",
@@ -472,10 +421,7 @@ export function _getAudioTranscriptionAsResponseObjectSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "multipart/form-data",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: audioTranscriptionOptionsSerializer(body),
     });
 }
@@ -499,9 +445,7 @@ export async function getAudioTranscriptionAsResponseObject(
   context: Client,
   deploymentId: string,
   body: AudioTranscriptionOptions,
-  options: GetAudioTranscriptionAsResponseObjectOptionalParams = {
-    requestOptions: {},
-  },
+  options: GetAudioTranscriptionAsResponseObjectOptionalParams = { requestOptions: {} },
 ): Promise<AudioTranscription> {
   const result = await _getAudioTranscriptionAsResponseObjectSend(
     context,
@@ -516,9 +460,7 @@ export function _getAudioTranscriptionAsPlainTextSend(
   context: Client,
   deploymentId: string,
   body: AudioTranscriptionOptions,
-  options: GetAudioTranscriptionAsPlainTextOptionalParams = {
-    requestOptions: {},
-  },
+  options: GetAudioTranscriptionAsPlainTextOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/deployments/{deploymentId}/audio/transcriptions{?api%2Dversion}",
@@ -559,15 +501,8 @@ export async function getAudioTranscriptionAsPlainText(
   context: Client,
   deploymentId: string,
   body: AudioTranscriptionOptions,
-  options: GetAudioTranscriptionAsPlainTextOptionalParams = {
-    requestOptions: {},
-  },
+  options: GetAudioTranscriptionAsPlainTextOptionalParams = { requestOptions: {} },
 ): Promise<string> {
-  const result = await _getAudioTranscriptionAsPlainTextSend(
-    context,
-    deploymentId,
-    body,
-    options,
-  );
+  const result = await _getAudioTranscriptionAsPlainTextSend(context, deploymentId, body, options);
   return _getAudioTranscriptionAsPlainTextDeserialize(result);
 }

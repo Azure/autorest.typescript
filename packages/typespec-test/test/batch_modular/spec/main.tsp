@@ -5,9 +5,7 @@ import "./routes.tsp";
 using TypeSpec.Http;
 using TypeSpec.Versioning;
 
-@service(#{
-  title: "Azure Batch",
-})
+@service(#{ title: "Azure Batch" })
 @versioned(Azure.Batch.Versions)
 @doc("Azure Batch provides Cloud-scale job scheduling and compute management.")
 @server(
@@ -23,8 +21,7 @@ namespace Azure.Batch;
 
 @doc("The Azure Batch service version.")
 enum Versions {
-   @doc("API Version 2023-05-01.17.0")
-   @useDependency(Azure.Core.Versions.v1_0_Preview_2)
+  @doc("API Version 2023-05-01.17.0")
   `2023-05-01.17.0`,
 }
 

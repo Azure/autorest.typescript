@@ -10,7 +10,6 @@ options:
     azure-sdk-for-js: false
     is-typespec-test: true
     title: MultipleParamInServerPathClient
-    is-modular-library: true
     hierarchy-client: false
     package-details:
       name: "@msinternal/multipleparam"

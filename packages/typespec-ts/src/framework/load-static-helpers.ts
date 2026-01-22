@@ -2,6 +2,7 @@ import { readdir, stat, readFile } from "fs/promises";
 import * as path from "path";
 import {
   ClassDeclaration,
+  EnumDeclaration,
   FunctionDeclaration,
   InterfaceDeclaration,
   Project,
@@ -12,10 +13,12 @@ import { refkey } from "./refkey.js";
 import { resolveProjectRoot } from "../utils/resolve-project-root.js";
 import { isAzurePackage } from "@azure-tools/rlc-common";
 import { ModularEmitterOptions } from "../modular/interfaces.js";
+import { NoTarget, Program } from "@typespec/compiler";
+import { reportDiagnostic } from "../lib.js";
 export const SourceFileSymbol = Symbol("SourceFile");
 export interface StaticHelperMetadata {
   name: string;
-  kind: "function" | "interface" | "typeAlias" | "class";
+  kind: "function" | "interface" | "typeAlias" | "class" | "enum";
   location: string;
   [SourceFileSymbol]?: SourceFile;
 }
@@ -25,10 +28,10 @@ export function isStaticHelperMetadata(
 ): metadata is StaticHelperMetadata {
   return Boolean(
     metadata &&
-      metadata.name &&
-      metadata.kind &&
-      metadata.location &&
-      metadata[SourceFileSymbol]
+    metadata.name &&
+    metadata.kind &&
+    metadata.location &&
+    metadata[SourceFileSymbol]
   );
 }
 
@@ -36,10 +39,10 @@ export type StaticHelpers = Record<string, StaticHelperMetadata>;
 
 const DEFAULT_STATIC_HELPERS_PATH = "static/static-helpers";
 
-export interface LoadStaticHelpersOptions
-  extends Partial<ModularEmitterOptions> {
+export interface LoadStaticHelpersOptions extends Partial<ModularEmitterOptions> {
   helpersAssetDirectory?: string;
   sourcesDir?: string;
+  program?: Program;
 }
 
 export async function loadStaticHelpers(
@@ -54,7 +57,8 @@ export async function loadStaticHelpers(
     DEFAULT_STATIC_HELPERS_PATH
   );
   const files = await traverseDirectory(
-    options.helpersAssetDirectory ?? defaultStaticHelpersPath
+    options.helpersAssetDirectory ?? defaultStaticHelpersPath,
+    options.program
   );
 
   for (const file of files) {
@@ -137,6 +141,7 @@ function getDeclarationByMetadata(
   | FunctionDeclaration
   | TypeAliasDeclaration
   | InterfaceDeclaration
+  | EnumDeclaration
   | undefined {
   switch (declaration.kind) {
     case "class":
@@ -147,6 +152,8 @@ function getDeclarationByMetadata(
       return file.getInterface(declaration.name);
     case "typeAlias":
       return file.getTypeAlias(declaration.name);
+    case "enum":
+      return file.getEnum(declaration.name);
     default:
       throw new Error(
         `invalid helper kind ${declaration.kind}\nAll helpers provided to loadStaticHelpers are of kind: function, interface, typeAlias, class`
@@ -157,6 +164,7 @@ function getDeclarationByMetadata(
 const _targetStaticHelpersBaseDir = "static-helpers";
 async function traverseDirectory(
   directory: string,
+  program?: Program,
   result: { source: string; target: string }[] = [],
   relativePath: string = ""
 ): Promise<{ source: string; target: string }[]> {
@@ -171,13 +179,14 @@ async function traverseDirectory(
         if (fileStat.isDirectory()) {
           await traverseDirectory(
             filePath,
+            program,
             result,
             path.join(relativePath, file)
           );
         } else if (
           fileStat.isFile() &&
           !file.endsWith(".d.ts") &&
-          file.endsWith(".ts")
+          /.*\..?ts$/.test(file)
         ) {
           const target = path.join(
             _targetStaticHelpersBaseDir,
@@ -191,7 +200,13 @@ async function traverseDirectory(
 
     return result;
   } catch (error) {
-    console.error(`Error traversing directory ${directory}:`, error);
+    if (program) {
+      reportDiagnostic(program, {
+        code: "directory-traversal-error",
+        format: { directory, error: String(error) },
+        target: NoTarget
+      });
+    }
     throw error;
   }
 }

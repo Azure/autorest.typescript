@@ -339,6 +339,53 @@ export const azureRlcTsps = [
   {
     outputPath: "azure/client-generator-core/deserialize-empty-string-as-null",
     inputPath: "azure/client-generator-core/deserialize-empty-string-as-null"
+  },
+  {
+    outputPath: "azure/resource-manager/operation-templates",
+    inputPath: "azure/resource-manager/operation-templates"
+  },
+  {
+    outputPath:
+      "azure/client-generator-core/client-location/move-to-existing-sub-client",
+    inputPath:
+      "azure/client-generator-core/client-location/move-to-existing-sub-client"
+  },
+  {
+    outputPath:
+      "azure/client-generator-core/client-location/move-to-new-sub-client",
+    inputPath:
+      "azure/client-generator-core/client-location/move-to-new-sub-client"
+  },
+  {
+    outputPath:
+      "azure/client-generator-core/client-location/move-to-root-client",
+    inputPath: "azure/client-generator-core/client-location/move-to-root-client"
+  },
+  {
+    outputPath:
+      "azure/client-generator-core/client-location/move-method-parameter-to-client",
+    inputPath:
+      "azure/client-generator-core/client-location/move-method-parameter-to-client"
+  },
+  {
+    outputPath: "client/overload",
+    inputPath: "client/overload"
+  },
+  {
+    outputPath: "azure/client-generator-core/override",
+    inputPath: "azure/client-generator-core/override"
+  },
+  {
+    outputPath: "azure/versioning/previewVersion",
+    inputPath: "azure/versioning/previewVersion"
+  },
+  {
+    outputPath: "azure/resource-manager/method-subscription-id",
+    inputPath: "azure/resource-manager/method-subscription-id"
+  },
+  {
+    outputPath: "azure/client-generator-core/next-link-verb",
+    inputPath: "azure/client-generator-core/next-link-verb"
   }
 ];
 
@@ -717,6 +764,10 @@ export const azureModularTsps = [
     inputPath: "payload/multipart"
   },
   {
+    outputPath: "payload/xml",
+    inputPath: "payload/xml"
+  },
+  {
     outputPath: "server/versions/versioned",
     inputPath: "server/versions/versioned"
   },
@@ -731,6 +782,10 @@ export const azureModularTsps = [
   {
     outputPath: "client/naming",
     inputPath: "client/naming"
+  },
+  {
+    outputPath: "client/naming-enum-conflict",
+    inputPath: "client/naming/enum-conflict"
   },
   {
     outputPath: "serialization/encoded-name/json",
@@ -871,6 +926,62 @@ export const azureModularTsps = [
   {
     outputPath: "azure/client-generator-core/deserialize-empty-string-as-null",
     inputPath: "azure/client-generator-core/deserialize-empty-string-as-null"
+  },
+  // skipping this test as https://github.com/Azure/autorest.typescript/issues/2313
+  // {
+  //   outputPath: "azure/resource-manager/operation-templates",
+  //   inputPath: "azure/resource-manager/operation-templates"
+  // },
+  {
+    outputPath: "azure/client-generator-core/hierarchy-building",
+    inputPath: "azure/client-generator-core/hierarchy-building"
+  },
+  {
+    outputPath: "client/overload",
+    inputPath: "client/overload"
+  },
+  {
+    outputPath: "azure/client-generator-core/override",
+    inputPath: "azure/client-generator-core/override"
+  },
+  {
+    outputPath: "azure/versioning/previewVersion",
+    inputPath: "azure/versioning/previewVersion"
+  },
+  {
+    outputPath: "azure/client-generator-core/next-link-verb",
+    inputPath: "azure/client-generator-core/next-link-verb"
+  },
+  {
+    outputPath: "special-headers/conditional-request",
+    inputPath: "special-headers/conditional-request"
+  },
+  {
+    outputPath: "azure/resource-manager/method-subscription-id",
+    inputPath: "azure/resource-manager/method-subscription-id"
+  },
+  {
+    outputPath:
+      "azure/client-generator-core/client-location/move-to-existing-sub-client",
+    inputPath:
+      "azure/client-generator-core/client-location/move-to-existing-sub-client"
+  },
+  {
+    outputPath:
+      "azure/client-generator-core/client-location/move-to-new-sub-client",
+    inputPath:
+      "azure/client-generator-core/client-location/move-to-new-sub-client"
+  },
+  {
+    outputPath:
+      "azure/client-generator-core/client-location/move-to-root-client",
+    inputPath: "azure/client-generator-core/client-location/move-to-root-client"
+  },
+  {
+    outputPath:
+      "azure/client-generator-core/client-location/move-method-parameter-to-client",
+    inputPath:
+      "azure/client-generator-core/client-location/move-method-parameter-to-client"
   }
 ];
 
@@ -1071,5 +1182,9 @@ export const modularTsps = [
   {
     outputPath: "payload/pageable",
     inputPath: "payload/pageable"
+  },
+  {
+    outputPath: "encode/array",
+    inputPath: "encode/array"
   }
 ];

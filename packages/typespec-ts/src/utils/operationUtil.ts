@@ -13,11 +13,7 @@ import {
   ResponseMetadata,
   ResponseTypes
 } from "@azure-tools/rlc-common";
-import {
-  getLroMetadata,
-  getPagedResult,
-  PagedResultMetadata
-} from "@azure-tools/typespec-azure-core";
+import { getLroMetadata } from "@azure-tools/typespec-azure-core";
 import {
   getHttpOperationWithCache,
   getWireName,
@@ -32,7 +28,14 @@ import {
   SdkServiceMethod,
   SdkServiceOperation
 } from "@azure-tools/typespec-client-generator-core";
-import { Model, Operation, Program, Type } from "@typespec/compiler";
+import {
+  isList,
+  ModelProperty,
+  NoTarget,
+  Operation,
+  Program,
+  Type
+} from "@typespec/compiler";
 import {
   HttpOperation,
   HttpOperationParameter,
@@ -40,12 +43,19 @@ import {
   HttpStatusCodesEntry
 } from "@typespec/http";
 import { SdkContext } from "./interfaces.js";
-import { KnownMediaType, knownMediaType } from "./mediaTypes.js";
+import {
+  KnownMediaType,
+  knownMediaType,
+  isMediaTypeXml,
+  isMediaTypeMultipart
+} from "./mediaTypes.js";
 import { isByteOrByteUnion } from "./modelUtils.js";
 import { getOperationNamespaceInterfaceName } from "./namespaceUtils.js";
 import { resolveReference } from "../framework/reference.js";
 import { SerializationHelpers } from "../modular/static-helpers-metadata.js";
 import { listOperationsUnderRLCClient } from "./clientUtils.js";
+import { $ } from "@typespec/compiler/typekit";
+import { reportDiagnostic } from "../lib.js";
 
 // Sorts the responses by status code
 export function sortedOperationResponses(responses: HttpOperationResponse[]) {
@@ -195,6 +205,34 @@ export function isBinaryPayload(
   return false;
 }
 
+/**
+ * Checks if the content type(s) indicate XML payload
+ */
+export function isXmlPayload(contentType: string | string[]): boolean {
+  const contentTypes = Array.isArray(contentType) ? contentType : [contentType];
+  return contentTypes.some((ct) => isMediaTypeXml(ct));
+}
+
+/**
+ * Checks if the content type(s) indicate multipart payload (multipart/mixed, multipart/form-data, etc.)
+ */
+export function isMultipartPayload(contentType: string | string[]): boolean {
+  return isMediaTypeMultipart(contentType);
+}
+
+/**
+ * Checks if the operation supports multiple content types (e.g., both JSON and XML)
+ */
+export function hasDualFormatSupport(contentTypes: string[]): boolean {
+  const hasJson = contentTypes.some(
+    (ct) => knownMediaType(ct) === KnownMediaType.Json
+  );
+  const hasXml = contentTypes.some(
+    (ct) => knownMediaType(ct) === KnownMediaType.Xml
+  );
+  return hasJson && hasXml;
+}
+
 export function isLongRunningOperation(
   program: Program,
   operation: HttpOperation
@@ -325,14 +363,111 @@ export function hasPollingOperations(
   return false;
 }
 
+export interface PageDetails {
+  nextLinkNames: string[];
+  itemNames: string[];
+}
+
+export function extractPageDetails(
+  program: Program,
+  operation: HttpOperation
+): PageDetails | undefined {
+  if (isList(program, operation.operation)) {
+    // If the operation is a list, we don't need to extract paging details.
+    const metadata = $(program).operation.getPagingMetadata(
+      operation.operation
+    );
+    if (metadata === undefined) {
+      // would fallback to default paging metadata
+      reportDiagnostic(program, {
+        code: "no-paging-items-defined",
+        format: {
+          operationName: operation.operation.name
+        },
+        target: NoTarget
+      });
+    }
+
+    const nextLinkPath = mapFirstSegmentForResultSegments(
+      metadata?.output.nextLink?.path,
+      operation.responses
+    );
+    const itemNamePath = mapFirstSegmentForResultSegments(
+      metadata?.output.pageItems?.path,
+      operation.responses
+    );
+    if (
+      (nextLinkPath && nextLinkPath?.length > 1) ||
+      (itemNamePath && itemNamePath?.length > 1)
+    ) {
+      // Any cases with nested nextLink or itemName are not supported
+      reportDiagnostic(program, {
+        code: "un-supported-paging-cases",
+        format: {
+          operationName: operation.operation.name
+        },
+        target: NoTarget
+      });
+      // these paging information will be ignored
+      // and the operation will be treated as a non-paging operation.
+      return undefined;
+    }
+    const nextLinkNames =
+      nextLinkPath?.map((prop) => prop.name).join(".") ?? "nextLink";
+    const itemNames =
+      itemNamePath?.map((prop) => prop.name).join(".") ?? "value";
+    return {
+      nextLinkNames: [nextLinkNames],
+      itemNames: [itemNames]
+    };
+  }
+  return undefined;
+}
+
 export function isPagingOperation(program: Program, operation: HttpOperation) {
-  for (const response of operation.responses) {
-    const paged = extractPagedMetadataNested(program, response.type as Model);
-    if (paged) {
-      return true;
+  return extractPageDetails(program, operation) !== undefined;
+}
+
+function mapFirstSegmentForResultSegments(
+  resultSegments: ModelProperty[] | undefined,
+  responses: HttpOperationResponse[]
+): ModelProperty[] | undefined {
+  const pagingBodyType = responses.find((r) => r.statusCodes === 200)
+    ?.responses[0]?.body;
+  if (!pagingBodyType || pagingBodyType.bodyKind !== "single") return undefined;
+  const bodyType = pagingBodyType.type;
+
+  if (resultSegments === undefined || bodyType === undefined) return undefined;
+  // TCGC use Http response type as the return type
+  // For implicit body response, we need to locate the first segment in the response type
+  // Several cases:
+  // 1. `op test(): {items, nextLink}`
+  // 2. `op test(): {items, nextLink} & {a, b, c}`
+  // 3. `op test(): {@bodyRoot body: {items, nextLink}}`
+
+  if (resultSegments.length > 0 && bodyType && bodyType.kind === "Model") {
+    for (let i = 0; i < resultSegments.length; i++) {
+      const segment = resultSegments[i];
+      for (const property of bodyType.properties ?? []) {
+        if (
+          property &&
+          segment &&
+          findRootSourceProperty(property[1]) ===
+            findRootSourceProperty(segment)
+        ) {
+          return [property[1], ...resultSegments.slice(i + 1)];
+        }
+      }
     }
   }
-  return false;
+  return resultSegments;
+}
+
+function findRootSourceProperty(property: ModelProperty): ModelProperty {
+  while (property.sourceProperty) {
+    property = property.sourceProperty;
+  }
+  return property;
 }
 
 export function hasPagingOperations(client: SdkClient, dpgContext: SdkContext) {
@@ -350,36 +485,6 @@ export function hasPagingOperations(client: SdkClient, dpgContext: SdkContext) {
   return false;
 }
 
-export function extractPagedMetadataNested(
-  program: Program,
-  type: Model
-): PagedResultMetadata | undefined {
-  // This only works for `is Page<T>` not `extends Page<T>`.
-  let paged = getPagedResult(program, type);
-  if (paged) {
-    return paged;
-  }
-  if (type.baseModel) {
-    paged = getPagedResult(program, type.baseModel);
-  }
-  if (paged) {
-    return paged;
-  }
-  const templateArguments = type.templateMapper?.args;
-  if (templateArguments) {
-    for (const argument of templateArguments) {
-      const modelArgument = argument as Model;
-      if (modelArgument) {
-        paged = extractPagedMetadataNested(program, modelArgument);
-        if (paged) {
-          return paged;
-        }
-      }
-    }
-  }
-  return paged;
-}
-
 export function hasCollectionFormatInfo(
   paramType: string,
   paramFormat: string
@@ -389,7 +494,8 @@ export function hasCollectionFormatInfo(
     getHasSsvCollection(paramType, paramFormat) ||
     getHasTsvCollection(paramType, paramFormat) ||
     getHasCsvCollection(paramType, paramFormat) ||
-    getHasPipeCollection(paramType, paramFormat)
+    getHasPipeCollection(paramType, paramFormat) ||
+    getHasNewlineCollection(paramType, paramFormat)
   );
 }
 
@@ -431,50 +537,96 @@ function getHasMultiCollection(
 ) {
   return (
     ((includeQuery && paramType === "query") || paramType === "header") &&
-    paramFormat === "multi"
+    paramFormat === KnownCollectionFormat.Multi
   );
 }
 function getHasSsvCollection(paramType: string, paramFormat: string) {
-  return paramType === "query" && paramFormat === "ssv";
+  return (
+    (paramType === "query" || paramType === "property") &&
+    paramFormat === KnownCollectionFormat.Ssv
+  );
 }
 
 function getHasTsvCollection(paramType: string, paramFormat: string) {
-  return paramType === "query" && paramFormat === "tsv";
+  return paramType === "query" && paramFormat === KnownCollectionFormat.Tsv;
 }
 
 function getHasCsvCollection(paramType: string, paramFormat: string) {
-  return paramType === "header" && paramFormat === "csv";
+  return (
+    (paramType === "header" || paramType === "property") &&
+    paramFormat === KnownCollectionFormat.Csv
+  );
 }
 
 function getHasPipeCollection(paramType: string, paramFormat: string) {
-  return paramType === "query" && paramFormat === "pipes";
+  return (
+    (paramType === "query" || paramType === "property") &&
+    paramFormat === KnownCollectionFormat.Pipes
+  );
 }
 
-export function getCollectionFormatHelper(
-  paramType: string,
-  paramFormat: string
-) {
-  if (getHasMultiCollection(paramType, paramFormat, false)) {
-    return resolveReference(SerializationHelpers.buildMultiCollection);
-  }
+function getHasNewlineCollection(paramType: string, paramFormat: string) {
+  return (
+    paramType === "property" && paramFormat === KnownCollectionFormat.Newline
+  );
+}
 
-  if (getHasPipeCollection(paramType, paramFormat)) {
-    return resolveReference(SerializationHelpers.buildPipeCollection);
+export function getCollectionFormatHelper(format: string) {
+  switch (format) {
+    case KnownCollectionFormat.Multi:
+      return resolveReference(SerializationHelpers.buildMultiCollection);
+    case KnownCollectionFormat.Pipes:
+      return resolveReference(SerializationHelpers.buildPipeCollection);
+    case KnownCollectionFormat.Ssv:
+      return resolveReference(SerializationHelpers.buildSsvCollection);
+    case KnownCollectionFormat.Tsv:
+      return resolveReference(SerializationHelpers.buildTsvCollection);
+    case KnownCollectionFormat.Csv:
+      return resolveReference(SerializationHelpers.buildCsvCollection);
+    case KnownCollectionFormat.Newline:
+      return resolveReference(SerializationHelpers.buildNewlineCollection);
+    default:
+      return undefined;
   }
+}
 
-  if (getHasSsvCollection(paramType, paramFormat)) {
-    return resolveReference(SerializationHelpers.buildSsvCollection);
+export function getCollectionFormatParseHelper(format: string) {
+  switch (format) {
+    case KnownCollectionFormat.Pipes:
+      return resolveReference(SerializationHelpers.parsePipeCollection);
+    case KnownCollectionFormat.Ssv:
+      return resolveReference(SerializationHelpers.parseSsvCollection);
+    case KnownCollectionFormat.Csv:
+      return resolveReference(SerializationHelpers.parseCsvCollection);
+    case KnownCollectionFormat.Newline:
+      return resolveReference(SerializationHelpers.parseNewlineCollection);
+    default:
+      return undefined;
   }
+}
 
-  if (getHasTsvCollection(paramType, paramFormat)) {
-    return resolveReference(SerializationHelpers.buildTsvCollection);
+export function getCollectionFormatFromArrayEncoding(encoding: string) {
+  switch (encoding) {
+    case "pipeDelimited":
+      return KnownCollectionFormat.Pipes;
+    case "spaceDelimited":
+      return KnownCollectionFormat.Ssv;
+    case "commaDelimited":
+      return KnownCollectionFormat.Csv;
+    case "newlineDelimited":
+      return KnownCollectionFormat.Newline;
+    default:
+      return undefined;
   }
+}
 
-  if (getHasCsvCollection(paramType, paramFormat)) {
-    return resolveReference(SerializationHelpers.buildCsvCollection);
-  }
-
-  return undefined;
+export enum KnownCollectionFormat {
+  Csv = "csv",
+  Ssv = "ssv",
+  Tsv = "tsv",
+  Pipes = "pipes",
+  Newline = "newline",
+  Multi = "multi"
 }
 
 export function getCustomRequestHeaderNameForOperation(
@@ -504,17 +656,6 @@ export function isIgnoredHeaderParam(param: HttpOperationParameter) {
         param.name.toLowerCase()
       ))
   );
-}
-
-export function parseNextLinkName(
-  paged: PagedResultMetadata
-): string | undefined {
-  return paged.nextLinkProperty?.name;
-}
-
-export function parseItemName(paged: PagedResultMetadata): string | undefined {
-  // TODO: support the nested item names
-  return (paged.itemsSegments ?? [])[0];
 }
 
 export type ServiceOperation = SdkServiceMethod<SdkHttpOperation> & {
@@ -616,6 +757,41 @@ export function getMethodHierarchiesMap(
     }
   }
   return operationHierarchiesMap;
+}
+
+export function isTenantLevelOperation(
+  operation: ServiceOperation,
+  client: SdkClientType<SdkServiceOperation>
+): boolean {
+  // Check if this operation has a subscriptionId path parameter
+  const subscriptionIdParam = operation.operation.parameters?.find(
+    (param) =>
+      param.name.toLowerCase() === "subscriptionid" && param.kind === "path"
+  );
+
+  if (subscriptionIdParam) {
+    // The operation has a client-level subscriptionId parameter, then it's not tenant-level
+    if (subscriptionIdParam.onClient) {
+      return false;
+    }
+  } else {
+    // Skip tenant-level internal ARM APIs
+    // Ref: https://armwiki.azurewebsites.net/rpaas/operations_auto_gen.html#special-cases
+    const pathLC = operation.operation.path.toLowerCase();
+    // Get the provider namespace from the client
+    const clientNamespaceLC = client.namespace.toLowerCase();
+    if (
+      operation.crossLanguageDefinitionId?.toLowerCase() ===
+        "azure.resourcemanager.operations.list" ||
+      pathLC.includes(`${clientNamespaceLC}/checknameavailability`)
+    ) {
+      return false;
+    }
+  }
+
+  // The operation has no subscriptionId parameter or has method-level subscriptionId parameter
+  // Considered as tenant-level
+  return true;
 }
 
 function resolveParameterNameConflict(
