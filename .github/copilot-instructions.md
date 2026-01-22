@@ -98,6 +98,79 @@ The TypeSpec test project (`typespec-test`) which is smoke test for TypeSpec emi
 
 The TypeSpec TypeScript emitter (`typespec-ts`) generates TypeScript client libraries from [TypeSpec](https://typespec.io/) specifications. The emitter supports two distinct SDK styles: RLC libraries and Modular libraries.
 
+## Implementing New Features in the TypeSpec Emitter
+
+When implementing new features (e.g., serialization formats, helpers, utilities), follow these patterns:
+
+### Static Helpers Architecture
+
+Static helpers are runtime utilities that get copied into generated client libraries. They are used for common operations like serialization, pagination, polling, etc.
+
+**Key directories:**
+- `packages/typespec-ts/static/static-helpers/` - Runtime helper implementations (TypeScript source files)
+- `packages/typespec-ts/src/modular/static-helpers-metadata.ts` - Registry of available static helpers with their metadata
+- `packages/typespec-ts/src/modular/external-dependencies.ts` - External npm package dependencies that helpers may need
+
+**Adding a new static helper:**
+
+1. **Create the helper file** in `static/static-helpers/` (e.g., `static/static-helpers/serialization/xml-helpers.ts`)
+2. **Register the helper** in `src/modular/static-helpers-metadata.ts` by adding an entry to the `StaticHelpers` object
+3. **Add external dependencies** if needed in `src/modular/external-dependencies.ts`
+4. **Update `load-static-helpers.ts`** in `src/framework/` to include the new helper in the loading logic
+
+**Reference framework pattern:**
+- Use `refkey("HelperName")` to create references to helpers
+- Use `resolveReference(context, refkey("HelperName"))` to resolve and import helpers in generated code
+- The framework automatically handles imports and deduplication
+
+### Unit Tests for Static Helpers
+
+Unit tests for static helpers are in `packages/typespec-ts/test-next/unit/static-helpers/`.
+
+**Running specific unit tests:**
+```bash
+cd packages/typespec-ts
+npx vitest run ./test-next/unit/static-helpers/your-helper.test.ts --reporter=verbose
+```
+
+**Test patterns:**
+- Import directly from the static helper source: `import { ... } from "../../../static/static-helpers/..."`
+- Test both serialization and deserialization round-trips
+- Test edge cases: null/undefined, empty arrays, whitespace preservation, etc.
+
+### Regenerating Specific Integration Tests
+
+To regenerate a specific integration test client (faster than regenerating all):
+
+```bash
+cd packages/typespec-ts
+npx tsx ./test/commands/gen-cadl-ranch.js --tag=azure-modular --filter=payload/xml
+```
+
+Replace `payload/xml` with the path of the specific test you want to regenerate.
+
+### Integration Test Locations
+
+- **RLC tests:** `packages/typespec-ts/test/integration/*.spec.ts`
+- **Modular tests:** `packages/typespec-ts/test/modularIntegration/*.spec.ts`
+- **Azure RLC tests:** `packages/typespec-ts/test/azureIntegration/*.spec.ts`
+- **Azure Modular tests:** `packages/typespec-ts/test/azureModularIntegration/*.spec.ts`
+
+**Generated client code locations:**
+- RLC: `packages/typespec-ts/test/integration/generated/`
+- Modular: `packages/typespec-ts/test/modularIntegration/generated/`
+- Azure RLC: `packages/typespec-ts/test/azureIntegration/generated/`
+- Azure Modular: `packages/typespec-ts/test/azureModularIntegration/generated/`
+
+### Serialization and Content Type Detection
+
+When implementing format-specific serialization (JSON, XML, etc.):
+
+1. **TCGC metadata:** Use `@azure-tools/typespec-client-generator-core` to get serialization options (e.g., `serializationOptions.xml`)
+2. **Content type detection:** Check `contentTypes` array on operations to determine request/response format
+3. **Conditional serialization:** Generate serializers that detect content type at runtime when operations support multiple formats
+
+
 ## How to Upgrade TypeSpec dependencies for @azure-tools/typespec-ts (packagest/typespec-ts)
 
 When upgrading TypeSpec dependencies only work on `packages/typespec-ts/` and `packages/typespec-test/` . `packages/rlc-common` and `packages/autorest.typescript` should not be edited.
