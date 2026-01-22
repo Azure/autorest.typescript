@@ -281,7 +281,7 @@ function prepareExampleValue(
   onClient?: boolean
 ): ExampleValue {
   return {
-    name: normalizeName(name, NameType.Parameter),
+    name: normalizeName(name, NameType.Parameter, true),
     value:
       typeof value === "string" ? value : getParameterValue(context, value),
     isOptional: Boolean(isOptional),
