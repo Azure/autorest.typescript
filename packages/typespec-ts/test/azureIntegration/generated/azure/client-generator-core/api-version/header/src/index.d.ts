@@ -9,7 +9,7 @@ declare function createClient(options?: HeaderClientOptions): HeaderClient;
 export default createClient;
 
 export declare interface HeaderApiVersion {
-    post(options: HeaderApiVersionParameters): StreamableMethod<HeaderApiVersion200Response>;
+    post(options?: HeaderApiVersionParameters): StreamableMethod<HeaderApiVersion200Response>;
 }
 
 export declare interface HeaderApiVersion200Response extends HttpResponse {

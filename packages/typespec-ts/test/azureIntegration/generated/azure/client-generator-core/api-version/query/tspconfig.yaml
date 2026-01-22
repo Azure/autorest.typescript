@@ -4,6 +4,7 @@ options:
   "@azure-tools/typespec-ts":
     emitter-output-dir: "{project-root}"
     add-credentials: false
+    is-modular-library: false
     azure-sdk-for-js: false
     package-details:
       name: "@azure/client-generator-core-query"

@@ -4,7 +4,7 @@ import type { HttpResponse } from '@azure-rest/core-client';
 import type { RequestParameters } from '@azure-rest/core-client';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
-declare function createClient(options?: PathClientOptions): PathClient;
+declare function createClient({ apiVersion, ...options }?: PathClientOptions): PathClient;
 export default createClient;
 
 export declare interface PathApiVersion {
@@ -22,6 +22,7 @@ export declare type PathClient = Client & {
 };
 
 export declare interface PathClientOptions extends ClientOptions {
+    apiVersion?: string;
 }
 
 export declare interface Routes {
