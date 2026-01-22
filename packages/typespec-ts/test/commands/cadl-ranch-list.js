@@ -752,6 +752,10 @@ export const azureModularTsps = [
     inputPath: "payload/multipart"
   },
   {
+    outputPath: "payload/xml",
+    inputPath: "payload/xml"
+  },
+  {
     outputPath: "server/versions/versioned",
     inputPath: "server/versions/versioned"
   },
@@ -899,10 +903,11 @@ export const azureModularTsps = [
     outputPath: "azure/client-generator-core/deserialize-empty-string-as-null",
     inputPath: "azure/client-generator-core/deserialize-empty-string-as-null"
   },
-  {
-    outputPath: "azure/resource-manager/operation-templates",
-    inputPath: "azure/resource-manager/operation-templates"
-  },
+  // skipping this test as https://github.com/Azure/autorest.typescript/issues/2313
+  // {
+  //   outputPath: "azure/resource-manager/operation-templates",
+  //   inputPath: "azure/resource-manager/operation-templates"
+  // },
   {
     outputPath: "azure/client-generator-core/hierarchy-building",
     inputPath: "azure/client-generator-core/hierarchy-building"
