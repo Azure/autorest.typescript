@@ -18,7 +18,8 @@ import {
   PollingHelpers,
   SerializationHelpers,
   SimplePollerHelpers,
-  UrlTemplateHelpers
+  UrlTemplateHelpers,
+  XmlHelpers
 } from "./modular/static-helpers-metadata.js";
 import {
   RLCModel,
@@ -92,6 +93,7 @@ import { getModuleExports } from "./modular/buildProjectFiles.js";
 import { getClientHierarchyMap, getRLCClients } from "./utils/clientUtils.js";
 import { join } from "path";
 import { loadStaticHelpers } from "./framework/load-static-helpers.js";
+import { packageUsesXmlSerialization } from "./modular/serialization/buildXmlSerializerFunction.js";
 import { provideBinder } from "./framework/hooks/binder.js";
 import { provideSdkTypes } from "./framework/hooks/sdkTypes.js";
 import { transformRLCModel } from "./transform/transform.js";
@@ -135,7 +137,8 @@ export async function $onEmit(context: EmitContext) {
       ...SimplePollerHelpers,
       ...UrlTemplateHelpers,
       ...MultipartHelpers,
-      ...CloudSettingHelpers
+      ...CloudSettingHelpers,
+      ...XmlHelpers
     },
     {
       sourcesDir: dpgContext.generationPathDetail?.modularSourcesDir,
@@ -479,16 +482,28 @@ export async function $onEmit(context: EmitContext) {
         modularPackageInfo = {
           exports: getModuleExports(context, modularEmitterOptions)
         };
+        // Build dependencies
+        const dependencies: Record<string, string> = {};
+        if (isAzureFlavor) {
+          dependencies["@azure/core-util"] = "^1.9.2";
+        }
+        // Add fast-xml-parser if XML serialization is used
+        if (packageUsesXmlSerialization(dpgContext.sdkPackage)) {
+          dependencies["fast-xml-parser"] = "^4.5.0";
+        }
         if (isAzureFlavor) {
           modularPackageInfo = {
             ...modularPackageInfo,
-            dependencies: {
-              "@azure/core-util": "^1.9.2"
-            },
+            dependencies,
             clientContextPaths: getRelativeContextPaths(
               context,
               modularEmitterOptions
             )
+          };
+        } else if (Object.keys(dependencies).length > 0) {
+          modularPackageInfo = {
+            ...modularPackageInfo,
+            dependencies
           };
         }
       }

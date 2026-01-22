@@ -162,3 +162,61 @@ export const CloudSettingHelpers = {
     location: "cloudSettingHelpers.ts"
   }
 } as const;
+
+export const XmlHelpers = {
+  XmlSerializationOptions: {
+    kind: "interface",
+    name: "XmlSerializationOptions",
+    location: "serialization/xml-helpers.ts"
+  },
+  XmlPropertyMetadata: {
+    kind: "interface",
+    name: "XmlPropertyMetadata",
+    location: "serialization/xml-helpers.ts"
+  },
+  XmlPropertyDeserializeMetadata: {
+    kind: "interface",
+    name: "XmlPropertyDeserializeMetadata",
+    location: "serialization/xml-helpers.ts"
+  },
+  serializeModelToXml: {
+    kind: "function",
+    name: "serializeModelToXml",
+    location: "serialization/xml-helpers.ts"
+  },
+  serializeToXml: {
+    kind: "function",
+    name: "serializeToXml",
+    location: "serialization/xml-helpers.ts"
+  },
+  xmlObjectToString: {
+    kind: "function",
+    name: "xmlObjectToString",
+    location: "serialization/xml-helpers.ts"
+  },
+  parseXmlString: {
+    kind: "function",
+    name: "parseXmlString",
+    location: "serialization/xml-helpers.ts"
+  },
+  deserializeXmlToModel: {
+    kind: "function",
+    name: "deserializeXmlToModel",
+    location: "serialization/xml-helpers.ts"
+  },
+  deserializeFromXml: {
+    kind: "function",
+    name: "deserializeFromXml",
+    location: "serialization/xml-helpers.ts"
+  },
+  isXmlContentType: {
+    kind: "function",
+    name: "isXmlContentType",
+    location: "serialization/xml-helpers.ts"
+  },
+  isJsonContentType: {
+    kind: "function",
+    name: "isJsonContentType",
+    location: "serialization/xml-helpers.ts"
+  }
+} as const;
