@@ -37,7 +37,7 @@ export function _stopTestProfileRunSend(
     "/test-profile-runs/{testProfileRunId}:stop{?api%2Dversion}",
     {
       testProfileRunId: testProfileRunId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-05-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -79,7 +79,7 @@ export function _listTestProfileRunsSend(
   const path = expandUrlTemplate(
     "/test-profile-runs{?api%2Dversion,maxpagesize,minStartDateTime,maxStartDateTime,minEndDateTime,maxEndDateTime,createdDateStartTime,createdDateEndTime,testProfileRunIds,testProfileIds,statuses}",
     {
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-05-01-preview",
       maxpagesize: options?.maxpagesize,
       minStartDateTime: !options?.minStartDateTime
         ? options?.minStartDateTime
@@ -136,7 +136,11 @@ export function listTestProfileRuns(
     () => _listTestProfileRunsSend(context, options),
     _listTestProfileRunsDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "nextLink" },
+    {
+      itemName: "value",
+      nextLinkName: "nextLink",
+      apiVersion: context.apiVersion ?? "2024-05-01-preview",
+    },
   );
 }
 
@@ -149,7 +153,7 @@ export function _getTestProfileRunSend(
     "/test-profile-runs/{testProfileRunId}{?api%2Dversion}",
     {
       testProfileRunId: testProfileRunId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-05-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -193,7 +197,7 @@ export function _deleteTestProfileRunSend(
     "/test-profile-runs/{testProfileRunId}{?api%2Dversion}",
     {
       testProfileRunId: testProfileRunId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-05-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -233,7 +237,7 @@ export function _createOrUpdateTestProfileRunSend(
     "/test-profile-runs/{testProfileRunId}{?api%2Dversion}",
     {
       testProfileRunId: testProfileRunId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-05-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

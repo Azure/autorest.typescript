@@ -83,7 +83,6 @@ export function buildOperationFiles(
       );
       const sendOperationDeclaration = getSendPrivateFunction(
         dpgContext,
-        client,
         [prefixes, op],
         clientType
       );

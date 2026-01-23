@@ -91,6 +91,7 @@ export interface BuildPagedAsyncIteratorOptions {
   itemName?: string;
   nextLinkName?: string;
   nextLinkMethod?: "GET" | "POST";
+  apiVersion?: string;
 }
 
 /**
@@ -111,14 +112,15 @@ export function buildPagedAsyncIterator<
   const itemName = options.itemName ?? "value";
   const nextLinkName = options.nextLinkName ?? "nextLink";
   const nextLinkMethod = options.nextLinkMethod ?? "GET";
+  const apiVersion = options.apiVersion;
   const pagedResult: PagedResult<TElement, TPage, TPageSettings> = {
     getPage: async (pageLink?: string) => {
       const result =
         pageLink === undefined
           ? await getInitialResponse()
           : nextLinkMethod === "POST"
-            ? await client.pathUnchecked(pageLink).post()
-            : await client.pathUnchecked(pageLink).get();
+            ? await client.pathUnchecked(apiVersion ? addApiVersionToUrl(pageLink, apiVersion) : pageLink).post()
+            : await client.pathUnchecked(apiVersion ? addApiVersionToUrl(pageLink, apiVersion) : pageLink).get();
       checkPagingRequest(result, expectedStatuses);
       const results = await processResponseBody(result as TResponse);
       const nextLink = getNextLink(results, nextLinkName);
@@ -272,4 +274,21 @@ function checkPagingRequest(
       response
     );
   }
+}
+
+/**
+ * Adds the api-version query parameter on a URL if it's not present.
+ * @param url - the URL to modify
+ * @param apiVersion - the API version to set
+ * @returns - the URL with the api-version query parameter set
+ */
+function addApiVersionToUrl(url: string, apiVersion: string): string {
+  // Append one if there is no apiVersion
+  const urlObj = new URL(url);
+  if (!urlObj.searchParams.get("api-version")) {
+    return `${url}${
+      Array.from(urlObj.searchParams.keys()).length > 0 ? "&" : "?"
+    }api-version=${apiVersion}`;
+  }
+  return url;
 }

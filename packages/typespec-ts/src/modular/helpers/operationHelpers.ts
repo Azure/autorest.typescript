@@ -70,7 +70,6 @@ import {
   isHttpMetadata,
   isReadOnly,
   SdkBodyParameter,
-  SdkClientType,
   SdkConstantType,
   SdkEnumType,
   SdkHttpOperation,
@@ -90,7 +89,6 @@ import { isExtensibleEnum } from "../type-expressions/get-enum-expression.js";
 
 export function getSendPrivateFunction(
   dpgContext: SdkContext,
-  client: SdkClientType<SdkHttpOperation>,
   method: [string[], ServiceOperation],
   clientType: string
 ): OptionalKind<FunctionDeclarationStructure> {
@@ -114,12 +112,6 @@ export function getSendPrivateFunction(
   const operationPath = operation.operation.path;
   const operationMethod = operation.operation.verb.toLowerCase();
   const optionalParamName = getOptionalParamsName(parameters);
-  const hasQueryApiVersion = operation.operation.parameters.some(
-    (p) => p.onClient && p.kind === "query" && p.isApiVersionParam
-  );
-  const hasClientApiVersion = client.clientInitialization.parameters.some(
-    (p) => p.isApiVersionParam && p.onClient && p.kind === "method"
-  );
   const statements: string[] = [];
   let pathStr = `"${operationPath}"`;
   const urlTemplateParams = [
@@ -133,11 +125,6 @@ export function getSendPrivateFunction(
       allowReserved: ${optionalParamName}?.requestOptions?.skipUrlEncoding
     });`);
     pathStr = "path";
-  }
-  if (hasClientApiVersion && !hasQueryApiVersion) {
-    statements.push(
-      `context.pipeline.removePolicy({ name: "ClientApiVersionPolicy"});`
-    );
   }
 
   statements.push(
@@ -679,9 +666,18 @@ function getLroOnlyOperationFunction(
   const resourceLocationConfig =
     lroMetadata?.finalStateVia &&
     allowedFinalLocation.includes(lroMetadata?.finalStateVia)
-      ? `resourceLocationConfig: "${lroMetadata?.finalStateVia}"`
+      ? `resourceLocationConfig: "${lroMetadata?.finalStateVia}",`
       : "";
   const statements: string[] = [];
+
+  const queryApiVersionParam = operation.operation.parameters.find(
+    (p) => p.kind === "query" && p.isApiVersionParam
+  );
+  const apiVersion = queryApiVersionParam
+    ? `apiVersion: ${queryApiVersionParam.onClient ? "context." : ""}${queryApiVersionParam.name}
+      ${queryApiVersionParam.clientDefaultValue ? ` ?? "${queryApiVersionParam.clientDefaultValue}"` : ""}`
+    : "";
+
   statements.push(`
 
   return ${getLongRunningPollerReference}(context, _${name}Deserialize, ${getExpectedStatuses(
@@ -693,6 +689,7 @@ function getLroOnlyOperationFunction(
       .map((p) => p.name)
       .join(", ")}),
     ${resourceLocationConfig}
+    ${apiVersion}
   }) as ${pollerLikeReference}<${operationStateReference}<${
     returnType.type
   }>, ${returnType.type}>;
@@ -779,6 +776,14 @@ function getPagingOnlyOperationFunction(
   // Check for nextLinkVerb from TCGC pagingMetadata (supports @Legacy.nextLinkVerb decorator)
   const nextLinkMethod = operation.pagingMetadata.nextLinkVerb;
 
+  const queryApiVersionParam = operation.operation.parameters.find(
+    (p) => p.kind === "query" && p.isApiVersionParam
+  );
+  const apiVersion = queryApiVersionParam
+    ? `${queryApiVersionParam.onClient ? "context." : ""}${queryApiVersionParam.name}
+      ${queryApiVersionParam.clientDefaultValue ? ` ?? "${queryApiVersionParam.clientDefaultValue}"` : ""}`
+    : "";
+
   if (itemName) {
     options.push(`itemName: "${itemName}"`);
   }
@@ -787,6 +792,9 @@ function getPagingOnlyOperationFunction(
   }
   if (nextLinkMethod && nextLinkMethod !== "GET") {
     options.push(`nextLinkMethod: "${nextLinkMethod}"`);
+  }
+  if (apiVersion) {
+    options.push(`apiVersion: ${apiVersion}`);
   }
   statements.push(
     `return ${buildPagedAsyncIteratorReference}(
@@ -1041,6 +1049,11 @@ export function getParameterMap(
 
   if (isConstant(param.type)) {
     return `"${serializedName}": ${getConstantValue(param.type)}`;
+  }
+
+  // Special case for api-version parameters with default values
+  if (param.isApiVersionParam && param.clientDefaultValue) {
+    return `"${serializedName}": ${param.onClient ? "context." : ""}${param.name} ?? "${param.clientDefaultValue}"`;
   }
 
   if (hasCollectionFormatInfo(param.kind, (param as any).collectionFormat)) {

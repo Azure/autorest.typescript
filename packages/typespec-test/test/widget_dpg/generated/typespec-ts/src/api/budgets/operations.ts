@@ -29,7 +29,6 @@ export function _$continueSend(
   context: Client,
   options: BudgetsContinueOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
     .path("/budgets/widgets/continue")
     .get({ ...operationOptionsToRequestParameters(options) });
@@ -71,7 +70,6 @@ export function _getBudgetsSend(
       allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
-  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
     .path(path)
     .get({
@@ -110,7 +108,7 @@ export function _createOrReplaceSend(
     "/budgets/widgets/createOrReplace/users/{name}{?api%2Dversion}",
     {
       name: name,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "1.0.0",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -147,5 +145,6 @@ export function createOrReplace(
     abortSignal: options?.abortSignal,
     getInitialResponse: () => _createOrReplaceSend(context, name, resource, options),
     resourceLocationConfig: "original-uri",
+    apiVersion: context.apiVersion ?? "1.0.0",
   }) as PollerLike<OperationState<SAPUser>, SAPUser>;
 }
