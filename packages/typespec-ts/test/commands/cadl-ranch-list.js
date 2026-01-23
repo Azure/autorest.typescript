@@ -317,6 +317,18 @@ export const azureRlcTsps = [
     inputPath: "azure/resource-manager/non-resource"
   },
   {
+    outputPath: "azure/client-generator-core/api-version/header",
+    inputPath: "azure/client-generator-core/api-version/header"
+  },
+  {
+    outputPath: "azure/client-generator-core/api-version/path",
+    inputPath: "azure/client-generator-core/api-version/path"
+  },
+  {
+    outputPath: "azure/client-generator-core/api-version/query",
+    inputPath: "azure/client-generator-core/api-version/query"
+  },
+  {
     outputPath: "azure/resource-manager/large-header",
     inputPath: "azure/resource-manager/large-header"
   },
@@ -894,6 +906,18 @@ export const azureModularTsps = [
   {
     outputPath: "azure/resource-manager/non-resource",
     inputPath: "azure/resource-manager/non-resource"
+  },
+  {
+    outputPath: "azure/client-generator-core/api-version/header",
+    inputPath: "azure/client-generator-core/api-version/header"
+  },
+  {
+    outputPath: "azure/client-generator-core/api-version/path",
+    inputPath: "azure/client-generator-core/api-version/path"
+  },
+  {
+    outputPath: "azure/client-generator-core/api-version/query",
+    inputPath: "azure/client-generator-core/api-version/query"
   },
   {
     outputPath: "azure/resource-manager/large-header",

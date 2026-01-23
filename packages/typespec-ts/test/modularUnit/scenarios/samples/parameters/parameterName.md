@@ -218,3 +218,113 @@ async function main(): Promise<void> {
 
 main().catch(console.error);
 ```
+
+# The parameter names in the sample should be consistent with those in the function signature
+
+## TypeSpec
+
+```tsp
+model DocumentBase {
+  documentType: string;
+  Properties?: string[];
+}
+
+@route("/documents")
+interface Documents {
+  @post
+  publish(@body endpoint: DocumentBase): void;
+}
+
+```
+
+Should ignore the warning `@azure-tools/typespec-ts/property-name-normalized`:
+
+```yaml
+mustEmptyDiagnostic: false
+```
+
+## Example
+
+```json
+{
+  "title": "Publish Documents",
+  "operationId": "Documents_publish",
+  "parameters": {
+    "endpoint": {
+      "documentType": "Exception",
+      "Properties": ["stream-1", "stream-2"]
+    }
+  }
+}
+```
+
+## Operations
+
+```ts operations
+import { TestingContext as Client } from "./index.js";
+import { DocumentBase, documentBaseSerializer } from "../models/models.js";
+import { PublishOptionalParams } from "./options.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+
+export function _publishSend(
+  context: Client,
+  endpointParam: DocumentBase,
+  options: PublishOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/documents")
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      body: documentBaseSerializer(endpointParam),
+    });
+}
+
+export async function _publishDeserialize(result: PathUncheckedResponse): Promise<void> {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return;
+}
+
+export async function publish(
+  context: Client,
+  endpointParam: DocumentBase,
+  options: PublishOptionalParams = { requestOptions: {} },
+): Promise<void> {
+  const result = await _publishSend(context, endpointParam, options);
+  return _publishDeserialize(result);
+}
+```
+
+## Samples
+
+```ts samples
+/** This file path is /samples-dev/publishSample.ts */
+import { TestingClient } from "@azure/internal-test";
+
+/**
+ * This sample demonstrates how to execute publish
+ *
+ * @summary execute publish
+ * x-ms-original-file: 2021-10-01-preview/json.json
+ */
+async function publishDocuments(): Promise<void> {
+  const endpoint = process.env.TESTING_ENDPOINT || "";
+  const client = new TestingClient(endpoint);
+  await client.publish({ documentType: "Exception", properties: ["stream-1", "stream-2"] });
+}
+
+async function main(): Promise<void> {
+  await publishDocuments();
+}
+
+main().catch(console.error);
+```
