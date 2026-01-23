@@ -66,7 +66,6 @@ export declare class MethodSubscriptionIdClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: MethodSubscriptionIdClientOptionalParams);
-    constructor(subscriptionId: string, options?: MethodSubscriptionIdClientOptionalParams);
     readonly operations: OperationsOperations;
     readonly resourceGroupResourceOperations: ResourceGroupResourceOperationsOperations;
     readonly subscriptionResourceOperations: SubscriptionResourceOperationsOperations;
