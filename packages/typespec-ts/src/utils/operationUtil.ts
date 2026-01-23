@@ -43,7 +43,12 @@ import {
   HttpStatusCodesEntry
 } from "@typespec/http";
 import { SdkContext } from "./interfaces.js";
-import { KnownMediaType, knownMediaType } from "./mediaTypes.js";
+import {
+  KnownMediaType,
+  knownMediaType,
+  isMediaTypeXml,
+  isMediaTypeMultipart
+} from "./mediaTypes.js";
 import { isByteOrByteUnion } from "./modelUtils.js";
 import { getOperationNamespaceInterfaceName } from "./namespaceUtils.js";
 import { resolveReference } from "../framework/reference.js";
@@ -198,6 +203,34 @@ export function isBinaryPayload(
     }
   }
   return false;
+}
+
+/**
+ * Checks if the content type(s) indicate XML payload
+ */
+export function isXmlPayload(contentType: string | string[]): boolean {
+  const contentTypes = Array.isArray(contentType) ? contentType : [contentType];
+  return contentTypes.some((ct) => isMediaTypeXml(ct));
+}
+
+/**
+ * Checks if the content type(s) indicate multipart payload (multipart/mixed, multipart/form-data, etc.)
+ */
+export function isMultipartPayload(contentType: string | string[]): boolean {
+  return isMediaTypeMultipart(contentType);
+}
+
+/**
+ * Checks if the operation supports multiple content types (e.g., both JSON and XML)
+ */
+export function hasDualFormatSupport(contentTypes: string[]): boolean {
+  const hasJson = contentTypes.some(
+    (ct) => knownMediaType(ct) === KnownMediaType.Json
+  );
+  const hasXml = contentTypes.some(
+    (ct) => knownMediaType(ct) === KnownMediaType.Xml
+  );
+  return hasJson && hasXml;
 }
 
 export function isLongRunningOperation(
