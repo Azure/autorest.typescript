@@ -1941,9 +1941,13 @@ export function getPropertyFullName(
   property: SdkHttpParameter | SdkModelPropertyType,
   propertyPath?: string
 ) {
-  const normalizedPropertyName = normalizeModelPropertyName(context, property)
-    .replace(/^"/g, "")
-    .replace(/"$/g, "");
+  const normalizedPropertyName =
+    propertyPath === ""
+      ? normalizeName(property.name, NameType.Parameter, true)
+      : normalizeModelPropertyName(context, property)
+          .replace(/^"/g, "")
+          .replace(/"$/g, "");
+
   let fullName = normalizedPropertyName;
   if (propertyPath === "" && property.optional) {
     fullName = `options?.${normalizedPropertyName}`;
