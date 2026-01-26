@@ -137,9 +137,10 @@ function getLroResponse<TResponse extends PathUncheckedResponse>(
  * @returns - the URL with the api-version query parameter set
  */
 function addApiVersionToUrl(url: string, apiVersion: string): string {
-  // Append one if there is no apiVersion
-  const urlObj = new URL(url);
+  // Use a dummy base URL for parsing relative URLs
+  const urlObj = new URL(url, "https://dummy-base.com");
   if (!urlObj.searchParams.get("api-version")) {
+    // Append one if there is no apiVersion
     return `${url}${
       Array.from(urlObj.searchParams.keys()).length > 0 ? "&" : "?"
     }api-version=${apiVersion}`;
