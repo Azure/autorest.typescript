@@ -81,7 +81,7 @@ export function buildClientContext(
   // Get all client parameters (both required and optional) for the interface
   const requiredInterfaceProperties = getClientParameters(client, dpgContext, {
     onClientOnly: false,
-    requiredOnly: true,
+    requiredOnly: true
   })
     .filter((p) => {
       const clientParamName = getClientParameterName(p);

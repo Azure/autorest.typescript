@@ -119,8 +119,20 @@ export function buildPagedAsyncIterator<
         pageLink === undefined
           ? await getInitialResponse()
           : nextLinkMethod === "POST"
-            ? await client.pathUnchecked(apiVersion ? addApiVersionToUrl(pageLink, apiVersion) : pageLink).post()
-            : await client.pathUnchecked(apiVersion ? addApiVersionToUrl(pageLink, apiVersion) : pageLink).get();
+            ? await client
+                .pathUnchecked(
+                  apiVersion
+                    ? addApiVersionToUrl(pageLink, apiVersion)
+                    : pageLink
+                )
+                .post()
+            : await client
+                .pathUnchecked(
+                  apiVersion
+                    ? addApiVersionToUrl(pageLink, apiVersion)
+                    : pageLink
+                )
+                .get();
       checkPagingRequest(result, expectedStatuses);
       const results = await processResponseBody(result as TResponse);
       const nextLink = getNextLink(results, nextLinkName);

@@ -95,7 +95,9 @@ export function getLongRunningPoller<
       }
       let response;
       try {
-        const pollingPath = apiVersion ? addApiVersionToUrl(path, apiVersion) : path;
+        const pollingPath = apiVersion
+          ? addApiVersionToUrl(path, apiVersion)
+          : path;
         response = await client.pathUnchecked(pollingPath).get({ abortSignal });
       } finally {
         options.abortSignal?.removeEventListener("abort", abortListener);
