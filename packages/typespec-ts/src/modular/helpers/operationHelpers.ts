@@ -181,13 +181,8 @@ export function getDeserializePrivateFunction(
   const response = operation.response;
   const restResponse = operation.operation.responses[0];
   let returnType;
-  if (isLroOnly) {
+  if (isLroOnly || isLroAndPaging) {
     returnType = buildLroReturnType(context, operation);
-  } else if (isLroAndPaging) {
-    returnType = {
-      name: (response as any).name ?? "",
-      type: getTypeExpression(context, response.type!)
-    };
   } else if (response.type && restResponse) {
     returnType = {
       name: (restResponse as any).name ?? "",
@@ -217,10 +212,9 @@ export function getDeserializePrivateFunction(
     `${getExceptionThrowStatement(context, operation)}`,
     "}"
   );
-  const deserializedType = isLroOnly
-    ? operation?.lroMetadata?.finalResponse?.result
-    : isLroAndPaging
-      ? response.type
+  const deserializedType =
+    isLroOnly || isLroAndPaging
+      ? operation?.lroMetadata?.finalResponse?.result
       : restResponse
         ? restResponse.type
         : response.type;
@@ -809,7 +803,9 @@ function getLroAndPagingOperationFunction(
 
 function buildLroReturnType(
   context: SdkContext,
-  operation: SdkLroServiceMethod<SdkHttpOperation>
+  operation:
+    | SdkLroServiceMethod<SdkHttpOperation>
+    | SdkLroPagingServiceMethod<SdkHttpOperation>
 ) {
   const metadata = operation.lroMetadata;
   if (metadata !== undefined && metadata.finalResponse !== undefined) {
