@@ -733,8 +733,7 @@ function getLroAndPagingOperationFunction(
   );
   const { name, fixme = [] } = getOperationName(operation);
 
-  // Extract element type from array response
-  const elementType = buildLroPagingReturnType(context, operation);
+  const returnType = buildLroPagingReturnType(context, operation);
 
   // Build paging options from metadata
   const pagingOptions = [
@@ -785,7 +784,7 @@ function getLroAndPagingOperationFunction(
     name,
     propertyName: normalizeName(operation.name, NameType.Property),
     parameters,
-    returnType: `${refs.pagedIterator}<${elementType.type}>`,
+    returnType: `${refs.pagedIterator}<${returnType.type}>`,
     statements: [
       `
   const initialPagingPoller = ${refs.getLroPoller}(context,
@@ -799,7 +798,7 @@ function getLroAndPagingOperationFunction(
   
   return ${refs.buildPaging}(
     context,
-    async() => await initialPagingPoller.pollUntilDone(),
+    async () => await initialPagingPoller,
     _${name}Deserialize,
     ${expectedStatuses}${pagingOptionsStr}
   );

@@ -351,7 +351,7 @@ export function suspend(
 
   return buildPagedAsyncIterator(
     context,
-    async () => await initialPagingPoller.pollUntilDone(),
+    async () => await initialPagingPoller,
     _suspendDeserialize,
     ["200", "201", "202"],
     { itemName: "value", nextLinkName: "nextLink" },
