@@ -288,6 +288,8 @@ export declare function getLongRunningPoller<TResult extends DeleteLogicalRespon
 
 export declare function getLongRunningPoller<TResult extends ExportLogicalResponse | ExportDefaultResponse>(client: Client, initialResponse: Export200Response | Export202Response | ExportDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 
+export declare function getLongRunningPoller<TResult extends PostPagingLroLogicalResponse | PostPagingLroDefaultResponse>(client: Client, initialResponse: PostPagingLro200Response | PostPagingLro202Response | PostPagingLroDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+
 export declare type GetPage<TPage> = (pageLink: string) => Promise<{
     page: TPage;
     nextPageLink?: string;
@@ -320,6 +322,8 @@ export declare function isUnexpected(response: CreateOrReplace200Response | Crea
 export declare function isUnexpected(response: Delete202Response | Delete204Response | DeleteLogicalResponse | DeleteDefaultResponse): response is DeleteDefaultResponse;
 
 export declare function isUnexpected(response: Export200Response | Export202Response | ExportLogicalResponse | ExportDefaultResponse): response is ExportDefaultResponse;
+
+export declare function isUnexpected(response: PostPagingLro200Response | PostPagingLro202Response | PostPagingLroLogicalResponse | PostPagingLroDefaultResponse): response is PostPagingLroDefaultResponse;
 
 export declare function isUnexpected(response: Get200Response | GetDefaultResponse): response is GetDefaultResponse;
 
@@ -520,6 +524,37 @@ export declare interface PostDefaultResponse extends HttpResponse {
     body: ErrorResponseOutput;
 }
 
+export declare interface PostPagingLro {
+    post(options: PostPagingLroParameters): StreamableMethod<PostPagingLro200Response | PostPagingLro202Response | PostPagingLroDefaultResponse>;
+}
+
+export declare interface PostPagingLro200Response extends HttpResponse {
+    status: "200";
+    body: ProductListResultOutput;
+}
+
+export declare interface PostPagingLro202Headers {
+    location?: string;
+    "retry-after"?: number;
+}
+
+export declare interface PostPagingLro202Response extends HttpResponse {
+    status: "202";
+    headers: RawHttpHeaders & PostPagingLro202Headers;
+}
+
+export declare interface PostPagingLroDefaultResponse extends HttpResponse {
+    status: string;
+    body: ErrorResponseOutput;
+}
+
+export declare interface PostPagingLroLogicalResponse extends HttpResponse {
+    status: "200";
+    body: ProductListResultOutput;
+}
+
+export declare type PostPagingLroParameters = RequestParameters;
+
 export declare type PostParameters = PostBodyParam & RequestParameters;
 
 export declare interface PrivateEndpoint {
@@ -585,6 +620,28 @@ export declare interface PrivateLinkServiceConnectionStateOutput {
     status?: PrivateEndpointServiceConnectionStatusOutput;
     description?: string;
     actionsRequired?: string;
+}
+
+export declare interface Product extends TrackedResource {
+    properties?: ProductProperties;
+}
+
+export declare interface ProductListResultOutput {
+    value: Array<ProductOutput>;
+    nextLink?: string;
+}
+
+export declare interface ProductOutput extends TrackedResourceOutput {
+    properties?: ProductPropertiesOutput;
+}
+
+export declare interface ProductProperties {
+    productId?: string;
+}
+
+export declare interface ProductPropertiesOutput {
+    productId?: string;
+    readonly provisioningState?: string;
 }
 
 export declare interface ProviderPost {
@@ -683,6 +740,7 @@ export declare interface Routes {
     (path: "/subscriptions/{subscriptionId}/providers/Azure.ResourceManager.OperationTemplates/locations/{location}/checkNameAvailability", subscriptionId: string, location: string): CheckLocal;
     (path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.OperationTemplates/orders/{orderName}", subscriptionId: string, resourceGroupName: string, orderName: string): CreateOrReplace;
     (path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.OperationTemplates/orders/{orderName}/export", subscriptionId: string, resourceGroupName: string, orderName: string): Export;
+    (path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.OperationTemplates/products/{productName}/postPagingLro", subscriptionId: string, resourceGroupName: string, productName: string): PostPagingLro;
     (path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.OperationTemplates/widgets/{widgetName}", subscriptionId: string, resourceGroupName: string, widgetName: string): Get;
     (path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.OperationTemplates/widgets/{widgetName}/post", subscriptionId: string, resourceGroupName: string, widgetName: string): Post;
     (path: "/subscriptions/{subscriptionId}/providers/Azure.ResourceManager.OperationTemplates/providerPost", subscriptionId: string): ProviderPost;

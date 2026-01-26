@@ -48,7 +48,7 @@ importers:
         specifier: ^2.9.1
         version: 2.10.1
       '@azure-tools/rlc-common':
-        specifier: workspace:^0.48.0
+        specifier: workspace:^0.48.1
         version: link:../rlc-common
       '@azure/core-auth':
         specifier: ^1.6.0
@@ -296,7 +296,7 @@ importers:
         specifier: ^0.64.1
         version: 0.64.1(8e2d0fb1969eb63e9808ecc7aae2b18f)
       '@azure-tools/typespec-ts':
-        specifier: workspace:^0.48.0
+        specifier: workspace:^0.48.1
         version: link:../typespec-ts
       '@typespec/compiler':
         specifier: ^1.8.0
@@ -333,7 +333,7 @@ importers:
   packages/typespec-ts:
     dependencies:
       '@azure-tools/rlc-common':
-        specifier: workspace:^0.48.0
+        specifier: workspace:^0.48.1
         version: link:../rlc-common
       '@typespec/xml':
         specifier: ^0.78.0
@@ -361,8 +361,8 @@ importers:
         specifier: ^2.3.1
         version: 2.5.1
       '@azure-tools/azure-http-specs':
-        specifier: 0.1.0-alpha.35-dev.9
-        version: 0.1.0-alpha.35-dev.9(5138caf4499aee753ef92bf5cc391e32)
+        specifier: 0.1.0-alpha.37-dev.0
+        version: 0.1.0-alpha.37-dev.0(5138caf4499aee753ef92bf5cc391e32)
       '@azure-tools/typespec-autorest':
         specifier: ^0.64.0
         version: 0.64.0(906538b24ae0dc55f54c8d6ba4f10a33)
@@ -531,16 +531,16 @@ packages:
     resolution: {integrity: sha512-X1C7XdyCuo50ch9FzKtTvmK18FgDxxf1Bbt3cSoknQqeDaRegHSSCO+zByq2YA4NvUzKXeZ1engh29IDxZXgpQ==}
     engines: {node: '>=10.12.0'}
 
-  '@azure-tools/azure-http-specs@0.1.0-alpha.35-dev.9':
-    resolution: {integrity: sha512-Ly8Qazx+rCDxU0b3gQMn4RFJ+lcgbUjO5inSyu8Q7YmHVdvdmmzDMaPopBitrwu38+XNlvYTppWjDF5M7odZyA==}
+  '@azure-tools/azure-http-specs@0.1.0-alpha.37-dev.0':
+    resolution: {integrity: sha512-/BaYGd6Jbv/fqsyN6JtgOqggZFgxzDJbKAqqoQ+gvHTn2nppZn9TyMbAzjepfMh6+fVMEypQmKdfyXZEOLsnoA==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
-      '@azure-tools/typespec-azure-core': ^0.63.0 || >=0.64.0-dev <0.64.0
-      '@typespec/compiler': ^1.7.1
-      '@typespec/http': ^1.7.0
-      '@typespec/rest': ^0.77.0 || >=0.78.0-dev <0.78.0
-      '@typespec/versioning': ^0.77.0 || >=0.78.0-dev <0.78.0
-      '@typespec/xml': ^0.77.0 || >=0.78.0-dev <0.78.0
+      '@azure-tools/typespec-azure-core': ^0.64.0 || >=0.65.0-dev <0.65.0
+      '@typespec/compiler': ^1.8.0
+      '@typespec/http': ^1.8.0
+      '@typespec/rest': ^0.78.0 || >=0.79.0-dev <0.79.0
+      '@typespec/versioning': ^0.78.0 || >=0.79.0-dev <0.79.0
+      '@typespec/xml': ^0.78.0 || >=0.79.0-dev <0.79.0
 
   '@azure-tools/codegen@2.10.1':
     resolution: {integrity: sha512-fZfREKjQnBTscjObgK4LuyZNFaofoCNQDNz0jl1i8fYNwCM5EOF9BXwtEtobuEyCpPUNDxQ/KKO65eWzirqk4w==}
@@ -5472,7 +5472,7 @@ snapshots:
       '@azure-tools/tasks': 3.0.255
       proper-lockfile: 2.0.1
 
-  '@azure-tools/azure-http-specs@0.1.0-alpha.35-dev.9(5138caf4499aee753ef92bf5cc391e32)':
+  '@azure-tools/azure-http-specs@0.1.0-alpha.37-dev.0(5138caf4499aee753ef92bf5cc391e32)':
     dependencies:
       '@azure-tools/typespec-azure-core': 0.64.0(@typespec/compiler@1.8.0(@types/node@25.0.8))(@typespec/http@1.8.0(@typespec/compiler@1.8.0(@types/node@25.0.8))(@typespec/streams@0.77.0(@typespec/compiler@1.8.0(@types/node@25.0.8))))(@typespec/rest@0.78.0(@typespec/compiler@1.8.0(@types/node@25.0.8))(@typespec/http@1.8.0(@typespec/compiler@1.8.0(@types/node@25.0.8))(@typespec/streams@0.77.0(@typespec/compiler@1.8.0(@types/node@25.0.8)))))
       '@typespec/compiler': 1.8.0(@types/node@25.0.8)
