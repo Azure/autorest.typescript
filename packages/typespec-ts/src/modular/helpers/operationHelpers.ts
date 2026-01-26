@@ -184,8 +184,10 @@ export function getDeserializePrivateFunction(
   if (isLroOnly) {
     returnType = buildLroReturnType(context, operation);
   } else if (isLroAndPaging) {
-    // For LRO+Paging, the final response should be the paging result type (with value and nextLink)
-    returnType = buildLroPagingReturnType(context, operation);
+    returnType = {
+      name: (response as any).name ?? "",
+      type: getTypeExpression(context, response.type!)
+    };
   } else if (response.type && restResponse) {
     returnType = {
       name: (restResponse as any).name ?? "",
@@ -217,9 +219,11 @@ export function getDeserializePrivateFunction(
   );
   const deserializedType = isLroOnly
     ? operation?.lroMetadata?.finalResponse?.result
-    : restResponse
-      ? restResponse.type
-      : response.type;
+    : isLroAndPaging
+      ? response.type
+      : restResponse
+        ? restResponse.type
+        : response.type;
   const lroSubSegments = isLroOnly
     ? operation?.lroMetadata?.finalResponse?.resultSegments
     : undefined;

@@ -275,11 +275,7 @@ export enum KnownVersions {
 
 ```ts operations
 import { WebContext as Client } from "./index.js";
-import {
-  _webAppCollectionDeserializer,
-  Site,
-  errorResponseDeserializer,
-} from "../models/models.js";
+import { siteArrayDeserializer, Site, errorResponseDeserializer } from "../models/models.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
@@ -319,7 +315,7 @@ export function _suspendSend(
   });
 }
 
-export async function _suspendDeserialize(result: PathUncheckedResponse): Promise<Site> {
+export async function _suspendDeserialize(result: PathUncheckedResponse): Promise<Site[]> {
   const expectedStatuses = ["200", "201", "202"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -327,7 +323,7 @@ export async function _suspendDeserialize(result: PathUncheckedResponse): Promis
     throw error;
   }
 
-  return _webAppCollectionDeserializer(result.body);
+  return siteArrayDeserializer(result.body);
 }
 
 /** A long-running resource action. */
