@@ -133,7 +133,6 @@ export declare interface LroExportOptionalParams extends OperationOptions {
 }
 
 export declare interface LroOperations {
-    exportArray: (body: ExportRequest, options?: LroExportArrayOptionalParams) => PollerLike<OperationState<ExportResult[]>, ExportResult[]>;
     delete: (resourceGroupName: string, orderName: string, options?: LroDeleteOptionalParams) => PollerLike<OperationState<void>, void>;
     export: (resourceGroupName: string, orderName: string, body: ExportRequest, options?: LroExportOptionalParams) => PollerLike<OperationState<ExportResult>, ExportResult>;
     createOrReplace: (resourceGroupName: string, orderName: string, resource: Order, options?: LroCreateOrReplaceOptionalParams) => PollerLike<OperationState<Order>, Order>;
