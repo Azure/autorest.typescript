@@ -1,5 +1,6 @@
 ## 6.0.56 (2026-01-26)
 
+- [Feature] Support LRO + Paging operations in Modular SDK. Please refer to [#3676](https://github.com/Azure/autorest.typescript/pull/3676)
 - [Feature] Support array encoding for string-based enum types. Please refer to [#3686](https://github.com/Azure/autorest.typescript/pull/3686)
 - [Bugfix] Fix API version parameter name handling. Please refer to [#3690](https://github.com/Azure/autorest.typescript/pull/3690)
 - [Feature] Support XML serialization/deserialization. Please refer to [#3689](https://github.com/Azure/autorest.typescript/pull/3689)
