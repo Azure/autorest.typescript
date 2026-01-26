@@ -134,6 +134,14 @@ export declare interface LroOperations {
     createOrReplace: (resourceGroupName: string, orderName: string, resource: Order, options?: LroCreateOrReplaceOptionalParams) => PollerLike<OperationState<Order>, Order>;
 }
 
+export declare interface LroPagingOperations {
+    postPagingLro: (resourceGroupName: string, productName: string, options?: LroPagingPostPagingLroOptionalParams) => PagedAsyncIterableIterator<Product>;
+}
+
+export declare interface LroPagingPostPagingLroOptionalParams extends OperationOptions {
+    updateIntervalInMs?: number;
+}
+
 export declare interface Operation {
     readonly name?: string;
     readonly isDataAction?: boolean;
@@ -161,6 +169,7 @@ export declare class OperationTemplatesClient {
     readonly pipeline: Pipeline;
     constructor(subscriptionId: string, options?: OperationTemplatesClientOptionalParams);
     readonly optionalBody: OptionalBodyOperations;
+    readonly lroPaging: LroPagingOperations;
     readonly lro: LroOperations;
     readonly checkNameAvailability: CheckNameAvailabilityOperations;
     readonly operations: OperationsOperations;
@@ -213,6 +222,15 @@ export declare interface PagedAsyncIterableIterator<TElement, TPage = TElement[]
 
 export declare interface PageSettings {
     continuationToken?: string;
+}
+
+export declare interface Product extends TrackedResource {
+    properties?: ProductProperties;
+}
+
+export declare interface ProductProperties {
+    productId?: string;
+    readonly provisioningState?: string;
 }
 
 export declare interface Resource {

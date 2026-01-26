@@ -2,6 +2,7 @@ import { assert } from "chai";
 import OperationTemplatesClientFactory, {
   OperationTemplatesClient,
   getLongRunningPoller,
+  paginate,
   isUnexpected
 } from "./generated/azure/resource-manager/operation-templates/src/index.js";
 
@@ -214,6 +215,56 @@ describe("Azure ARM Operation Templates Rest Client", () => {
 
       const poller = await getLongRunningPoller(client, initialResponse);
       await poller.pollUntilDone();
+    });
+  });
+
+  describe("LRO + Paging Operations", () => {
+    it("should handle long-running operation with paging", async () => {
+      const resourceGroupName = "test-rg";
+      const productName = "default";
+
+      // Start LRO+Paging operation
+      const initialResponse = await client
+        .path(
+          "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.OperationTemplates/products/{productName}/postPagingLro",
+          SUBSCRIPTION_ID_EXPECTED,
+          resourceGroupName,
+          productName
+        )
+        .post({});
+
+      if (isUnexpected(initialResponse)) {
+        throw new Error(`Unexpected response: ${initialResponse.status}`);
+      }
+
+      // Get the poller and wait for LRO to complete
+      const poller = await getLongRunningPoller(client, initialResponse);
+      const result = await poller.pollUntilDone();
+
+      if (isUnexpected(result)) {
+        throw new Error(`Unexpected response: ${result.status}`);
+      }
+
+      // Now paginate through the results
+      const items = [];
+      for await (const item of paginate(client, result)) {
+        items.push(item);
+      }
+
+      // Should get 2 products from 2 pages
+      assert.strictEqual(items.length, 2);
+
+      // Verify first product from first page
+      assert.equal(items[0]?.name, "product1");
+      assert.equal(items[0]?.location, "eastus");
+      assert.equal(items[0]?.properties?.productId, "product1");
+      assert.equal(items[0]?.properties?.provisioningState, "Succeeded");
+
+      // Verify second product from second page
+      assert.equal(items[1]?.name, "product2");
+      assert.equal(items[1]?.location, "eastus");
+      assert.equal(items[1]?.properties?.productId, "product2");
+      assert.equal(items[1]?.properties?.provisioningState, "Succeeded");
     });
   });
 
