@@ -124,7 +124,6 @@ export declare interface LroDeleteOptionalParams extends OperationOptions {
     updateIntervalInMs?: number;
 }
 
-export declare interface LroExportArrayOptionalParams extends OperationOptions {
     updateIntervalInMs?: number;
 }
 
