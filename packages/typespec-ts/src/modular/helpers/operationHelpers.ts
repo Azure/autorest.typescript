@@ -217,16 +217,12 @@ export function getDeserializePrivateFunction(
   );
   const deserializedType = isLroOnly
     ? operation?.lroMetadata?.finalResponse?.result
-    : isLroAndPaging
-      ? operation?.lroMetadata?.finalResponse?.result // For LRO+Paging, use lroMetadata finalResponse
-      : restResponse
-        ? restResponse.type
-        : response.type;
+    : restResponse
+      ? restResponse.type
+      : response.type;
   const lroSubSegments = isLroOnly
     ? operation?.lroMetadata?.finalResponse?.resultSegments
-    : isLroAndPaging
-      ? undefined // For LRO+Paging, don't use sub-segments since we need the full response
-      : undefined;
+    : undefined;
 
   let lroSubPath;
   if (lroSubSegments && lroSubSegments.length > 0) {
@@ -2081,8 +2077,8 @@ export function getExpectedStatuses(operation: ServiceOperation): string {
   let statusCodes = operation.operation.responses.map((x) => x.statusCodes);
   // LROs may call the same path but with GET to get the operation status.
   if (
-    isLroOnlyOperation(operation) ||
-    (isLroAndPagingOperation(operation) && operation.operation.verb !== "get")
+    (isLroOnlyOperation(operation) || isLroAndPagingOperation(operation)) &&
+    operation.operation.verb !== "get"
   ) {
     // DELETE: Add 200, 202 for polling
     // POST/PUT/PATCH: Add 200, 201, 202 for polling
