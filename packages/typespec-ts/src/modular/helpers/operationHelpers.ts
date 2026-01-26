@@ -185,22 +185,7 @@ export function getDeserializePrivateFunction(
     returnType = buildLroReturnType(context, operation);
   } else if (isLroAndPaging) {
     // For LRO+Paging, the final response should be the paging result type (with value and nextLink)
-    // Check if lroMetadata has finalResponse information
-    const lroMetadata = operation.lroMetadata;
-    if (lroMetadata !== undefined && lroMetadata.finalResponse !== undefined) {
-      const type = lroMetadata.finalResponse.result;
-      returnType = {
-        name: type.name,
-        type: getTypeExpression(context, type)
-      };
-    } else if (restResponse && restResponse.type) {
-      returnType = {
-        name: (restResponse as any).name ?? "",
-        type: getTypeExpression(context, restResponse.type!)
-      };
-    } else {
-      returnType = { name: "", type: "void" };
-    }
+    returnType = buildLroPagingReturnType(context, operation);
   } else if (response.type && restResponse) {
     returnType = {
       name: (restResponse as any).name ?? "",
@@ -749,10 +734,7 @@ function getLroAndPagingOperationFunction(
   const { name, fixme = [] } = getOperationName(operation);
 
   // Extract element type from array response
-  const elementType =
-    operation.response.type?.kind === "array"
-      ? getTypeExpression(context, operation.response.type.valueType)
-      : "void";
+  const elementType = buildLroPagingReturnType(context, operation);
 
   // Build paging options from metadata
   const pagingOptions = [
@@ -803,7 +785,7 @@ function getLroAndPagingOperationFunction(
     name,
     propertyName: normalizeName(operation.name, NameType.Property),
     parameters,
-    returnType: `${refs.pagedIterator}<${elementType}>`,
+    returnType: `${refs.pagedIterator}<${elementType.type}>`,
     statements: [
       `
   const initialPagingPoller = ${refs.getLroPoller}(context,
@@ -817,7 +799,7 @@ function getLroAndPagingOperationFunction(
   
   return ${refs.buildPaging}(
     context,
-    () => initialPagingPoller.pollUntilDone(),
+    async() => await initialPagingPoller.pollUntilDone(),
     _${name}Deserialize,
     ${expectedStatuses}${pagingOptionsStr}
   );
@@ -836,6 +818,19 @@ function buildLroReturnType(
     return {
       name: type.name,
       type: getTypeExpression(context, type)
+    };
+  }
+  return { name: "", type: "void" };
+}
+
+function buildLroPagingReturnType(
+  context: SdkContext,
+  operation: SdkLroPagingServiceMethod<SdkHttpOperation>
+) {
+  if (operation.response.type?.kind === "array") {
+    return {
+      name: (operation.response.type.valueType as any).name ?? "",
+      type: getTypeExpression(context, operation.response.type.valueType)
     };
   }
   return { name: "", type: "void" };
@@ -2086,7 +2081,10 @@ export function getPropertyFullName(
 export function getExpectedStatuses(operation: ServiceOperation): string {
   let statusCodes = operation.operation.responses.map((x) => x.statusCodes);
   // LROs may call the same path but with GET to get the operation status.
-  if (isLroOnlyOperation(operation) && operation.operation.verb !== "get") {
+  if (
+    isLroOnlyOperation(operation) ||
+    (isLroAndPagingOperation(operation) && operation.operation.verb !== "get")
+  ) {
     // DELETE: Add 200, 202 for polling
     // POST/PUT/PATCH: Add 200, 201, 202 for polling
     const verb = operation.operation.verb.toLowerCase();

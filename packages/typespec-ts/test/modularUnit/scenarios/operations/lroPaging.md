@@ -276,7 +276,6 @@ export enum KnownVersions {
 ```ts operations
 import { WebContext as Client } from "./index.js";
 import {
-  _WebAppCollection,
   _webAppCollectionDeserializer,
   Site,
   errorResponseDeserializer,
@@ -320,10 +319,8 @@ export function _suspendSend(
   });
 }
 
-export async function _suspendDeserialize(
-  result: PathUncheckedResponse,
-): Promise<_WebAppCollection> {
-  const expectedStatuses = ["200"];
+export async function _suspendDeserialize(result: PathUncheckedResponse): Promise<Site> {
+  const expectedStatuses = ["200", "201", "202"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
     error.details = errorResponseDeserializer(result.body);
@@ -343,7 +340,7 @@ export function suspend(
   const initialPagingPoller = getLongRunningPoller(
     context,
     async (result: PathUncheckedResponse) => result,
-    ["200"],
+    ["200", "201", "202"],
     {
       updateIntervalInMs: options?.updateIntervalInMs,
       abortSignal: options?.abortSignal,
@@ -354,9 +351,9 @@ export function suspend(
 
   return buildPagedAsyncIterator(
     context,
-    () => initialPagingPoller.pollUntilDone(),
+    async () => await initialPagingPoller.pollUntilDone(),
     _suspendDeserialize,
-    ["200"],
+    ["200", "201", "202"],
     { itemName: "value", nextLinkName: "nextLink" },
   );
 }
