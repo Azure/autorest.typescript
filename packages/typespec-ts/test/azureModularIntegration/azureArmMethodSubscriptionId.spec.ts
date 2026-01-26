@@ -7,7 +7,7 @@ describe("Azure Arm Method Subscription Id Modular Client", () => {
   const SUBSCRIPTION_ID_EXPECTED = "00000000-0000-0000-0000-000000000000";
 
   beforeEach(() => {
-    client = new MethodSubscriptionIdClient({
+    client = new MethodSubscriptionIdClient(SUBSCRIPTION_ID_EXPECTED, {
       endpoint: "http://localhost:3002",
       allowInsecureConnection: true
     });
@@ -174,7 +174,8 @@ describe("Azure Arm Method Subscription Id Modular Client", () => {
   });
 
   it("should get mixed subscription resource with method-level subscription ID", async () => {
-    client = new MethodSubscriptionIdClient({
+    const SUBSCRIPTION_ID_UNEXPECTED = "11111111-1111-1111-1111-111111111111";
+    client = new MethodSubscriptionIdClient(SUBSCRIPTION_ID_UNEXPECTED, {
       endpoint: "http://localhost:3002",
       allowInsecureConnection: true
     });
