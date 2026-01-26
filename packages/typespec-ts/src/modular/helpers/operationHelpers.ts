@@ -180,12 +180,14 @@ export function getDeserializePrivateFunction(
   if (isLroOnly) {
     returnType = buildLroReturnType(context, operation);
   } else if (isLroAndPaging) {
-    // For LRO+Paging, return the paging response structure (e.g., { value: T[], nextLink?: string })
-    // Use the response type directly, not lroMetadata, since the response IS the paging structure
-    if (response.type) {
+    // For LRO+Paging, the final response should be the paging result type (with value and nextLink)
+    // Check if lroMetadata has finalResponse information
+    const lroMetadata = operation.lroMetadata;
+    if (lroMetadata !== undefined && lroMetadata.finalResponse !== undefined) {
+      const type = lroMetadata.finalResponse.result;
       returnType = {
-        name: (response.type as any).name ?? "",
-        type: getTypeExpression(context, response.type)
+        name: type.name,
+        type: getTypeExpression(context, type)
       };
     } else if (restResponse && restResponse.type) {
       returnType = {
@@ -227,14 +229,14 @@ export function getDeserializePrivateFunction(
   const deserializedType = isLroOnly
     ? operation?.lroMetadata?.finalResponse?.result
     : isLroAndPaging
-      ? response.type // For LRO+Paging, use the response type which contains the paging structure
+      ? operation?.lroMetadata?.finalResponse?.result // For LRO+Paging, use lroMetadata finalResponse
       : restResponse
         ? restResponse.type
         : response.type;
   const lroSubSegments = isLroOnly
     ? operation?.lroMetadata?.finalResponse?.resultSegments
     : isLroAndPaging
-      ? response.resultSegments // For LRO+Paging, use response result segments for the paging structure
+      ? undefined // For LRO+Paging, don't use sub-segments since we need the full response
       : undefined;
 
   let lroSubPath;
