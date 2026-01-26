@@ -268,6 +268,9 @@ export function getSchemaForType(
   if (isNullType(type)) {
     return { name: "null", type: "null" };
   }
+  if (type.kind === "Intrinsic" && type.name === "void") {
+    return { name: "void", type: "void" };
+  }
   reportDiagnostic(program, {
     code: "invalid-schema",
     format: {

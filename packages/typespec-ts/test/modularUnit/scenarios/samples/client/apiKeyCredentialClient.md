@@ -72,7 +72,7 @@ async function read(): Promise<void> {
   const endpoint = process.env.DEMO_SERVICE_ENDPOINT || "";
   const credential = { key: "INPUT_YOUR_KEY_HERE" };
   const client = new DemoServiceClient(endpoint, credential);
-  const result = await client.read();
+  const result = await client.read("test");
   console.log(result);
 }
 

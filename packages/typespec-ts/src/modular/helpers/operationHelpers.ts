@@ -2059,9 +2059,13 @@ export function getPropertyFullName(
   property: SdkHttpParameter | SdkModelPropertyType,
   propertyPath?: string
 ) {
-  const normalizedPropertyName = normalizeModelPropertyName(context, property)
-    .replace(/^"/g, "")
-    .replace(/"$/g, "");
+  const normalizedPropertyName =
+    propertyPath === ""
+      ? normalizeName(property.name, NameType.Parameter, true)
+      : normalizeModelPropertyName(context, property)
+          .replace(/^"/g, "")
+          .replace(/"$/g, "");
+
   let fullName = normalizedPropertyName;
   if (propertyPath === "" && property.optional) {
     fullName = `options?.${normalizedPropertyName}`;
@@ -2079,7 +2083,14 @@ export function getExpectedStatuses(operation: ServiceOperation): string {
   let statusCodes = operation.operation.responses.map((x) => x.statusCodes);
   // LROs may call the same path but with GET to get the operation status.
   if (isLroOnlyOperation(operation) && operation.operation.verb !== "get") {
-    statusCodes = Array.from(new Set([...statusCodes, 200, 201, 202]));
+    // DELETE: Add 200, 202 for polling
+    // POST/PUT/PATCH: Add 200, 201, 202 for polling
+    const verb = operation.operation.verb.toLowerCase();
+    if (verb === "delete") {
+      statusCodes = Array.from(new Set([...statusCodes, 200, 202]));
+    } else {
+      statusCodes = Array.from(new Set([...statusCodes, 200, 201, 202]));
+    }
   }
 
   return `[${statusCodes.map((x) => `"${x}"`).join(", ")}]`;
