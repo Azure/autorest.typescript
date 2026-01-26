@@ -141,11 +141,15 @@ export function getSendPrivateFunction(
   }
 
   statements.push(
-    `return context.path(${pathStr}).${operationMethod}({...${resolveReference(dependencies.operationOptionsToRequestParameters)}(${optionalParamName}), ${getHeaderAndBodyParameters(
-      dpgContext,
-      operation,
-      optionalParamName
-    )}});`
+    `return context
+    .path(${pathStr})
+    .${operationMethod}({
+      ...${resolveReference(dependencies.operationOptionsToRequestParameters)}(${optionalParamName}), ${getHeaderAndBodyParameters(
+        dpgContext,
+        operation,
+        optionalParamName
+      )}
+    });`
   );
 
   return {
@@ -251,7 +255,7 @@ export function getDeserializePrivateFunction(
   const deserializePrefix = "result.body";
 
   const deserializedRoot = `${deserializePrefix}${lroSubPath ? "." + lroSubPath : ""}`;
-  if ((isLroOnly || isLroAndPaging) && lroSubPath) {
+  if (isLroOnly && lroSubPath) {
     statements.push(
       `if(${deserializedRoot.split(".").join("?.")} === undefined) {
         throw ${createRestErrorReference}(\`Expected a result in the response at position "${deserializedRoot}"\`, result);
