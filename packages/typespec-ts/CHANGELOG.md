@@ -1,3 +1,16 @@
+## 0.48.1 (2026-01-26)
+
+- [Feature] Support array encoding for string-based enum types. Please refer to [#3686](https://github.com/Azure/autorest.typescript/pull/3686)
+- [Bugfix] Fix API version parameter name handling. Please refer to [#3690](https://github.com/Azure/autorest.typescript/pull/3690)
+- [Feature] Support XML serialization/deserialization. Please refer to [#3689](https://github.com/Azure/autorest.typescript/pull/3689)
+- [Feature] Update AAD Token link reference in readme generation. Please refer to [#3696](https://github.com/Azure/autorest.typescript/pull/3696)
+- [Bugfix] Fix the parameter names in the samples to be consistent with the signature function. Please refer to [#3688](https://github.com/Azure/autorest.typescript/pull/3688)
+- [Bugfix] Fix DELETE operations incorrectly including 201 status code in modular LRO. Please refer to [#3695](https://github.com/Azure/autorest.typescript/pull/3695)
+- [Feature] Add case for apiVersion header/path/query. Please refer to [#3303](https://github.com/Azure/autorest.typescript/pull/3303)
+- [Bugfix] Fix inconsistent parameter name normalization for reserved keywords in spread body operations. Please refer to [#3679](https://github.com/Azure/autorest.typescript/pull/3679)
+- [Bugfix] Hotfix to support Intrinsic model type in modelUtils. Please refer to [#3687](https://github.com/Azure/autorest.typescript/pull/3687)
+- [Bugfix] Fix spread body parameter for generating sample. Please refer to [#3618](https://github.com/Azure/autorest.typescript/pull/3618)
+
 ## 0.48.0 (2026-01-16)
 
 - [Feature] Bump TypeSpec dependencies to latest stable (1.8.0). Please refer to [#3681](https://github.com/Azure/autorest.typescript/pull/3681)
