@@ -144,6 +144,20 @@ export declare interface ModelPropertiesSameAsModelBodyParam {
 
 export declare type ModelPropertiesSameAsModelParameters = ModelPropertiesSameAsModelBodyParam & RequestParameters;
 
+export declare interface ModelPropertiesWithList {
+    post(options: ModelPropertiesWithListParameters): StreamableMethod<ModelPropertiesWithList204Response>;
+}
+
+export declare interface ModelPropertiesWithList204Response extends HttpResponse {
+    status: "204";
+}
+
+export declare interface ModelPropertiesWithListBodyParam {
+    body: ModelWithList;
+}
+
+export declare type ModelPropertiesWithListParameters = ModelPropertiesWithListBodyParam & RequestParameters;
+
 export declare interface ModelsWithAnd {
     post(options: ModelsWithAndParameters): StreamableMethod<ModelsWithAnd204Response>;
 }
@@ -605,6 +619,10 @@ export declare interface ModelsWithYieldBodyParam {
 }
 
 export declare type ModelsWithYieldParameters = ModelsWithYieldBodyParam & RequestParameters;
+
+export declare interface ModelWithList {
+    list: string;
+}
 
 export declare interface Not {
     name: string;
@@ -1604,6 +1622,7 @@ export declare interface Routes {
     (path: "/special-words/models/yield"): ModelsWithYield;
     (path: "/special-words/model-properties/same-as-model"): ModelPropertiesSameAsModel;
     (path: "/special-words/model-properties/dict-methods"): ModelPropertiesDictMethods;
+    (path: "/special-words/model-properties/list"): ModelPropertiesWithList;
     (path: "/special-words/operations/and"): OperationsAnd;
     (path: "/special-words/operations/as"): OperationsAs;
     (path: "/special-words/operations/assert"): OperationsAssert;
