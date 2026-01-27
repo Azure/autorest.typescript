@@ -57,12 +57,10 @@ export function _analyzeWidgetSend(
     },
   );
   context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
-  return context
-    .path(path)
-    .post({
-      ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json", ...options.requestOptions?.headers },
-    });
+  return context.path(path).post({
+    ...operationOptionsToRequestParameters(options),
+    headers: { accept: "application/json", ...options.requestOptions?.headers },
+  });
 }
 
 export async function _analyzeWidgetDeserialize(
@@ -103,7 +101,9 @@ export function _deleteWidgetSend(
     },
   );
   context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
-  return context.path(path).delete({ ...operationOptionsToRequestParameters(options) });
+  return context.path(path).delete({
+    ...operationOptionsToRequestParameters(options),
+  });
 }
 
 export async function _deleteWidgetDeserialize(result: PathUncheckedResponse): Promise<void> {
@@ -142,14 +142,12 @@ export function _updateWidgetSend(
     },
   );
   context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
-  return context
-    .path(path)
-    .patch({
-      ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
-      headers: { accept: "application/json", ...options.requestOptions?.headers },
-      body: { weight: options?.weight, color: options?.color },
-    });
+  return context.path(path).patch({
+    ...operationOptionsToRequestParameters(options),
+    contentType: "application/json",
+    headers: { accept: "application/json", ...options.requestOptions?.headers },
+    body: { weight: options?.weight, color: options?.color },
+  });
 }
 
 export async function _updateWidgetDeserialize(result: PathUncheckedResponse): Promise<Widget> {
@@ -192,14 +190,12 @@ export function _createOrReplaceSend(
       allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
-  return context
-    .path(path)
-    .put({
-      ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
-      headers: { accept: "application/json", ...options.requestOptions?.headers },
-      body: sapUserSerializer(resource),
-    });
+  return context.path(path).put({
+    ...operationOptionsToRequestParameters(options),
+    contentType: "application/json",
+    headers: { accept: "application/json", ...options.requestOptions?.headers },
+    body: sapUserSerializer(resource),
+  });
 }
 
 export async function _createOrReplaceDeserialize(result: PathUncheckedResponse): Promise<SAPUser> {
@@ -233,14 +229,12 @@ export function _createWidgetSend(
   options: SAPWidgetsCreateWidgetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
-  return context
-    .path("/widgets")
-    .post({
-      ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
-      headers: { accept: "application/json", ...options.requestOptions?.headers },
-      body: { weight: weight, color: color },
-    });
+  return context.path("/widgets").post({
+    ...operationOptionsToRequestParameters(options),
+    contentType: "application/json",
+    headers: { accept: "application/json", ...options.requestOptions?.headers },
+    body: { weight: weight, color: color },
+  });
 }
 
 export async function _createWidgetDeserialize(result: PathUncheckedResponse): Promise<Widget> {
@@ -285,12 +279,10 @@ export function _getWidgetSend(
     },
   );
   context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
-  return context
-    .path(path)
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json", ...options.requestOptions?.headers },
-    });
+  return context.path(path).get({
+    ...operationOptionsToRequestParameters(options),
+    headers: { accept: "application/json", ...options.requestOptions?.headers },
+  });
 }
 
 export async function _getWidgetDeserialize(result: PathUncheckedResponse): Promise<Widget> {
@@ -331,12 +323,10 @@ export function _queryWidgetsPagesSend(
     },
   );
   context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
-  return context
-    .path(path)
-    .post({
-      ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json", ...options.requestOptions?.headers },
-    });
+  return context.path(path).post({
+    ...operationOptionsToRequestParameters(options),
+    headers: { accept: "application/json", ...options.requestOptions?.headers },
+  });
 }
 
 export async function _queryWidgetsPagesDeserialize(
@@ -384,12 +374,10 @@ export function _listWidgetsPagesSend(
     },
   );
   context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
-  return context
-    .path(path)
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json", ...options.requestOptions?.headers },
-    });
+  return context.path(path).get({
+    ...operationOptionsToRequestParameters(options),
+    headers: { accept: "application/json", ...options.requestOptions?.headers },
+  });
 }
 
 export async function _listWidgetsPagesDeserialize(

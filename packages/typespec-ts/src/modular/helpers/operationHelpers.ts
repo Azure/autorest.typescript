@@ -141,11 +141,15 @@ export function getSendPrivateFunction(
   }
 
   statements.push(
-    `return context.path(${pathStr}).${operationMethod}({...${resolveReference(dependencies.operationOptionsToRequestParameters)}(${optionalParamName}), ${getHeaderAndBodyParameters(
-      dpgContext,
-      operation,
-      optionalParamName
-    )}});`
+    `return context
+    .path(${pathStr})
+    .${operationMethod}({
+      ...${resolveReference(dependencies.operationOptionsToRequestParameters)}(${optionalParamName}), ${getHeaderAndBodyParameters(
+        dpgContext,
+        operation,
+        optionalParamName
+      )}
+    });`
   );
 
   return {

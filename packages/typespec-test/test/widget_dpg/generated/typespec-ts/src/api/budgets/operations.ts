@@ -30,9 +30,9 @@ export function _$continueSend(
   options: BudgetsContinueOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
-  return context
-    .path("/budgets/widgets/continue")
-    .get({ ...operationOptionsToRequestParameters(options) });
+  return context.path("/budgets/widgets/continue").get({
+    ...operationOptionsToRequestParameters(options),
+  });
 }
 
 export async function _$continueDeserialize(result: PathUncheckedResponse): Promise<void> {
@@ -72,12 +72,10 @@ export function _getBudgetsSend(
     },
   );
   context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
-  return context
-    .path(path)
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json", ...options.requestOptions?.headers },
-    });
+  return context.path(path).get({
+    ...operationOptionsToRequestParameters(options),
+    headers: { accept: "application/json", ...options.requestOptions?.headers },
+  });
 }
 
 export async function _getBudgetsDeserialize(result: PathUncheckedResponse): Promise<Widget[]> {
@@ -116,14 +114,12 @@ export function _createOrReplaceSend(
       allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
-  return context
-    .path(path)
-    .put({
-      ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
-      headers: { accept: "application/json", ...options.requestOptions?.headers },
-      body: sapUserSerializer(resource),
-    });
+  return context.path(path).put({
+    ...operationOptionsToRequestParameters(options),
+    contentType: "application/json",
+    headers: { accept: "application/json", ...options.requestOptions?.headers },
+    body: sapUserSerializer(resource),
+  });
 }
 
 export async function _createOrReplaceDeserialize(result: PathUncheckedResponse): Promise<SAPUser> {
