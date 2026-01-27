@@ -955,11 +955,10 @@ export const azureModularTsps = [
     outputPath: "special-headers/conditional-request",
     inputPath: "special-headers/conditional-request"
   },
-  // skipping this test as https://github.com/Azure/typespec-azure/issues/3841
-  // {
-  //   outputPath: "azure/resource-manager/method-subscription-id",
-  //   inputPath: "azure/resource-manager/method-subscription-id"
-  // },
+  {
+    outputPath: "azure/resource-manager/method-subscription-id",
+    inputPath: "azure/resource-manager/method-subscription-id"
+  },
   {
     outputPath:
       "azure/client-generator-core/client-location/move-to-existing-sub-client",
