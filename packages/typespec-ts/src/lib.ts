@@ -71,6 +71,7 @@ export interface EmitterOptions {
   "default-value-object"?: boolean;
   //TODO should remove this after finish the release tool test
   "should-use-pnpm-dep"?: boolean;
+  "ignore-nullable-on-optional"?: boolean;
 }
 
 export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
@@ -343,6 +344,11 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
       type: "boolean",
       nullable: true,
       description: "Internal option for test."
+    },
+    "ignore-nullable-on-optional": {
+      type: "boolean",
+      nullable: true,
+      description: "If an optional property is also marked as nullable, it will be treated as just optional. Defaults to `true` for Azure services."
     }
   },
   required: []

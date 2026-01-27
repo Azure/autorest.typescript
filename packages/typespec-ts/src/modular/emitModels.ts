@@ -815,7 +815,9 @@ function buildModelProperty(
       typeExpression = `Array<${typeExpression}>`;
     }
   } else {
-    typeExpression = getTypeExpression(context, property.type);
+    typeExpression = getTypeExpression(context, property.type, {
+      isOptional: property.optional
+    });
   }
 
   const propertyStructure: PropertySignatureStructure = {
