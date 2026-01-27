@@ -673,15 +673,8 @@ function getLroOnlyOperationFunction(
     allowedFinalLocation.includes(lroMetadata?.finalStateVia)
       ? `resourceLocationConfig: "${lroMetadata?.finalStateVia}",`
       : "";
+  const apiVersion = getApiVersionExpression(operation);
   const statements: string[] = [];
-
-  const queryApiVersionParam = operation.operation.parameters.find(
-    (p) => p.kind === "query" && p.isApiVersionParam
-  );
-  const apiVersion = queryApiVersionParam
-    ? `apiVersion: ${queryApiVersionParam.onClient ? "context." : ""}${queryApiVersionParam.name}
-      ${queryApiVersionParam.clientDefaultValue ? ` ?? "${queryApiVersionParam.clientDefaultValue}"` : ""}`
-    : "";
 
   statements.push(`
 
@@ -694,7 +687,7 @@ function getLroOnlyOperationFunction(
       .map((p) => p.name)
       .join(", ")}),
     ${resourceLocationConfig}
-    ${apiVersion}
+    ${apiVersion ? `apiVersion: ${apiVersion}` : ""}
   }) as ${pollerLikeReference}<${operationStateReference}<${
     returnType.type
   }>, ${returnType.type}>;
@@ -722,6 +715,9 @@ function getLroAndPagingOperationFunction(
 
   const returnType = buildLroPagingReturnType(context, operation);
 
+  // Get apiVersion expression for both LRO poller and paging options
+  const apiVersion = getApiVersionExpression(operation);
+
   // Build paging options from metadata
   const pagingOptions = [
     operation.response.resultSegments &&
@@ -729,7 +725,8 @@ function getLroAndPagingOperationFunction(
     operation.pagingMetadata.nextLinkSegments &&
       `nextLinkName: "${operation.pagingMetadata.nextLinkSegments.map((p) => p.name).join(".")}"`,
     operation.pagingMetadata.nextLinkVerb !== "GET" &&
-      `nextLinkMethod: "${operation.pagingMetadata.nextLinkVerb}"`
+      `nextLinkMethod: "${operation.pagingMetadata.nextLinkVerb}"`,
+    apiVersion && `apiVersion: ${apiVersion}`
   ].filter(Boolean);
 
   // Build LRO resource location config
@@ -742,7 +739,7 @@ function getLroAndPagingOperationFunction(
   const resourceLocationConfig =
     operation.lroMetadata?.finalStateVia &&
     allowedLocations.includes(operation.lroMetadata.finalStateVia)
-      ? `resourceLocationConfig: "${operation.lroMetadata.finalStateVia}"`
+      ? `resourceLocationConfig: "${operation.lroMetadata.finalStateVia}",`
       : "";
 
   // Resolve references
@@ -781,6 +778,7 @@ function getLroAndPagingOperationFunction(
     abortSignal: ${optionalParamName}?.abortSignal,
     getInitialResponse: () => _${name}Send(${paramList}),
     ${resourceLocationConfig}
+    ${apiVersion ? `apiVersion: ${apiVersion}` : ""}
   }) as ${refs.pollerLike}<${refs.operationState}<${refs.pathResponse}>, ${refs.pathResponse}>;
   
   return ${refs.buildPaging}(
@@ -884,13 +882,7 @@ function getPagingOnlyOperationFunction(
   // Check for nextLinkVerb from TCGC pagingMetadata (supports @Legacy.nextLinkVerb decorator)
   const nextLinkMethod = operation.pagingMetadata.nextLinkVerb;
 
-  const queryApiVersionParam = operation.operation.parameters.find(
-    (p) => p.kind === "query" && p.isApiVersionParam
-  );
-  const apiVersion = queryApiVersionParam
-    ? `${queryApiVersionParam.onClient ? "context." : ""}${queryApiVersionParam.name}
-      ${queryApiVersionParam.clientDefaultValue ? ` ?? "${queryApiVersionParam.clientDefaultValue}"` : ""}`
-    : "";
+  const apiVersion = getApiVersionExpression(operation);
 
   if (itemName) {
     options.push(`itemName: "${itemName}"`);
@@ -2100,4 +2092,25 @@ export function getExpectedStatuses(operation: ServiceOperation): string {
   }
 
   return `[${statusCodes.map((x) => `"${x}"`).join(", ")}]`;
+}
+
+/**
+ * Gets the apiVersion expression with default value fallback for query parameters.
+ * @param operation - The operation to get the apiVersion parameter from
+ * @returns The apiVersion expression string, or undefined if no apiVersion query param exists
+ */
+function getApiVersionExpression(
+  operation: ServiceOperation
+): string | undefined {
+  const queryApiVersionParam = operation.operation.parameters.find(
+    (p) => p.kind === "query" && p.isApiVersionParam
+  );
+  if (!queryApiVersionParam) {
+    return undefined;
+  }
+  const paramAccess = `${queryApiVersionParam.onClient ? "context." : ""}${queryApiVersionParam.name}`;
+  const defaultValueSuffix = queryApiVersionParam.clientDefaultValue
+    ? ` ?? "${queryApiVersionParam.clientDefaultValue}"`
+    : "";
+  return `${paramAccess}${defaultValueSuffix}`;
 }
