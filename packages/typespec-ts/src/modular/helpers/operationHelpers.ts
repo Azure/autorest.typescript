@@ -9,7 +9,8 @@ import {
   PagingHelpers,
   PollingHelpers,
   SerializationHelpers,
-  UrlTemplateHelpers
+  UrlTemplateHelpers,
+  XmlHelpers
 } from "../static-helpers-metadata.js";
 import {
   getNullableValidType,
@@ -21,6 +22,9 @@ import {
   getCollectionFormatHelper,
   hasCollectionFormatInfo,
   isBinaryPayload,
+  isXmlPayload,
+  isMultipartPayload,
+  hasDualFormatSupport,
   ServiceOperation,
   getCollectionFormatParseHelper,
   getCollectionFormatFromArrayEncoding,
@@ -46,6 +50,11 @@ import {
   buildModelSerializer,
   buildPropertySerializer
 } from "../serialization/buildSerializerFunction.js";
+import {
+  buildXmlModelSerializer,
+  buildXmlModelDeserializer,
+  hasXmlSerialization
+} from "../serialization/buildXmlSerializerFunction.js";
 import { refkey } from "../../framework/refkey.js";
 import { reportDiagnostic } from "../../lib.js";
 import { resolveReference } from "../../framework/reference.js";
@@ -160,16 +169,15 @@ export function getDeserializePrivateFunction(
       type: PathUncheckedResponseReference
     }
   ];
-  // TODO: Support LRO + paging operation
-  // https://github.com/Azure/autorest.typescript/issues/2313
   const isLroOnly = isLroOnlyOperation(operation);
+  const isLroAndPaging = isLroAndPagingOperation(operation);
 
   // TODO: Support operation overloads
   // TODO: Support multiple responses
   const response = operation.response;
   const restResponse = operation.operation.responses[0];
   let returnType;
-  if (isLroOnly) {
+  if (isLroOnly || isLroAndPaging) {
     returnType = buildLroReturnType(context, operation);
   } else if (response.type && restResponse) {
     returnType = {
@@ -200,11 +208,12 @@ export function getDeserializePrivateFunction(
     `${getExceptionThrowStatement(context, operation)}`,
     "}"
   );
-  const deserializedType = isLroOnly
-    ? operation?.lroMetadata?.finalResponse?.result
-    : restResponse
-      ? restResponse.type
-      : response.type;
+  const deserializedType =
+    isLroOnly || isLroAndPaging
+      ? operation?.lroMetadata?.finalResponse?.result
+      : restResponse
+        ? restResponse.type
+        : response.type;
   const lroSubSegments = isLroOnly
     ? operation?.lroMetadata?.finalResponse?.resultSegments
     : undefined;
@@ -231,31 +240,130 @@ export function getDeserializePrivateFunction(
   }
 
   if (deserializedType) {
-    const contentTypes = operation.operation.responses[0]?.contentTypes;
-    const deserializeFunctionName = buildModelDeserializer(
-      context,
-      deserializedType,
-      {
-        nameOnly: true,
-        skipDiscriminatedUnionSuffix: false
-      }
-    );
-    if (deserializeFunctionName) {
-      statements.push(`return ${deserializeFunctionName}(${deserializedRoot})`);
-    } else if (isAzureCoreErrorType(context.program, deserializedType.__raw)) {
-      statements.push(`return ${deserializedRoot}`);
-    } else {
-      statements.push(
-        `return ${deserializeResponseValue(
+    const contentTypes = operation.operation.responses[0]?.contentTypes ?? [];
+    const isXml = isXmlPayload(contentTypes);
+    const isDualFormat = hasDualFormatSupport(contentTypes);
+    const isMultipart = isMultipartPayload(contentTypes);
+    const useXmlDeserialization =
+      isXml &&
+      deserializedType.kind === "model" &&
+      hasXmlSerialization(deserializedType);
+
+    // Workaround for multipart response: cast return value as any due to lack of multipart response handling in core
+    const multipartCastSuffix = isMultipart ? " as any" : "";
+
+    // For dual-format responses, check content-type header at runtime
+    if (
+      isDualFormat &&
+      deserializedType.kind === "model" &&
+      hasXmlSerialization(deserializedType)
+    ) {
+      const xmlDeserializerName = buildXmlModelDeserializer(
+        context,
+        deserializedType,
+        {
+          nameOnly: true,
+          skipDiscriminatedUnionSuffix: false
+        }
+      ) as string | undefined;
+      const jsonDeserializerName = buildModelDeserializer(
+        context,
+        deserializedType,
+        {
+          nameOnly: true,
+          skipDiscriminatedUnionSuffix: false
+        }
+      );
+
+      if (xmlDeserializerName && jsonDeserializerName) {
+        const isXmlContentTypeRef = resolveReference(
+          XmlHelpers.isXmlContentType
+        );
+        statements.push(
+          `const responseContentType = result.headers?.["content-type"] ?? "";
+          if (${isXmlContentTypeRef}(responseContentType)) {
+            return ${xmlDeserializerName}(${deserializedRoot});
+          }
+          return ${jsonDeserializerName}(${deserializedRoot});`
+        );
+      } else {
+        // Fall back to JSON deserializer
+        const deserializeFunctionName = buildModelDeserializer(
           context,
           deserializedType,
-          deserializedRoot,
-          true,
-          isBinaryPayload(context, response.type!.__raw!, contentTypes!)
-            ? "binary"
-            : getEncodeForType(deserializedType)
-        )}`
+          {
+            nameOnly: true,
+            skipDiscriminatedUnionSuffix: false
+          }
+        );
+        if (deserializeFunctionName) {
+          statements.push(
+            `return ${deserializeFunctionName}(${deserializedRoot})`
+          );
+        }
+      }
+    } else if (useXmlDeserialization) {
+      // XML-only response
+      const xmlDeserializerName = buildXmlModelDeserializer(
+        context,
+        deserializedType,
+        {
+          nameOnly: true,
+          skipDiscriminatedUnionSuffix: false
+        }
+      ) as string | undefined;
+
+      if (xmlDeserializerName) {
+        statements.push(`return ${xmlDeserializerName}(${deserializedRoot})`);
+      } else {
+        // Fall back to JSON deserializer if XML deserializer is not available
+        const deserializeFunctionName = buildModelDeserializer(
+          context,
+          deserializedType,
+          {
+            nameOnly: true,
+            skipDiscriminatedUnionSuffix: false
+          }
+        );
+        if (deserializeFunctionName) {
+          statements.push(
+            `return ${deserializeFunctionName}(${deserializedRoot})`
+          );
+        } else {
+          statements.push(`return ${deserializedRoot}`);
+        }
+      }
+    } else {
+      // JSON response (default) - also handles multipart responses
+      const deserializeFunctionName = buildModelDeserializer(
+        context,
+        deserializedType,
+        {
+          nameOnly: true,
+          skipDiscriminatedUnionSuffix: false
+        }
       );
+      if (deserializeFunctionName) {
+        statements.push(
+          `return ${deserializeFunctionName}(${deserializedRoot})${multipartCastSuffix}`
+        );
+      } else if (
+        isAzureCoreErrorType(context.program, deserializedType.__raw)
+      ) {
+        statements.push(`return ${deserializedRoot}${multipartCastSuffix}`);
+      } else {
+        statements.push(
+          `return ${deserializeResponseValue(
+            context,
+            deserializedType,
+            deserializedRoot,
+            true,
+            isBinaryPayload(context, response.type!.__raw!, contentTypes)
+              ? "binary"
+              : getEncodeForType(deserializedType)
+          )}${multipartCastSuffix}`
+        );
+      }
     }
   } else if (returnType.type === "void") {
     statements.push("return;");
@@ -467,8 +575,13 @@ export function getOperationFunction(
       optionalParamName
     );
   } else if (isLroAndPagingOperation(operation)) {
-    // Case 3: both paging + lro operation is not supported yet so handle them as normal operation and customization may be needed
-    // https://github.com/Azure/autorest.typescript/issues/2313
+    // Case 3: both paging + lro operation
+    return getLroAndPagingOperationFunction(
+      context,
+      [method[0], operation],
+      clientType,
+      optionalParamName
+    );
   }
 
   // TODO: Support operation overloads
@@ -596,9 +709,99 @@ function getLroOnlyOperationFunction(
   } as FunctionDeclarationStructure & { propertyName?: string };
 }
 
+function getLroAndPagingOperationFunction(
+  context: SdkContext,
+  method: [string[], SdkLroPagingServiceMethod<SdkHttpOperation>],
+  clientType: string,
+  optionalParamName: string = "options"
+): FunctionDeclarationStructure & { propertyName?: string } {
+  const operation = method[1];
+  const parameters = getOperationSignatureParameters(
+    context,
+    method,
+    clientType
+  );
+  const { name, fixme = [] } = getOperationName(operation);
+
+  const returnType = buildLroPagingReturnType(context, operation);
+
+  // Build paging options from metadata
+  const pagingOptions = [
+    operation.response.resultSegments &&
+      `itemName: "${operation.response.resultSegments.map((p) => p.name).join(".")}"`,
+    operation.pagingMetadata.nextLinkSegments &&
+      `nextLinkName: "${operation.pagingMetadata.nextLinkSegments.map((p) => p.name).join(".")}"`,
+    operation.pagingMetadata.nextLinkVerb !== "GET" &&
+      `nextLinkMethod: "${operation.pagingMetadata.nextLinkVerb}"`
+  ].filter(Boolean);
+
+  // Build LRO resource location config
+  const allowedLocations = [
+    "azure-async-operation",
+    "location",
+    "original-uri",
+    "operation-location"
+  ];
+  const resourceLocationConfig =
+    operation.lroMetadata?.finalStateVia &&
+    allowedLocations.includes(operation.lroMetadata.finalStateVia)
+      ? `resourceLocationConfig: "${operation.lroMetadata.finalStateVia}"`
+      : "";
+
+  // Resolve references
+  const refs = {
+    pagedIterator: resolveReference(PagingHelpers.PagedAsyncIterableIterator),
+    buildPaging: resolveReference(PagingHelpers.BuildPagedAsyncIterator),
+    getLroPoller: resolveReference(PollingHelpers.GetLongRunningPoller),
+    pollerLike: resolveReference(AzurePollingDependencies.PollerLike),
+    operationState: resolveReference(AzurePollingDependencies.OperationState),
+    pathResponse: resolveReference(useDependencies().PathUncheckedResponse)
+  };
+
+  const expectedStatuses = getExpectedStatuses(operation);
+  const paramList = parameters.map((p) => p.name).join(", ");
+  const pagingOptionsStr =
+    pagingOptions.length > 0 ? `,\n    {${pagingOptions.join(", ")}}` : "";
+
+  return {
+    kind: StructureKind.Function,
+    docs: [
+      ...getDocsFromDescription(operation.doc),
+      ...getFixmeForMultilineDocs(fixme)
+    ],
+    isAsync: false,
+    isExported: true,
+    name,
+    propertyName: normalizeName(operation.name, NameType.Property),
+    parameters,
+    returnType: `${refs.pagedIterator}<${returnType.type}>`,
+    statements: [
+      `
+  const initialPagingPoller = ${refs.getLroPoller}(context,
+    async (result: ${refs.pathResponse}) => result,
+    ${expectedStatuses}, {
+    updateIntervalInMs: ${optionalParamName}?.updateIntervalInMs,
+    abortSignal: ${optionalParamName}?.abortSignal,
+    getInitialResponse: () => _${name}Send(${paramList}),
+    ${resourceLocationConfig}
+  }) as ${refs.pollerLike}<${refs.operationState}<${refs.pathResponse}>, ${refs.pathResponse}>;
+  
+  return ${refs.buildPaging}(
+    context,
+    async () => await initialPagingPoller,
+    _${name}Deserialize,
+    ${expectedStatuses}${pagingOptionsStr}
+  );
+  `
+    ]
+  };
+}
+
 function buildLroReturnType(
   context: SdkContext,
-  operation: SdkLroServiceMethod<SdkHttpOperation>
+  operation:
+    | SdkLroServiceMethod<SdkHttpOperation>
+    | SdkLroPagingServiceMethod<SdkHttpOperation>
 ) {
   const metadata = operation.lroMetadata;
   if (metadata !== undefined && metadata.finalResponse !== undefined) {
@@ -606,6 +809,19 @@ function buildLroReturnType(
     return {
       name: type.name,
       type: getTypeExpression(context, type)
+    };
+  }
+  return { name: "", type: "void" };
+}
+
+function buildLroPagingReturnType(
+  context: SdkContext,
+  operation: SdkLroPagingServiceMethod<SdkHttpOperation>
+) {
+  if (operation.response.type?.kind === "array") {
+    return {
+      name: (operation.response.type.valueType as any).name ?? "",
+      type: getTypeExpression(context, operation.response.type.valueType)
     };
   }
   return { name: "", type: "void" };
@@ -826,14 +1042,31 @@ function buildBodyParameter(
   if (!bodyParameter || !bodyParameter.type) {
     return "";
   }
-  const serializerFunctionName = buildModelSerializer(
-    context,
-    getNullableValidType(bodyParameter.type),
-    {
+
+  const contentTypes = bodyParameter.contentTypes;
+  const isXml = isXmlPayload(contentTypes);
+  const isDualFormat = hasDualFormatSupport(contentTypes);
+  const bodyType = getNullableValidType(bodyParameter.type);
+
+  // Check if XML serialization is needed and available
+  const useXmlSerialization =
+    isXml && bodyType.kind === "model" && hasXmlSerialization(bodyType);
+
+  let serializerFunctionName: string | undefined;
+
+  if (useXmlSerialization) {
+    // Use XML serializer
+    serializerFunctionName = buildXmlModelSerializer(context, bodyType, {
       nameOnly: true,
       skipDiscriminatedUnionSuffix: false
-    }
-  );
+    }) as string | undefined;
+  } else {
+    // Use JSON serializer (default)
+    serializerFunctionName = buildModelSerializer(context, bodyType, {
+      nameOnly: true,
+      skipDiscriminatedUnionSuffix: false
+    }) as string | undefined;
+  }
 
   const bodyParamName = normalizeName(
     bodyParameter.name,
@@ -848,6 +1081,28 @@ function buildBodyParameter(
     bodyParameter,
     bodyParameter.optional ? optionalParamName : undefined
   );
+
+  // For dual-format operations, check the contentType option at runtime
+  if (
+    isDualFormat &&
+    bodyType.kind === "model" &&
+    hasXmlSerialization(bodyType)
+  ) {
+    const xmlSerializerName = buildXmlModelSerializer(context, bodyType, {
+      nameOnly: true,
+      skipDiscriminatedUnionSuffix: false
+    }) as string | undefined;
+    const jsonSerializerName = buildModelSerializer(context, bodyType, {
+      nameOnly: true,
+      skipDiscriminatedUnionSuffix: false
+    }) as string | undefined;
+
+    if (xmlSerializerName && jsonSerializerName) {
+      const isXmlContentTypeRef = resolveReference(XmlHelpers.isXmlContentType);
+      return `\nbody: ${nullOrUndefinedPrefix}(${isXmlContentTypeRef}(${optionalParamName}?.contentType ?? "application/json") ? ${xmlSerializerName}(${bodyNameExpression}) : ${jsonSerializerName}(${bodyNameExpression})),`;
+    }
+  }
+
   // if a model being used in both spread and non spread operation, we should only leverage the deserializer in non spread operation
   if (serializerFunctionName && !isSpreadBodyParameter(bodyParameter)) {
     return `\nbody: ${nullOrUndefinedPrefix}${serializerFunctionName}(${bodyNameExpression}),`;
@@ -886,21 +1141,32 @@ export function getParameterMap(
   param: SdkHttpParameter,
   optionalParamName: string = "options"
 ): string {
+  // Use lowercase for header names since HTTP headers are case-insensitive
+  const serializedName =
+    param.kind === "header"
+      ? getHeaderSerializedName(param)
+      : getPropertySerializedName(param);
+
   if (isConstant(param.type)) {
-    return `"${param.name}": ${getConstantValue(param.type)}`;
+    return `"${serializedName}": ${getConstantValue(param.type)}`;
   }
 
   if (hasCollectionFormatInfo(param.kind, (param as any).collectionFormat)) {
-    return getCollectionFormatForParam(context, param, optionalParamName);
+    return getCollectionFormatForParam(
+      context,
+      param,
+      optionalParamName,
+      serializedName
+    );
   }
 
   // if the parameter or property is optional, we don't need to handle the default value
   if (isOptional(param)) {
-    return getOptional(context, param, optionalParamName);
+    return getOptional(context, param, optionalParamName, serializedName);
   }
 
   if (isRequired(param)) {
-    return getRequired(context, param);
+    return getRequired(context, param, serializedName);
   }
 
   reportDiagnostic(context.program, {
@@ -919,9 +1185,9 @@ export function getParameterMap(
 function getCollectionFormatForParam(
   context: SdkContext,
   param: SdkHttpParameter,
-  optionalParamName: string = "options"
+  optionalParamName: string = "options",
+  serializedName: string
 ) {
-  const serializedName = getPropertySerializedName(param);
   const format = (param as any).collectionFormat;
   return `"${serializedName}": ${serializeRequestValue(
     context,
@@ -965,8 +1231,11 @@ function isRequired(param: SdkHttpParameter) {
   return !param.optional;
 }
 
-function getRequired(context: SdkContext, param: SdkHttpParameter) {
-  const serializedName = getPropertySerializedName(param);
+function getRequired(
+  context: SdkContext,
+  param: SdkHttpParameter,
+  serializedName: string
+) {
   const clientValue = `${param.onClient ? "context." : ""}${param.name}`;
   if (param.type.kind === "model") {
     const propertiesStr = getRequestModelMapping(
@@ -1005,9 +1274,9 @@ function isOptional(param: SdkHttpParameter) {
 function getOptional(
   context: SdkContext,
   param: SdkHttpParameter,
-  optionalParamName: string
+  optionalParamName: string,
+  serializedName: string
 ) {
-  const serializedName = getPropertySerializedName(param);
   const paramName = `${param.onClient ? "context." : `${optionalParamName}?.`}${param.name}`;
   if (param.type.kind === "model") {
     const propertiesStr = getRequestModelMapping(
@@ -1355,6 +1624,14 @@ function getPropertySerializedName(
       ? property.serializationOptions.json?.name
       : property.serializedName) ?? property.name
   );
+}
+
+/**
+ * Get the serialized name for a header parameter, normalized to lowercase.
+ * HTTP headers are case-insensitive, so we normalize to lowercase for consistency.
+ */
+function getHeaderSerializedName(param: SdkHttpParameter) {
+  return getPropertySerializedName(param).toLowerCase();
 }
 
 /**
@@ -1772,9 +2049,13 @@ export function getPropertyFullName(
   property: SdkHttpParameter | SdkModelPropertyType,
   propertyPath?: string
 ) {
-  const normalizedPropertyName = normalizeModelPropertyName(context, property)
-    .replace(/^"/g, "")
-    .replace(/"$/g, "");
+  const normalizedPropertyName =
+    propertyPath === ""
+      ? normalizeName(property.name, NameType.Parameter, true)
+      : normalizeModelPropertyName(context, property)
+          .replace(/^"/g, "")
+          .replace(/"$/g, "");
+
   let fullName = normalizedPropertyName;
   if (propertyPath === "" && property.optional) {
     fullName = `options?.${normalizedPropertyName}`;
@@ -1791,8 +2072,18 @@ export function getPropertyFullName(
 export function getExpectedStatuses(operation: ServiceOperation): string {
   let statusCodes = operation.operation.responses.map((x) => x.statusCodes);
   // LROs may call the same path but with GET to get the operation status.
-  if (isLroOnlyOperation(operation) && operation.operation.verb !== "get") {
-    statusCodes = Array.from(new Set([...statusCodes, 200, 201, 202]));
+  if (
+    (isLroOnlyOperation(operation) || isLroAndPagingOperation(operation)) &&
+    operation.operation.verb !== "get"
+  ) {
+    // DELETE: Add 200, 202 for polling
+    // POST/PUT/PATCH: Add 200, 201, 202 for polling
+    const verb = operation.operation.verb.toLowerCase();
+    if (verb === "delete") {
+      statusCodes = Array.from(new Set([...statusCodes, 200, 202]));
+    } else {
+      statusCodes = Array.from(new Set([...statusCodes, 200, 201, 202]));
+    }
   }
 
   return `[${statusCodes.map((x) => `"${x}"`).join(", ")}]`;
