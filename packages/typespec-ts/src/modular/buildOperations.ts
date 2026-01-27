@@ -11,7 +11,8 @@ import {
   getOperationFunction,
   getOperationOptionsName,
   getSendPrivateFunction,
-  isLroOnlyOperation
+  isLroOnlyOperation,
+  isLroAndPagingOperation
 } from "./helpers/operationHelpers.js";
 
 import { OperationPathAndDeserDetails } from "./interfaces.js";
@@ -174,7 +175,7 @@ export function buildOperationOptions(
     hasQuestionToken: boolean;
     docs: string[];
   }[] = [];
-  if (isLroOnlyOperation(operation)) {
+  if (isLroOnlyOperation(operation) || isLroAndPagingOperation(operation)) {
     additionalOptions.push(lroOptions);
   }
   if (isDualFormat) {
