@@ -202,11 +202,12 @@ export async function createDpgContextTestHelper(
   // Determine the flavor - if "flavor" key exists in configs, use its value (even if undefined)
   // otherwise default to "azure"
   const flavor = "flavor" in configs ? configs["flavor"] : "azure";
-  
+
   // Calculate ignoreNullableOnOptional based on flavor if not explicitly provided
-  const ignoreNullableOnOptional = "ignoreNullableOnOptional" in configs
-    ? Boolean(configs["ignoreNullableOnOptional"])
-    : flavor === "azure";
+  const ignoreNullableOnOptional =
+    "ignoreNullableOnOptional" in configs
+      ? Boolean(configs["ignoreNullableOnOptional"])
+      : flavor === "azure";
 
   const sdkContext = {
     ...context,

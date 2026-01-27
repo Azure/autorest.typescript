@@ -104,7 +104,9 @@ describe("nullable optional properties", () => {
       flavor: "azure"
     });
     assert.ok(modelFile);
-    const interfaceText = modelFile.getInterfaceOrThrow("ComplexModel").getText();
+    const interfaceText = modelFile
+      .getInterfaceOrThrow("ComplexModel")
+      .getText();
     await assertEqualContent(
       interfaceText,
       `

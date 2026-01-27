@@ -348,7 +348,8 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
     "ignore-nullable-on-optional": {
       type: "boolean",
       nullable: true,
-      description: "If an optional property is also marked as nullable, it will be treated as just optional. Defaults to `true` for Azure services."
+      description:
+        "If an optional property is also marked as nullable, it will be treated as just optional. Defaults to `true` for Azure services."
     }
   },
   required: []
