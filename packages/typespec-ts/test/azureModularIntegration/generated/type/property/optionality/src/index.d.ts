@@ -225,7 +225,7 @@ export declare interface PlainDateOperations {
 }
 
 export declare interface PlainDateProperty {
-    property?: string;
+    property?: Date;
 }
 
 export declare interface PlainDatePutAllOptionalParams extends OperationOptions {

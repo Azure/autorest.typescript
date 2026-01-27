@@ -78,7 +78,7 @@ const NumericTypeKinds = [
   "decimal128"
 ];
 
-const DateTimeTypeKinds = ["plainDate", "plainTime"];
+const DateTimeTypeKinds = ["plainTime"];
 
 // This may be a good candidate to move to TCGC
 export function isNumericTypeKind(kind: string): boolean {

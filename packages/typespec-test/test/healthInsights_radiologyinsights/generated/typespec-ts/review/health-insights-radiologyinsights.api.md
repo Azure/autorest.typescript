@@ -347,7 +347,7 @@ export interface PatientDocument {
 
 // @public
 export interface PatientInfo {
-    birthDate?: string;
+    birthDate?: Date;
     clinicalInfo?: Resource[];
     sex?: PatientInfoSex;
 }
