@@ -199,23 +199,12 @@ export async function createDpgContextTestHelper(
     options: configs as any
   } as EmitContext);
 
-  // Determine the flavor - if "flavor" key exists in configs, use its value (even if undefined)
-  // otherwise default to "azure"
-  const flavor = "flavor" in configs ? configs["flavor"] : "azure";
-
-  // Calculate ignoreNullableOnOptional based on flavor if not explicitly provided
-  const ignoreNullableOnOptional =
-    "ignoreNullableOnOptional" in configs
-      ? Boolean(configs["ignoreNullableOnOptional"])
-      : flavor === "azure";
-
   const sdkContext = {
     ...context,
     program,
     rlcOptions: {
-      flavor: flavor as any,
+      flavor: "azure",
       enableModelNamespace,
-      ignoreNullableOnOptional,
       ...configs
     },
     emitterName: "@azure-tools/typespec-ts",

@@ -9,18 +9,17 @@ export function getNullableExpression(
   type: SdkNullableType,
   options: EmitTypeOptions = {}
 ): string {
-  // Check if we should ignore null for optional properties (Azure services default behavior)
-  const ignoreNullableOnOptional =
-    context.rlcOptions?.ignoreNullableOnOptional ?? false;
-  const isOptional = options.isOptional ?? false;
-
-  // If the property is optional and we should ignore nullable, just return the non-nullable type
-  if (ignoreNullableOnOptional && isOptional) {
-    return getTypeExpression(context, type.type, options);
-  }
-
   if (shouldEmitInline(type, options)) {
+    // Check if we should ignore null for optional properties
+    const ignoreNullableOnOptional =
+      context.rlcOptions?.ignoreNullableOnOptional ?? false;
+    const isOptional = options.isOptional ?? false;
+    
     const nonNullableType = getTypeExpression(context, type.type, options);
+    // If the property is optional and we should ignore nullable, just return the non-nullable type
+    if (ignoreNullableOnOptional && isOptional) {
+      return nonNullableType;
+    }
     return `(${nonNullableType}) | null`;
   } else {
     return resolveReference(type);

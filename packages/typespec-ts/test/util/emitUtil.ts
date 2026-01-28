@@ -417,6 +417,7 @@ export async function emitModularModelsFromTypeSpec(
   dpgContext.rlcOptions!.compatibilityMode = options["compatibility-mode"];
   dpgContext.rlcOptions!.experimentalExtensibleEnums =
     options["experimental-extensible-enums"];
+  dpgContext.rlcOptions!.ignoreNullableOnOptional = options["ignore-nullable-on-optional"] ?? true;
   const modularEmitterOptions = transformModularEmitterOptions(dpgContext, "", {
     casing: "camel"
   });
