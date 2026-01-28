@@ -115,11 +115,15 @@ export declare interface ModelPropertiesDictMethodsOptionalParams extends Operat
 }
 
 export declare interface ModelPropertiesOperations {
+    withList: (body: ModelWithList, options?: ModelPropertiesWithListOptionalParams) => Promise<void>;
     dictMethods: (body: DictMethods, options?: ModelPropertiesDictMethodsOptionalParams) => Promise<void>;
     sameAsModel: (body: SameAsModel, options?: ModelPropertiesSameAsModelOptionalParams) => Promise<void>;
 }
 
 export declare interface ModelPropertiesSameAsModelOptionalParams extends OperationOptions {
+}
+
+export declare interface ModelPropertiesWithListOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelsOperations {
@@ -255,6 +259,10 @@ export declare interface ModelsWithWithOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelsWithYieldOptionalParams extends OperationOptions {
+}
+
+export declare interface ModelWithList {
+    list: string;
 }
 
 export declare interface Not {
