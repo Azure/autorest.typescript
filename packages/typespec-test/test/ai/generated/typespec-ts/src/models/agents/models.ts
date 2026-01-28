@@ -1096,7 +1096,7 @@ export interface Agent {
    */
   topP: number | null;
   /** The response format of the tool calls used by this agent. */
-  responseFormat?: AgentsApiResponseFormatOption | null;
+  responseFormat?: AgentsApiResponseFormatOption;
   /** A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. */
   metadata: Record<string, string> | null;
 }
@@ -1192,9 +1192,9 @@ export interface ThreadMessageOptions {
    */
   content: string;
   /** A list of files attached to the message, and the tools they should be added to. */
-  attachments?: MessageAttachment[] | null;
+  attachments?: MessageAttachment[];
   /** A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. */
-  metadata?: Record<string, string> | null;
+  metadata?: Record<string, string>;
 }
 
 export function threadMessageOptionsSerializer(item: ThreadMessageOptions): any {
@@ -1691,7 +1691,7 @@ export interface TruncationObject {
    */
   type: TruncationStrategy;
   /** The number of most recent messages from the thread when constructing the context for the run. */
-  lastMessages?: number | null;
+  lastMessages?: number;
 }
 
 export function truncationObjectSerializer(item: TruncationObject): any {
@@ -1792,7 +1792,7 @@ export interface ThreadRun {
   /** The status of the agent thread run. */
   status: RunStatus;
   /** The details of the action required for the agent thread run to continue. */
-  requiredAction?: RequiredActionUnion | null;
+  requiredAction?: RequiredActionUnion;
   /** The last error, if any, encountered by this agent thread run. */
   lastError: RunError | null;
   /** The ID of the model to use. */
@@ -1818,9 +1818,9 @@ export interface ThreadRun {
   /** Usage statistics related to the run. This value will be `null` if the run is not in a terminal state (i.e. `in_progress`, `queued`, etc.). */
   usage: RunCompletionUsage | null;
   /** The sampling temperature used for this run. If not set, defaults to 1. */
-  temperature?: number | null;
+  temperature?: number;
   /** The nucleus sampling value used for this run. If not set, defaults to 1. */
-  topP?: number | null;
+  topP?: number;
   /** The maximum number of prompt tokens specified to have been used over the course of the run. */
   maxPromptTokens: number | null;
   /** The maximum number of completion tokens specified to have been used over the course of the run. */
@@ -1834,7 +1834,7 @@ export interface ThreadRun {
   /** A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. */
   metadata: Record<string, string> | null;
   /** Override the tools the agent can use for this run. This is useful for modifying the behavior on a per-run basis */
-  toolResources?: UpdateToolResourcesOptions | null;
+  toolResources?: UpdateToolResourcesOptions;
   /** Determines if tools can be executed in parallel within the run. */
   parallelToolCalls: boolean;
 }
@@ -2238,9 +2238,9 @@ export interface AgentThreadCreationOptions {
    * type of tool. For example, the `code_interpreter` tool requires a list of file IDs, while the `file_search` tool requires
    * a list of vector store IDs.
    */
-  toolResources?: ToolResources | null;
+  toolResources?: ToolResources;
   /** A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. */
-  metadata?: Record<string, string> | null;
+  metadata?: Record<string, string>;
 }
 
 export function agentThreadCreationOptionsSerializer(item: AgentThreadCreationOptions): any {
@@ -2286,7 +2286,7 @@ export interface RunStep {
   /** The Unix timestamp, in seconds, representing when this failed. */
   failedAt: Date | null;
   /** Usage statistics related to the run step. This value will be `null` while the run step's status is `in_progress`. */
-  usage?: RunStepCompletionUsage | null;
+  usage?: RunStepCompletionUsage;
   /** A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. */
   metadata: Record<string, string> | null;
 }
@@ -3045,7 +3045,7 @@ export interface VectorStore {
   /** Details on when this vector store expires */
   expiresAfter?: VectorStoreExpirationPolicy;
   /** The Unix timestamp (in seconds) for when the vector store will expire. */
-  expiresAt?: Date | null;
+  expiresAt?: Date;
   /** The Unix timestamp (in seconds) for when the vector store was last active. */
   lastActiveAt: Date | null;
   /** A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. */
@@ -3930,7 +3930,7 @@ export interface RunStepDeltaFunction {
   /** The arguments passed to the function as input. */
   arguments?: string;
   /** The output of the function, null if outputs have not yet been submitted. */
-  output?: string | null;
+  output?: string;
 }
 
 export function runStepDeltaFunctionDeserializer(item: any): RunStepDeltaFunction {
