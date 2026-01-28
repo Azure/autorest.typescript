@@ -2725,3 +2725,82 @@ export function baseSerializer(item: Base): any {
   return { foo: item["foo"] };
 }
 ```
+
+# only: should handle discriminator base model without subtypes
+
+## TypeSpec
+
+```tsp
+@doc("Describes the policy to be used for placement of a service.")
+@discriminator("type")
+model ServicePlacementPolicyDescription {
+  @doc("The type of placement policy.")
+  type: string;
+}
+
+@doc("The service resource properties.")
+model ServiceResourceProperties {
+  @doc("A list that describes the correlation of the service with other services.")
+  servicePlacementPolicies?: ServicePlacementPolicyDescription[];
+}
+
+#suppress "@azure-tools/typespec-azure-core/use-standard-operations" "for test"
+@route("/services")
+@post
+op createService(@body body: ServiceResourceProperties): ServiceResourceProperties;
+```
+
+## Models
+
+```ts models
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/** The service resource properties. */
+export interface ServiceResourceProperties {
+  /** A list that describes the correlation of the service with other services. */
+  servicePlacementPolicies?: ServicePlacementPolicyDescription[];
+}
+
+export function serviceResourcePropertiesSerializer(item: ServiceResourceProperties): any {
+  return {
+    servicePlacementPolicies: !item["servicePlacementPolicies"]
+      ? item["servicePlacementPolicies"]
+      : servicePlacementPolicyDescriptionArraySerializer(item["servicePlacementPolicies"]),
+  };
+}
+
+export function serviceResourcePropertiesDeserializer(item: any): ServiceResourceProperties {
+  return {
+    servicePlacementPolicies: !item["servicePlacementPolicies"]
+      ? item["servicePlacementPolicies"]
+      : servicePlacementPolicyDescriptionArrayDeserializer(item["servicePlacementPolicies"]),
+  };
+}
+
+export function servicePlacementPolicyDescriptionArraySerializer(
+  result: Array<ServicePlacementPolicyDescription>,
+): any[] {
+  return result.map((item) => {
+    return __PLACEHOLDER_o24_sserializer__(item);
+  });
+}
+
+export function servicePlacementPolicyDescriptionArrayDeserializer(
+  result: Array<ServicePlacementPolicyDescription>,
+): any[] {
+  return result.map((item) => {
+    return __PLACEHOLDER_o24_sdeserializer__(item);
+  });
+}
+
+/** Describes the policy to be used for placement of a service. */
+export interface ServicePlacementPolicyDescription {
+  /** The type of placement policy. */
+  /** The discriminator possible values: */
+  type: string;
+}
+```
