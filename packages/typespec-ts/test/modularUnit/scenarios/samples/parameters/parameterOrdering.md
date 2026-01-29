@@ -91,7 +91,7 @@ export function _verifySend(
   const path = expandUrlTemplate(
     "/device-location/location:verify{?api%2Dversion}",
     {
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2022-05-15-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

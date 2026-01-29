@@ -52,7 +52,7 @@ export function _listByDataProductSend(
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       dataProductName: dataProductName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-11-15",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -91,7 +91,7 @@ export function listByDataProduct(
     () => _listByDataProductSend(context, resourceGroupName, dataProductName, options),
     _listByDataProductDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "nextLink" },
+    { itemName: "value", nextLinkName: "nextLink", apiVersion: context.apiVersion ?? "2023-11-15" },
   );
 }
 
@@ -110,7 +110,7 @@ export function _generateStorageContainerSasTokenSend(
       resourceGroupName: resourceGroupName,
       dataProductName: dataProductName,
       dataTypeName: dataTypeName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-11-15",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -174,7 +174,7 @@ export function _deleteDataSend(
       resourceGroupName: resourceGroupName,
       dataProductName: dataProductName,
       dataTypeName: dataTypeName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-11-15",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -215,6 +215,7 @@ export function deleteData(
     getInitialResponse: () =>
       _deleteDataSend(context, resourceGroupName, dataProductName, dataTypeName, body, options),
     resourceLocationConfig: "location",
+    apiVersion: context.apiVersion ?? "2023-11-15",
   }) as PollerLike<OperationState<void>, void>;
 }
 
@@ -232,7 +233,7 @@ export function _$deleteSend(
       resourceGroupName: resourceGroupName,
       dataProductName: dataProductName,
       dataTypeName: dataTypeName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-11-15",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -271,6 +272,7 @@ export function $delete(
     getInitialResponse: () =>
       _$deleteSend(context, resourceGroupName, dataProductName, dataTypeName, options),
     resourceLocationConfig: "location",
+    apiVersion: context.apiVersion ?? "2023-11-15",
   }) as PollerLike<OperationState<void>, void>;
 }
 
@@ -289,7 +291,7 @@ export function _updateSend(
       resourceGroupName: resourceGroupName,
       dataProductName: dataProductName,
       dataTypeName: dataTypeName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-11-15",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -331,6 +333,7 @@ export function update(
     getInitialResponse: () =>
       _updateSend(context, resourceGroupName, dataProductName, dataTypeName, properties, options),
     resourceLocationConfig: "location",
+    apiVersion: context.apiVersion ?? "2023-11-15",
   }) as PollerLike<OperationState<DataType>, DataType>;
 }
 
@@ -348,7 +351,7 @@ export function _getSend(
       resourceGroupName: resourceGroupName,
       dataProductName: dataProductName,
       dataTypeName: dataTypeName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-11-15",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -400,7 +403,7 @@ export function _createSend(
       resourceGroupName: resourceGroupName,
       dataProductName: dataProductName,
       dataTypeName: dataTypeName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-11-15",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -442,5 +445,6 @@ export function create(
     getInitialResponse: () =>
       _createSend(context, resourceGroupName, dataProductName, dataTypeName, resource, options),
     resourceLocationConfig: "azure-async-operation",
+    apiVersion: context.apiVersion ?? "2023-11-15",
   }) as PollerLike<OperationState<DataType>, DataType>;
 }

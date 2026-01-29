@@ -208,7 +208,7 @@ export function _listNodeFilesSend(
     {
       poolId: poolId,
       nodeId: nodeId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
       "%24filter": options?.filter,
@@ -263,7 +263,11 @@ export function listNodeFiles(
     () => _listNodeFilesSend(context, poolId, nodeId, options),
     _listNodeFilesDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "odata.nextLink" },
+    {
+      itemName: "value",
+      nextLinkName: "odata.nextLink",
+      apiVersion: context.apiVersion ?? "2023-05-01.17.0",
+    },
   );
 }
 
@@ -280,7 +284,7 @@ export function _getNodeFilePropertiesSend(
       poolId: poolId,
       nodeId: nodeId,
       filePath: filePath,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -358,7 +362,7 @@ export function _getNodeFileSend(
       poolId: poolId,
       nodeId: nodeId,
       filePath: filePath,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -437,7 +441,7 @@ export function _deleteNodeFileSend(
       poolId: poolId,
       nodeId: nodeId,
       filePath: filePath,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
       recursive: options?.recursive,
     },
@@ -510,7 +514,6 @@ export function _listNodeExtensionsSend(
       allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
-  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
     .path(path)
     .get({
@@ -573,7 +576,7 @@ export function _getNodeExtensionSend(
       poolId: poolId,
       nodeId: nodeId,
       extensionName: extensionName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
       "%24select": !options?.select
         ? options?.select
@@ -639,7 +642,7 @@ export function _listNodesSend(
     "/pools/{poolId}/nodes{?api%2Dversion,maxresults,timeOut,%24filter,%24select}",
     {
       poolId: poolId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
       "%24filter": options?.filter,
@@ -697,7 +700,11 @@ export function listNodes(
     () => _listNodesSend(context, poolId, options),
     _listNodesDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "odata.nextLink" },
+    {
+      itemName: "value",
+      nextLinkName: "odata.nextLink",
+      apiVersion: context.apiVersion ?? "2023-05-01.17.0",
+    },
   );
 }
 
@@ -713,7 +720,7 @@ export function _uploadNodeLogsSend(
     {
       poolId: poolId,
       nodeId: nodeId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -783,7 +790,7 @@ export function _getNodeRemoteDesktopFileSend(
     {
       poolId: poolId,
       nodeId: nodeId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -851,7 +858,7 @@ export function _getNodeRemoteLoginSettingsSend(
     {
       poolId: poolId,
       nodeId: nodeId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -919,7 +926,7 @@ export function _enableNodeSchedulingSend(
     {
       poolId: poolId,
       nodeId: nodeId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -983,7 +990,7 @@ export function _disableNodeSchedulingSend(
     {
       poolId: poolId,
       nodeId: nodeId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -1051,7 +1058,7 @@ export function _reimageNodeSend(
     {
       poolId: poolId,
       nodeId: nodeId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -1116,7 +1123,7 @@ export function _rebootNodeSend(
     {
       poolId: poolId,
       nodeId: nodeId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -1177,7 +1184,7 @@ export function _getNodeSend(
     {
       poolId: poolId,
       nodeId: nodeId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
       "%24select": !options?.select
         ? options?.select
@@ -1245,7 +1252,7 @@ export function _replaceNodeUserSend(
       poolId: poolId,
       nodeId: nodeId,
       userName: userName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -1315,7 +1322,7 @@ export function _deleteNodeUserSend(
       poolId: poolId,
       nodeId: nodeId,
       userName: userName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -1379,7 +1386,7 @@ export function _createNodeUserSend(
     {
       poolId: poolId,
       nodeId: nodeId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -1444,7 +1451,7 @@ export function _listTaskFilesSend(
     {
       jobId: jobId,
       taskId: taskId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
       "%24filter": options?.filter,
@@ -1499,7 +1506,11 @@ export function listTaskFiles(
     () => _listTaskFilesSend(context, jobId, taskId, options),
     _listTaskFilesDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "odata.nextLink" },
+    {
+      itemName: "value",
+      nextLinkName: "odata.nextLink",
+      apiVersion: context.apiVersion ?? "2023-05-01.17.0",
+    },
   );
 }
 
@@ -1516,7 +1527,7 @@ export function _getTaskFilePropertiesSend(
       jobId: jobId,
       taskId: taskId,
       filePath: filePath,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -1594,7 +1605,7 @@ export function _getTaskFileSend(
       jobId: jobId,
       taskId: taskId,
       filePath: filePath,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -1673,7 +1684,7 @@ export function _deleteTaskFileSend(
       jobId: jobId,
       taskId: taskId,
       filePath: filePath,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
       recursive: options?.recursive,
     },
@@ -1734,7 +1745,7 @@ export function _reactivateTaskSend(
     {
       jobId: jobId,
       taskId: taskId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -1817,7 +1828,7 @@ export function _terminateTaskSend(
     {
       jobId: jobId,
       taskId: taskId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -1896,7 +1907,7 @@ export function _listSubTasksSend(
     {
       jobId: jobId,
       taskId: taskId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
       "%24select": !options?.select
         ? options?.select
@@ -1964,7 +1975,7 @@ export function _replaceTaskSend(
     {
       jobId: jobId,
       taskId: taskId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -2042,7 +2053,7 @@ export function _getTaskSend(
     {
       jobId: jobId,
       taskId: taskId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
       "%24select": !options?.select
         ? options?.select
@@ -2132,7 +2143,7 @@ export function _deleteTaskSend(
     {
       jobId: jobId,
       taskId: taskId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -2212,7 +2223,7 @@ export function _createTaskCollectionSend(
     "/jobs/{jobId}/addtaskcollection{?api%2Dversion,timeOut}",
     {
       jobId: jobId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -2289,7 +2300,7 @@ export function _listTasksSend(
     "/jobs/{jobId}/tasks{?api%2Dversion,maxresults,timeOut,%24filter,%24select,%24expand}",
     {
       jobId: jobId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
       "%24filter": options?.filter,
@@ -2356,7 +2367,11 @@ export function listTasks(
     () => _listTasksSend(context, jobId, options),
     _listTasksDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "odata.nextLink" },
+    {
+      itemName: "value",
+      nextLinkName: "odata.nextLink",
+      apiVersion: context.apiVersion ?? "2023-05-01.17.0",
+    },
   );
 }
 
@@ -2370,7 +2385,7 @@ export function _createTaskSend(
     "/jobs/{jobId}/tasks{?api%2Dversion,timeOut}",
     {
       jobId: jobId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -2431,7 +2446,7 @@ export function _listJobSchedulesSend(
   const path = expandUrlTemplate(
     "/jobschedules{?api%2Dversion,maxresults,timeOut,%24filter,%24select,%24expand}",
     {
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
       "%24filter": options?.filter,
@@ -2493,7 +2508,11 @@ export function listJobSchedules(
     () => _listJobSchedulesSend(context, options),
     _listJobSchedulesDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "odata.nextLink" },
+    {
+      itemName: "value",
+      nextLinkName: "odata.nextLink",
+      apiVersion: context.apiVersion ?? "2023-05-01.17.0",
+    },
   );
 }
 
@@ -2505,7 +2524,7 @@ export function _createJobScheduleSend(
   const path = expandUrlTemplate(
     "/jobschedules{?api%2Dversion,timeOut}",
     {
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -2563,7 +2582,7 @@ export function _terminateJobScheduleSend(
     "/jobschedules/{jobScheduleId}/terminate{?api%2Dversion,timeOut}",
     {
       jobScheduleId: jobScheduleId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -2637,7 +2656,7 @@ export function _enableJobScheduleSend(
     "/jobschedules/{jobScheduleId}/enable{?api%2Dversion,timeOut}",
     {
       jobScheduleId: jobScheduleId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -2709,7 +2728,7 @@ export function _disableJobScheduleSend(
     "/jobschedules/{jobScheduleId}/disable{?api%2Dversion,timeOut}",
     {
       jobScheduleId: jobScheduleId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -2782,7 +2801,7 @@ export function _replaceJobScheduleSend(
     "/jobschedules/{jobScheduleId}{?api%2Dversion,timeOut}",
     {
       jobScheduleId: jobScheduleId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -2864,7 +2883,7 @@ export function _updateJobScheduleSend(
     "/jobschedules/{jobScheduleId}{?api%2Dversion,timeOut}",
     {
       jobScheduleId: jobScheduleId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -2945,7 +2964,7 @@ export function _getJobScheduleSend(
     "/jobschedules/{jobScheduleId}{?api%2Dversion,timeOut,%24select,%24expand}",
     {
       jobScheduleId: jobScheduleId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
       "%24select": !options?.select
         ? options?.select
@@ -3030,7 +3049,7 @@ export function _deleteJobScheduleSend(
     "/jobschedules/{jobScheduleId}{?api%2Dversion,timeOut}",
     {
       jobScheduleId: jobScheduleId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -3108,7 +3127,7 @@ export function _jobScheduleExistsSend(
     "/jobschedules/{jobScheduleId}{?api%2Dversion,timeOut}",
     {
       jobScheduleId: jobScheduleId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -3182,7 +3201,7 @@ export function _getCertificateSend(
     {
       thumbprintAlgorithm: thumbprintAlgorithm,
       thumbprint: thumbprint,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
       "%24select": !options?.select
         ? options?.select
@@ -3249,7 +3268,7 @@ export function _deleteCertificateSend(
     {
       thumbprintAlgorithm: thumbprintAlgorithm,
       thumbprint: thumbprint,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -3318,7 +3337,7 @@ export function _cancelCertificateDeletionSend(
     {
       thumbprintAlgorithm: thumbprintAlgorithm,
       thumbprint: thumbprint,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -3388,7 +3407,7 @@ export function _listCertificatesSend(
   const path = expandUrlTemplate(
     "/certificates{?api%2Dversion,maxresults,timeOut,%24filter,%24select}",
     {
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
       "%24filter": options?.filter,
@@ -3445,7 +3464,11 @@ export function listCertificates(
     () => _listCertificatesSend(context, options),
     _listCertificatesDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "odata.nextLink" },
+    {
+      itemName: "value",
+      nextLinkName: "odata.nextLink",
+      apiVersion: context.apiVersion ?? "2023-05-01.17.0",
+    },
   );
 }
 
@@ -3457,7 +3480,7 @@ export function _createCertificateSend(
   const path = expandUrlTemplate(
     "/certificates{?api%2Dversion,timeOut}",
     {
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -3515,7 +3538,7 @@ export function _getJobTaskCountsSend(
     "/jobs/{jobId}/taskcounts{?api%2Dversion,timeOut}",
     {
       jobId: jobId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -3592,7 +3615,6 @@ export function _listJobPreparationAndReleaseTaskStatusSend(
       allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
-  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
     .path(path)
     .get({
@@ -3657,7 +3679,7 @@ export function _listJobsFromScheduleSend(
     "/jobschedules/{jobScheduleId}/jobs{?api%2Dversion,maxresults,timeOut,%24filter,%24select,%24expand}",
     {
       jobScheduleId: jobScheduleId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
       "%24filter": options?.filter,
@@ -3720,7 +3742,11 @@ export function listJobsFromSchedule(
     () => _listJobsFromScheduleSend(context, jobScheduleId, options),
     _listJobsFromScheduleDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "odata.nextLink" },
+    {
+      itemName: "value",
+      nextLinkName: "odata.nextLink",
+      apiVersion: context.apiVersion ?? "2023-05-01.17.0",
+    },
   );
 }
 
@@ -3731,7 +3757,7 @@ export function _listJobsSend(
   const path = expandUrlTemplate(
     "/jobs{?api%2Dversion,maxresults,timeOut,%24filter,%24select,%24expand}",
     {
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
       "%24filter": options?.filter,
@@ -3793,7 +3819,11 @@ export function listJobs(
     () => _listJobsSend(context, options),
     _listJobsDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "odata.nextLink" },
+    {
+      itemName: "value",
+      nextLinkName: "odata.nextLink",
+      apiVersion: context.apiVersion ?? "2023-05-01.17.0",
+    },
   );
 }
 
@@ -3805,7 +3835,7 @@ export function _createJobSend(
   const path = expandUrlTemplate(
     "/jobs{?api%2Dversion,timeOut}",
     {
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -3873,7 +3903,7 @@ export function _terminateJobSend(
     "/jobs/{jobId}/terminate{?api%2Dversion,timeOut}",
     {
       jobId: jobId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -3956,7 +3986,7 @@ export function _enableJobSend(
     "/jobs/{jobId}/enable{?api%2Dversion,timeOut}",
     {
       jobId: jobId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -4036,7 +4066,7 @@ export function _disableJobSend(
     "/jobs/{jobId}/disable{?api%2Dversion,timeOut}",
     {
       jobId: jobId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -4121,7 +4151,7 @@ export function _replaceJobSend(
     "/jobs/{jobId}{?api%2Dversion,timeOut}",
     {
       jobId: jobId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -4201,7 +4231,7 @@ export function _updateJobSend(
     "/jobs/{jobId}{?api%2Dversion,timeOut}",
     {
       jobId: jobId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -4280,7 +4310,7 @@ export function _getJobSend(
     "/jobs/{jobId}{?api%2Dversion,timeOut,%24select,%24expand}",
     {
       jobId: jobId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
       "%24select": !options?.select
         ? options?.select
@@ -4363,7 +4393,7 @@ export function _deleteJobSend(
     "/jobs/{jobId}{?api%2Dversion,timeOut}",
     {
       jobId: jobId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -4442,7 +4472,7 @@ export function _listPoolNodeCountsSend(
   const path = expandUrlTemplate(
     "/nodecounts{?api%2Dversion,maxresults,timeOut,%24filter}",
     {
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
       "%24filter": options?.filter,
@@ -4498,7 +4528,11 @@ export function listPoolNodeCounts(
     () => _listPoolNodeCountsSend(context, options),
     _listPoolNodeCountsDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "odata.nextLink" },
+    {
+      itemName: "value",
+      nextLinkName: "odata.nextLink",
+      apiVersion: context.apiVersion ?? "2023-05-01.17.0",
+    },
   );
 }
 
@@ -4517,7 +4551,6 @@ export function _listSupportedImagesSend(
       allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
-  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
     .path(path)
     .get({
@@ -4575,7 +4608,7 @@ export function _removeNodesSend(
     "/pools/{poolId}/removenodes{?api%2Dversion,timeOut}",
     {
       poolId: poolId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -4655,7 +4688,7 @@ export function _replacePoolPropertiesSend(
     "/pools/{poolId}/updateproperties{?api%2Dversion,timeOut}",
     {
       poolId: poolId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -4720,7 +4753,7 @@ export function _stopPoolResizeSend(
     "/pools/{poolId}/stopresize{?api%2Dversion,timeOut}",
     {
       poolId: poolId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -4801,7 +4834,7 @@ export function _resizePoolSend(
     "/pools/{poolId}/resize{?api%2Dversion,timeOut}",
     {
       poolId: poolId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -4885,7 +4918,7 @@ export function _evaluatePoolAutoScaleSend(
     "/pools/{poolId}/evaluateautoscale{?api%2Dversion,timeOut}",
     {
       poolId: poolId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -4952,7 +4985,7 @@ export function _enablePoolAutoScaleSend(
     "/pools/{poolId}/enableautoscale{?api%2Dversion,timeOut}",
     {
       poolId: poolId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -5036,7 +5069,7 @@ export function _disablePoolAutoScaleSend(
     "/pools/{poolId}/disableautoscale{?api%2Dversion,timeOut}",
     {
       poolId: poolId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -5095,7 +5128,7 @@ export function _updatePoolSend(
     "/pools/{poolId}{?api%2Dversion,timeOut}",
     {
       poolId: poolId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -5174,7 +5207,7 @@ export function _getPoolSend(
     "/pools/{poolId}{?api%2Dversion,timeOut,%24select,%24expand}",
     {
       poolId: poolId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
       "%24select": !options?.select
         ? options?.select
@@ -5257,7 +5290,7 @@ export function _poolExistsSend(
     "/pools/{poolId}{?api%2Dversion,timeOut}",
     {
       poolId: poolId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -5329,7 +5362,7 @@ export function _deletePoolSend(
     "/pools/{poolId}{?api%2Dversion,timeOut}",
     {
       poolId: poolId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -5412,7 +5445,7 @@ export function _listPoolsSend(
   const path = expandUrlTemplate(
     "/pools{?api%2Dversion,maxresults,timeOut,%24filter,%24select,%24expand}",
     {
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
       "%24filter": options?.filter,
@@ -5474,7 +5507,11 @@ export function listPools(
     () => _listPoolsSend(context, options),
     _listPoolsDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "odata.nextLink" },
+    {
+      itemName: "value",
+      nextLinkName: "odata.nextLink",
+      apiVersion: context.apiVersion ?? "2023-05-01.17.0",
+    },
   );
 }
 
@@ -5486,7 +5523,7 @@ export function _createPoolSend(
   const path = expandUrlTemplate(
     "/pools{?api%2Dversion,timeOut}",
     {
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -5546,7 +5583,7 @@ export function _listPoolUsageMetricsSend(
   const path = expandUrlTemplate(
     "/poolusagemetrics{?api%2Dversion,maxresults,timeOut,starttime,endtime,%24filter}",
     {
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
       starttime: !options?.starttime ? options?.starttime : options?.starttime.toISOString(),
@@ -5607,7 +5644,11 @@ export function listPoolUsageMetrics(
     () => _listPoolUsageMetricsSend(context, options),
     _listPoolUsageMetricsDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "odata.nextLink" },
+    {
+      itemName: "value",
+      nextLinkName: "odata.nextLink",
+      apiVersion: context.apiVersion ?? "2023-05-01.17.0",
+    },
   );
 }
 
@@ -5620,7 +5661,7 @@ export function _getApplicationSend(
     "/applications/{applicationId}{?api%2Dversion,timeOut}",
     {
       applicationId: applicationId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -5683,7 +5724,7 @@ export function _listApplicationsSend(
   const path = expandUrlTemplate(
     "/applications{?api%2Dversion,maxresults,timeOut}",
     {
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-05-01.17.0",
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
     },
@@ -5740,6 +5781,10 @@ export function listApplications(
     () => _listApplicationsSend(context, options),
     _listApplicationsDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "odata.nextLink" },
+    {
+      itemName: "value",
+      nextLinkName: "odata.nextLink",
+      apiVersion: context.apiVersion ?? "2023-05-01.17.0",
+    },
   );
 }

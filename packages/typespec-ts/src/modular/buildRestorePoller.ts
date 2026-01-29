@@ -111,6 +111,7 @@ export function buildRestorePoller(
           \`Please ensure the operation is in this client! We can't find its deserializeHelper for \${sourceOperation?.name}.\`
         );
       }
+      const apiVersion = getApiVersionFromUrl(initialRequestUrl);
       return ${resolveReference(PollingHelpers.GetLongRunningPoller)}(
         (client as any)["_client"] ?? client,
         deserializeHelper as (result: TResponse) => Promise<TResult>,
@@ -120,7 +121,8 @@ export function buildRestorePoller(
           abortSignal: options?.abortSignal,
           resourceLocationConfig,
           restoreFrom: serializedState,
-          initialRequestUrl
+          initialRequestUrl,
+          apiVersion,
         }
       );
     }
@@ -209,7 +211,12 @@ export function buildRestorePoller(
     function getPathFromMapKey(mapKey: string): string {
       const pathStart = mapKey.indexOf("/");
       return mapKey.slice(pathStart);
-    }      
+    }
+    
+    function getApiVersionFromUrl(urlStr: string): string | undefined {
+      const url = new URL(urlStr);
+      return url.searchParams.get("api-version") ?? undefined;
+    }
   `;
   restorePollerFile.addStatements(restorePollerHelperContent);
 }

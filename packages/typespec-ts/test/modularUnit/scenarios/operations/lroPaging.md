@@ -307,7 +307,7 @@ export function _suspendSend(
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       name: name,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-12-01",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -350,6 +350,7 @@ export function suspend(
       abortSignal: options?.abortSignal,
       getInitialResponse: () => _suspendSend(context, resourceGroupName, name, options),
       resourceLocationConfig: "location",
+      apiVersion: context.apiVersion ?? "2023-12-01",
     },
   ) as PollerLike<OperationState<PathUncheckedResponse>, PathUncheckedResponse>;
 
@@ -358,7 +359,7 @@ export function suspend(
     async () => await initialPagingPoller,
     _suspendDeserialize,
     ["200", "201", "202"],
-    { itemName: "value", nextLinkName: "nextLink" },
+    { itemName: "value", nextLinkName: "nextLink", apiVersion: context.apiVersion ?? "2023-12-01" },
   );
 }
 ```

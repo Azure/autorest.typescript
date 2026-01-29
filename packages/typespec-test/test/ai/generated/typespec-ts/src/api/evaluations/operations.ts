@@ -45,7 +45,7 @@ export function _disableScheduleSend(
     "/evaluations/schedules/{name}/disable{?apiVersion}",
     {
       name: name,
-      apiVersion: context.apiVersion,
+      apiVersion: context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -80,7 +80,7 @@ export function _listScheduleSend(
   const path = expandUrlTemplate(
     "/evaluations/schedules{?api%2Dversion,top,skip,maxpagesize}",
     {
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
       top: options?.top,
       skip: options?.skip,
       maxpagesize: options?.maxpagesize,
@@ -124,7 +124,11 @@ export function listSchedule(
     () => _listScheduleSend(context, options),
     _listScheduleDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "nextLink" },
+    {
+      itemName: "value",
+      nextLinkName: "nextLink",
+      apiVersion: context.apiVersion ?? "2024-07-01-preview",
+    },
   );
 }
 
@@ -138,7 +142,7 @@ export function _createOrReplaceScheduleSend(
     "/evaluations/schedules/{name}{?api%2Dversion}",
     {
       name: name,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -191,7 +195,7 @@ export function _getScheduleSend(
     "/evaluations/schedules/{name}{?api%2Dversion}",
     {
       name: name,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -242,7 +246,7 @@ export function _updateSend(
     "/evaluations/runs/{id}{?api%2Dversion}",
     {
       id: id,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -291,7 +295,7 @@ export function _listSend(
   const path = expandUrlTemplate(
     "/evaluations/runs{?api%2Dversion,top,skip,maxpagesize}",
     {
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
       top: options?.top,
       skip: options?.skip,
       maxpagesize: options?.maxpagesize,
@@ -333,7 +337,11 @@ export function list(
     () => _listSend(context, options),
     _listDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "nextLink" },
+    {
+      itemName: "value",
+      nextLinkName: "nextLink",
+      apiVersion: context.apiVersion ?? "2024-07-01-preview",
+    },
   );
 }
 
@@ -345,7 +353,7 @@ export function _createSend(
   const path = expandUrlTemplate(
     "/evaluations/runs:run{?apiVersion}",
     {
-      apiVersion: context.apiVersion,
+      apiVersion: context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -389,7 +397,7 @@ export function _getSend(
     "/evaluations/runs/{id}{?api%2Dversion}",
     {
       id: id,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

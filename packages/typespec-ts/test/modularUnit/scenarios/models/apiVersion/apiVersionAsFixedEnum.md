@@ -67,12 +67,14 @@ export function _fooSend(
   context: Client,
   options: FooOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
     .path("/")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { "api-version": context.apiVersion, ...options.requestOptions?.headers },
+      headers: {
+        "api-version": context.apiVersion ?? "2021-10-01-preview",
+        ...options.requestOptions?.headers,
+      },
     });
 }
 
