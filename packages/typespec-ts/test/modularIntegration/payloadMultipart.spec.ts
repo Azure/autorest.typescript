@@ -29,6 +29,41 @@ describe("Multipart Client", () => {
     });
   });
 
+  it("multipart request with wire name", async () => {
+    await client.formData.withWireName({
+      identifier: "123",
+      image: {
+        contents: fs.createReadStream(imgPath),
+        filename: "test.jpg"
+      }
+    });
+  });
+
+  it("optional parts - id only", async () => {
+    await client.formData.optionalParts({
+      id: "123"
+    });
+  });
+
+  it("optional parts - profileImage only", async () => {
+    await client.formData.optionalParts({
+      profileImage: {
+        contents: fs.createReadStream(imgPath),
+        filename: "test.jpg"
+      }
+    });
+  });
+
+  it("optional parts - both id and profileImage", async () => {
+    await client.formData.optionalParts({
+      id: "123",
+      profileImage: {
+        contents: fs.createReadStream(imgPath),
+        filename: "test.jpg"
+      }
+    });
+  });
+
   // TODO not supported
   it.skip("anonymous model", async () => {
     // @ts-ignore - not supported yet
