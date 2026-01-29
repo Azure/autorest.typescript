@@ -115,24 +115,18 @@ export function buildPagedAsyncIterator<
   const apiVersion = options.apiVersion;
   const pagedResult: PagedResult<TElement, TPage, TPageSettings> = {
     getPage: async (pageLink?: string) => {
-      const result =
-        pageLink === undefined
-          ? await getInitialResponse()
-          : nextLinkMethod === "POST"
-            ? await client
-                .pathUnchecked(
-                  apiVersion
-                    ? addApiVersionToUrl(pageLink, apiVersion)
-                    : pageLink
-                )
-                .post()
-            : await client
-                .pathUnchecked(
-                  apiVersion
-                    ? addApiVersionToUrl(pageLink, apiVersion)
-                    : pageLink
-                )
-                .get();
+      let result;
+      if (pageLink === undefined) {
+        result = await getInitialResponse();
+      } else {
+        const resolvedPageLink = apiVersion
+          ? addApiVersionToUrl(pageLink, apiVersion)
+          : pageLink;
+        result =
+          nextLinkMethod === "POST"
+            ? await client.pathUnchecked(resolvedPageLink).post()
+            : await client.pathUnchecked(resolvedPageLink).get();
+      }
       checkPagingRequest(result, expectedStatuses);
       const results = await processResponseBody(result as TResponse);
       const nextLink = getNextLink(results, nextLinkName);
