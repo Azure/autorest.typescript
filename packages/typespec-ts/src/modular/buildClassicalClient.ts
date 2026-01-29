@@ -37,7 +37,10 @@ import {
 } from "../utils/operationUtil.js";
 import { useContext } from "../contextManager.js";
 import { refkey } from "../framework/refkey.js";
-import { SimplePollerHelpers } from "./static-helpers-metadata.js";
+import {
+  PagingHelpers,
+  SimplePollerHelpers
+} from "./static-helpers-metadata.js";
 import { AzurePollingDependencies } from "./external-dependencies.js";
 
 export function buildClassicalClient(
@@ -253,7 +256,11 @@ function generateMethod(
   });
 
   // add LRO helper methods if applicable
-  if (context.rlcOptions?.compatibilityLro && declaration?.isLro) {
+  if (
+    context.rlcOptions?.compatibilityLro &&
+    declaration?.isLro &&
+    !declaration?.isLroPaging
+  ) {
     const operationStateReference = resolveReference(
       AzurePollingDependencies.OperationState
     );
@@ -290,6 +297,26 @@ function generateMethod(
       returnType: `Promise<${returnType}>`,
       parameters: methodParams,
       statements: `return await ${declarationRefKey}(${methodParamStr});`
+    });
+  } // For LRO+Paging operations, use different return types and implementation
+  else if (context.rlcOptions?.compatibilityLro && declaration?.isLroPaging) {
+    const itemType = declaration?.lropagingFinalReturnType ?? "any";
+    const pagedAsyncIterableIteratorReference = resolveReference(
+      PagingHelpers.PagedAsyncIterableIterator
+    );
+    const beginListAndWaitName = normalizeName(
+      `beginList_${methodName}_andWait`,
+      NameType.Method
+    );
+    // add begin and wait method for LRO+Paging - directly returns paged iterator
+    res.push({
+      isAsync: false,
+      docs: [`@deprecated use ${methodName} instead`],
+      name: beginListAndWaitName,
+      kind: StructureKind.Method,
+      returnType: `${pagedAsyncIterableIteratorReference}<${itemType}>`,
+      parameters: methodParams,
+      statements: `return ${declarationRefKey}(${methodParamStr});`
     });
   }
 

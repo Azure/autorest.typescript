@@ -18,7 +18,10 @@ import { join } from "path/posix";
 import { useContext } from "../contextManager.js";
 import { reportDiagnostic } from "../lib.js";
 import { NoTarget } from "@typespec/compiler";
-import { isLroOnlyOperation } from "./helpers/operationHelpers.js";
+import {
+  isLroAndPagingOperation,
+  isLroOnlyOperation
+} from "./helpers/operationHelpers.js";
 import { SdkContext } from "../utils/interfaces.js";
 
 export function buildRootIndex(
@@ -212,7 +215,13 @@ function exportSimplePollerLike(
   const hasLro = Array.from(methodMap.values()).some((operations) => {
     return operations.some(isLroOnlyOperation);
   });
+  const hasLroPaging = Array.from(methodMap.values()).some((operations) => {
+    return operations.some(isLroAndPagingOperation);
+  });
   if (!hasLro || context.rlcOptions?.compatibilityLro !== true) {
+    return;
+  }
+  if (!hasLroPaging || context.rlcOptions?.compatibilityLro !== true) {
     return;
   }
   const helperFile = project.getSourceFile(
