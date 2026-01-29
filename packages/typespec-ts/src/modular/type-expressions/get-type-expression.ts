@@ -102,7 +102,6 @@ export function getTypeExpression(
     case "union":
       return getUnionExpression(context, type, options);
     case "utcDateTime":
-      return "Date";
     case "plainDate":
       return "Date";
 
