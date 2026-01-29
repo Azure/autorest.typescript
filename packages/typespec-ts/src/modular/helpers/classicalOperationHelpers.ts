@@ -19,7 +19,10 @@ import { ServiceOperation } from "../../utils/operationUtil.js";
 import { refkey } from "../../framework/refkey.js";
 import { resolveReference } from "../../framework/reference.js";
 import { addDeclaration } from "../../framework/declaration.js";
-import { SimplePollerHelpers } from "../static-helpers-metadata.js";
+import {
+  SimplePollerHelpers,
+  PagingHelpers
+} from "../static-helpers-metadata.js";
 import { AzurePollingDependencies } from "../external-dependencies.js";
 
 interface OperationDeclarationInfo {
@@ -33,6 +36,10 @@ interface OperationDeclarationInfo {
   isLro?: boolean;
   // only set when isLro is true
   lroFinalReturnType?: string;
+  // set to true for LRO+Paging operations
+  isLroPaging?: boolean;
+  // only set when isLroPaging is true
+  lropagingFinalReturnType?: string;
 }
 
 export function getClassicalOperation(
@@ -82,7 +89,9 @@ export function getClassicalOperation(
         oriName: operation.oriName,
         declarationRefKey: resolveReference(refkey(operation, "api")),
         isLro: declaration.isLro,
-        lroFinalReturnType: declaration.lroFinalReturnType
+        lroFinalReturnType: declaration.lroFinalReturnType,
+        isLroPaging: declaration.isLroPaging,
+        lropagingFinalReturnType: declaration.lropagingFinalReturnType
       });
       return declaration;
     });
@@ -146,29 +155,48 @@ export function getClassicalOperation(
         docs: d.docs
       });
       // add LRO helper methods if applicable
-      if (dpgContext.rlcOptions?.compatibilityLro && operationInfo?.isLro) {
+      if (
+        dpgContext.rlcOptions?.compatibilityLro &&
+        (operationInfo?.isLro || operationInfo?.isLroPaging)
+      ) {
         const operationStateReference = resolveReference(
           AzurePollingDependencies.OperationState
         );
         const simplePollerLikeReference = resolveReference(
           SimplePollerHelpers.SimplePollerLike
         );
-        const returnType = operationInfo?.lroFinalReturnType ?? "void";
         const beginName = `begin_${getClassicalMethodName(d)}`;
         const beginAndWaitName = `${beginName}_andWait`;
 
-        properties.push({
-          kind: StructureKind.PropertySignature,
-          name: `${normalizeName(beginName, NameType.Method)}`,
-          type: `(${paramStr}) => Promise<${simplePollerLikeReference}<${operationStateReference}<${returnType}>, ${returnType}>>`,
-          docs: [`@deprecated use ${getClassicalMethodName(d)} instead`]
-        });
-        properties.push({
-          kind: StructureKind.PropertySignature,
-          name: `${normalizeName(beginAndWaitName, NameType.Method)}`,
-          type: `(${paramStr}) => Promise<${returnType}>`,
-          docs: [`@deprecated use ${getClassicalMethodName(d)} instead`]
-        });
+        if (operationInfo?.isLroPaging) {
+          // LRO+Paging operation
+          const itemType = operationInfo?.lropagingFinalReturnType ?? "any";
+          const pagedAsyncIterableIteratorReference = resolveReference(
+            PagingHelpers.PagedAsyncIterableIterator
+          );
+          const beginListAndWaitName = `beginList_${getClassicalMethodName(d)}_andWait`;
+          properties.push({
+            kind: StructureKind.PropertySignature,
+            name: `${normalizeName(beginListAndWaitName, NameType.Method)}`,
+            type: `(${paramStr}) => ${pagedAsyncIterableIteratorReference}<${itemType}>`,
+            docs: [`@deprecated use ${getClassicalMethodName(d)} instead`]
+          });
+        } else {
+          // Regular LRO operation
+          const returnType = operationInfo?.lroFinalReturnType ?? "void";
+          properties.push({
+            kind: StructureKind.PropertySignature,
+            name: `${normalizeName(beginName, NameType.Method)}`,
+            type: `(${paramStr}) => Promise<${simplePollerLikeReference}<${operationStateReference}<${returnType}>, ${returnType}>>`,
+            docs: [`@deprecated use ${getClassicalMethodName(d)} instead`]
+          });
+          properties.push({
+            kind: StructureKind.PropertySignature,
+            name: `${normalizeName(beginAndWaitName, NameType.Method)}`,
+            type: `(${paramStr}) => Promise<${returnType}>`,
+            docs: [`@deprecated use ${getClassicalMethodName(d)} instead`]
+          });
+        }
       }
     });
   }
@@ -237,35 +265,49 @@ export function getClassicalOperation(
             // add LRO helper methods if applicable
             if (
               dpgContext.rlcOptions?.compatibilityLro &&
-              operationInfo?.isLro
+              (operationInfo?.isLro || operationInfo?.isLroPaging)
             ) {
               const getSimplePollerReference = resolveReference(
                 SimplePollerHelpers.getSimplePoller
               );
               const beginName = `begin_${getClassicalMethodName(d)}`;
               const beginAndWaitName = `${beginName}_andWait`;
-              ret.push(
-                `${normalizeName(
-                  beginName,
-                  NameType.Method
-                )}: async (${classicalParamStr}) => {
-                  const poller = ${operationInfo?.declarationRefKey}(${
-                    apiParamStr
-                  });
-                  await poller.submitted();
-                  return ${getSimplePollerReference}(poller);
-                }`
-              );
-              ret.push(
-                `${normalizeName(
-                  beginAndWaitName,
-                  NameType.Method
-                )}: async (${classicalParamStr}) => {
-                  return await ${operationInfo?.declarationRefKey}(${
-                    apiParamStr
-                  });
-                }`
-              );
+              const beginListAndWaitName = `beginList_${getClassicalMethodName(d)}_andWait`;
+
+              if (operationInfo?.isLroPaging) {
+                ret.push(
+                  `${normalizeName(
+                    beginListAndWaitName,
+                    NameType.Method
+                  )}: (${classicalParamStr}) => {
+                    return ${operationInfo?.declarationRefKey}(${apiParamStr});
+                  }`
+                );
+              } else {
+                // Regular LRO operation
+                ret.push(
+                  `${normalizeName(
+                    beginName,
+                    NameType.Method
+                  )}: async (${classicalParamStr}) => {
+                    const poller = ${operationInfo?.declarationRefKey}(${
+                      apiParamStr
+                    });
+                    await poller.submitted();
+                    return ${getSimplePollerReference}(poller);
+                  }`
+                );
+                ret.push(
+                  `${normalizeName(
+                    beginAndWaitName,
+                    NameType.Method
+                  )}: async (${classicalParamStr}) => {
+                    return await ${operationInfo?.declarationRefKey}(${
+                      apiParamStr
+                    });
+                  }`
+                );
+              }
             }
             return ret.join(",");
           })
