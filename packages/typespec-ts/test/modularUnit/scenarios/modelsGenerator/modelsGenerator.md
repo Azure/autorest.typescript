@@ -2726,7 +2726,7 @@ export function baseSerializer(item: Base): any {
 }
 ```
 
-# only: should handle discriminator base model without subtypes
+# should handle discriminator base model without subtypes
 
 ## TypeSpec
 
@@ -2785,7 +2785,7 @@ export function servicePlacementPolicyDescriptionArraySerializer(
   result: Array<ServicePlacementPolicyDescription>,
 ): any[] {
   return result.map((item) => {
-    return __PLACEHOLDER_o24_sserializer__(item);
+    return servicePlacementPolicyDescriptionSerializer(item);
   });
 }
 
@@ -2793,7 +2793,7 @@ export function servicePlacementPolicyDescriptionArrayDeserializer(
   result: Array<ServicePlacementPolicyDescription>,
 ): any[] {
   return result.map((item) => {
-    return __PLACEHOLDER_o24_sdeserializer__(item);
+    return servicePlacementPolicyDescriptionDeserializer(item);
   });
 }
 
@@ -2802,5 +2802,19 @@ export interface ServicePlacementPolicyDescription {
   /** The type of placement policy. */
   /** The discriminator possible values: */
   type: string;
+}
+
+export function servicePlacementPolicyDescriptionSerializer(
+  item: ServicePlacementPolicyDescription,
+): any {
+  return { type: item["type"] };
+}
+
+export function servicePlacementPolicyDescriptionDeserializer(
+  item: any,
+): ServicePlacementPolicyDescription {
+  return {
+    type: item["type"],
+  };
 }
 ```

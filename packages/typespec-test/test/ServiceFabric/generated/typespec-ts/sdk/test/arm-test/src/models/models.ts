@@ -3568,7 +3568,7 @@ export function servicePlacementPolicyDescriptionArraySerializer(
   result: Array<ServicePlacementPolicyDescription>,
 ): any[] {
   return result.map((item) => {
-    return __PLACEHOLDER_o163_sserializer__(item);
+    return servicePlacementPolicyDescriptionSerializer(item);
   });
 }
 
@@ -3576,7 +3576,7 @@ export function servicePlacementPolicyDescriptionArrayDeserializer(
   result: Array<ServicePlacementPolicyDescription>,
 ): any[] {
   return result.map((item) => {
-    return __PLACEHOLDER_o163_sdeserializer__(item);
+    return servicePlacementPolicyDescriptionDeserializer(item);
   });
 }
 
@@ -3585,6 +3585,20 @@ export interface ServicePlacementPolicyDescription {
   /** The type of placement policy for a service fabric service. Following are the possible values. */
   /** The discriminator possible values: */
   type: ServicePlacementPolicyType;
+}
+
+export function servicePlacementPolicyDescriptionSerializer(
+  item: ServicePlacementPolicyDescription,
+): any {
+  return { type: item["type"] };
+}
+
+export function servicePlacementPolicyDescriptionDeserializer(
+  item: any,
+): ServicePlacementPolicyDescription {
+  return {
+    type: item["type"],
+  };
 }
 
 /** The type of placement policy for a service fabric service. Following are the possible values. */
