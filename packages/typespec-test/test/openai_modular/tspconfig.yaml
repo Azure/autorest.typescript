@@ -5,7 +5,6 @@ options:
     azure-sdk-for-js: false
     hierarchy-client: false
     emitter-output-dir: "{project-root}/generated/typespec-ts"
-    ignore-nullable-on-optional: true
     package-details:
       name: "@msinternal/openai_modular"
       description: "OpenAI Inference Service"
