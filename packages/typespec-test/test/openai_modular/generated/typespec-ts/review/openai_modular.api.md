@@ -363,7 +363,7 @@ export interface ChatCompletionsOptions {
     functionCall?: FunctionCallPreset | FunctionName;
     functions?: FunctionDefinition[];
     logitBias?: Record<string, number>;
-    logprobs?: boolean | null;
+    logprobs?: boolean;
     maxTokens?: number;
     messages: ChatRequestMessageUnion[];
     model?: string;
@@ -376,7 +376,7 @@ export interface ChatCompletionsOptions {
     temperature?: number;
     toolChoice?: ChatCompletionsToolSelectionPreset | ChatCompletionsNamedToolSelectionUnion;
     tools?: ChatCompletionsToolDefinitionUnion[];
-    topLogprobs?: number | null;
+    topLogprobs?: number;
     topP?: number;
     user?: string;
 }

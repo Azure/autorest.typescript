@@ -110,19 +110,19 @@ export interface CompletionUsage {
 
 // @public
 export interface CreateChatCompletionRequest {
-    frequency_penalty?: number | null;
+    frequency_penalty?: number;
     function_call?: "none" | "auto" | ChatCompletionFunctionCallOption;
     functions?: ChatCompletionFunctions[];
-    logit_bias?: Record<string, number> | null;
-    max_tokens?: number | null;
+    logit_bias?: Record<string, number>;
+    max_tokens?: number;
     messages: ChatCompletionRequestMessage[];
     model: "gpt4" | "gpt-4-0314" | "gpt-4-0613" | "gpt-4-32k" | "gpt-4-32k-0314" | "gpt-4-32k-0613" | "gpt-3.5-turbo" | "gpt-3.5-turbo-16k" | "gpt-3.5-turbo-0301" | "gpt-3.5-turbo-0613" | "gpt-3.5-turbo-16k-0613";
-    n?: number | null;
-    presence_penalty?: number | null;
+    n?: number;
+    presence_penalty?: number;
     stop?: Stop;
-    stream?: boolean | null;
-    temperature?: number | null;
-    top_p?: number | null;
+    stream?: boolean;
+    temperature?: number;
+    top_p?: number;
     user?: string;
 }
 
@@ -143,21 +143,21 @@ export interface CreateChatCompletionResponse {
 
 // @public
 export interface CreateCompletionRequest {
-    best_of?: number | null;
-    echo?: boolean | null;
-    frequency_penalty?: number | null;
-    logit_bias?: Record<string, number> | null;
-    logprobs?: number | null;
-    max_tokens?: number | null;
+    best_of?: number;
+    echo?: boolean;
+    frequency_penalty?: number;
+    logit_bias?: Record<string, number>;
+    logprobs?: number;
+    max_tokens?: number;
     model: "babbage-002" | "davinci-002" | "text-davinci-003" | "text-davinci-002" | "text-davinci-001" | "code-davinci-002" | "text-curie-001" | "text-babbage-001" | "text-ada-001";
-    n?: number | null;
-    presence_penalty?: number | null;
+    n?: number;
+    presence_penalty?: number;
     prompt: Prompt;
     stop?: Stop;
-    stream?: boolean | null;
-    suffix?: string | null;
-    temperature?: number | null;
-    top_p?: number | null;
+    stream?: boolean;
+    suffix?: string;
+    temperature?: number;
+    top_p?: number;
     user?: string;
 }
 
@@ -184,12 +184,12 @@ export interface CreateCompletionResponse {
 
 // @public
 export interface CreateEditRequest {
-    input?: string | null;
+    input?: string;
     instruction: string;
     model: "text-davinci-edit-001" | "code-davinci-edit-001";
-    n?: number | null;
-    temperature?: number | null;
-    top_p?: number | null;
+    n?: number;
+    temperature?: number;
+    top_p?: number;
 }
 
 // @public
@@ -236,18 +236,18 @@ export interface CreateFileRequest {
 
 // @public
 export interface CreateFineTuneRequest {
-    batch_size?: number | null;
-    classification_betas?: number[] | null;
-    classification_n_classes?: number | null;
-    classification_positive_class?: string | null;
-    compute_classification_metrics?: boolean | null;
-    learning_rate_multiplier?: number | null;
-    model?: ("ada" | "babbage" | "curie" | "davinci") | null;
-    n_epochs?: number | null;
-    prompt_loss_rate?: number | null;
-    suffix?: string | null;
+    batch_size?: number;
+    classification_betas?: number[];
+    classification_n_classes?: number;
+    classification_positive_class?: string;
+    compute_classification_metrics?: boolean;
+    learning_rate_multiplier?: number;
+    model?: "ada" | "babbage" | "curie" | "davinci";
+    n_epochs?: number;
+    prompt_loss_rate?: number;
+    suffix?: string;
     training_file: string;
-    validation_file?: string | null;
+    validation_file?: string;
 }
 
 // @public
@@ -256,9 +256,9 @@ export interface CreateFineTuningJobRequest {
         n_epochs?: "auto" | number;
     };
     model: "babbage-002" | "davinci-002" | "gpt-3.5-turbo";
-    suffix?: string | null;
+    suffix?: string;
     training_file: string;
-    validation_file?: string | null;
+    validation_file?: string;
 }
 
 // @public
@@ -273,10 +273,10 @@ export interface CreateImageEditRequest {
         contentType?: string;
         filename?: string;
     };
-    n?: number | null;
+    n?: number;
     prompt: string;
-    response_format?: ("url" | "b64_json") | null;
-    size?: ("256x256" | "512x512" | "1024x1024") | null;
+    response_format?: "url" | "b64_json";
+    size?: "256x256" | "512x512" | "1024x1024";
     // (undocumented)
     user?: string;
 }
@@ -288,9 +288,9 @@ export interface CreateImageVariationRequest {
         contentType?: string;
         filename?: string;
     };
-    n?: number | null;
-    response_format?: ("url" | "b64_json") | null;
-    size?: ("256x256" | "512x512" | "1024x1024") | null;
+    n?: number;
+    response_format?: "url" | "b64_json";
+    size?: "256x256" | "512x512" | "1024x1024";
     // (undocumented)
     user?: string;
 }
@@ -778,7 +778,7 @@ export interface OpenAIFile {
     object: "file";
     purpose: string;
     status: "uploaded" | "processed" | "pending" | "error" | "deleting" | "deleted";
-    status_details?: string | null;
+    status_details?: string;
 }
 
 // @public

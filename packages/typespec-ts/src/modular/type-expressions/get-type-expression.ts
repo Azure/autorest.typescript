@@ -13,6 +13,7 @@ import { getNullableExpression } from "./get-nullable-expression.js";
 
 export interface EmitTypeOptions {
   emitInline?: boolean;
+  isOptional?: boolean;
 }
 
 export function normalizeModelPropertyName(

@@ -85,6 +85,10 @@ function extractRLCOptions(
     emitterOptions["compatibility-query-multi-format"];
   const typespecTitleMap = emitterOptions["typespec-title-map"];
   const hasSubscriptionId = getSubscriptionId(dpgContext);
+  const ignoreNullableOnOptional = getIgnoreNullableOnOptional(
+    emitterOptions,
+    flavor
+  );
 
   return {
     ...credentialInfo,
@@ -117,7 +121,8 @@ function extractRLCOptions(
     compatibilityQueryMultiFormat,
     typespecTitleMap,
     ignoreEnumMemberNameNormalize,
-    hasSubscriptionId
+    hasSubscriptionId,
+    ignoreNullableOnOptional
   };
 }
 
@@ -249,6 +254,18 @@ function detectIfNameConflicts(dpgContext: SdkContext) {
 
   // No conflicts if we didn't detect any
   return false;
+}
+
+function getIgnoreNullableOnOptional(
+  emitterOptions: EmitterOptions,
+  flavor: PackageFlavor
+): boolean {
+  // If explicitly set in options, use that value
+  if (emitterOptions["ignore-nullable-on-optional"] !== undefined) {
+    return Boolean(emitterOptions["ignore-nullable-on-optional"]);
+  }
+  // Default to true for Azure services (same as HLC behavior)
+  return flavor === "azure";
 }
 
 function getIncludeShortcuts(emitterOptions: EmitterOptions) {

@@ -37,14 +37,14 @@ export interface CreateCompletionRequest {
    */
   prompt: Prompt;
   /** The suffix that comes after a completion of inserted text. */
-  suffix?: string | null;
+  suffix?: string;
   /**
    * What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output
    * more random, while lower values like 0.2 will make it more focused and deterministic.
    *
    * We generally recommend altering this or `top_p` but not both.
    */
-  temperature?: number | null;
+  temperature?: number;
   /**
    * An alternative to sampling with temperature, called nucleus sampling, where the model considers
    * the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising
@@ -52,13 +52,13 @@ export interface CreateCompletionRequest {
    *
    * We generally recommend altering this or `temperature` but not both.
    */
-  top_p?: number | null;
+  top_p?: number;
   /**
    * How many completions to generate for each prompt.
    * **Note:** Because this parameter generates many completions, it can quickly consume your token
    * quota. Use carefully and ensure that you have reasonable settings for `max_tokens` and `stop`.
    */
-  n?: number | null;
+  n?: number;
   /**
    * The maximum number of [tokens](/tokenizer) to generate in the completion.
    *
@@ -66,7 +66,7 @@ export interface CreateCompletionRequest {
    * [Example Python code](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_count_tokens_with_tiktoken.ipynb)
    * for counting tokens.
    */
-  max_tokens?: number | null;
+  max_tokens?: number;
   /** Up to 4 sequences where the API will stop generating further tokens. */
   stop?: Stop;
   /**
@@ -75,7 +75,7 @@ export interface CreateCompletionRequest {
    *
    * [See more information about frequency and presence penalties.](/docs/guides/gpt/parameter-details)
    */
-  presence_penalty?: number | null;
+  presence_penalty?: number;
   /**
    * Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing
    * frequency in the text so far, decreasing the model's likelihood to repeat the same line
@@ -83,7 +83,7 @@ export interface CreateCompletionRequest {
    *
    * [See more information about frequency and presence penalties.](/docs/guides/gpt/parameter-details)
    */
-  frequency_penalty?: number | null;
+  frequency_penalty?: number;
   /**
    * Modify the likelihood of specified tokens appearing in the completion.
    * Accepts a json object that maps tokens (specified by their token ID in the tokenizer) to an
@@ -92,7 +92,7 @@ export interface CreateCompletionRequest {
    * between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100
    * should result in a ban or exclusive selection of the relevant token.
    */
-  logit_bias?: Record<string, number> | null;
+  logit_bias?: Record<string, number>;
   /**
    * A unique identifier representing your end-user, which can help OpenAI to monitor and detect
    * abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).
@@ -104,7 +104,7 @@ export interface CreateCompletionRequest {
    * as they become available, with the stream terminated by a `data: [DONE]` message.
    * [Example Python code](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_stream_completions.ipynb).
    */
-  stream?: boolean | null;
+  stream?: boolean;
   /**
    * Include the log probabilities on the `logprobs` most likely tokens, as well the chosen tokens.
    * For example, if `logprobs` is 5, the API will return a list of the 5 most likely tokens. The
@@ -113,9 +113,9 @@ export interface CreateCompletionRequest {
    *
    * The maximum value for `logprobs` is 5.
    */
-  logprobs?: number | null;
+  logprobs?: number;
   /** Echo back the prompt in addition to the completion */
-  echo?: boolean | null;
+  echo?: boolean;
   /**
    * Generates `best_of` completions server-side and returns the "best" (the one with the highest
    * log probability per token). Results cannot be streamed.
@@ -126,7 +126,7 @@ export interface CreateCompletionRequest {
    * **Note:** Because this parameter generates many completions, it can quickly consume your token
    * quota. Use carefully and ensure that you have reasonable settings for `max_tokens` and `stop`.
    */
-  best_of?: number | null;
+  best_of?: number;
 }
 
 export function createCompletionRequestSerializer(item: CreateCompletionRequest): any {
@@ -329,18 +329,18 @@ export interface CreateEditRequest {
    */
   model: "text-davinci-edit-001" | "code-davinci-edit-001";
   /** The input text to use as a starting point for the edit. */
-  input?: string | null;
+  input?: string;
   /** The instruction that tells the model how to edit the prompt. */
   instruction: string;
   /** How many edits to generate for the input and instruction. */
-  n?: number | null;
+  n?: number;
   /**
    * What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output
    * more random, while lower values like 0.2 will make it more focused and deterministic.
    *
    * We generally recommend altering this or `top_p` but not both.
    */
-  temperature?: number | null;
+  temperature?: number;
   /**
    * An alternative to sampling with temperature, called nucleus sampling, where the model considers
    * the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising
@@ -348,7 +348,7 @@ export interface CreateEditRequest {
    *
    * We generally recommend altering this or `temperature` but not both.
    */
-  top_p?: number | null;
+  top_p?: number;
 }
 
 export function createEditRequestSerializer(item: CreateEditRequest): any {
@@ -558,7 +558,7 @@ export interface OpenAIFile {
    * Additional details about the status of the file. If the file is in the `error` state, this will
    * include a message describing the error.
    */
-  status_details?: string | null;
+  status_details?: string;
 }
 
 export function openAIFileDeserializer(item: any): OpenAIFile {
@@ -642,18 +642,18 @@ export interface CreateFineTuneRequest {
    * See the [fine-tuning guide](/docs/guides/legacy-fine-tuning/creating-training-data) for more
    * details.
    */
-  validation_file?: string | null;
+  validation_file?: string;
   /**
    * The name of the base model to fine-tune. You can select one of "ada", "babbage", "curie",
    * "davinci", or a fine-tuned model created after 2022-04-21 and before 2023-08-22. To learn more
    * about these models, see the [Models](/docs/models) documentation.
    */
-  model?: ("ada" | "babbage" | "curie" | "davinci") | null;
+  model?: "ada" | "babbage" | "curie" | "davinci";
   /**
    * The number of epochs to train the model for. An epoch refers to one full cycle through the
    * training dataset.
    */
-  n_epochs?: number | null;
+  n_epochs?: number;
   /**
    * The batch size to use for training. The batch size is the number of training examples used to
    * train a single forward and backward pass.
@@ -662,7 +662,7 @@ export interface CreateFineTuneRequest {
    * in the training set, capped at 256 - in general, we've found that larger batch sizes tend to
    * work better for larger datasets.
    */
-  batch_size?: number | null;
+  batch_size?: number;
   /**
    * The learning rate multiplier to use for training. The fine-tuning learning rate is the original
    * learning rate used for pretraining multiplied by this value.
@@ -672,7 +672,7 @@ export interface CreateFineTuneRequest {
    * recommend experimenting with values in the range 0.02 to 0.2 to see what produces the best
    * results.
    */
-  learning_rate_multiplier?: number | null;
+  learning_rate_multiplier?: number;
   /**
    * The weight to use for loss on the prompt tokens. This controls how much the model tries to
    * learn to generate the prompt (as compared to the completion which always has a weight of 1.0),
@@ -681,7 +681,7 @@ export interface CreateFineTuneRequest {
    * If prompts are extremely long (relative to completions), it may make sense to reduce this
    * weight so as to avoid over-prioritizing learning the prompt.
    */
-  prompt_loss_rate?: number | null;
+  prompt_loss_rate?: number;
   /**
    * If set, we calculate classification-specific metrics such as accuracy and F-1 score using the
    * validation set at the end of every epoch. These metrics can be viewed in the
@@ -691,20 +691,20 @@ export interface CreateFineTuneRequest {
    * you must specify `classification_n_classes` for multiclass classification or
    * `classification_positive_class` for binary classification.
    */
-  compute_classification_metrics?: boolean | null;
+  compute_classification_metrics?: boolean;
   /**
    * The number of classes in a classification task.
    *
    * This parameter is required for multiclass classification.
    */
-  classification_n_classes?: number | null;
+  classification_n_classes?: number;
   /**
    * The positive class in binary classification.
    *
    * This parameter is needed to generate precision, recall, and F1 metrics when doing binary
    * classification.
    */
-  classification_positive_class?: string | null;
+  classification_positive_class?: string;
   /**
    * If this is provided, we calculate F-beta scores at the specified beta values. The F-beta score
    * is a generalization of F-1 score. This is only used for binary classification.
@@ -713,14 +713,14 @@ export interface CreateFineTuneRequest {
    * beta score puts more weight on recall and less on precision. A smaller beta score puts more
    * weight on precision and less on recall.
    */
-  classification_betas?: number[] | null;
+  classification_betas?: number[];
   /**
    * A string of up to 18 characters that will be added to your fine-tuned model name.
    *
    * For example, a `suffix` of "custom-model-name" would produce a model name like
    * `ada:ft-your-org:custom-model-name-2022-02-15-04-21-04`.
    */
-  suffix?: string | null;
+  suffix?: string;
 }
 
 export function createFineTuneRequestSerializer(item: CreateFineTuneRequest): any {
@@ -968,11 +968,11 @@ export interface CreateImageEditRequest {
    */
   mask?: FileContents | { contents: FileContents; contentType?: string; filename?: string };
   /** The number of images to generate. Must be between 1 and 10. */
-  n?: number | null;
+  n?: number;
   /** The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`. */
-  size?: ("256x256" | "512x512" | "1024x1024") | null;
+  size?: "256x256" | "512x512" | "1024x1024";
   /** The format in which the generated images are returned. Must be one of `url` or `b64_json`. */
-  response_format?: ("url" | "b64_json") | null;
+  response_format?: "url" | "b64_json";
   user?: string;
 }
 
@@ -1038,11 +1038,11 @@ export interface CreateImageVariationRequest {
    */
   image: FileContents | { contents: FileContents; contentType?: string; filename?: string };
   /** The number of images to generate. Must be between 1 and 10. */
-  n?: number | null;
+  n?: number;
   /** The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`. */
-  size?: ("256x256" | "512x512" | "1024x1024") | null;
+  size?: "256x256" | "512x512" | "1024x1024";
   /** The format in which the generated images are returned. Must be one of `url` or `b64_json`. */
-  response_format?: ("url" | "b64_json") | null;
+  response_format?: "url" | "b64_json";
   user?: string;
 }
 
@@ -1443,7 +1443,7 @@ export interface CreateChatCompletionRequest {
    *
    * We generally recommend altering this or `top_p` but not both.
    */
-  temperature?: number | null;
+  temperature?: number;
   /**
    * An alternative to sampling with temperature, called nucleus sampling, where the model considers
    * the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising
@@ -1451,13 +1451,13 @@ export interface CreateChatCompletionRequest {
    *
    * We generally recommend altering this or `temperature` but not both.
    */
-  top_p?: number | null;
+  top_p?: number;
   /**
    * How many completions to generate for each prompt.
    * **Note:** Because this parameter generates many completions, it can quickly consume your token
    * quota. Use carefully and ensure that you have reasonable settings for `max_tokens` and `stop`.
    */
-  n?: number | null;
+  n?: number;
   /**
    * The maximum number of [tokens](/tokenizer) to generate in the completion.
    *
@@ -1465,7 +1465,7 @@ export interface CreateChatCompletionRequest {
    * [Example Python code](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_count_tokens_with_tiktoken.ipynb)
    * for counting tokens.
    */
-  max_tokens?: number | null;
+  max_tokens?: number;
   /** Up to 4 sequences where the API will stop generating further tokens. */
   stop?: Stop;
   /**
@@ -1474,7 +1474,7 @@ export interface CreateChatCompletionRequest {
    *
    * [See more information about frequency and presence penalties.](/docs/guides/gpt/parameter-details)
    */
-  presence_penalty?: number | null;
+  presence_penalty?: number;
   /**
    * Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing
    * frequency in the text so far, decreasing the model's likelihood to repeat the same line
@@ -1482,7 +1482,7 @@ export interface CreateChatCompletionRequest {
    *
    * [See more information about frequency and presence penalties.](/docs/guides/gpt/parameter-details)
    */
-  frequency_penalty?: number | null;
+  frequency_penalty?: number;
   /**
    * Modify the likelihood of specified tokens appearing in the completion.
    * Accepts a json object that maps tokens (specified by their token ID in the tokenizer) to an
@@ -1491,7 +1491,7 @@ export interface CreateChatCompletionRequest {
    * between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100
    * should result in a ban or exclusive selection of the relevant token.
    */
-  logit_bias?: Record<string, number> | null;
+  logit_bias?: Record<string, number>;
   /**
    * A unique identifier representing your end-user, which can help OpenAI to monitor and detect
    * abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).
@@ -1503,7 +1503,7 @@ export interface CreateChatCompletionRequest {
    * as they become available, with the stream terminated by a `data: [DONE]` message.
    * [Example Python code](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_stream_completions.ipynb).
    */
-  stream?: boolean | null;
+  stream?: boolean;
 }
 
 export function createChatCompletionRequestSerializer(item: CreateChatCompletionRequest): any {
@@ -1795,7 +1795,7 @@ export interface CreateFineTuningJobRequest {
    *
    * See the [fine-tuning guide](/docs/guides/fine-tuning) for more details.
    */
-  validation_file?: string | null;
+  validation_file?: string;
   /**
    * The name of the model to fine-tune. You can select one of the
    * [supported models](/docs/guides/fine-tuning/what-models-can-be-fine-tuned).
@@ -1811,7 +1811,7 @@ export interface CreateFineTuningJobRequest {
    * For example, a `suffix` of "custom-model-name" would produce a model name like
    * `ft:gpt-3.5-turbo:openai:custom-model-name:7p4lURel`.
    */
-  suffix?: string | null;
+  suffix?: string;
 }
 
 export function createFineTuningJobRequestSerializer(item: CreateFineTuningJobRequest): any {
@@ -1981,7 +1981,7 @@ export interface _FineTuningJobError1 {
    * The parameter that was invalid, usually `training_file` or `validation_file`. This field
    * will be null if the failure was not parameter-specific.
    */
-  param?: string | null;
+  param?: string;
 }
 
 export function _fineTuningJobError1Deserializer(item: any): _FineTuningJobError1 {

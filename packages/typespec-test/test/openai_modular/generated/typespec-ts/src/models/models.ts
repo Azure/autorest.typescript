@@ -960,9 +960,9 @@ export interface ChatCompletionsOptions {
    */
   seed?: number;
   /** Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the `content` of `message`. This option is currently not available on the `gpt-4-vision-preview` model. */
-  logprobs?: boolean | null;
+  logprobs?: boolean;
   /** An integer between 0 and 5 specifying the number of most likely tokens to return at each token position, each with an associated log probability. `logprobs` must be set to `true` if this parameter is used. */
-  topLogprobs?: number | null;
+  topLogprobs?: number;
   /** An object specifying the format that the model must output. Used to enable JSON mode. */
   responseFormat?: ChatCompletionsResponseFormatUnion;
   /** The available tool definitions that the chat completions request can use, including caller-defined functions. */

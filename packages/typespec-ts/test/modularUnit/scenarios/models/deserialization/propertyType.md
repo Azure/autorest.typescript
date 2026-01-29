@@ -91,7 +91,7 @@ export interface SimpleModel {
   propStringUnionAsExtensible: string;
   propStringUnionAsExtensibleOptional?: string;
   propStringUnionAsExtensibleNullable: string | null;
-  propStringUnionAsExtensibleOptionalAndNullable?: string | null;
+  propStringUnionAsExtensibleOptionalAndNullable?: string;
   propMixedTypeLiteral: "A" | false | 1;
   propStringArray: string[];
   propBooleanArray: boolean[];
