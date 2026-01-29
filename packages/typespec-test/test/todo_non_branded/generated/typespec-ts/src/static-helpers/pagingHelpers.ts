@@ -256,6 +256,7 @@ function checkPagingRequest(response: PathUncheckedResponse, expectedStatuses: s
  * @returns - the URL with the api-version query parameter set
  */
 function addApiVersionToUrl(url: string, apiVersion: string): string {
+  // The base URL is only used for parsing and won't appear in the returned URL
   const urlObj = new URL(url, "https://microsoft.com");
   if (!urlObj.searchParams.get("api-version")) {
     // Append one if there is no apiVersion
