@@ -67,8 +67,6 @@ export function getTypeExpression(
     case "url":
       // TODO - what typespec produces uri, password?
       return "string";
-    case "plainDate":
-      return "Date";
     case "bytes":
       return "Uint8Array";
     case "constant":
@@ -104,6 +102,8 @@ export function getTypeExpression(
     case "union":
       return getUnionExpression(context, type, options);
     case "utcDateTime":
+      return "Date";
+    case "plainDate":
       return "Date";
 
     default:
