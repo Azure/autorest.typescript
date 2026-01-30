@@ -83,7 +83,7 @@ import {
   SdkPagingServiceMethod,
   SdkType
 } from "@azure-tools/typespec-client-generator-core";
-import { isMetadata } from "@typespec/http";
+import { isMetadata, isHeader, getHeaderFieldName } from "@typespec/http";
 import { useContext } from "../../contextManager.js";
 import { isExtensibleEnum } from "../type-expressions/get-enum-expression.js";
 
@@ -269,9 +269,9 @@ export function getDeserializePrivateFunction(
         statements.push(
           `const responseContentType = result.headers?.["content-type"] ?? "";
           if (${isXmlContentTypeRef}(responseContentType)) {
-            return ${xmlDeserializerName}(${deserializedRoot});
+            return ${xmlDeserializerName}(${deserializedRoot}, result.headers);
           }
-          return ${jsonDeserializerName}(${deserializedRoot});`
+          return ${jsonDeserializerName}(${deserializedRoot}, result.headers);`
         );
       } else {
         // Fall back to JSON deserializer
@@ -285,7 +285,7 @@ export function getDeserializePrivateFunction(
         );
         if (deserializeFunctionName) {
           statements.push(
-            `return ${deserializeFunctionName}(${deserializedRoot})`
+            `return ${deserializeFunctionName}(${deserializedRoot}, result.headers)`
           );
         }
       }
@@ -301,7 +301,9 @@ export function getDeserializePrivateFunction(
       ) as string | undefined;
 
       if (xmlDeserializerName) {
-        statements.push(`return ${xmlDeserializerName}(${deserializedRoot})`);
+        statements.push(
+          `return ${xmlDeserializerName}(${deserializedRoot}, result.headers)`
+        );
       } else {
         // Fall back to JSON deserializer if XML deserializer is not available
         const deserializeFunctionName = buildModelDeserializer(
@@ -314,7 +316,7 @@ export function getDeserializePrivateFunction(
         );
         if (deserializeFunctionName) {
           statements.push(
-            `return ${deserializeFunctionName}(${deserializedRoot})`
+            `return ${deserializeFunctionName}(${deserializedRoot}, result.headers)`
           );
         } else {
           statements.push(`return ${deserializedRoot}`);
@@ -332,7 +334,7 @@ export function getDeserializePrivateFunction(
       );
       if (deserializeFunctionName) {
         statements.push(
-          `return ${deserializeFunctionName}(${deserializedRoot})${multipartCastSuffix}`
+          `return ${deserializeFunctionName}(${deserializedRoot}, result.headers)${multipartCastSuffix}`
         );
       } else if (
         isAzureCoreErrorType(context.program, deserializedType.__raw)
@@ -1648,21 +1650,42 @@ export function getResponseMapping(
   type: SdkType,
   propertyPath: string = "result.body",
   overrides?: ModelOverrideOptions,
-  enableFlatten: boolean = true
+  enableFlatten: boolean = true,
+  headers?: string
 ) {
   const allParents = type.kind === "model" ? getAllAncestors(type) : [];
-  const properties =
-    type.kind === "model" ? getAllProperties(context, type, allParents) : [];
+  // Include header properties when deserializing responses
+  // Use type.properties directly instead of getAllProperties to include @header properties
+  let properties: SdkModelPropertyType[];
+  if (type.kind === "model" && type.properties) {
+    properties = type.properties.filter(
+      (p) =>
+        !isMetadata(context.program, p.__raw!) ||
+        isHeader(context.program, p.__raw!)
+    );
+  } else {
+    properties =
+      type.kind === "model" ? getAllProperties(context, type, allParents) : [];
+  }
   const props: string[] = [];
   for (const prop of properties) {
-    if (isMetadata(context.program, prop.__raw!)) {
+    if (
+      isMetadata(context.program, prop.__raw!) &&
+      !isHeader(context.program, prop.__raw!)
+    ) {
       continue;
     }
     const property = getPropertyWithOverrides(prop, overrides);
     const dot = propertyPath.endsWith("?") ? "." : "";
-    const serializedName = getPropertySerializedName(property);
+    const isHeaderProp = isHeader(context.program, prop.__raw!);
+    // For header properties, use the header field name; for other properties use serialized name
+    const serializedName = isHeaderProp
+      ? (getHeaderFieldName(context.program, prop.__raw!) ??
+        getPropertySerializedName(property))
+      : getPropertySerializedName(property);
+    const basePath = isHeaderProp && headers ? headers : propertyPath;
     const restValue = `${
-      propertyPath ? `${propertyPath}${dot}` : `${dot}`
+      basePath ? `${basePath}${isHeaderProp && headers ? "?." : dot}` : `${dot}`
     }["${serializedName}"]`;
 
     const nullOrUndefinedPrefix =
@@ -1698,7 +1721,7 @@ export function getResponseMapping(
       const deserializeValue = deserializeResponseValue(
         context,
         property.type,
-        `${propertyPath}${dot}["${serializedName}"]`,
+        restValue,
         !property.optional,
         getEncodeForModelProperty(context, property)
       );

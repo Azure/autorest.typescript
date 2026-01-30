@@ -56,7 +56,7 @@ import {
 import path from "path";
 import { refkey } from "../framework/refkey.js";
 import { useContext } from "../contextManager.js";
-import { isMetadata, isOrExtendsHttpFile } from "@typespec/http";
+import { isHeader, isMetadata, isOrExtendsHttpFile } from "@typespec/http";
 import { isAzureCoreErrorType } from "../utils/modelUtils.js";
 import { isExtensibleEnum } from "./type-expressions/get-enum-expression.js";
 import {
@@ -541,7 +541,11 @@ function buildModelInterface(
     name: normalizeModelName(context, type, NameType.Interface, true),
     isExported: true,
     properties: type.properties
-      .filter((p) => !isMetadata(context.program, p.__raw!))
+      .filter(
+        (p) =>
+          !isMetadata(context.program, p.__raw!) ||
+          isHeader(context.program, p.__raw!)
+      )
       .filter((p) => {
         // filter out the flatten property to be processed later
         if (p.flatten && p.type.kind === "model") {
@@ -561,7 +565,11 @@ function buildModelInterface(
       context,
       flatten.type,
       getAllAncestors(flatten.type)
-    ).filter((p) => !isMetadata(context.program, p.__raw!));
+    ).filter(
+      (p) =>
+        !isMetadata(context.program, p.__raw!) ||
+        isHeader(context.program, p.__raw!)
+    );
     interfaceStructure.properties!.push(
       ...allProperties.map((p) => {
         // when the flattened property is optional, all its child properties should be optional too
@@ -822,7 +830,8 @@ function buildModelProperty(
     kind: StructureKind.PropertySignature,
     name: normalizedPropName,
     type: typeExpression,
-    hasQuestionToken: property.optional,
+    hasQuestionToken:
+      property.optional || isHeader(context.program, property.__raw!),
     isReadonly: isReadOnly(property as SdkModelPropertyType)
   };
 

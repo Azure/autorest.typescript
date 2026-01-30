@@ -1,4 +1,8 @@
-import { FunctionDeclarationStructure, StructureKind } from "ts-morph";
+import {
+  FunctionDeclarationStructure,
+  ParameterDeclarationStructure,
+  StructureKind
+} from "ts-morph";
 import {
   SdkArrayType,
   SdkDictionaryType,
@@ -36,7 +40,7 @@ import {
 import { reportDiagnostic } from "../../lib.js";
 import { NoTarget } from "@typespec/compiler";
 import { useContext } from "../../contextManager.js";
-
+import { isHeader } from "@typespec/http";
 export function buildPropertyDeserializer(
   context: SdkContext,
   property: SdkModelPropertyType,
@@ -397,16 +401,34 @@ function buildModelTypeDeserializer(
       ? resolveReference(refkey(options.flatten.property, "deserializer"))
       : resolveReference(refkey(type, "deserializer"));
   }
+
+  // Check if model has any header properties
+  const allProps = type.kind === "model" ? (type.properties ?? []) : [];
+  const hasHeaderProperties = allProps.some((p) =>
+    isHeader(context.program, p.__raw!)
+  );
+
+  const parameters: ParameterDeclarationStructure[] = [
+    {
+      kind: StructureKind.Parameter,
+      name: "item",
+      type: "any"
+    }
+  ];
+  if (hasHeaderProperties) {
+    parameters.push({
+      kind: StructureKind.Parameter,
+      name: "headers",
+      type: "any",
+      hasQuestionToken: true
+    });
+  }
+
   const deserializerFunction: FunctionDeclarationStructure = {
     kind: StructureKind.Function,
     name: deserializerFunctionName,
     isExported: true,
-    parameters: [
-      {
-        name: "item",
-        type: "any"
-      }
-    ],
+    parameters,
     returnType: options.flatten
       ? undefined // not set return type for flattened property deserializer and type system will infer correct one
       : resolveReference(refkey(type)),
@@ -422,7 +444,8 @@ function buildModelTypeDeserializer(
     type,
     "item",
     options.overrides,
-    !options.flatten
+    !options.flatten,
+    hasHeaderProperties ? "headers" : undefined
   );
   const propertiesDeserialization = propertiesStr.filter((p) => p.trim());
 
