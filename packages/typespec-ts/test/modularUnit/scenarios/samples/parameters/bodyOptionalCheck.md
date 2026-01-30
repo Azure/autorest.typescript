@@ -75,52 +75,55 @@ Should generate operations correctly:
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { bodyParameterSerializer, _readResponseDeserializer } from "../models/models.js";
+import {
+  bodyParameterSerializer,
+  _readResponseDeserializer
+} from "../models/models.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters,
+  operationOptionsToRequestParameters
 } from "@azure-rest/core-client";
 
 export function _readSend(
   context: Client,
   name: string,
   requiredQuery: string,
-  options: ReadOptionalParams = { requestOptions: {} },
+  options: ReadOptionalParams = { requestOptions: {} }
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/{name}{?requiredQuery,optionalQuery}",
     {
       name: name,
       requiredQuery: requiredQuery,
-      optionalQuery: options?.optionalQuery,
+      optionalQuery: options?.optionalQuery
     },
     {
-      allowReserved: options?.requestOptions?.skipUrlEncoding,
-    },
+      allowReserved: options?.requestOptions?.skipUrlEncoding
+    }
   );
-  return context
-    .path(path)
-    .post({
-      ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
-      headers: { accept: "application/json", ...options.requestOptions?.headers },
-      body: !options["widget"] ? options["widget"] : bodyParameterSerializer(options["widget"]),
-    });
+  return context.path(path).post({
+    ...operationOptionsToRequestParameters(options),
+    contentType: "application/json",
+    headers: { accept: "application/json", ...options.requestOptions?.headers },
+    body: !options["widget"]
+      ? options["widget"]
+      : bodyParameterSerializer(options["widget"])
+  });
 }
 
 export async function _readDeserialize(
-  result: PathUncheckedResponse,
+  result: PathUncheckedResponse
 ): Promise<Record<string, any>> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return _readResponseDeserializer(result.body);
+  return _readResponseDeserializer(result.body, result.headers);
 }
 
 /** show example demo */
@@ -128,7 +131,7 @@ export async function read(
   context: Client,
   name: string,
   requiredQuery: string,
-  options: ReadOptionalParams = { requestOptions: {} },
+  options: ReadOptionalParams = { requestOptions: {} }
 ): Promise<Record<string, any>> {
   const result = await _readSend(context, name, requiredQuery, options);
   return _readDeserialize(result);
@@ -154,7 +157,7 @@ async function read(): Promise<void> {
   const client = new TestingClient(endpoint);
   const result = await client.read("required path param", "required query", {
     widget: { name: "body name" },
-    optionalQuery: "renamed optional query",
+    optionalQuery: "renamed optional query"
   });
   console.log(result);
 }

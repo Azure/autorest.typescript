@@ -54,7 +54,7 @@ needAzureCore: true
 import { TestingContext as Client } from "./index.js";
 import {
   ResourceOperationStatusWidgetSuiteWidgetSuiteError,
-  resourceOperationStatusWidgetSuiteWidgetSuiteErrorDeserializer,
+  resourceOperationStatusWidgetSuiteWidgetSuiteErrorDeserializer
 } from "../models/models.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import { GetWidgetOperationStatusOptionalParams } from "./options.js";
@@ -62,7 +62,7 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters,
+  operationOptionsToRequestParameters
 } from "@azure-rest/core-client";
 
 export function _getWidgetOperationStatusSend(
@@ -70,36 +70,37 @@ export function _getWidgetOperationStatusSend(
   apiVersion: string,
   name: string,
   operationId: string,
-  options: GetWidgetOperationStatusOptionalParams = { requestOptions: {} },
+  options: GetWidgetOperationStatusOptionalParams = { requestOptions: {} }
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/widgets/{name}/operations/{operationId}{?api%2Dversion}",
     {
       name: name,
       operationId: operationId,
-      "api%2Dversion": apiVersion,
+      "api%2Dversion": apiVersion
     },
     {
-      allowReserved: options?.requestOptions?.skipUrlEncoding,
-    },
+      allowReserved: options?.requestOptions?.skipUrlEncoding
+    }
   );
-  return context
-    .path(path)
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json", ...options.requestOptions?.headers },
-    });
+  return context.path(path).get({
+    ...operationOptionsToRequestParameters(options),
+    headers: { accept: "application/json", ...options.requestOptions?.headers }
+  });
 }
 
 export async function _getWidgetOperationStatusDeserialize(
-  result: PathUncheckedResponse,
+  result: PathUncheckedResponse
 ): Promise<ResourceOperationStatusWidgetSuiteWidgetSuiteError> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return resourceOperationStatusWidgetSuiteWidgetSuiteErrorDeserializer(result.body);
+  return resourceOperationStatusWidgetSuiteWidgetSuiteErrorDeserializer(
+    result.body,
+    result.headers
+  );
 }
 
 /** Get the status of a long-running operation on widgets. */
@@ -108,14 +109,14 @@ export async function getWidgetOperationStatus(
   apiVersion: string,
   name: string,
   operationId: string,
-  options: GetWidgetOperationStatusOptionalParams = { requestOptions: {} },
+  options: GetWidgetOperationStatusOptionalParams = { requestOptions: {} }
 ): Promise<ResourceOperationStatusWidgetSuiteWidgetSuiteError> {
   const result = await _getWidgetOperationStatusSend(
     context,
     apiVersion,
     name,
     operationId,
-    options,
+    options
   );
   return _getWidgetOperationStatusDeserialize(result);
 }
@@ -145,18 +146,25 @@ export interface ResourceOperationStatusWidgetSuiteWidgetSuiteError {
 }
 
 export function resourceOperationStatusWidgetSuiteWidgetSuiteErrorDeserializer(
-  item: any,
+  item: any
 ): ResourceOperationStatusWidgetSuiteWidgetSuiteError {
   return {
     id: item["id"],
     status: item["status"],
     error: !item["error"] ? item["error"] : item["error"],
-    result: !item["result"] ? item["result"] : widgetSuiteDeserializer(item["result"]),
+    result: !item["result"]
+      ? item["result"]
+      : widgetSuiteDeserializer(item["result"])
   };
 }
 
 /** Enum describing allowed operation states. */
-export type OperationState = "NotStarted" | "Running" | "Succeeded" | "Failed" | "Canceled";
+export type OperationState =
+  | "NotStarted"
+  | "Running"
+  | "Succeeded"
+  | "Failed"
+  | "Canceled";
 
 /** A widget. */
 export interface WidgetSuite {
@@ -174,7 +182,7 @@ export function widgetSuiteDeserializer(item: any): WidgetSuite {
     manufacturerId: item["manufacturerId"],
     sharedModel: !item["sharedModel"]
       ? item["sharedModel"]
-      : fakedSharedModelDeserializer(item["sharedModel"]),
+      : fakedSharedModelDeserializer(item["sharedModel"])
   };
 }
 
@@ -189,7 +197,7 @@ export interface FakedSharedModel {
 export function fakedSharedModelDeserializer(item: any): FakedSharedModel {
   return {
     tag: item["tag"],
-    createdAt: item["createdAt"],
+    createdAt: item["createdAt"]
   };
 }
 ```

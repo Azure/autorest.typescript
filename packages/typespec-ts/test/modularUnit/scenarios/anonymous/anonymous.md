@@ -54,7 +54,7 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters,
+  operationOptionsToRequestParameters
 } from "@azure-rest/core-client";
 
 export function _readSend(
@@ -66,34 +66,34 @@ export function _readSend(
   prop3: Date,
   prop4: string,
   prop5: Bar,
-  options: ReadOptionalParams = { requestOptions: {} },
+  options: ReadOptionalParams = { requestOptions: {} }
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/{pathParam}{?queryParam}",
     {
       pathParam: pathParam,
-      queryParam: queryParam,
+      queryParam: queryParam
     },
     {
-      allowReserved: options?.requestOptions?.skipUrlEncoding,
-    },
+      allowReserved: options?.requestOptions?.skipUrlEncoding
+    }
   );
-  return context
-    .path(path)
-    .post({
-      ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
-      body: {
-        prop1: prop1,
-        prop2: prop2,
-        prop3: prop3.toISOString(),
-        prop4: prop4,
-        prop5: barSerializer(prop5),
-      },
-    });
+  return context.path(path).post({
+    ...operationOptionsToRequestParameters(options),
+    contentType: "application/json",
+    body: {
+      prop1: prop1,
+      prop2: prop2,
+      prop3: prop3.toISOString(),
+      prop4: prop4,
+      prop5: barSerializer(prop5)
+    }
+  });
 }
 
-export async function _readDeserialize(result: PathUncheckedResponse): Promise<void> {
+export async function _readDeserialize(
+  result: PathUncheckedResponse
+): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -111,7 +111,7 @@ export async function read(
   prop3: Date,
   prop4: string,
   prop5: Bar,
-  options: ReadOptionalParams = { requestOptions: {} },
+  options: ReadOptionalParams = { requestOptions: {} }
 ): Promise<void> {
   const result = await _readSend(
     context,
@@ -122,7 +122,7 @@ export async function read(
     prop3,
     prop4,
     prop5,
-    options,
+    options
   );
   return _readDeserialize(result);
 }
@@ -195,7 +195,7 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters,
+  operationOptionsToRequestParameters
 } from "@azure-rest/core-client";
 
 export function _readSend(
@@ -205,34 +205,34 @@ export function _readSend(
   prop1: string,
   prop2: number,
   prop4: string,
-  options: ReadOptionalParams = { requestOptions: {} },
+  options: ReadOptionalParams = { requestOptions: {} }
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/{pathParam}{?queryParam}",
     {
       pathParam: pathParam,
-      queryParam: queryParam,
+      queryParam: queryParam
     },
     {
-      allowReserved: options?.requestOptions?.skipUrlEncoding,
-    },
+      allowReserved: options?.requestOptions?.skipUrlEncoding
+    }
   );
-  return context
-    .path(path)
-    .post({
-      ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
-      body: {
-        prop1: prop1,
-        prop2: prop2,
-        prop3: !options?.prop3 ? options?.prop3 : options?.prop3.toISOString(),
-        prop4: prop4,
-        prop5: !options?.prop5 ? options?.prop5 : barSerializer(options?.prop5),
-      },
-    });
+  return context.path(path).post({
+    ...operationOptionsToRequestParameters(options),
+    contentType: "application/json",
+    body: {
+      prop1: prop1,
+      prop2: prop2,
+      prop3: !options?.prop3 ? options?.prop3 : options?.prop3.toISOString(),
+      prop4: prop4,
+      prop5: !options?.prop5 ? options?.prop5 : barSerializer(options?.prop5)
+    }
+  });
 }
 
-export async function _readDeserialize(result: PathUncheckedResponse): Promise<void> {
+export async function _readDeserialize(
+  result: PathUncheckedResponse
+): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -248,9 +248,17 @@ export async function read(
   prop1: string,
   prop2: number,
   prop4: string,
-  options: ReadOptionalParams = { requestOptions: {} },
+  options: ReadOptionalParams = { requestOptions: {} }
 ): Promise<void> {
-  const result = await _readSend(context, pathParam, queryParam, prop1, prop2, prop4, options);
+  const result = await _readSend(
+    context,
+    pathParam,
+    queryParam,
+    prop1,
+    prop2,
+    prop4,
+    options
+  );
   return _readDeserialize(result);
 }
 ```
@@ -324,7 +332,7 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters,
+  operationOptionsToRequestParameters
 } from "@azure-rest/core-client";
 
 export function _readSend(
@@ -334,7 +342,7 @@ export function _readSend(
   prop2: number,
   prop4: string,
   queryParam: string,
-  options: ReadOptionalParams = { requestOptions: {} },
+  options: ReadOptionalParams = { requestOptions: {} }
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/{pathParam}/{prop1}{?prop4,queryParam}",
@@ -342,26 +350,26 @@ export function _readSend(
       pathParam: pathParam,
       prop1: prop1,
       prop4: prop4,
-      queryParam: queryParam,
+      queryParam: queryParam
     },
     {
-      allowReserved: options?.requestOptions?.skipUrlEncoding,
-    },
+      allowReserved: options?.requestOptions?.skipUrlEncoding
+    }
   );
-  return context
-    .path(path)
-    .post({
-      ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
-      body: {
-        prop2: prop2,
-        prop3: !options?.prop3 ? options?.prop3 : options?.prop3.toISOString(),
-        prop5: !options?.prop5 ? options?.prop5 : barSerializer(options?.prop5),
-      },
-    });
+  return context.path(path).post({
+    ...operationOptionsToRequestParameters(options),
+    contentType: "application/json",
+    body: {
+      prop2: prop2,
+      prop3: !options?.prop3 ? options?.prop3 : options?.prop3.toISOString(),
+      prop5: !options?.prop5 ? options?.prop5 : barSerializer(options?.prop5)
+    }
+  });
 }
 
-export async function _readDeserialize(result: PathUncheckedResponse): Promise<void> {
+export async function _readDeserialize(
+  result: PathUncheckedResponse
+): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -377,9 +385,17 @@ export async function read(
   prop2: number,
   prop4: string,
   queryParam: string,
-  options: ReadOptionalParams = { requestOptions: {} },
+  options: ReadOptionalParams = { requestOptions: {} }
 ): Promise<void> {
-  const result = await _readSend(context, pathParam, prop1, prop2, prop4, queryParam, options);
+  const result = await _readSend(
+    context,
+    pathParam,
+    prop1,
+    prop2,
+    prop4,
+    queryParam,
+    options
+  );
   return _readDeserialize(result);
 }
 ```
@@ -449,7 +465,7 @@ export function fooSerializer(item: Foo): any {
     prop2: item["prop2"],
     prop3: item["prop3"].toISOString(),
     prop4: item["prop4"],
-    prop5: barSerializer(item["prop5"]),
+    prop5: barSerializer(item["prop5"])
   };
 }
 ```
@@ -465,7 +481,7 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters,
+  operationOptionsToRequestParameters
 } from "@azure-rest/core-client";
 
 export function _readSend(
@@ -473,28 +489,28 @@ export function _readSend(
   pathParam: string,
   queryParam: string,
   body: Foo,
-  options: ReadOptionalParams = { requestOptions: {} },
+  options: ReadOptionalParams = { requestOptions: {} }
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/{pathParam}{?queryParam}",
     {
       pathParam: pathParam,
-      queryParam: queryParam,
+      queryParam: queryParam
     },
     {
-      allowReserved: options?.requestOptions?.skipUrlEncoding,
-    },
+      allowReserved: options?.requestOptions?.skipUrlEncoding
+    }
   );
-  return context
-    .path(path)
-    .post({
-      ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
-      body: fooSerializer(body),
-    });
+  return context.path(path).post({
+    ...operationOptionsToRequestParameters(options),
+    contentType: "application/json",
+    body: fooSerializer(body)
+  });
 }
 
-export async function _readDeserialize(result: PathUncheckedResponse): Promise<void> {
+export async function _readDeserialize(
+  result: PathUncheckedResponse
+): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -508,7 +524,7 @@ export async function read(
   pathParam: string,
   queryParam: string,
   body: Foo,
-  options: ReadOptionalParams = { requestOptions: {} },
+  options: ReadOptionalParams = { requestOptions: {} }
 ): Promise<void> {
   const result = await _readSend(context, pathParam, queryParam, body, options);
   return _readDeserialize(result);
@@ -551,7 +567,7 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters,
+  operationOptionsToRequestParameters
 } from "@azure-rest/core-client";
 
 export function _readSend(
@@ -559,28 +575,28 @@ export function _readSend(
   pathParam: string,
   queryParam: string,
   body: Record<string, any>,
-  options: ReadOptionalParams = { requestOptions: {} },
+  options: ReadOptionalParams = { requestOptions: {} }
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/{pathParam}{?queryParam}",
     {
       pathParam: pathParam,
-      queryParam: queryParam,
+      queryParam: queryParam
     },
     {
-      allowReserved: options?.requestOptions?.skipUrlEncoding,
-    },
+      allowReserved: options?.requestOptions?.skipUrlEncoding
+    }
   );
-  return context
-    .path(path)
-    .post({
-      ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
-      body: _readRequestSerializer(body),
-    });
+  return context.path(path).post({
+    ...operationOptionsToRequestParameters(options),
+    contentType: "application/json",
+    body: _readRequestSerializer(body)
+  });
 }
 
-export async function _readDeserialize(result: PathUncheckedResponse): Promise<void> {
+export async function _readDeserialize(
+  result: PathUncheckedResponse
+): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -594,7 +610,7 @@ export async function read(
   pathParam: string,
   queryParam: string,
   body: Record<string, any>,
-  options: ReadOptionalParams = { requestOptions: {} },
+  options: ReadOptionalParams = { requestOptions: {} }
 ): Promise<void> {
   const result = await _readSend(context, pathParam, queryParam, body, options);
   return _readDeserialize(result);
@@ -645,7 +661,7 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters,
+  operationOptionsToRequestParameters
 } from "@azure-rest/core-client";
 
 export function _readSend(
@@ -656,28 +672,28 @@ export function _readSend(
     prop1: string;
     prop2: Bar;
   },
-  options: ReadOptionalParams = { requestOptions: {} },
+  options: ReadOptionalParams = { requestOptions: {} }
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/{pathParam}{?queryParam}",
     {
       pathParam: pathParam,
-      queryParam: queryParam,
+      queryParam: queryParam
     },
     {
-      allowReserved: options?.requestOptions?.skipUrlEncoding,
-    },
+      allowReserved: options?.requestOptions?.skipUrlEncoding
+    }
   );
-  return context
-    .path(path)
-    .post({
-      ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
-      body: _readRequestSerializer(test),
-    });
+  return context.path(path).post({
+    ...operationOptionsToRequestParameters(options),
+    contentType: "application/json",
+    body: _readRequestSerializer(test)
+  });
 }
 
-export async function _readDeserialize(result: PathUncheckedResponse): Promise<void> {
+export async function _readDeserialize(
+  result: PathUncheckedResponse
+): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -694,7 +710,7 @@ export async function read(
     prop1: string;
     prop2: Bar;
   },
-  options: ReadOptionalParams = { requestOptions: {} },
+  options: ReadOptionalParams = { requestOptions: {} }
 ): Promise<void> {
   const result = await _readSend(context, pathParam, queryParam, test, options);
   return _readDeserialize(result);
@@ -745,24 +761,24 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters,
+  operationOptionsToRequestParameters
 } from "@azure-rest/core-client";
 
 export function _readSend(
   context: Client,
   body: Test,
-  options: ReadOptionalParams = { requestOptions: {} },
+  options: ReadOptionalParams = { requestOptions: {} }
 ): StreamableMethod {
-  return context
-    .path("/")
-    .post({
-      ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
-      body: testSerializer(body),
-    });
+  return context.path("/").post({
+    ...operationOptionsToRequestParameters(options),
+    contentType: "application/json",
+    body: testSerializer(body)
+  });
 }
 
-export async function _readDeserialize(result: PathUncheckedResponse): Promise<void> {
+export async function _readDeserialize(
+  result: PathUncheckedResponse
+): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -774,7 +790,7 @@ export async function _readDeserialize(result: PathUncheckedResponse): Promise<v
 export async function read(
   context: Client,
   body: Test,
-  options: ReadOptionalParams = { requestOptions: {} },
+  options: ReadOptionalParams = { requestOptions: {} }
 ): Promise<void> {
   const result = await _readSend(context, body, options);
   return _readDeserialize(result);
@@ -829,24 +845,24 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters,
+  operationOptionsToRequestParameters
 } from "@azure-rest/core-client";
 
 export function _readSend(
   context: Client,
   body: Test,
-  options: ReadOptionalParams = { requestOptions: {} },
+  options: ReadOptionalParams = { requestOptions: {} }
 ): StreamableMethod {
-  return context
-    .path("/")
-    .post({
-      ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
-      body: testSerializer(body),
-    });
+  return context.path("/").post({
+    ...operationOptionsToRequestParameters(options),
+    contentType: "application/json",
+    body: testSerializer(body)
+  });
 }
 
-export async function _readDeserialize(result: PathUncheckedResponse): Promise<void> {
+export async function _readDeserialize(
+  result: PathUncheckedResponse
+): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -858,7 +874,7 @@ export async function _readDeserialize(result: PathUncheckedResponse): Promise<v
 export async function read(
   context: Client,
   body: Test,
-  options: ReadOptionalParams = { requestOptions: {} },
+  options: ReadOptionalParams = { requestOptions: {} }
 ): Promise<void> {
   const result = await _readSend(context, body, options);
   return _readDeserialize(result);
@@ -900,35 +916,33 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters,
+  operationOptionsToRequestParameters
 } from "@azure-rest/core-client";
 
 export function _readSend(
   context: Client,
-  options: ReadOptionalParams = { requestOptions: {} },
+  options: ReadOptionalParams = { requestOptions: {} }
 ): StreamableMethod {
-  return context
-    .path("/")
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json", ...options.requestOptions?.headers },
-    });
+  return context.path("/").get({
+    ...operationOptionsToRequestParameters(options),
+    headers: { accept: "application/json", ...options.requestOptions?.headers }
+  });
 }
 
 export async function _readDeserialize(
-  result: PathUncheckedResponse,
+  result: PathUncheckedResponse
 ): Promise<Record<string, any>> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return _readResponseDeserializer(result.body);
+  return _readResponseDeserializer(result.body, result.headers);
 }
 
 export async function read(
   context: Client,
-  options: ReadOptionalParams = { requestOptions: {} },
+  options: ReadOptionalParams = { requestOptions: {} }
 ): Promise<Record<string, any>> {
   const result = await _readSend(context, options);
   return _readDeserialize(result);
@@ -972,33 +986,33 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters,
+  operationOptionsToRequestParameters
 } from "@azure-rest/core-client";
 
 export function _readSend(
   context: Client,
-  options: ReadOptionalParams = { requestOptions: {} },
+  options: ReadOptionalParams = { requestOptions: {} }
 ): StreamableMethod {
-  return context
-    .path("/")
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json", ...options.requestOptions?.headers },
-    });
+  return context.path("/").get({
+    ...operationOptionsToRequestParameters(options),
+    headers: { accept: "application/json", ...options.requestOptions?.headers }
+  });
 }
 
-export async function _readDeserialize(result: PathUncheckedResponse): Promise<PublishResult> {
+export async function _readDeserialize(
+  result: PathUncheckedResponse
+): Promise<PublishResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return publishResultDeserializer(result.body);
+  return publishResultDeserializer(result.body, result.headers);
 }
 
 export async function read(
   context: Client,
-  options: ReadOptionalParams = { requestOptions: {} },
+  options: ReadOptionalParams = { requestOptions: {} }
 ): Promise<PublishResult> {
   const result = await _readSend(context, options);
   return _readDeserialize(result);
@@ -1033,7 +1047,7 @@ export interface _ReadResponse {
 
 export function _readResponseDeserializer(item: any): _ReadResponse {
   return {
-    foo: !item["foo"] ? item["foo"] : _readResponseFooDeserializer(item["foo"]),
+    foo: !item["foo"] ? item["foo"] : _readResponseFooDeserializer(item["foo"])
   };
 }
 
@@ -1044,7 +1058,7 @@ export interface _ReadResponseFoo {
 
 export function _readResponseFooDeserializer(item: any): _ReadResponseFoo {
   return {
-    bar: item["bar"],
+    bar: item["bar"]
   };
 }
 ```
@@ -1059,19 +1073,17 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters,
+  operationOptionsToRequestParameters
 } from "@azure-rest/core-client";
 
 export function _readSend(
   context: Client,
-  options: ReadOptionalParams = { requestOptions: {} },
+  options: ReadOptionalParams = { requestOptions: {} }
 ): StreamableMethod {
-  return context
-    .path("/")
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json", ...options.requestOptions?.headers },
-    });
+  return context.path("/").get({
+    ...operationOptionsToRequestParameters(options),
+    headers: { accept: "application/json", ...options.requestOptions?.headers }
+  });
 }
 
 export async function _readDeserialize(result: PathUncheckedResponse): Promise<{
@@ -1084,12 +1096,12 @@ export async function _readDeserialize(result: PathUncheckedResponse): Promise<{
     throw createRestError(result);
   }
 
-  return _readResponseDeserializer(result.body);
+  return _readResponseDeserializer(result.body, result.headers);
 }
 
 export async function read(
   context: Client,
-  options: ReadOptionalParams = { requestOptions: {} },
+  options: ReadOptionalParams = { requestOptions: {} }
 ): Promise<{
   foo?: {
     bar: string | null;
@@ -1140,23 +1152,29 @@ export interface ReturnBody {
 export function returnBodyDeserializer(item: any): ReturnBody {
   return {
     emptyAnomyous: _returnBodyEmptyAnomyousDeserializer(item["emptyAnomyous"]),
-    emptyAnomyousArray: _returnBodyEmptyAnomyousArrayArrayDeserializer(item["emptyAnomyousArray"]),
-    emptyAnomyousDict: _returnBodyEmptyAnomyousDictRecordDeserializer(item["emptyAnomyousDict"]),
+    emptyAnomyousArray: _returnBodyEmptyAnomyousArrayArrayDeserializer(
+      item["emptyAnomyousArray"]
+    ),
+    emptyAnomyousDict: _returnBodyEmptyAnomyousDictRecordDeserializer(
+      item["emptyAnomyousDict"]
+    ),
     emptyModel: emptyModelDeserializer(item["emptyModel"]),
     emptyModelArray: emptyModelArrayDeserializer(item["emptyModelArray"]),
-    emptyModelDict: emptyModelRecordDeserializer(item["emptyModelDict"]),
+    emptyModelDict: emptyModelRecordDeserializer(item["emptyModelDict"])
   };
 }
 
 /** model interface _ReturnBodyEmptyAnomyous */
 export interface _ReturnBodyEmptyAnomyous {}
 
-export function _returnBodyEmptyAnomyousDeserializer(item: any): _ReturnBodyEmptyAnomyous {
+export function _returnBodyEmptyAnomyousDeserializer(
+  item: any
+): _ReturnBodyEmptyAnomyous {
   return item;
 }
 
 export function _returnBodyEmptyAnomyousArrayArrayDeserializer(
-  result: Array<_ReturnBodyEmptyAnomyousArray>,
+  result: Array<_ReturnBodyEmptyAnomyousArray>
 ): any[] {
   return result.map((item) => {
     return _returnBodyEmptyAnomyousArrayDeserializer(item);
@@ -1167,17 +1185,19 @@ export function _returnBodyEmptyAnomyousArrayArrayDeserializer(
 export interface _ReturnBodyEmptyAnomyousArray {}
 
 export function _returnBodyEmptyAnomyousArrayDeserializer(
-  item: any,
+  item: any
 ): _ReturnBodyEmptyAnomyousArray {
   return item;
 }
 
 export function _returnBodyEmptyAnomyousDictRecordDeserializer(
-  item: Record<string, any>,
+  item: Record<string, any>
 ): Record<string, _ReturnBodyEmptyAnomyousDict> {
   const result: Record<string, any> = {};
   Object.keys(item).map((key) => {
-    result[key] = !item[key] ? item[key] : _returnBodyEmptyAnomyousDictDeserializer(item[key]);
+    result[key] = !item[key]
+      ? item[key]
+      : _returnBodyEmptyAnomyousDictDeserializer(item[key]);
   });
   return result;
 }
@@ -1185,7 +1205,9 @@ export function _returnBodyEmptyAnomyousDictRecordDeserializer(
 /** model interface _ReturnBodyEmptyAnomyousDict */
 export interface _ReturnBodyEmptyAnomyousDict {}
 
-export function _returnBodyEmptyAnomyousDictDeserializer(item: any): _ReturnBodyEmptyAnomyousDict {
+export function _returnBodyEmptyAnomyousDictDeserializer(
+  item: any
+): _ReturnBodyEmptyAnomyousDict {
   return item;
 }
 
@@ -1203,7 +1225,7 @@ export function emptyModelArrayDeserializer(result: Array<EmptyModel>): any[] {
 }
 
 export function emptyModelRecordDeserializer(
-  item: Record<string, any>,
+  item: Record<string, any>
 ): Record<string, EmptyModel> {
   const result: Record<string, any> = {};
   Object.keys(item).map((key) => {
@@ -1223,33 +1245,33 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters,
+  operationOptionsToRequestParameters
 } from "@azure-rest/core-client";
 
 export function _readSend(
   context: Client,
-  options: ReadOptionalParams = { requestOptions: {} },
+  options: ReadOptionalParams = { requestOptions: {} }
 ): StreamableMethod {
-  return context
-    .path("/")
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json", ...options.requestOptions?.headers },
-    });
+  return context.path("/").get({
+    ...operationOptionsToRequestParameters(options),
+    headers: { accept: "application/json", ...options.requestOptions?.headers }
+  });
 }
 
-export async function _readDeserialize(result: PathUncheckedResponse): Promise<ReturnBody> {
+export async function _readDeserialize(
+  result: PathUncheckedResponse
+): Promise<ReturnBody> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return returnBodyDeserializer(result.body);
+  return returnBodyDeserializer(result.body, result.headers);
 }
 
 export async function read(
   context: Client,
-  options: ReadOptionalParams = { requestOptions: {} },
+  options: ReadOptionalParams = { requestOptions: {} }
 ): Promise<ReturnBody> {
   const result = await _readSend(context, options);
   return _readDeserialize(result);
@@ -1310,7 +1332,7 @@ export interface Foz {
 
 export function fozDeserializer(item: any): Foz {
   return {
-    baz: _fozBazDeserializer(item["baz"]),
+    baz: _fozBazDeserializer(item["baz"])
   };
 }
 
@@ -1339,18 +1361,24 @@ export function _fozBazDeserializer(item: any): _FozBaz {
       return p;
     }),
     bas: item["bas"],
-    bar: !item["test"] ? item["test"] : simpleModelArrayDeserializer(item["test"]),
-    nonemptyAnomyous: _fozBazNonemptyAnomyousDeserializer(item["nonemptyAnomyous"]),
+    bar: !item["test"]
+      ? item["test"]
+      : simpleModelArrayDeserializer(item["test"]),
+    nonemptyAnomyous: _fozBazNonemptyAnomyousDeserializer(
+      item["nonemptyAnomyous"]
+    ),
     nonemptyAnomyousArray: _fozBazNonemptyAnomyousArrayArrayDeserializer(
-      item["nonemptyAnomyousArray"],
+      item["nonemptyAnomyousArray"]
     ),
     nonemptyAnomyousDict: _fozBazNonemptyAnomyousDictRecordDeserializer(
-      item["nonemptyAnomyousDict"],
-    ),
+      item["nonemptyAnomyousDict"]
+    )
   };
 }
 
-export function simpleModelArrayDeserializer(result: Array<SimpleModel>): any[] {
+export function simpleModelArrayDeserializer(
+  result: Array<SimpleModel>
+): any[] {
   return result.map((item) => {
     return simpleModelDeserializer(item);
   });
@@ -1363,7 +1391,7 @@ export interface SimpleModel {
 
 export function simpleModelDeserializer(item: any): SimpleModel {
   return {
-    test: item["test"],
+    test: item["test"]
   };
 }
 
@@ -1372,14 +1400,16 @@ export interface _FozBazNonemptyAnomyous {
   a: string;
 }
 
-export function _fozBazNonemptyAnomyousDeserializer(item: any): _FozBazNonemptyAnomyous {
+export function _fozBazNonemptyAnomyousDeserializer(
+  item: any
+): _FozBazNonemptyAnomyous {
   return {
-    a: item["a"],
+    a: item["a"]
   };
 }
 
 export function _fozBazNonemptyAnomyousArrayArrayDeserializer(
-  result: Array<_FozBazNonemptyAnomyousArray>,
+  result: Array<_FozBazNonemptyAnomyousArray>
 ): any[] {
   return result.map((item) => {
     return _fozBazNonemptyAnomyousArrayDeserializer(item);
@@ -1391,20 +1421,26 @@ export interface _FozBazNonemptyAnomyousArray {
   b?: Record<string, string>;
 }
 
-export function _fozBazNonemptyAnomyousArrayDeserializer(item: any): _FozBazNonemptyAnomyousArray {
+export function _fozBazNonemptyAnomyousArrayDeserializer(
+  item: any
+): _FozBazNonemptyAnomyousArray {
   return {
     b: !item["b"]
       ? item["b"]
-      : Object.fromEntries(Object.entries(item["b"]).map(([k, p]: [string, any]) => [k, p])),
+      : Object.fromEntries(
+          Object.entries(item["b"]).map(([k, p]: [string, any]) => [k, p])
+        )
   };
 }
 
 export function _fozBazNonemptyAnomyousDictRecordDeserializer(
-  item: Record<string, any>,
+  item: Record<string, any>
 ): Record<string, _FozBazNonemptyAnomyousDict> {
   const result: Record<string, any> = {};
   Object.keys(item).map((key) => {
-    result[key] = !item[key] ? item[key] : _fozBazNonemptyAnomyousDictDeserializer(item[key]);
+    result[key] = !item[key]
+      ? item[key]
+      : _fozBazNonemptyAnomyousDictDeserializer(item[key]);
   });
   return result;
 }
@@ -1414,11 +1450,13 @@ export interface _FozBazNonemptyAnomyousDict {
   c: number[];
 }
 
-export function _fozBazNonemptyAnomyousDictDeserializer(item: any): _FozBazNonemptyAnomyousDict {
+export function _fozBazNonemptyAnomyousDictDeserializer(
+  item: any
+): _FozBazNonemptyAnomyousDict {
   return {
     c: item["c"].map((p: any) => {
       return p;
-    }),
+    })
   };
 }
 ```
@@ -1433,33 +1471,33 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters,
+  operationOptionsToRequestParameters
 } from "@azure-rest/core-client";
 
 export function _readSend(
   context: Client,
-  options: ReadOptionalParams = { requestOptions: {} },
+  options: ReadOptionalParams = { requestOptions: {} }
 ): StreamableMethod {
-  return context
-    .path("/")
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json", ...options.requestOptions?.headers },
-    });
+  return context.path("/").get({
+    ...operationOptionsToRequestParameters(options),
+    headers: { accept: "application/json", ...options.requestOptions?.headers }
+  });
 }
 
-export async function _readDeserialize(result: PathUncheckedResponse): Promise<Foz> {
+export async function _readDeserialize(
+  result: PathUncheckedResponse
+): Promise<Foz> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return fozDeserializer(result.body);
+  return fozDeserializer(result.body, result.headers);
 }
 
 export async function read(
   context: Client,
-  options: ReadOptionalParams = { requestOptions: {} },
+  options: ReadOptionalParams = { requestOptions: {} }
 ): Promise<Foz> {
   const result = await _readSend(context, options);
   return _readDeserialize(result);

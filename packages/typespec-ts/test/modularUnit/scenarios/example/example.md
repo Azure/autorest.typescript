@@ -51,7 +51,7 @@ export interface Example {
 
 export function exampleDeserializer(item: any): Example {
   return {
-    id: item["id"],
+    id: item["id"]
   };
 }
 ```
@@ -99,44 +99,44 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters,
+  operationOptionsToRequestParameters
 } from "@azure-rest/core-client";
 
 export function _readSend(
   context: Client,
   id: string,
-  options: ReadOptionalParams = { requestOptions: {} },
+  options: ReadOptionalParams = { requestOptions: {} }
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/{id}",
     {
-      id: id,
+      id: id
     },
     {
-      allowReserved: options?.requestOptions?.skipUrlEncoding,
-    },
+      allowReserved: options?.requestOptions?.skipUrlEncoding
+    }
   );
-  return context
-    .path(path)
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json", ...options.requestOptions?.headers },
-    });
+  return context.path(path).get({
+    ...operationOptionsToRequestParameters(options),
+    headers: { accept: "application/json", ...options.requestOptions?.headers }
+  });
 }
 
-export async function _readDeserialize(result: PathUncheckedResponse): Promise<Example> {
+export async function _readDeserialize(
+  result: PathUncheckedResponse
+): Promise<Example> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return exampleDeserializer(result.body);
+  return exampleDeserializer(result.body, result.headers);
 }
 
 export async function read(
   context: Client,
   id: string,
-  options: ReadOptionalParams = { requestOptions: {} },
+  options: ReadOptionalParams = { requestOptions: {} }
 ): Promise<Example> {
   const result = await _readSend(context, id, options);
   return _readDeserialize(result);
@@ -149,7 +149,7 @@ Or you can extract a specific operation using `ts operations function <operation
 export async function read(
   context: Client,
   id: string,
-  options: ReadOptionalParams = { requestOptions: {} },
+  options: ReadOptionalParams = { requestOptions: {} }
 ): Promise<Example> {
   const result = await _readSend(context, id, options);
   return _readDeserialize(result);

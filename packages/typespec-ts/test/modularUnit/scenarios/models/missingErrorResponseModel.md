@@ -80,20 +80,22 @@ export interface AssetChainSummaryResult {
   errors?: ErrorResponse[];
 }
 
-export function assetChainSummaryResultDeserializer(item: any): AssetChainSummaryResult {
+export function assetChainSummaryResultDeserializer(
+  item: any
+): AssetChainSummaryResult {
   return {
     errors: !item["errors"]
       ? item["errors"]
       : item["errors"].map((p: any) => {
           return p;
-        }),
+        })
   };
 }
 
 /** Known values of {@link Versions} that the service accepts. */
 export enum KnownVersions {
   /** Version 2023-03-01-preview */
-  V20230301Preview = "2023-03-01-preview",
+  V20230301Preview = "2023-03-01-preview"
 }
 ```
 
@@ -101,41 +103,42 @@ export enum KnownVersions {
 
 ```ts operations
 import { TestServiceContext as Client } from "./index.js";
-import { AssetChainSummaryResult, assetChainSummaryResultDeserializer } from "../models/models.js";
+import {
+  AssetChainSummaryResult,
+  assetChainSummaryResultDeserializer
+} from "../models/models.js";
 import { GetAssetChainSummaryOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters,
+  operationOptionsToRequestParameters
 } from "@azure-rest/core-client";
 
 export function _getAssetChainSummarySend(
   context: Client,
-  options: GetAssetChainSummaryOptionalParams = { requestOptions: {} },
+  options: GetAssetChainSummaryOptionalParams = { requestOptions: {} }
 ): StreamableMethod {
-  return context
-    .path("/assetChainSummary")
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json", ...options.requestOptions?.headers },
-    });
+  return context.path("/assetChainSummary").get({
+    ...operationOptionsToRequestParameters(options),
+    headers: { accept: "application/json", ...options.requestOptions?.headers }
+  });
 }
 
 export async function _getAssetChainSummaryDeserialize(
-  result: PathUncheckedResponse,
+  result: PathUncheckedResponse
 ): Promise<AssetChainSummaryResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return assetChainSummaryResultDeserializer(result.body);
+  return assetChainSummaryResultDeserializer(result.body, result.headers);
 }
 
 export async function getAssetChainSummary(
   context: Client,
-  options: GetAssetChainSummaryOptionalParams = { requestOptions: {} },
+  options: GetAssetChainSummaryOptionalParams = { requestOptions: {} }
 ): Promise<AssetChainSummaryResult> {
   const result = await _getAssetChainSummarySend(context, options);
   return _getAssetChainSummaryDeserialize(result);

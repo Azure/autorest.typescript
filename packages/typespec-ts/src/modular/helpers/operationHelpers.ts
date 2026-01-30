@@ -1654,18 +1654,30 @@ export function getResponseMapping(
   headers?: string
 ) {
   const allParents = type.kind === "model" ? getAllAncestors(type) : [];
-  // Include header properties when deserializing responses
-  // Use type.properties directly instead of getAllProperties to include @header properties
-  let properties: SdkModelPropertyType[];
-  if (type.kind === "model" && type.properties) {
-    properties = type.properties.filter(
-      (p) =>
-        !isMetadata(context.program, p.__raw!) ||
-        isHeader(context.program, p.__raw!)
-    );
-  } else {
-    properties =
-      type.kind === "model" ? getAllProperties(context, type, allParents) : [];
+  // Include header properties when deserializing responses without changing
+  // the existing selection of non-metadata properties.
+  const properties =
+    type.kind === "model" ? getAllProperties(context, type, allParents) : [];
+  if (type.kind === "model") {
+    const headerProps: SdkModelPropertyType[] = [];
+    const addHeaderProps = (model: SdkModelType) => {
+      model.properties?.forEach((p) => {
+        if (isHeader(context.program, p.__raw!)) {
+          headerProps.push(p);
+        }
+      });
+    };
+    addHeaderProps(type);
+    allParents.forEach((parent) => {
+      if (parent.kind === "model") {
+        addHeaderProps(parent as SdkModelType);
+      }
+    });
+    headerProps.forEach((p) => {
+      if (!properties.some((prop) => prop.name === p.name)) {
+        properties.push(p);
+      }
+    });
   }
   const props: string[] = [];
   for (const prop of properties) {

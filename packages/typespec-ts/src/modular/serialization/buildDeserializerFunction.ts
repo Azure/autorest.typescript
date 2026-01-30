@@ -402,9 +402,15 @@ function buildModelTypeDeserializer(
       : resolveReference(refkey(type, "deserializer"));
   }
 
-  // Check if model has any header properties
+  // Check if model or its ancestors have any header properties
   const allProps = type.kind === "model" ? (type.properties ?? []) : [];
-  const hasHeaderProperties = allProps.some((p) =>
+  const ancestorProps =
+    type.kind === "model"
+      ? getAllAncestors(type)
+          .filter((p) => p.kind === "model")
+          .flatMap((p) => (p as SdkModelType).properties ?? [])
+      : [];
+  const hasHeaderProperties = [...allProps, ...ancestorProps].some((p) =>
     isHeader(context.program, p.__raw!)
   );
 

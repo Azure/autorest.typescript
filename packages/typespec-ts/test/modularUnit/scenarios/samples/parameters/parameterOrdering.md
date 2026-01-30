@@ -60,7 +60,6 @@ The config would be like:
 ```yaml
 needAzureCore: true
 withVersionedApiVersion: true
-
 ```
 
 ## Operations
@@ -71,7 +70,7 @@ import {
   TestVerificationContent,
   testVerificationContentSerializer,
   TestVerificationResult,
-  testVerificationResultDeserializer,
+  testVerificationResultDeserializer
 } from "../models/models.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import { VerifyOptionalParams } from "./options.js";
@@ -79,50 +78,48 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters,
+  operationOptionsToRequestParameters
 } from "@azure-rest/core-client";
 
 export function _verifySend(
   context: Client,
   body: TestVerificationContent,
   apcGatewayId: string,
-  options: VerifyOptionalParams = { requestOptions: {} },
+  options: VerifyOptionalParams = { requestOptions: {} }
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/device-location/location:verify{?api%2Dversion}",
     {
-      "api%2Dversion": context.apiVersion ?? "2022-05-15-preview",
+      "api%2Dversion": context.apiVersion ?? "2022-05-15-preview"
     },
     {
-      allowReserved: options?.requestOptions?.skipUrlEncoding,
-    },
+      allowReserved: options?.requestOptions?.skipUrlEncoding
+    }
   );
-  return context
-    .path(path)
-    .post({
-      ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
-      headers: {
-        ...(options?.clientRequestId !== undefined
-          ? { "x-ms-client-request-id": options?.clientRequestId }
-          : {}),
-        "apc-gateway-id": apcGatewayId,
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
-      body: testVerificationContentSerializer(body),
-    });
+  return context.path(path).post({
+    ...operationOptionsToRequestParameters(options),
+    contentType: "application/json",
+    headers: {
+      ...(options?.clientRequestId !== undefined
+        ? { "x-ms-client-request-id": options?.clientRequestId }
+        : {}),
+      "apc-gateway-id": apcGatewayId,
+      accept: "application/json",
+      ...options.requestOptions?.headers
+    },
+    body: testVerificationContentSerializer(body)
+  });
 }
 
 export async function _verifyDeserialize(
-  result: PathUncheckedResponse,
+  result: PathUncheckedResponse
 ): Promise<TestVerificationResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return testVerificationResultDeserializer(result.body);
+  return testVerificationResultDeserializer(result.body, result.headers);
 }
 
 /** Resource action operation template. */
@@ -130,7 +127,7 @@ export async function verify(
   context: Client,
   body: TestVerificationContent,
   apcGatewayId: string,
-  options: VerifyOptionalParams = { requestOptions: {} },
+  options: VerifyOptionalParams = { requestOptions: {} }
 ): Promise<TestVerificationResult> {
   const result = await _verifySend(context, body, apcGatewayId, options);
   return _verifyDeserialize(result);
@@ -176,7 +173,10 @@ import { TestingClient } from "@azure/internal-test";
 async function verify(): Promise<void> {
   const endpoint = process.env.TESTING_ENDPOINT || "";
   const client = new TestingClient(endpoint);
-  const result = await client.verify({ message: "test message" }, "zdgrzzaxlodrvewbksn");
+  const result = await client.verify(
+    { message: "test message" },
+    "zdgrzzaxlodrvewbksn"
+  );
   console.log(result);
 }
 

@@ -58,7 +58,7 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters,
+  operationOptionsToRequestParameters
 } from "@azure-rest/core-client";
 
 export function _updateKeySend(
@@ -66,36 +66,36 @@ export function _updateKeySend(
   keyName: string,
   keyVersion: string,
   parameters: string,
-  options: UpdateKeyOptionalParams = { requestOptions: {} },
+  options: UpdateKeyOptionalParams = { requestOptions: {} }
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/keys/{key-name}/{key-version}{?api%2Dversion}",
     {
       "key-name": keyName,
       "key-version": keyVersion,
-      "api%2Dversion": context.apiVersion ?? "2022-05-15-preview",
+      "api%2Dversion": context.apiVersion ?? "2022-05-15-preview"
     },
     {
-      allowReserved: options?.requestOptions?.skipUrlEncoding,
-    },
+      allowReserved: options?.requestOptions?.skipUrlEncoding
+    }
   );
-  return context
-    .path(path)
-    .patch({
-      ...operationOptionsToRequestParameters(options),
-      contentType: "text/plain",
-      headers: { accept: "application/json", ...options.requestOptions?.headers },
-      body: parameters,
-    });
+  return context.path(path).patch({
+    ...operationOptionsToRequestParameters(options),
+    contentType: "text/plain",
+    headers: { accept: "application/json", ...options.requestOptions?.headers },
+    body: parameters
+  });
 }
 
-export async function _updateKeyDeserialize(result: PathUncheckedResponse): Promise<KeyBundle> {
+export async function _updateKeyDeserialize(
+  result: PathUncheckedResponse
+): Promise<KeyBundle> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return keyBundleDeserializer(result.body);
+  return keyBundleDeserializer(result.body, result.headers);
 }
 
 /** The most basic operation. */
@@ -104,9 +104,15 @@ export async function updateKey(
   keyName: string,
   keyVersion: string,
   parameters: string,
-  options: UpdateKeyOptionalParams = { requestOptions: {} },
+  options: UpdateKeyOptionalParams = { requestOptions: {} }
 ): Promise<KeyBundle> {
-  const result = await _updateKeySend(context, keyName, keyVersion, parameters, options);
+  const result = await _updateKeySend(
+    context,
+    keyName,
+    keyVersion,
+    parameters,
+    options
+  );
   return _updateKeyDeserialize(result);
 }
 ```
