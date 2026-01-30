@@ -2731,16 +2731,20 @@ export function baseSerializer(item: Base): any {
 ## TypeSpec
 
 ```tsp
-@doc("Describes the policy to be used for placement of a service.")
+@discriminator("kind")
+model Pet {
+    kind: string;
+    name: string;
+    weight?: float32;
+}
+
 @discriminator("type")
-model ServicePlacementPolicyDescription {
-  @doc("The type of placement policy.")
+model ServicePlacementPolicyDescription extends Pet {
+  kind: "dog";
   type: string;
 }
 
-@doc("The service resource properties.")
 model ServiceResourceProperties {
-  @doc("A list that describes the correlation of the service with other services.")
   servicePlacementPolicies?: ServicePlacementPolicyDescription[];
 }
 
@@ -2759,9 +2763,8 @@ op createService(@body body: ServiceResourceProperties): ServiceResourceProperti
  */
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-/** The service resource properties. */
+/** model interface ServiceResourceProperties */
 export interface ServiceResourceProperties {
-  /** A list that describes the correlation of the service with other services. */
   servicePlacementPolicies?: ServicePlacementPolicyDescription[];
 }
 
@@ -2797,24 +2800,70 @@ export function servicePlacementPolicyDescriptionArrayDeserializer(
   });
 }
 
-/** Describes the policy to be used for placement of a service. */
-export interface ServicePlacementPolicyDescription {
-  /** The type of placement policy. */
-  /** The discriminator possible values: */
+/** model interface ServicePlacementPolicyDescription */
+export interface ServicePlacementPolicyDescription extends Pet {
+  kind: "dog";
   type: string;
 }
 
 export function servicePlacementPolicyDescriptionSerializer(
   item: ServicePlacementPolicyDescription,
 ): any {
-  return { type: item["type"] };
+  return { kind: item["kind"], name: item["name"], weight: item["weight"], type: item["type"] };
 }
 
 export function servicePlacementPolicyDescriptionDeserializer(
   item: any,
 ): ServicePlacementPolicyDescription {
   return {
+    kind: item["kind"],
+    name: item["name"],
+    weight: item["weight"],
     type: item["type"],
   };
+}
+
+/** model interface Pet */
+export interface Pet {
+  kind: string;
+  name: string;
+  weight?: number;
+}
+
+export function petSerializer(item: Pet): any {
+  return { kind: item["kind"], name: item["name"], weight: item["weight"] };
+}
+
+export function petDeserializer(item: any): Pet {
+  return {
+    kind: item["kind"],
+    name: item["name"],
+    weight: item["weight"],
+  };
+}
+
+/** Alias for PetUnion */
+export type PetUnion = ServicePlacementPolicyDescription | Pet;
+
+export function petUnionSerializer(item: PetUnion): any {
+  switch (item.kind) {
+    case "dog":
+      return servicePlacementPolicyDescriptionSerializer(item as ServicePlacementPolicyDescription);
+
+    default:
+      return petSerializer(item);
+  }
+}
+
+export function petUnionDeserializer(item: any): PetUnion {
+  switch (item.kind) {
+    case "dog":
+      return servicePlacementPolicyDescriptionDeserializer(
+        item as ServicePlacementPolicyDescription,
+      );
+
+    default:
+      return petDeserializer(item);
+  }
 }
 ```
