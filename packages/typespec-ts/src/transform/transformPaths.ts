@@ -96,7 +96,7 @@ function transformOperation(
         responseTypes,
         operationGroupName
       ),
-      isPaging: isPagingOperation(program, route)
+      isPaging: isPagingOperation(dpgContext, route)
     }
   };
   if (

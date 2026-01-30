@@ -15,6 +15,7 @@ import {
 } from "@azure-tools/rlc-common";
 import { getLroMetadata } from "@azure-tools/typespec-azure-core";
 import {
+  getDisablePageable,
   getHttpOperationWithCache,
   getWireName,
   InitializedByFlags,
@@ -424,7 +425,15 @@ export function extractPageDetails(
   return undefined;
 }
 
-export function isPagingOperation(program: Program, operation: HttpOperation) {
+export function isPagingOperation(
+  dpgContext: SdkContext,
+  operation: HttpOperation
+) {
+  const { program } = dpgContext;
+  if (getDisablePageable(dpgContext, operation.operation)) {
+    return false;
+  }
+
   return extractPageDetails(program, operation) !== undefined;
 }
 
@@ -471,14 +480,13 @@ function findRootSourceProperty(property: ModelProperty): ModelProperty {
 }
 
 export function hasPagingOperations(client: SdkClient, dpgContext: SdkContext) {
-  const program = dpgContext.program;
   for (const op of listOperationsUnderRLCClient(client)) {
     const route = getHttpOperationWithCache(dpgContext, op);
     // ignore overload base operation
     if (route.overloads && route.overloads?.length > 0) {
       continue;
     }
-    if (isPagingOperation(program, route)) {
+    if (isPagingOperation(dpgContext, route)) {
       return true;
     }
   }
