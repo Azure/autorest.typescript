@@ -10,7 +10,7 @@ import { KeyCredential, isKeyCredential, TokenCredential } from "@azure/core-aut
 export interface EventGridContext extends Client {
   /** The API version to use for this operation. */
   /** Known values of {@link KnownServiceApiVersions} that the service accepts. */
-  apiVersion: string;
+  apiVersion?: string;
 }
 
 /** Optional parameters for the client. */
@@ -51,22 +51,6 @@ export function createEventGrid(
       },
     });
   }
-  clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
-  const apiVersion = options.apiVersion ?? "2024-06-01";
-  clientContext.pipeline.addPolicy({
-    name: "ClientApiVersionPolicy",
-    sendRequest: (req, next) => {
-      // Use the apiVersion defined in request url directly
-      // Append one if there is no apiVersion and we have one at client options
-      const url = new URL(req.url);
-      if (!url.searchParams.get("api-version")) {
-        req.url = `${req.url}${
-          Array.from(url.searchParams.keys()).length > 0 ? "&" : "?"
-        }api-version=${apiVersion}`;
-      }
-
-      return next(req);
-    },
-  });
+  const apiVersion = options.apiVersion;
   return { ...clientContext, apiVersion } as EventGridContext;
 }

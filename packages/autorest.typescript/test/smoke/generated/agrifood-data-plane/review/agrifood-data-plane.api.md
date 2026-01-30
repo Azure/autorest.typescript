@@ -878,7 +878,7 @@ export interface CascadeDeleteJobOutput {
 }
 
 // @public
-function createClient(endpoint: string, credentials: KeyCredential, { apiVersion, ...options }?: AzureAgriFoodPlatformDataPlaneServiceClientOptions): AzureAgriFoodPlatformDataPlaneServiceClient;
+function createClient(endpoint: string, credentials: KeyCredential, input?: AzureAgriFoodPlatformDataPlaneServiceClientOptions): AzureAgriFoodPlatformDataPlaneServiceClient;
 export default createClient;
 
 // @public
