@@ -284,7 +284,7 @@ function prepareExampleValue(
   onClient?: boolean
 ): ExampleValue {
   return {
-    name: normalizeName(name, NameType.Parameter),
+    name: normalizeName(name, NameType.Parameter, true),
     value:
       typeof value === "string" ? value : getParameterValue(context, value),
     isOptional: Boolean(isOptional),
@@ -462,7 +462,7 @@ function prepareExampleParameters(
   const bodyParam = method.operation.bodyParam;
   const bodySerializeName = bodyParam?.serializedName;
   const bodyExample = parameterMap[bodySerializeName ?? ""];
-  if (bodySerializeName && bodyExample && bodyExample.value) {
+  if (bodyParam && bodyExample && bodyExample.value) {
     if (
       isSpreadBodyParameter(bodyParam) &&
       bodyParam.type.kind === "model" &&
@@ -568,6 +568,7 @@ function getParameterValue(
   switch (value.kind) {
     case "string": {
       switch (value.type.kind) {
+        case "plainDate":
         case "utcDateTime":
           retValue = `new Date("${value.value}")`;
           break;

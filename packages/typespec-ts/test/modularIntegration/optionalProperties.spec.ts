@@ -84,7 +84,7 @@ describe("OptionalProperties Modular Client", () => {
   });
 
   it("should handle optional plainDate", async () => {
-    const testValue = "2022-12-12";
+    const testValue = new Date("2022-12-12");
     const result = await client.plainDate.getAll();
     assert.deepEqual(result.property, testValue);
     const result2 = await client.plainDate.getDefault();

@@ -9,7 +9,8 @@ import {
   PagingHelpers,
   PollingHelpers,
   SerializationHelpers,
-  UrlTemplateHelpers
+  UrlTemplateHelpers,
+  XmlHelpers
 } from "../static-helpers-metadata.js";
 import {
   getNullableValidType,
@@ -21,6 +22,9 @@ import {
   getCollectionFormatHelper,
   hasCollectionFormatInfo,
   isBinaryPayload,
+  isXmlPayload,
+  isMultipartPayload,
+  hasDualFormatSupport,
   ServiceOperation,
   getCollectionFormatParseHelper,
   getCollectionFormatFromArrayEncoding,
@@ -46,6 +50,11 @@ import {
   buildModelSerializer,
   buildPropertySerializer
 } from "../serialization/buildSerializerFunction.js";
+import {
+  buildXmlModelSerializer,
+  buildXmlModelDeserializer,
+  hasXmlSerialization
+} from "../serialization/buildXmlSerializerFunction.js";
 import { refkey } from "../../framework/refkey.js";
 import { reportDiagnostic } from "../../lib.js";
 import { resolveReference } from "../../framework/reference.js";
@@ -63,6 +72,7 @@ import {
   SdkBodyParameter,
   SdkClientType,
   SdkConstantType,
+  SdkEnumType,
   SdkHttpOperation,
   SdkHttpParameter,
   SdkLroPagingServiceMethod,
@@ -76,6 +86,7 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import { isMetadata } from "@typespec/http";
 import { useContext } from "../../contextManager.js";
+import { isExtensibleEnum } from "../type-expressions/get-enum-expression.js";
 
 export function getSendPrivateFunction(
   dpgContext: SdkContext,
@@ -158,16 +169,15 @@ export function getDeserializePrivateFunction(
       type: PathUncheckedResponseReference
     }
   ];
-  // TODO: Support LRO + paging operation
-  // https://github.com/Azure/autorest.typescript/issues/2313
   const isLroOnly = isLroOnlyOperation(operation);
+  const isLroAndPaging = isLroAndPagingOperation(operation);
 
   // TODO: Support operation overloads
   // TODO: Support multiple responses
   const response = operation.response;
   const restResponse = operation.operation.responses[0];
   let returnType;
-  if (isLroOnly) {
+  if (isLroOnly || isLroAndPaging) {
     returnType = buildLroReturnType(context, operation);
   } else if (response.type && restResponse) {
     returnType = {
@@ -198,11 +208,12 @@ export function getDeserializePrivateFunction(
     `${getExceptionThrowStatement(context, operation)}`,
     "}"
   );
-  const deserializedType = isLroOnly
-    ? operation?.lroMetadata?.finalResponse?.result
-    : restResponse
-      ? restResponse.type
-      : response.type;
+  const deserializedType =
+    isLroOnly || isLroAndPaging
+      ? operation?.lroMetadata?.finalResponse?.result
+      : restResponse
+        ? restResponse.type
+        : response.type;
   const lroSubSegments = isLroOnly
     ? operation?.lroMetadata?.finalResponse?.resultSegments
     : undefined;
@@ -229,31 +240,130 @@ export function getDeserializePrivateFunction(
   }
 
   if (deserializedType) {
-    const contentTypes = operation.operation.responses[0]?.contentTypes;
-    const deserializeFunctionName = buildModelDeserializer(
-      context,
-      deserializedType,
-      {
-        nameOnly: true,
-        skipDiscriminatedUnionSuffix: false
-      }
-    );
-    if (deserializeFunctionName) {
-      statements.push(`return ${deserializeFunctionName}(${deserializedRoot})`);
-    } else if (isAzureCoreErrorType(context.program, deserializedType.__raw)) {
-      statements.push(`return ${deserializedRoot}`);
-    } else {
-      statements.push(
-        `return ${deserializeResponseValue(
+    const contentTypes = operation.operation.responses[0]?.contentTypes ?? [];
+    const isXml = isXmlPayload(contentTypes);
+    const isDualFormat = hasDualFormatSupport(contentTypes);
+    const isMultipart = isMultipartPayload(contentTypes);
+    const useXmlDeserialization =
+      isXml &&
+      deserializedType.kind === "model" &&
+      hasXmlSerialization(deserializedType);
+
+    // Workaround for multipart response: cast return value as any due to lack of multipart response handling in core
+    const multipartCastSuffix = isMultipart ? " as any" : "";
+
+    // For dual-format responses, check content-type header at runtime
+    if (
+      isDualFormat &&
+      deserializedType.kind === "model" &&
+      hasXmlSerialization(deserializedType)
+    ) {
+      const xmlDeserializerName = buildXmlModelDeserializer(
+        context,
+        deserializedType,
+        {
+          nameOnly: true,
+          skipDiscriminatedUnionSuffix: false
+        }
+      ) as string | undefined;
+      const jsonDeserializerName = buildModelDeserializer(
+        context,
+        deserializedType,
+        {
+          nameOnly: true,
+          skipDiscriminatedUnionSuffix: false
+        }
+      );
+
+      if (xmlDeserializerName && jsonDeserializerName) {
+        const isXmlContentTypeRef = resolveReference(
+          XmlHelpers.isXmlContentType
+        );
+        statements.push(
+          `const responseContentType = result.headers?.["content-type"] ?? "";
+          if (${isXmlContentTypeRef}(responseContentType)) {
+            return ${xmlDeserializerName}(${deserializedRoot});
+          }
+          return ${jsonDeserializerName}(${deserializedRoot});`
+        );
+      } else {
+        // Fall back to JSON deserializer
+        const deserializeFunctionName = buildModelDeserializer(
           context,
           deserializedType,
-          deserializedRoot,
-          true,
-          isBinaryPayload(context, response.type!.__raw!, contentTypes!)
-            ? "binary"
-            : getEncodeForType(deserializedType)
-        )}`
+          {
+            nameOnly: true,
+            skipDiscriminatedUnionSuffix: false
+          }
+        );
+        if (deserializeFunctionName) {
+          statements.push(
+            `return ${deserializeFunctionName}(${deserializedRoot})`
+          );
+        }
+      }
+    } else if (useXmlDeserialization) {
+      // XML-only response
+      const xmlDeserializerName = buildXmlModelDeserializer(
+        context,
+        deserializedType,
+        {
+          nameOnly: true,
+          skipDiscriminatedUnionSuffix: false
+        }
+      ) as string | undefined;
+
+      if (xmlDeserializerName) {
+        statements.push(`return ${xmlDeserializerName}(${deserializedRoot})`);
+      } else {
+        // Fall back to JSON deserializer if XML deserializer is not available
+        const deserializeFunctionName = buildModelDeserializer(
+          context,
+          deserializedType,
+          {
+            nameOnly: true,
+            skipDiscriminatedUnionSuffix: false
+          }
+        );
+        if (deserializeFunctionName) {
+          statements.push(
+            `return ${deserializeFunctionName}(${deserializedRoot})`
+          );
+        } else {
+          statements.push(`return ${deserializedRoot}`);
+        }
+      }
+    } else {
+      // JSON response (default) - also handles multipart responses
+      const deserializeFunctionName = buildModelDeserializer(
+        context,
+        deserializedType,
+        {
+          nameOnly: true,
+          skipDiscriminatedUnionSuffix: false
+        }
       );
+      if (deserializeFunctionName) {
+        statements.push(
+          `return ${deserializeFunctionName}(${deserializedRoot})${multipartCastSuffix}`
+        );
+      } else if (
+        isAzureCoreErrorType(context.program, deserializedType.__raw)
+      ) {
+        statements.push(`return ${deserializedRoot}${multipartCastSuffix}`);
+      } else {
+        statements.push(
+          `return ${deserializeResponseValue(
+            context,
+            deserializedType,
+            deserializedRoot,
+            true,
+            isBinaryPayload(context, response.type!.__raw!, contentTypes)
+              ? "binary"
+              : getEncodeForType(deserializedType)
+          )}${multipartCastSuffix}`
+        );
+      }
     }
   } else if (returnType.type === "void") {
     statements.push("return;");
@@ -465,8 +575,13 @@ export function getOperationFunction(
       optionalParamName
     );
   } else if (isLroAndPagingOperation(operation)) {
-    // Case 3: both paging + lro operation is not supported yet so handle them as normal operation and customization may be needed
-    // https://github.com/Azure/autorest.typescript/issues/2313
+    // Case 3: both paging + lro operation
+    return getLroAndPagingOperationFunction(
+      context,
+      [method[0], operation],
+      clientType,
+      optionalParamName
+    );
   }
 
   // TODO: Support operation overloads
@@ -594,9 +709,99 @@ function getLroOnlyOperationFunction(
   } as FunctionDeclarationStructure & { propertyName?: string };
 }
 
+function getLroAndPagingOperationFunction(
+  context: SdkContext,
+  method: [string[], SdkLroPagingServiceMethod<SdkHttpOperation>],
+  clientType: string,
+  optionalParamName: string = "options"
+): FunctionDeclarationStructure & { propertyName?: string } {
+  const operation = method[1];
+  const parameters = getOperationSignatureParameters(
+    context,
+    method,
+    clientType
+  );
+  const { name, fixme = [] } = getOperationName(operation);
+
+  const returnType = buildLroPagingReturnType(context, operation);
+
+  // Build paging options from metadata
+  const pagingOptions = [
+    operation.response.resultSegments &&
+      `itemName: "${operation.response.resultSegments.map((p) => p.name).join(".")}"`,
+    operation.pagingMetadata.nextLinkSegments &&
+      `nextLinkName: "${operation.pagingMetadata.nextLinkSegments.map((p) => p.name).join(".")}"`,
+    operation.pagingMetadata.nextLinkVerb !== "GET" &&
+      `nextLinkMethod: "${operation.pagingMetadata.nextLinkVerb}"`
+  ].filter(Boolean);
+
+  // Build LRO resource location config
+  const allowedLocations = [
+    "azure-async-operation",
+    "location",
+    "original-uri",
+    "operation-location"
+  ];
+  const resourceLocationConfig =
+    operation.lroMetadata?.finalStateVia &&
+    allowedLocations.includes(operation.lroMetadata.finalStateVia)
+      ? `resourceLocationConfig: "${operation.lroMetadata.finalStateVia}"`
+      : "";
+
+  // Resolve references
+  const refs = {
+    pagedIterator: resolveReference(PagingHelpers.PagedAsyncIterableIterator),
+    buildPaging: resolveReference(PagingHelpers.BuildPagedAsyncIterator),
+    getLroPoller: resolveReference(PollingHelpers.GetLongRunningPoller),
+    pollerLike: resolveReference(AzurePollingDependencies.PollerLike),
+    operationState: resolveReference(AzurePollingDependencies.OperationState),
+    pathResponse: resolveReference(useDependencies().PathUncheckedResponse)
+  };
+
+  const expectedStatuses = getExpectedStatuses(operation);
+  const paramList = parameters.map((p) => p.name).join(", ");
+  const pagingOptionsStr =
+    pagingOptions.length > 0 ? `,\n    {${pagingOptions.join(", ")}}` : "";
+
+  return {
+    kind: StructureKind.Function,
+    docs: [
+      ...getDocsFromDescription(operation.doc),
+      ...getFixmeForMultilineDocs(fixme)
+    ],
+    isAsync: false,
+    isExported: true,
+    name,
+    propertyName: normalizeName(operation.name, NameType.Property),
+    parameters,
+    returnType: `${refs.pagedIterator}<${returnType.type}>`,
+    statements: [
+      `
+  const initialPagingPoller = ${refs.getLroPoller}(context,
+    async (result: ${refs.pathResponse}) => result,
+    ${expectedStatuses}, {
+    updateIntervalInMs: ${optionalParamName}?.updateIntervalInMs,
+    abortSignal: ${optionalParamName}?.abortSignal,
+    getInitialResponse: () => _${name}Send(${paramList}),
+    ${resourceLocationConfig}
+  }) as ${refs.pollerLike}<${refs.operationState}<${refs.pathResponse}>, ${refs.pathResponse}>;
+  
+  return ${refs.buildPaging}(
+    context,
+    async () => await initialPagingPoller,
+    _${name}Deserialize,
+    ${expectedStatuses}${pagingOptionsStr}
+  );
+  `
+    ]
+  };
+}
+
 function buildLroReturnType(
   context: SdkContext,
-  operation: SdkLroServiceMethod<SdkHttpOperation>
+  operation:
+    | SdkLroServiceMethod<SdkHttpOperation>
+    | SdkLroPagingServiceMethod<SdkHttpOperation>
 ) {
   const metadata = operation.lroMetadata;
   if (metadata !== undefined && metadata.finalResponse !== undefined) {
@@ -604,6 +809,19 @@ function buildLroReturnType(
     return {
       name: type.name,
       type: getTypeExpression(context, type)
+    };
+  }
+  return { name: "", type: "void" };
+}
+
+function buildLroPagingReturnType(
+  context: SdkContext,
+  operation: SdkLroPagingServiceMethod<SdkHttpOperation>
+) {
+  if (operation.response.type?.kind === "array") {
+    return {
+      name: (operation.response.type.valueType as any).name ?? "",
+      type: getTypeExpression(context, operation.response.type.valueType)
     };
   }
   return { name: "", type: "void" };
@@ -824,14 +1042,31 @@ function buildBodyParameter(
   if (!bodyParameter || !bodyParameter.type) {
     return "";
   }
-  const serializerFunctionName = buildModelSerializer(
-    context,
-    getNullableValidType(bodyParameter.type),
-    {
+
+  const contentTypes = bodyParameter.contentTypes;
+  const isXml = isXmlPayload(contentTypes);
+  const isDualFormat = hasDualFormatSupport(contentTypes);
+  const bodyType = getNullableValidType(bodyParameter.type);
+
+  // Check if XML serialization is needed and available
+  const useXmlSerialization =
+    isXml && bodyType.kind === "model" && hasXmlSerialization(bodyType);
+
+  let serializerFunctionName: string | undefined;
+
+  if (useXmlSerialization) {
+    // Use XML serializer
+    serializerFunctionName = buildXmlModelSerializer(context, bodyType, {
       nameOnly: true,
       skipDiscriminatedUnionSuffix: false
-    }
-  );
+    }) as string | undefined;
+  } else {
+    // Use JSON serializer (default)
+    serializerFunctionName = buildModelSerializer(context, bodyType, {
+      nameOnly: true,
+      skipDiscriminatedUnionSuffix: false
+    }) as string | undefined;
+  }
 
   const bodyParamName = normalizeName(
     bodyParameter.name,
@@ -846,6 +1081,28 @@ function buildBodyParameter(
     bodyParameter,
     bodyParameter.optional ? optionalParamName : undefined
   );
+
+  // For dual-format operations, check the contentType option at runtime
+  if (
+    isDualFormat &&
+    bodyType.kind === "model" &&
+    hasXmlSerialization(bodyType)
+  ) {
+    const xmlSerializerName = buildXmlModelSerializer(context, bodyType, {
+      nameOnly: true,
+      skipDiscriminatedUnionSuffix: false
+    }) as string | undefined;
+    const jsonSerializerName = buildModelSerializer(context, bodyType, {
+      nameOnly: true,
+      skipDiscriminatedUnionSuffix: false
+    }) as string | undefined;
+
+    if (xmlSerializerName && jsonSerializerName) {
+      const isXmlContentTypeRef = resolveReference(XmlHelpers.isXmlContentType);
+      return `\nbody: ${nullOrUndefinedPrefix}(${isXmlContentTypeRef}(${optionalParamName}?.contentType ?? "application/json") ? ${xmlSerializerName}(${bodyNameExpression}) : ${jsonSerializerName}(${bodyNameExpression})),`;
+    }
+  }
+
   // if a model being used in both spread and non spread operation, we should only leverage the deserializer in non spread operation
   if (serializerFunctionName && !isSpreadBodyParameter(bodyParameter)) {
     return `\nbody: ${nullOrUndefinedPrefix}${serializerFunctionName}(${bodyNameExpression}),`;
@@ -884,21 +1141,32 @@ export function getParameterMap(
   param: SdkHttpParameter,
   optionalParamName: string = "options"
 ): string {
+  // Use lowercase for header names since HTTP headers are case-insensitive
+  const serializedName =
+    param.kind === "header"
+      ? getHeaderSerializedName(param)
+      : getPropertySerializedName(param);
+
   if (isConstant(param.type)) {
-    return `"${param.name}": ${getConstantValue(param.type)}`;
+    return `"${serializedName}": ${getConstantValue(param.type)}`;
   }
 
   if (hasCollectionFormatInfo(param.kind, (param as any).collectionFormat)) {
-    return getCollectionFormatForParam(context, param, optionalParamName);
+    return getCollectionFormatForParam(
+      context,
+      param,
+      optionalParamName,
+      serializedName
+    );
   }
 
   // if the parameter or property is optional, we don't need to handle the default value
   if (isOptional(param)) {
-    return getOptional(context, param, optionalParamName);
+    return getOptional(context, param, optionalParamName, serializedName);
   }
 
   if (isRequired(param)) {
-    return getRequired(context, param);
+    return getRequired(context, param, serializedName);
   }
 
   reportDiagnostic(context.program, {
@@ -917,9 +1185,9 @@ export function getParameterMap(
 function getCollectionFormatForParam(
   context: SdkContext,
   param: SdkHttpParameter,
-  optionalParamName: string = "options"
+  optionalParamName: string = "options",
+  serializedName: string
 ) {
-  const serializedName = getPropertySerializedName(param);
   const format = (param as any).collectionFormat;
   return `"${serializedName}": ${serializeRequestValue(
     context,
@@ -963,8 +1231,11 @@ function isRequired(param: SdkHttpParameter) {
   return !param.optional;
 }
 
-function getRequired(context: SdkContext, param: SdkHttpParameter) {
-  const serializedName = getPropertySerializedName(param);
+function getRequired(
+  context: SdkContext,
+  param: SdkHttpParameter,
+  serializedName: string
+) {
   const clientValue = `${param.onClient ? "context." : ""}${param.name}`;
   if (param.type.kind === "model") {
     const propertiesStr = getRequestModelMapping(
@@ -1003,9 +1274,9 @@ function isOptional(param: SdkHttpParameter) {
 function getOptional(
   context: SdkContext,
   param: SdkHttpParameter,
-  optionalParamName: string
+  optionalParamName: string,
+  serializedName: string
 ) {
-  const serializedName = getPropertySerializedName(param);
   const paramName = `${param.onClient ? "context." : `${optionalParamName}?.`}${param.name}`;
   if (param.type.kind === "model") {
     const propertiesStr = getRequestModelMapping(
@@ -1171,8 +1442,8 @@ function getEncodeForModelProperty(
   property: SdkModelPropertyType
 ): string | undefined {
   if (property.encode && property.type.kind === "array") {
-    // Only arrays of string type can have collectionFormat encoding
-    if (property.type.valueType.kind !== "string") {
+    // Only arrays of string type or string-based enum type can have collectionFormat encoding
+    if (!isStringEncodableArrayValueType(property.type.valueType)) {
       reportDiagnostic(context.program, {
         code: "un-supported-array-encoding",
         format: {
@@ -1197,6 +1468,25 @@ function getEncodeForModelProperty(
   return getEncodeForType(property.type);
 }
 
+/**
+ * Checks if an array value type is string-encodable for collection format encoding.
+ * This includes both string type and string-based enum types.
+ */
+function isStringEncodableArrayValueType(valueType: SdkType): boolean {
+  // Direct string type
+  if (valueType.kind === "string") {
+    return true;
+  }
+  // String-based enum type
+  if (
+    valueType.kind === "enum" &&
+    (valueType as SdkEnumType).valueType.kind === "string"
+  ) {
+    return true;
+  }
+  return false;
+}
+
 function getSerializationExpressionForFlatten(
   context: SdkContext,
   property: SdkModelPropertyType,
@@ -1219,9 +1509,6 @@ function getSerializationExpressionForFlatten(
       !isReadOnly(p) &&
       !isMetadata(context.program, p.__raw!)
   );
-  if (validProps.length === 0) {
-    return `undefined`;
-  }
   const optionalPrefix = property.optional
     ? `${resolveReference(SerializationHelpers.areAllPropsUndefined)}(${propertyPath}, [${validProps
         .map((p) => `"${p.name}"`)
@@ -1340,6 +1627,14 @@ function getPropertySerializedName(
 }
 
 /**
+ * Get the serialized name for a header parameter, normalized to lowercase.
+ * HTTP headers are case-insensitive, so we normalize to lowercase for consistency.
+ */
+function getHeaderSerializedName(param: SdkHttpParameter) {
+  return getPropertySerializedName(param).toLowerCase();
+}
+
+/**
  * This function helps translating an RLC response to an HLC response,
  * extracting properties from body and headers and building the HLC response object
  */
@@ -1427,6 +1722,9 @@ export function serializeRequestValue(
       ? `!${clientValue}? ${clientValue}: `
       : "";
   switch (type.kind) {
+    case "plainDate":
+      // plainDate always uses ISO8601 format (YYYY-MM-DD)
+      return `${nullOrUndefinedPrefix}${clientValue}.toISOString().split('T')[0]`;
     case "utcDateTime":
       switch (type.encode ?? format) {
         case "rfc7231":
@@ -1542,7 +1840,8 @@ export function deserializeResponseValue(
   type: SdkType,
   restValue: string,
   required: boolean,
-  format?: string
+  format?: string,
+  recursionDepth: number = 0
 ): string {
   const dependencies = useDependencies();
   const stringToUint8ArrayReference = resolveReference(
@@ -1553,16 +1852,20 @@ export function deserializeResponseValue(
       ? `!${restValue}? ${restValue}: `
       : "";
   switch (type.kind) {
+    case "plainDate":
+      // plainDate deserializes from YYYY-MM-DD string to Date
+      return `${nullOrUndefinedPrefix} new Date(${restValue})`;
     case "utcDateTime":
       return `${nullOrUndefinedPrefix} new Date(${type.encode === "unixTimestamp" ? `${restValue} * 1000` : restValue})`;
     case "array": {
       const prefix = nullOrUndefinedPrefix + restValue;
+      const varName = recursionDepth > 0 ? `p${recursionDepth}` : "p";
       let elementNullOrUndefinedPrefix = "";
       if (
         type.valueType &&
         (isTypeNullable(type.valueType) || getOptionalForType(type.valueType))
       ) {
-        elementNullOrUndefinedPrefix = "!p ? p :";
+        elementNullOrUndefinedPrefix = `!${varName} ? ${varName} :`;
       }
       const deserializeFunctionName = type.valueType
         ? buildModelDeserializer(
@@ -1575,12 +1878,12 @@ export function deserializeResponseValue(
           )
         : undefined;
       if (deserializeFunctionName) {
-        return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}${deserializeFunctionName}(p)})`;
+        return `${prefix}.map((${varName}: any) => { return ${elementNullOrUndefinedPrefix}${deserializeFunctionName}(${varName})})`;
       } else if (
         type.valueType &&
         isAzureCoreErrorType(context.program, type.valueType.__raw)
       ) {
-        return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}p})`;
+        return `${prefix}.map((${varName}: any) => { return ${elementNullOrUndefinedPrefix}${varName}})`;
       } else if (type.valueType) {
         if (format) {
           const parseHelper = getCollectionFormatParseHelper(format);
@@ -1590,21 +1893,31 @@ export function deserializeResponseValue(
               isTypeNullable(type) || getOptionalForType(type) || !required
                 ? `${restValue} === null || ${restValue} === undefined ? ${restValue}: `
                 : "";
-            return `${optionalPrefixForString}${parseHelper}(${restValue})`;
+            if (
+              type.valueType.kind === "enum" &&
+              !isExtensibleEnum(context, type.valueType)
+            ) {
+              // Special handling for non-extensible enums to cast the result to the correct type
+              return `${optionalPrefixForString}${parseHelper}(${restValue}) as ${getTypeExpression(context, type)}`;
+            } else {
+              return `${optionalPrefixForString}${parseHelper}(${restValue})`;
+            }
           }
         }
-        return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}${deserializeResponseValue(context, type.valueType, "p", true, getEncodeForType(type.valueType))}})`;
+        return `${prefix}.map((${varName}: any) => { return ${elementNullOrUndefinedPrefix}${deserializeResponseValue(context, type.valueType, varName, true, getEncodeForType(type.valueType), recursionDepth + 1)}})`;
       } else {
         return restValue;
       }
     }
     case "dict": {
+      const keyVar = recursionDepth > 0 ? `k${recursionDepth}` : "k";
+      const valueVar = recursionDepth > 0 ? `p${recursionDepth}` : "p";
       let elementNullOrUndefinedPrefix = "";
       if (
         type.valueType &&
         (isTypeNullable(type.valueType) || getOptionalForType(type.valueType))
       ) {
-        elementNullOrUndefinedPrefix = "!p ? p :";
+        elementNullOrUndefinedPrefix = `!${valueVar} ? ${valueVar} :`;
       }
       const deserializeFunctionName = type.valueType
         ? buildModelDeserializer(
@@ -1617,14 +1930,14 @@ export function deserializeResponseValue(
           )
         : undefined;
       if (deserializeFunctionName) {
-        return `${nullOrUndefinedPrefix}Object.fromEntries(Object.entries(${restValue}).map(([k, p]: [string, any]) => [k, ${elementNullOrUndefinedPrefix}${deserializeFunctionName}(p)]))`;
+        return `${nullOrUndefinedPrefix}Object.fromEntries(Object.entries(${restValue}).map(([${keyVar}, ${valueVar}]: [string, any]) => [${keyVar}, ${elementNullOrUndefinedPrefix}${deserializeFunctionName}(${valueVar})]))`;
       } else if (
         type.valueType &&
         isAzureCoreErrorType(context.program, type.valueType.__raw)
       ) {
-        return `${nullOrUndefinedPrefix}Object.fromEntries(Object.entries(${restValue}).map(([k, p]: [string, any]) => [k, ${elementNullOrUndefinedPrefix}p]))`;
+        return `${nullOrUndefinedPrefix}Object.fromEntries(Object.entries(${restValue}).map(([${keyVar}, ${valueVar}]: [string, any]) => [${keyVar}, ${elementNullOrUndefinedPrefix}${valueVar}]))`;
       } else if (type.valueType) {
-        return `${nullOrUndefinedPrefix}Object.fromEntries(Object.entries(${restValue}).map(([k, p]: [string, any]) => [k, ${elementNullOrUndefinedPrefix}${deserializeResponseValue(context, type.valueType, "p", true, getEncodeForType(type.valueType))}]))`;
+        return `${nullOrUndefinedPrefix}Object.fromEntries(Object.entries(${restValue}).map(([${keyVar}, ${valueVar}]: [string, any]) => [${keyVar}, ${elementNullOrUndefinedPrefix}${deserializeResponseValue(context, type.valueType, valueVar, true, getEncodeForType(type.valueType), recursionDepth + 1)}]))`;
       } else {
         return restValue;
       }
@@ -1662,7 +1975,8 @@ export function deserializeResponseValue(
         type.type,
         restValue,
         false,
-        getEncodeForType(type.type)
+        getEncodeForType(type.type),
+        recursionDepth + 1
       );
     default:
       return restValue;
@@ -1741,9 +2055,13 @@ export function getPropertyFullName(
   property: SdkHttpParameter | SdkModelPropertyType,
   propertyPath?: string
 ) {
-  const normalizedPropertyName = normalizeModelPropertyName(context, property)
-    .replace(/^"/g, "")
-    .replace(/"$/g, "");
+  const normalizedPropertyName =
+    propertyPath === ""
+      ? normalizeName(property.name, NameType.Parameter, true)
+      : normalizeModelPropertyName(context, property)
+          .replace(/^"/g, "")
+          .replace(/"$/g, "");
+
   let fullName = normalizedPropertyName;
   if (propertyPath === "" && property.optional) {
     fullName = `options?.${normalizedPropertyName}`;
@@ -1760,8 +2078,18 @@ export function getPropertyFullName(
 export function getExpectedStatuses(operation: ServiceOperation): string {
   let statusCodes = operation.operation.responses.map((x) => x.statusCodes);
   // LROs may call the same path but with GET to get the operation status.
-  if (isLroOnlyOperation(operation) && operation.operation.verb !== "get") {
-    statusCodes = Array.from(new Set([...statusCodes, 200, 201, 202]));
+  if (
+    (isLroOnlyOperation(operation) || isLroAndPagingOperation(operation)) &&
+    operation.operation.verb !== "get"
+  ) {
+    // DELETE: Add 200, 202 for polling
+    // POST/PUT/PATCH: Add 200, 201, 202 for polling
+    const verb = operation.operation.verb.toLowerCase();
+    if (verb === "delete") {
+      statusCodes = Array.from(new Set([...statusCodes, 200, 202]));
+    } else {
+      statusCodes = Array.from(new Set([...statusCodes, 200, 201, 202]));
+    }
   }
 
   return `[${statusCodes.map((x) => `"${x}"`).join(", ")}]`;

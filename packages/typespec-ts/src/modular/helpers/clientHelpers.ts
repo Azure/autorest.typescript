@@ -249,12 +249,14 @@ export function buildGetClientEndpointParam(
  *
  * @param context - context in which the options are being passed; statements will be added to this context
  *                  to help build the options shape
+ * @param apiVersionParamName - the name of the api version parameter in options (e.g., "apiVersion" or "version")
  * @returns - an expression representing the options to be passed in to getClient
  */
 export function buildGetClientOptionsParam(
   context: StatementedNode,
   emitterOptions: ModularEmitterOptions,
-  endpointParam: string
+  endpointParam: string,
+  apiVersionParamName?: string
 ): string {
   const userAgentOptions = buildUserAgentOptions(
     context,
@@ -264,7 +266,9 @@ export function buildGetClientOptionsParam(
   const loggingOptions = buildLoggingOptions(emitterOptions.options.flavor);
   const credentials = buildCredentials(emitterOptions, endpointParam);
 
-  let expr = "const { apiVersion: _, ...updatedOptions } = {";
+  // Use the actual api version parameter name for destructuring, defaulting to "apiVersion"
+  const apiVersionDestructure = apiVersionParamName ?? "apiVersion";
+  let expr = `const { ${apiVersionDestructure}: _, ...updatedOptions } = {`;
 
   expr += "...options,";
 

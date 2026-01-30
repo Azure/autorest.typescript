@@ -54,7 +54,7 @@ export interface EmitterOptions {
   "azure-arm"?: boolean;
   "source-from"?: "TypeSpec" | "Swagger";
   "is-modular-library"?: boolean;
-  "module-kind"?: "esm" | "cjs";
+  "module-kind"?: "esm";
   "enable-operation-group"?: boolean;
   flavor?: PackageFlavor;
   "enable-model-namespace"?: boolean;
@@ -272,7 +272,7 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
     "module-kind": {
       type: "string",
       nullable: true,
-      enum: ["esm", "cjs"],
+      enum: ["esm"],
       default: "esm",
       description: "Internal option for test."
     },

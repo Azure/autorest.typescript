@@ -411,7 +411,7 @@ op read(@body body: Foo): { @body body: Foo };
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Foo */
 export interface Foo {
-  prop1: string;
+  prop1: Date;
   prop2: string;
   prop3: Date;
   prop4: string;
@@ -423,7 +423,7 @@ export interface Foo {
 ```ts models function fooSerializer
 export function fooSerializer(item: Foo): any {
   return {
-    prop1: item["prop1"],
+    prop1: item["prop1"].toISOString().split('T')[0],
     prop2: item["prop2"],
     prop3: item["prop3"].toISOString(),
     prop4: item["prop4"],
@@ -436,7 +436,7 @@ export function fooSerializer(item: Foo): any {
 ```ts models function fooDeserializer
 export function fooDeserializer(item: any): Foo {
   return {
-    prop1: item["prop1"],
+    prop1: new Date(item["prop1"]),
     prop2: item["prop2"],
     prop3: new Date(item["prop3"]),
     prop4: item["prop4"],
