@@ -184,7 +184,11 @@ function buildPolymorphicSerializer(
 
   const subTypes = type.discriminatedSubtypes;
   if (!subTypes) {
-    return;
+    // No subtypes - treat as a regular model and generate simple serializer
+    return buildModelTypeSerializer(context, type, {
+      nameOnly,
+      skipDiscriminatedUnionSuffix: false
+    });
   }
 
   const cases: string[] = [];
