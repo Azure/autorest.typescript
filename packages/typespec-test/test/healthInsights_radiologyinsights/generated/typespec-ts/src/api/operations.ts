@@ -28,7 +28,7 @@ export function _inferRadiologyInsightsSend(
   const path = expandUrlTemplate(
     "/radiology-insights/jobs{?api%2Dversion}",
     {
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-09-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -41,11 +41,11 @@ export function _inferRadiologyInsightsSend(
       contentType: "application/json",
       headers: {
         ...(options?.repeatabilityRequestId !== undefined
-          ? { "Repeatability-Request-ID": options?.repeatabilityRequestId }
+          ? { "repeatability-request-id": options?.repeatabilityRequestId }
           : {}),
         ...(options?.repeatabilityFirstSent !== undefined
           ? {
-              "Repeatability-First-Sent": !options?.repeatabilityFirstSent
+              "repeatability-first-sent": !options?.repeatabilityFirstSent
                 ? options?.repeatabilityFirstSent
                 : options?.repeatabilityFirstSent.toUTCString(),
             }
@@ -90,6 +90,8 @@ export function inferRadiologyInsights(
     updateIntervalInMs: options?.updateIntervalInMs,
     abortSignal: options?.abortSignal,
     getInitialResponse: () => _inferRadiologyInsightsSend(context, patients, options),
+
+    apiVersion: context.apiVersion ?? "2023-09-01-preview",
   }) as PollerLike<
     OperationState<RadiologyInsightsInferenceResult>,
     RadiologyInsightsInferenceResult

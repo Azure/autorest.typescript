@@ -333,6 +333,42 @@ export declare interface FormDataMultiBinaryPartsMediaTypesParam {
 
 export declare type FormDataMultiBinaryPartsParameters = FormDataMultiBinaryPartsMediaTypesParam & FormDataMultiBinaryPartsBodyParam & RequestParameters;
 
+export declare interface FormDataOptionalParts {
+    post(options: FormDataOptionalPartsParameters): StreamableMethod<FormDataOptionalParts204Response>;
+}
+
+export declare interface FormDataOptionalParts204Response extends HttpResponse {
+    status: "204";
+}
+
+export declare interface FormDataOptionalPartsBodyParam {
+    body: MultiPartOptionalRequest;
+}
+
+export declare interface FormDataOptionalPartsMediaTypesParam {
+    contentType: "multipart/form-data";
+}
+
+export declare type FormDataOptionalPartsParameters = FormDataOptionalPartsMediaTypesParam & FormDataOptionalPartsBodyParam & RequestParameters;
+
+export declare interface FormDataWithWireName {
+    post(options: FormDataWithWireNameParameters): StreamableMethod<FormDataWithWireName204Response>;
+}
+
+export declare interface FormDataWithWireName204Response extends HttpResponse {
+    status: "204";
+}
+
+export declare interface FormDataWithWireNameBodyParam {
+    body: MultiPartRequestWithWireName;
+}
+
+export declare interface FormDataWithWireNameMediaTypesParam {
+    contentType: "multipart/form-data";
+}
+
+export declare type FormDataWithWireNameParameters = FormDataWithWireNameMediaTypesParam & FormDataWithWireNameBodyParam & RequestParameters;
+
 export declare type JsonPartRequest = FormData | Array<JsonPartRequestAddressPartDescriptor | JsonPartRequestProfileImagePartDescriptor>;
 
 export declare interface JsonPartRequestAddressPartDescriptor {
@@ -370,6 +406,20 @@ export declare type MultiPartClient = Client & {
 export declare interface MultiPartClientOptions extends ClientOptions {
 }
 
+export declare type MultiPartOptionalRequest = FormData | Array<MultiPartOptionalRequestIdPartDescriptor | MultiPartOptionalRequestProfileImagePartDescriptor>;
+
+export declare interface MultiPartOptionalRequestIdPartDescriptor {
+    name: "id";
+    body: string;
+}
+
+export declare interface MultiPartOptionalRequestProfileImagePartDescriptor {
+    name: "profileImage";
+    body: string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream | File;
+    filename?: string;
+    contentType?: string;
+}
+
 export declare type MultiPartRequest = FormData | Array<MultiPartRequestIdPartDescriptor | MultiPartRequestProfileImagePartDescriptor>;
 
 export declare interface MultiPartRequestIdPartDescriptor {
@@ -384,8 +434,24 @@ export declare interface MultiPartRequestProfileImagePartDescriptor {
     contentType?: string;
 }
 
+export declare type MultiPartRequestWithWireName = FormData | Array<MultiPartRequestWithWireNameIdentifierPartDescriptor | MultiPartRequestWithWireNameImagePartDescriptor>;
+
+export declare interface MultiPartRequestWithWireNameIdentifierPartDescriptor {
+    name: "identifier";
+    body: string;
+}
+
+export declare interface MultiPartRequestWithWireNameImagePartDescriptor {
+    name: "image";
+    body: string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream | File;
+    filename?: string;
+    contentType?: string;
+}
+
 export declare interface Routes {
     (path: "/multipart/form-data/mixed-parts"): FormDataBasic;
+    (path: "/multipart/form-data/mixed-parts-with-wire-name"): FormDataWithWireName;
+    (path: "/multipart/form-data/optional-parts"): FormDataOptionalParts;
     (path: "/multipart/form-data/complex-parts"): FormDataFileArrayAndBasic;
     (path: "/multipart/form-data/json-part"): FormDataJsonPart;
     (path: "/multipart/form-data/binary-array-parts"): FormDataBinaryArrayParts;

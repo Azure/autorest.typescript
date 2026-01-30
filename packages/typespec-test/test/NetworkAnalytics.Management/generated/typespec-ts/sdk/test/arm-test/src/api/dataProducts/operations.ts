@@ -61,7 +61,7 @@ export function _listBySubscriptionSend(
     "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkAnalytics/dataProducts{?api%2Dversion}",
     {
       subscriptionId: context.subscriptionId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-11-15",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -98,7 +98,7 @@ export function listBySubscription(
     () => _listBySubscriptionSend(context, options),
     _listBySubscriptionDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "nextLink" },
+    { itemName: "value", nextLinkName: "nextLink", apiVersion: context.apiVersion ?? "2023-11-15" },
   );
 }
 
@@ -112,7 +112,7 @@ export function _listByResourceGroupSend(
     {
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-11-15",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -150,7 +150,7 @@ export function listByResourceGroup(
     () => _listByResourceGroupSend(context, resourceGroupName, options),
     _listByResourceGroupDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "nextLink" },
+    { itemName: "value", nextLinkName: "nextLink", apiVersion: context.apiVersion ?? "2023-11-15" },
   );
 }
 
@@ -167,7 +167,7 @@ export function _listRolesAssignmentsSend(
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       dataProductName: dataProductName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-11-15",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -227,7 +227,7 @@ export function _removeUserRoleSend(
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       dataProductName: dataProductName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-11-15",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -284,7 +284,7 @@ export function _addUserRoleSend(
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       dataProductName: dataProductName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-11-15",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -338,7 +338,7 @@ export function _rotateKeySend(
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       dataProductName: dataProductName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-11-15",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -389,7 +389,7 @@ export function _generateStorageAccountSasTokenSend(
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       dataProductName: dataProductName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-11-15",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -448,7 +448,7 @@ export function _$deleteSend(
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       dataProductName: dataProductName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-11-15",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -458,7 +458,7 @@ export function _$deleteSend(
 }
 
 export async function _$deleteDeserialize(result: PathUncheckedResponse): Promise<void> {
-  const expectedStatuses = ["202", "204", "200", "201"];
+  const expectedStatuses = ["202", "204", "200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
     error.details = errorResponseDeserializer(result.body);
@@ -480,11 +480,12 @@ export function $delete(
   dataProductName: string,
   options: DataProductsDeleteOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<void>, void> {
-  return getLongRunningPoller(context, _$deleteDeserialize, ["202", "204", "200", "201"], {
+  return getLongRunningPoller(context, _$deleteDeserialize, ["202", "204", "200"], {
     updateIntervalInMs: options?.updateIntervalInMs,
     abortSignal: options?.abortSignal,
     getInitialResponse: () => _$deleteSend(context, resourceGroupName, dataProductName, options),
     resourceLocationConfig: "location",
+    apiVersion: context.apiVersion ?? "2023-11-15",
   }) as PollerLike<OperationState<void>, void>;
 }
 
@@ -501,7 +502,7 @@ export function _updateSend(
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       dataProductName: dataProductName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-11-15",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -542,6 +543,7 @@ export function update(
     getInitialResponse: () =>
       _updateSend(context, resourceGroupName, dataProductName, properties, options),
     resourceLocationConfig: "location",
+    apiVersion: context.apiVersion ?? "2023-11-15",
   }) as PollerLike<OperationState<DataProduct>, DataProduct>;
 }
 
@@ -557,7 +559,7 @@ export function _getSend(
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       dataProductName: dataProductName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-11-15",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -606,7 +608,7 @@ export function _createSend(
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       dataProductName: dataProductName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-11-15",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -647,5 +649,6 @@ export function create(
     getInitialResponse: () =>
       _createSend(context, resourceGroupName, dataProductName, resource, options),
     resourceLocationConfig: "azure-async-operation",
+    apiVersion: context.apiVersion ?? "2023-11-15",
   }) as PollerLike<OperationState<DataProduct>, DataProduct>;
 }

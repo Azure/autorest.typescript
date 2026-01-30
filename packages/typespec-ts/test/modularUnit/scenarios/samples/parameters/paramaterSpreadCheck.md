@@ -94,3 +94,108 @@ async function main(): Promise<void> {
 
 main().catch(console.error);
 ```
+
+# Should handle spread body with empty serializedName
+
+## TypeSpec
+
+```tsp
+import "@typespec/http";
+import "@typespec/rest";
+import "@azure-tools/typespec-azure-core";
+
+using TypeSpec.Http;
+using TypeSpec.Rest;
+using Azure.Core;
+using Azure.Core.Traits;
+
+@service(#{
+  title: "Face Service"
+})
+namespace FaceService;
+
+model UserDefinedFields {
+  name: string;
+  userData?: string;
+}
+
+union RecognitionModel {
+  string,
+  "recognition_01",
+  "recognition_02",
+}
+
+model CreateCollectionRequest {
+  ...UserDefinedFields;
+
+  recognitionModel?: RecognitionModel;
+}
+
+@resource("largefacelists")
+model LargeFaceList {
+  @key
+  largeFaceListId: string;
+}
+alias ServiceTraits = NoClientRequestId &
+  NoRepeatableRequests &
+  NoConditionalRequests;
+
+interface Operations {
+  @createsOrReplacesResource(LargeFaceList)
+  create is Azure.Core.Foundations.ResourceOperation<
+    LargeFaceList,
+    CreateCollectionRequest,
+    TypeSpec.Http.OkResponse,
+    ServiceTraits,
+    {}
+  >;
+}
+```
+
+## Example
+
+```json
+{
+  "title": "Create LargeFaceList",
+  "operationId": "Operations_Create",
+  "parameters": {
+    "largeFaceListId": "test_face_list_001",
+    "body": {
+      "name": "My Test Face List",
+      "userData": "This is test data",
+      "recognitionModel": "recognition_02"
+    }
+  },
+  "responses": {
+    "200": {}
+  }
+}
+```
+
+## Samples
+
+```ts samples
+/** This file path is /samples-dev/createSample.ts */
+import { FaceServiceClient } from "@azure/internal-test";
+
+/**
+ * This sample demonstrates how to the most basic operation that applies to a resource.
+ *
+ * @summary the most basic operation that applies to a resource.
+ * x-ms-original-file: 2021-10-01-preview/json.json
+ */
+async function createLargeFaceList(): Promise<void> {
+  const endpoint = process.env.FACE_SERVICE_ENDPOINT || "";
+  const client = new FaceServiceClient(endpoint);
+  await client.create("test_face_list_001", "My Test Face List", {
+    userData: "This is test data",
+    recognitionModel: "recognition_02",
+  });
+}
+
+async function main(): Promise<void> {
+  await createLargeFaceList();
+}
+
+main().catch(console.error);
+```

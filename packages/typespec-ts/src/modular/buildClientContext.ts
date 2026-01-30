@@ -81,8 +81,7 @@ export function buildClientContext(
   // Get all client parameters (both required and optional) for the interface
   const requiredInterfaceProperties = getClientParameters(client, dpgContext, {
     onClientOnly: false,
-    requiredOnly: true,
-    apiVersionAsRequired: true
+    requiredOnly: true
   })
     .filter((p) => {
       const clientParamName = getClientParameterName(p);
@@ -200,10 +199,20 @@ export function buildClientContext(
   const { endpointParamName: endpointParam, assignedOptionalParams } =
     buildGetClientEndpointParam(factoryFunction, dpgContext, client);
   const credentialParam = buildGetClientCredentialParam(client, emitterOptions);
+
+  // Get api version param early so we can use its name when building options
+  const apiVersionParam = getClientParameters(client, dpgContext).find(
+    (x) => x.isApiVersionParam
+  );
+  const apiVersionParamName = apiVersionParam
+    ? getClientParameterName(apiVersionParam)
+    : undefined;
+
   const optionsParam = buildGetClientOptionsParam(
     factoryFunction,
     emitterOptions,
-    endpointParam
+    endpointParam,
+    apiVersionParamName
   );
 
   factoryFunction.addStatements(
@@ -229,10 +238,7 @@ export function buildClientContext(
       `);
   }
 
-  let apiVersionPolicyStatement = `clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });`;
-  const apiVersionParam = getClientParameters(client, dpgContext).find(
-    (x) => x.isApiVersionParam
-  );
+  let apiVersionStatement = ``;
   const endpointParameter = getClientParameters(client, dpgContext, {
     onClientOnly: false,
     requiredOnly: true,
@@ -248,39 +254,20 @@ export function buildClientContext(
     const apiVersionInEndpoint =
       templateArguments && templateArguments.find((p) => p.isApiVersionParam);
     if (!apiVersionInEndpoint && apiVersionParam.clientDefaultValue) {
-      apiVersionPolicyStatement += `const apiVersion = options.apiVersion ?? "${apiVersionParam.clientDefaultValue}";`;
-    }
-
-    if (apiVersionParam.kind === "method") {
-      apiVersionPolicyStatement += `
-      clientContext.pipeline.addPolicy({
-        name: 'ClientApiVersionPolicy',
-        sendRequest: (req, next) => {
-          // Use the apiVersion defined in request url directly
-          // Append one if there is no apiVersion and we have one at client options
-          const url = new URL(req.url);
-          if (!url.searchParams.get("api-version")) {
-            req.url = \`\${req.url}\${
-              Array.from(url.searchParams.keys()).length > 0 ? "&" : "?"
-            }api-version=\${${getClientParameterName(apiVersionParam)}}\`;
-          }
-    
-          return next(req);
-        },
-      });`;
+      apiVersionStatement += `const ${apiVersionParamName} = options.${apiVersionParamName};`;
     }
   } else if (isAzurePackage(emitterOptions)) {
-    apiVersionPolicyStatement += `
+    apiVersionStatement += `
         if (options.apiVersion) {
           logger.warning("This client does not support client api-version, please change it at the operation level");
         }`;
   } else {
-    apiVersionPolicyStatement += `
+    apiVersionStatement += `
         if (options.apiVersion) {
           console.warn("This client does not support client api-version, please change it at the operation level");
         }`;
   }
-  factoryFunction.addStatements(apiVersionPolicyStatement);
+  factoryFunction.addStatements(apiVersionStatement);
 
   const contextRequiredParam = requiredParams.filter(
     (p) =>

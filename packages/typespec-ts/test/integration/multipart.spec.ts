@@ -34,6 +34,26 @@ describe("MultiPartClient Rest Client", () => {
       assert.strictEqual(result.status, "204");
     });
 
+    it("should support wire name", async () => {
+      const file = await readFile(imgPath);
+      const result = await client
+        .path("/multipart/form-data/mixed-parts-with-wire-name")
+        .post({
+          contentType: "multipart/form-data",
+          body: [
+            // Using 'as any' because generated types use TypeSpec property names ('identifier', 'image')
+            // but runtime expects wire names ('id', 'profileImage') per TypeSpec @name annotation
+            { name: "id" as any, body: "123" },
+            {
+              name: "profileImage" as any,
+              body: file,
+              filename: "profileImage.jpg"
+            }
+          ]
+        });
+      assert.strictEqual(result.status, "204");
+    });
+
     it("supports anonymous model file upload", async () => {
       const result = await client
         .path("/multipart/form-data/anonymous-model")
@@ -45,6 +65,45 @@ describe("MultiPartClient Rest Client", () => {
               body: await readFile(imgPath),
               filename: "test.jpg"
             }
+          ]
+        });
+      assert.strictEqual(result.status, "204");
+    });
+  });
+
+  describe("optional parts", () => {
+    it("should support id only", async () => {
+      const result = await client
+        .path("/multipart/form-data/optional-parts")
+        .post({
+          contentType: "multipart/form-data",
+          body: [{ name: "id", body: "123" }]
+        });
+      assert.strictEqual(result.status, "204");
+    });
+
+    it("should support profileImage only", async () => {
+      const file = await readFile(imgPath);
+      const result = await client
+        .path("/multipart/form-data/optional-parts")
+        .post({
+          contentType: "multipart/form-data",
+          body: [
+            { name: "profileImage", body: file, filename: "profileImage.jpg" }
+          ]
+        });
+      assert.strictEqual(result.status, "204");
+    });
+
+    it("should support both id and profileImage", async () => {
+      const file = await readFile(imgPath);
+      const result = await client
+        .path("/multipart/form-data/optional-parts")
+        .post({
+          contentType: "multipart/form-data",
+          body: [
+            { name: "id", body: "123" },
+            { name: "profileImage", body: file, filename: "profileImage.jpg" }
           ]
         });
       assert.strictEqual(result.status, "204");

@@ -499,7 +499,7 @@ export async function _downloadFileDeserialize(result: PathUncheckedResponse): P
     throw createRestError(result);
   }
 
-  return _downloadFileResponseDeserializer(result.body);
+  return _downloadFileResponseDeserializer(result.body) as any;
 }
 
 export async function downloadFile(
@@ -595,7 +595,7 @@ export async function _downloadFileDeserialize(result: PathUncheckedResponse): P
     throw createRestError(result);
   }
 
-  return _downloadFileResponseDeserializer(result.body);
+  return _downloadFileResponseDeserializer(result.body) as any;
 }
 
 export async function downloadFile(
@@ -761,7 +761,7 @@ export function createTesting(
     loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
   };
   const clientContext = getClient(endpointUrl, undefined, updatedOptions);
-  clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+
   if (options.apiVersion) {
     logger.warning(
       "This client does not support client api-version, please change it at the operation level",
@@ -902,7 +902,7 @@ export function createTesting(
     loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
   };
   const clientContext = getClient(endpointUrl, undefined, updatedOptions);
-  clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+
   if (options.apiVersion) {
     logger.warning(
       "This client does not support client api-version, please change it at the operation level",
@@ -1066,7 +1066,7 @@ export function createTesting(
     loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
   };
   const clientContext = getClient(endpointUrl, undefined, updatedOptions);
-  clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+
   if (options.apiVersion) {
     logger.warning(
       "This client does not support client api-version, please change it at the operation level",
@@ -1247,7 +1247,7 @@ export function _updateFileShareSnapshotSend(
       resourceGroupName: resourceGroupName,
       resourceName: resourceName,
       name: name,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2021-10-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1297,6 +1297,7 @@ export function updateFileShareSnapshot(
         options,
       ),
     resourceLocationConfig: "location",
+    apiVersion: context.apiVersion ?? "2021-10-01-preview",
   }) as PollerLike<OperationState<FileShareSnapshot>, FileShareSnapshot>;
 }
 
@@ -1307,7 +1308,7 @@ export function _listSend(
   const path = expandUrlTemplate(
     "/providers/Microsoft.Contoso/operations{?api%2Dversion}",
     {
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2021-10-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1344,7 +1345,11 @@ export function list(
     () => _listSend(context, options),
     _listDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "nextLink" },
+    {
+      itemName: "value",
+      nextLinkName: "nextLink",
+      apiVersion: context.apiVersion ?? "2021-10-01-preview",
+    },
   );
 }
 ```

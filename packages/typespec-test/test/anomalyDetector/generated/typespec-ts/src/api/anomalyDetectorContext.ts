@@ -26,7 +26,7 @@ import { KeyCredential } from "@azure/core-auth";
  */
 export interface AnomalyDetectorContext extends Client {
   /** Api Version */
-  apiVersion: APIVersion;
+  apiVersion?: APIVersion;
 }
 
 /** Optional parameters for the client. */
@@ -74,6 +74,5 @@ export function createAnomalyDetector(
     },
   };
   const clientContext = getClient(endpointUrl, credential, updatedOptions);
-  clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   return { ...clientContext, apiVersion } as AnomalyDetectorContext;
 }

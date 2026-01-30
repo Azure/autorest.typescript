@@ -90,19 +90,10 @@ describe("Input/output model type", () => {
   }
 
   describe("void generation", async () => {
-    it("should throw exception for property with void type", async () => {
-      try {
-        const tspType = "void";
-        const typeScriptType = "void";
-        await verifyPropertyType(tspType, typeScriptType);
-        assert.fail("Should throw exception");
-      } catch (err: any) {
-        assert.equal(
-          err[0].message,
-          "Couldn't get schema for type Intrinsic with property prop"
-        );
-        assert.equal(err[0]?.target?.name, "void");
-      }
+    it("should generate void type", async () => {
+      const tspType = "void";
+      const typeScriptType = "void";
+      await verifyPropertyType(tspType, typeScriptType);
     });
   });
 

@@ -1,3 +1,31 @@
+## 0.48.1 (2026-01-26)
+
+- [Feature] Support LRO + Paging operations in Modular SDK. Please refer to [#3676](https://github.com/Azure/autorest.typescript/pull/3676)
+- [Feature] Support array encoding for string-based enum types. Please refer to [#3686](https://github.com/Azure/autorest.typescript/pull/3686)
+- [Bugfix] Fix API version parameter name handling. Please refer to [#3690](https://github.com/Azure/autorest.typescript/pull/3690)
+- [Feature] Support XML serialization/deserialization. Please refer to [#3689](https://github.com/Azure/autorest.typescript/pull/3689)
+- [Feature] Update AAD Token link reference in readme generation. Please refer to [#3696](https://github.com/Azure/autorest.typescript/pull/3696)
+- [Bugfix] Fix the parameter names in the samples to be consistent with the signature function. Please refer to [#3688](https://github.com/Azure/autorest.typescript/pull/3688)
+- [Bugfix] Fix DELETE operations incorrectly including 201 status code in modular LRO. Please refer to [#3695](https://github.com/Azure/autorest.typescript/pull/3695)
+- [Feature] Add case for apiVersion header/path/query. Please refer to [#3303](https://github.com/Azure/autorest.typescript/pull/3303)
+- [Bugfix] Fix inconsistent parameter name normalization for reserved keywords in spread body operations. Please refer to [#3679](https://github.com/Azure/autorest.typescript/pull/3679)
+- [Bugfix] Hotfix to support Intrinsic model type in modelUtils. Please refer to [#3687](https://github.com/Azure/autorest.typescript/pull/3687)
+- [Bugfix] Fix spread body parameter for generating sample. Please refer to [#3618](https://github.com/Azure/autorest.typescript/pull/3618)
+
+## 0.48.0 (2026-01-16)
+
+- [Feature] Bump TypeSpec dependencies to latest stable (1.8.0). Please refer to [#3681](https://github.com/Azure/autorest.typescript/pull/3681)
+- [Bugfix] Fix nightly CI. Please refer to [#3677](https://github.com/Azure/autorest.typescript/pull/3677)
+- [Feature] Implement array encoding for model properties. Please refer to [#3659](https://github.com/Azure/autorest.typescript/pull/3659)
+- [Feature] Add code owner. Please refer to [#3667](https://github.com/Azure/autorest.typescript/pull/3667)
+- [Feature] Upgrade tcgc for multiple service. Please refer to [#3658](https://github.com/Azure/autorest.typescript/pull/3658)
+- [Feature] Remove cjs config for azure sdk js repository. Please refer to [#3654](https://github.com/Azure/autorest.typescript/pull/3654)
+- [Bugfix] Fix compile issues if upgrade tcgc to 0.63.1. Please refer to [#3662](https://github.com/Azure/autorest.typescript/pull/3662)
+- [Bugfix] Fix flatten property generation error for all readOnly. Please refer to [#3668](https://github.com/Azure/autorest.typescript/pull/3668)
+- [Bugfix] Fix nested Record type deserializer linter issue. Please refer to [#3660](https://github.com/Azure/autorest.typescript/pull/3660)
+- [Bugfix] Normalization in-consistancy for discriminated union during Serializer/DeSerializer. Please refer to [#3652](https://github.com/Azure/autorest.typescript/pull/3652)
+- [Bugfix] Fix flatten inconsistency between src and sample gen. Please refer to [#3657](https://github.com/Azure/autorest.typescript/pull/3657)
+
 ## 0.47.1 (2025-12-15)
 
 - [Feature] Prevent flatten property decorator from being applied to non-model types. Please refer to [#3643](https://github.com/Azure/autorest.typescript/pull/3643)
