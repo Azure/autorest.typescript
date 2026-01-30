@@ -41,7 +41,8 @@ import { getSubscriptionId } from "../transform/transfromRLCOptions.js";
 import {
   getClientParametersDeclaration,
   getClientParameters,
-  hasDefaultValue
+  hasDefaultValue,
+  getClientParameterName
 } from "./helpers/clientHelpers.js";
 import { getOperationFunction } from "./helpers/operationHelpers.js";
 import { ModelOverrideOptions } from "./serialization/serializeUtils.js";
@@ -319,12 +320,7 @@ function prepareExampleParameters(
   // Helper to check if a parameter has a default value
   const hasParamDefaultValue = (paramName: string) => {
     const rawParam = rawClientParams.find((p) => {
-      const name =
-        p.name === "endpoint" ||
-        ((p.kind === "endpoint" || p.kind === "path") &&
-          p.name.toLowerCase() === "endpoint")
-          ? "endpointParam"
-          : p.name;
+      const name = getClientParameterName(p);
       return name === paramName;
     });
 

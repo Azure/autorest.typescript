@@ -40,7 +40,7 @@ type SdkParameter =
   | SdkCredentialParameter
   | SdkHttpParameter;
 
-export const hasDefaultValue = (p: SdkParameter) => {
+export function hasDefaultValue(p: SdkParameter) {
   if (
     p.clientDefaultValue ||
     p.__raw?.defaultValue ||
@@ -49,6 +49,7 @@ export const hasDefaultValue = (p: SdkParameter) => {
     return true;
   }
 
+  // Special case for endpoint parameters with template arguments that have default values
   if (p.type.kind === "endpoint" && p.type.templateArguments[0]) {
     const templateArg = p.type.templateArguments[0];
     return !!(
@@ -59,7 +60,7 @@ export const hasDefaultValue = (p: SdkParameter) => {
   }
 
   return false;
-};
+}
 
 export function getClientParameters(
   client: SdkClientType<SdkServiceOperation>,
