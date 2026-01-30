@@ -125,7 +125,7 @@ export function _listVectorStoreFileBatchFilesSend(
     {
       vectorStoreId: vectorStoreId,
       batchId: batchId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
       filter: options?.filter,
       limit: options?.limit,
       order: options?.order,
@@ -177,7 +177,7 @@ export function _cancelVectorStoreFileBatchSend(
     {
       vectorStoreId: vectorStoreId,
       batchId: batchId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -224,7 +224,7 @@ export function _getVectorStoreFileBatchSend(
     {
       vectorStoreId: vectorStoreId,
       batchId: batchId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -269,7 +269,7 @@ export function _createVectorStoreFileBatchSend(
     "/vector_stores/{vectorStoreId}/file_batches{?api%2Dversion}",
     {
       vectorStoreId: vectorStoreId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -327,7 +327,7 @@ export function _deleteVectorStoreFileSend(
     {
       vectorStoreId: vectorStoreId,
       fileId: fileId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -377,7 +377,7 @@ export function _getVectorStoreFileSend(
     {
       vectorStoreId: vectorStoreId,
       fileId: fileId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -422,7 +422,7 @@ export function _createVectorStoreFileSend(
     "/vector_stores/{vectorStoreId}/files{?api%2Dversion}",
     {
       vectorStoreId: vectorStoreId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -476,7 +476,7 @@ export function _listVectorStoreFilesSend(
     "/vector_stores/{vectorStoreId}/files{?api%2Dversion,filter,limit,order,after,before}",
     {
       vectorStoreId: vectorStoreId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
       filter: options?.filter,
       limit: options?.limit,
       order: options?.order,
@@ -525,7 +525,7 @@ export function _deleteVectorStoreSend(
     "/vector_stores/{vectorStoreId}{?api%2Dversion}",
     {
       vectorStoreId: vectorStoreId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -569,7 +569,7 @@ export function _modifyVectorStoreSend(
     "/vector_stores/{vectorStoreId}{?api%2Dversion}",
     {
       vectorStoreId: vectorStoreId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -621,7 +621,7 @@ export function _getVectorStoreSend(
     "/vector_stores/{vectorStoreId}{?api%2Dversion}",
     {
       vectorStoreId: vectorStoreId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -663,7 +663,7 @@ export function _createVectorStoreSend(
   const path = expandUrlTemplate(
     "/vector_stores{?api%2Dversion}",
     {
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -721,7 +721,7 @@ export function _listVectorStoresSend(
   const path = expandUrlTemplate(
     "/vector_stores{?api%2Dversion,limit,order,after,before}",
     {
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
       limit: options?.limit,
       order: options?.order,
       after: options?.after,
@@ -768,7 +768,7 @@ export function _getFileContentSend(
     "/files/{fileId}/content{?api%2Dversion}",
     {
       fileId: fileId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -812,7 +812,7 @@ export function _getFileSend(
     "/files/{fileId}{?api%2Dversion}",
     {
       fileId: fileId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -854,7 +854,7 @@ export function _deleteFileSend(
     "/files/{fileId}{?api%2Dversion}",
     {
       fileId: fileId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -901,7 +901,7 @@ export function _uploadFileSend(
   const path = expandUrlTemplate(
     "/files{?api%2Dversion}",
     {
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -947,7 +947,7 @@ export function _listFilesSend(
   const path = expandUrlTemplate(
     "/files{?api%2Dversion,purpose}",
     {
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
       purpose: options?.purpose,
     },
     {
@@ -993,7 +993,7 @@ export function _listRunStepsSend(
     {
       threadId: threadId,
       runId: runId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
       "include%5B%5D": !options?.include
         ? options?.include
         : options?.include.map((p: any) => {
@@ -1051,7 +1051,7 @@ export function _getRunStepSend(
       threadId: threadId,
       runId: runId,
       stepId: stepId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
       "include%5B%5D": !options?.include
         ? options?.include
         : options?.include.map((p: any) => {
@@ -1099,7 +1099,7 @@ export function _createThreadAndRunSend(
   const path = expandUrlTemplate(
     "/threads/runs{?api%2Dversion}",
     {
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1176,7 +1176,7 @@ export function _cancelRunSend(
     {
       threadId: threadId,
       runId: runId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1222,7 +1222,7 @@ export function _submitToolOutputsToRunSend(
     {
       threadId: threadId,
       runId: runId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1272,7 +1272,7 @@ export function _updateRunSend(
     {
       threadId: threadId,
       runId: runId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1319,7 +1319,7 @@ export function _getRunSend(
     {
       threadId: threadId,
       runId: runId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1362,7 +1362,7 @@ export function _listRunsSend(
     "/threads/{threadId}/runs{?api%2Dversion,limit,order,after,before}",
     {
       threadId: threadId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
       limit: options?.limit,
       order: options?.order,
       after: options?.after,
@@ -1411,7 +1411,7 @@ export function _createRunSend(
     "/threads/{threadId}/runs{?api%2Dversion,include%5B%5D}",
     {
       threadId: threadId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
       "include%5B%5D": !options?.include
         ? options?.include
         : options?.include.map((p: any) => {
@@ -1490,7 +1490,7 @@ export function _updateMessageSend(
     {
       threadId: threadId,
       messageId: messageId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1539,7 +1539,7 @@ export function _getMessageSend(
     {
       threadId: threadId,
       messageId: messageId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1584,7 +1584,7 @@ export function _listMessagesSend(
     "/threads/{threadId}/messages{?api%2Dversion,runId,limit,order,after,before}",
     {
       threadId: threadId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
       runId: options?.runId,
       limit: options?.limit,
       order: options?.order,
@@ -1635,7 +1635,7 @@ export function _createMessageSend(
     "/threads/{threadId}/messages{?api%2Dversion}",
     {
       threadId: threadId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1690,7 +1690,7 @@ export function _deleteThreadSend(
     "/threads/{threadId}{?api%2Dversion}",
     {
       threadId: threadId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1734,7 +1734,7 @@ export function _updateThreadSend(
     "/threads/{threadId}{?api%2Dversion}",
     {
       threadId: threadId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1785,7 +1785,7 @@ export function _getThreadSend(
     "/threads/{threadId}{?api%2Dversion}",
     {
       threadId: threadId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1825,7 +1825,7 @@ export function _createThreadSend(
   const path = expandUrlTemplate(
     "/threads{?api%2Dversion}",
     {
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1878,7 +1878,7 @@ export function _deleteAgentSend(
     "/assistants/{assistantId}{?api%2Dversion}",
     {
       assistantId: assistantId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1922,7 +1922,7 @@ export function _updateAgentSend(
     "/assistants/{assistantId}{?api%2Dversion}",
     {
       assistantId: assistantId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1983,7 +1983,7 @@ export function _getAgentSend(
     "/assistants/{assistantId}{?api%2Dversion}",
     {
       assistantId: assistantId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -2023,7 +2023,7 @@ export function _listAgentsSend(
   const path = expandUrlTemplate(
     "/assistants{?api%2Dversion,limit,order,after,before}",
     {
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
       limit: options?.limit,
       order: options?.order,
       after: options?.after,
@@ -2069,7 +2069,7 @@ export function _createAgentSend(
   const path = expandUrlTemplate(
     "/assistants{?api%2Dversion}",
     {
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

@@ -121,7 +121,7 @@ export interface CreateAndTrainMultivariateModelMediaTypesParam {
 export type CreateAndTrainMultivariateModelParameters = CreateAndTrainMultivariateModelMediaTypesParam & CreateAndTrainMultivariateModelBodyParam & RequestParameters;
 
 // @public
-function createClient(endpoint: string, credentials: KeyCredential, { apiVersion, ...options }?: AnomalyDetectorMVClientOptions): AnomalyDetectorMVClient;
+function createClient(endpoint: string, credentials: KeyCredential, input?: AnomalyDetectorMVClientOptions): AnomalyDetectorMVClient;
 export default createClient;
 
 // @public (undocumented)
