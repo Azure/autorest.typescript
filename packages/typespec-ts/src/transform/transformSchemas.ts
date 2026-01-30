@@ -89,7 +89,10 @@ export function transformSchemas(client: SdkClient, dpgContext: SdkContext) {
     }
   }
   function transformHostParameters() {
-    const serviceNs = getDefaultService(program)?.type;
+    const serviceNs = getDefaultService(
+      program,
+      dpgContext.rlcOptions?.isModularLibrary
+    )?.type;
     if (serviceNs) {
       const host = getServers(program, serviceNs);
       if (host && host?.[0] && host?.[0]?.parameters) {

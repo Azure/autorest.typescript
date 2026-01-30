@@ -6,6 +6,7 @@ import { HttpTestLibrary } from "@typespec/http/testing";
 import { VersioningTestLibrary } from "@typespec/versioning/testing";
 import { AzureCoreTestLibrary } from "@azure-tools/typespec-azure-core/testing";
 import { SdkTestLibrary } from "@azure-tools/typespec-client-generator-core/testing";
+import { listAllServiceNamespaces } from "@azure-tools/typespec-client-generator-core";
 import { OpenAPITestLibrary } from "@typespec/openapi/testing";
 import { AutorestTestLibrary } from "@azure-tools/typespec-autorest/testing";
 import { AzureResourceManagerTestLibrary } from "@azure-tools/typespec-azure-resource-manager/testing";
@@ -208,7 +209,8 @@ export async function createDpgContextTestHelper(
       ...configs
     },
     emitterName: "@azure-tools/typespec-ts",
-    originalProgram: program
+    originalProgram: program,
+    allServiceNamespaces: listAllServiceNamespaces(context)
   } as SdkContext;
 
   provideContext("emitContext", {

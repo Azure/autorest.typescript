@@ -216,6 +216,10 @@ function emitType(context: SdkContext, type: SdkType, sourceFile: SourceFile) {
       return;
     }
     const apiVersionEnumOnly = type.usage === UsageFlags.ApiVersionEnum;
+    // Skip api version enum for multi-service scenarios
+    if (apiVersionEnumOnly && context.rlcOptions?.isMultiService) {
+      return;
+    }
     const inputUsage = (type.usage & UsageFlags.Input) === UsageFlags.Input;
     const outputUsage = (type.usage & UsageFlags.Output) === UsageFlags.Output;
     const exceptionUsage =
@@ -266,6 +270,10 @@ function emitType(context: SdkContext, type: SdkType, sourceFile: SourceFile) {
 }
 
 export function getApiVersionEnum(context: SdkContext) {
+  // Skip api version enum for multi-service scenarios since each service may have different versions
+  if (context.rlcOptions?.isMultiService) {
+    return;
+  }
   const apiVersionEnum = context.sdkPackage.enums.find(
     (e) => e.usage === UsageFlags.ApiVersionEnum
   );
@@ -293,9 +301,6 @@ export function getModelNamespaces(
   context: SdkContext,
   model: SdkType
 ): string[] {
-  const deepestNamespace = getNamespaceFullName(
-    listAllServiceNamespaces(context)[0]!
-  );
   if (
     model.kind === "model" ||
     model.kind === "enum" ||
@@ -312,6 +317,14 @@ export function getModelNamespaces(
       return [];
     }
     const segments = model.namespace.split(".");
+    // Keep full namespace segments if multiple services are present
+    if (context.rlcOptions?.isMultiService) {
+      return segments;
+    }
+
+    const allServiceNamespaces =
+      context.allServiceNamespaces ?? listAllServiceNamespaces(context);
+    const deepestNamespace = getNamespaceFullName(allServiceNamespaces[0]!);
     const rootNamespace = deepestNamespace.split(".") ?? [];
     if (segments.length > rootNamespace.length) {
       while (segments[0] === rootNamespace[0]) {
