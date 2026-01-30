@@ -1,4 +1,4 @@
-# Optional parameters should not appear as standalone parameters in sample code
+# With default values parameters should not appear as standalone parameters in sample code
 
 ## TypeSpec
 
@@ -16,11 +16,12 @@ using Azure.Core;
   title: "Sample Service",
 })
 @server(
-  "{endpoint}",
+  "{endpoint}/{storage}",
   "Sample endpoint",
   {
     @doc("The endpoint URL")
     endpoint: string = "https://example.com",
+    storage: string,
   }
 )
 namespace SampleService;
@@ -76,7 +77,8 @@ import { SampleServiceClient } from "@azure/internal-test";
  * x-ms-original-file: 2021-10-01-preview/json.json
  */
 async function listPersons(): Promise<void> {
-  const client = new SampleServiceClient();
+  const storage = process.env.SAMPLE_SERVICE_STORAGE || "";
+  const client = new SampleServiceClient(storage);
   const result = await client.list({ start: "00000000-0000-0000-0000-000000000000", top: 20 });
   console.log(result);
 }
