@@ -237,7 +237,7 @@ export interface ContentFilterResultsOutput {
 export type ContentFilterSeverityOutput = "safe" | "low" | "medium" | "high";
 
 // @public
-function createClient(endpointParam: string, credentials: TokenCredential | KeyCredential, { apiVersion, ...options }?: OpenAIClientOptions): OpenAIClient;
+function createClient(endpointParam: string, credentials: TokenCredential | KeyCredential, input?: OpenAIClientOptions): OpenAIClient;
 export default createClient;
 
 // @public
