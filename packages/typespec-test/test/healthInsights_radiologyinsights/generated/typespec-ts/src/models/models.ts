@@ -53,7 +53,7 @@ export interface PatientInfo {
   /** The patient's sex. */
   sex?: PatientInfoSex;
   /** The patient's date of birth. */
-  birthDate?: string;
+  birthDate?: Date;
   /** Known clinical information for the patient, structured. */
   clinicalInfo?: Resource[];
 }
@@ -61,7 +61,9 @@ export interface PatientInfo {
 export function patientInfoSerializer(item: PatientInfo): any {
   return {
     sex: item["sex"],
-    birthDate: item["birthDate"],
+    birthDate: !item["birthDate"]
+      ? item["birthDate"]
+      : item["birthDate"].toISOString().split("T")[0],
     clinicalInfo: !item["clinicalInfo"]
       ? item["clinicalInfo"]
       : resourceArraySerializer(item["clinicalInfo"]),

@@ -517,6 +517,7 @@ function getParameterValue(
   switch (value.kind) {
     case "string": {
       switch (value.type.kind) {
+        case "plainDate":
         case "utcDateTime":
           retValue = `new Date("${value.value}")`;
           break;

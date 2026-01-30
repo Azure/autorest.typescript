@@ -1722,6 +1722,9 @@ export function serializeRequestValue(
       ? `!${clientValue}? ${clientValue}: `
       : "";
   switch (type.kind) {
+    case "plainDate":
+      // plainDate always uses ISO8601 format (YYYY-MM-DD)
+      return `${nullOrUndefinedPrefix}${clientValue}.toISOString().split('T')[0]`;
     case "utcDateTime":
       switch (type.encode ?? format) {
         case "rfc7231":
@@ -1849,6 +1852,9 @@ export function deserializeResponseValue(
       ? `!${restValue}? ${restValue}: `
       : "";
   switch (type.kind) {
+    case "plainDate":
+      // plainDate deserializes from YYYY-MM-DD string to Date
+      return `${nullOrUndefinedPrefix} new Date(${restValue})`;
     case "utcDateTime":
       return `${nullOrUndefinedPrefix} new Date(${type.encode === "unixTimestamp" ? `${restValue} * 1000` : restValue})`;
     case "array": {
