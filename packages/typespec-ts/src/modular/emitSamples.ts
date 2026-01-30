@@ -320,8 +320,7 @@ function prepareExampleParameters(
   // Helper to check if a parameter has a default value
   const hasParamDefaultValue = (paramName: string) => {
     const rawParam = rawClientParams.find((p) => {
-      const name = getClientParameterName(p);
-      return name === paramName;
+      return getClientParameterName(p) === paramName;
     });
 
     if (!rawParam) return false;
