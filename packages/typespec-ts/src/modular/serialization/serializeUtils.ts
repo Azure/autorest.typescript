@@ -81,6 +81,7 @@ export function isSpecialUnionVariant(
 
   if (
     t.kind === "utcDateTime" ||
+    t.kind === "plainDate" ||
     t.kind === "bytes" ||
     (t.kind === "model" &&
       t.properties
