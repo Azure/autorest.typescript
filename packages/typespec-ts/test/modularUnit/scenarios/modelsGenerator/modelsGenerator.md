@@ -479,7 +479,7 @@ export async function _readDeserialize(
     throw createRestError(result);
   }
 
-  return fooDeserializer(result.body, result.headers);
+  return fooDeserializer(result.body);
 }
 
 export async function read(
@@ -616,7 +616,7 @@ export async function _readDeserialize(
     throw createRestError(result);
   }
 
-  return fooDeserializer(result.body, result.headers);
+  return fooDeserializer(result.body);
 }
 
 export async function read(
@@ -701,7 +701,7 @@ export async function _readDeserialize(
     throw createRestError(result);
   }
 
-  return fooDeserializer(result.body, result.headers);
+  return fooDeserializer(result.body);
 }
 
 export async function read(
@@ -783,7 +783,7 @@ export async function _readDeserialize(
     throw createRestError(result);
   }
 
-  return fooDeserializer(result.body, result.headers);
+  return fooDeserializer(result.body);
 }
 
 export async function read(
@@ -856,7 +856,7 @@ export async function _readDeserialize(
     throw createRestError(result);
   }
 
-  return fooDeserializer(result.body, result.headers);
+  return fooDeserializer(result.body);
 }
 
 export async function read(
@@ -930,7 +930,7 @@ export async function _readDeserialize(
     throw createRestError(result);
   }
 
-  return fooDeserializer(result.body, result.headers);
+  return fooDeserializer(result.body);
 }
 
 export async function read(
@@ -1007,7 +1007,7 @@ export async function _readDeserialize(
     throw createRestError(result);
   }
 
-  return fooDeserializer(result.body, result.headers);
+  return fooDeserializer(result.body);
 }
 
 export async function read(
@@ -1101,7 +1101,7 @@ export async function _readDeserialize(
     throw createRestError(result);
   }
 
-  return fooDeserializer(result.body, result.headers);
+  return fooDeserializer(result.body);
 }
 
 export async function read(
@@ -1196,7 +1196,7 @@ export async function _readDeserialize(
     throw createRestError(result);
   }
 
-  return fooDeserializer(result.body, result.headers);
+  return fooDeserializer(result.body);
 }
 
 export async function read(
@@ -1291,7 +1291,7 @@ export async function _readDeserialize(
     throw createRestError(result);
   }
 
-  return fooDeserializer(result.body, result.headers);
+  return fooDeserializer(result.body);
 }
 
 export async function read(
@@ -1473,7 +1473,7 @@ export async function _readDeserialize(
     throw createRestError(result);
   }
 
-  return catDeserializer(result.body, result.headers);
+  return catDeserializer(result.body);
 }
 
 export async function read(
@@ -1582,7 +1582,7 @@ export async function _readDeserialize(
     throw createRestError(result);
   }
 
-  return catDeserializer(result.body, result.headers);
+  return catDeserializer(result.body);
 }
 
 export async function read(
@@ -1726,7 +1726,7 @@ export async function _readDeserialize(
     throw createRestError(result);
   }
 
-  return psDogDeserializer(result.body, result.headers);
+  return psDogDeserializer(result.body);
 }
 
 export async function read(
@@ -1863,7 +1863,7 @@ export async function _readDeserialize(
     throw createRestError(result);
   }
 
-  return petUnionDeserializer(result.body, result.headers);
+  return petUnionDeserializer(result.body);
 }
 
 export async function read(
@@ -2043,7 +2043,7 @@ export async function _readDeserialize(
     throw createRestError(result);
   }
 
-  return petUnionDeserializer(result.body, result.headers);
+  return petUnionDeserializer(result.body);
 }
 
 export async function read(
@@ -2138,7 +2138,7 @@ export async function _readDeserialize(
     throw createRestError(result);
   }
 
-  return fooDeserializer(result.body, result.headers);
+  return fooDeserializer(result.body);
 }
 
 export async function read(

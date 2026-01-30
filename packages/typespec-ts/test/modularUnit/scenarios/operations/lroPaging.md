@@ -345,7 +345,7 @@ export async function _suspendDeserialize(
     throw error;
   }
 
-  return _webAppCollectionDeserializer(result.body, result.headers);
+  return _webAppCollectionDeserializer(result.body);
 }
 
 /** A long-running resource action. */

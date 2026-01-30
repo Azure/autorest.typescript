@@ -208,7 +208,7 @@ export async function _getDeserialize(
     throw error;
   }
 
-  return savingsPlanModelDeserializer(result.body, result.headers);
+  return savingsPlanModelDeserializer(result.body);
 }
 
 /** Get savings plan. */
@@ -442,7 +442,7 @@ export async function _getDeserialize(
     throw error;
   }
 
-  return savingsPlanModelDeserializer(result.body, result.headers);
+  return savingsPlanModelDeserializer(result.body);
 }
 
 /** Get savings plan. */

@@ -279,15 +279,21 @@ export function multivariateCorrelationChangesDeserializer(
 /** Error response. */
 export interface MultivariateResponseError {
   /** Error code. */
+  msErrorCode?: string;
+  /** Error code. */
   code: string;
   /** Message that explains the error that the service reported. */
   message: string;
 }
 
-export function multivariateResponseErrorDeserializer(item: any): MultivariateResponseError {
+export function multivariateResponseErrorDeserializer(
+  item: any,
+  headers?: any,
+): MultivariateResponseError {
   return {
     code: item["code"],
     message: item["message"],
+    msErrorCode: headers?.["x-ms-error-code"],
   };
 }
 

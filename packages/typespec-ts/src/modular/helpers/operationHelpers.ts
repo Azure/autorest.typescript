@@ -238,6 +238,12 @@ export function getDeserializePrivateFunction(
 
     // Workaround for multipart response: cast return value as any due to lack of multipart response handling in core
     const multipartCastSuffix = isMultipart ? " as any" : "";
+    const shouldPassHeaders =
+      deserializedType.kind === "model" &&
+      hasHeaderProperties(context, deserializedType);
+    const deserializedArgs = shouldPassHeaders
+      ? `${deserializedRoot}, result.headers`
+      : deserializedRoot;
 
     // For dual-format responses, check content-type header at runtime
     if (
@@ -269,9 +275,9 @@ export function getDeserializePrivateFunction(
         statements.push(
           `const responseContentType = result.headers?.["content-type"] ?? "";
           if (${isXmlContentTypeRef}(responseContentType)) {
-            return ${xmlDeserializerName}(${deserializedRoot}, result.headers);
+            return ${xmlDeserializerName}(${deserializedRoot});
           }
-          return ${jsonDeserializerName}(${deserializedRoot}, result.headers);`
+          return ${jsonDeserializerName}(${deserializedArgs});`
         );
       } else {
         // Fall back to JSON deserializer
@@ -285,7 +291,7 @@ export function getDeserializePrivateFunction(
         );
         if (deserializeFunctionName) {
           statements.push(
-            `return ${deserializeFunctionName}(${deserializedRoot}, result.headers)`
+            `return ${deserializeFunctionName}(${deserializedArgs})`
           );
         }
       }
@@ -301,9 +307,7 @@ export function getDeserializePrivateFunction(
       ) as string | undefined;
 
       if (xmlDeserializerName) {
-        statements.push(
-          `return ${xmlDeserializerName}(${deserializedRoot}, result.headers)`
-        );
+        statements.push(`return ${xmlDeserializerName}(${deserializedRoot})`);
       } else {
         // Fall back to JSON deserializer if XML deserializer is not available
         const deserializeFunctionName = buildModelDeserializer(
@@ -316,7 +320,7 @@ export function getDeserializePrivateFunction(
         );
         if (deserializeFunctionName) {
           statements.push(
-            `return ${deserializeFunctionName}(${deserializedRoot}, result.headers)`
+            `return ${deserializeFunctionName}(${deserializedArgs})`
           );
         } else {
           statements.push(`return ${deserializedRoot}`);
@@ -334,7 +338,7 @@ export function getDeserializePrivateFunction(
       );
       if (deserializeFunctionName) {
         statements.push(
-          `return ${deserializeFunctionName}(${deserializedRoot}, result.headers)${multipartCastSuffix}`
+          `return ${deserializeFunctionName}(${deserializedArgs})${multipartCastSuffix}`
         );
       } else if (
         isAzureCoreErrorType(context.program, deserializedType.__raw)
@@ -1741,6 +1745,16 @@ export function getResponseMapping(
     }
   }
   return props;
+}
+
+function hasHeaderProperties(context: SdkContext, type: SdkModelType): boolean {
+  const allProps = type.properties ?? [];
+  const ancestorProps = getAllAncestors(type)
+    .filter((p) => p.kind === "model")
+    .flatMap((p) => (p as SdkModelType).properties ?? []);
+  return [...allProps, ...ancestorProps].some((p) =>
+    isHeader(context.program, p.__raw!)
+  );
 }
 
 /**

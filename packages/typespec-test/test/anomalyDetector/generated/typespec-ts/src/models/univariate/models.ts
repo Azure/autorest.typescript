@@ -195,6 +195,8 @@ export function univariateUnivariateEntireDetectionResultDeserializer(
 /** Error information that the API returned. */
 export interface UnivariateAnomalyDetectorError {
   /** Error code. */
+  msErrorCode?: string;
+  /** Error code. */
   code: UnivariateAnomalyDetectorErrorCodes;
   /** Message that explains the error that the service reported. */
   message: string;
@@ -202,10 +204,12 @@ export interface UnivariateAnomalyDetectorError {
 
 export function univariateAnomalyDetectorErrorDeserializer(
   item: any,
+  headers?: any,
 ): UnivariateAnomalyDetectorError {
   return {
     code: item["code"],
     message: item["message"],
+    msErrorCode: headers?.["x-ms-error-code"],
   };
 }
 

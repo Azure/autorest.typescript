@@ -123,7 +123,7 @@ export async function _readDeserialize(
     throw createRestError(result);
   }
 
-  return _readResponseDeserializer(result.body, result.headers);
+  return _readResponseDeserializer(result.body);
 }
 
 /** show example demo */

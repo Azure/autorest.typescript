@@ -467,7 +467,7 @@ export async function _readDeserialize(result: PathUncheckedResponse): Promise<
     throw createRestError(result);
   }
 
-  return _readResponseArrayDeserializer(result.body, result.headers);
+  return _readResponseArrayDeserializer(result.body);
 }
 
 export async function read(
@@ -534,7 +534,7 @@ export async function _readDeserialize(
     throw createRestError(result);
   }
 
-  return barArrayDeserializer(result.body, result.headers);
+  return barArrayDeserializer(result.body);
 }
 
 export async function read(
@@ -659,7 +659,7 @@ export async function _readDeserialize(
     throw createRestError(result);
   }
 
-  return fooDeserializer(result.body, result.headers);
+  return fooDeserializer(result.body);
 }
 
 export async function read(
@@ -734,7 +734,7 @@ export async function _testDeserialize(
     throw error;
   }
 
-  return _barDeserializer(result.body, result.headers);
+  return _barDeserializer(result.body);
 }
 
 export function test(
@@ -825,7 +825,7 @@ export async function _testDeserialize(
     throw error;
   }
 
-  return _childDeserializer(result.body, result.headers);
+  return _childDeserializer(result.body);
 }
 
 export function test(
@@ -928,7 +928,7 @@ export async function _getDeserialize(
     throw createRestError(result);
   }
 
-  return testArrayModelDeserializer(result.body, result.headers);
+  return testArrayModelDeserializer(result.body);
 }
 
 export async function get(
@@ -1031,7 +1031,7 @@ export async function _getDeserialize(
     throw createRestError(result);
   }
 
-  return testDictionaryDeserializer(result.body, result.headers);
+  return testDictionaryDeserializer(result.body);
 }
 
 export async function get(
@@ -1136,7 +1136,7 @@ export async function _createOrUpdateEndpointDeserialize(
     throw createRestError(result);
   }
 
-  return endpointDeserializer(result.body, result.headers);
+  return endpointDeserializer(result.body);
 }
 
 export async function createOrUpdateEndpoint(
@@ -1279,7 +1279,7 @@ export async function _fooDeserialize(
     throw createRestError(result);
   }
 
-  return _listTestResultDeserializer(result.body, result.headers);
+  return _listTestResultDeserializer(result.body);
 }
 
 export function foo(
@@ -1313,7 +1313,7 @@ export async function _barDeserialize(
     throw createRestError(result);
   }
 
-  return _listTestResultDeserializer(result.body, result.headers);
+  return _listTestResultDeserializer(result.body);
 }
 
 export function bar(

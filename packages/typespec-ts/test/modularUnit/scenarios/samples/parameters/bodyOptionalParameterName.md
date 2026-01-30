@@ -195,7 +195,7 @@ export async function _backupDeserialize(
     throw error;
   }
 
-  return backupResultDeserializer(result.body, result.headers);
+  return backupResultDeserializer(result.body);
 }
 
 /** A long-running resource action. */

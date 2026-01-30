@@ -95,7 +95,7 @@ export async function _updateKeyDeserialize(
     throw createRestError(result);
   }
 
-  return keyBundleDeserializer(result.body, result.headers);
+  return keyBundleDeserializer(result.body);
 }
 
 /** The most basic operation. */

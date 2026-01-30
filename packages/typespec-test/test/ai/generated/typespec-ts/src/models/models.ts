@@ -477,12 +477,15 @@ export interface _PagedEvaluation {
   value: Evaluation[];
   /** The link to the next page of items */
   nextLink?: string;
+  /** An opaque, globally-unique, client-generated string identifier for the request. */
+  clientRequestId?: string;
 }
 
-export function _pagedEvaluationDeserializer(item: any): _PagedEvaluation {
+export function _pagedEvaluationDeserializer(item: any, headers?: any): _PagedEvaluation {
   return {
     value: evaluationArrayDeserializer(item["value"]),
     nextLink: item["nextLink"],
+    clientRequestId: headers?.["x-ms-client-request-id"],
   };
 }
 
@@ -723,12 +726,18 @@ export interface _PagedEvaluationSchedule {
   value: EvaluationSchedule[];
   /** The link to the next page of items */
   nextLink?: string;
+  /** An opaque, globally-unique, client-generated string identifier for the request. */
+  clientRequestId?: string;
 }
 
-export function _pagedEvaluationScheduleDeserializer(item: any): _PagedEvaluationSchedule {
+export function _pagedEvaluationScheduleDeserializer(
+  item: any,
+  headers?: any,
+): _PagedEvaluationSchedule {
   return {
     value: evaluationScheduleArrayDeserializer(item["value"]),
     nextLink: item["nextLink"],
+    clientRequestId: headers?.["x-ms-client-request-id"],
   };
 }
 

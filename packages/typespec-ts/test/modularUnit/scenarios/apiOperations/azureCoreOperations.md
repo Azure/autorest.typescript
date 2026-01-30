@@ -98,8 +98,7 @@ export async function _getWidgetOperationStatusDeserialize(
   }
 
   return resourceOperationStatusWidgetSuiteWidgetSuiteErrorDeserializer(
-    result.body,
-    result.headers
+    result.body
   );
 }
 

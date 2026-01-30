@@ -937,7 +937,7 @@ export async function _readDeserialize(
     throw createRestError(result);
   }
 
-  return _readResponseDeserializer(result.body, result.headers);
+  return _readResponseDeserializer(result.body);
 }
 
 export async function read(
@@ -1007,7 +1007,7 @@ export async function _readDeserialize(
     throw createRestError(result);
   }
 
-  return publishResultDeserializer(result.body, result.headers);
+  return publishResultDeserializer(result.body);
 }
 
 export async function read(
@@ -1096,7 +1096,7 @@ export async function _readDeserialize(result: PathUncheckedResponse): Promise<{
     throw createRestError(result);
   }
 
-  return _readResponseDeserializer(result.body, result.headers);
+  return _readResponseDeserializer(result.body);
 }
 
 export async function read(
@@ -1266,7 +1266,7 @@ export async function _readDeserialize(
     throw createRestError(result);
   }
 
-  return returnBodyDeserializer(result.body, result.headers);
+  return returnBodyDeserializer(result.body);
 }
 
 export async function read(
@@ -1492,7 +1492,7 @@ export async function _readDeserialize(
     throw createRestError(result);
   }
 
-  return fozDeserializer(result.body, result.headers);
+  return fozDeserializer(result.body);
 }
 
 export async function read(

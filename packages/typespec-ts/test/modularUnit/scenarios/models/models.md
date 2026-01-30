@@ -99,10 +99,7 @@ export async function _readDeserialize(
     throw createRestError(result);
   }
 
-  return streamingChatCompletionOptionsDeserializer(
-    result.body,
-    result.headers
-  );
+  return streamingChatCompletionOptionsDeserializer(result.body);
 }
 
 export async function read(

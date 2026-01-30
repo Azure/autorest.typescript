@@ -40,7 +40,7 @@ export async function _$continueDeserialize(
     throw createRestError(result);
   }
 
-  return testDeserializer(result.body, result.headers);
+  return testDeserializer(result.body);
 }
 
 /**
@@ -99,7 +99,7 @@ export async function _$returnDeserialize(
     throw createRestError(result);
   }
 
-  return testDeserializer(result.body, result.headers);
+  return testDeserializer(result.body);
 }
 
 /**
@@ -158,7 +158,7 @@ export async function _globalDeserialize(
     throw createRestError(result);
   }
 
-  return testDeserializer(result.body, result.headers);
+  return testDeserializer(result.body);
 }
 
 export async function global(

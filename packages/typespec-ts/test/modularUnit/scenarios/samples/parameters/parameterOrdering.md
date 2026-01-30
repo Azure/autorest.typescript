@@ -119,7 +119,7 @@ export async function _verifyDeserialize(
     throw createRestError(result);
   }
 
-  return testVerificationResultDeserializer(result.body, result.headers);
+  return testVerificationResultDeserializer(result.body);
 }
 
 /** Resource action operation template. */

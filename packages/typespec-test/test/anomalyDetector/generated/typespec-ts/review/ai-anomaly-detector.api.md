@@ -197,6 +197,7 @@ export interface MultivariateOperations {
 export interface MultivariateResponseError {
     code: string;
     message: string;
+    msErrorCode?: string;
 }
 
 // @public
@@ -235,6 +236,7 @@ export interface PageSettings {
 export interface UnivariateAnomalyDetectorError {
     code: UnivariateAnomalyDetectorErrorCodes;
     message: string;
+    msErrorCode?: string;
 }
 
 // @public

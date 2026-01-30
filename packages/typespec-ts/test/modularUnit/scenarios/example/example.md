@@ -130,7 +130,7 @@ export async function _readDeserialize(
     throw createRestError(result);
   }
 
-  return exampleDeserializer(result.body, result.headers);
+  return exampleDeserializer(result.body);
 }
 
 export async function read(

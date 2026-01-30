@@ -440,7 +440,7 @@ export async function _createOrUpdateDeserialize(
     throw error;
   }
 
-  return avsSummaryDeserializer(result.body, result.headers);
+  return avsSummaryDeserializer(result.body);
 }
 
 /** Create a AvsSummary */
@@ -490,7 +490,7 @@ export async function _listDeserialize(
     throw error;
   }
 
-  return _operationListResultDeserializer(result.body, result.headers);
+  return _operationListResultDeserializer(result.body);
 }
 
 /** List the operations for the provider */

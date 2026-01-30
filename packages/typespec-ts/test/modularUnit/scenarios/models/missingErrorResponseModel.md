@@ -133,7 +133,7 @@ export async function _getAssetChainSummaryDeserialize(
     throw createRestError(result);
   }
 
-  return assetChainSummaryResultDeserializer(result.body, result.headers);
+  return assetChainSummaryResultDeserializer(result.body);
 }
 
 export async function getAssetChainSummary(

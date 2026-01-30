@@ -521,7 +521,7 @@ export async function _downloadFileDeserialize(
     throw createRestError(result);
   }
 
-  return _downloadFileResponseDeserializer(result.body, result.headers) as any;
+  return _downloadFileResponseDeserializer(result.body) as any;
 }
 
 export async function downloadFile(
@@ -626,7 +626,7 @@ export async function _downloadFileDeserialize(
     throw createRestError(result);
   }
 
-  return _downloadFileResponseDeserializer(result.body, result.headers) as any;
+  return _downloadFileResponseDeserializer(result.body) as any;
 }
 
 export async function downloadFile(
@@ -1335,7 +1335,7 @@ export async function _updateFileShareSnapshotDeserialize(
     throw error;
   }
 
-  return fileShareSnapshotDeserializer(result.body, result.headers);
+  return fileShareSnapshotDeserializer(result.body);
 }
 
 /** Update a FileShareSnapshot */
@@ -1398,7 +1398,7 @@ export async function _listDeserialize(
     throw error;
   }
 
-  return _operationListResultDeserializer(result.body, result.headers);
+  return _operationListResultDeserializer(result.body);
 }
 
 /** List the operations for the provider */

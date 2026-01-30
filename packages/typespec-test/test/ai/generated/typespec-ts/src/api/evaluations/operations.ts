@@ -111,7 +111,7 @@ export async function _listScheduleDeserialize(
     throw createRestError(result);
   }
 
-  return _pagedEvaluationScheduleDeserializer(result.body);
+  return _pagedEvaluationScheduleDeserializer(result.body, result.headers);
 }
 
 /** Resource list operation template. */
@@ -324,7 +324,7 @@ export async function _listDeserialize(result: PathUncheckedResponse): Promise<_
     throw createRestError(result);
   }
 
-  return _pagedEvaluationDeserializer(result.body);
+  return _pagedEvaluationDeserializer(result.body, result.headers);
 }
 
 /** Resource list operation template. */
