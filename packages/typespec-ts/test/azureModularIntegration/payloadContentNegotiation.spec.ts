@@ -44,5 +44,6 @@ describe("Payload Content Negotiation Client", () => {
       uint8ArrayToString(result.content, "utf-8"),
       pngFile.toString()
     );
+    assert.strictEqual(result.contentType, "application/json; charset=utf-8");
   });
 });
