@@ -26,6 +26,7 @@ import {
   SdkNullableType,
   SdkServiceMethod,
   SdkServiceOperation,
+  SdkServiceResponseHeader,
   SdkType,
   SdkUnionType,
   UsageFlags,
@@ -78,8 +79,14 @@ import {
 import { resolveReference } from "../framework/reference.js";
 import { MultipartHelpers } from "./static-helpers-metadata.js";
 import { getAllAncestors } from "./helpers/operationHelpers.js";
+import {
+  generateHeaderOnlyResponseTypeName,
+  registerHeaderOnlyResponseInterface,
+  getResponseHeaders
+} from "./helpers/operationHelpers.js";
 import { getAllProperties } from "./helpers/operationHelpers.js";
 import { getDirectSubtypes } from "./helpers/typeHelpers.js";
+import { ServiceOperation } from "../utils/operationUtil.js";
 
 type InterfaceStructure = OptionalKind<InterfaceDeclarationStructure> & {
   extends?: string[];
@@ -141,6 +148,35 @@ export function emitTypes(
     const filepath = getModelsPath(sourceRoot, namespaces);
     sourceFile = outputProject.getSourceFile(filepath);
     addSerializationFunctions(context, property, sourceFile!);
+  }
+
+  // Emit header-only response interfaces
+  const headerOnlyResponses = useContext("headerOnlyResponses") as Map<
+    string,
+    { operation: ServiceOperation; headers: SdkServiceResponseHeader[] }
+  >;
+  for (const [
+    typeName,
+    { operation, headers }
+  ] of headerOnlyResponses.entries()) {
+    const filepath = getModelsPath(sourceRoot, []);
+    sourceFile = outputProject.getSourceFile(filepath);
+    if (!sourceFile) {
+      sourceFile = outputProject.createSourceFile(filepath);
+      sourceFile.addStatements(`/**
+* This file contains only generated model types and their (de)serializers.
+* Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+*/
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */`);
+    }
+    emitHeaderOnlyResponseInterface(
+      context,
+      typeName,
+      headers,
+      operation,
+      sourceFile
+    );
   }
 
   const modelFiles = outputProject.getSourceFiles(
@@ -826,12 +862,13 @@ function buildModelProperty(
     typeExpression = getTypeExpression(context, property.type);
   }
 
+  const isOptional = property.optional;
+
   const propertyStructure: PropertySignatureStructure = {
     kind: StructureKind.PropertySignature,
     name: normalizedPropName,
     type: typeExpression,
-    hasQuestionToken:
-      property.optional || isHeader(context.program, property.__raw!),
+    hasQuestionToken: isOptional,
     isReadonly: isReadOnly(property as SdkModelPropertyType)
   };
 
@@ -889,7 +926,11 @@ function visitClientMethod(
     case "lropaging":
     case "basic":
       visitMethod(context, method);
-      visitOperation(context, method.operation);
+      visitOperation(
+        context,
+        method.operation,
+        method as SdkServiceMethod<SdkHttpOperation>
+      );
       break;
     default:
       reportDiagnostic(context.program, {
@@ -903,7 +944,11 @@ function visitClientMethod(
   }
 }
 
-function visitOperation(context: SdkContext, operation: SdkHttpOperation) {
+function visitOperation(
+  context: SdkContext,
+  operation: SdkHttpOperation,
+  method?: SdkServiceMethod<SdkHttpOperation>
+) {
   // Visit the request
   visitType(context, operation.bodyParam?.type);
   // Visit the response
@@ -916,6 +961,22 @@ function visitOperation(context: SdkContext, operation: SdkHttpOperation) {
   });
 
   operation.responses.forEach((response) => visitType(context, response.type));
+
+  // Register header-only responses
+  if (method) {
+    const responseHeaders = getResponseHeaders(operation.responses);
+    const hasBody = operation.responses.some((response) => response.type);
+    const hasHeaderOnlyResponse = !hasBody && responseHeaders.length > 0;
+
+    if (hasHeaderOnlyResponse) {
+      const headerOnlyTypeName = generateHeaderOnlyResponseTypeName(method);
+      registerHeaderOnlyResponseInterface(
+        method,
+        responseHeaders,
+        headerOnlyTypeName
+      );
+    }
+  }
 }
 
 function visitMethod(
@@ -987,4 +1048,37 @@ function visitType(context: SdkContext, type: SdkType | undefined) {
       visitType(context, type.type);
     }
   }
+}
+
+function emitHeaderOnlyResponseInterface(
+  context: SdkContext,
+  typeName: string,
+  headers: SdkServiceResponseHeader[],
+  operation: ServiceOperation,
+  sourceFile: SourceFile
+): void {
+  const properties: PropertySignatureStructure[] = headers.map((header) => {
+    const name = normalizeName(header.name, NameType.Property);
+    const type = getTypeExpression(context, header.type);
+    const isOptional = header.optional;
+
+    return {
+      kind: StructureKind.PropertySignature,
+      name,
+      type,
+      hasQuestionToken: isOptional
+    };
+  });
+
+  const interfaceStructure: InterfaceStructure = {
+    kind: StructureKind.Interface,
+    name: typeName,
+    isExported: true,
+    properties
+  };
+
+  interfaceStructure.docs = [`Defines headers for operation response.`];
+
+  const refKey = refkey(operation.name, "headerResponse");
+  addDeclaration(sourceFile, interfaceStructure, refKey);
 }

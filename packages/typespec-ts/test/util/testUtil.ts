@@ -193,6 +193,7 @@ export async function createDpgContextTestHelper(
   provideContext("rlcMetaTree", new Map());
   provideContext("symbolMap", new Map());
   provideContext("outputProject", outputProject);
+  provideContext("headerOnlyResponses", new Map());
 
   const context = await createContextWithDefaultOptions({
     program,

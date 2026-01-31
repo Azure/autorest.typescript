@@ -128,6 +128,7 @@ export async function $onEmit(context: EmitContext) {
     compilerContext: context,
     tcgcContext: dpgContext
   });
+  provideContext("headerOnlyResponses", new Map());
   const staticHelpers = await loadStaticHelpers(
     outputProject,
     {
