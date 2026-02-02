@@ -45,7 +45,7 @@ export function _registerSchemaSend(
     {
       groupName: groupName,
       name: name,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-07-01",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -95,7 +95,7 @@ export function _getSchemaIdByContentSend(
     {
       groupName: groupName,
       name: name,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-07-01",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -154,7 +154,7 @@ export function _getSchemaByVersionSend(
       groupName: groupName,
       name: name,
       schemaVersion: schemaVersion,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-07-01",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -197,7 +197,7 @@ export function _listSchemaVersionsSend(
     {
       groupName: groupName,
       name: name,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-07-01",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -234,7 +234,7 @@ export function listSchemaVersions(
     () => _listSchemaVersionsSend(context, groupName, name, options),
     _listSchemaVersionsDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "nextLink" },
+    { itemName: "value", nextLinkName: "nextLink", apiVersion: context.apiVersion ?? "2023-07-01" },
   );
 }
 
@@ -247,7 +247,7 @@ export function _getSchemaByIdSend(
     "/$schemaGroups/$schemas/{id}{?api%2Dversion}",
     {
       id: id,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-07-01",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -284,7 +284,7 @@ export function _listSchemaGroupsSend(
   const path = expandUrlTemplate(
     "/$schemaGroups{?api%2Dversion}",
     {
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-07-01",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -319,6 +319,6 @@ export function listSchemaGroups(
     () => _listSchemaGroupsSend(context, options),
     _listSchemaGroupsDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "nextLink" },
+    { itemName: "value", nextLinkName: "nextLink", apiVersion: context.apiVersion ?? "2023-07-01" },
   );
 }

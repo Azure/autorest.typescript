@@ -40,6 +40,28 @@ type SdkParameter =
   | SdkCredentialParameter
   | SdkHttpParameter;
 
+export function hasDefaultValue(p: SdkParameter) {
+  if (
+    p.clientDefaultValue ||
+    p.__raw?.defaultValue ||
+    p.type.kind === "constant"
+  ) {
+    return true;
+  }
+
+  // Special case for endpoint parameters with template arguments that have default values
+  if (p.type.kind === "endpoint" && p.type.templateArguments[0]) {
+    const templateArg = p.type.templateArguments[0];
+    return !!(
+      templateArg.clientDefaultValue ||
+      templateArg.__raw?.defaultValue ||
+      templateArg.type?.kind === "constant"
+    );
+  }
+
+  return false;
+}
+
 export function getClientParameters(
   client: SdkClientType<SdkServiceOperation>,
   dpgContext: SdkContext,
@@ -70,19 +92,15 @@ export function getClientParameters(
     }
   }
 
-  const hasDefaultValue = (p: SdkParameter) =>
-    p.clientDefaultValue || p.__raw?.defaultValue || p.type.kind === "constant";
   const isRequired = (p: SdkParameter) =>
     // Special case: when apiVersionAsRequired is true, apiVersion should always be considered required
     (options.apiVersionAsRequired && p.isApiVersionParam) ||
-    (!p.optional &&
-      !hasDefaultValue(p) &&
-      !(
-        p.type.kind === "endpoint" &&
-        p.type.templateArguments[0] &&
-        hasDefaultValue(p.type.templateArguments[0])
-      ));
-  const isOptional = (p: SdkParameter) => p.optional || hasDefaultValue(p);
+    (!p.optional && !hasDefaultValue(p));
+  const isOptional = (p: SdkParameter) =>
+    p.optional ||
+    p.clientDefaultValue ||
+    p.__raw?.defaultValue ||
+    p.type.kind === "constant";
   const skipCredentials = (p: SdkParameter) => p.kind !== "credential";
   const skipMethodParam = (p: SdkParameter) => p.kind !== "method";
   const armSpecific = (p: SdkParameter) =>

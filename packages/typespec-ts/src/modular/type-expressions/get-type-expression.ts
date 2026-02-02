@@ -62,7 +62,6 @@ export function getTypeExpression(
       }
       return "number";
     case "endpoint":
-    case "plainDate":
     case "plainTime":
     case "string":
     case "url":
@@ -103,6 +102,7 @@ export function getTypeExpression(
     case "union":
       return getUnionExpression(context, type, options);
     case "utcDateTime":
+    case "plainDate":
       return "Date";
 
     default:
