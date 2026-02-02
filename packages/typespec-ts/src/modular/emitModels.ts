@@ -216,7 +216,7 @@ function emitType(context: SdkContext, type: SdkType, sourceFile: SourceFile) {
       return;
     }
     const apiVersionEnumOnly = type.usage === UsageFlags.ApiVersionEnum;
-    // Skip api version enum for multi-service scenarios
+    // Skip known api version enums for multi-service scenarios as users are not allowed to set api versions
     if (apiVersionEnumOnly && context.rlcOptions?.isMultiService) {
       return;
     }
@@ -317,7 +317,7 @@ export function getModelNamespaces(
       return [];
     }
     const segments = model.namespace.split(".");
-    // Keep full namespace segments if multiple services are present
+    // Keep full namespace segments if multiple services are present because there isn't a root namespace to trim
     if (context.rlcOptions?.isMultiService) {
       return segments;
     }

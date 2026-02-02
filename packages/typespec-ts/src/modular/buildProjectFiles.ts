@@ -35,7 +35,7 @@ function buildExportsForMultiClient(
     delete packageInfo.exports["./api"];
   }
   if (emitterOptions.options.hierarchyClient) {
-    // Skip generating api subpath for multi-service
+    // TODO: support api subpath exports for multi-service. Skip for now. https://github.com/Azure/autorest.typescript/issues/3717
     if (!emitterOptions.options.isMultiService) {
       for (const flattenedClient of clientMap) {
         const { subfolder } = getModularClientOptions(flattenedClient);
