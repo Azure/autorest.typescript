@@ -31,7 +31,7 @@ export function _listSend(
     {
       subscriptionId: context.subscriptionId,
       location: location,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-05-01",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -69,6 +69,6 @@ export function list(
     () => _listSend(context, location, options),
     _listDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "nextLink" },
+    { itemName: "value", nextLinkName: "nextLink", apiVersion: context.apiVersion ?? "2025-05-01" },
   );
 }

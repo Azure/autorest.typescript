@@ -54,7 +54,7 @@ export function _updateStateSend(
       publisherName: publisherName,
       networkServiceDesignGroupName: networkServiceDesignGroupName,
       networkServiceDesignVersionName: networkServiceDesignVersionName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-03-30",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -110,6 +110,7 @@ export function updateState(
         options,
       ),
     resourceLocationConfig: "location",
+    apiVersion: context.apiVersion ?? "2025-03-30",
   }) as PollerLike<
     OperationState<NetworkServiceDesignVersionUpdateState>,
     NetworkServiceDesignVersionUpdateState
@@ -132,7 +133,7 @@ export function _listByNetworkServiceDesignGroupSend(
       resourceGroupName: resourceGroupName,
       publisherName: publisherName,
       networkServiceDesignGroupName: networkServiceDesignGroupName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-03-30",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -181,7 +182,7 @@ export function listByNetworkServiceDesignGroup(
       ),
     _listByNetworkServiceDesignGroupDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "nextLink" },
+    { itemName: "value", nextLinkName: "nextLink", apiVersion: context.apiVersion ?? "2025-03-30" },
   );
 }
 
@@ -201,7 +202,7 @@ export function _$deleteSend(
       publisherName: publisherName,
       networkServiceDesignGroupName: networkServiceDesignGroupName,
       networkServiceDesignVersionName: networkServiceDesignVersionName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-03-30",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -248,6 +249,7 @@ export function $delete(
         options,
       ),
     resourceLocationConfig: "location",
+    apiVersion: context.apiVersion ?? "2025-03-30",
   }) as PollerLike<OperationState<void>, void>;
 }
 
@@ -268,7 +270,7 @@ export function _updateSend(
       publisherName: publisherName,
       networkServiceDesignGroupName: networkServiceDesignGroupName,
       networkServiceDesignVersionName: networkServiceDesignVersionName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-03-30",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -336,7 +338,7 @@ export function _createOrUpdateSend(
       publisherName: publisherName,
       networkServiceDesignGroupName: networkServiceDesignGroupName,
       networkServiceDesignVersionName: networkServiceDesignVersionName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-03-30",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -389,6 +391,7 @@ export function createOrUpdate(
         options,
       ),
     resourceLocationConfig: "azure-async-operation",
+    apiVersion: context.apiVersion ?? "2025-03-30",
   }) as PollerLike<OperationState<NetworkServiceDesignVersion>, NetworkServiceDesignVersion>;
 }
 
@@ -408,7 +411,7 @@ export function _getSend(
       publisherName: publisherName,
       networkServiceDesignGroupName: networkServiceDesignGroupName,
       networkServiceDesignVersionName: networkServiceDesignVersionName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-03-30",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

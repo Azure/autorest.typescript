@@ -24,7 +24,7 @@ export interface AuthoringClientOptions extends ClientOptions {
 }
 
 // @public
-function createClient(endpointParam: string, credentials: KeyCredential, input?: AuthoringClientOptions): AuthoringClient;
+function createClient(endpointParam: string, credentials: KeyCredential, { apiVersion, ...options }?: AuthoringClientOptions): AuthoringClient;
 export default createClient;
 
 // @public

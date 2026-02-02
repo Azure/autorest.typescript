@@ -247,6 +247,10 @@ export interface ArtifactStoresOperations {
     // @deprecated (undocumented)
     beginDeleteNetworkFabricControllerEndPointsAndWait: (resourceGroupName: string, publisherName: string, artifactStoreName: string, parameters: ArtifactStoreNetworkFabricControllerEndPoints, options?: ArtifactStoresDeleteNetworkFabricControllerEndPointsOptionalParams) => Promise<void>;
     // @deprecated (undocumented)
+    beginListListNetworkFabricControllerPrivateEndPointsAndWait: (resourceGroupName: string, publisherName: string, artifactStoreName: string, options?: ArtifactStoresListNetworkFabricControllerPrivateEndPointsOptionalParams) => PagedAsyncIterableIterator<ArtifactStoreNetworkFabricControllerEndPoints>;
+    // @deprecated (undocumented)
+    beginListListPrivateEndPointsAndWait: (resourceGroupName: string, publisherName: string, artifactStoreName: string, options?: ArtifactStoresListPrivateEndPointsOptionalParams) => PagedAsyncIterableIterator<ArtifactStorePrivateEndPointsFormat>;
+    // @deprecated (undocumented)
     beginRemovePrivateEndPoints: (resourceGroupName: string, publisherName: string, artifactStoreName: string, parameters: ArtifactStorePrivateEndPointsFormat, options?: ArtifactStoresRemovePrivateEndPointsOptionalParams) => Promise<SimplePollerLike<OperationState<void>, void>>;
     // @deprecated (undocumented)
     beginRemovePrivateEndPointsAndWait: (resourceGroupName: string, publisherName: string, artifactStoreName: string, parameters: ArtifactStorePrivateEndPointsFormat, options?: ArtifactStoresRemovePrivateEndPointsOptionalParams) => Promise<void>;

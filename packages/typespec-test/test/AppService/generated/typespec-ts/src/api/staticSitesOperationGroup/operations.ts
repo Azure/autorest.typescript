@@ -29,7 +29,7 @@ export function _previewWorkflowSend(
     {
       subscriptionId: context.subscriptionId,
       location: location,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-05-01",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

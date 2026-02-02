@@ -42,7 +42,7 @@ export function _getAvailableStacksOnPremSend(
     "/subscriptions/{subscriptionId}/providers/Microsoft.Web/availableStacks{?api%2Dversion,osTypeSelected}",
     {
       subscriptionId: context.subscriptionId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-05-01",
       osTypeSelected: options?.osTypeSelected,
     },
     {
@@ -80,7 +80,7 @@ export function getAvailableStacksOnPrem(
     () => _getAvailableStacksOnPremSend(context, options),
     _getAvailableStacksOnPremDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "nextLink" },
+    { itemName: "value", nextLinkName: "nextLink", apiVersion: context.apiVersion ?? "2025-05-01" },
   );
 }
 
@@ -91,7 +91,7 @@ export function _getWebAppStacksSend(
   const path = expandUrlTemplate(
     "/providers/Microsoft.Web/webAppStacks{?api%2Dversion,stackOsType}",
     {
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-05-01",
       stackOsType: options?.stackOsType,
     },
     {
@@ -129,7 +129,7 @@ export function getWebAppStacks(
     () => _getWebAppStacksSend(context, options),
     _getWebAppStacksDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "nextLink" },
+    { itemName: "value", nextLinkName: "nextLink", apiVersion: context.apiVersion ?? "2025-05-01" },
   );
 }
 
@@ -142,7 +142,7 @@ export function _getWebAppStacksForLocationSend(
     "/providers/Microsoft.Web/locations/{location}/webAppStacks{?api%2Dversion,stackOsType}",
     {
       location: location,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-05-01",
       stackOsType: options?.stackOsType,
     },
     {
@@ -181,7 +181,7 @@ export function getWebAppStacksForLocation(
     () => _getWebAppStacksForLocationSend(context, location, options),
     _getWebAppStacksForLocationDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "nextLink" },
+    { itemName: "value", nextLinkName: "nextLink", apiVersion: context.apiVersion ?? "2025-05-01" },
   );
 }
 
@@ -196,7 +196,7 @@ export function _getFunctionAppStacksForLocationSend(
     "/providers/Microsoft.Web/locations/{location}/functionAppStacks{?api%2Dversion,stackOsType}",
     {
       location: location,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-05-01",
       stackOsType: options?.stackOsType,
     },
     {
@@ -237,7 +237,7 @@ export function getFunctionAppStacksForLocation(
     () => _getFunctionAppStacksForLocationSend(context, location, options),
     _getFunctionAppStacksForLocationDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "nextLink" },
+    { itemName: "value", nextLinkName: "nextLink", apiVersion: context.apiVersion ?? "2025-05-01" },
   );
 }
 
@@ -248,7 +248,7 @@ export function _getFunctionAppStacksSend(
   const path = expandUrlTemplate(
     "/providers/Microsoft.Web/functionAppStacks{?api%2Dversion,stackOsType}",
     {
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-05-01",
       stackOsType: options?.stackOsType,
     },
     {
@@ -286,7 +286,7 @@ export function getFunctionAppStacks(
     () => _getFunctionAppStacksSend(context, options),
     _getFunctionAppStacksDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "nextLink" },
+    { itemName: "value", nextLinkName: "nextLink", apiVersion: context.apiVersion ?? "2025-05-01" },
   );
 }
 
@@ -297,7 +297,7 @@ export function _getAvailableStacksSend(
   const path = expandUrlTemplate(
     "/providers/Microsoft.Web/availableStacks{?api%2Dversion,osTypeSelected}",
     {
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-05-01",
       osTypeSelected: options?.osTypeSelected,
     },
     {
@@ -335,6 +335,6 @@ export function getAvailableStacks(
     () => _getAvailableStacksSend(context, options),
     _getAvailableStacksDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "nextLink" },
+    { itemName: "value", nextLinkName: "nextLink", apiVersion: context.apiVersion ?? "2025-05-01" },
   );
 }

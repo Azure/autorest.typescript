@@ -57,7 +57,7 @@ export function _updateStateSend(
       publisherName: publisherName,
       artifactStoreName: artifactStoreName,
       artifactManifestName: artifactManifestName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-03-30",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -110,6 +110,7 @@ export function updateState(
         options,
       ),
     resourceLocationConfig: "location",
+    apiVersion: context.apiVersion ?? "2025-03-30",
   }) as PollerLike<OperationState<ArtifactManifestUpdateState>, ArtifactManifestUpdateState>;
 }
 
@@ -129,7 +130,7 @@ export function _listCredentialSend(
       publisherName: publisherName,
       artifactStoreName: artifactStoreName,
       artifactManifestName: artifactManifestName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-03-30",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -190,7 +191,7 @@ export function _listByArtifactStoreSend(
       resourceGroupName: resourceGroupName,
       publisherName: publisherName,
       artifactStoreName: artifactStoreName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-03-30",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -237,7 +238,7 @@ export function listByArtifactStore(
       ),
     _listByArtifactStoreDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "nextLink" },
+    { itemName: "value", nextLinkName: "nextLink", apiVersion: context.apiVersion ?? "2025-03-30" },
   );
 }
 
@@ -257,7 +258,7 @@ export function _$deleteSend(
       publisherName: publisherName,
       artifactStoreName: artifactStoreName,
       artifactManifestName: artifactManifestName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-03-30",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -304,6 +305,7 @@ export function $delete(
         options,
       ),
     resourceLocationConfig: "location",
+    apiVersion: context.apiVersion ?? "2025-03-30",
   }) as PollerLike<OperationState<void>, void>;
 }
 
@@ -324,7 +326,7 @@ export function _updateSend(
       publisherName: publisherName,
       artifactStoreName: artifactStoreName,
       artifactManifestName: artifactManifestName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-03-30",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -390,7 +392,7 @@ export function _createOrUpdateSend(
       publisherName: publisherName,
       artifactStoreName: artifactStoreName,
       artifactManifestName: artifactManifestName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-03-30",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -443,6 +445,7 @@ export function createOrUpdate(
         options,
       ),
     resourceLocationConfig: "azure-async-operation",
+    apiVersion: context.apiVersion ?? "2025-03-30",
   }) as PollerLike<OperationState<ArtifactManifest>, ArtifactManifest>;
 }
 
@@ -462,7 +465,7 @@ export function _getSend(
       publisherName: publisherName,
       artifactStoreName: artifactStoreName,
       artifactManifestName: artifactManifestName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-03-30",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

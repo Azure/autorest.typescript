@@ -61,7 +61,7 @@ export function _listPrivateEndPointsSend(
       resourceGroupName: resourceGroupName,
       publisherName: publisherName,
       artifactStoreName: artifactStoreName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-03-30",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -112,6 +112,7 @@ export function listPrivateEndPoints(
           options,
         ),
       resourceLocationConfig: "location",
+      apiVersion: context.apiVersion ?? "2025-03-30",
     },
   ) as PollerLike<OperationState<PathUncheckedResponse>, PathUncheckedResponse>;
 
@@ -120,7 +121,7 @@ export function listPrivateEndPoints(
     async () => await initialPagingPoller,
     _listPrivateEndPointsDeserialize,
     ["200", "202", "201"],
-    { itemName: "value", nextLinkName: "nextLink" },
+    { itemName: "value", nextLinkName: "nextLink", apiVersion: context.apiVersion ?? "2025-03-30" },
   );
 }
 
@@ -139,7 +140,7 @@ export function _removePrivateEndPointsSend(
       resourceGroupName: resourceGroupName,
       publisherName: publisherName,
       artifactStoreName: artifactStoreName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-03-30",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -189,6 +190,7 @@ export function removePrivateEndPoints(
         options,
       ),
     resourceLocationConfig: "location",
+    apiVersion: context.apiVersion ?? "2025-03-30",
   }) as PollerLike<OperationState<void>, void>;
 }
 
@@ -207,7 +209,7 @@ export function _approvePrivateEndPointsSend(
       resourceGroupName: resourceGroupName,
       publisherName: publisherName,
       artifactStoreName: artifactStoreName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-03-30",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -257,6 +259,7 @@ export function approvePrivateEndPoints(
         options,
       ),
     resourceLocationConfig: "location",
+    apiVersion: context.apiVersion ?? "2025-03-30",
   }) as PollerLike<OperationState<void>, void>;
 }
 
@@ -276,7 +279,7 @@ export function _listNetworkFabricControllerPrivateEndPointsSend(
       resourceGroupName: resourceGroupName,
       publisherName: publisherName,
       artifactStoreName: artifactStoreName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-03-30",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -329,6 +332,7 @@ export function listNetworkFabricControllerPrivateEndPoints(
           options,
         ),
       resourceLocationConfig: "location",
+      apiVersion: context.apiVersion ?? "2025-03-30",
     },
   ) as PollerLike<OperationState<PathUncheckedResponse>, PathUncheckedResponse>;
 
@@ -337,7 +341,7 @@ export function listNetworkFabricControllerPrivateEndPoints(
     async () => await initialPagingPoller,
     _listNetworkFabricControllerPrivateEndPointsDeserialize,
     ["200", "202", "201"],
-    { itemName: "value", nextLinkName: "nextLink" },
+    { itemName: "value", nextLinkName: "nextLink", apiVersion: context.apiVersion ?? "2025-03-30" },
   );
 }
 
@@ -358,7 +362,7 @@ export function _deleteNetworkFabricControllerEndPointsSend(
       resourceGroupName: resourceGroupName,
       publisherName: publisherName,
       artifactStoreName: artifactStoreName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-03-30",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -414,6 +418,7 @@ export function deleteNetworkFabricControllerEndPoints(
           options,
         ),
       resourceLocationConfig: "location",
+      apiVersion: context.apiVersion ?? "2025-03-30",
     },
   ) as PollerLike<OperationState<void>, void>;
 }
@@ -433,7 +438,7 @@ export function _addNetworkFabricControllerEndPointsSend(
       resourceGroupName: resourceGroupName,
       publisherName: publisherName,
       artifactStoreName: artifactStoreName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-03-30",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -487,6 +492,7 @@ export function addNetworkFabricControllerEndPoints(
           options,
         ),
       resourceLocationConfig: "location",
+      apiVersion: context.apiVersion ?? "2025-03-30",
     },
   ) as PollerLike<OperationState<void>, void>;
 }
@@ -503,7 +509,7 @@ export function _listByPublisherSend(
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       publisherName: publisherName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-03-30",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -542,7 +548,7 @@ export function listByPublisher(
     () => _listByPublisherSend(context, resourceGroupName, publisherName, options),
     _listByPublisherDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "nextLink" },
+    { itemName: "value", nextLinkName: "nextLink", apiVersion: context.apiVersion ?? "2025-03-30" },
   );
 }
 
@@ -560,7 +566,7 @@ export function _$deleteSend(
       resourceGroupName: resourceGroupName,
       publisherName: publisherName,
       artifactStoreName: artifactStoreName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-03-30",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -599,6 +605,7 @@ export function $delete(
     getInitialResponse: () =>
       _$deleteSend(context, resourceGroupName, publisherName, artifactStoreName, options),
     resourceLocationConfig: "location",
+    apiVersion: context.apiVersion ?? "2025-03-30",
   }) as PollerLike<OperationState<void>, void>;
 }
 
@@ -617,7 +624,7 @@ export function _updateSend(
       resourceGroupName: resourceGroupName,
       publisherName: publisherName,
       artifactStoreName: artifactStoreName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-03-30",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -679,7 +686,7 @@ export function _createOrUpdateSend(
       resourceGroupName: resourceGroupName,
       publisherName: publisherName,
       artifactStoreName: artifactStoreName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-03-30",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -730,6 +737,7 @@ export function createOrUpdate(
         options,
       ),
     resourceLocationConfig: "azure-async-operation",
+    apiVersion: context.apiVersion ?? "2025-03-30",
   }) as PollerLike<OperationState<ArtifactStore>, ArtifactStore>;
 }
 
@@ -747,7 +755,7 @@ export function _getSend(
       resourceGroupName: resourceGroupName,
       publisherName: publisherName,
       artifactStoreName: artifactStoreName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-03-30",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

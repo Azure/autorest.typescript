@@ -9,7 +9,6 @@ import {
 } from "./static-helpers/pagingHelpers.js";
 
 export { NetworkAnalyticsApi } from "./networkAnalyticsApi.js";
-export { SimplePollerLike } from "./static-helpers/simplePollerHelpers.js";
 export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
 export {
   Operation,

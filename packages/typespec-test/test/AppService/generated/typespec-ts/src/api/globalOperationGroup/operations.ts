@@ -26,7 +26,7 @@ export function _getSubscriptionOperationWithAsyncResponseSend(
       location: location,
       operationId: operationId,
       subscriptionId: context.subscriptionId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-05-01",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

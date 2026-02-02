@@ -41,7 +41,7 @@ export function _suspendSend(
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       name: name,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-05-01",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -84,6 +84,7 @@ export function suspend(
       abortSignal: options?.abortSignal,
       getInitialResponse: () => _suspendSend(context, resourceGroupName, name, options),
       resourceLocationConfig: "location",
+      apiVersion: context.apiVersion ?? "2025-05-01",
     },
   ) as PollerLike<OperationState<PathUncheckedResponse>, PathUncheckedResponse>;
 
@@ -92,7 +93,7 @@ export function suspend(
     async () => await initialPagingPoller,
     _suspendDeserialize,
     ["200", "202", "201"],
-    { itemName: "value", nextLinkName: "nextLink" },
+    { itemName: "value", nextLinkName: "nextLink", apiVersion: context.apiVersion ?? "2025-05-01" },
   );
 }
 
@@ -108,7 +109,7 @@ export function _resumeSend(
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       name: name,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-05-01",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -151,6 +152,7 @@ export function resume(
       abortSignal: options?.abortSignal,
       getInitialResponse: () => _resumeSend(context, resourceGroupName, name, options),
       resourceLocationConfig: "location",
+      apiVersion: context.apiVersion ?? "2025-05-01",
     },
   ) as PollerLike<OperationState<PathUncheckedResponse>, PathUncheckedResponse>;
 
@@ -159,7 +161,7 @@ export function resume(
     async () => await initialPagingPoller,
     _resumeDeserialize,
     ["200", "202", "201"],
-    { itemName: "value", nextLinkName: "nextLink" },
+    { itemName: "value", nextLinkName: "nextLink", apiVersion: context.apiVersion ?? "2025-05-01" },
   );
 }
 
@@ -176,7 +178,7 @@ export function _changeVnetSend(
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       name: name,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-05-01",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -222,6 +224,7 @@ export function changeVnet(
       abortSignal: options?.abortSignal,
       getInitialResponse: () => _changeVnetSend(context, resourceGroupName, name, body, options),
       resourceLocationConfig: "location",
+      apiVersion: context.apiVersion ?? "2025-05-01",
     },
   ) as PollerLike<OperationState<PathUncheckedResponse>, PathUncheckedResponse>;
 
@@ -230,6 +233,6 @@ export function changeVnet(
     async () => await initialPagingPoller,
     _changeVnetDeserialize,
     ["200", "202", "201"],
-    { itemName: "value", nextLinkName: "nextLink" },
+    { itemName: "value", nextLinkName: "nextLink", apiVersion: context.apiVersion ?? "2025-05-01" },
   );
 }

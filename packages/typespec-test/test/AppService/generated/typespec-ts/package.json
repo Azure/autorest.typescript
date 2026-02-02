@@ -12,26 +12,44 @@
       "./package.json": "./package.json",
       ".": "./src/index.ts",
       "./api": "./src/api/index.ts",
-      "./api/staticSitesOperationGroup": "src/api/staticSitesOperationGroup/index.ts",
-      "./api/getUsagesInLocationOperationGroup": "src/api/getUsagesInLocationOperationGroup/index.ts",
-      "./api/recommendationsOperationGroup": "src/api/recommendationsOperationGroup/index.ts",
-      "./api/providerOperationGroup": "src/api/providerOperationGroup/index.ts",
-      "./api/globalOperationGroup": "src/api/globalOperationGroup/index.ts",
-      "./api/appServiceEnvironmentResources": "src/api/appServiceEnvironmentResources/index.ts",
-      "./api/operations": "src/api/operations/index.ts",
+      "./api/staticSitesOperationGroup": "./src/api/staticSitesOperationGroup/index.ts",
+      "./api/getUsagesInLocationOperationGroup": "./src/api/getUsagesInLocationOperationGroup/index.ts",
+      "./api/recommendationsOperationGroup": "./src/api/recommendationsOperationGroup/index.ts",
+      "./api/providerOperationGroup": "./src/api/providerOperationGroup/index.ts",
+      "./api/globalOperationGroup": "./src/api/globalOperationGroup/index.ts",
+      "./api/appServiceEnvironmentResources": "./src/api/appServiceEnvironmentResources/index.ts",
+      "./api/operations": "./src/api/operations/index.ts",
       "./models": "./src/models/index.ts"
     },
-    "dialects": ["esm", "commonjs"],
-    "esmDialects": ["browser", "react-native"],
+    "dialects": [
+      "esm",
+      "commonjs"
+    ],
+    "esmDialects": [
+      "browser",
+      "react-native"
+    ],
     "selfLink": false
   },
   "type": "module",
   "browser": "./dist/browser/index.js",
   "react-native": "./dist/react-native/index.js",
-  "keywords": ["node", "azure", "cloud", "typescript", "browser", "isomorphic"],
+  "keywords": [
+    "node",
+    "azure",
+    "cloud",
+    "typescript",
+    "browser",
+    "isomorphic"
+  ],
   "author": "Microsoft Corporation",
   "license": "MIT",
-  "files": ["dist/", "!dist/**/*.d.*ts.map", "README.md", "LICENSE"],
+  "files": [
+    "dist/",
+    "!dist/**/*.d.*ts.map",
+    "README.md",
+    "LICENSE"
+  ],
   "dependencies": {
     "@azure/core-util": "^1.9.2",
     "@azure-rest/core-client": "^2.3.1",

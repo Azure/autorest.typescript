@@ -37,7 +37,7 @@ export function _disableRecommendationForSubscriptionSend(
     {
       subscriptionId: context.subscriptionId,
       name: name,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-05-01",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -79,7 +79,7 @@ export function _resetAllFiltersSend(
     "/subscriptions/{subscriptionId}/providers/Microsoft.Web/recommendations/reset{?api%2Dversion}",
     {
       subscriptionId: context.subscriptionId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-05-01",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -116,7 +116,7 @@ export function _listSend(
     "/subscriptions/{subscriptionId}/providers/Microsoft.Web/recommendations{?api%2Dversion,featured,%24filter}",
     {
       subscriptionId: context.subscriptionId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-05-01",
       featured: options?.featured,
       "%24filter": options?.filter,
     },
@@ -155,6 +155,6 @@ export function list(
     () => _listSend(context, options),
     _listDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "nextLink" },
+    { itemName: "value", nextLinkName: "nextLink", apiVersion: context.apiVersion ?? "2025-05-01" },
   );
 }

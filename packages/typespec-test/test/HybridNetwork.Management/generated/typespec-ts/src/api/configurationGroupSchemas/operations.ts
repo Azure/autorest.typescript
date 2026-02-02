@@ -52,7 +52,7 @@ export function _updateStateSend(
       resourceGroupName: resourceGroupName,
       publisherName: publisherName,
       configurationGroupSchemaName: configurationGroupSchemaName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-03-30",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -106,6 +106,7 @@ export function updateState(
         options,
       ),
     resourceLocationConfig: "location",
+    apiVersion: context.apiVersion ?? "2025-03-30",
   }) as PollerLike<
     OperationState<ConfigurationGroupSchemaVersionUpdateState>,
     ConfigurationGroupSchemaVersionUpdateState
@@ -124,7 +125,7 @@ export function _listByPublisherSend(
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       publisherName: publisherName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-03-30",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -163,7 +164,7 @@ export function listByPublisher(
     () => _listByPublisherSend(context, resourceGroupName, publisherName, options),
     _listByPublisherDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "nextLink" },
+    { itemName: "value", nextLinkName: "nextLink", apiVersion: context.apiVersion ?? "2025-03-30" },
   );
 }
 
@@ -181,7 +182,7 @@ export function _$deleteSend(
       resourceGroupName: resourceGroupName,
       publisherName: publisherName,
       configurationGroupSchemaName: configurationGroupSchemaName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-03-30",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -226,6 +227,7 @@ export function $delete(
         options,
       ),
     resourceLocationConfig: "location",
+    apiVersion: context.apiVersion ?? "2025-03-30",
   }) as PollerLike<OperationState<void>, void>;
 }
 
@@ -244,7 +246,7 @@ export function _updateSend(
       resourceGroupName: resourceGroupName,
       publisherName: publisherName,
       configurationGroupSchemaName: configurationGroupSchemaName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-03-30",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -308,7 +310,7 @@ export function _createOrUpdateSend(
       resourceGroupName: resourceGroupName,
       publisherName: publisherName,
       configurationGroupSchemaName: configurationGroupSchemaName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-03-30",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -359,6 +361,7 @@ export function createOrUpdate(
         options,
       ),
     resourceLocationConfig: "azure-async-operation",
+    apiVersion: context.apiVersion ?? "2025-03-30",
   }) as PollerLike<OperationState<ConfigurationGroupSchema>, ConfigurationGroupSchema>;
 }
 
@@ -376,7 +379,7 @@ export function _getSend(
       resourceGroupName: resourceGroupName,
       publisherName: publisherName,
       configurationGroupSchemaName: configurationGroupSchemaName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-03-30",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

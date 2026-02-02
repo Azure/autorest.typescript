@@ -51,7 +51,7 @@ export function _updateStateSend(
       publisherName: publisherName,
       artifactStoreName: artifactStoreName,
       artifactVersionName: artifactVersionName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-03-30",
       artifactName: artifactName,
     },
     {
@@ -110,6 +110,7 @@ export function updateState(
         options,
       ),
     resourceLocationConfig: "location",
+    apiVersion: context.apiVersion ?? "2025-03-30",
   }) as PollerLike<
     OperationState<ProxyArtifactVersionsListOverview>,
     ProxyArtifactVersionsListOverview
@@ -131,7 +132,7 @@ export function _getSend(
       resourceGroupName: resourceGroupName,
       publisherName: publisherName,
       artifactStoreName: artifactStoreName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-03-30",
       artifactName: artifactName,
     },
     {
@@ -174,7 +175,7 @@ export function get(
       _getSend(context, resourceGroupName, publisherName, artifactStoreName, artifactName, options),
     _getDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "nextLink" },
+    { itemName: "value", nextLinkName: "nextLink", apiVersion: context.apiVersion ?? "2025-03-30" },
   );
 }
 
@@ -192,7 +193,7 @@ export function _listSend(
       resourceGroupName: resourceGroupName,
       publisherName: publisherName,
       artifactStoreName: artifactStoreName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-03-30",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -232,6 +233,6 @@ export function list(
     () => _listSend(context, resourceGroupName, publisherName, artifactStoreName, options),
     _listDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "nextLink" },
+    { itemName: "value", nextLinkName: "nextLink", apiVersion: context.apiVersion ?? "2025-03-30" },
   );
 }

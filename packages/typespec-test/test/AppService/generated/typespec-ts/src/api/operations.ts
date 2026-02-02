@@ -80,7 +80,7 @@ export function _moveSend(
     {
       resourceGroupName: resourceGroupName,
       subscriptionId: context.subscriptionId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-05-01",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -126,7 +126,7 @@ export function _verifyHostingEnvironmentVnetSend(
     "/subscriptions/{subscriptionId}/providers/Microsoft.Web/verifyHostingEnvironmentVnet{?api%2Dversion}",
     {
       subscriptionId: context.subscriptionId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-05-01",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -173,7 +173,7 @@ export function _listSkusSend(
     "/subscriptions/{subscriptionId}/providers/Microsoft.Web/skus{?api%2Dversion}",
     {
       subscriptionId: context.subscriptionId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-05-01",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -215,7 +215,7 @@ export function _listPremierAddOnOffersSend(
     "/subscriptions/{subscriptionId}/providers/Microsoft.Web/premieraddonoffers{?api%2Dversion}",
     {
       subscriptionId: context.subscriptionId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-05-01",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -252,7 +252,7 @@ export function listPremierAddOnOffers(
     () => _listPremierAddOnOffersSend(context, options),
     _listPremierAddOnOffersDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "nextLink" },
+    { itemName: "value", nextLinkName: "nextLink", apiVersion: context.apiVersion ?? "2025-05-01" },
   );
 }
 
@@ -267,7 +267,7 @@ export function _regionalCheckNameAvailabilitySend(
     {
       subscriptionId: context.subscriptionId,
       location: location,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-05-01",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -315,7 +315,7 @@ export function _listGeoRegionsSend(
     "/subscriptions/{subscriptionId}/providers/Microsoft.Web/geoRegions{?api%2Dversion,sku,linuxWorkersEnabled,xenonWorkersEnabled,linuxDynamicWorkersEnabled,customModeWorkersEnabled}",
     {
       subscriptionId: context.subscriptionId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-05-01",
       sku: options?.sku,
       linuxWorkersEnabled: options?.linuxWorkersEnabled,
       xenonWorkersEnabled: options?.xenonWorkersEnabled,
@@ -357,7 +357,7 @@ export function listGeoRegions(
     () => _listGeoRegionsSend(context, options),
     _listGeoRegionsDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "nextLink" },
+    { itemName: "value", nextLinkName: "nextLink", apiVersion: context.apiVersion ?? "2025-05-01" },
   );
 }
 
@@ -369,7 +369,7 @@ export function _listCustomHostNameSitesSend(
     "/subscriptions/{subscriptionId}/providers/Microsoft.Web/customhostnameSites{?api%2Dversion,hostname}",
     {
       subscriptionId: context.subscriptionId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-05-01",
       hostname: options?.hostname,
     },
     {
@@ -407,7 +407,7 @@ export function listCustomHostNameSites(
     () => _listCustomHostNameSitesSend(context, options),
     _listCustomHostNameSitesDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "nextLink" },
+    { itemName: "value", nextLinkName: "nextLink", apiVersion: context.apiVersion ?? "2025-05-01" },
   );
 }
 
@@ -420,7 +420,7 @@ export function _checkNameAvailabilitySend(
     "/subscriptions/{subscriptionId}/providers/Microsoft.Web/checknameavailability{?api%2Dversion}",
     {
       subscriptionId: context.subscriptionId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-05-01",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -467,7 +467,7 @@ export function _listBillingMetersSend(
     "/subscriptions/{subscriptionId}/providers/Microsoft.Web/billingMeters{?api%2Dversion,billingLocation,osType}",
     {
       subscriptionId: context.subscriptionId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-05-01",
       billingLocation: options?.billingLocation,
       osType: options?.osType,
     },
@@ -506,7 +506,7 @@ export function listBillingMeters(
     () => _listBillingMetersSend(context, options),
     _listBillingMetersDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "nextLink" },
+    { itemName: "value", nextLinkName: "nextLink", apiVersion: context.apiVersion ?? "2025-05-01" },
   );
 }
 
@@ -518,7 +518,7 @@ export function _listAseRegionsSend(
     "/subscriptions/{subscriptionId}/providers/Microsoft.Web/aseRegions{?api%2Dversion}",
     {
       subscriptionId: context.subscriptionId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-05-01",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -555,7 +555,7 @@ export function listAseRegions(
     () => _listAseRegionsSend(context, options),
     _listAseRegionsDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "nextLink" },
+    { itemName: "value", nextLinkName: "nextLink", apiVersion: context.apiVersion ?? "2025-05-01" },
   );
 }
 
@@ -567,7 +567,7 @@ export function _getSubscriptionDeploymentLocationsSend(
     "/subscriptions/{subscriptionId}/providers/Microsoft.Web/deploymentLocations{?api%2Dversion}",
     {
       subscriptionId: context.subscriptionId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-05-01",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -614,7 +614,7 @@ export function _validateSend(
     {
       resourceGroupName: resourceGroupName,
       subscriptionId: context.subscriptionId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-05-01",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -665,7 +665,7 @@ export function _validateMoveSend(
     {
       resourceGroupName: resourceGroupName,
       subscriptionId: context.subscriptionId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-05-01",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

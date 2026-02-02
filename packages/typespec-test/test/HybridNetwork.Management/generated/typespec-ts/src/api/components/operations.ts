@@ -37,7 +37,7 @@ export function _listByNetworkFunctionSend(
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       networkFunctionName: networkFunctionName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-03-30",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -76,7 +76,7 @@ export function listByNetworkFunction(
     () => _listByNetworkFunctionSend(context, resourceGroupName, networkFunctionName, options),
     _listByNetworkFunctionDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "nextLink" },
+    { itemName: "value", nextLinkName: "nextLink", apiVersion: context.apiVersion ?? "2025-03-30" },
   );
 }
 
@@ -94,7 +94,7 @@ export function _getSend(
       resourceGroupName: resourceGroupName,
       networkFunctionName: networkFunctionName,
       componentName: componentName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2025-03-30",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
