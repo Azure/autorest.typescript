@@ -81,3 +81,83 @@ export function testModelDeserializer(item: any): TestModel {
   };
 }
 ```
+
+---
+
+# Should not generate null for optional nullable query/header/body parameters in Azure services by default
+
+## TypeSpec
+
+```tsp
+model Widget {
+  name: string;
+  color?: string;
+}
+
+@route("/test")
+interface TestOperations {
+  @post
+  create(
+    @query optionalNullableQuery?: string | null;
+    @header optionalNullableHeader?: string | null;
+    @body optionalNullableBody?: Widget | null;
+  ): void;
+}
+```
+
+## Models with Options
+
+```ts models:withOptions
+import { Widget } from "../models/models.js";
+import { OperationOptions } from "@azure-rest/core-client";
+
+/** Optional parameters. */
+export interface CreateOptionalParams extends OperationOptions {
+  optionalNullableQuery?: string;
+  optionalNullableHeader?: string;
+  optionalNullableBody?: Widget;
+}
+```
+
+---
+
+# Should generate null for optional nullable query/header/body parameters when ignore-nullable-on-optional is false
+
+## TypeSpec
+
+```tsp
+model Widget {
+  name: string;
+  color?: string;
+}
+
+@route("/test")
+interface TestOperations {
+  @post
+  create(
+    @query optionalNullableQuery?: string | null;
+    @header optionalNullableHeader?: string | null;
+    @body optionalNullableBody?: Widget | null;
+  ): void;
+}
+```
+
+## config
+
+```yaml
+ignore-nullable-on-optional: false
+```
+
+## Models with Options
+
+```ts models:withOptions
+import { Widget } from "../models/models.js";
+import { OperationOptions } from "@azure-rest/core-client";
+
+/** Optional parameters. */
+export interface CreateOptionalParams extends OperationOptions {
+  optionalNullableQuery?: string | null;
+  optionalNullableHeader?: string | null;
+  optionalNullableBody?: Widget | null;
+}
+```
