@@ -2725,3 +2725,145 @@ export function baseSerializer(item: Base): any {
   return { foo: item["foo"] };
 }
 ```
+
+# should handle discriminator base model without subtypes
+
+## TypeSpec
+
+```tsp
+@discriminator("kind")
+model Pet {
+    kind: string;
+    name: string;
+    weight?: float32;
+}
+
+@discriminator("type")
+model ServicePlacementPolicyDescription extends Pet {
+  kind: "dog";
+  type: string;
+}
+
+model ServiceResourceProperties {
+  servicePlacementPolicies?: ServicePlacementPolicyDescription[];
+}
+
+#suppress "@azure-tools/typespec-azure-core/use-standard-operations" "for test"
+@route("/services")
+@post
+op createService(@body body: ServiceResourceProperties): ServiceResourceProperties;
+```
+
+## Models
+
+```ts models
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/** model interface ServiceResourceProperties */
+export interface ServiceResourceProperties {
+  servicePlacementPolicies?: ServicePlacementPolicyDescription[];
+}
+
+export function serviceResourcePropertiesSerializer(item: ServiceResourceProperties): any {
+  return {
+    servicePlacementPolicies: !item["servicePlacementPolicies"]
+      ? item["servicePlacementPolicies"]
+      : servicePlacementPolicyDescriptionArraySerializer(item["servicePlacementPolicies"]),
+  };
+}
+
+export function serviceResourcePropertiesDeserializer(item: any): ServiceResourceProperties {
+  return {
+    servicePlacementPolicies: !item["servicePlacementPolicies"]
+      ? item["servicePlacementPolicies"]
+      : servicePlacementPolicyDescriptionArrayDeserializer(item["servicePlacementPolicies"]),
+  };
+}
+
+export function servicePlacementPolicyDescriptionArraySerializer(
+  result: Array<ServicePlacementPolicyDescription>,
+): any[] {
+  return result.map((item) => {
+    return servicePlacementPolicyDescriptionSerializer(item);
+  });
+}
+
+export function servicePlacementPolicyDescriptionArrayDeserializer(
+  result: Array<ServicePlacementPolicyDescription>,
+): any[] {
+  return result.map((item) => {
+    return servicePlacementPolicyDescriptionDeserializer(item);
+  });
+}
+
+/** model interface ServicePlacementPolicyDescription */
+export interface ServicePlacementPolicyDescription extends Pet {
+  kind: "dog";
+  type: string;
+}
+
+export function servicePlacementPolicyDescriptionSerializer(
+  item: ServicePlacementPolicyDescription,
+): any {
+  return { kind: item["kind"], name: item["name"], weight: item["weight"], type: item["type"] };
+}
+
+export function servicePlacementPolicyDescriptionDeserializer(
+  item: any,
+): ServicePlacementPolicyDescription {
+  return {
+    kind: item["kind"],
+    name: item["name"],
+    weight: item["weight"],
+    type: item["type"],
+  };
+}
+
+/** model interface Pet */
+export interface Pet {
+  kind: string;
+  name: string;
+  weight?: number;
+}
+
+export function petSerializer(item: Pet): any {
+  return { kind: item["kind"], name: item["name"], weight: item["weight"] };
+}
+
+export function petDeserializer(item: any): Pet {
+  return {
+    kind: item["kind"],
+    name: item["name"],
+    weight: item["weight"],
+  };
+}
+
+/** Alias for PetUnion */
+export type PetUnion = ServicePlacementPolicyDescription | Pet;
+
+export function petUnionSerializer(item: PetUnion): any {
+  switch (item.kind) {
+    case "dog":
+      return servicePlacementPolicyDescriptionSerializer(item as ServicePlacementPolicyDescription);
+
+    default:
+      return petSerializer(item);
+  }
+}
+
+export function petUnionDeserializer(item: any): PetUnion {
+  switch (item.kind) {
+    case "dog":
+      return servicePlacementPolicyDescriptionDeserializer(
+        item as ServicePlacementPolicyDescription,
+      );
+
+    default:
+      return petDeserializer(item);
+  }
+}
+```
