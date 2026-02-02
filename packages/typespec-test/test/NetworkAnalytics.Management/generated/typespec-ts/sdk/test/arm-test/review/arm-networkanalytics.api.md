@@ -207,8 +207,6 @@ export interface DataProductsOperations {
     beginCreate: (resourceGroupName: string, dataProductName: string, resource: DataProduct, options?: DataProductsCreateOptionalParams) => Promise<SimplePollerLike<OperationState<DataProduct>, DataProduct>>;
     // @deprecated (undocumented)
     beginCreateAndWait: (resourceGroupName: string, dataProductName: string, resource: DataProduct, options?: DataProductsCreateOptionalParams) => Promise<DataProduct>;
-    // Warning: (ae-forgotten-export) The symbol "SimplePollerLike" needs to be exported by the entry point index.d.ts
-    //
     // @deprecated (undocumented)
     beginDelete: (resourceGroupName: string, dataProductName: string, options?: DataProductsDeleteOptionalParams) => Promise<SimplePollerLike<OperationState<void>, void>>;
     // @deprecated (undocumented)
@@ -602,6 +600,28 @@ export interface RoleAssignmentDetail {
     roleAssignmentId: string;
     roleId: string;
     userName: string;
+}
+
+// @public
+export interface SimplePollerLike<TState extends OperationState<TResult>, TResult> {
+    getOperationState(): TState;
+    getResult(): TResult | undefined;
+    isDone(): boolean;
+    // @deprecated
+    isStopped(): boolean;
+    onProgress(callback: (state: TState) => void): CancelOnProgress;
+    poll(options?: {
+        abortSignal?: AbortSignalLike;
+    }): Promise<TState>;
+    pollUntilDone(pollOptions?: {
+        abortSignal?: AbortSignalLike;
+    }): Promise<TResult>;
+    serialize(): Promise<string>;
+    // @deprecated
+    stopPolling(): void;
+    submitted(): Promise<void>;
+    // @deprecated
+    toString(): string;
 }
 
 // @public
