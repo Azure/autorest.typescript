@@ -1,58 +1,291 @@
+import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import { Project, SourceFile } from "ts-morph";
-import { getClientName } from "./helpers/namingHelpers.js";
-import { Client, ModularCodeModel } from "./modularCodeModel.js";
+import { getClassicalClientName } from "./helpers/namingHelpers.js";
+import { ModularEmitterOptions } from "./interfaces.js";
+import { resolveReference } from "../framework/reference.js";
+import {
+  CloudSettingHelpers,
+  MultipartHelpers,
+  PagingHelpers
+} from "./static-helpers-metadata.js";
+import {
+  SdkClientType,
+  SdkServiceOperation
+} from "@azure-tools/typespec-client-generator-core";
+import { getModularClientOptions } from "../utils/clientUtils.js";
+import { getMethodHierarchiesMap } from "../utils/operationUtil.js";
+import { join } from "path/posix";
+import { useContext } from "../contextManager.js";
+import { reportDiagnostic } from "../lib.js";
+import { NoTarget } from "@typespec/compiler";
+import { isLroOnlyOperation } from "./helpers/operationHelpers.js";
+import { SdkContext } from "../utils/interfaces.js";
 
 export function buildRootIndex(
-  codeModel: ModularCodeModel,
-  client: Client,
-  rootIndexFile: SourceFile
+  context: SdkContext,
+  emitterOptions: ModularEmitterOptions,
+  rootIndexFile: SourceFile,
+  clientMap?: [string[], SdkClientType<SdkServiceOperation>]
 ) {
-  const { project } = codeModel;
-  const srcPath = codeModel.modularOptions.sourceRoot;
-  const subfolder = client.subfolder ?? "";
-  const clientName = `${getClientName(client)}Client`;
+  if (!clientMap) {
+    // we still need to export the models if no client is provided
+    exportModels(emitterOptions, rootIndexFile);
+    return;
+  }
+  const project = useContext("outputProject");
+  const [_, client] = clientMap;
+  const srcPath = emitterOptions.modularOptions.sourceRoot;
+  const { subfolder } = getModularClientOptions(clientMap);
+  const clientName = `${getClassicalClientName(client)}`;
   const clientFile = project.getSourceFile(
-    `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}${clientName}.ts`
+    `${srcPath}/${subfolder && subfolder !== "" ? subfolder + "/" : ""}${normalizeName(
+      clientName,
+      NameType.File
+    )}.ts`
   );
 
   if (!clientFile) {
-    throw new Error(`Couldn't find client file: ${srcPath}/${clientName}.ts`);
+    reportDiagnostic(context.program, {
+      code: "client-file-not-found",
+      format: {
+        filePath: `${srcPath}/${normalizeName(clientName, NameType.File)}.ts`
+      },
+      target: NoTarget
+    });
+    return; // Skip exporting this client but continue with others
   }
 
-  exportClassicalClient(client, rootIndexFile, subfolder);
-  exportModules(
+  exportClassicalClient(client, rootIndexFile, subfolder ?? "");
+  exportSimplePollerLike(
+    context,
+    clientMap,
+    rootIndexFile,
+    project,
+    srcPath,
+    subfolder
+  );
+  exportRestoreHelpers(
     rootIndexFile,
     project,
     srcPath,
     clientName,
-    "models",
     subfolder,
     true
   );
-  exportModules(
-    rootIndexFile,
-    project,
-    srcPath,
-    clientName,
-    "classic",
+  exportModels(emitterOptions, rootIndexFile, clientName);
+  exportModules(rootIndexFile, project, srcPath, clientName, "api", {
     subfolder,
-    true
+    interfaceOnly: true,
+    isTopLevel: true
+  });
+  exportModules(rootIndexFile, project, srcPath, clientName, "classic", {
+    subfolder,
+    isTopLevel: true
+  });
+
+  exportPagingTypes(context, rootIndexFile);
+  exportFileContentsType(context, rootIndexFile);
+  exportAzureCloudTypes(context, rootIndexFile);
+}
+
+function exportModels(
+  emitterOptions: ModularEmitterOptions,
+  rootIndexFile: SourceFile,
+  clientName: string = ""
+) {
+  // export models index file if not exists
+  const project = useContext("outputProject");
+  const srcPath = emitterOptions.modularOptions.sourceRoot;
+  const modelsExportsIndex = rootIndexFile
+    .getExportDeclarations()
+    ?.find((i) => {
+      return i.getModuleSpecifierValue()?.startsWith(`./models/`);
+    });
+  if (!modelsExportsIndex) {
+    exportModules(rootIndexFile, project, srcPath, clientName, "models", {
+      isTopLevel: true,
+      recursive: true
+    });
+  }
+}
+
+function exportAzureCloudTypes(context: SdkContext, rootIndexFile: SourceFile) {
+  if (context.arm) {
+    addExportsToRootIndexFile(rootIndexFile, [
+      resolveReference(CloudSettingHelpers.AzureClouds),
+      resolveReference(CloudSettingHelpers.AzureSupportedClouds)
+    ]);
+  }
+}
+
+/**
+ * This is a temporary solution for adding paging exports. Eventually we will have the binder generate the exports automatically.
+ */
+function exportPagingTypes(context: SdkContext, rootIndexFile: SourceFile) {
+  if (!hasPaging(context)) {
+    return;
+  }
+
+  addExportsToRootIndexFile(rootIndexFile, [
+    resolveReference(PagingHelpers.PageSettings),
+    resolveReference(PagingHelpers.ContinuablePage),
+    resolveReference(PagingHelpers.PagedAsyncIterableIterator)
+  ]);
+}
+
+function hasPaging(context: SdkContext): boolean {
+  return context.sdkPackage.clients.some((client) => {
+    const methodMap = getMethodHierarchiesMap(context, client);
+    for (const [_, operations] of methodMap) {
+      if (
+        operations.some((op) => op.kind === "paging" || op.kind === "lropaging")
+      ) {
+        return true;
+      }
+    }
+    return false;
+  });
+}
+
+function exportFileContentsType(
+  context: SdkContext,
+  rootIndexFile: SourceFile
+) {
+  if (
+    context.sdkPackage.models.some((x) =>
+      x.properties.some(
+        // eslint-disable-next-line
+        (y) => y.kind === "property" && y.multipartOptions?.isFilePart
+      )
+    )
+  ) {
+    addExportsToRootIndexFile(rootIndexFile, [
+      resolveReference(MultipartHelpers.FileContents)
+    ]);
+  }
+}
+
+function getExistingExports(rootIndexFile: SourceFile): Set<string> {
+  return new Set(
+    rootIndexFile
+      .getExportDeclarations()
+      .flatMap((exportDecl) =>
+        exportDecl.getNamedExports().map((namedExport) => namedExport.getName())
+      )
   );
 }
 
+function getNewNamedExports(
+  namedExports: string[],
+  existingExports: Set<string>
+): string[] {
+  return namedExports.filter(
+    (namedExport) => !existingExports.has(namedExport)
+  );
+}
+
+function addExportsToRootIndexFile(
+  rootIndexFile: SourceFile,
+  namedExports: string[]
+) {
+  const existingExports = getExistingExports(rootIndexFile);
+  const newNamedExports = getNewNamedExports(namedExports, existingExports);
+  if (newNamedExports.length > 0) {
+    rootIndexFile.addExportDeclaration({
+      namedExports: newNamedExports
+    });
+  }
+}
+
+function exportSimplePollerLike(
+  context: SdkContext,
+  clientMap: [string[], SdkClientType<SdkServiceOperation>],
+  indexFile: SourceFile,
+  project: Project,
+  srcPath: string,
+  subfolder: string = "",
+  isTopLevel: boolean = false
+) {
+  const [_, client] = clientMap;
+
+  const methodMap = getMethodHierarchiesMap(context, client);
+  const hasLro = Array.from(methodMap.values()).some((operations) => {
+    return operations.some(isLroOnlyOperation);
+  });
+  if (!hasLro || context.rlcOptions?.compatibilityLro !== true) {
+    return;
+  }
+  const helperFile = project.getSourceFile(
+    `${srcPath}/${
+      subfolder && subfolder !== "" ? subfolder + "/" : ""
+    }static-helpers/simplePollerHelpers.ts`
+  );
+  if (!helperFile) {
+    return;
+  }
+  const moduleSpecifier = `./${
+    isTopLevel && subfolder && subfolder !== "" ? subfolder + "/" : ""
+  }static-helpers/simplePollerHelpers.js`;
+  indexFile.addExportDeclaration({
+    moduleSpecifier,
+    namedExports: ["SimplePollerLike"]
+  });
+}
+
+function exportRestoreHelpers(
+  indexFile: SourceFile,
+  project: Project,
+  srcPath: string,
+  clientName: string,
+  subfolder: string = "",
+  isTopLevel: boolean = false
+) {
+  const helperFile = project.getSourceFile(
+    `${srcPath}/${
+      subfolder && subfolder !== "" ? subfolder + "/" : ""
+    }restorePollerHelpers.ts`
+  );
+  if (!helperFile) {
+    return;
+  }
+  const exported = [...indexFile.getExportedDeclarations().keys()];
+  const namedExports = [...helperFile.getExportedDeclarations().keys()].map(
+    (helper) => {
+      if (exported.indexOf(helper) > -1) {
+        return `${helper} as ${clientName}${helper}`;
+      }
+      return helper;
+    }
+  );
+  const moduleSpecifier = `./${
+    isTopLevel && subfolder && subfolder !== "" ? subfolder + "/" : ""
+  }restorePollerHelpers.js`;
+  indexFile.addExportDeclaration({
+    moduleSpecifier,
+    namedExports
+  });
+}
+
 function exportClassicalClient(
-  client: Client,
+  client: SdkClientType<SdkServiceOperation>,
   indexFile: SourceFile,
   subfolder: string,
   isSubClient: boolean = false
 ) {
-  const clientName = `${getClientName(client)}Client`;
+  const clientName = client.name;
   indexFile.addExportDeclaration({
-    namedExports: [clientName, `${clientName}Options`],
+    namedExports: [clientName],
     moduleSpecifier: `./${
-      subfolder !== "" && !isSubClient ? subfolder + "/" : ""
-    }${clientName}.js`
+      subfolder && subfolder !== "" && !isSubClient ? subfolder + "/" : ""
+    }${normalizeName(clientName, NameType.File)}.js`
   });
+}
+
+export interface ExportModulesOptions {
+  interfaceOnly?: boolean;
+  isTopLevel?: boolean;
+  subfolder?: string;
+  recursive?: boolean;
 }
 
 function exportModules(
@@ -61,72 +294,158 @@ function exportModules(
   srcPath: string,
   clientName: string,
   moduleName: string,
-  subfolder: string = "",
-  isTopLevel: boolean = false
-) {
-  const modelsFile = project.getSourceFile(
-    `${srcPath}/${
-      subfolder !== "" ? subfolder + "/" : ""
-    }${moduleName}/index.ts`
-  );
-  if (!modelsFile) {
-    return;
+  options: ExportModulesOptions = {
+    interfaceOnly: false,
+    isTopLevel: false,
+    subfolder: "",
+    recursive: false
   }
-
-  const exported = [...indexFile.getExportedDeclarations().keys()];
-  const namedExports = [...modelsFile.getExportedDeclarations().keys()].map(
-    (modelName) => {
-      if (exported.indexOf(modelName) > -1) {
-        return `${modelName} as ${clientName}${modelName}`;
-      }
-      return modelName;
+) {
+  const subfolder = options.subfolder ?? "";
+  let folders = [];
+  if (options.recursive) {
+    folders = project
+      .getDirectories()
+      .filter((dir) => {
+        const formattedDir = dir.getPath().replace(/\\/g, "/");
+        const targetPath = join(srcPath, subfolder, moduleName).replace(
+          /\\/g,
+          "/"
+        );
+        return formattedDir.startsWith(targetPath);
+      })
+      .map((dir) => {
+        return dir.getPath().replace(/\\/g, "/");
+      });
+  } else if (options.isTopLevel && moduleName === "api") {
+    folders = project
+      .getDirectories()
+      .filter((dir) => {
+        const formattedDir = dir.getPath().replace(/\\/g, "/");
+        const targetPath = join(srcPath, subfolder, moduleName).replace(
+          /\\/g,
+          "/"
+        );
+        return formattedDir.startsWith(targetPath);
+      })
+      .map((dir) => {
+        return dir.getPath().replace(/\\/g, "/");
+      });
+  } else {
+    folders = [join(srcPath, subfolder, moduleName).replace(/\\/g, "/")];
+  }
+  for (const folder of folders) {
+    const apiFilePattern = join(folder, "index.ts").replace(/\\/g, "/");
+    const modelsFile = project.getSourceFile(apiFilePattern);
+    if (!modelsFile) {
+      continue;
     }
-  );
-  const moduleSpecifier = `./${
-    isTopLevel && subfolder !== "" ? subfolder + "/" : ""
-  }${moduleName}/index.js`;
-  indexFile.addExportDeclaration({
-    moduleSpecifier,
-    namedExports
-  });
+
+    const exported = [...indexFile.getExportedDeclarations().keys()];
+    const serializerOrDeserializerRegex = /.*(Serializer|Deserializer)(_\d+)?$/;
+    const namedExports = [...modelsFile.getExportedDeclarations().entries()]
+      .filter((exDeclaration) => {
+        if (exDeclaration[0].startsWith("_")) {
+          return false;
+        }
+        return exDeclaration[1].some((ex) => {
+          if (
+            options.interfaceOnly &&
+            ex.getKindName() !== "InterfaceDeclaration"
+          ) {
+            return false;
+          }
+          if (
+            moduleName === "models" &&
+            ex.getKindName() === "FunctionDeclaration" &&
+            serializerOrDeserializerRegex.test(exDeclaration[0])
+          ) {
+            return false;
+          }
+          if (
+            options.interfaceOnly &&
+            options.isTopLevel &&
+            exDeclaration[0].endsWith("Context")
+          ) {
+            return false;
+          }
+
+          return true;
+        });
+      })
+      .map((exDeclaration) => {
+        if (exported.indexOf(exDeclaration[0]) > -1) {
+          return `${exDeclaration[0]} as ${clientName}${exDeclaration[0]}`;
+        }
+        return exDeclaration[0];
+      });
+    const moduleSpecifier = `.${modelsFile
+      .getFilePath()
+      .replace(indexFile.getDirectoryPath(), "")
+      .replace(/\\/g, "/")
+      .replace(".ts", "")}.js`;
+    if (namedExports.length > 0) {
+      indexFile.addExportDeclaration({
+        moduleSpecifier,
+        namedExports
+      });
+    }
+  }
 }
 
 export function buildSubClientIndexFile(
-  codeModel: ModularCodeModel,
-  client: Client
+  context: SdkContext,
+  clientMap: [string[], SdkClientType<SdkServiceOperation>],
+  emitterOptions: ModularEmitterOptions
 ) {
-  const subfolder = client.subfolder ?? "";
-  const srcPath = codeModel.modularOptions.sourceRoot;
-  const subClientIndexFile = codeModel.project.createSourceFile(
-    `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}index.ts`,
+  const project = useContext("outputProject");
+  const [_, client] = clientMap;
+  const { subfolder } = getModularClientOptions(clientMap);
+  const srcPath = emitterOptions.modularOptions.sourceRoot;
+  const subClientIndexFile = project.createSourceFile(
+    `${srcPath}/${subfolder && subfolder !== "" ? subfolder + "/" : ""}index.ts`,
     undefined,
     { overwrite: true }
   );
-  const clientName = `${getClientName(client)}Client`;
+  const clientName = `${getClassicalClientName(client)}`;
   const clientFilePath = `${srcPath}/${
-    subfolder !== "" ? subfolder + "/" : ""
-  }${clientName}.ts`;
-  const clientFile = codeModel.project.getSourceFile(clientFilePath);
+    subfolder && subfolder !== "" ? subfolder + "/" : ""
+  }${normalizeName(clientName, NameType.File)}.ts`;
+  const clientFile = project.getSourceFile(clientFilePath);
 
   if (!clientFile) {
-    throw new Error(`Couldn't find client file: ${clientFilePath}`);
+    reportDiagnostic(context.program, {
+      code: "client-file-not-found",
+      format: {
+        filePath: clientFilePath
+      },
+      target: NoTarget
+    });
+    return; // Skip exporting this client but continue with others
   }
 
-  exportClassicalClient(client, subClientIndexFile, subfolder, true);
-  exportModules(
+  exportClassicalClient(client, subClientIndexFile, subfolder ?? "", true);
+  exportSimplePollerLike(
+    context,
+    clientMap,
     subClientIndexFile,
-    codeModel.project,
+    project,
     srcPath,
-    clientName,
-    "models",
     subfolder
   );
-  exportModules(
+  exportRestoreHelpers(
     subClientIndexFile,
-    codeModel.project,
+    project,
     srcPath,
     clientName,
-    "classic",
     subfolder
   );
+  exportModules(subClientIndexFile, project, srcPath, clientName, "api", {
+    subfolder,
+    interfaceOnly: true,
+    recursive: true
+  });
+  exportModules(subClientIndexFile, project, srcPath, clientName, "classic", {
+    subfolder
+  });
 }
