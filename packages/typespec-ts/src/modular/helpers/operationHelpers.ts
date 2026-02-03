@@ -2042,13 +2042,34 @@ export function getAllAncestors(type: SdkType): SdkType[] {
   return ancestors;
 }
 
+/**
+ * Formats a default value for code generation.
+ * Strings are wrapped in quotes, other values are used as-is.
+ */
+function formatDefaultValue(defaultValue: unknown): string {
+  if (typeof defaultValue === "string") {
+    return `"${defaultValue}"`;
+  }
+  return String(defaultValue);
+}
+
 export function getPropertySerializationPrefix(
   context: SdkContext,
   property: SdkHttpParameter | SdkModelPropertyType,
   propertyPath?: string
 ) {
   const propertyFullName = getPropertyFullName(context, property, propertyPath);
+
+  // Check if property has a client default value
+  const hasDefaultValue = property.clientDefaultValue !== undefined;
+
   if (property.optional || isTypeNullable(property.type)) {
+    if (hasDefaultValue) {
+      // If the property has a default value and is optional/nullable,
+      // use nullish coalescing to apply the default when undefined
+      const formattedDefault = formatDefaultValue(property.clientDefaultValue);
+      return `!${propertyFullName}? ${propertyFullName} ?? ${formattedDefault}:`;
+    }
     return `!${propertyFullName}? ${propertyFullName}:`;
   }
 
