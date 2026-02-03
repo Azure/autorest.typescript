@@ -35,23 +35,26 @@ function buildExportsForMultiClient(
     delete packageInfo.exports["./api"];
   }
   if (emitterOptions.options.hierarchyClient) {
-    for (const flattenedClient of clientMap) {
-      const { subfolder } = getModularClientOptions(flattenedClient);
-      const client = flattenedClient[1];
-      const methodMap = getMethodHierarchiesMap(context, client);
-      for (const [prefixKey, _] of methodMap) {
-        const prefixes = prefixKey.split("/");
-        if (prefixKey === "") {
-          continue;
+    // TODO: support api subpath exports for multi-service. Skip for now. https://github.com/Azure/autorest.typescript/issues/3717
+    if (!emitterOptions.options.isMultiService) {
+      for (const flattenedClient of clientMap) {
+        const { subfolder } = getModularClientOptions(flattenedClient);
+        const client = flattenedClient[1];
+        const methodMap = getMethodHierarchiesMap(context, client);
+        for (const [prefixKey, _] of methodMap) {
+          const prefixes = prefixKey.split("/");
+          if (prefixKey === "") {
+            continue;
+          }
+          const subApiPath = `api/${getClassicalLayerPrefix(
+            prefixes,
+            NameType.File,
+            "/"
+          )}`;
+          packageInfo.exports[
+            `./${subfolder ? subfolder + "/" : ""}${subApiPath}`
+          ] = `src/${subfolder ? subfolder + "/" : ""}${subApiPath}/index.ts`;
         }
-        const subApiPath = `api/${getClassicalLayerPrefix(
-          prefixes,
-          NameType.File,
-          "/"
-        )}`;
-        packageInfo.exports[
-          `./${subfolder ? subfolder + "/" : ""}${subApiPath}`
-        ] = `src/${subfolder ? subfolder + "/" : ""}${subApiPath}/index.ts`;
       }
     }
     delete packageInfo.exports["./models"];

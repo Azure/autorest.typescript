@@ -82,6 +82,7 @@ import { buildRestorePoller } from "./modular/buildRestorePoller.js";
 import { buildSubpathIndexFile } from "./modular/buildSubpathIndex.js";
 import {
   createSdkContext,
+  listAllServiceNamespaces,
   SdkClientType,
   SdkServiceOperation
 } from "@azure-tools/typespec-client-generator-core";
@@ -192,6 +193,7 @@ export async function $onEmit(context: EmitContext) {
     const generationPathDetail: GenerationDirDetail =
       await calculateGenerationDir();
     dpgContext.generationPathDetail = generationPathDetail;
+    dpgContext.allServiceNamespaces = listAllServiceNamespaces(dpgContext);
     const options: RLCOptions = transformRLCOptions(emitterOptions, dpgContext);
     emitterOptions["is-modular-library"] = options.isModularLibrary;
     emitterOptions["generate-sample"] = options.generateSample;
