@@ -4,7 +4,7 @@
 
 This is the tsp definition that tests client default values.
 
-```tsp configs={"needTCGC": true}
+```tsp
 model Configuration {
   /** The name of the configuration */
   name: string;
@@ -31,6 +31,12 @@ model Configuration {
 op createConfig(@body config: Configuration): void;
 ```
 
+Enable the TCGC dependency for clientDefaultValue decorator.
+
+```yaml
+needTCGC: true
+```
+
 ## Generated models and serializers
 
 The serializer should apply default values when properties are not provided.
@@ -39,14 +45,10 @@ The serializer should apply default values when properties are not provided.
 export function configurationSerializer(item: Configuration): any {
   return {
     name: item["name"],
-    verbose: !item["verbose"] ? item["verbose"] ?? false : item["verbose"],
-    maxRetries: !item["maxRetries"]
-      ? item["maxRetries"] ?? 3
-      : item["maxRetries"],
-    timeout: !item["timeout"] ? item["timeout"] ?? 30 : item["timeout"],
-    logLevel: !item["logLevel"]
-      ? item["logLevel"] ?? "info"
-      : item["logLevel"],
+    verbose: item["verbose"] ?? false,
+    maxRetries: item["maxRetries"] ?? 3,
+    timeout: item["timeout"] ?? 30,
+    logLevel: item["logLevel"] ?? "info",
   };
 }
 ```

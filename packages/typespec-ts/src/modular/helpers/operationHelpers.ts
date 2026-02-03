@@ -2060,15 +2060,11 @@ export function getPropertySerializationPrefix(
 ) {
   const propertyFullName = getPropertyFullName(context, property, propertyPath);
 
-  // Check if property has a client default value
-  const hasDefaultValue = property.clientDefaultValue !== undefined;
-
   if (property.optional || isTypeNullable(property.type)) {
-    if (hasDefaultValue) {
-      // If the property has a default value and is optional/nullable,
-      // use nullish coalescing to apply the default when undefined
-      const formattedDefault = formatDefaultValue(property.clientDefaultValue);
-      return `!${propertyFullName}? ${propertyFullName} ?? ${formattedDefault}:`;
+    // If property has a default value, it's already handled in getPropertyFullName
+    // so we don't need the null check prefix
+    if (property.clientDefaultValue !== undefined) {
+      return "";
     }
     return `!${propertyFullName}? ${propertyFullName}:`;
   }
@@ -2094,6 +2090,13 @@ export function getPropertyFullName(
   } else if (propertyPath) {
     fullName = `${propertyPath}["${normalizedPropertyName}"]`;
   }
+
+  // Apply client default value if property is optional and has a default
+  if (property.clientDefaultValue !== undefined && property.optional) {
+    const formattedDefault = formatDefaultValue(property.clientDefaultValue);
+    fullName = `(${fullName} ?? ${formattedDefault})`;
+  }
+
   return fullName;
 }
 
