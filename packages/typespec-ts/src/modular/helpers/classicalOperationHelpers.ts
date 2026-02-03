@@ -170,7 +170,7 @@ export function getClassicalOperation(
 
         if (operationInfo?.isLroPaging) {
           // LRO+Paging operation
-          const itemType = operationInfo?.lropagingFinalReturnType ?? "any";
+          const returnType = operationInfo?.lropagingFinalReturnType ?? "void";
           const pagedAsyncIterableIteratorReference = resolveReference(
             PagingHelpers.PagedAsyncIterableIterator
           );
@@ -178,7 +178,7 @@ export function getClassicalOperation(
           properties.push({
             kind: StructureKind.PropertySignature,
             name: `${normalizeName(beginListAndWaitName, NameType.Method)}`,
-            type: `(${paramStr}) => ${pagedAsyncIterableIteratorReference}<${itemType}>`,
+            type: `(${paramStr}) => ${pagedAsyncIterableIteratorReference}<${returnType}>`,
             docs: [`@deprecated use ${getClassicalMethodName(d)} instead`]
           });
         } else {

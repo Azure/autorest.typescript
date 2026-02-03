@@ -300,7 +300,7 @@ function generateMethod(
     });
   } // For LRO+Paging operations, use different return types and implementation
   else if (context.rlcOptions?.compatibilityLro && declaration?.isLroPaging) {
-    const itemType = declaration?.lropagingFinalReturnType ?? "any";
+    const returnType = declaration?.lropagingFinalReturnType ?? "void";
     const pagedAsyncIterableIteratorReference = resolveReference(
       PagingHelpers.PagedAsyncIterableIterator
     );
@@ -314,7 +314,7 @@ function generateMethod(
       docs: [`@deprecated use ${methodName} instead`],
       name: beginListAndWaitName,
       kind: StructureKind.Method,
-      returnType: `${pagedAsyncIterableIteratorReference}<${itemType}>`,
+      returnType: `${pagedAsyncIterableIteratorReference}<${returnType}>`,
       parameters: methodParams,
       statements: `return ${declarationRefKey}(${methodParamStr});`
     });
