@@ -17,6 +17,6 @@ describe("Repeatability Client", () => {
       requestID,
       new Date("Mon, 13 Nov 2023 14:38:00 GMT")
     );
-    assert.isUndefined(result);
+    assert.equal(result.repeatabilityResult, "accepted");
   });
 });

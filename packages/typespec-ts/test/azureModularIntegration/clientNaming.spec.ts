@@ -51,7 +51,7 @@ describe("NameAndEncodedName Client", () => {
         assert.strictEqual(res.headers.get("default-name"), "true");
       }
     });
-    assert.isUndefined(result);
+    assert.equal(result.clientName, "true");
   });
 
   it("should work with model client", async () => {

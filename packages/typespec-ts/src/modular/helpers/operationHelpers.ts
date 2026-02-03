@@ -1843,7 +1843,7 @@ function buildHeaderOnlyResponseValue(
           : headerAccess;
       headerValue = isOptional
         ? `${headerAccess} ? new Date(${dateSource}) : undefined`
-        : `new Date(result.headers[${JSON.stringify(serializedName)}]!)`;
+        : `new Date(${dateSource}!)`;
     } else if (header.type.kind === "bytes") {
       // Convert base64-encoded string to Uint8Array
       const headerAccess = `result.headers?.[${JSON.stringify(serializedName)}]`;
