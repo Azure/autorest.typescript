@@ -507,9 +507,26 @@ function buildModelTypeSerializer(
         return ${serializeContent}
       `);
     } else {
-      output.push(`
-        return item;
-      `);
+      // For flatten properties, if all properties are readonly, return empty object
+      // Otherwise, return the item itself
+      if (options.flatten) {
+        // Change parameter name to _item to indicate it's intentionally unused
+        serializerFunction.parameters = [
+          {
+            name: "_item",
+            type: options.flatten
+              ? resolveReference(refkey(options.flatten.baseModel))
+              : resolveReference(refkey(type))
+          }
+        ];
+        output.push(`
+          return {};
+        `);
+      } else {
+        output.push(`
+          return item;
+        `);
+      }
     }
     serializerFunction.statements = output;
   }
