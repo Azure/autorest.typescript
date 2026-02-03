@@ -365,6 +365,22 @@ export interface DataTypeUpdateProperties {
 export type DefaultAction = string;
 
 // @public
+export interface DeleteDataResponse {
+    // (undocumented)
+    location?: string;
+    // (undocumented)
+    retryAfter?: number;
+}
+
+// @public
+export interface DeleteResponse {
+    // (undocumented)
+    location?: string;
+    // (undocumented)
+    retryAfter?: number;
+}
+
+// @public
 export interface EncryptionKeyDetails {
     keyName: string;
     keyVaultUri: string;

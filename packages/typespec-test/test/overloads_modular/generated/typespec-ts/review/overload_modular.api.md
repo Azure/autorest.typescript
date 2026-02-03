@@ -20,8 +20,20 @@ export interface FooOperationsGetAvatarAsPngOptionalParams extends OperationOpti
 
 // @public
 export interface FooOperationsOperations {
-    getAvatarAsJpeg: (image: Uint8Array, options?: FooOperationsGetAvatarAsJpegOptionalParams) => Promise<void>;
-    getAvatarAsPng: (image: Uint8Array, options?: FooOperationsGetAvatarAsPngOptionalParams) => Promise<void>;
+    getAvatarAsJpeg: (image: Uint8Array, options?: FooOperationsGetAvatarAsJpegOptionalParams) => Promise<GetAvatarAsJpegResponse>;
+    getAvatarAsPng: (image: Uint8Array, options?: FooOperationsGetAvatarAsPngOptionalParams) => Promise<GetAvatarAsPngResponse>;
+}
+
+// @public
+export interface GetAvatarAsJpegResponse {
+    // (undocumented)
+    accept: "image/jpeg";
+}
+
+// @public
+export interface GetAvatarAsPngResponse {
+    // (undocumented)
+    accept: "image/png";
 }
 
 // @public

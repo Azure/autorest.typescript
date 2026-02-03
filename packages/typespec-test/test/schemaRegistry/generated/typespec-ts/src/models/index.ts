@@ -10,4 +10,6 @@ export {
   SchemaContentTypeValues,
   KnownServiceApiVersions,
   ContentTypeEnum,
+  GetSchemaIdByContentResponse,
+  RegisterSchemaResponse,
 } from "./models.js";

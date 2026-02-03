@@ -195,7 +195,7 @@ export function univariateUnivariateEntireDetectionResultDeserializer(
 /** Error information that the API returned. */
 export interface UnivariateAnomalyDetectorError {
   /** Error code. */
-  msErrorCode?: string;
+  msErrorCode: string;
   /** Error code. */
   code: UnivariateAnomalyDetectorErrorCodes;
   /** Message that explains the error that the service reported. */

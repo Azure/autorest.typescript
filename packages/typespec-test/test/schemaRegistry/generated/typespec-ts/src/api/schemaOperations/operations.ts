@@ -10,6 +10,8 @@ import {
   _pagedVersionDeserializer,
   SchemaVersion,
   SchemaContentTypeValues,
+  GetSchemaIdByContentResponse,
+  RegisterSchemaResponse,
 } from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
@@ -60,13 +62,22 @@ export function _registerSchemaSend(
     });
 }
 
-export async function _registerSchemaDeserialize(result: PathUncheckedResponse): Promise<void> {
+export async function _registerSchemaDeserialize(
+  result: PathUncheckedResponse,
+): Promise<RegisterSchemaResponse> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return;
+  return {
+    location: result.headers["location"]!,
+    schemaId: result.headers["schema-id"]!,
+    schemaIdLocation: result.headers["schema-id-location"]!,
+    schemaGroupName: result.headers["schema-group-name"]!,
+    schemaName: result.headers["schema-name"]!,
+    schemaVersion: Number(result.headers["schema-version"]!),
+  } as RegisterSchemaResponse;
 }
 
 /** Register new schema. If schema of specified name does not exist in specified group, schema is created at version 1. If schema of specified name exists already in specified group, schema is created at latest version + 1. */
@@ -77,7 +88,7 @@ export async function registerSchema(
   content: Uint8Array,
   contentType: SchemaContentTypeValues,
   options: SchemaOperationsRegisterSchemaOptionalParams = { requestOptions: {} },
-): Promise<void> {
+): Promise<RegisterSchemaResponse> {
   const result = await _registerSchemaSend(context, groupName, name, content, contentType, options);
   return _registerSchemaDeserialize(result);
 }
@@ -112,13 +123,20 @@ export function _getSchemaIdByContentSend(
 
 export async function _getSchemaIdByContentDeserialize(
   result: PathUncheckedResponse,
-): Promise<void> {
+): Promise<GetSchemaIdByContentResponse> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return;
+  return {
+    location: result.headers["location"]!,
+    schemaId: result.headers["schema-id"]!,
+    schemaIdLocation: result.headers["schema-id-location"]!,
+    schemaGroupName: result.headers["schema-group-name"]!,
+    schemaName: result.headers["schema-name"]!,
+    schemaVersion: Number(result.headers["schema-version"]!),
+  } as GetSchemaIdByContentResponse;
 }
 
 /** Gets the ID referencing an existing schema within the specified schema group, as matched by schema content comparison. */
@@ -129,7 +147,7 @@ export async function getSchemaIdByContent(
   contentType: SchemaContentTypeValues,
   schemaContent: Uint8Array,
   options: SchemaOperationsGetSchemaIdByContentOptionalParams = { requestOptions: {} },
-): Promise<void> {
+): Promise<GetSchemaIdByContentResponse> {
   const result = await _getSchemaIdByContentSend(
     context,
     groupName,

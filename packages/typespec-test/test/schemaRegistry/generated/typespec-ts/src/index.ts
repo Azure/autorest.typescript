@@ -17,6 +17,8 @@ export {
   SchemaContentTypeValues,
   KnownServiceApiVersions,
   ContentTypeEnum,
+  GetSchemaIdByContentResponse,
+  RegisterSchemaResponse,
 } from "./models/index.js";
 export { SchemaRegistryClientOptionalParams } from "./api/index.js";
 export {

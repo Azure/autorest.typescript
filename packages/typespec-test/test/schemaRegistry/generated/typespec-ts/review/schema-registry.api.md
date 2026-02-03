@@ -18,6 +18,22 @@ export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
 };
 
 // @public
+export interface GetSchemaIdByContentResponse {
+    // (undocumented)
+    location: string;
+    // (undocumented)
+    schemaGroupName: string;
+    // (undocumented)
+    schemaId: string;
+    // (undocumented)
+    schemaIdLocation: string;
+    // (undocumented)
+    schemaName: string;
+    // (undocumented)
+    schemaVersion: number;
+}
+
+// @public
 export enum KnownServiceApiVersions {
     V202110 = "2021-10",
     V202210 = "2022-10",
@@ -34,6 +50,22 @@ export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageS
 // @public
 export interface PageSettings {
     continuationToken?: string;
+}
+
+// @public
+export interface RegisterSchemaResponse {
+    // (undocumented)
+    location: string;
+    // (undocumented)
+    schemaGroupName: string;
+    // (undocumented)
+    schemaId: string;
+    // (undocumented)
+    schemaIdLocation: string;
+    // (undocumented)
+    schemaName: string;
+    // (undocumented)
+    schemaVersion: number;
 }
 
 // @public
@@ -77,10 +109,10 @@ export interface SchemaOperationsListSchemaVersionsOptionalParams extends Operat
 export interface SchemaOperationsOperations {
     getSchemaById: (id: string, options?: SchemaOperationsGetSchemaByIdOptionalParams) => Promise<Uint8Array>;
     getSchemaByVersion: (groupName: string, name: string, schemaVersion: number, options?: SchemaOperationsGetSchemaByVersionOptionalParams) => Promise<Uint8Array>;
-    getSchemaIdByContent: (groupName: string, name: string, contentType: SchemaContentTypeValues, schemaContent: Uint8Array, options?: SchemaOperationsGetSchemaIdByContentOptionalParams) => Promise<void>;
+    getSchemaIdByContent: (groupName: string, name: string, contentType: SchemaContentTypeValues, schemaContent: Uint8Array, options?: SchemaOperationsGetSchemaIdByContentOptionalParams) => Promise<GetSchemaIdByContentResponse>;
     listSchemaGroups: (options?: SchemaOperationsListSchemaGroupsOptionalParams) => PagedAsyncIterableIterator<SchemaGroup>;
     listSchemaVersions: (groupName: string, name: string, options?: SchemaOperationsListSchemaVersionsOptionalParams) => PagedAsyncIterableIterator<SchemaVersion>;
-    registerSchema: (groupName: string, name: string, content: Uint8Array, contentType: SchemaContentTypeValues, options?: SchemaOperationsRegisterSchemaOptionalParams) => Promise<void>;
+    registerSchema: (groupName: string, name: string, content: Uint8Array, contentType: SchemaContentTypeValues, options?: SchemaOperationsRegisterSchemaOptionalParams) => Promise<RegisterSchemaResponse>;
 }
 
 // @public

@@ -105,6 +105,50 @@ import {
   nodeVMExtensionDeserializer,
   _NodeVMExtensionList,
   _nodeVMExtensionListDeserializer,
+  CreateNodeUserResponse,
+  DeleteNodeUserResponse,
+  ReplaceNodeUserResponse,
+  RebootNodeResponse,
+  ReimageNodeResponse,
+  DisableNodeSchedulingResponse,
+  EnableNodeSchedulingResponse,
+  DeleteNodeFileResponse,
+  GetNodeFilePropertiesResponse,
+  CreateTaskResponse,
+  DeleteTaskResponse,
+  ReplaceTaskResponse,
+  TerminateTaskResponse,
+  ReactivateTaskResponse,
+  DeleteTaskFileResponse,
+  GetTaskFilePropertiesResponse,
+  JobScheduleExistsResponse,
+  DeleteJobScheduleResponse,
+  UpdateJobScheduleResponse,
+  ReplaceJobScheduleResponse,
+  DisableJobScheduleResponse,
+  EnableJobScheduleResponse,
+  TerminateJobScheduleResponse,
+  CreateJobScheduleResponse,
+  CreateCertificateResponse,
+  CancelCertificateDeletionResponse,
+  DeleteCertificateResponse,
+  DeleteJobResponse,
+  UpdateJobResponse,
+  ReplaceJobResponse,
+  DisableJobResponse,
+  EnableJobResponse,
+  TerminateJobResponse,
+  CreateJobResponse,
+  CreatePoolResponse,
+  DeletePoolResponse,
+  PoolExistsResponse,
+  UpdatePoolResponse,
+  DisablePoolAutoScaleResponse,
+  EnablePoolAutoScaleResponse,
+  ResizePoolResponse,
+  StopPoolResizeResponse,
+  ReplacePoolPropertiesResponse,
+  RemoveNodesResponse,
 } from "../models/models.js";
 import {
   PagedAsyncIterableIterator,
@@ -326,7 +370,7 @@ export function _getNodeFilePropertiesSend(
 
 export async function _getNodeFilePropertiesDeserialize(
   result: PathUncheckedResponse,
-): Promise<void> {
+): Promise<GetNodeFilePropertiesResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -334,7 +378,21 @@ export async function _getNodeFilePropertiesDeserialize(
     throw error;
   }
 
-  return;
+  return {
+    clientRequestId: result.headers?.["client-request-id"],
+    requestId: result.headers?.["request-id"],
+    eTag: result.headers?.["etag"],
+    lastModified: result.headers?.["last-modified"]
+      ? new Date(result.headers?.["last-modified"])
+      : undefined,
+    ocpCreationTime: result.headers?.["ocp-creation-time"]
+      ? new Date(result.headers?.["ocp-creation-time"])
+      : undefined,
+    ocpBatchFileIsdirectory: result.headers["ocp-batch-file-isdirectory"]! === "true",
+    ocpBatchFileUrl: result.headers["ocp-batch-file-url"]!,
+    ocpBatchFileMode: result.headers["ocp-batch-file-mode"]!,
+    contentLength: Number(result.headers["content-length"]!),
+  } as GetNodeFilePropertiesResponse;
 }
 
 /** Gets the properties of the specified Compute Node file. */
@@ -344,7 +402,7 @@ export async function getNodeFileProperties(
   nodeId: string,
   filePath: string,
   options: GetNodeFilePropertiesOptionalParams = { requestOptions: {} },
-): Promise<void> {
+): Promise<GetNodeFilePropertiesResponse> {
   const result = await _getNodeFilePropertiesSend(context, poolId, nodeId, filePath, options);
   return _getNodeFilePropertiesDeserialize(result);
 }
@@ -468,7 +526,9 @@ export function _deleteNodeFileSend(
     });
 }
 
-export async function _deleteNodeFileDeserialize(result: PathUncheckedResponse): Promise<void> {
+export async function _deleteNodeFileDeserialize(
+  result: PathUncheckedResponse,
+): Promise<DeleteNodeFileResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -476,7 +536,10 @@ export async function _deleteNodeFileDeserialize(result: PathUncheckedResponse):
     throw error;
   }
 
-  return;
+  return {
+    clientRequestId: result.headers?.["client-request-id"],
+    requestId: result.headers?.["request-id"],
+  } as DeleteNodeFileResponse;
 }
 
 /** Deletes the specified file from the Compute Node. */
@@ -486,7 +549,7 @@ export async function deleteNodeFile(
   nodeId: string,
   filePath: string,
   options: DeleteNodeFileOptionalParams = { requestOptions: {} },
-): Promise<void> {
+): Promise<DeleteNodeFileResponse> {
   const result = await _deleteNodeFileSend(context, poolId, nodeId, filePath, options);
   return _deleteNodeFileDeserialize(result);
 }
@@ -954,7 +1017,7 @@ export function _enableNodeSchedulingSend(
 
 export async function _enableNodeSchedulingDeserialize(
   result: PathUncheckedResponse,
-): Promise<void> {
+): Promise<EnableNodeSchedulingResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -962,7 +1025,15 @@ export async function _enableNodeSchedulingDeserialize(
     throw error;
   }
 
-  return;
+  return {
+    clientRequestId: result.headers?.["client-request-id"],
+    requestId: result.headers?.["request-id"],
+    eTag: result.headers?.["etag"],
+    lastModified: result.headers?.["last-modified"]
+      ? new Date(result.headers?.["last-modified"])
+      : undefined,
+    dataServiceId: result.headers["dataserviceid"]!,
+  } as EnableNodeSchedulingResponse;
 }
 
 /**
@@ -974,7 +1045,7 @@ export async function enableNodeScheduling(
   poolId: string,
   nodeId: string,
   options: EnableNodeSchedulingOptionalParams = { requestOptions: {} },
-): Promise<void> {
+): Promise<EnableNodeSchedulingResponse> {
   const result = await _enableNodeSchedulingSend(context, poolId, nodeId, options);
   return _enableNodeSchedulingDeserialize(result);
 }
@@ -1022,7 +1093,7 @@ export function _disableNodeSchedulingSend(
 
 export async function _disableNodeSchedulingDeserialize(
   result: PathUncheckedResponse,
-): Promise<void> {
+): Promise<DisableNodeSchedulingResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -1030,7 +1101,15 @@ export async function _disableNodeSchedulingDeserialize(
     throw error;
   }
 
-  return;
+  return {
+    clientRequestId: result.headers?.["client-request-id"],
+    requestId: result.headers?.["request-id"],
+    eTag: result.headers?.["etag"],
+    lastModified: result.headers?.["last-modified"]
+      ? new Date(result.headers?.["last-modified"])
+      : undefined,
+    dataServiceId: result.headers["dataserviceid"]!,
+  } as DisableNodeSchedulingResponse;
 }
 
 /**
@@ -1042,7 +1121,7 @@ export async function disableNodeScheduling(
   poolId: string,
   nodeId: string,
   options: DisableNodeSchedulingOptionalParams = { requestOptions: {} },
-): Promise<void> {
+): Promise<DisableNodeSchedulingResponse> {
   const result = await _disableNodeSchedulingSend(context, poolId, nodeId, options);
   return _disableNodeSchedulingDeserialize(result);
 }
@@ -1086,7 +1165,9 @@ export function _reimageNodeSend(
     });
 }
 
-export async function _reimageNodeDeserialize(result: PathUncheckedResponse): Promise<void> {
+export async function _reimageNodeDeserialize(
+  result: PathUncheckedResponse,
+): Promise<ReimageNodeResponse> {
   const expectedStatuses = ["202"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -1094,7 +1175,15 @@ export async function _reimageNodeDeserialize(result: PathUncheckedResponse): Pr
     throw error;
   }
 
-  return;
+  return {
+    clientRequestId: result.headers?.["client-request-id"],
+    requestId: result.headers?.["request-id"],
+    eTag: result.headers?.["etag"],
+    lastModified: result.headers?.["last-modified"]
+      ? new Date(result.headers?.["last-modified"])
+      : undefined,
+    dataServiceId: result.headers["dataserviceid"]!,
+  } as ReimageNodeResponse;
 }
 
 /**
@@ -1107,7 +1196,7 @@ export async function reimageNode(
   poolId: string,
   nodeId: string,
   options: ReimageNodeOptionalParams = { requestOptions: {} },
-): Promise<void> {
+): Promise<ReimageNodeResponse> {
   const result = await _reimageNodeSend(context, poolId, nodeId, options);
   return _reimageNodeDeserialize(result);
 }
@@ -1151,7 +1240,9 @@ export function _rebootNodeSend(
     });
 }
 
-export async function _rebootNodeDeserialize(result: PathUncheckedResponse): Promise<void> {
+export async function _rebootNodeDeserialize(
+  result: PathUncheckedResponse,
+): Promise<RebootNodeResponse> {
   const expectedStatuses = ["202"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -1159,7 +1250,15 @@ export async function _rebootNodeDeserialize(result: PathUncheckedResponse): Pro
     throw error;
   }
 
-  return;
+  return {
+    clientRequestId: result.headers?.["client-request-id"],
+    requestId: result.headers?.["request-id"],
+    eTag: result.headers?.["etag"],
+    lastModified: result.headers?.["last-modified"]
+      ? new Date(result.headers?.["last-modified"])
+      : undefined,
+    dataServiceId: result.headers["dataserviceid"]!,
+  } as RebootNodeResponse;
 }
 
 /** You can restart a Compute Node only if it is in an idle or running state. */
@@ -1168,7 +1267,7 @@ export async function rebootNode(
   poolId: string,
   nodeId: string,
   options: RebootNodeOptionalParams = { requestOptions: {} },
-): Promise<void> {
+): Promise<RebootNodeResponse> {
   const result = await _rebootNodeSend(context, poolId, nodeId, options);
   return _rebootNodeDeserialize(result);
 }
@@ -1280,7 +1379,9 @@ export function _replaceNodeUserSend(
     });
 }
 
-export async function _replaceNodeUserDeserialize(result: PathUncheckedResponse): Promise<void> {
+export async function _replaceNodeUserDeserialize(
+  result: PathUncheckedResponse,
+): Promise<ReplaceNodeUserResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -1288,7 +1389,15 @@ export async function _replaceNodeUserDeserialize(result: PathUncheckedResponse)
     throw error;
   }
 
-  return;
+  return {
+    clientRequestId: result.headers?.["client-request-id"],
+    requestId: result.headers?.["request-id"],
+    eTag: result.headers?.["etag"],
+    lastModified: result.headers?.["last-modified"]
+      ? new Date(result.headers?.["last-modified"])
+      : undefined,
+    dataServiceId: result.headers["dataserviceid"]!,
+  } as ReplaceNodeUserResponse;
 }
 
 /**
@@ -1304,7 +1413,7 @@ export async function replaceNodeUser(
   userName: string,
   body: BatchNodeUserUpdateOptions,
   options: ReplaceNodeUserOptionalParams = { requestOptions: {} },
-): Promise<void> {
+): Promise<ReplaceNodeUserResponse> {
   const result = await _replaceNodeUserSend(context, poolId, nodeId, userName, body, options);
   return _replaceNodeUserDeserialize(result);
 }
@@ -1348,7 +1457,9 @@ export function _deleteNodeUserSend(
     });
 }
 
-export async function _deleteNodeUserDeserialize(result: PathUncheckedResponse): Promise<void> {
+export async function _deleteNodeUserDeserialize(
+  result: PathUncheckedResponse,
+): Promise<DeleteNodeUserResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -1356,7 +1467,10 @@ export async function _deleteNodeUserDeserialize(result: PathUncheckedResponse):
     throw error;
   }
 
-  return;
+  return {
+    clientRequestId: result.headers?.["client-request-id"],
+    requestId: result.headers?.["request-id"],
+  } as DeleteNodeUserResponse;
 }
 
 /**
@@ -1369,7 +1483,7 @@ export async function deleteNodeUser(
   nodeId: string,
   userName: string,
   options: DeleteNodeUserOptionalParams = { requestOptions: {} },
-): Promise<void> {
+): Promise<DeleteNodeUserResponse> {
   const result = await _deleteNodeUserSend(context, poolId, nodeId, userName, options);
   return _deleteNodeUserDeserialize(result);
 }
@@ -1414,7 +1528,9 @@ export function _createNodeUserSend(
     });
 }
 
-export async function _createNodeUserDeserialize(result: PathUncheckedResponse): Promise<void> {
+export async function _createNodeUserDeserialize(
+  result: PathUncheckedResponse,
+): Promise<CreateNodeUserResponse> {
   const expectedStatuses = ["201"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -1422,7 +1538,15 @@ export async function _createNodeUserDeserialize(result: PathUncheckedResponse):
     throw error;
   }
 
-  return;
+  return {
+    clientRequestId: result.headers?.["client-request-id"],
+    requestId: result.headers?.["request-id"],
+    eTag: result.headers?.["etag"],
+    lastModified: result.headers?.["last-modified"]
+      ? new Date(result.headers?.["last-modified"])
+      : undefined,
+    dataServiceId: result.headers["dataserviceid"]!,
+  } as CreateNodeUserResponse;
 }
 
 /**
@@ -1435,7 +1559,7 @@ export async function createNodeUser(
   nodeId: string,
   body: BatchNodeUserCreateOptions,
   options: CreateNodeUserOptionalParams = { requestOptions: {} },
-): Promise<void> {
+): Promise<CreateNodeUserResponse> {
   const result = await _createNodeUserSend(context, poolId, nodeId, body, options);
   return _createNodeUserDeserialize(result);
 }
@@ -1569,7 +1693,7 @@ export function _getTaskFilePropertiesSend(
 
 export async function _getTaskFilePropertiesDeserialize(
   result: PathUncheckedResponse,
-): Promise<void> {
+): Promise<GetTaskFilePropertiesResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -1577,7 +1701,21 @@ export async function _getTaskFilePropertiesDeserialize(
     throw error;
   }
 
-  return;
+  return {
+    clientRequestId: result.headers?.["client-request-id"],
+    requestId: result.headers?.["request-id"],
+    eTag: result.headers?.["etag"],
+    lastModified: result.headers?.["last-modified"]
+      ? new Date(result.headers?.["last-modified"])
+      : undefined,
+    ocpCreationTime: result.headers?.["ocp-creation-time"]
+      ? new Date(result.headers?.["ocp-creation-time"])
+      : undefined,
+    ocpBatchFileIsdirectory: result.headers["ocp-batch-file-isdirectory"]! === "true",
+    ocpBatchFileUrl: result.headers["ocp-batch-file-url"]!,
+    ocpBatchFileMode: result.headers["ocp-batch-file-mode"]!,
+    contentLength: Number(result.headers["content-length"]!),
+  } as GetTaskFilePropertiesResponse;
 }
 
 /** Gets the properties of the specified Task file. */
@@ -1587,7 +1725,7 @@ export async function getTaskFileProperties(
   taskId: string,
   filePath: string,
   options: GetTaskFilePropertiesOptionalParams = { requestOptions: {} },
-): Promise<void> {
+): Promise<GetTaskFilePropertiesResponse> {
   const result = await _getTaskFilePropertiesSend(context, jobId, taskId, filePath, options);
   return _getTaskFilePropertiesDeserialize(result);
 }
@@ -1711,7 +1849,9 @@ export function _deleteTaskFileSend(
     });
 }
 
-export async function _deleteTaskFileDeserialize(result: PathUncheckedResponse): Promise<void> {
+export async function _deleteTaskFileDeserialize(
+  result: PathUncheckedResponse,
+): Promise<DeleteTaskFileResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -1719,7 +1859,10 @@ export async function _deleteTaskFileDeserialize(result: PathUncheckedResponse):
     throw error;
   }
 
-  return;
+  return {
+    clientRequestId: result.headers?.["client-request-id"],
+    requestId: result.headers?.["request-id"],
+  } as DeleteTaskFileResponse;
 }
 
 /** Deletes the specified Task file from the Compute Node where the Task ran. */
@@ -1729,7 +1872,7 @@ export async function deleteTaskFile(
   taskId: string,
   filePath: string,
   options: DeleteTaskFileOptionalParams = { requestOptions: {} },
-): Promise<void> {
+): Promise<DeleteTaskFileResponse> {
   const result = await _deleteTaskFileSend(context, jobId, taskId, filePath, options);
   return _deleteTaskFileDeserialize(result);
 }
@@ -1787,7 +1930,9 @@ export function _reactivateTaskSend(
     });
 }
 
-export async function _reactivateTaskDeserialize(result: PathUncheckedResponse): Promise<void> {
+export async function _reactivateTaskDeserialize(
+  result: PathUncheckedResponse,
+): Promise<ReactivateTaskResponse> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -1795,7 +1940,15 @@ export async function _reactivateTaskDeserialize(result: PathUncheckedResponse):
     throw error;
   }
 
-  return;
+  return {
+    clientRequestId: result.headers?.["client-request-id"],
+    requestId: result.headers?.["request-id"],
+    eTag: result.headers?.["etag"],
+    lastModified: result.headers?.["last-modified"]
+      ? new Date(result.headers?.["last-modified"])
+      : undefined,
+    dataServiceId: result.headers["dataserviceid"]!,
+  } as ReactivateTaskResponse;
 }
 
 /**
@@ -1812,7 +1965,7 @@ export async function reactivateTask(
   jobId: string,
   taskId: string,
   options: ReactivateTaskOptionalParams = { requestOptions: {} },
-): Promise<void> {
+): Promise<ReactivateTaskResponse> {
   const result = await _reactivateTaskSend(context, jobId, taskId, options);
   return _reactivateTaskDeserialize(result);
 }
@@ -1870,7 +2023,9 @@ export function _terminateTaskSend(
     });
 }
 
-export async function _terminateTaskDeserialize(result: PathUncheckedResponse): Promise<void> {
+export async function _terminateTaskDeserialize(
+  result: PathUncheckedResponse,
+): Promise<TerminateTaskResponse> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -1878,7 +2033,15 @@ export async function _terminateTaskDeserialize(result: PathUncheckedResponse): 
     throw error;
   }
 
-  return;
+  return {
+    clientRequestId: result.headers?.["client-request-id"],
+    requestId: result.headers?.["request-id"],
+    eTag: result.headers?.["etag"],
+    lastModified: result.headers?.["last-modified"]
+      ? new Date(result.headers?.["last-modified"])
+      : undefined,
+    dataServiceId: result.headers["dataserviceid"]!,
+  } as TerminateTaskResponse;
 }
 
 /**
@@ -1891,7 +2054,7 @@ export async function terminateTask(
   jobId: string,
   taskId: string,
   options: TerminateTaskOptionalParams = { requestOptions: {} },
-): Promise<void> {
+): Promise<TerminateTaskResponse> {
   const result = await _terminateTaskSend(context, jobId, taskId, options);
   return _terminateTaskDeserialize(result);
 }
@@ -2019,7 +2182,9 @@ export function _replaceTaskSend(
     });
 }
 
-export async function _replaceTaskDeserialize(result: PathUncheckedResponse): Promise<void> {
+export async function _replaceTaskDeserialize(
+  result: PathUncheckedResponse,
+): Promise<ReplaceTaskResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -2027,7 +2192,15 @@ export async function _replaceTaskDeserialize(result: PathUncheckedResponse): Pr
     throw error;
   }
 
-  return;
+  return {
+    clientRequestId: result.headers?.["client-request-id"],
+    requestId: result.headers?.["request-id"],
+    eTag: result.headers?.["etag"],
+    lastModified: result.headers?.["last-modified"]
+      ? new Date(result.headers?.["last-modified"])
+      : undefined,
+    dataServiceId: result.headers["dataserviceid"]!,
+  } as ReplaceTaskResponse;
 }
 
 /** Updates the properties of the specified Task. */
@@ -2037,7 +2210,7 @@ export async function replaceTask(
   taskId: string,
   body: BatchTask,
   options: ReplaceTaskOptionalParams = { requestOptions: {} },
-): Promise<void> {
+): Promise<ReplaceTaskResponse> {
   const result = await _replaceTaskSend(context, jobId, taskId, body, options);
   return _replaceTaskDeserialize(result);
 }
@@ -2185,7 +2358,9 @@ export function _deleteTaskSend(
     });
 }
 
-export async function _deleteTaskDeserialize(result: PathUncheckedResponse): Promise<void> {
+export async function _deleteTaskDeserialize(
+  result: PathUncheckedResponse,
+): Promise<DeleteTaskResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -2193,7 +2368,10 @@ export async function _deleteTaskDeserialize(result: PathUncheckedResponse): Pro
     throw error;
   }
 
-  return;
+  return {
+    clientRequestId: result.headers?.["client-request-id"],
+    requestId: result.headers?.["request-id"],
+  } as DeleteTaskResponse;
 }
 
 /**
@@ -2208,7 +2386,7 @@ export async function deleteTask(
   jobId: string,
   taskId: string,
   options: DeleteTaskOptionalParams = { requestOptions: {} },
-): Promise<void> {
+): Promise<DeleteTaskResponse> {
   const result = await _deleteTaskSend(context, jobId, taskId, options);
   return _deleteTaskDeserialize(result);
 }
@@ -2413,7 +2591,9 @@ export function _createTaskSend(
     });
 }
 
-export async function _createTaskDeserialize(result: PathUncheckedResponse): Promise<void> {
+export async function _createTaskDeserialize(
+  result: PathUncheckedResponse,
+): Promise<CreateTaskResponse> {
   const expectedStatuses = ["201"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -2421,7 +2601,15 @@ export async function _createTaskDeserialize(result: PathUncheckedResponse): Pro
     throw error;
   }
 
-  return;
+  return {
+    clientRequestId: result.headers?.["client-request-id"],
+    requestId: result.headers?.["request-id"],
+    eTag: result.headers?.["etag"],
+    lastModified: result.headers?.["last-modified"]
+      ? new Date(result.headers?.["last-modified"])
+      : undefined,
+    dataServiceId: result.headers["dataserviceid"]!,
+  } as CreateTaskResponse;
 }
 
 /**
@@ -2434,7 +2622,7 @@ export async function createTask(
   jobId: string,
   body: BatchTaskCreateOptions,
   options: CreateTaskOptionalParams = { requestOptions: {} },
-): Promise<void> {
+): Promise<CreateTaskResponse> {
   const result = await _createTaskSend(context, jobId, body, options);
   return _createTaskDeserialize(result);
 }
@@ -2552,7 +2740,9 @@ export function _createJobScheduleSend(
     });
 }
 
-export async function _createJobScheduleDeserialize(result: PathUncheckedResponse): Promise<void> {
+export async function _createJobScheduleDeserialize(
+  result: PathUncheckedResponse,
+): Promise<CreateJobScheduleResponse> {
   const expectedStatuses = ["201"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -2560,7 +2750,15 @@ export async function _createJobScheduleDeserialize(result: PathUncheckedRespons
     throw error;
   }
 
-  return;
+  return {
+    clientRequestId: result.headers?.["client-request-id"],
+    requestId: result.headers?.["request-id"],
+    eTag: result.headers?.["etag"],
+    lastModified: result.headers?.["last-modified"]
+      ? new Date(result.headers?.["last-modified"])
+      : undefined,
+    dataServiceId: result.headers["dataserviceid"]!,
+  } as CreateJobScheduleResponse;
 }
 
 /** Creates a Job Schedule to the specified Account. */
@@ -2568,7 +2766,7 @@ export async function createJobSchedule(
   context: Client,
   body: BatchJobScheduleCreateOptions,
   options: CreateJobScheduleOptionalParams = { requestOptions: {} },
-): Promise<void> {
+): Promise<CreateJobScheduleResponse> {
   const result = await _createJobScheduleSend(context, body, options);
   return _createJobScheduleDeserialize(result);
 }
@@ -2626,7 +2824,7 @@ export function _terminateJobScheduleSend(
 
 export async function _terminateJobScheduleDeserialize(
   result: PathUncheckedResponse,
-): Promise<void> {
+): Promise<TerminateJobScheduleResponse> {
   const expectedStatuses = ["202"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -2634,7 +2832,15 @@ export async function _terminateJobScheduleDeserialize(
     throw error;
   }
 
-  return;
+  return {
+    clientRequestId: result.headers?.["client-request-id"],
+    requestId: result.headers?.["request-id"],
+    eTag: result.headers?.["etag"],
+    lastModified: result.headers?.["last-modified"]
+      ? new Date(result.headers?.["last-modified"])
+      : undefined,
+    dataServiceId: result.headers["dataserviceid"]!,
+  } as TerminateJobScheduleResponse;
 }
 
 /** Terminates a Job Schedule. */
@@ -2642,7 +2848,7 @@ export async function terminateJobSchedule(
   context: Client,
   jobScheduleId: string,
   options: TerminateJobScheduleOptionalParams = { requestOptions: {} },
-): Promise<void> {
+): Promise<TerminateJobScheduleResponse> {
   const result = await _terminateJobScheduleSend(context, jobScheduleId, options);
   return _terminateJobScheduleDeserialize(result);
 }
@@ -2698,7 +2904,9 @@ export function _enableJobScheduleSend(
     });
 }
 
-export async function _enableJobScheduleDeserialize(result: PathUncheckedResponse): Promise<void> {
+export async function _enableJobScheduleDeserialize(
+  result: PathUncheckedResponse,
+): Promise<EnableJobScheduleResponse> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -2706,7 +2914,15 @@ export async function _enableJobScheduleDeserialize(result: PathUncheckedRespons
     throw error;
   }
 
-  return;
+  return {
+    clientRequestId: result.headers?.["client-request-id"],
+    requestId: result.headers?.["request-id"],
+    eTag: result.headers?.["etag"],
+    lastModified: result.headers?.["last-modified"]
+      ? new Date(result.headers?.["last-modified"])
+      : undefined,
+    dataServiceId: result.headers["dataserviceid"]!,
+  } as EnableJobScheduleResponse;
 }
 
 /** Enables a Job Schedule. */
@@ -2714,7 +2930,7 @@ export async function enableJobSchedule(
   context: Client,
   jobScheduleId: string,
   options: EnableJobScheduleOptionalParams = { requestOptions: {} },
-): Promise<void> {
+): Promise<EnableJobScheduleResponse> {
   const result = await _enableJobScheduleSend(context, jobScheduleId, options);
   return _enableJobScheduleDeserialize(result);
 }
@@ -2770,7 +2986,9 @@ export function _disableJobScheduleSend(
     });
 }
 
-export async function _disableJobScheduleDeserialize(result: PathUncheckedResponse): Promise<void> {
+export async function _disableJobScheduleDeserialize(
+  result: PathUncheckedResponse,
+): Promise<DisableJobScheduleResponse> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -2778,7 +2996,15 @@ export async function _disableJobScheduleDeserialize(result: PathUncheckedRespon
     throw error;
   }
 
-  return;
+  return {
+    clientRequestId: result.headers?.["client-request-id"],
+    requestId: result.headers?.["request-id"],
+    eTag: result.headers?.["etag"],
+    lastModified: result.headers?.["last-modified"]
+      ? new Date(result.headers?.["last-modified"])
+      : undefined,
+    dataServiceId: result.headers["dataserviceid"]!,
+  } as DisableJobScheduleResponse;
 }
 
 /** No new Jobs will be created until the Job Schedule is enabled again. */
@@ -2786,7 +3012,7 @@ export async function disableJobSchedule(
   context: Client,
   jobScheduleId: string,
   options: DisableJobScheduleOptionalParams = { requestOptions: {} },
-): Promise<void> {
+): Promise<DisableJobScheduleResponse> {
   const result = await _disableJobScheduleSend(context, jobScheduleId, options);
   return _disableJobScheduleDeserialize(result);
 }
@@ -2845,7 +3071,9 @@ export function _replaceJobScheduleSend(
     });
 }
 
-export async function _replaceJobScheduleDeserialize(result: PathUncheckedResponse): Promise<void> {
+export async function _replaceJobScheduleDeserialize(
+  result: PathUncheckedResponse,
+): Promise<ReplaceJobScheduleResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -2853,7 +3081,15 @@ export async function _replaceJobScheduleDeserialize(result: PathUncheckedRespon
     throw error;
   }
 
-  return;
+  return {
+    clientRequestId: result.headers?.["client-request-id"],
+    requestId: result.headers?.["request-id"],
+    eTag: result.headers?.["etag"],
+    lastModified: result.headers?.["last-modified"]
+      ? new Date(result.headers?.["last-modified"])
+      : undefined,
+    dataServiceId: result.headers["dataserviceid"]!,
+  } as ReplaceJobScheduleResponse;
 }
 
 /**
@@ -2868,7 +3104,7 @@ export async function replaceJobSchedule(
   jobScheduleId: string,
   body: BatchJobSchedule,
   options: ReplaceJobScheduleOptionalParams = { requestOptions: {} },
-): Promise<void> {
+): Promise<ReplaceJobScheduleResponse> {
   const result = await _replaceJobScheduleSend(context, jobScheduleId, body, options);
   return _replaceJobScheduleDeserialize(result);
 }
@@ -2927,7 +3163,9 @@ export function _updateJobScheduleSend(
     });
 }
 
-export async function _updateJobScheduleDeserialize(result: PathUncheckedResponse): Promise<void> {
+export async function _updateJobScheduleDeserialize(
+  result: PathUncheckedResponse,
+): Promise<UpdateJobScheduleResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -2935,7 +3173,15 @@ export async function _updateJobScheduleDeserialize(result: PathUncheckedRespons
     throw error;
   }
 
-  return;
+  return {
+    clientRequestId: result.headers?.["client-request-id"],
+    requestId: result.headers?.["request-id"],
+    eTag: result.headers?.["etag"],
+    lastModified: result.headers?.["last-modified"]
+      ? new Date(result.headers?.["last-modified"])
+      : undefined,
+    dataServiceId: result.headers["dataserviceid"]!,
+  } as UpdateJobScheduleResponse;
 }
 
 /**
@@ -2950,7 +3196,7 @@ export async function updateJobSchedule(
   jobScheduleId: string,
   body: BatchJobScheduleUpdateOptions,
   options: UpdateJobScheduleOptionalParams = { requestOptions: {} },
-): Promise<void> {
+): Promise<UpdateJobScheduleResponse> {
   const result = await _updateJobScheduleSend(context, jobScheduleId, body, options);
   return _updateJobScheduleDeserialize(result);
 }
@@ -3091,7 +3337,9 @@ export function _deleteJobScheduleSend(
     });
 }
 
-export async function _deleteJobScheduleDeserialize(result: PathUncheckedResponse): Promise<void> {
+export async function _deleteJobScheduleDeserialize(
+  result: PathUncheckedResponse,
+): Promise<DeleteJobScheduleResponse> {
   const expectedStatuses = ["202"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -3099,7 +3347,10 @@ export async function _deleteJobScheduleDeserialize(result: PathUncheckedRespons
     throw error;
   }
 
-  return;
+  return {
+    clientRequestId: result.headers?.["client-request-id"],
+    requestId: result.headers?.["request-id"],
+  } as DeleteJobScheduleResponse;
 }
 
 /**
@@ -3113,7 +3364,7 @@ export async function deleteJobSchedule(
   context: Client,
   jobScheduleId: string,
   options: DeleteJobScheduleOptionalParams = { requestOptions: {} },
-): Promise<void> {
+): Promise<DeleteJobScheduleResponse> {
   const result = await _deleteJobScheduleSend(context, jobScheduleId, options);
   return _deleteJobScheduleDeserialize(result);
 }
@@ -3169,7 +3420,9 @@ export function _jobScheduleExistsSend(
     });
 }
 
-export async function _jobScheduleExistsDeserialize(result: PathUncheckedResponse): Promise<void> {
+export async function _jobScheduleExistsDeserialize(
+  result: PathUncheckedResponse,
+): Promise<JobScheduleExistsResponse> {
   const expectedStatuses = ["200", "404"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -3177,7 +3430,14 @@ export async function _jobScheduleExistsDeserialize(result: PathUncheckedRespons
     throw error;
   }
 
-  return;
+  return {
+    clientRequestId: result.headers?.["client-request-id"],
+    requestId: result.headers?.["request-id"],
+    eTag: result.headers?.["etag"],
+    lastModified: result.headers?.["last-modified"]
+      ? new Date(result.headers?.["last-modified"])
+      : undefined,
+  } as JobScheduleExistsResponse;
 }
 
 /** Checks the specified Job Schedule exists. */
@@ -3185,7 +3445,7 @@ export async function jobScheduleExists(
   context: Client,
   jobScheduleId: string,
   options: JobScheduleExistsOptionalParams = { requestOptions: {} },
-): Promise<void> {
+): Promise<JobScheduleExistsResponse> {
   const result = await _jobScheduleExistsSend(context, jobScheduleId, options);
   return _jobScheduleExistsDeserialize(result);
 }
@@ -3294,7 +3554,9 @@ export function _deleteCertificateSend(
     });
 }
 
-export async function _deleteCertificateDeserialize(result: PathUncheckedResponse): Promise<void> {
+export async function _deleteCertificateDeserialize(
+  result: PathUncheckedResponse,
+): Promise<DeleteCertificateResponse> {
   const expectedStatuses = ["202"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -3302,7 +3564,14 @@ export async function _deleteCertificateDeserialize(result: PathUncheckedRespons
     throw error;
   }
 
-  return;
+  return {
+    clientRequestId: result.headers?.["client-request-id"],
+    requestId: result.headers?.["request-id"],
+    eTag: result.headers?.["etag"],
+    lastModified: result.headers?.["last-modified"]
+      ? new Date(result.headers?.["last-modified"])
+      : undefined,
+  } as DeleteCertificateResponse;
 }
 
 /**
@@ -3321,7 +3590,7 @@ export async function deleteCertificate(
   thumbprintAlgorithm: string,
   thumbprint: string,
   options: DeleteCertificateOptionalParams = { requestOptions: {} },
-): Promise<void> {
+): Promise<DeleteCertificateResponse> {
   const result = await _deleteCertificateSend(context, thumbprintAlgorithm, thumbprint, options);
   return _deleteCertificateDeserialize(result);
 }
@@ -3365,7 +3634,7 @@ export function _cancelCertificateDeletionSend(
 
 export async function _cancelCertificateDeletionDeserialize(
   result: PathUncheckedResponse,
-): Promise<void> {
+): Promise<CancelCertificateDeletionResponse> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -3373,7 +3642,15 @@ export async function _cancelCertificateDeletionDeserialize(
     throw error;
   }
 
-  return;
+  return {
+    clientRequestId: result.headers?.["client-request-id"],
+    requestId: result.headers?.["request-id"],
+    eTag: result.headers?.["etag"],
+    lastModified: result.headers?.["last-modified"]
+      ? new Date(result.headers?.["last-modified"])
+      : undefined,
+    dataServiceId: result.headers["dataserviceid"]!,
+  } as CancelCertificateDeletionResponse;
 }
 
 /**
@@ -3390,7 +3667,7 @@ export async function cancelCertificateDeletion(
   thumbprintAlgorithm: string,
   thumbprint: string,
   options: CancelCertificateDeletionOptionalParams = { requestOptions: {} },
-): Promise<void> {
+): Promise<CancelCertificateDeletionResponse> {
   const result = await _cancelCertificateDeletionSend(
     context,
     thumbprintAlgorithm,
@@ -3508,7 +3785,9 @@ export function _createCertificateSend(
     });
 }
 
-export async function _createCertificateDeserialize(result: PathUncheckedResponse): Promise<void> {
+export async function _createCertificateDeserialize(
+  result: PathUncheckedResponse,
+): Promise<CreateCertificateResponse> {
   const expectedStatuses = ["201"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -3516,7 +3795,15 @@ export async function _createCertificateDeserialize(result: PathUncheckedRespons
     throw error;
   }
 
-  return;
+  return {
+    clientRequestId: result.headers?.["client-request-id"],
+    requestId: result.headers?.["request-id"],
+    eTag: result.headers?.["etag"],
+    lastModified: result.headers?.["last-modified"]
+      ? new Date(result.headers?.["last-modified"])
+      : undefined,
+    dataServiceId: result.headers["dataserviceid"]!,
+  } as CreateCertificateResponse;
 }
 
 /** Creates a Certificate to the specified Account. */
@@ -3524,7 +3811,7 @@ export async function createCertificate(
   context: Client,
   body: BatchCertificate,
   options: CreateCertificateOptionalParams = { requestOptions: {} },
-): Promise<void> {
+): Promise<CreateCertificateResponse> {
   const result = await _createCertificateSend(context, body, options);
   return _createCertificateDeserialize(result);
 }
@@ -3863,7 +4150,9 @@ export function _createJobSend(
     });
 }
 
-export async function _createJobDeserialize(result: PathUncheckedResponse): Promise<void> {
+export async function _createJobDeserialize(
+  result: PathUncheckedResponse,
+): Promise<CreateJobResponse> {
   const expectedStatuses = ["201"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -3871,7 +4160,15 @@ export async function _createJobDeserialize(result: PathUncheckedResponse): Prom
     throw error;
   }
 
-  return;
+  return {
+    clientRequestId: result.headers?.["client-request-id"],
+    requestId: result.headers?.["request-id"],
+    eTag: result.headers?.["etag"],
+    lastModified: result.headers?.["last-modified"]
+      ? new Date(result.headers?.["last-modified"])
+      : undefined,
+    dataServiceId: result.headers["dataserviceid"]!,
+  } as CreateJobResponse;
 }
 
 /**
@@ -3889,7 +4186,7 @@ export async function createJob(
   context: Client,
   body: BatchJobCreateOptions,
   options: CreateJobOptionalParams = { requestOptions: {} },
-): Promise<void> {
+): Promise<CreateJobResponse> {
   const result = await _createJobSend(context, body, options);
   return _createJobDeserialize(result);
 }
@@ -3949,7 +4246,9 @@ export function _terminateJobSend(
     });
 }
 
-export async function _terminateJobDeserialize(result: PathUncheckedResponse): Promise<void> {
+export async function _terminateJobDeserialize(
+  result: PathUncheckedResponse,
+): Promise<TerminateJobResponse> {
   const expectedStatuses = ["202"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -3957,7 +4256,15 @@ export async function _terminateJobDeserialize(result: PathUncheckedResponse): P
     throw error;
   }
 
-  return;
+  return {
+    clientRequestId: result.headers?.["client-request-id"],
+    requestId: result.headers?.["request-id"],
+    eTag: result.headers?.["etag"],
+    lastModified: result.headers?.["last-modified"]
+      ? new Date(result.headers?.["last-modified"])
+      : undefined,
+    dataServiceId: result.headers["dataserviceid"]!,
+  } as TerminateJobResponse;
 }
 
 /**
@@ -3972,7 +4279,7 @@ export async function terminateJob(
   context: Client,
   jobId: string,
   options: TerminateJobOptionalParams = { requestOptions: {} },
-): Promise<void> {
+): Promise<TerminateJobResponse> {
   const result = await _terminateJobSend(context, jobId, options);
   return _terminateJobDeserialize(result);
 }
@@ -4028,7 +4335,9 @@ export function _enableJobSend(
     });
 }
 
-export async function _enableJobDeserialize(result: PathUncheckedResponse): Promise<void> {
+export async function _enableJobDeserialize(
+  result: PathUncheckedResponse,
+): Promise<EnableJobResponse> {
   const expectedStatuses = ["202"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -4036,7 +4345,15 @@ export async function _enableJobDeserialize(result: PathUncheckedResponse): Prom
     throw error;
   }
 
-  return;
+  return {
+    clientRequestId: result.headers?.["client-request-id"],
+    requestId: result.headers?.["request-id"],
+    eTag: result.headers?.["etag"],
+    lastModified: result.headers?.["last-modified"]
+      ? new Date(result.headers?.["last-modified"])
+      : undefined,
+    dataServiceId: result.headers["dataserviceid"]!,
+  } as EnableJobResponse;
 }
 
 /**
@@ -4051,7 +4368,7 @@ export async function enableJob(
   context: Client,
   jobId: string,
   options: EnableJobOptionalParams = { requestOptions: {} },
-): Promise<void> {
+): Promise<EnableJobResponse> {
   const result = await _enableJobSend(context, jobId, options);
   return _enableJobDeserialize(result);
 }
@@ -4110,7 +4427,9 @@ export function _disableJobSend(
     });
 }
 
-export async function _disableJobDeserialize(result: PathUncheckedResponse): Promise<void> {
+export async function _disableJobDeserialize(
+  result: PathUncheckedResponse,
+): Promise<DisableJobResponse> {
   const expectedStatuses = ["202"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -4118,7 +4437,15 @@ export async function _disableJobDeserialize(result: PathUncheckedResponse): Pro
     throw error;
   }
 
-  return;
+  return {
+    clientRequestId: result.headers?.["client-request-id"],
+    requestId: result.headers?.["request-id"],
+    eTag: result.headers?.["etag"],
+    lastModified: result.headers?.["last-modified"]
+      ? new Date(result.headers?.["last-modified"])
+      : undefined,
+    dataServiceId: result.headers["dataserviceid"]!,
+  } as DisableJobResponse;
 }
 
 /**
@@ -4136,7 +4463,7 @@ export async function disableJob(
   jobId: string,
   body: BatchJobDisableOptions,
   options: DisableJobOptionalParams = { requestOptions: {} },
-): Promise<void> {
+): Promise<DisableJobResponse> {
   const result = await _disableJobSend(context, jobId, body, options);
   return _disableJobDeserialize(result);
 }
@@ -4195,7 +4522,9 @@ export function _replaceJobSend(
     });
 }
 
-export async function _replaceJobDeserialize(result: PathUncheckedResponse): Promise<void> {
+export async function _replaceJobDeserialize(
+  result: PathUncheckedResponse,
+): Promise<ReplaceJobResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -4203,7 +4532,15 @@ export async function _replaceJobDeserialize(result: PathUncheckedResponse): Pro
     throw error;
   }
 
-  return;
+  return {
+    clientRequestId: result.headers?.["client-request-id"],
+    requestId: result.headers?.["request-id"],
+    eTag: result.headers?.["etag"],
+    lastModified: result.headers?.["last-modified"]
+      ? new Date(result.headers?.["last-modified"])
+      : undefined,
+    dataServiceId: result.headers["dataserviceid"]!,
+  } as ReplaceJobResponse;
 }
 
 /**
@@ -4216,7 +4553,7 @@ export async function replaceJob(
   jobId: string,
   body: BatchJob,
   options: ReplaceJobOptionalParams = { requestOptions: {} },
-): Promise<void> {
+): Promise<ReplaceJobResponse> {
   const result = await _replaceJobSend(context, jobId, body, options);
   return _replaceJobDeserialize(result);
 }
@@ -4275,7 +4612,9 @@ export function _updateJobSend(
     });
 }
 
-export async function _updateJobDeserialize(result: PathUncheckedResponse): Promise<void> {
+export async function _updateJobDeserialize(
+  result: PathUncheckedResponse,
+): Promise<UpdateJobResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -4283,7 +4622,15 @@ export async function _updateJobDeserialize(result: PathUncheckedResponse): Prom
     throw error;
   }
 
-  return;
+  return {
+    clientRequestId: result.headers?.["client-request-id"],
+    requestId: result.headers?.["request-id"],
+    eTag: result.headers?.["etag"],
+    lastModified: result.headers?.["last-modified"]
+      ? new Date(result.headers?.["last-modified"])
+      : undefined,
+    dataServiceId: result.headers["dataserviceid"]!,
+  } as UpdateJobResponse;
 }
 
 /**
@@ -4296,7 +4643,7 @@ export async function updateJob(
   jobId: string,
   body: BatchJobUpdateOptions,
   options: UpdateJobOptionalParams = { requestOptions: {} },
-): Promise<void> {
+): Promise<UpdateJobResponse> {
   const result = await _updateJobSend(context, jobId, body, options);
   return _updateJobDeserialize(result);
 }
@@ -4435,7 +4782,9 @@ export function _deleteJobSend(
     });
 }
 
-export async function _deleteJobDeserialize(result: PathUncheckedResponse): Promise<void> {
+export async function _deleteJobDeserialize(
+  result: PathUncheckedResponse,
+): Promise<DeleteJobResponse> {
   const expectedStatuses = ["202"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -4443,7 +4792,10 @@ export async function _deleteJobDeserialize(result: PathUncheckedResponse): Prom
     throw error;
   }
 
-  return;
+  return {
+    clientRequestId: result.headers?.["client-request-id"],
+    requestId: result.headers?.["request-id"],
+  } as DeleteJobResponse;
 }
 
 /**
@@ -4460,7 +4812,7 @@ export async function deleteJob(
   context: Client,
   jobId: string,
   options: DeleteJobOptionalParams = { requestOptions: {} },
-): Promise<void> {
+): Promise<DeleteJobResponse> {
   const result = await _deleteJobSend(context, jobId, options);
   return _deleteJobDeserialize(result);
 }
@@ -4652,7 +5004,9 @@ export function _removeNodesSend(
     });
 }
 
-export async function _removeNodesDeserialize(result: PathUncheckedResponse): Promise<void> {
+export async function _removeNodesDeserialize(
+  result: PathUncheckedResponse,
+): Promise<RemoveNodesResponse> {
   const expectedStatuses = ["202"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -4660,7 +5014,15 @@ export async function _removeNodesDeserialize(result: PathUncheckedResponse): Pr
     throw error;
   }
 
-  return;
+  return {
+    clientRequestId: result.headers?.["client-request-id"],
+    requestId: result.headers?.["request-id"],
+    eTag: result.headers?.["etag"],
+    lastModified: result.headers?.["last-modified"]
+      ? new Date(result.headers?.["last-modified"])
+      : undefined,
+    dataServiceId: result.headers["dataserviceid"]!,
+  } as RemoveNodesResponse;
 }
 
 /**
@@ -4673,7 +5035,7 @@ export async function removeNodes(
   poolId: string,
   body: NodeRemoveOptions,
   options: RemoveNodesOptionalParams = { requestOptions: {} },
-): Promise<void> {
+): Promise<RemoveNodesResponse> {
   const result = await _removeNodesSend(context, poolId, body, options);
   return _removeNodesDeserialize(result);
 }
@@ -4718,7 +5080,7 @@ export function _replacePoolPropertiesSend(
 
 export async function _replacePoolPropertiesDeserialize(
   result: PathUncheckedResponse,
-): Promise<void> {
+): Promise<ReplacePoolPropertiesResponse> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -4726,7 +5088,15 @@ export async function _replacePoolPropertiesDeserialize(
     throw error;
   }
 
-  return;
+  return {
+    clientRequestId: result.headers?.["client-request-id"],
+    requestId: result.headers?.["request-id"],
+    eTag: result.headers?.["etag"],
+    lastModified: result.headers?.["last-modified"]
+      ? new Date(result.headers?.["last-modified"])
+      : undefined,
+    dataServiceId: result.headers["dataserviceid"]!,
+  } as ReplacePoolPropertiesResponse;
 }
 
 /**
@@ -4739,7 +5109,7 @@ export async function replacePoolProperties(
   poolId: string,
   body: BatchPoolReplaceOptions,
   options: ReplacePoolPropertiesOptionalParams = { requestOptions: {} },
-): Promise<void> {
+): Promise<ReplacePoolPropertiesResponse> {
   const result = await _replacePoolPropertiesSend(context, poolId, body, options);
   return _replacePoolPropertiesDeserialize(result);
 }
@@ -4795,7 +5165,9 @@ export function _stopPoolResizeSend(
     });
 }
 
-export async function _stopPoolResizeDeserialize(result: PathUncheckedResponse): Promise<void> {
+export async function _stopPoolResizeDeserialize(
+  result: PathUncheckedResponse,
+): Promise<StopPoolResizeResponse> {
   const expectedStatuses = ["202"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -4803,7 +5175,15 @@ export async function _stopPoolResizeDeserialize(result: PathUncheckedResponse):
     throw error;
   }
 
-  return;
+  return {
+    clientRequestId: result.headers?.["client-request-id"],
+    requestId: result.headers?.["request-id"],
+    eTag: result.headers?.["etag"],
+    lastModified: result.headers?.["last-modified"]
+      ? new Date(result.headers?.["last-modified"])
+      : undefined,
+    dataServiceId: result.headers["dataserviceid"]!,
+  } as StopPoolResizeResponse;
 }
 
 /**
@@ -4819,7 +5199,7 @@ export async function stopPoolResize(
   context: Client,
   poolId: string,
   options: StopPoolResizeOptionalParams = { requestOptions: {} },
-): Promise<void> {
+): Promise<StopPoolResizeResponse> {
   const result = await _stopPoolResizeSend(context, poolId, options);
   return _stopPoolResizeDeserialize(result);
 }
@@ -4878,7 +5258,9 @@ export function _resizePoolSend(
     });
 }
 
-export async function _resizePoolDeserialize(result: PathUncheckedResponse): Promise<void> {
+export async function _resizePoolDeserialize(
+  result: PathUncheckedResponse,
+): Promise<ResizePoolResponse> {
   const expectedStatuses = ["202"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -4886,7 +5268,15 @@ export async function _resizePoolDeserialize(result: PathUncheckedResponse): Pro
     throw error;
   }
 
-  return;
+  return {
+    clientRequestId: result.headers?.["client-request-id"],
+    requestId: result.headers?.["request-id"],
+    eTag: result.headers?.["etag"],
+    lastModified: result.headers?.["last-modified"]
+      ? new Date(result.headers?.["last-modified"])
+      : undefined,
+    dataServiceId: result.headers["dataserviceid"]!,
+  } as ResizePoolResponse;
 }
 
 /**
@@ -4903,7 +5293,7 @@ export async function resizePool(
   poolId: string,
   body: BatchPoolResizeOptions,
   options: ResizePoolOptionalParams = { requestOptions: {} },
-): Promise<void> {
+): Promise<ResizePoolResponse> {
   const result = await _resizePoolSend(context, poolId, body, options);
   return _resizePoolDeserialize(result);
 }
@@ -5031,7 +5421,7 @@ export function _enablePoolAutoScaleSend(
 
 export async function _enablePoolAutoScaleDeserialize(
   result: PathUncheckedResponse,
-): Promise<void> {
+): Promise<EnablePoolAutoScaleResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -5039,7 +5429,15 @@ export async function _enablePoolAutoScaleDeserialize(
     throw error;
   }
 
-  return;
+  return {
+    clientRequestId: result.headers?.["client-request-id"],
+    requestId: result.headers?.["request-id"],
+    eTag: result.headers?.["etag"],
+    lastModified: result.headers?.["last-modified"]
+      ? new Date(result.headers?.["last-modified"])
+      : undefined,
+    dataServiceId: result.headers["dataserviceid"]!,
+  } as EnablePoolAutoScaleResponse;
 }
 
 /**
@@ -5055,7 +5453,7 @@ export async function enablePoolAutoScale(
   poolId: string,
   body: BatchPoolEnableAutoScaleOptions,
   options: EnablePoolAutoScaleOptionalParams = { requestOptions: {} },
-): Promise<void> {
+): Promise<EnablePoolAutoScaleResponse> {
   const result = await _enablePoolAutoScaleSend(context, poolId, body, options);
   return _enablePoolAutoScaleDeserialize(result);
 }
@@ -5097,7 +5495,7 @@ export function _disablePoolAutoScaleSend(
 
 export async function _disablePoolAutoScaleDeserialize(
   result: PathUncheckedResponse,
-): Promise<void> {
+): Promise<DisablePoolAutoScaleResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -5105,7 +5503,15 @@ export async function _disablePoolAutoScaleDeserialize(
     throw error;
   }
 
-  return;
+  return {
+    clientRequestId: result.headers?.["client-request-id"],
+    requestId: result.headers?.["request-id"],
+    eTag: result.headers?.["etag"],
+    lastModified: result.headers?.["last-modified"]
+      ? new Date(result.headers?.["last-modified"])
+      : undefined,
+    dataServiceId: result.headers["dataserviceid"]!,
+  } as DisablePoolAutoScaleResponse;
 }
 
 /** Disables automatic scaling for a Pool. */
@@ -5113,7 +5519,7 @@ export async function disablePoolAutoScale(
   context: Client,
   poolId: string,
   options: DisablePoolAutoScaleOptionalParams = { requestOptions: {} },
-): Promise<void> {
+): Promise<DisablePoolAutoScaleResponse> {
   const result = await _disablePoolAutoScaleSend(context, poolId, options);
   return _disablePoolAutoScaleDeserialize(result);
 }
@@ -5172,7 +5578,9 @@ export function _updatePoolSend(
     });
 }
 
-export async function _updatePoolDeserialize(result: PathUncheckedResponse): Promise<void> {
+export async function _updatePoolDeserialize(
+  result: PathUncheckedResponse,
+): Promise<UpdatePoolResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -5180,7 +5588,15 @@ export async function _updatePoolDeserialize(result: PathUncheckedResponse): Pro
     throw error;
   }
 
-  return;
+  return {
+    clientRequestId: result.headers?.["client-request-id"],
+    requestId: result.headers?.["request-id"],
+    eTag: result.headers?.["etag"],
+    lastModified: result.headers?.["last-modified"]
+      ? new Date(result.headers?.["last-modified"])
+      : undefined,
+    dataServiceId: result.headers["dataserviceid"]!,
+  } as UpdatePoolResponse;
 }
 
 /**
@@ -5193,7 +5609,7 @@ export async function updatePool(
   poolId: string,
   body: BatchPoolUpdateOptions,
   options: UpdatePoolOptionalParams = { requestOptions: {} },
-): Promise<void> {
+): Promise<UpdatePoolResponse> {
   const result = await _updatePoolSend(context, poolId, body, options);
   return _updatePoolDeserialize(result);
 }
@@ -5332,7 +5748,9 @@ export function _poolExistsSend(
     });
 }
 
-export async function _poolExistsDeserialize(result: PathUncheckedResponse): Promise<void> {
+export async function _poolExistsDeserialize(
+  result: PathUncheckedResponse,
+): Promise<PoolExistsResponse> {
   const expectedStatuses = ["404", "200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -5340,7 +5758,14 @@ export async function _poolExistsDeserialize(result: PathUncheckedResponse): Pro
     throw error;
   }
 
-  return;
+  return {
+    clientRequestId: result.headers?.["client-request-id"],
+    requestId: result.headers?.["request-id"],
+    eTag: result.headers?.["etag"],
+    lastModified: result.headers?.["last-modified"]
+      ? new Date(result.headers?.["last-modified"])
+      : undefined,
+  } as PoolExistsResponse;
 }
 
 /** Gets basic properties of a Pool. */
@@ -5348,7 +5773,7 @@ export async function poolExists(
   context: Client,
   poolId: string,
   options: PoolExistsOptionalParams = { requestOptions: {} },
-): Promise<void> {
+): Promise<PoolExistsResponse> {
   const result = await _poolExistsSend(context, poolId, options);
   return _poolExistsDeserialize(result);
 }
@@ -5404,7 +5829,9 @@ export function _deletePoolSend(
     });
 }
 
-export async function _deletePoolDeserialize(result: PathUncheckedResponse): Promise<void> {
+export async function _deletePoolDeserialize(
+  result: PathUncheckedResponse,
+): Promise<DeletePoolResponse> {
   const expectedStatuses = ["202"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -5412,7 +5839,10 @@ export async function _deletePoolDeserialize(result: PathUncheckedResponse): Pro
     throw error;
   }
 
-  return;
+  return {
+    clientRequestId: result.headers?.["client-request-id"],
+    requestId: result.headers?.["request-id"],
+  } as DeletePoolResponse;
 }
 
 /**
@@ -5433,7 +5863,7 @@ export async function deletePool(
   context: Client,
   poolId: string,
   options: DeletePoolOptionalParams = { requestOptions: {} },
-): Promise<void> {
+): Promise<DeletePoolResponse> {
   const result = await _deletePoolSend(context, poolId, options);
   return _deletePoolDeserialize(result);
 }
@@ -5551,7 +5981,9 @@ export function _createPoolSend(
     });
 }
 
-export async function _createPoolDeserialize(result: PathUncheckedResponse): Promise<void> {
+export async function _createPoolDeserialize(
+  result: PathUncheckedResponse,
+): Promise<CreatePoolResponse> {
   const expectedStatuses = ["201"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -5559,7 +5991,15 @@ export async function _createPoolDeserialize(result: PathUncheckedResponse): Pro
     throw error;
   }
 
-  return;
+  return {
+    clientRequestId: result.headers?.["client-request-id"],
+    requestId: result.headers?.["request-id"],
+    eTag: result.headers?.["etag"],
+    lastModified: result.headers?.["last-modified"]
+      ? new Date(result.headers?.["last-modified"])
+      : undefined,
+    dataServiceId: result.headers["dataserviceid"]!,
+  } as CreatePoolResponse;
 }
 
 /**
@@ -5571,7 +6011,7 @@ export async function createPool(
   context: Client,
   body: BatchPoolCreateOptions,
   options: CreatePoolOptionalParams = { requestOptions: {} },
-): Promise<void> {
+): Promise<CreatePoolResponse> {
   const result = await _createPoolSend(context, body, options);
   return _createPoolDeserialize(result);
 }

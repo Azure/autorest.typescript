@@ -18,7 +18,13 @@ import {
   SchemaOperationsGetSchemaByIdOptionalParams,
   SchemaOperationsListSchemaGroupsOptionalParams,
 } from "../../api/schemaOperations/options.js";
-import { SchemaGroup, SchemaVersion, SchemaContentTypeValues } from "../../models/models.js";
+import {
+  SchemaGroup,
+  SchemaVersion,
+  SchemaContentTypeValues,
+  GetSchemaIdByContentResponse,
+  RegisterSchemaResponse,
+} from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 
 /** Interface representing a SchemaOperations operations. */
@@ -30,7 +36,7 @@ export interface SchemaOperationsOperations {
     content: Uint8Array,
     contentType: SchemaContentTypeValues,
     options?: SchemaOperationsRegisterSchemaOptionalParams,
-  ) => Promise<void>;
+  ) => Promise<RegisterSchemaResponse>;
   /** Gets the ID referencing an existing schema within the specified schema group, as matched by schema content comparison. */
   getSchemaIdByContent: (
     groupName: string,
@@ -38,7 +44,7 @@ export interface SchemaOperationsOperations {
     contentType: SchemaContentTypeValues,
     schemaContent: Uint8Array,
     options?: SchemaOperationsGetSchemaIdByContentOptionalParams,
-  ) => Promise<void>;
+  ) => Promise<GetSchemaIdByContentResponse>;
   /** Gets one specific version of one schema. */
   getSchemaByVersion: (
     groupName: string,

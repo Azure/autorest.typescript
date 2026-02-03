@@ -1,4 +1,4 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-export { KnownVersions } from "./models.js";
+export { KnownVersions, GetAvatarAsPngResponse, GetAvatarAsJpegResponse } from "./models.js";

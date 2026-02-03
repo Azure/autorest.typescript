@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import { WidgetManagerContext as Client } from "../index.js";
+import { GetAvatarAsPngResponse, GetAvatarAsJpegResponse } from "../../models/models.js";
 import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   FooOperationsGetAvatarAsJpegOptionalParams,
@@ -37,13 +38,15 @@ export function _getAvatarAsJpegSend(
     });
 }
 
-export async function _getAvatarAsJpegDeserialize(result: PathUncheckedResponse): Promise<void> {
+export async function _getAvatarAsJpegDeserialize(
+  result: PathUncheckedResponse,
+): Promise<GetAvatarAsJpegResponse> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return;
+  return { accept: result.headers["accept"]! } as GetAvatarAsJpegResponse;
 }
 
 /** A remote procedure call (RPC) operation. */
@@ -51,7 +54,7 @@ export async function getAvatarAsJpeg(
   context: Client,
   image: Uint8Array,
   options: FooOperationsGetAvatarAsJpegOptionalParams = { requestOptions: {} },
-): Promise<void> {
+): Promise<GetAvatarAsJpegResponse> {
   const result = await _getAvatarAsJpegSend(context, image, options);
   return _getAvatarAsJpegDeserialize(result);
 }
@@ -79,13 +82,15 @@ export function _getAvatarAsPngSend(
     });
 }
 
-export async function _getAvatarAsPngDeserialize(result: PathUncheckedResponse): Promise<void> {
+export async function _getAvatarAsPngDeserialize(
+  result: PathUncheckedResponse,
+): Promise<GetAvatarAsPngResponse> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return;
+  return { accept: result.headers["accept"]! } as GetAvatarAsPngResponse;
 }
 
 /** A remote procedure call (RPC) operation. */
@@ -93,7 +98,7 @@ export async function getAvatarAsPng(
   context: Client,
   image: Uint8Array,
   options: FooOperationsGetAvatarAsPngOptionalParams = { requestOptions: {} },
-): Promise<void> {
+): Promise<GetAvatarAsPngResponse> {
   const result = await _getAvatarAsPngSend(context, image, options);
   return _getAvatarAsPngDeserialize(result);
 }

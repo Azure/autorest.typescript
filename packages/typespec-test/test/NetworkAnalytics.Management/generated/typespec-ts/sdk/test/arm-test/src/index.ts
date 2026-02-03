@@ -69,6 +69,8 @@ export {
   RoleAssignmentDetail,
   ListRoleAssignments,
   KnownVersions,
+  DeleteResponse,
+  DeleteDataResponse,
 } from "./models/index.js";
 export { NetworkAnalyticsApiOptionalParams } from "./api/index.js";
 export {

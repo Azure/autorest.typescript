@@ -1523,3 +1523,15 @@ export function _dataProductPropertiesDeserializer(item: any) {
     keyVaultUrl: item["keyVaultUrl"],
   };
 }
+
+/** Defines headers for operation response. */
+export interface DeleteResponse {
+  location?: string;
+  retryAfter?: number;
+}
+
+/** Defines headers for operation response. */
+export interface DeleteDataResponse {
+  location?: string;
+  retryAfter?: number;
+}

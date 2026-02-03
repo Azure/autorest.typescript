@@ -12,3 +12,13 @@ export enum KnownVersions {
   /** Version 2022-08-31 */
   _20220830 = "2022-08-30",
 }
+
+/** Defines headers for operation response. */
+export interface GetAvatarAsPngResponse {
+  accept: "image/png";
+}
+
+/** Defines headers for operation response. */
+export interface GetAvatarAsJpegResponse {
+  accept: "image/jpeg";
+}

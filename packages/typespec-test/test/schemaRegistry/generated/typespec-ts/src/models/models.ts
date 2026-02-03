@@ -155,3 +155,23 @@ export type ContentTypeEnum =
   | "application/json; serialization=Avro"
   | "application/json; serialization=json"
   | "text/vnd.ms.protobuf";
+
+/** Defines headers for operation response. */
+export interface GetSchemaIdByContentResponse {
+  location: string;
+  schemaId: string;
+  schemaIdLocation: string;
+  schemaGroupName: string;
+  schemaName: string;
+  schemaVersion: number;
+}
+
+/** Defines headers for operation response. */
+export interface RegisterSchemaResponse {
+  location: string;
+  schemaId: string;
+  schemaIdLocation: string;
+  schemaGroupName: string;
+  schemaName: string;
+  schemaVersion: number;
+}

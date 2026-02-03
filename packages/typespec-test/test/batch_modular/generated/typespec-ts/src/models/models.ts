@@ -5717,3 +5717,383 @@ export enum KnownVersions {
   /** API Version 2023-05-01.17.0 */
   _20230501170 = "2023-05-01.17.0",
 }
+
+/** Defines headers for operation response. */
+export interface CreateNodeUserResponse {
+  clientRequestId?: string;
+  requestId?: string;
+  eTag?: string;
+  lastModified?: Date;
+  dataServiceId: string;
+}
+
+/** Defines headers for operation response. */
+export interface DeleteNodeUserResponse {
+  clientRequestId?: string;
+  requestId?: string;
+}
+
+/** Defines headers for operation response. */
+export interface ReplaceNodeUserResponse {
+  clientRequestId?: string;
+  requestId?: string;
+  eTag?: string;
+  lastModified?: Date;
+  dataServiceId: string;
+}
+
+/** Defines headers for operation response. */
+export interface RebootNodeResponse {
+  clientRequestId?: string;
+  requestId?: string;
+  eTag?: string;
+  lastModified?: Date;
+  dataServiceId: string;
+}
+
+/** Defines headers for operation response. */
+export interface ReimageNodeResponse {
+  clientRequestId?: string;
+  requestId?: string;
+  eTag?: string;
+  lastModified?: Date;
+  dataServiceId: string;
+}
+
+/** Defines headers for operation response. */
+export interface DisableNodeSchedulingResponse {
+  clientRequestId?: string;
+  requestId?: string;
+  eTag?: string;
+  lastModified?: Date;
+  dataServiceId: string;
+}
+
+/** Defines headers for operation response. */
+export interface EnableNodeSchedulingResponse {
+  clientRequestId?: string;
+  requestId?: string;
+  eTag?: string;
+  lastModified?: Date;
+  dataServiceId: string;
+}
+
+/** Defines headers for operation response. */
+export interface DeleteNodeFileResponse {
+  clientRequestId?: string;
+  requestId?: string;
+}
+
+/** Defines headers for operation response. */
+export interface GetNodeFilePropertiesResponse {
+  clientRequestId?: string;
+  requestId?: string;
+  eTag?: string;
+  lastModified?: Date;
+  ocpCreationTime?: Date;
+  ocpBatchFileIsdirectory: boolean;
+  ocpBatchFileUrl: string;
+  ocpBatchFileMode: string;
+  contentLength: number;
+}
+
+/** Defines headers for operation response. */
+export interface CreateTaskResponse {
+  clientRequestId?: string;
+  requestId?: string;
+  eTag?: string;
+  lastModified?: Date;
+  dataServiceId: string;
+}
+
+/** Defines headers for operation response. */
+export interface DeleteTaskResponse {
+  clientRequestId?: string;
+  requestId?: string;
+}
+
+/** Defines headers for operation response. */
+export interface ReplaceTaskResponse {
+  clientRequestId?: string;
+  requestId?: string;
+  eTag?: string;
+  lastModified?: Date;
+  dataServiceId: string;
+}
+
+/** Defines headers for operation response. */
+export interface TerminateTaskResponse {
+  clientRequestId?: string;
+  requestId?: string;
+  eTag?: string;
+  lastModified?: Date;
+  dataServiceId: string;
+}
+
+/** Defines headers for operation response. */
+export interface ReactivateTaskResponse {
+  clientRequestId?: string;
+  requestId?: string;
+  eTag?: string;
+  lastModified?: Date;
+  dataServiceId: string;
+}
+
+/** Defines headers for operation response. */
+export interface DeleteTaskFileResponse {
+  clientRequestId?: string;
+  requestId?: string;
+}
+
+/** Defines headers for operation response. */
+export interface GetTaskFilePropertiesResponse {
+  clientRequestId?: string;
+  requestId?: string;
+  eTag?: string;
+  lastModified?: Date;
+  ocpCreationTime?: Date;
+  ocpBatchFileIsdirectory: boolean;
+  ocpBatchFileUrl: string;
+  ocpBatchFileMode: string;
+  contentLength: number;
+}
+
+/** Defines headers for operation response. */
+export interface JobScheduleExistsResponse {
+  clientRequestId?: string;
+  requestId?: string;
+  eTag?: string;
+  lastModified?: Date;
+}
+
+/** Defines headers for operation response. */
+export interface DeleteJobScheduleResponse {
+  clientRequestId?: string;
+  requestId?: string;
+}
+
+/** Defines headers for operation response. */
+export interface UpdateJobScheduleResponse {
+  clientRequestId?: string;
+  requestId?: string;
+  eTag?: string;
+  lastModified?: Date;
+  dataServiceId: string;
+}
+
+/** Defines headers for operation response. */
+export interface ReplaceJobScheduleResponse {
+  clientRequestId?: string;
+  requestId?: string;
+  eTag?: string;
+  lastModified?: Date;
+  dataServiceId: string;
+}
+
+/** Defines headers for operation response. */
+export interface DisableJobScheduleResponse {
+  clientRequestId?: string;
+  requestId?: string;
+  eTag?: string;
+  lastModified?: Date;
+  dataServiceId: string;
+}
+
+/** Defines headers for operation response. */
+export interface EnableJobScheduleResponse {
+  clientRequestId?: string;
+  requestId?: string;
+  eTag?: string;
+  lastModified?: Date;
+  dataServiceId: string;
+}
+
+/** Defines headers for operation response. */
+export interface TerminateJobScheduleResponse {
+  clientRequestId?: string;
+  requestId?: string;
+  eTag?: string;
+  lastModified?: Date;
+  dataServiceId: string;
+}
+
+/** Defines headers for operation response. */
+export interface CreateJobScheduleResponse {
+  clientRequestId?: string;
+  requestId?: string;
+  eTag?: string;
+  lastModified?: Date;
+  dataServiceId: string;
+}
+
+/** Defines headers for operation response. */
+export interface CreateCertificateResponse {
+  clientRequestId?: string;
+  requestId?: string;
+  eTag?: string;
+  lastModified?: Date;
+  dataServiceId: string;
+}
+
+/** Defines headers for operation response. */
+export interface CancelCertificateDeletionResponse {
+  clientRequestId?: string;
+  requestId?: string;
+  eTag?: string;
+  lastModified?: Date;
+  dataServiceId: string;
+}
+
+/** Defines headers for operation response. */
+export interface DeleteCertificateResponse {
+  clientRequestId?: string;
+  requestId?: string;
+  eTag?: string;
+  lastModified?: Date;
+}
+
+/** Defines headers for operation response. */
+export interface DeleteJobResponse {
+  clientRequestId?: string;
+  requestId?: string;
+}
+
+/** Defines headers for operation response. */
+export interface UpdateJobResponse {
+  clientRequestId?: string;
+  requestId?: string;
+  eTag?: string;
+  lastModified?: Date;
+  dataServiceId: string;
+}
+
+/** Defines headers for operation response. */
+export interface ReplaceJobResponse {
+  clientRequestId?: string;
+  requestId?: string;
+  eTag?: string;
+  lastModified?: Date;
+  dataServiceId: string;
+}
+
+/** Defines headers for operation response. */
+export interface DisableJobResponse {
+  clientRequestId?: string;
+  requestId?: string;
+  eTag?: string;
+  lastModified?: Date;
+  dataServiceId: string;
+}
+
+/** Defines headers for operation response. */
+export interface EnableJobResponse {
+  clientRequestId?: string;
+  requestId?: string;
+  eTag?: string;
+  lastModified?: Date;
+  dataServiceId: string;
+}
+
+/** Defines headers for operation response. */
+export interface TerminateJobResponse {
+  clientRequestId?: string;
+  requestId?: string;
+  eTag?: string;
+  lastModified?: Date;
+  dataServiceId: string;
+}
+
+/** Defines headers for operation response. */
+export interface CreateJobResponse {
+  clientRequestId?: string;
+  requestId?: string;
+  eTag?: string;
+  lastModified?: Date;
+  dataServiceId: string;
+}
+
+/** Defines headers for operation response. */
+export interface CreatePoolResponse {
+  clientRequestId?: string;
+  requestId?: string;
+  eTag?: string;
+  lastModified?: Date;
+  dataServiceId: string;
+}
+
+/** Defines headers for operation response. */
+export interface DeletePoolResponse {
+  clientRequestId?: string;
+  requestId?: string;
+}
+
+/** Defines headers for operation response. */
+export interface PoolExistsResponse {
+  clientRequestId?: string;
+  requestId?: string;
+  eTag?: string;
+  lastModified?: Date;
+}
+
+/** Defines headers for operation response. */
+export interface UpdatePoolResponse {
+  clientRequestId?: string;
+  requestId?: string;
+  eTag?: string;
+  lastModified?: Date;
+  dataServiceId: string;
+}
+
+/** Defines headers for operation response. */
+export interface DisablePoolAutoScaleResponse {
+  clientRequestId?: string;
+  requestId?: string;
+  eTag?: string;
+  lastModified?: Date;
+  dataServiceId: string;
+}
+
+/** Defines headers for operation response. */
+export interface EnablePoolAutoScaleResponse {
+  clientRequestId?: string;
+  requestId?: string;
+  eTag?: string;
+  lastModified?: Date;
+  dataServiceId: string;
+}
+
+/** Defines headers for operation response. */
+export interface ResizePoolResponse {
+  clientRequestId?: string;
+  requestId?: string;
+  eTag?: string;
+  lastModified?: Date;
+  dataServiceId: string;
+}
+
+/** Defines headers for operation response. */
+export interface StopPoolResizeResponse {
+  clientRequestId?: string;
+  requestId?: string;
+  eTag?: string;
+  lastModified?: Date;
+  dataServiceId: string;
+}
+
+/** Defines headers for operation response. */
+export interface ReplacePoolPropertiesResponse {
+  clientRequestId?: string;
+  requestId?: string;
+  eTag?: string;
+  lastModified?: Date;
+  dataServiceId: string;
+}
+
+/** Defines headers for operation response. */
+export interface RemoveNodesResponse {
+  clientRequestId?: string;
+  requestId?: string;
+  eTag?: string;
+  lastModified?: Date;
+  dataServiceId: string;
+}

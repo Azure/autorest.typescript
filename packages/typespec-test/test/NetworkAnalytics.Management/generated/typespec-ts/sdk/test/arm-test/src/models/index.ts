@@ -59,4 +59,6 @@ export {
   RoleAssignmentDetail,
   ListRoleAssignments,
   KnownVersions,
+  DeleteResponse,
+  DeleteDataResponse,
 } from "./models.js";

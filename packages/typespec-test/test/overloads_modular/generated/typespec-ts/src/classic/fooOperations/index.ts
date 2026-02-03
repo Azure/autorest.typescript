@@ -7,6 +7,7 @@ import {
   FooOperationsGetAvatarAsJpegOptionalParams,
   FooOperationsGetAvatarAsPngOptionalParams,
 } from "../../api/fooOperations/options.js";
+import { GetAvatarAsPngResponse, GetAvatarAsJpegResponse } from "../../models/models.js";
 
 /** Interface representing a FooOperations operations. */
 export interface FooOperationsOperations {
@@ -14,12 +15,12 @@ export interface FooOperationsOperations {
   getAvatarAsJpeg: (
     image: Uint8Array,
     options?: FooOperationsGetAvatarAsJpegOptionalParams,
-  ) => Promise<void>;
+  ) => Promise<GetAvatarAsJpegResponse>;
   /** A remote procedure call (RPC) operation. */
   getAvatarAsPng: (
     image: Uint8Array,
     options?: FooOperationsGetAvatarAsPngOptionalParams,
-  ) => Promise<void>;
+  ) => Promise<GetAvatarAsPngResponse>;
 }
 
 function _getFooOperations(context: WidgetManagerContext) {
