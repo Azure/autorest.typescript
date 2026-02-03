@@ -131,7 +131,7 @@ async function read(): Promise<void> {
     stringLiteral: "foo",
     booleanLiteral: true,
     numberLiteral: 12,
-    plainDateProp: "2022-12-12",
+    plainDateProp: new Date("2022-12-12"),
     plainTimeProp: "13:06:12",
     utcDateTimeProp: new Date("2022-08-26T18:38:00Z"),
     offsetDateTimeProp: "2022-08-26T18:38:00Z",

@@ -70,7 +70,6 @@ import {
   isHttpMetadata,
   isReadOnly,
   SdkBodyParameter,
-  SdkClientType,
   SdkConstantType,
   SdkEnumType,
   SdkHttpOperation,
@@ -90,7 +89,6 @@ import { isExtensibleEnum } from "../type-expressions/get-enum-expression.js";
 
 export function getSendPrivateFunction(
   dpgContext: SdkContext,
-  client: SdkClientType<SdkHttpOperation>,
   method: [string[], ServiceOperation],
   clientType: string
 ): OptionalKind<FunctionDeclarationStructure> {
@@ -114,12 +112,6 @@ export function getSendPrivateFunction(
   const operationPath = operation.operation.path;
   const operationMethod = operation.operation.verb.toLowerCase();
   const optionalParamName = getOptionalParamsName(parameters);
-  const hasQueryApiVersion = operation.operation.parameters.some(
-    (p) => p.onClient && p.kind === "query" && p.isApiVersionParam
-  );
-  const hasClientApiVersion = client.clientInitialization.parameters.some(
-    (p) => p.isApiVersionParam && p.onClient && p.kind === "method"
-  );
   const statements: string[] = [];
   let pathStr = `"${operationPath}"`;
   const urlTemplateParams = [
@@ -133,11 +125,6 @@ export function getSendPrivateFunction(
       allowReserved: ${optionalParamName}?.requestOptions?.skipUrlEncoding
     });`);
     pathStr = "path";
-  }
-  if (hasClientApiVersion && !hasQueryApiVersion) {
-    statements.push(
-      `context.pipeline.removePolicy({ name: "ClientApiVersionPolicy"});`
-    );
   }
 
   statements.push(
@@ -684,9 +671,11 @@ function getLroOnlyOperationFunction(
   const resourceLocationConfig =
     lroMetadata?.finalStateVia &&
     allowedFinalLocation.includes(lroMetadata?.finalStateVia)
-      ? `resourceLocationConfig: "${lroMetadata?.finalStateVia}"`
+      ? `resourceLocationConfig: "${lroMetadata?.finalStateVia}",`
       : "";
+  const apiVersion = getApiVersionExpression(operation);
   const statements: string[] = [];
+
   statements.push(`
 
   return ${getLongRunningPollerReference}(context, _${name}Deserialize, ${getExpectedStatuses(
@@ -698,6 +687,7 @@ function getLroOnlyOperationFunction(
       .map((p) => p.name)
       .join(", ")}),
     ${resourceLocationConfig}
+    ${apiVersion ? `apiVersion: ${apiVersion}` : ""}
   }) as ${pollerLikeReference}<${operationStateReference}<${
     returnType.type
   }>, ${returnType.type}>;
@@ -725,6 +715,9 @@ function getLroAndPagingOperationFunction(
 
   const returnType = buildLroPagingReturnType(context, operation);
 
+  // Get apiVersion expression for both LRO poller and paging options
+  const apiVersion = getApiVersionExpression(operation);
+
   // Build paging options from metadata
   const pagingOptions = [
     operation.response.resultSegments &&
@@ -732,7 +725,8 @@ function getLroAndPagingOperationFunction(
     operation.pagingMetadata.nextLinkSegments &&
       `nextLinkName: "${operation.pagingMetadata.nextLinkSegments.map((p) => p.name).join(".")}"`,
     operation.pagingMetadata.nextLinkVerb !== "GET" &&
-      `nextLinkMethod: "${operation.pagingMetadata.nextLinkVerb}"`
+      `nextLinkMethod: "${operation.pagingMetadata.nextLinkVerb}"`,
+    apiVersion && `apiVersion: ${apiVersion}`
   ].filter(Boolean);
 
   // Build LRO resource location config
@@ -745,7 +739,7 @@ function getLroAndPagingOperationFunction(
   const resourceLocationConfig =
     operation.lroMetadata?.finalStateVia &&
     allowedLocations.includes(operation.lroMetadata.finalStateVia)
-      ? `resourceLocationConfig: "${operation.lroMetadata.finalStateVia}"`
+      ? `resourceLocationConfig: "${operation.lroMetadata.finalStateVia}",`
       : "";
 
   // Resolve references
@@ -784,6 +778,7 @@ function getLroAndPagingOperationFunction(
     abortSignal: ${optionalParamName}?.abortSignal,
     getInitialResponse: () => _${name}Send(${paramList}),
     ${resourceLocationConfig}
+    ${apiVersion ? `apiVersion: ${apiVersion}` : ""}
   }) as ${refs.pollerLike}<${refs.operationState}<${refs.pathResponse}>, ${refs.pathResponse}>;
   
   return ${refs.buildPaging}(
@@ -887,6 +882,8 @@ function getPagingOnlyOperationFunction(
   // Check for nextLinkVerb from TCGC pagingMetadata (supports @Legacy.nextLinkVerb decorator)
   const nextLinkMethod = operation.pagingMetadata.nextLinkVerb;
 
+  const apiVersion = getApiVersionExpression(operation);
+
   if (itemName) {
     options.push(`itemName: "${itemName}"`);
   }
@@ -895,6 +892,9 @@ function getPagingOnlyOperationFunction(
   }
   if (nextLinkMethod && nextLinkMethod !== "GET") {
     options.push(`nextLinkMethod: "${nextLinkMethod}"`);
+  }
+  if (apiVersion) {
+    options.push(`apiVersion: ${apiVersion}`);
   }
   statements.push(
     `return ${buildPagedAsyncIteratorReference}(
@@ -1149,6 +1149,11 @@ export function getParameterMap(
 
   if (isConstant(param.type)) {
     return `"${serializedName}": ${getConstantValue(param.type)}`;
+  }
+
+  // Special case for api-version parameters with default values
+  if (param.isApiVersionParam && param.clientDefaultValue) {
+    return `"${serializedName}": ${param.onClient ? "context." : ""}${param.name} ?? "${param.clientDefaultValue}"`;
   }
 
   if (hasCollectionFormatInfo(param.kind, (param as any).collectionFormat)) {
@@ -1722,6 +1727,9 @@ export function serializeRequestValue(
       ? `!${clientValue}? ${clientValue}: `
       : "";
   switch (type.kind) {
+    case "plainDate":
+      // plainDate always uses ISO8601 format (YYYY-MM-DD)
+      return `${nullOrUndefinedPrefix}${clientValue}.toISOString().split('T')[0]`;
     case "utcDateTime":
       switch (type.encode ?? format) {
         case "rfc7231":
@@ -1849,6 +1857,9 @@ export function deserializeResponseValue(
       ? `!${restValue}? ${restValue}: `
       : "";
   switch (type.kind) {
+    case "plainDate":
+      // plainDate deserializes from YYYY-MM-DD string to Date
+      return `${nullOrUndefinedPrefix} new Date(${restValue})`;
     case "utcDateTime":
       return `${nullOrUndefinedPrefix} new Date(${type.encode === "unixTimestamp" ? `${restValue} * 1000` : restValue})`;
     case "array": {
@@ -2087,4 +2098,25 @@ export function getExpectedStatuses(operation: ServiceOperation): string {
   }
 
   return `[${statusCodes.map((x) => `"${x}"`).join(", ")}]`;
+}
+
+/**
+ * Gets the apiVersion expression with default value fallback for query parameters.
+ * @param operation - The operation to get the apiVersion parameter from
+ * @returns The apiVersion expression string, or undefined if no apiVersion query param exists
+ */
+function getApiVersionExpression(
+  operation: ServiceOperation
+): string | undefined {
+  const queryApiVersionParam = operation.operation.parameters.find(
+    (p) => p.kind === "query" && p.isApiVersionParam
+  );
+  if (!queryApiVersionParam) {
+    return undefined;
+  }
+  const paramAccess = `${queryApiVersionParam.onClient ? "context." : ""}${queryApiVersionParam.name}`;
+  const defaultValueSuffix = queryApiVersionParam.clientDefaultValue
+    ? ` ?? "${queryApiVersionParam.clientDefaultValue}"`
+    : "";
+  return `${paramAccess}${defaultValueSuffix}`;
 }

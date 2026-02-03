@@ -39,7 +39,7 @@ export function createTodo(
       },
     });
   }
-  clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+
   if (options.apiVersion) {
     console.warn(
       "This client does not support client api-version, please change it at the operation level",

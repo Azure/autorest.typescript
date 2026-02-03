@@ -64,7 +64,7 @@ export function _stopTestRunSend(
     "/test-runs/{testRunId}:stop{?api%2Dversion}",
     {
       testRunId: testRunId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-05-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -104,7 +104,7 @@ export function _listTestRunsSend(
   const path = expandUrlTemplate(
     "/test-runs{?api%2Dversion,orderby,search,testId,executionFrom,executionTo,status,maxpagesize}",
     {
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-05-01-preview",
       orderby: options?.orderby,
       search: options?.search,
       testId: options?.testId,
@@ -150,7 +150,11 @@ export function listTestRuns(
     () => _listTestRunsSend(context, options),
     _listTestRunsDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "nextLink" },
+    {
+      itemName: "value",
+      nextLinkName: "nextLink",
+      apiVersion: context.apiVersion ?? "2024-05-01-preview",
+    },
   );
 }
 
@@ -166,7 +170,7 @@ export function _listMetricsSend(
     "/test-runs/{testRunId}/metrics{?api%2Dversion,aggregation,metricname,interval,metricNamespace,timespan}",
     {
       testRunId: testRunId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-05-01-preview",
       aggregation: options?.aggregation,
       metricname: metricname,
       interval: options?.interval,
@@ -210,7 +214,11 @@ export function listMetrics(
     () => _listMetricsSend(context, testRunId, metricname, metricNamespace, timespan, options),
     _listMetricsDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "nextLink" },
+    {
+      itemName: "value",
+      nextLinkName: "nextLink",
+      apiVersion: context.apiVersion ?? "2024-05-01-preview",
+    },
   );
 }
 
@@ -223,7 +231,7 @@ export function _listMetricNamespacesSend(
     "/test-runs/{testRunId}/metric-namespaces{?api%2Dversion}",
     {
       testRunId: testRunId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-05-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -268,7 +276,7 @@ export function _listMetricDefinitionsSend(
     "/test-runs/{testRunId}/metric-definitions{?api%2Dversion,metricNamespace}",
     {
       testRunId: testRunId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-05-01-preview",
       metricNamespace: metricNamespace,
     },
     {
@@ -319,7 +327,7 @@ export function _listMetricDimensionValuesSend(
     {
       testRunId: testRunId,
       name: name,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-05-01-preview",
       metricname: metricname,
       interval: options?.interval,
       metricNamespace: metricNamespace,
@@ -381,7 +389,7 @@ export function _getTestRunFileSend(
     {
       testRunId: testRunId,
       fileName: fileName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-05-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -426,7 +434,7 @@ export function _getTestRunSend(
     "/test-runs/{testRunId}{?api%2Dversion}",
     {
       testRunId: testRunId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-05-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -468,7 +476,7 @@ export function _getServerMetricsConfigSend(
     "/test-runs/{testRunId}/server-metrics-config{?api%2Dversion}",
     {
       testRunId: testRunId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-05-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -512,7 +520,7 @@ export function _getAppComponentsSend(
     "/test-runs/{testRunId}/app-components{?api%2Dversion}",
     {
       testRunId: testRunId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-05-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -559,7 +567,7 @@ export function _deleteTestRunSend(
     "/test-runs/{testRunId}{?api%2Dversion}",
     {
       testRunId: testRunId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-05-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -597,7 +605,7 @@ export function _createOrUpdateServerMetricsConfigSend(
     "/test-runs/{testRunId}/server-metrics-config{?api%2Dversion}",
     {
       testRunId: testRunId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-05-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -645,7 +653,7 @@ export function _createOrUpdateAppComponentsSend(
     "/test-runs/{testRunId}/app-components{?api%2Dversion}",
     {
       testRunId: testRunId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-05-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -693,7 +701,7 @@ export function _createOrUpdateTestRunSend(
     "/test-runs/{testRunId}{?api%2Dversion,oldTestRunId}",
     {
       testRunId: testRunId,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2024-05-01-preview",
       oldTestRunId: options?.oldTestRunId,
     },
     {

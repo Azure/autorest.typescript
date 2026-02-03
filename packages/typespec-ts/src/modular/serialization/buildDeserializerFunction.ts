@@ -178,7 +178,11 @@ function buildPolymorphicDeserializer(
 
   const subTypes = type.discriminatedSubtypes;
   if (!subTypes) {
-    return;
+    // No subtypes - treat as a regular model and generate simple deserializer
+    return buildModelTypeDeserializer(context, type, {
+      nameOnly,
+      skipDiscriminatedUnionSuffix: false
+    });
   }
 
   const cases: string[] = [];

@@ -8,6 +8,9 @@ This is tsp definition.
 
 ```tsp
 model SimpleModel {
+  proNumeric: numeric;
+  proNumericArray: numeric[];
+  propNumericUnion: string | numeric;
   propString: string;
   propboolean: boolean;
   propNumber: int32;
@@ -75,6 +78,9 @@ Generated Models.
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface SimpleModel */
 export interface SimpleModel {
+  proNumeric: number;
+  proNumericArray: number[];
+  propNumericUnion: string | number;
   propString: string;
   propboolean: boolean;
   propNumber: number;
@@ -118,6 +124,11 @@ export interface SimpleModel {
 
 export function simpleModelDeserializer(item: any): SimpleModel {
   return {
+    proNumeric: item["proNumeric"],
+    proNumericArray: item["proNumericArray"].map((p: any) => {
+      return p;
+    }),
+    propNumericUnion: _simpleModelPropNumericUnionDeserializer(item["propNumericUnion"]),
     propString: item["propString"],
     propboolean: item["propboolean"],
     propNumber: item["propNumber"],
@@ -225,6 +236,13 @@ export function simpleModelDeserializer(item: any): SimpleModel {
           ]),
         ),
   };
+}
+
+/** Alias for _SimpleModelPropNumericUnion */
+export type _SimpleModelPropNumericUnion = string | number;
+
+export function _simpleModelPropNumericUnionDeserializer(item: any): _SimpleModelPropNumericUnion {
+  return item;
 }
 
 /** Alias for _SimpleModelPropSimpleUnion */

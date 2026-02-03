@@ -56,7 +56,6 @@ export function _analyzeWidgetSend(
       allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
-  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
     .path(path)
     .post({
@@ -102,7 +101,6 @@ export function _deleteWidgetSend(
       allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
-  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context.path(path).delete({ ...operationOptionsToRequestParameters(options) });
 }
 
@@ -141,7 +139,6 @@ export function _updateWidgetSend(
       allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
-  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
     .path(path)
     .patch({
@@ -186,7 +183,7 @@ export function _createOrReplaceSend(
     "/widgets/widgets/createOrReplace/users/{name}{?api%2Dversion}",
     {
       name: name,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "1.0.0",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -223,6 +220,7 @@ export function createOrReplace(
     abortSignal: options?.abortSignal,
     getInitialResponse: () => _createOrReplaceSend(context, name, resource, options),
     resourceLocationConfig: "original-uri",
+    apiVersion: context.apiVersion ?? "1.0.0",
   }) as PollerLike<OperationState<SAPUser>, SAPUser>;
 }
 
@@ -232,7 +230,6 @@ export function _createWidgetSend(
   color: "red" | "blue",
   options: SAPWidgetsCreateWidgetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
     .path("/widgets")
     .post({
@@ -284,7 +281,6 @@ export function _getWidgetSend(
       allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
-  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
     .path(path)
     .get({
@@ -330,7 +326,6 @@ export function _queryWidgetsPagesSend(
       allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
-  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
     .path(path)
     .post({
@@ -383,7 +378,6 @@ export function _listWidgetsPagesSend(
       allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
-  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
     .path(path)
     .get({
@@ -429,7 +423,6 @@ export function _sapListWidgetsSend(
   utcDateHeader: Date,
   options: SAPWidgetsSAPListWidgetsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context.path("/widgets").get({
     ...operationOptionsToRequestParameters(options),
     headers: {

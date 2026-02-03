@@ -1,3 +1,14 @@
+## 0.49.0 (2026-02-02)
+
+- [Feature] Support @disablePageable. Please refer to [#3715](https://github.com/Azure/autorest.typescript/pull/3715)
+- [Feature] Add Azure Alternate Type spector case and fix numeric type generation bug. Please refer to [#3558](https://github.com/Azure/autorest.typescript/pull/3558)
+- [Feature] Remove apiVersion pipeline policy and move default apiVersion value to operation level. Please refer to [#3702](https://github.com/Azure/autorest.typescript/pull/3702)
+- [Feature] Generate `PlainDate` as a Date instead of as a string. Please refer to [#3675](https://github.com/Azure/autorest.typescript/pull/3675)
+- [Feature] Add missing multipart test coverage for wire names and optional parts. Please refer to [#3692](https://github.com/Azure/autorest.typescript/pull/3692)
+- [Feature] Bump TypeSpec dependencies to latest stable. Please refer to [#3698](https://github.com/Azure/autorest.typescript/pull/3698)
+- [Bugfix] Fix the generation of discriminate models without Subtypes. Please refer to [#3710](https://github.com/Azure/autorest.typescript/pull/3710)
+- [Bugfix] Filtering out parameters with default values when generating sample code. Please refer to [#3619](https://github.com/Azure/autorest.typescript/pull/3619)
+
 ## 0.48.1 (2026-01-26)
 
 - [Feature] Support LRO + Paging operations in Modular SDK. Please refer to [#3676](https://github.com/Azure/autorest.typescript/pull/3676)
