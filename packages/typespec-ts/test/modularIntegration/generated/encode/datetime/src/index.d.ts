@@ -19,6 +19,10 @@ export declare interface DefaultDatetimeProperty {
     value: Date;
 }
 
+export declare interface DefaultResponse {
+    value: Date;
+}
+
 export declare interface HeaderDefaultOptionalParams extends OperationOptions {
 }
 
@@ -92,10 +96,10 @@ export declare interface ResponseHeaderDefaultOptionalParams extends OperationOp
 }
 
 export declare interface ResponseHeaderOperations {
-    unixTimestamp: (options?: ResponseHeaderUnixTimestampOptionalParams) => Promise<void>;
-    rfc7231: (options?: ResponseHeaderRfc7231OptionalParams) => Promise<void>;
-    rfc3339: (options?: ResponseHeaderRfc3339OptionalParams) => Promise<void>;
-    default: (options?: ResponseHeaderDefaultOptionalParams) => Promise<void>;
+    unixTimestamp: (options?: ResponseHeaderUnixTimestampOptionalParams) => Promise<UnixTimestampResponse>;
+    rfc7231: (options?: ResponseHeaderRfc7231OptionalParams) => Promise<Rfc7231Response>;
+    rfc3339: (options?: ResponseHeaderRfc3339OptionalParams) => Promise<Rfc3339Response>;
+    default: (options?: ResponseHeaderDefaultOptionalParams) => Promise<DefaultResponse>;
 }
 
 export declare interface ResponseHeaderRfc3339OptionalParams extends OperationOptions {
@@ -111,7 +115,15 @@ export declare interface Rfc3339DatetimeProperty {
     value: Date;
 }
 
+export declare interface Rfc3339Response {
+    value: Date;
+}
+
 export declare interface Rfc7231DatetimeProperty {
+    value: Date;
+}
+
+export declare interface Rfc7231Response {
     value: Date;
 }
 
@@ -120,6 +132,10 @@ export declare interface UnixTimestampArrayDatetimeProperty {
 }
 
 export declare interface UnixTimestampDatetimeProperty {
+    value: Date;
+}
+
+export declare interface UnixTimestampResponse {
     value: Date;
 }
 

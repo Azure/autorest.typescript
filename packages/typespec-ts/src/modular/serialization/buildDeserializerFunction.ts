@@ -402,7 +402,9 @@ function buildModelTypeDeserializer(
       : resolveReference(refkey(type, "deserializer"));
   }
 
-  // Check if model or its ancestors have any header properties
+  // Check if model or its ancestors have header properties that need special handling.
+  // If so, the deserializer function will accept an optional 'headers' parameter
+  // to deserialize header values into the model properties.
   const allProps = type.kind === "model" ? (type.properties ?? []) : [];
   const ancestorProps =
     type.kind === "model"

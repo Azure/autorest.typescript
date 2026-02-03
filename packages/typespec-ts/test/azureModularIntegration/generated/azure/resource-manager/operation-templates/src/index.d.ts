@@ -65,6 +65,11 @@ export declare type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
 
 export declare type CreatedByType = string;
 
+export declare interface DeleteResponse {
+    location?: string;
+    retryAfter?: number;
+}
+
 export declare interface ErrorAdditionalInfo {
     readonly type?: string;
     readonly info?: any;

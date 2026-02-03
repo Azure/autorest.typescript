@@ -2303,6 +2303,11 @@ export type SchemaContentTypeValues =
   | "application/json; serialization=json"
   | "text/plain; charset=utf-8"
   | "text/vnd.ms.protobuf";
+
+/** Defines headers for operation response. */
+export interface GetResponse {
+  testHeader: SchemaContentTypeValues;
+}
 ```
 
 # anonymous union with string literals being used in regular headers
@@ -2340,13 +2345,23 @@ needAzureCore: false
 ## Models
 
 ```ts models
-// (file was not generated)
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/** Defines headers for operation response. */
+export interface GetResponse {
+  testHeader: "A" | "B";
+}
 ```
 
 ## Operations
 
 ```ts operations
 import { DemoServiceContext as Client } from "./index.js";
+import { GetResponse } from "../models/models.js";
 import { GetOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -2371,13 +2386,13 @@ export function _getSend(
 
 export async function _getDeserialize(
   result: PathUncheckedResponse
-): Promise<void> {
+): Promise<GetResponse> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return;
+  return { testHeader: result.headers["test-header"]! } as GetResponse;
 }
 
 export async function get(
@@ -2385,7 +2400,7 @@ export async function get(
   testHeader: "A" | "B",
   body: string,
   options: GetOptionalParams = { requestOptions: {} }
-): Promise<void> {
+): Promise<GetResponse> {
   const result = await _getSend(context, testHeader, body, options);
   return _getDeserialize(result);
 }

@@ -25,7 +25,7 @@ export declare interface DifferentBodyOperations {
 }
 
 export declare interface PngImageAsJson {
-    contentType?: "application/json";
+    contentType: "application/json";
     content: Uint8Array;
 }
 

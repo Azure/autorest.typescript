@@ -142,7 +142,10 @@ describe("EncodeDatetimeClient Rest Client", () => {
           );
         }
       });
-      assert.isUndefined(result);
+      assert.equal(
+        result.value.toISOString(),
+        new Date("Fri, 26 Aug 2022 14:38:00 GMT").toISOString()
+      );
     });
 
     it(`should get rfc3339 header`, async () => {
@@ -154,7 +157,10 @@ describe("EncodeDatetimeClient Rest Client", () => {
           );
         }
       });
-      assert.isUndefined(result);
+      assert.equal(
+        result.value.toISOString(),
+        new Date("2022-08-26T18:38:00.000Z").toISOString()
+      );
     });
 
     it(`should get rfc7231 header`, async () => {
@@ -166,7 +172,10 @@ describe("EncodeDatetimeClient Rest Client", () => {
           );
         }
       });
-      assert.isUndefined(result);
+      assert.equal(
+        result.value.toISOString(),
+        new Date("Fri, 26 Aug 2022 14:38:00 GMT").toISOString()
+      );
     });
 
     it(`should get unix-timestamp header`, async () => {
@@ -175,7 +184,10 @@ describe("EncodeDatetimeClient Rest Client", () => {
           assert.strictEqual(res.headers.get("value"), "1686566864");
         }
       });
-      assert.isUndefined(result);
+      assert.equal(
+        result.value.toISOString(),
+        new Date(1686566864 * 1000).toISOString()
+      );
     });
   });
 });

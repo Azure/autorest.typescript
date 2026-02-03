@@ -49,7 +49,7 @@ export declare class NamingClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: NamingClientOptionalParams);
-    response(options?: ResponseOptionalParams): Promise<void>;
+    response(options?: ResponseOptionalParams): Promise<ResponseResponse>;
     request(clientName: string, options?: RequestOptionalParams): Promise<void>;
     compatibleWithEncodedName(body: ClientNameAndJsonEncodedNameModel, options?: CompatibleWithEncodedNameOptionalParams): Promise<void>;
     language(body: LanguageClientNameModel, options?: LanguageOptionalParams): Promise<void>;
@@ -70,6 +70,10 @@ export declare interface RequestOptionalParams extends OperationOptions {
 }
 
 export declare interface ResponseOptionalParams extends OperationOptions {
+}
+
+export declare interface ResponseResponse {
+    clientName: string;
 }
 
 export declare interface TSModel {

@@ -184,7 +184,9 @@ export function getDeserializePrivateFunction(
     );
     returnType = {
       name: headerOnlyTypeName,
-      type: resolveReference(refkey(operation.name, "headerResponse"))
+      type: resolveReference(
+        refkey(operation.operation.__raw, "headerResponse")
+      )
     };
   } else {
     returnType = { name: "", type: "void" };
@@ -609,15 +611,17 @@ export function getOperationFunction(
     };
   } else if (hasHeaderOnlyResponse) {
     const headerOnlyInterfaceName =
-      getHeaderOnlyResponseInterfaceName(operation);
-    registerHeaderOnlyResponse(
-      headerOnlyInterfaceName,
+      generateHeaderOnlyResponseTypeName(operation);
+    registerHeaderOnlyResponseInterface(
       operation,
-      responseHeaders
+      responseHeaders,
+      headerOnlyInterfaceName
     );
     returnType = {
       name: headerOnlyInterfaceName,
-      type: resolveReference(refkey(operation.name, "headerResponse"))
+      type: resolveReference(
+        refkey(operation.operation.__raw, "headerResponse")
+      )
     };
   }
   const { name, fixme = [] } = getOperationName(operation);
@@ -1749,15 +1753,23 @@ export function getResponseMapping(
           nameOnly: true,
           skipDiscriminatedUnionSuffix: false
         });
+    const nullOrUndefinedPrefix =
+      property.optional || isTypeNullable(property.type)
+        ? `!${restValue} ? ${restValue} : `
+        : "";
     const propertyName = normalizeModelPropertyName(context, property);
     if (deserializeFunctionName) {
       if (isSupportedFlatten) {
-        props.push(`...${deserializeFunctionName}(${restValue})`);
+        props.push(
+          `...${nullOrUndefinedPrefix}${deserializeFunctionName}(${restValue})`
+        );
       } else {
-        props.push(`${propertyName}: ${deserializeFunctionName}(${restValue})`);
+        props.push(
+          `${propertyName}: ${nullOrUndefinedPrefix}${deserializeFunctionName}(${restValue})`
+        );
       }
     } else if (isAzureCoreErrorType(context.program, property.type.__raw)) {
-      props.push(`${propertyName}: ${restValue}`);
+      props.push(`${propertyName}: ${nullOrUndefinedPrefix}${restValue}`);
     } else {
       const deserializeValue = deserializeResponseValue(
         context,
@@ -1772,6 +1784,12 @@ export function getResponseMapping(
   return props;
 }
 
+/**
+ * Checks if a model type or any of its ancestors have header properties.
+ * @param context - The SDK context
+ * @param type - The model type to check
+ * @returns True if the model or its ancestors have header properties
+ */
 function hasHeaderProperties(context: SdkContext, type: SdkModelType): boolean {
   const allProps = type.properties ?? [];
   const ancestorProps = getAllAncestors(type)
@@ -1782,6 +1800,13 @@ function hasHeaderProperties(context: SdkContext, type: SdkModelType): boolean {
   );
 }
 
+/**
+ * Builds the object literal expression for a header-only response.
+ * Handles type conversions for headers (string to boolean, Date, number, Uint8Array).
+ * @param operation - The service operation
+ * @param headers - The response headers
+ * @returns JavaScript expression string for the header-only response object
+ */
 function buildHeaderOnlyResponseValue(
   operation: ServiceOperation,
   headers: SdkServiceResponseHeader[]
@@ -1790,7 +1815,6 @@ function buildHeaderOnlyResponseValue(
   const stringToUint8ArrayReference = resolveReference(
     dependencies.stringToUint8Array
   );
-  const headerOnlyInterfaceName = getHeaderOnlyResponseInterfaceName(operation);
   const props = headers.map((header) => {
     const name = normalizeName(header.name, NameType.Property);
     const serializedName = (header.serializedName ?? header.name).toLowerCase();
@@ -1815,7 +1839,7 @@ function buildHeaderOnlyResponseValue(
       const dateSource =
         header.type.kind === "utcDateTime" &&
         header.type.encode === "unixTimestamp"
-          ? `${headerAccess} * 1000`
+          ? `Number(${headerAccess}) * 1000`
           : headerAccess;
       headerValue = isOptional
         ? `${headerAccess} ? new Date(${dateSource}) : undefined`
@@ -1843,7 +1867,7 @@ function buildHeaderOnlyResponseValue(
 
     return `${name}: ${headerValue}`;
   });
-  return `{ ${props.join(", ")} } as ${headerOnlyInterfaceName}`;
+  return `{ ${props.join(", ")} } as ${resolveReference(refkey(operation.operation.__raw!, "headerResponse"))}`;
 }
 
 /**
@@ -1990,31 +2014,25 @@ export function deserializeResponseValue(
   const stringToUint8ArrayReference = resolveReference(
     dependencies.stringToUint8Array
   );
-  const isOptional =
-    isTypeNullable(type) || getOptionalForType(type) || !required;
+  const nullOrUndefinedPrefix =
+    isTypeNullable(type) || getOptionalForType(type) || !required
+      ? `!${restValue} ? ${restValue} : `
+      : "";
   switch (type.kind) {
     case "plainDate":
       // plainDate deserializes from YYYY-MM-DD string to Date
-      // For optional types, generate: value ? new Date(value) : undefined
-      return isOptional
-        ? `${restValue} ? new Date(${restValue}) : undefined`
-        : `new Date(${restValue})`;
-    case "utcDateTime": {
-      const dateValue =
-        type.encode === "unixTimestamp" ? `${restValue} * 1000` : restValue;
-      return isOptional
-        ? `${restValue} ? new Date(${dateValue}) : undefined`
-        : `new Date(${dateValue})`;
-    }
+      return `${nullOrUndefinedPrefix} new Date(${restValue})`;
+    case "utcDateTime":
+      return `${nullOrUndefinedPrefix} new Date(${type.encode === "unixTimestamp" ? `${restValue} * 1000` : restValue})`;
     case "array": {
-      const prefix = restValue;
+      const prefix = nullOrUndefinedPrefix + restValue;
       const varName = recursionDepth > 0 ? `p${recursionDepth}` : "p";
       let elementNullOrUndefinedPrefix = "";
       if (
         type.valueType &&
         (isTypeNullable(type.valueType) || getOptionalForType(type.valueType))
       ) {
-        elementNullOrUndefinedPrefix = `${varName} ? `;
+        elementNullOrUndefinedPrefix = `!${varName} ? ${varName} :`;
       }
       const deserializeFunctionName = type.valueType
         ? buildModelDeserializer(
@@ -2027,24 +2045,21 @@ export function deserializeResponseValue(
           )
         : undefined;
       if (deserializeFunctionName) {
-        return isOptional
-          ? `${prefix} ? ${prefix}.map((${varName}: any) => { return ${elementNullOrUndefinedPrefix}${deserializeFunctionName}(${varName})}) : undefined`
-          : `${prefix}.map((${varName}: any) => { return ${elementNullOrUndefinedPrefix}${deserializeFunctionName}(${varName})})`;
+        return `${prefix}.map((${varName}: any) => { return ${elementNullOrUndefinedPrefix}${deserializeFunctionName}(${varName})})`;
       } else if (
         type.valueType &&
         isAzureCoreErrorType(context.program, type.valueType.__raw)
       ) {
-        return isOptional
-          ? `${prefix} ? ${prefix}.map((${varName}: any) => { return ${elementNullOrUndefinedPrefix}${varName}}) : undefined`
-          : `${prefix}.map((${varName}: any) => { return ${elementNullOrUndefinedPrefix}${varName}})`;
+        return `${prefix}.map((${varName}: any) => { return ${elementNullOrUndefinedPrefix}${varName}})`;
       } else if (type.valueType) {
         if (format) {
           const parseHelper = getCollectionFormatParseHelper(format);
           if (parseHelper) {
             // We shouldn't check for an empty string here since an empty string should be parsed as an empty array
-            const optionalPrefixForString = isOptional
-              ? `${restValue} === null || ${restValue} === undefined ? ${restValue}: `
-              : "";
+            const optionalPrefixForString =
+              isTypeNullable(type) || getOptionalForType(type) || !required
+                ? `${restValue} === null || ${restValue} === undefined ? ${restValue}: `
+                : "";
             if (
               type.valueType.kind === "enum" &&
               !isExtensibleEnum(context, type.valueType)
@@ -2056,9 +2071,7 @@ export function deserializeResponseValue(
             }
           }
         }
-        return isOptional
-          ? `${prefix} ? ${prefix}.map((${varName}: any) => { return ${elementNullOrUndefinedPrefix}${deserializeResponseValue(context, type.valueType, varName, true, getEncodeForType(type.valueType), recursionDepth + 1)}}) : undefined`
-          : `${prefix}.map((${varName}: any) => { return ${elementNullOrUndefinedPrefix}${deserializeResponseValue(context, type.valueType, varName, true, getEncodeForType(type.valueType), recursionDepth + 1)}})`;
+        return `${prefix}.map((${varName}: any) => { return ${elementNullOrUndefinedPrefix}${deserializeResponseValue(context, type.valueType, varName, true, getEncodeForType(type.valueType), recursionDepth + 1)}})`;
       } else {
         return restValue;
       }
@@ -2071,7 +2084,7 @@ export function deserializeResponseValue(
         type.valueType &&
         (isTypeNullable(type.valueType) || getOptionalForType(type.valueType))
       ) {
-        elementNullOrUndefinedPrefix = `${valueVar} ? `;
+        elementNullOrUndefinedPrefix = `!${valueVar} ? ${valueVar} :`;
       }
       const deserializeFunctionName = type.valueType
         ? buildModelDeserializer(
@@ -2084,33 +2097,21 @@ export function deserializeResponseValue(
           )
         : undefined;
       if (deserializeFunctionName) {
-        return isOptional
-          ? `${restValue} ? Object.fromEntries(Object.entries(${restValue}).map(([${keyVar}, ${valueVar}]: [string, any]) => [${keyVar}, ${elementNullOrUndefinedPrefix}${deserializeFunctionName}(${valueVar})])) : undefined`
-          : `Object.fromEntries(Object.entries(${restValue}).map(([${keyVar}, ${valueVar}]: [string, any]) => [${keyVar}, ${elementNullOrUndefinedPrefix}${deserializeFunctionName}(${valueVar})]))`;
+        return `${nullOrUndefinedPrefix}Object.fromEntries(Object.entries(${restValue}).map(([${keyVar}, ${valueVar}]: [string, any]) => [${keyVar}, ${elementNullOrUndefinedPrefix}${deserializeFunctionName}(${valueVar})]))`;
       } else if (
         type.valueType &&
         isAzureCoreErrorType(context.program, type.valueType.__raw)
       ) {
-        return isOptional
-          ? `${restValue} ? Object.fromEntries(Object.entries(${restValue}).map(([${keyVar}, ${valueVar}]: [string, any]) => [${keyVar}, ${elementNullOrUndefinedPrefix}${valueVar}])) : undefined`
-          : `Object.fromEntries(Object.entries(${restValue}).map(([${keyVar}, ${valueVar}]: [string, any]) => [${keyVar}, ${elementNullOrUndefinedPrefix}${valueVar}]))`;
+        return `${nullOrUndefinedPrefix}Object.fromEntries(Object.entries(${restValue}).map(([${keyVar}, ${valueVar}]: [string, any]) => [${keyVar}, ${elementNullOrUndefinedPrefix}${valueVar}]))`;
       } else if (type.valueType) {
-        return isOptional
-          ? `${restValue} ? Object.fromEntries(Object.entries(${restValue}).map(([${keyVar}, ${valueVar}]: [string, any]) => [${keyVar}, ${elementNullOrUndefinedPrefix}${deserializeResponseValue(context, type.valueType, valueVar, true, getEncodeForType(type.valueType), recursionDepth + 1)}])) : undefined`
-          : `Object.fromEntries(Object.entries(${restValue}).map(([${keyVar}, ${valueVar}]: [string, any]) => [${keyVar}, ${elementNullOrUndefinedPrefix}${deserializeResponseValue(context, type.valueType, valueVar, true, getEncodeForType(type.valueType), recursionDepth + 1)}]))`;
+        return `${nullOrUndefinedPrefix}Object.fromEntries(Object.entries(${restValue}).map(([${keyVar}, ${valueVar}]: [string, any]) => [${keyVar}, ${elementNullOrUndefinedPrefix}${deserializeResponseValue(context, type.valueType, valueVar, true, getEncodeForType(type.valueType), recursionDepth + 1)}]))`;
       } else {
         return restValue;
       }
     }
     case "bytes":
       if (format !== "binary" && format !== "bytes") {
-        return isOptional
-          ? `${restValue} ? typeof ${restValue} === 'string'
-        ? ${stringToUint8ArrayReference}(${restValue}, "${format ?? "base64"}")
-        : ${restValue} : undefined`
-          : `typeof ${restValue} === 'string'
-        ? ${stringToUint8ArrayReference}(${restValue}, "${format ?? "base64"}")
-        : ${restValue}`;
+        return `${nullOrUndefinedPrefix}typeof ${restValue} === 'string' ? ${stringToUint8ArrayReference}(${restValue}, "${format ?? "base64"}") : ${restValue}`;
       }
       return restValue;
     case "union":
@@ -2280,6 +2281,11 @@ function getApiVersionExpression(
   return `${paramAccess}${defaultValueSuffix}`;
 }
 
+/**
+ * Generates a type name for a header-only response interface.
+ * @param operation - The service operation
+ * @returns The generated interface name
+ */
 export function generateHeaderOnlyResponseTypeName(
   operation: ServiceOperation
 ): string {
@@ -2287,6 +2293,12 @@ export function generateHeaderOnlyResponseTypeName(
   return `${normalizeName(name, NameType.Interface)}Response`;
 }
 
+/**
+ * Registers a header-only response interface for later emission.
+ * @param operation - The service operation
+ * @param headers - The response headers
+ * @param typeName - The name of the interface type
+ */
 export function registerHeaderOnlyResponseInterface(
   operation: ServiceOperation,
   headers: SdkServiceResponseHeader[],
@@ -2301,13 +2313,11 @@ export function registerHeaderOnlyResponseInterface(
   }
 }
 
-export function getHeaderOnlyResponseInterfaceName(
-  operation: ServiceOperation
-): string {
-  const { name } = getOperationName(operation);
-  return `${normalizeName(name, NameType.Interface)}Response`;
-}
-
+/**
+ * Extracts and deduplicates all response headers from operation responses.
+ * @param responses - The operation responses
+ * @returns Array of unique response headers
+ */
 export function getResponseHeaders(
   responses: SdkHttpOperation["responses"]
 ): SdkServiceResponseHeader[] {
@@ -2321,12 +2331,4 @@ export function getResponseHeaders(
     }
   }
   return Array.from(headerMap.values());
-}
-
-function registerHeaderOnlyResponse(
-  typeName: string,
-  operation: ServiceOperation,
-  headers: SdkServiceResponseHeader[]
-): void {
-  registerHeaderOnlyResponseInterface(operation, headers, typeName);
 }

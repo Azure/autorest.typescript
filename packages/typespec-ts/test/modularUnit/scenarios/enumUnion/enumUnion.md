@@ -62,25 +62,25 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters,
+  operationOptionsToRequestParameters
 } from "@azure-rest/core-client";
 
 export function _getSend(
   context: Client,
   contentType: SchemaContentTypeValues,
   body: string,
-  options: GetOptionalParams = { requestOptions: {} },
+  options: GetOptionalParams = { requestOptions: {} }
 ): StreamableMethod {
-  return context
-    .path("/")
-    .post({
-      ...operationOptionsToRequestParameters(options),
-      contentType: contentType,
-      body: body,
-    });
+  return context.path("/").post({
+    ...operationOptionsToRequestParameters(options),
+    contentType: contentType,
+    body: body
+  });
 }
 
-export async function _getDeserialize(result: PathUncheckedResponse): Promise<void> {
+export async function _getDeserialize(
+  result: PathUncheckedResponse
+): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -93,7 +93,7 @@ export async function get(
   context: Client,
   contentType: SchemaContentTypeValues,
   body: string,
-  options: GetOptionalParams = { requestOptions: {} },
+  options: GetOptionalParams = { requestOptions: {} }
 ): Promise<void> {
   const result = await _getSend(context, contentType, body, options);
   return _getDeserialize(result);
@@ -150,6 +150,11 @@ export type SchemaContentTypeValues =
   | "application/json; serialization=json"
   | "text/plain; charset=utf-8"
   | "text/vnd.ms.protobuf";
+
+/** Defines headers for operation response. */
+export interface GetResponse {
+  testHeader: SchemaContentTypeValues;
+}
 ```
 
 # union with string as extensible enum is exhaustive
@@ -196,7 +201,9 @@ withRawContent: true
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** Type of SchemaContentTypeValues */
-export type SchemaContentTypeValues = "text/plain; charset=utf-8" | "text/vnd.ms.protobuf";
+export type SchemaContentTypeValues =
+  | "text/plain; charset=utf-8"
+  | "text/vnd.ms.protobuf";
 ```
 
 # union contains union with string element
@@ -255,7 +262,9 @@ export type SchemaContentTypeValues =
   | "text/vnd.ms.protobuf"
   | string;
 
-export function schemaContentTypeValuesSerializer(item: SchemaContentTypeValues): any {
+export function schemaContentTypeValuesSerializer(
+  item: SchemaContentTypeValues
+): any {
   return item;
 }
 
@@ -321,7 +330,9 @@ export type SchemaContentTypeValues =
   | "text/vnd.ms.protobuf"
   | string;
 
-export function schemaContentTypeValuesSerializer(item: SchemaContentTypeValues): any {
+export function schemaContentTypeValuesSerializer(
+  item: SchemaContentTypeValues
+): any {
   return item;
 }
 
@@ -375,7 +386,9 @@ withRawContent: true
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** Type of SchemaContentTypeValues */
-export type SchemaContentTypeValues = "text/plain; charset=utf-8" | "text/vnd.ms.protobuf";
+export type SchemaContentTypeValues =
+  | "text/plain; charset=utf-8"
+  | "text/vnd.ms.protobuf";
 ```
 
 # union contains union with string element
@@ -434,7 +447,9 @@ export type SchemaContentTypeValues =
   | "text/vnd.ms.protobuf"
   | string;
 
-export function schemaContentTypeValuesSerializer(item: SchemaContentTypeValues): any {
+export function schemaContentTypeValuesSerializer(
+  item: SchemaContentTypeValues
+): any {
   return item;
 }
 
@@ -500,7 +515,9 @@ export type SchemaContentTypeValues =
   | "text/vnd.ms.protobuf"
   | string;
 
-export function schemaContentTypeValuesSerializer(item: SchemaContentTypeValues): any {
+export function schemaContentTypeValuesSerializer(
+  item: SchemaContentTypeValues
+): any {
   return item;
 }
 
@@ -544,52 +561,62 @@ needOptions: false
 ## schemaOutput
 
 ```ts models
-// (file was not generated)
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/** Defines headers for operation response. */
+export interface GetResponse {
+  testHeader: "A" | "B";
+}
 ```
 
 ## Operations
 
 ```ts operations
 import { DemoServiceContext as Client } from "./index.js";
+import { GetResponse } from "../models/models.js";
 import { GetOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters,
+  operationOptionsToRequestParameters
 } from "@azure-rest/core-client";
 
 export function _getSend(
   context: Client,
   testHeader: "A" | "B",
   body: string,
-  options: GetOptionalParams = { requestOptions: {} },
+  options: GetOptionalParams = { requestOptions: {} }
 ): StreamableMethod {
-  return context
-    .path("/")
-    .post({
-      ...operationOptionsToRequestParameters(options),
-      contentType: "text/plain",
-      headers: { "test-header": testHeader, ...options.requestOptions?.headers },
-      body: body,
-    });
+  return context.path("/").post({
+    ...operationOptionsToRequestParameters(options),
+    contentType: "text/plain",
+    headers: { "test-header": testHeader, ...options.requestOptions?.headers },
+    body: body
+  });
 }
 
-export async function _getDeserialize(result: PathUncheckedResponse): Promise<void> {
+export async function _getDeserialize(
+  result: PathUncheckedResponse
+): Promise<GetResponse> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return;
+  return { testHeader: result.headers["test-header"]! } as GetResponse;
 }
 
 export async function get(
   context: Client,
   testHeader: "A" | "B",
   body: string,
-  options: GetOptionalParams = { requestOptions: {} },
-): Promise<void> {
+  options: GetOptionalParams = { requestOptions: {} }
+): Promise<GetResponse> {
   const result = await _getSend(context, testHeader, body, options);
   return _getDeserialize(result);
 }
@@ -630,52 +657,62 @@ experimental-extensible-enums: true
 ## schemaOutput
 
 ```ts models
-// (file was not generated)
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/** Defines headers for operation response. */
+export interface GetResponse {
+  testHeader: string;
+}
 ```
 
 ## Operations
 
 ```ts operations
 import { DemoServiceContext as Client } from "./index.js";
+import { GetResponse } from "../models/models.js";
 import { GetOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters,
+  operationOptionsToRequestParameters
 } from "@azure-rest/core-client";
 
 export function _getSend(
   context: Client,
   testHeader: string,
   body: string,
-  options: GetOptionalParams = { requestOptions: {} },
+  options: GetOptionalParams = { requestOptions: {} }
 ): StreamableMethod {
-  return context
-    .path("/")
-    .post({
-      ...operationOptionsToRequestParameters(options),
-      contentType: "text/plain",
-      headers: { "test-header": testHeader, ...options.requestOptions?.headers },
-      body: body,
-    });
+  return context.path("/").post({
+    ...operationOptionsToRequestParameters(options),
+    contentType: "text/plain",
+    headers: { "test-header": testHeader, ...options.requestOptions?.headers },
+    body: body
+  });
 }
 
-export async function _getDeserialize(result: PathUncheckedResponse): Promise<void> {
+export async function _getDeserialize(
+  result: PathUncheckedResponse
+): Promise<GetResponse> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return;
+  return { testHeader: result.headers["test-header"]! } as GetResponse;
 }
 
 export async function get(
   context: Client,
   testHeader: string,
   body: string,
-  options: GetOptionalParams = { requestOptions: {} },
-): Promise<void> {
+  options: GetOptionalParams = { requestOptions: {} }
+): Promise<GetResponse> {
   const result = await _getSend(context, testHeader, body, options);
   return _getDeserialize(result);
 }
@@ -1303,7 +1340,7 @@ export enum KnownImageSize {
    * A taller image size of 1792x1024 pixels.
    * Only supported with dall-e-3 models.
    */
-  Size1024X1792 = "1024x1792",
+  Size1024X1792 = "1024x1792"
 }
 ```
 

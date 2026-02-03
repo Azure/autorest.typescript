@@ -54,9 +54,9 @@ export function userDeserializer(item: any, headers?: any): User {
     name: item["name"],
     email: item["email"],
     userId: headers?.["x-user-id"],
-    createdAt: headers?.["created-at"]
-      ? new Date(headers?.["created-at"])
-      : undefined
+    createdAt: !headers?.["created-at"]
+      ? headers?.["created-at"]
+      : new Date(headers?.["created-at"])
   };
 }
 ```

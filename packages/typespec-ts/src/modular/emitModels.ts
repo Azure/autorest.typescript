@@ -150,7 +150,8 @@ export function emitTypes(
     addSerializationFunctions(context, property, sourceFile!);
   }
 
-  // Emit header-only response interfaces
+  // Emit header-only response interfaces for operations that return only headers
+  // (no body). These interfaces are registered during operation visiting.
   const headerOnlyResponses = useContext("headerOnlyResponses") as Map<
     string,
     { operation: ServiceOperation; headers: SdkServiceResponseHeader[] }
@@ -1050,6 +1051,15 @@ function visitType(context: SdkContext, type: SdkType | undefined) {
   }
 }
 
+/**
+ * Emits an interface definition for a header-only response.
+ * Header-only responses occur when an operation returns headers but no body.
+ * @param context - The SDK context
+ * @param typeName - Name of the interface to generate
+ * @param headers - The response headers to include
+ * @param operation - The service operation
+ * @param sourceFile - The source file to add the interface to
+ */
 function emitHeaderOnlyResponseInterface(
   context: SdkContext,
   typeName: string,
@@ -1079,6 +1089,6 @@ function emitHeaderOnlyResponseInterface(
 
   interfaceStructure.docs = [`Defines headers for operation response.`];
 
-  const refKey = refkey(operation.name, "headerResponse");
+  const refKey = refkey(operation.operation.__raw, "headerResponse");
   addDeclaration(sourceFile, interfaceStructure, refKey);
 }
