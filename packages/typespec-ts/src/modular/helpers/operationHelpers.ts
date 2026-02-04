@@ -1023,9 +1023,7 @@ function buildHeaderParameter(
     return paramMap;
   }
   const conditions = [];
-  // Don't add undefined check if the parameter has a default value
-  // because the default will be applied when undefined
-  if (param.optional && !param.clientDefaultValue) {
+  if (param.optional) {
     conditions.push(`${optionalParamName}?.${paramName} !== undefined`);
   }
   if (isTypeNullable(param.type) === true) {
@@ -1289,6 +1287,13 @@ function getOptional(
   serializedName: string
 ) {
   const paramName = `${param.onClient ? "context." : `${optionalParamName}?.`}${param.name}`;
+
+  // Apply client default value if present
+  const defaultSuffix =
+    param.clientDefaultValue !== undefined
+      ? ` ?? ${formatDefaultValue(param.clientDefaultValue)}`
+      : "";
+
   if (param.type.kind === "model") {
     const propertiesStr = getRequestModelMapping(
       context,
@@ -1298,7 +1303,7 @@ function getOptional(
     const serializeContent = `{${propertiesStr.join(",")}}`;
     return `"${serializedName}": ${serializeContent}`;
   }
-  return `"${serializedName}": ${serializeRequestValue(
+  const serializedValue = serializeRequestValue(
     context,
     param.type,
     paramName,
@@ -1306,7 +1311,8 @@ function getOptional(
     getEncodeForType(param.type),
     serializedName,
     true
-  )}`;
+  );
+  return `"${serializedName}": ${serializedValue}${defaultSuffix}`;
 }
 
 /**

@@ -307,7 +307,7 @@ export function _suspendSend(
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       name: name,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion ?? "2023-12-01",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

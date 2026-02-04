@@ -74,7 +74,9 @@ export function _testQuerySend(
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        "custom-header": options?.customHeader ?? "application/json",
+        ...(options?.customHeader !== undefined
+          ? { "custom-header": options?.customHeader ?? "application/json" }
+          : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
