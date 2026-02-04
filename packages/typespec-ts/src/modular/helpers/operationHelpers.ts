@@ -1073,9 +1073,21 @@ function buildBodyParameter(
     NameType.Parameter,
     true
   );
-  const bodyNameExpression = bodyParameter.optional
+  let bodyNameExpression = bodyParameter.optional
     ? `${optionalParamName}["${bodyParamName}"]`
     : bodyParamName;
+
+  // Apply client default value if present for optional body parameters
+  if (
+    bodyParameter.optional &&
+    bodyParameter.clientDefaultValue !== undefined
+  ) {
+    const formattedDefault = formatDefaultValue(
+      bodyParameter.clientDefaultValue
+    );
+    bodyNameExpression = `(${bodyNameExpression} ?? ${formattedDefault})`;
+  }
+
   const nullOrUndefinedPrefix = getPropertySerializationPrefix(
     context,
     bodyParameter,
