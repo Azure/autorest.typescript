@@ -1023,7 +1023,9 @@ function buildHeaderParameter(
     return paramMap;
   }
   const conditions = [];
-  if (param.optional) {
+  // Don't add undefined check if the parameter has a default value
+  // because the default will be applied when undefined
+  if (param.optional && !param.clientDefaultValue) {
     conditions.push(`${optionalParamName}?.${paramName} !== undefined`);
   }
   if (isTypeNullable(param.type) === true) {
