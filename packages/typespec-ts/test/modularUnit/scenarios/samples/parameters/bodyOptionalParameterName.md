@@ -169,7 +169,7 @@ export function _backupSend(
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       cloudHsmClusterName: cloudHsmClusterName,
-      "api%2Dversion": context.apiVersion ?? "2021-10-01-preview",
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

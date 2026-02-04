@@ -392,7 +392,7 @@ export function _createOrUpdateSend(
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       avsSummaryName: avsSummaryName,
-      "api%2Dversion": context.apiVersion ?? "2021-10-01-preview",
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -446,7 +446,7 @@ export function _listSend(
   const path = expandUrlTemplate(
     "/providers/Microsoft.Contoso/operations{?api%2Dversion}",
     {
-      "api%2Dversion": context.apiVersion ?? "2021-10-01-preview",
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

@@ -1151,9 +1151,15 @@ export function getParameterMap(
     return `"${serializedName}": ${getConstantValue(param.type)}`;
   }
 
-  // Special case for api-version parameters with default values
-  if (param.isApiVersionParam && param.clientDefaultValue) {
-    return `"${serializedName}": ${param.onClient ? "context." : ""}${param.name} ?? "${param.clientDefaultValue}"`;
+  // Apply client default value for optional query and header parameters
+  if (
+    param.clientDefaultValue !== undefined &&
+    param.optional &&
+    (param.kind === "query" || param.kind === "header")
+  ) {
+    const formattedDefault = formatDefaultValue(param.clientDefaultValue);
+    const paramAccess = `${param.onClient ? "context." : ""}${param.name}`;
+    return `"${serializedName}": ${param.onClient ? paramAccess : `${optionalParamName}?.${param.name}`} ?? ${formattedDefault}`;
   }
 
   if (hasCollectionFormatInfo(param.kind, (param as any).collectionFormat)) {
@@ -2061,11 +2067,6 @@ export function getPropertySerializationPrefix(
   const propertyFullName = getPropertyFullName(context, property, propertyPath);
 
   if (property.optional || isTypeNullable(property.type)) {
-    // If property has a default value, it's already handled in getPropertyFullName
-    // so we don't need the null check prefix
-    if (property.clientDefaultValue !== undefined) {
-      return "";
-    }
     return `!${propertyFullName}? ${propertyFullName}:`;
   }
 
@@ -2089,12 +2090,6 @@ export function getPropertyFullName(
     fullName = `options?.${normalizedPropertyName}`;
   } else if (propertyPath) {
     fullName = `${propertyPath}["${normalizedPropertyName}"]`;
-  }
-
-  // Apply client default value if property is optional and has a default
-  if (property.clientDefaultValue !== undefined && property.optional) {
-    const formattedDefault = formatDefaultValue(property.clientDefaultValue);
-    fullName = `(${fullName} ?? ${formattedDefault})`;
   }
 
   return fullName;
