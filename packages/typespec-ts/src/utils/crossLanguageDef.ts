@@ -5,6 +5,7 @@ import { SdkContext } from "./interfaces.js";
 import { transformModularEmitterOptions } from "../modular/buildModularOptions.js";
 import { getMethodHierarchiesMap } from "./operationUtil.js";
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
+import { UsageFlags } from "@azure-tools/typespec-client-generator-core";
 
 export function generateCrossLanguageDefinitionFile(dpgContext: SdkContext): {
   CrossLanguagePackageId: string;
@@ -28,6 +29,13 @@ export function generateCrossLanguageDefinitionFile(dpgContext: SdkContext): {
       model.crossLanguageDefinitionId;
   }
   for (const enm of dpgContext.sdkPackage.enums) {
+    // Skip api version enum for multi-service scenarios since each service may have different versions
+    if (
+      dpgContext.rlcOptions?.isMultiService &&
+      enm.usage === UsageFlags.ApiVersionEnum
+    ) {
+      continue;
+    }
     CrossLanguageDefinitionId[`${packageName}!Known${enm.name}:enum`] =
       enm.crossLanguageDefinitionId;
   }
