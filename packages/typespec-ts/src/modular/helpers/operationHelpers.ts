@@ -673,7 +673,7 @@ function getLroOnlyOperationFunction(
     allowedFinalLocation.includes(lroMetadata?.finalStateVia)
       ? `resourceLocationConfig: "${lroMetadata?.finalStateVia}",`
       : "";
-  const apiVersion = getApiVersionExpression(operation);
+  const apiVersion = getApiVersionExpression(context, operation);
   const statements: string[] = [];
 
   statements.push(`
@@ -716,7 +716,7 @@ function getLroAndPagingOperationFunction(
   const returnType = buildLroPagingReturnType(context, operation);
 
   // Get apiVersion expression for both LRO poller and paging options
-  const apiVersion = getApiVersionExpression(operation);
+  const apiVersion = getApiVersionExpression(context, operation);
 
   // Build paging options from metadata
   const pagingOptions = [
@@ -882,7 +882,7 @@ function getPagingOnlyOperationFunction(
   // Check for nextLinkVerb from TCGC pagingMetadata (supports @Legacy.nextLinkVerb decorator)
   const nextLinkMethod = operation.pagingMetadata.nextLinkVerb;
 
-  const apiVersion = getApiVersionExpression(operation);
+  const apiVersion = getApiVersionExpression(context, operation);
 
   if (itemName) {
     options.push(`itemName: "${itemName}"`);
@@ -1153,15 +1153,13 @@ export function getParameterMap(
     return `"${serializedName}": ${getConstantValue(param.type)}`;
   }
 
-  // Apply client default value for optional query and header parameters
-  if (
-    param.clientDefaultValue !== undefined &&
-    param.optional &&
-    (param.kind === "query" || param.kind === "header")
-  ) {
-    const formattedDefault = formatDefaultValue(param.clientDefaultValue);
-    const paramAccess = `${param.onClient ? "context." : ""}${param.name}`;
-    return `"${serializedName}": ${param.onClient ? paramAccess : `${optionalParamName}?.${param.name}`} ?? ${formattedDefault}`;
+  // Special case for api-version parameters with default values
+  if (param.isApiVersionParam && param.clientDefaultValue) {
+    // For multi-service, use only the default value (don't reference context.apiVersion)
+    if (context.rlcOptions?.isMultiService) {
+      return `"${serializedName}": "${param.clientDefaultValue}"`;
+    }
+    return `"${serializedName}": ${param.onClient ? "context." : ""}${param.name} ?? "${param.clientDefaultValue}"`;
   }
 
   if (hasCollectionFormatInfo(param.kind, (param as any).collectionFormat)) {
@@ -2123,10 +2121,12 @@ export function getExpectedStatuses(operation: ServiceOperation): string {
 
 /**
  * Gets the apiVersion expression with default value fallback for query parameters.
+ * @param dpgContext - The SDK context
  * @param operation - The operation to get the apiVersion parameter from
  * @returns The apiVersion expression string, or undefined if no apiVersion query param exists
  */
 function getApiVersionExpression(
+  dpgContext: SdkContext,
   operation: ServiceOperation
 ): string | undefined {
   const queryApiVersionParam = operation.operation.parameters.find(
@@ -2134,6 +2134,12 @@ function getApiVersionExpression(
   );
   if (!queryApiVersionParam) {
     return undefined;
+  }
+  // For multi-service, use only the default value (don't reference context.apiVersion)
+  if (dpgContext.rlcOptions?.isMultiService) {
+    return queryApiVersionParam.clientDefaultValue
+      ? `"${queryApiVersionParam.clientDefaultValue}"`
+      : undefined;
   }
   const paramAccess = `${queryApiVersionParam.onClient ? "context." : ""}${queryApiVersionParam.name}`;
   const defaultValueSuffix = queryApiVersionParam.clientDefaultValue
