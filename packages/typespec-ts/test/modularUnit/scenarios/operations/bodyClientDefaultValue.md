@@ -49,7 +49,7 @@ export function _createSend(
       ...operationOptionsToRequestParameters(options),
       contentType: "text/plain",
       headers: { accept: "text/plain", ...options.requestOptions?.headers },
-      body: !options["body"] ? options["body"] : (options["body"] ?? "default-body"),
+      body: options["body"] ?? "default-body",
     });
 }
 

@@ -1077,22 +1077,27 @@ function buildBodyParameter(
     ? `${optionalParamName}["${bodyParamName}"]`
     : bodyParamName;
 
+  // Check if body parameter has a client default value
+  const hasClientDefault =
+    bodyParameter.optional && bodyParameter.clientDefaultValue !== undefined;
+
   // Apply client default value if present for optional body parameters
-  if (
-    bodyParameter.optional &&
-    bodyParameter.clientDefaultValue !== undefined
-  ) {
+  if (hasClientDefault) {
     const formattedDefault = formatDefaultValue(
       bodyParameter.clientDefaultValue
     );
     bodyNameExpression = `(${bodyNameExpression} ?? ${formattedDefault})`;
   }
 
-  const nullOrUndefinedPrefix = getPropertySerializationPrefix(
-    context,
-    bodyParameter,
-    bodyParameter.optional ? optionalParamName : undefined
-  );
+  // Only apply nullOrUndefinedPrefix if there's no client default value
+  // because the default value already handles null/undefined cases
+  const nullOrUndefinedPrefix = hasClientDefault
+    ? ""
+    : getPropertySerializationPrefix(
+        context,
+        bodyParameter,
+        bodyParameter.optional ? optionalParamName : undefined
+      );
 
   // For dual-format operations, check the contentType option at runtime
   if (
