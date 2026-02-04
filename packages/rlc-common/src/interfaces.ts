@@ -256,6 +256,7 @@ export interface RLCOptions {
   hasSubscriptionId?: boolean;
   compatibilityLro?: boolean;
   ignoreNullableOnOptional?: boolean;
+  isMultiService?: boolean;
 }
 
 export interface ServiceInfo {
