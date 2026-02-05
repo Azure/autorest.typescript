@@ -423,7 +423,7 @@ export interface Foo {
 ```ts models function fooSerializer
 export function fooSerializer(item: Foo): any {
   return {
-    prop1: item["prop1"].toISOString().split('T')[0],
+    prop1: item["prop1"].toISOString().split("T")[0],
     prop2: item["prop2"],
     prop3: item["prop3"].toISOString(),
     prop4: item["prop4"],

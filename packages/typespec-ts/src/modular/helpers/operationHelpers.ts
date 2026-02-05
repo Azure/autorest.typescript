@@ -1073,14 +1073,31 @@ function buildBodyParameter(
     NameType.Parameter,
     true
   );
-  const bodyNameExpression = bodyParameter.optional
+  let bodyNameExpression = bodyParameter.optional
     ? `${optionalParamName}["${bodyParamName}"]`
     : bodyParamName;
-  const nullOrUndefinedPrefix = getPropertySerializationPrefix(
-    context,
-    bodyParameter,
-    bodyParameter.optional ? optionalParamName : undefined
-  );
+
+  // Check if body parameter has a client default value
+  const hasClientDefault =
+    bodyParameter.optional && bodyParameter.clientDefaultValue !== undefined;
+
+  // Apply client default value if present for optional body parameters
+  if (hasClientDefault) {
+    const formattedDefault = formatDefaultValue(
+      bodyParameter.clientDefaultValue
+    );
+    bodyNameExpression = `(${bodyNameExpression} ?? ${formattedDefault})`;
+  }
+
+  // Only apply nullOrUndefinedPrefix if there's no client default value
+  // because the default value already handles null/undefined cases
+  const nullOrUndefinedPrefix = hasClientDefault
+    ? ""
+    : getPropertySerializationPrefix(
+        context,
+        bodyParameter,
+        bodyParameter.optional ? optionalParamName : undefined
+      );
 
   // For dual-format operations, check the contentType option at runtime
   if (
@@ -1287,6 +1304,13 @@ function getOptional(
   serializedName: string
 ) {
   const paramName = `${param.onClient ? "context." : `${optionalParamName}?.`}${param.name}`;
+
+  // Apply client default value if present
+  const defaultSuffix =
+    param.clientDefaultValue !== undefined
+      ? ` ?? ${formatDefaultValue(param.clientDefaultValue)}`
+      : "";
+
   if (param.type.kind === "model") {
     const propertiesStr = getRequestModelMapping(
       context,
@@ -1296,7 +1320,7 @@ function getOptional(
     const serializeContent = `{${propertiesStr.join(",")}}`;
     return `"${serializedName}": ${serializeContent}`;
   }
-  return `"${serializedName}": ${serializeRequestValue(
+  const serializedValue = serializeRequestValue(
     context,
     param.type,
     paramName,
@@ -1304,7 +1328,8 @@ function getOptional(
     getEncodeForType(param.type),
     serializedName,
     true
-  )}`;
+  );
+  return `"${serializedName}": ${serializedValue}${defaultSuffix}`;
 }
 
 /**
@@ -2046,12 +2071,24 @@ export function getAllAncestors(type: SdkType): SdkType[] {
   return ancestors;
 }
 
+/**
+ * Formats a default value for code generation.
+ * Strings are wrapped in quotes, other values are used as-is.
+ */
+function formatDefaultValue(defaultValue: unknown): string {
+  if (typeof defaultValue === "string") {
+    return `"${defaultValue}"`;
+  }
+  return String(defaultValue);
+}
+
 export function getPropertySerializationPrefix(
   context: SdkContext,
   property: SdkHttpParameter | SdkModelPropertyType,
   propertyPath?: string
 ) {
   const propertyFullName = getPropertyFullName(context, property, propertyPath);
+
   if (property.optional || isTypeNullable(property.type)) {
     return `!${propertyFullName}? ${propertyFullName}:`;
   }
@@ -2077,6 +2114,7 @@ export function getPropertyFullName(
   } else if (propertyPath) {
     fullName = `${propertyPath}["${normalizedPropertyName}"]`;
   }
+
   return fullName;
 }
 
