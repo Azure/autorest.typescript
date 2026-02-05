@@ -1518,6 +1518,12 @@ function getSerializationExpressionForFlatten(
       !isReadOnly(p) &&
       !isMetadata(context.program, p.__raw!)
   );
+
+  // If all properties are readonly, don't serialize this flatten property at all
+  if (validProps.length === 0) {
+    return "undefined";
+  }
+
   const optionalPrefix = property.optional
     ? `${resolveReference(SerializationHelpers.areAllPropsUndefined)}(${propertyPath}, [${validProps
         .map((p) => `"${p.name}"`)
@@ -1622,7 +1628,9 @@ export function getRequestModelMapping(
     propertyPath,
     overrides,
     enableFlatten
-  ).map(([name, value]) => `"${name}": ${value}`);
+  )
+    .filter(([_name, value]) => value !== "undefined")
+    .map(([name, value]) => `"${name}": ${value}`);
 }
 
 function getPropertySerializedName(
@@ -1688,8 +1696,24 @@ export function getResponseMapping(
     const propertyName = normalizeModelPropertyName(context, property);
     if (deserializeFunctionName) {
       if (isSupportedFlatten) {
+        // Check if all properties of the flattened type are readonly
+        const flattenedProps = getAllProperties(
+          context,
+          property.type,
+          getAllAncestors(property.type)
+        ).filter(
+          (p) => p.kind === "property" && !isMetadata(context.program, p.__raw!)
+        );
+        const allPropsReadonly = flattenedProps.every((p) => isReadOnly(p));
+
+        // For flatten properties in responses:
+        // - If all properties are readonly, they're flattened at the parent level
+        // - Otherwise, they're nested under the property name
+        const flattenPath = allPropsReadonly
+          ? propertyPath || "item"
+          : restValue;
         props.push(
-          `...${nullOrUndefinedPrefix}${deserializeFunctionName}(${restValue})`
+          `...${nullOrUndefinedPrefix}${deserializeFunctionName}(${flattenPath})`
         );
       } else {
         props.push(
