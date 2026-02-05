@@ -29,6 +29,14 @@ interface Operations {
     @query
     limit?: int32
   ): Configuration;
+  
+  @post
+  @route("/create")
+  create(
+    @body
+    @Azure.ClientGenerator.Core.Legacy.clientDefaultValue("default-body")
+    body?: string
+  ): string;
 }
 ```
 
@@ -46,13 +54,44 @@ The generated operation should apply default values for query and header paramet
 import { TestingContext as Client } from "./index.js";
 import { Configuration, configurationDeserializer } from "../models/models.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
-import { TestQueryOptionalParams } from "./options.js";
+import { CreateOptionalParams, TestQueryOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
+
+export function _createSend(
+  context: Client,
+  options: CreateOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/api/create")
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "text/plain",
+      headers: { accept: "text/plain", ...options.requestOptions?.headers },
+      body: options["body"] ?? "default-body",
+    });
+}
+
+export async function _createDeserialize(result: PathUncheckedResponse): Promise<string> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return result.body;
+}
+
+export async function create(
+  context: Client,
+  options: CreateOptionalParams = { requestOptions: {} },
+): Promise<string> {
+  const result = await _createSend(context, options);
+  return _createDeserialize(result);
+}
 
 export function _testQuerySend(
   context: Client,
