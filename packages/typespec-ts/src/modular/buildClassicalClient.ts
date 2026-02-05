@@ -107,8 +107,9 @@ export function buildClassicalClient(
     client.children &&
     client.children.some((childClient) => {
       return (
+        childClient.clientInitialization.initializedBy > 0 &&
         childClient.clientInitialization.initializedBy &
-        InitializedByFlags.Parent
+          InitializedByFlags.Parent
       );
     });
   if (hasChildClient) {
@@ -192,8 +193,9 @@ export function buildClassicalClient(
     client.children
       .filter((childClient) => {
         return (
+          childClient.clientInitialization.initializedBy > 0 &&
           childClient.clientInitialization.initializedBy &
-          InitializedByFlags.Parent
+            InitializedByFlags.Parent
         );
       })
       .forEach((childClient) => {

@@ -681,6 +681,7 @@ export function getMethodHierarchiesMap(
     client.children
       ?.filter((p) => {
         return !(
+          p.clientInitialization.initializedBy > 0 &&
           p.clientInitialization.initializedBy & InitializedByFlags.Individually
         );
       })
@@ -714,8 +715,9 @@ export function getMethodHierarchiesMap(
       const nonIndependentChildren = operationOrGroup.children?.filter(
         (child) => {
           return !(
+            child.clientInitialization.initializedBy > 0 &&
             child.clientInitialization.initializedBy &
-            InitializedByFlags.Individually
+              InitializedByFlags.Individually
           );
         }
       );
