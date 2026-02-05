@@ -1,8 +1,8 @@
-# Should apply client default values for optional query and header parameters
+# Should apply client default values for optional query, header, and body parameters
 
 ## TypeSpec
 
-This tests that query and header parameters with clientDefaultValue are applied when not provided by the user.
+This tests that query, header, and body parameters with clientDefaultValue are applied when not provided by the user.
 
 ```tsp
 model Configuration {
@@ -48,7 +48,7 @@ needTCGC: true
 
 ## Operations
 
-The generated operation should apply default values for query and header parameters.
+The generated operations should apply default values for query, header, and body parameters.
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
