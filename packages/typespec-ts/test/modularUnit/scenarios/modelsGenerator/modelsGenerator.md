@@ -2386,7 +2386,7 @@ export function _getSend(
 
 export async function _getDeserialize(
   result: PathUncheckedResponse
-): Promise<GetResponse> {
+): Promise<{ testHeader: "A" | "B" }> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -2400,7 +2400,7 @@ export async function get(
   testHeader: "A" | "B",
   body: string,
   options: GetOptionalParams = { requestOptions: {} }
-): Promise<GetResponse> {
+): Promise<{ testHeader: "A" | "B" }> {
   const result = await _getSend(context, testHeader, body, options);
   return _getDeserialize(result);
 }

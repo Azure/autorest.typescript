@@ -69,7 +69,6 @@ import { TestingContext as Client } from "./index.js";
 import {
   TestVerificationContent,
   testVerificationContentSerializer,
-  TestVerificationResult,
   testVerificationResultDeserializer
 } from "../models/models.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
@@ -113,7 +112,7 @@ export function _verifySend(
 
 export async function _verifyDeserialize(
   result: PathUncheckedResponse
-): Promise<TestVerificationResult> {
+): Promise<{ result: string; clientRequestId?: string }> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -128,7 +127,7 @@ export async function verify(
   body: TestVerificationContent,
   apcGatewayId: string,
   options: VerifyOptionalParams = { requestOptions: {} }
-): Promise<TestVerificationResult> {
+): Promise<{ result: string; clientRequestId?: string }> {
   const result = await _verifySend(context, body, apcGatewayId, options);
   return _verifyDeserialize(result);
 }

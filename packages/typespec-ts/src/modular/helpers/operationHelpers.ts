@@ -171,22 +171,28 @@ export function getDeserializePrivateFunction(
   if (isLroOnly || isLroAndPaging) {
     returnType = buildLroReturnType(context, operation);
   } else if (response.type && restResponse) {
-    returnType = {
-      name: (restResponse as any).name ?? "",
-      type: getTypeExpression(context, restResponse.type!)
-    };
+    const type = response.type;
+    // Check if there are response headers beyond what's already in the model
+    if (
+      type.kind === "model" &&
+      responseHeaders.length > 0 &&
+      !areAllResponseHeadersInModel(context, type, responseHeaders)
+    ) {
+      // Build a composite type that includes both model and additional header properties
+      returnType = {
+        name: (restResponse as any).name ?? "",
+        type: buildCompositeResponseType(context, type, responseHeaders)
+      };
+    } else {
+      returnType = {
+        name: (restResponse as any).name ?? "",
+        type: getTypeExpression(context, restResponse.type!)
+      };
+    }
   } else if (hasHeaderOnlyResponse) {
-    const headerOnlyTypeName = generateHeaderOnlyResponseTypeName(operation);
-    registerHeaderOnlyResponseInterface(
-      operation,
-      responseHeaders,
-      headerOnlyTypeName
-    );
     returnType = {
-      name: headerOnlyTypeName,
-      type: resolveReference(
-        refkey(operation.operation.__raw, "headerResponse")
-      )
+      name: "",
+      type: buildHeaderOnlyResponseType(context, responseHeaders)
     };
   } else {
     returnType = { name: "", type: "void" };
@@ -605,23 +611,27 @@ export function getOperationFunction(
   let returnType = { name: "", type: "void" };
   if (response.type) {
     const type = response.type;
-    returnType = {
-      name: (type as any).name ?? "",
-      type: getTypeExpression(context, type!)
-    };
+    // Check if there are response headers beyond what's already in the model
+    if (
+      type.kind === "model" &&
+      responseHeaders.length > 0 &&
+      !areAllResponseHeadersInModel(context, type, responseHeaders)
+    ) {
+      // Build a composite type that includes both model and additional header properties
+      returnType = {
+        name: (type as any).name ?? "",
+        type: buildCompositeResponseType(context, type, responseHeaders)
+      };
+    } else {
+      returnType = {
+        name: (type as any).name ?? "",
+        type: getTypeExpression(context, type!)
+      };
+    }
   } else if (hasHeaderOnlyResponse) {
-    const headerOnlyInterfaceName =
-      generateHeaderOnlyResponseTypeName(operation);
-    registerHeaderOnlyResponseInterface(
-      operation,
-      responseHeaders,
-      headerOnlyInterfaceName
-    );
     returnType = {
-      name: headerOnlyInterfaceName,
-      type: resolveReference(
-        refkey(operation.operation.__raw, "headerResponse")
-      )
+      name: "",
+      type: buildHeaderOnlyResponseType(context, responseHeaders)
     };
   }
   const { name, fixme = [] } = getOperationName(operation);
@@ -1801,6 +1811,152 @@ function hasHeaderProperties(context: SdkContext, type: SdkModelType): boolean {
 }
 
 /**
+ * Checks if all response headers are already defined as properties in the model.
+ * This indicates headers that are part of the model definition vs. additional headers
+ * from the intersection operator.
+ * @param context - The SDK context
+ * @param modelType - The model type
+ * @param headers - The response headers
+ * @returns True if all response headers are already model properties
+ */
+function areAllResponseHeadersInModel(
+  context: SdkContext,
+  modelType: SdkModelType,
+  headers: SdkServiceResponseHeader[]
+): boolean {
+  // Collect all header properties from the model and its ancestors
+  const modelHeaderNames = new Set<string>();
+  
+  const addHeaderPropsFromModel = (model: SdkModelType) => {
+    model.properties?.forEach((p) => {
+      if (isHeader(context.program, p.__raw!)) {
+        // Include both the property name and any header-serialized name
+        const serializedName =
+          getHeaderFieldName(context.program, p.__raw!) ??
+          getPropertySerializedName(p);
+        modelHeaderNames.add(serializedName.toLowerCase());
+        modelHeaderNames.add(p.name.toLowerCase());
+      }
+    });
+  };
+  
+  // Add headers from the model itself
+  addHeaderPropsFromModel(modelType);
+  
+  // Add headers from ancestor models
+  const allParents = getAllAncestors(modelType);
+  allParents.forEach((parent) => {
+    if (parent.kind === "model") {
+      addHeaderPropsFromModel(parent as SdkModelType);
+    }
+  });
+
+  // Check if all response headers are in the model
+  for (const header of headers) {
+    const headerSerializedName = (
+      header.serializedName ?? header.name
+    ).toLowerCase();
+    if (
+      !modelHeaderNames.has(headerSerializedName) &&
+      !modelHeaderNames.has(header.name.toLowerCase())
+    ) {
+      // Found a header not in the model properties
+      return false;
+    }
+  }
+
+  return true;
+}
+
+/**
+ * Builds a composite return type for operations that return both a model and additional headers.
+ * Combines model properties and header properties into an inline object type.
+ * @param context - The SDK context
+ * @param modelType - The model type
+ * @param headers - The response headers that are NOT in the model
+ * @returns The composite type expression as a string (e.g., "{ name: string; email: string; requestId: string }")
+ */
+function buildCompositeResponseType(
+  context: SdkContext,
+  modelType: SdkModelType,
+  headers: SdkServiceResponseHeader[]
+): string {
+  const allParents = getAllAncestors(modelType);
+  const modelProps = getAllProperties(context, modelType, allParents);
+
+  const properties: string[] = [];
+
+  // Add all model properties
+  for (const prop of modelProps) {
+    const propertyName = normalizeModelPropertyName(context, prop);
+    const propertyType = getTypeExpression(context, prop.type);
+    const isOptional = prop.optional ? "?" : "";
+    properties.push(`${propertyName}${isOptional}: ${propertyType}`);
+  }
+
+  // Collect header property names already in the model to avoid duplicates
+  const modelHeaderNames = new Set<string>();
+  const addHeaderPropsFromModel = (model: SdkModelType) => {
+    model.properties?.forEach((p) => {
+      if (isHeader(context.program, p.__raw!)) {
+        const serializedName =
+          getHeaderFieldName(context.program, p.__raw!) ??
+          getPropertySerializedName(p);
+        modelHeaderNames.add(serializedName.toLowerCase());
+        modelHeaderNames.add(p.name.toLowerCase());
+      }
+    });
+  };
+
+  addHeaderPropsFromModel(modelType);
+  allParents.forEach((parent) => {
+    if (parent.kind === "model") {
+      addHeaderPropsFromModel(parent as SdkModelType);
+    }
+  });
+
+  // Add only additional host response header properties not already in model
+  for (const header of headers) {
+    const headerSerializedName = (
+      header.serializedName ?? header.name
+    ).toLowerCase();
+    if (
+      !modelHeaderNames.has(headerSerializedName) &&
+      !modelHeaderNames.has(header.name.toLowerCase())
+    ) {
+      const headerName = normalizeName(header.name, NameType.Property);
+      const headerType = getTypeExpression(context, header.type);
+      const isOptional = header.optional ? "?" : "";
+      properties.push(`${headerName}${isOptional}: ${headerType}`);
+    }
+  }
+
+  return `{ ${properties.join("; ")} }`;
+}
+
+/**
+ * Builds an inline type string for header-only responses.
+ * @param context - The SDK context
+ * @param headers - The response headers
+ * @returns The inline type expression as a string (e.g., "{ requestId: string; optionalHeader?: string }")
+ */
+function buildHeaderOnlyResponseType(
+  context: SdkContext,
+  headers: SdkServiceResponseHeader[]
+): string {
+  const properties: string[] = [];
+
+  for (const header of headers) {
+    const headerName = normalizeName(header.name, NameType.Property);
+    const headerType = getTypeExpression(context, header.type);
+    const isOptional = header.optional ? "?" : "";
+    properties.push(`${headerName}${isOptional}: ${headerType}`);
+  }
+
+  return `{ ${properties.join("; ")} }`;
+}
+
+/**
  * Builds the object literal expression for a header-only response.
  * Handles type conversions for headers (string to boolean, Date, number, Uint8Array).
  * @param operation - The service operation
@@ -1835,7 +1991,7 @@ function buildHeaderOnlyResponseValue(
       header.type.kind === "utcDateTime"
     ) {
       // Convert string to Date
-      const headerAccess = `result.headers?.[${JSON.stringify(serializedName)}]`;
+      const headerAccess = `result.headers[${JSON.stringify(serializedName)}]`;
       const dateSource =
         header.type.kind === "utcDateTime" &&
         header.type.encode === "unixTimestamp"

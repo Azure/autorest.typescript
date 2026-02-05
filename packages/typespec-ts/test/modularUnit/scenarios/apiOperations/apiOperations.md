@@ -515,6 +515,7 @@ export async function _downloadFileDeserialize(
 ): Promise<{
   name: string;
   file: Uint8Array[];
+  contentType: "multipart/form-data";
 }> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
@@ -530,6 +531,7 @@ export async function downloadFile(
 ): Promise<{
   name: string;
   file: Uint8Array[];
+  contentType: "multipart/form-data";
 }> {
   const result = await _downloadFileSend(context, options);
   return _downloadFileDeserialize(result);
@@ -620,6 +622,7 @@ export async function _downloadFileDeserialize(
 ): Promise<{
   name: string[];
   file: Uint8Array;
+  contentType: "multipart/form-data";
 }> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
@@ -635,6 +638,7 @@ export async function downloadFile(
 ): Promise<{
   name: string[];
   file: Uint8Array;
+  contentType: "multipart/form-data";
 }> {
   const result = await _downloadFileSend(context, options);
   return _downloadFileDeserialize(result);

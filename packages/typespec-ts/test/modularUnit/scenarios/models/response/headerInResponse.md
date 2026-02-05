@@ -103,7 +103,7 @@ export interface DeleteUserResponse {
 export async function deleteUser(
   context: Client,
   options: DeleteUserOptionalParams = { requestOptions: {} }
-): Promise<DeleteUserResponse> {
+): Promise<{ requestId: string; optionalHeader?: string }> {
   const result = await _deleteUserSend(context, options);
   return _deleteUserDeserialize(result);
 }
@@ -112,7 +112,7 @@ export async function deleteUser(
 ```ts operations function _deleteUserDeserialize
 export async function _deleteUserDeserialize(
   result: PathUncheckedResponse
-): Promise<DeleteUserResponse> {
+): Promise<{ requestId: string; optionalHeader?: string }> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -160,7 +160,12 @@ export interface GetAccountInfoResponse {
 export async function getAccountInfo(
   context: Client,
   options: GetAccountInfoOptionalParams = { requestOptions: {} }
-): Promise<GetAccountInfoResponse> {
+): Promise<{
+  date: Date;
+  legalHold: boolean;
+  contentMd5: Uint8Array;
+  requestId?: string;
+}> {
   const result = await _getAccountInfoSend(context, options);
   return _getAccountInfoDeserialize(result);
 }
@@ -169,7 +174,12 @@ export async function getAccountInfo(
 ```ts operations function _getAccountInfoDeserialize
 export async function _getAccountInfoDeserialize(
   result: PathUncheckedResponse
-): Promise<GetAccountInfoResponse> {
+): Promise<{
+  date: Date;
+  legalHold: boolean;
+  contentMd5: Uint8Array;
+  requestId?: string;
+}> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
