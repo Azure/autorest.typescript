@@ -255,6 +255,7 @@ export interface RLCOptions {
   typespecTitleMap?: Record<string, string>;
   hasSubscriptionId?: boolean;
   compatibilityLro?: boolean;
+  ignoreNullableOnOptional?: boolean;
   isMultiService?: boolean;
 }
 

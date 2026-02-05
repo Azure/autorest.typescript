@@ -10,7 +10,16 @@ export function getNullableExpression(
   options: EmitTypeOptions = {}
 ): string {
   if (shouldEmitInline(type, options)) {
+    // Check if we should ignore null for optional properties
+    const ignoreNullableOnOptional =
+      context.rlcOptions?.ignoreNullableOnOptional ?? false;
+    const isOptional = options.isOptional ?? false;
+
     const nonNullableType = getTypeExpression(context, type.type, options);
+    // If the property is optional and we should ignore nullable, just return the non-nullable type
+    if (ignoreNullableOnOptional && isOptional) {
+      return nonNullableType;
+    }
     return `(${nonNullableType}) | null`;
   } else {
     return resolveReference(type);

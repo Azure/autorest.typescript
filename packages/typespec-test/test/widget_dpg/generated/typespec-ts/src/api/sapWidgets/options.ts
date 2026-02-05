@@ -38,7 +38,7 @@ export interface SAPWidgetsListWidgetsPagesOptionalParams extends OperationOptio
 /** Optional parameters. */
 export interface SAPWidgetsSAPListWidgetsOptionalParams extends OperationOptions {
   optionalHeader?: string;
-  nullableOptionalHeader?: string | null;
+  nullableOptionalHeader?: string;
   optionalDateHeader?: Date;
-  nullableDateHeader?: Date | null;
+  nullableDateHeader?: Date;
 }
