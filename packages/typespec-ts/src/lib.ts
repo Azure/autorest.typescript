@@ -15,6 +15,10 @@ import {
 import { Options } from "prettier";
 
 export interface EmitterOptions {
+  /**
+   * This option is used to indicate whether to include response headers in the generated response type. When set to true, the generated response type will include response headers as properties.
+   */
+  "include-headers-in-response"?: boolean;
   "include-shortcuts"?: boolean;
   "multi-client"?: boolean;
   batch?: any[];
@@ -78,6 +82,12 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
   type: "object",
   additionalProperties: true,
   properties: {
+    "include-headers-in-response": {
+      type: "boolean",
+      nullable: true,
+      description:
+        "This option is used to indicate whether to include response headers in the generated response type. When set to true, the generated response type will include response headers as properties."
+    },
     "include-shortcuts": {
       type: "boolean",
       nullable: true,
