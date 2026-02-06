@@ -2337,12 +2337,12 @@ function buildHeaderOnlyResponseValue(
   headers: SdkServiceResponseHeader[]
 ): string {
   const props = headers.map((header) => {
-    const serializedName = header.serializedName;
+    const headerName = (header.serializedName ?? header.name).toLowerCase();
     const key = normalizeModelPropertyName(context, header);
     const value = deserializeResponseHeadersValue(
       context,
       header.type,
-      `result.headers[${JSON.stringify(serializedName)}]`,
+      `result.headers[${JSON.stringify(headerName)}]`,
       !header.optional,
       getEncodeForType(header.type),
       0
