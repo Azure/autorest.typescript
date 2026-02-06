@@ -16,7 +16,10 @@ import { Options } from "prettier";
 
 export interface EmitterOptions {
   /**
-   * This option is used to indicate whether to include response headers in the generated response type. When set to true, the generated response type will include response headers as properties.
+   * Indicates whether to include response headers in the generated response type for modular operations.
+   * When set to true, modular operation responses with model or void bodies will have their headers
+   * represented as properties on the response type. Other SDK styles and response shapes are not
+   * currently affected by this option.
    */
   "include-headers-in-response"?: boolean;
   "include-shortcuts"?: boolean;
