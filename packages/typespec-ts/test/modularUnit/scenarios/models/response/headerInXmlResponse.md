@@ -1,6 +1,6 @@
-# Header properties included in the response model interface by default
+# Header properties included in the response type when `include-headers-in-response` is enabled
 
-This scenario tests that metadata properties like headers are included in the generated TypeScript model interface by default.
+This scenario tests that, when the `include-headers-in-response: true` feature flag is enabled, metadata properties like headers are included in the generated operation response type (while the underlying `User` model interface does not contain header properties).
 
 ## TypeSpec
 
