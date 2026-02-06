@@ -2316,7 +2316,7 @@ function buildHeaderOnlyResponseType(
   const properties: string[] = [];
 
   for (const header of headers) {
-    const headerName = normalizeName(header.name, NameType.Property);
+    const headerName = normalizeModelPropertyName(context, header);
     const headerType = getTypeExpression(context, header.type);
     const isOptional = header.optional ? "?" : "";
     properties.push(`${headerName}${isOptional}: ${headerType}`);
