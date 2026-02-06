@@ -206,6 +206,8 @@ export interface ModelOverrideOptions {
   // If true (default), enable flattening for nested flatten properties when generating samples.
   // When false, nested flatten properties are not further flattened to match the TypeScript interface structure.
   enableFlatten?: boolean;
+
+  propertyFilter?: (property: SdkModelPropertyType) => boolean;
 }
 
 export function getPropertyWithOverrides(

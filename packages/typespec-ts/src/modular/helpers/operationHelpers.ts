@@ -298,7 +298,7 @@ export function getDeserializePrivateFunction(
         statements.push(
           `const responseContentType = result.headers?.["content-type"] ?? "";
           if (${isXmlContentTypeRef}(responseContentType)) {
-            return ${xmlDeserializerName}(${deserializedRoot});
+            return ${xmlDeserializerName}(${deserializedArgs});
           }
           return ${jsonDeserializerName}(${deserializedArgs});`
         );
@@ -330,7 +330,7 @@ export function getDeserializePrivateFunction(
       ) as string | undefined;
 
       if (xmlDeserializerName) {
-        statements.push(`return ${xmlDeserializerName}(${deserializedRoot})`);
+        statements.push(`return ${xmlDeserializerName}(${deserializedArgs});`);
       } else {
         // Fall back to JSON deserializer if XML deserializer is not available
         const deserializeFunctionName = buildModelDeserializer(
@@ -1707,8 +1707,17 @@ export function getResponseMapping(
   const allParents = type.kind === "model" ? getAllAncestors(type) : [];
   // Include header properties when deserializing responses without changing
   // the existing selection of non-metadata properties.
-  const properties =
+  let properties =
     type.kind === "model" ? getAllProperties(context, type, allParents) : [];
+
+  if (
+    overrides?.propertyFilter &&
+    typeof overrides.propertyFilter === "function"
+  ) {
+    properties = properties.filter(
+      (p) => !overrides.propertyFilter || overrides.propertyFilter(p)
+    );
+  }
   if (type.kind === "model") {
     const headerProps: SdkModelPropertyType[] = [];
     const addHeaderProps = (model: SdkModelType) => {
@@ -1826,7 +1835,7 @@ function areAllResponseHeadersInModel(
 ): boolean {
   // Collect all header properties from the model and its ancestors
   const modelHeaderNames = new Set<string>();
-  
+
   const addHeaderPropsFromModel = (model: SdkModelType) => {
     model.properties?.forEach((p) => {
       if (isHeader(context.program, p.__raw!)) {
@@ -1839,10 +1848,10 @@ function areAllResponseHeadersInModel(
       }
     });
   };
-  
+
   // Add headers from the model itself
   addHeaderPropsFromModel(modelType);
-  
+
   // Add headers from ancestor models
   const allParents = getAllAncestors(modelType);
   allParents.forEach((parent) => {

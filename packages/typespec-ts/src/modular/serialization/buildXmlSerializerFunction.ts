@@ -1,7 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { FunctionDeclarationStructure, StructureKind } from "ts-morph";
+import {
+  FunctionDeclarationStructure,
+  ParameterDeclarationStructure,
+  StructureKind
+} from "ts-morph";
 import {
   SdkModelPropertyType,
   SdkModelType,
@@ -26,11 +30,12 @@ import { resolveReference } from "../../framework/reference.js";
 import { refkey } from "../../framework/refkey.js";
 import { reportDiagnostic } from "../../lib.js";
 import { NoTarget } from "@typespec/compiler";
-import { isMetadata } from "@typespec/http";
+import { isMetadata, isHeader } from "@typespec/http";
 import { normalizeModelPropertyName } from "../type-expressions/get-type-expression.js";
 import { isReadOnly } from "@azure-tools/typespec-client-generator-core";
 import { buildModelSerializer } from "./buildSerializerFunction.js";
 import { buildModelDeserializer } from "./buildDeserializerFunction.js";
+import { getResponseMapping } from "../helpers/operationHelpers.js";
 
 /**
  * Checks if a model type has XML serialization options defined
@@ -189,6 +194,10 @@ function buildPropertyMetadataArray(
       continue;
     }
     if (isMetadata(context.program, property.__raw!)) {
+      continue;
+    }
+    // Skip header properties as they are handled separately
+    if (isHeader(context.program, property.__raw!)) {
       continue;
     }
 
@@ -375,6 +384,20 @@ export function buildXmlModelDeserializer(
     return resolveReference(refkey(type, "xmlDeserializer"));
   }
 
+  // Check if model or its ancestors have header properties that need special handling.
+  // If so, the deserializer function will accept an optional 'headers' parameter
+  // to deserialize header values into the model properties.
+  const allProps = type.kind === "model" ? (type.properties ?? []) : [];
+  const ancestorProps =
+    type.kind === "model"
+      ? getAllAncestors(type)
+          .filter((p) => p.kind === "model")
+          .flatMap((p) => (p as SdkModelType).properties ?? [])
+      : [];
+  const hasHeaderProperties = [...allProps, ...ancestorProps].some((p) =>
+    isHeader(context.program, p.__raw!)
+  );
+
   const deserializeFromXmlRef = resolveReference(XmlHelpers.deserializeFromXml);
   const xmlPropertyDeserializeMetadataRef = resolveReference(
     XmlHelpers.XmlPropertyDeserializeMetadata
@@ -399,26 +422,75 @@ export function buildXmlModelDeserializer(
 
   // Generate the deserialization call
   const typeRef = resolveReference(refkey(type));
-  if (xmlRootNs) {
-    statements.push(
-      `return ${deserializeFromXmlRef}<${typeRef}>(xmlString, properties, "${xmlRootName}", { namespace: "${xmlRootNs.namespace}", prefix: "${xmlRootNs.prefix}" });`
+  if (hasHeaderProperties) {
+    // First deserialize the XML body
+    if (xmlRootNs) {
+      statements.push(
+        `const result = ${deserializeFromXmlRef}<${typeRef}>(xmlString, properties, "${xmlRootName}", { namespace: "${xmlRootNs.namespace}", prefix: "${xmlRootNs.prefix}" });`
+      );
+    } else {
+      statements.push(
+        `const result = ${deserializeFromXmlRef}<${typeRef}>(xmlString, properties, "${xmlRootName}");`
+      );
+    }
+    // Get header property mappings with type transformations
+    const headerPropertiesStr = getResponseMapping(
+      context,
+      type,
+      "result",
+      {
+        propertyFilter(property) {
+          return isHeader(context.program, property.__raw!);
+        }
+      },
+      true,
+      "headers"
     );
+    const headerMappings = headerPropertiesStr.filter((p) => p.trim());
+
+    if (headerMappings.length > 0) {
+      // Merge header properties into the result
+      statements.push(`if (headers) {`);
+      statements.push(
+        `  Object.assign(result, { ${headerMappings.join(", ")} });`
+      );
+      statements.push(`}`);
+    }
+    statements.push(`return result;`);
   } else {
-    statements.push(
-      `return ${deserializeFromXmlRef}<${typeRef}>(xmlString, properties, "${xmlRootName}");`
-    );
+    // No headers to handle, deserialize normally
+    if (xmlRootNs) {
+      statements.push(
+        `return ${deserializeFromXmlRef}<${typeRef}>(xmlString, properties, "${xmlRootName}", { namespace: "${xmlRootNs.namespace}", prefix: "${xmlRootNs.prefix}" });`
+      );
+    } else {
+      statements.push(
+        `return ${deserializeFromXmlRef}<${typeRef}>(xmlString, properties, "${xmlRootName}");`
+      );
+    }
+  }
+
+  const parameters: ParameterDeclarationStructure[] = [
+    {
+      kind: StructureKind.Parameter,
+      name: "xmlString",
+      type: "string"
+    }
+  ];
+  if (hasHeaderProperties) {
+    parameters.push({
+      kind: StructureKind.Parameter,
+      name: "headers",
+      type: "any",
+      hasQuestionToken: true
+    });
   }
 
   const deserializerFunction: FunctionDeclarationStructure = {
     kind: StructureKind.Function,
     name: deserializerFunctionName,
     isExported: true,
-    parameters: [
-      {
-        name: "xmlString",
-        type: "string"
-      }
-    ],
+    parameters,
     returnType: resolveReference(refkey(type)),
     statements
   };
@@ -441,8 +513,10 @@ function buildDeserializePropertyMetadataArray(
     }
     if (isMetadata(context.program, property.__raw!)) {
       continue;
+    } // Skip header properties as they are passed separately via the headers parameter
+    if (isHeader(context.program, property.__raw!)) {
+      continue;
     }
-
     const xmlOptions = property.serializationOptions?.xml;
     const jsonOptions = property.serializationOptions?.json;
     const propertyName = normalizeModelPropertyName(context, property);
