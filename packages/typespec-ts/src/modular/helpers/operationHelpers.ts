@@ -162,7 +162,9 @@ export function getDeserializePrivateFunction(
   // TODO: Support operation overloads
   // TODO: Support multiple responses
   const response = operation.response;
-  const restResponse = operation.operation.responses[0];
+  const restResponse =
+    operation.operation.responses.find((r) => r.type !== undefined) ??
+    operation.operation.responses[0];
   let returnType;
   if (isLroOnly || isLroAndPaging) {
     returnType = buildLroReturnType(context, operation);

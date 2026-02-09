@@ -1,4 +1,4 @@
-# only: ARM PATCH operation with union response type
+# ARM PATCH operation with union response type
 
 ## TypeSpec
 
@@ -64,14 +64,14 @@ withRawContent: true
 ```ts operations
 import { TestArmPatchContext as Client } from "./index.js";
 import {
+  PartnerTopicUpdateParameters,
+  partnerTopicUpdateParametersSerializer,
   PartnerTopic,
   partnerTopicDeserializer,
   errorResponseDeserializer,
-  PartnerTopicUpdateParameters,
-  partnerTopicUpdateParametersSerializer,
 } from "../models/models.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
-import { UpdateOptionalParams, GetOptionalParams } from "./options.js";
+import { UpdateOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -109,7 +109,7 @@ export function _updateSend(
     });
 }
 
-export async function _updateDeserialize(result: PathUncheckedResponse): Promise<void> {
+export async function _updateDeserialize(result: PathUncheckedResponse): Promise<PartnerTopic> {
   const expectedStatuses = ["200", "201"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -117,10 +117,10 @@ export async function _updateDeserialize(result: PathUncheckedResponse): Promise
     throw error;
   }
 
-  return;
+  return partnerTopicDeserializer(result.body);
 }
 
-/** Asynchronously updates a partner topic with the specified parameters. */
+/** Update a PartnerTopic */
 export async function update(
   context: Client,
   apiVersion: string,
@@ -138,55 +138,5 @@ export async function update(
     options,
   );
   return _updateDeserialize(result);
-}
-
-export function _getSend(
-  context: Client,
-  apiVersion: string,
-  resourceGroupName: string,
-  partnerTopicName: string,
-  options: GetOptionalParams = { requestOptions: {} },
-): StreamableMethod {
-  const path = expandUrlTemplate(
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.TestArmPatch/partnerTopics/{partnerTopicName}{?api%2Dversion}",
-    {
-      subscriptionId: context.subscriptionId,
-      resourceGroupName: resourceGroupName,
-      partnerTopicName: partnerTopicName,
-      "api%2Dversion": apiVersion,
-    },
-    {
-      allowReserved: options?.requestOptions?.skipUrlEncoding,
-    },
-  );
-  return context
-    .path(path)
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json", ...options.requestOptions?.headers },
-    });
-}
-
-export async function _getDeserialize(result: PathUncheckedResponse): Promise<PartnerTopic> {
-  const expectedStatuses = ["200"];
-  if (!expectedStatuses.includes(result.status)) {
-    const error = createRestError(result);
-    error.details = errorResponseDeserializer(result.body);
-    throw error;
-  }
-
-  return partnerTopicDeserializer(result.body);
-}
-
-/** Get properties of a partner topic. */
-export async function get(
-  context: Client,
-  apiVersion: string,
-  resourceGroupName: string,
-  partnerTopicName: string,
-  options: GetOptionalParams = { requestOptions: {} },
-): Promise<PartnerTopic> {
-  const result = await _getSend(context, apiVersion, resourceGroupName, partnerTopicName, options);
-  return _getDeserialize(result);
 }
 ```

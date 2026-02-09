@@ -1,0 +1,34 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
+export { CaCertificatesOperations } from "./caCertificates/index.js";
+export { ChannelsOperations } from "./channels/index.js";
+export { ClientGroupsOperations } from "./clientGroups/index.js";
+export { ClientsOperations } from "./clients/index.js";
+export { DomainEventSubscriptionsOperations } from "./domainEventSubscriptions/index.js";
+export { DomainsOperations } from "./domains/index.js";
+export { DomainTopicEventSubscriptionsOperations } from "./domainTopicEventSubscriptions/index.js";
+export { DomainTopicsOperations } from "./domainTopics/index.js";
+export { EventSubscriptionsOperations } from "./eventSubscriptions/index.js";
+export { ExtensionTopicsOperations } from "./extensionTopics/index.js";
+export { NamespacesOperations } from "./namespaces/index.js";
+export { NamespaceTopicEventSubscriptionsOperations } from "./namespaceTopicEventSubscriptions/index.js";
+export { NamespaceTopicsOperations } from "./namespaceTopics/index.js";
+export { NetworkSecurityPerimeterConfigurationsOperations } from "./networkSecurityPerimeterConfigurations/index.js";
+export { OperationsOperations } from "./operations/index.js";
+export { PartnerConfigurationsOperations } from "./partnerConfigurations/index.js";
+export { PartnerDestinationsOperations } from "./partnerDestinations/index.js";
+export { PartnerNamespacesOperations } from "./partnerNamespaces/index.js";
+export { PartnerRegistrationsOperations } from "./partnerRegistrations/index.js";
+export { PartnerTopicEventSubscriptionsOperations } from "./partnerTopicEventSubscriptions/index.js";
+export { PartnerTopicsOperations } from "./partnerTopics/index.js";
+export { PermissionBindingsOperations } from "./permissionBindings/index.js";
+export { PrivateEndpointConnectionsOperations } from "./privateEndpointConnections/index.js";
+export { PrivateLinkResourcesOperations } from "./privateLinkResources/index.js";
+export { SystemTopicEventSubscriptionsOperations } from "./systemTopicEventSubscriptions/index.js";
+export { SystemTopicsOperations } from "./systemTopics/index.js";
+export { TopicEventSubscriptionsOperations } from "./topicEventSubscriptions/index.js";
+export { TopicsOperations } from "./topics/index.js";
+export { TopicSpacesOperations } from "./topicSpaces/index.js";
+export { TopicTypesOperations } from "./topicTypes/index.js";
+export { VerifiedPartnersOperations } from "./verifiedPartners/index.js";
