@@ -1668,7 +1668,7 @@ export function getRequestModelMapping(
   ).map(([name, value]) => `"${name}": ${value}`);
 }
 
-function getPropertySerializedName(
+export function getPropertySerializedName(
   property: SdkHttpParameter | SdkModelPropertyType
 ) {
   return (
