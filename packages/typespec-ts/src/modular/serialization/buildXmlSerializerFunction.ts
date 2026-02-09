@@ -30,7 +30,6 @@ import { isMetadata } from "@typespec/http";
 import { normalizeModelPropertyName } from "../type-expressions/get-type-expression.js";
 import { isReadOnly } from "@azure-tools/typespec-client-generator-core";
 import { buildModelSerializer } from "./buildSerializerFunction.js";
-import { buildModelDeserializer } from "./buildDeserializerFunction.js";
 
 /**
  * Checks if a model type has XML serialization options defined
@@ -479,16 +478,17 @@ function buildDeserializePropertyMetadataArray(
 }
 
 /**
- * Gets the nested XML deserializer function reference for complex types
+ * Gets the nested XML deserializer function reference for complex types.
+ * Uses the XML object deserializer to properly handle XML property names.
  */
 function getNestedXmlDeserializer(
   context: SdkContext,
   type: SdkType
 ): string | undefined {
   if (type.kind === "model") {
-    // For nested objects, use the regular JSON deserializer which takes parsed objects
-    // The XML parser has already converted the XML to an object structure
-    const deserializerName = buildModelDeserializer(context, type, {
+    // For nested objects, use the XML object deserializer which takes parsed XML objects
+    // and uses XML property names for mapping
+    const deserializerName = buildXmlObjectModelDeserializer(context, type, {
       nameOnly: true,
       skipDiscriminatedUnionSuffix: false
     });
@@ -497,15 +497,115 @@ function getNestedXmlDeserializer(
     }
   }
   if (type.kind === "array" && type.valueType.kind === "model") {
-    // For arrays, use the regular JSON deserializer which takes parsed objects
+    // For arrays, use the XML object deserializer for items
     // The XML helper calls this for each item and handles the array mapping
-    const itemDeserializer = buildModelDeserializer(context, type.valueType, {
-      nameOnly: true,
-      skipDiscriminatedUnionSuffix: false
-    });
+    const itemDeserializer = buildXmlObjectModelDeserializer(
+      context,
+      type.valueType,
+      {
+        nameOnly: true,
+        skipDiscriminatedUnionSuffix: false
+      }
+    );
     if (typeof itemDeserializer === "string") {
       return itemDeserializer;
     }
   }
   return undefined;
+}
+
+/**
+ * Builds an XML object deserializer function for a model type.
+ * This deserializer takes a pre-parsed XML object (not an XML string)
+ * and uses XML property names for mapping. Used for nested objects.
+ */
+export function buildXmlObjectModelDeserializer(
+  context: SdkContext,
+  type: SdkModelType,
+  options: ModelSerializeOptions = {
+    nameOnly: false,
+    skipDiscriminatedUnionSuffix: false
+  }
+): FunctionDeclarationStructure | string | undefined {
+  if (!isSupportedSerializeType(type)) {
+    return undefined;
+  }
+
+  if (!type.name) {
+    reportDiagnostic(context.program, {
+      code: "anonymous-type-deserialization",
+      target: type.__raw || NoTarget
+    });
+    return undefined;
+  }
+
+  if (
+    !type.usage ||
+    (type.usage !== undefined &&
+      (type.usage & UsageFlags.Output) !== UsageFlags.Output &&
+      (type.usage & UsageFlags.Exception) !== UsageFlags.Exception)
+  ) {
+    return undefined;
+  }
+
+  if (isAzureCoreErrorType(context.program, type.__raw!)) {
+    return undefined;
+  }
+
+  const deserializerFunctionName =
+    options.predefinedName ??
+    `${normalizeModelName(
+      context,
+      type,
+      NameType.Operation,
+      options.skipDiscriminatedUnionSuffix
+    )}XmlObjectDeserializer`;
+
+  if (options.nameOnly) {
+    return resolveReference(refkey(type, "xmlObjectDeserializer"));
+  }
+
+  const deserializeXmlObjectRef = resolveReference(
+    XmlHelpers.deserializeXmlObject
+  );
+  const xmlPropertyDeserializeMetadataRef = resolveReference(
+    XmlHelpers.XmlPropertyDeserializeMetadata
+  );
+
+  const properties = getAllProperties(context, type, getAllAncestors(type));
+
+  // Build property metadata array for deserialization
+  const propertyMetadata = buildDeserializePropertyMetadataArray(
+    context,
+    properties
+  );
+
+  const statements: string[] = [];
+
+  // Generate the properties metadata constant
+  statements.push(
+    `const properties: ${xmlPropertyDeserializeMetadataRef}[] = [${propertyMetadata}];`
+  );
+
+  // Generate the deserialization call - no rootName needed for object deserializer
+  const typeRef = resolveReference(refkey(type));
+  statements.push(
+    `return ${deserializeXmlObjectRef}<${typeRef}>(xmlObject, properties);`
+  );
+
+  const deserializerFunction: FunctionDeclarationStructure = {
+    kind: StructureKind.Function,
+    name: deserializerFunctionName,
+    isExported: true,
+    parameters: [
+      {
+        name: "xmlObject",
+        type: "Record<string, unknown>"
+      }
+    ],
+    returnType: resolveReference(refkey(type)),
+    statements
+  };
+
+  return deserializerFunction;
 }

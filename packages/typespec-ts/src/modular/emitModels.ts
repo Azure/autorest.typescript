@@ -51,6 +51,7 @@ import {
 import {
   buildXmlModelSerializer,
   buildXmlModelDeserializer,
+  buildXmlObjectModelDeserializer,
   hasXmlSerialization
 } from "./serialization/buildXmlSerializerFunction.js";
 import path from "path";
@@ -384,6 +385,10 @@ function addSerializationFunctions(
   if (typeOrProperty.kind === "model" && hasXmlSerialization(typeOrProperty)) {
     const xmlSerializerRefKey = refkey(typeOrProperty, "xmlSerializer");
     const xmlDeserializerRefKey = refkey(typeOrProperty, "xmlDeserializer");
+    const xmlObjectDeserializerRefKey = refkey(
+      typeOrProperty,
+      "xmlObjectDeserializer"
+    );
 
     const xmlSerializationFunction = buildXmlModelSerializer(
       context,
@@ -412,6 +417,24 @@ function addSerializationFunctions(
         sourceFile,
         xmlDeserializationFunction,
         xmlDeserializerRefKey
+      );
+    }
+
+    // Also generate XML object deserializer for nested object deserialization
+    const xmlObjectDeserializationFunction = buildXmlObjectModelDeserializer(
+      context,
+      typeOrProperty,
+      options
+    );
+    if (
+      xmlObjectDeserializationFunction &&
+      typeof xmlObjectDeserializationFunction !== "string" &&
+      xmlObjectDeserializationFunction.name
+    ) {
+      addDeclaration(
+        sourceFile,
+        xmlObjectDeserializationFunction,
+        xmlObjectDeserializerRefKey
       );
     }
   }

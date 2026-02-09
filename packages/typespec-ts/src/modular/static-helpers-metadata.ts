@@ -209,6 +209,11 @@ export const XmlHelpers = {
     name: "deserializeFromXml",
     location: "serialization/xml-helpers.ts"
   },
+  deserializeXmlObject: {
+    kind: "function",
+    name: "deserializeXmlObject",
+    location: "serialization/xml-helpers.ts"
+  },
   isXmlContentType: {
     kind: "function",
     name: "isXmlContentType",
