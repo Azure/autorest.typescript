@@ -3,10 +3,10 @@ export const azureRlcTsps = [
     outputPath: "routes",
     inputPath: "routes"
   },
-  {
-    outputPath: "payload/multipart",
-    inputPath: "payload/multipart"
-  },
+  // {
+  //   outputPath: "payload/multipart",
+  //   inputPath: "payload/multipart"
+  // },
   {
     outputPath: "union-body",
     inputPath: "union-body"
@@ -398,10 +398,10 @@ export const rlcTsps = [
     outputPath: "routes",
     inputPath: "routes"
   },
-  {
-    outputPath: "payload/multipart",
-    inputPath: "payload/multipart"
-  },
+  // {
+  //   outputPath: "payload/multipart",
+  //   inputPath: "payload/multipart"
+  // },
   {
     outputPath: "union-body",
     inputPath: "union-body"
@@ -763,10 +763,10 @@ export const azureModularTsps = [
     outputPath: "payload/media-type",
     inputPath: "payload/media-type"
   },
-  {
-    outputPath: "payload/multipart",
-    inputPath: "payload/multipart"
-  },
+  // {
+  //   outputPath: "payload/multipart",
+  //   inputPath: "payload/multipart"
+  // },
   {
     outputPath: "payload/xml",
     inputPath: "payload/xml"
@@ -1114,10 +1114,10 @@ export const modularTsps = [
     outputPath: "payload/media-type",
     inputPath: "payload/media-type"
   },
-  {
-    outputPath: "payload/multipart",
-    inputPath: "payload/multipart"
-  },
+  // {
+  //   outputPath: "payload/multipart",
+  //   inputPath: "payload/multipart"
+  // },
   {
     outputPath: "server/versions/versioned",
     inputPath: "server/versions/versioned"
