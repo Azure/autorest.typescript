@@ -358,6 +358,7 @@ export async function $onEmit(context: EmitContext) {
         interfaceOnly: true
       });
       const { subfolder } = getModularClientOptions(subClient);
+      // Generate index file for multi-client scenarios or nested clients (non-empty subfolder)
       if (isMultiClients || subfolder) {
         buildSubClientIndexFile(dpgContext, subClient, modularEmitterOptions);
       }
