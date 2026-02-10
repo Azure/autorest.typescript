@@ -366,6 +366,57 @@ export function getDeserializePrivateFunction(
   };
 }
 
+/**
+ * Generates a private function to deserialize response headers.
+ * Only generated when response headers are present and include-headers-in-response is enabled.
+ */
+export function getDeserializeHeadersPrivateFunction(
+  context: SdkContext,
+  operation: ServiceOperation
+): OptionalKind<FunctionDeclarationStructure> | undefined {
+  const responseHeaders = getResponseHeaders(operation.operation.responses);
+  const isResponseHeadersEnabled =
+    context.rlcOptions?.includeHeadersInResponse === true;
+
+  // Only generate if headers exist and feature is enabled
+  if (responseHeaders.length === 0 || !isResponseHeadersEnabled) {
+    return undefined;
+  }
+
+  const { name } = getOperationName(operation);
+  const dependencies = useDependencies();
+  const PathUncheckedResponseReference = resolveReference(
+    dependencies.PathUncheckedResponse
+  );
+
+  const parameters: OptionalKind<ParameterDeclarationStructure>[] = [
+    {
+      name: "result",
+      type: PathUncheckedResponseReference
+    }
+  ];
+
+  const returnType = buildHeaderOnlyResponseType(context, responseHeaders);
+
+  const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
+    isAsync: false,
+    isExported: true,
+    name: `_${name}DeserializeHeaders`,
+    parameters,
+    returnType
+  };
+
+  const statements: string[] = [];
+  statements.push(
+    `return ${buildHeaderOnlyResponseValue(context, responseHeaders)};`
+  );
+
+  return {
+    ...functionStatement,
+    statements
+  };
+}
+
 interface ExceptionThrowDetail {
   start: number;
   end?: number;
@@ -639,9 +690,7 @@ export function getOperationFunction(
 
   // If the response has headers and the feature flag to include headers in response is enabled, build the headers object and include it in the return value
   if (responseHeaders.length > 0 && isResponseHeadersEnabled) {
-    statements.push(
-      `const headers = ${buildHeaderOnlyResponseValue(context, responseHeaders)};`
-    );
+    statements.push(`const headers = _${name}DeserializeHeaders(result);`);
 
     // If there is no body payload just return the headers
     if (hasHeaderOnlyResponse) {
