@@ -12,9 +12,9 @@ op read(@path pathParam: string, @query("key-name")
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import { ReadOptionalParams } from "./options.js";
+import { TestingContext } from "./testingContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -23,7 +23,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _readSend(
-  context: Client,
+  context: TestingContext,
   pathParam: string,
   keyName: string,
   keyVersion: string,
@@ -60,7 +60,7 @@ export async function _readDeserialize(result: PathUncheckedResponse): Promise<v
 }
 
 export async function read(
-  context: Client,
+  context: TestingContext,
   pathParam: string,
   keyName: string,
   keyVersion: string,

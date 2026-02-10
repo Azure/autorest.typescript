@@ -55,8 +55,8 @@ export type SchemaContentTypeValues =
 ## paramOutput
 
 ```ts operations
-import { DemoServiceContext as Client } from "./index.js";
 import { SchemaContentTypeValues } from "../models/models.js";
+import { DemoServiceContext } from "./demoServiceContext.js";
 import { GetOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -66,7 +66,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _getSend(
-  context: Client,
+  context: DemoServiceContext,
   contentType: SchemaContentTypeValues,
   body: string,
   options: GetOptionalParams = { requestOptions: {} },
@@ -90,7 +90,7 @@ export async function _getDeserialize(result: PathUncheckedResponse): Promise<vo
 }
 
 export async function get(
-  context: Client,
+  context: DemoServiceContext,
   contentType: SchemaContentTypeValues,
   body: string,
   options: GetOptionalParams = { requestOptions: {} },
@@ -550,7 +550,7 @@ needOptions: false
 ## Operations
 
 ```ts operations
-import { DemoServiceContext as Client } from "./index.js";
+import { DemoServiceContext } from "./demoServiceContext.js";
 import { GetOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -560,7 +560,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _getSend(
-  context: Client,
+  context: DemoServiceContext,
   testHeader: "A" | "B",
   body: string,
   options: GetOptionalParams = { requestOptions: {} },
@@ -585,7 +585,7 @@ export async function _getDeserialize(result: PathUncheckedResponse): Promise<vo
 }
 
 export async function get(
-  context: Client,
+  context: DemoServiceContext,
   testHeader: "A" | "B",
   body: string,
   options: GetOptionalParams = { requestOptions: {} },
@@ -636,7 +636,7 @@ experimental-extensible-enums: true
 ## Operations
 
 ```ts operations
-import { DemoServiceContext as Client } from "./index.js";
+import { DemoServiceContext } from "./demoServiceContext.js";
 import { GetOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -646,7 +646,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _getSend(
-  context: Client,
+  context: DemoServiceContext,
   testHeader: string,
   body: string,
   options: GetOptionalParams = { requestOptions: {} },
@@ -671,7 +671,7 @@ export async function _getDeserialize(result: PathUncheckedResponse): Promise<vo
 }
 
 export async function get(
-  context: Client,
+  context: DemoServiceContext,
   testHeader: string,
   body: string,
   options: GetOptionalParams = { requestOptions: {} },

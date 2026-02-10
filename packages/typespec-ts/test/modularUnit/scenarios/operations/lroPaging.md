@@ -273,7 +273,6 @@ export enum KnownVersions {
 ## Operations
 
 ```ts operations
-import { WebContext as Client } from "./index.js";
 import {
   _WebAppCollection,
   _webAppCollectionDeserializer,
@@ -287,6 +286,7 @@ import {
 import { getLongRunningPoller } from "../static-helpers/pollingHelpers.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import { SuspendOptionalParams } from "./options.js";
+import { WebContext } from "./webContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -296,7 +296,7 @@ import {
 import { PollerLike, OperationState } from "@azure/core-lro";
 
 export function _suspendSend(
-  context: Client,
+  context: WebContext,
   resourceGroupName: string,
   name: string,
   options: SuspendOptionalParams = { requestOptions: {} },
@@ -336,7 +336,7 @@ export async function _suspendDeserialize(
 
 /** A long-running resource action. */
 export function suspend(
-  context: Client,
+  context: WebContext,
   resourceGroupName: string,
   name: string,
   options: SuspendOptionalParams = { requestOptions: {} },

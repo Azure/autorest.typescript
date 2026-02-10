@@ -91,10 +91,10 @@ export interface ReadOptionalParams extends OperationOptions {}
 You can extract the entire operations file using `ts operations`:
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
 import { Example, exampleDeserializer } from "../models/models.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import { ReadOptionalParams } from "./options.js";
+import { TestingContext } from "./testingContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -103,7 +103,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _readSend(
-  context: Client,
+  context: TestingContext,
   id: string,
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -134,7 +134,7 @@ export async function _readDeserialize(result: PathUncheckedResponse): Promise<E
 }
 
 export async function read(
-  context: Client,
+  context: TestingContext,
   id: string,
   options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<Example> {
@@ -147,7 +147,7 @@ Or you can extract a specific operation using `ts operations function <operation
 
 ```ts operations function read
 export async function read(
-  context: Client,
+  context: TestingContext,
   id: string,
   options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<Example> {

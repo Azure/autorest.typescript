@@ -149,13 +149,13 @@ export function createBillingBenefits(
 ## Operations
 
 ```ts operations
-import { BillingBenefitsContext as Client } from "./index.js";
 import {
   SavingsPlanModel,
   savingsPlanModelDeserializer,
   errorResponseDeserializer,
 } from "../models/models.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import { BillingBenefitsContext } from "./billingBenefitsContext.js";
 import { GetOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -165,7 +165,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _getSend(
-  context: Client,
+  context: BillingBenefitsContext,
   apiVersion: string,
   subscriptionId: string,
   resourceGroupName: string,
@@ -211,7 +211,7 @@ export async function _getDeserialize(result: PathUncheckedResponse): Promise<Sa
 
 /** Get savings plan. */
 export async function get(
-  context: Client,
+  context: BillingBenefitsContext,
   apiVersion: string,
   subscriptionId: string,
   resourceGroupName: string,
@@ -380,13 +380,13 @@ export function createBillingBenefits(
 ## Operations
 
 ```ts operations
-import { BillingBenefitsContext as Client } from "./index.js";
 import {
   SavingsPlanModel,
   savingsPlanModelDeserializer,
   errorResponseDeserializer,
 } from "../models/models.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import { BillingBenefitsContext } from "./billingBenefitsContext.js";
 import { GetOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -396,7 +396,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _getSend(
-  context: Client,
+  context: BillingBenefitsContext,
   apiVersion: string,
   subscriptionId: string,
   resourceGroupName: string,
@@ -442,7 +442,7 @@ export async function _getDeserialize(result: PathUncheckedResponse): Promise<Sa
 
 /** Get savings plan. */
 export async function get(
-  context: Client,
+  context: BillingBenefitsContext,
   apiVersion: string,
   subscriptionId: string,
   resourceGroupName: string,

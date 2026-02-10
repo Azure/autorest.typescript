@@ -74,10 +74,10 @@ export interface ReadOptionalParams extends OperationOptions {
 Should generate operations correctly:
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
 import { bodyParameterSerializer, _readResponseDeserializer } from "../models/models.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import { ReadOptionalParams } from "./options.js";
+import { TestingContext } from "./testingContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -86,7 +86,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _readSend(
-  context: Client,
+  context: TestingContext,
   name: string,
   requiredQuery: string,
   options: ReadOptionalParams = { requestOptions: {} },
@@ -125,7 +125,7 @@ export async function _readDeserialize(
 
 /** show example demo */
 export async function read(
-  context: Client,
+  context: TestingContext,
   name: string,
   requiredQuery: string,
   options: ReadOptionalParams = { requestOptions: {} },

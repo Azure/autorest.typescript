@@ -14,7 +14,7 @@ import {
 } from "./helpers/clientHelpers.js";
 
 import { SdkContext } from "../utils/interfaces.js";
-import { SourceFile } from "ts-morph";
+import { SourceFile, StructureKind } from "ts-morph";
 import {
   getClassicalClientName,
   getClientName
@@ -38,6 +38,7 @@ import { refkey } from "../framework/refkey.js";
 import { reportDiagnostic } from "../lib.js";
 import { NoTarget } from "@typespec/compiler";
 import { CloudSettingHelpers } from "./static-helpers-metadata.js";
+import { addDeclaration } from "../framework/declaration.js";
 
 /**
  * This function gets the path of the file containing the modular client context
@@ -125,13 +126,21 @@ export function buildClientContext(
       };
     });
 
-  clientContextFile.addInterface({
-    isExported: true,
-    name: `${rlcClientName}`,
-    extends: [resolveReference(dependencies.Client)],
-    docs: getDocsFromDescription(client.doc),
-    properties: [...requiredInterfaceProperties, ...optionalInterfaceProperties]
-  });
+  addDeclaration(
+    clientContextFile,
+    {
+      kind: StructureKind.Interface,
+      isExported: true,
+      name: `${rlcClientName}`,
+      extends: [resolveReference(dependencies.Client)],
+      docs: getDocsFromDescription(client.doc),
+      properties: [
+        ...requiredInterfaceProperties,
+        ...optionalInterfaceProperties
+      ]
+    },
+    refkey(client, "context")
+  );
 
   const propertiesInOptions = getClientParameters(client, dpgContext, {
     optionalOnly: true

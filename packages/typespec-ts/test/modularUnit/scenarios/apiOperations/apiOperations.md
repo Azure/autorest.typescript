@@ -15,8 +15,8 @@ Api operations should handle contentTypes has binary data
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
 import { UploadFileViaBodyOptionalParams } from "./options.js";
+import { TestingContext } from "./testingContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -25,7 +25,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _uploadFileViaBodySend(
-  context: Client,
+  context: TestingContext,
   body: Uint8Array,
   options: UploadFileViaBodyOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -48,7 +48,7 @@ export async function _uploadFileViaBodyDeserialize(result: PathUncheckedRespons
 }
 
 export async function uploadFileViaBody(
-  context: Client,
+  context: TestingContext,
   body: Uint8Array,
   options: UploadFileViaBodyOptionalParams = { requestOptions: {} },
 ): Promise<void> {
@@ -75,8 +75,8 @@ scalar BinaryBytes extends bytes;
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
 import { UploadFileViaBodyOptionalParams } from "./options.js";
+import { TestingContext } from "./testingContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -85,7 +85,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _uploadFileViaBodySend(
-  context: Client,
+  context: TestingContext,
   body: Uint8Array,
   options: UploadFileViaBodyOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -108,7 +108,7 @@ export async function _uploadFileViaBodyDeserialize(result: PathUncheckedRespons
 }
 
 export async function uploadFileViaBody(
-  context: Client,
+  context: TestingContext,
   body: Uint8Array,
   options: UploadFileViaBodyOptionalParams = { requestOptions: {} },
 ): Promise<void> {
@@ -163,9 +163,9 @@ export function _uploadFileRequestSerializer(item: _UploadFileRequest): any {
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
 import { _uploadFileRequestSerializer } from "../models/models.js";
 import { UploadFileOptionalParams } from "./options.js";
+import { TestingContext } from "./testingContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -174,7 +174,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _uploadFileSend(
-  context: Client,
+  context: TestingContext,
   body: {
     name: string;
     file: Uint8Array;
@@ -200,7 +200,7 @@ export async function _uploadFileDeserialize(result: PathUncheckedResponse): Pro
 }
 
 export async function uploadFile(
-  context: Client,
+  context: TestingContext,
   body: {
     name: string;
     file: Uint8Array;
@@ -257,9 +257,9 @@ export function _uploadFilesRequestSerializer(item: _UploadFilesRequest): any {
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
 import { _uploadFilesRequestSerializer } from "../models/models.js";
 import { UploadFilesOptionalParams } from "./options.js";
+import { TestingContext } from "./testingContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -268,7 +268,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _uploadFilesSend(
-  context: Client,
+  context: TestingContext,
   body: {
     files: Uint8Array[];
   },
@@ -293,7 +293,7 @@ export async function _uploadFilesDeserialize(result: PathUncheckedResponse): Pr
 }
 
 export async function uploadFiles(
-  context: Client,
+  context: TestingContext,
   body: {
     files: Uint8Array[];
   },
@@ -320,9 +320,9 @@ op downloadFile(): {
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
 import { getBinaryResponse } from "../static-helpers/serialization/get-binary-response.js";
 import { DownloadFileOptionalParams } from "./options.js";
+import { TestingContext } from "./testingContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -331,7 +331,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _downloadFileSend(
-  context: Client,
+  context: TestingContext,
   options: DownloadFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -352,7 +352,7 @@ export async function _downloadFileDeserialize(result: PathUncheckedResponse): P
 }
 
 export async function downloadFile(
-  context: Client,
+  context: TestingContext,
   options: DownloadFileOptionalParams = { requestOptions: {} },
 ): Promise<Uint8Array> {
   const streamableMethod = _downloadFileSend(context, options);
@@ -380,9 +380,9 @@ op downloadFile(): {
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
 import { getBinaryResponse } from "../static-helpers/serialization/get-binary-response.js";
 import { DownloadFileOptionalParams } from "./options.js";
+import { TestingContext } from "./testingContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -391,7 +391,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _downloadFileSend(
-  context: Client,
+  context: TestingContext,
   options: DownloadFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -412,7 +412,7 @@ export async function _downloadFileDeserialize(result: PathUncheckedResponse): P
 }
 
 export async function downloadFile(
-  context: Client,
+  context: TestingContext,
   options: DownloadFileOptionalParams = { requestOptions: {} },
 ): Promise<Uint8Array> {
   const streamableMethod = _downloadFileSend(context, options);
@@ -468,9 +468,9 @@ export function _downloadFileResponseDeserializer(item: any): _DownloadFileRespo
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
 import { _downloadFileResponseDeserializer } from "../models/models.js";
 import { DownloadFileOptionalParams } from "./options.js";
+import { TestingContext } from "./testingContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -479,7 +479,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _downloadFileSend(
-  context: Client,
+  context: TestingContext,
   options: DownloadFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -503,7 +503,7 @@ export async function _downloadFileDeserialize(result: PathUncheckedResponse): P
 }
 
 export async function downloadFile(
-  context: Client,
+  context: TestingContext,
   options: DownloadFileOptionalParams = { requestOptions: {} },
 ): Promise<{
   name: string;
@@ -564,9 +564,9 @@ export function _downloadFileResponseDeserializer(item: any): _DownloadFileRespo
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
 import { _downloadFileResponseDeserializer } from "../models/models.js";
 import { DownloadFileOptionalParams } from "./options.js";
+import { TestingContext } from "./testingContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -575,7 +575,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _downloadFileSend(
-  context: Client,
+  context: TestingContext,
   options: DownloadFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -599,7 +599,7 @@ export async function _downloadFileDeserialize(result: PathUncheckedResponse): P
 }
 
 export async function downloadFile(
-  context: Client,
+  context: TestingContext,
   options: DownloadFileOptionalParams = { requestOptions: {} },
 ): Promise<{
   name: string[];
@@ -627,8 +627,8 @@ Api operations should handle contentTypes has default value
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
 import { UploadFileViaBodyOptionalParams } from "./options.js";
+import { TestingContext } from "./testingContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -637,7 +637,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _uploadFileViaBodySend(
-  context: Client,
+  context: TestingContext,
   contentType: string,
   body: Uint8Array,
   options: UploadFileViaBodyOptionalParams = { requestOptions: {} },
@@ -661,7 +661,7 @@ export async function _uploadFileViaBodyDeserialize(result: PathUncheckedRespons
 }
 
 export async function uploadFileViaBody(
-  context: Client,
+  context: TestingContext,
   contentType: string,
   body: Uint8Array,
   options: UploadFileViaBodyOptionalParams = { requestOptions: {} },
@@ -686,9 +686,9 @@ op test(...ApiVersionParameter): string;
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import { TestOptionalParams } from "./options.js";
+import { TestingContext } from "./testingContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -697,7 +697,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _testSend(
-  context: Client,
+  context: TestingContext,
   apiVersion: string,
   options: TestOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -728,7 +728,7 @@ export async function _testDeserialize(result: PathUncheckedResponse): Promise<s
 }
 
 export async function test(
-  context: Client,
+  context: TestingContext,
   apiVersion: string,
   options: TestOptionalParams = { requestOptions: {} },
 ): Promise<string> {
@@ -827,9 +827,9 @@ withRawContent: false
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import { TestOptionalParams } from "./options.js";
+import { TestingContext } from "./testingContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -838,7 +838,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _testSend(
-  context: Client,
+  context: TestingContext,
   apiVersion: string,
   options: TestOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -869,7 +869,7 @@ export async function _testDeserialize(result: PathUncheckedResponse): Promise<s
 }
 
 export async function test(
-  context: Client,
+  context: TestingContext,
   apiVersion: string,
   options: TestOptionalParams = { requestOptions: {} },
 ): Promise<string> {
@@ -962,9 +962,9 @@ op test1(): string;
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import { Test1OptionalParams, TestOptionalParams } from "./options.js";
+import { TestingContext } from "./testingContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -973,7 +973,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _test1Send(
-  context: Client,
+  context: TestingContext,
   options: Test1OptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -994,7 +994,7 @@ export async function _test1Deserialize(result: PathUncheckedResponse): Promise<
 }
 
 export async function test1(
-  context: Client,
+  context: TestingContext,
   options: Test1OptionalParams = { requestOptions: {} },
 ): Promise<string> {
   const result = await _test1Send(context, options);
@@ -1002,7 +1002,7 @@ export async function test1(
 }
 
 export function _testSend(
-  context: Client,
+  context: TestingContext,
   apiVersion: string,
   options: TestOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -1033,7 +1033,7 @@ export async function _testDeserialize(result: PathUncheckedResponse): Promise<s
 }
 
 export async function test(
-  context: Client,
+  context: TestingContext,
   apiVersion: string,
   options: TestOptionalParams = { requestOptions: {} },
 ): Promise<string> {
@@ -1206,7 +1206,6 @@ withRawContent: true
 ## Operations
 
 ```ts operations
-import { ContosoContext as Client } from "./index.js";
 import {
   _OperationListResult,
   _operationListResultDeserializer,
@@ -1223,6 +1222,7 @@ import {
 } from "../static-helpers/pagingHelpers.js";
 import { getLongRunningPoller } from "../static-helpers/pollingHelpers.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import { ContosoContext } from "./contosoContext.js";
 import { UpdateFileShareSnapshotOptionalParams, ListOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -1233,7 +1233,7 @@ import {
 import { PollerLike, OperationState } from "@azure/core-lro";
 
 export function _updateFileShareSnapshotSend(
-  context: Client,
+  context: ContosoContext,
   resourceGroupName: string,
   resourceName: string,
   name: string,
@@ -1277,7 +1277,7 @@ export async function _updateFileShareSnapshotDeserialize(
 
 /** Update a FileShareSnapshot */
 export function updateFileShareSnapshot(
-  context: Client,
+  context: ContosoContext,
   resourceGroupName: string,
   resourceName: string,
   name: string,
@@ -1302,7 +1302,7 @@ export function updateFileShareSnapshot(
 }
 
 export function _listSend(
-  context: Client,
+  context: ContosoContext,
   options: ListOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
@@ -1337,7 +1337,7 @@ export async function _listDeserialize(
 
 /** List the operations for the provider */
 export function list(
-  context: Client,
+  context: ContosoContext,
   options: ListOptionalParams = { requestOptions: {} },
 ): PagedAsyncIterableIterator<Operation> {
   return buildPagedAsyncIterator(

@@ -12,9 +12,9 @@ op continue(): Test;
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
 import { Test, testDeserializer } from "../models/models.js";
 import { ContinueOptionalParams } from "./options.js";
+import { TestingContext } from "./testingContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -23,7 +23,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _$continueSend(
-  context: Client,
+  context: TestingContext,
   options: ContinueOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -49,7 +49,7 @@ export async function _$continueDeserialize(result: PathUncheckedResponse): Prom
  *         to the operation to override the generated name.
  */
 export async function $continue(
-  context: Client,
+  context: TestingContext,
   options: ContinueOptionalParams = { requestOptions: {} },
 ): Promise<Test> {
   const result = await _$continueSend(context, options);
@@ -71,9 +71,9 @@ op `return`(): Test;
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
 import { Test, testDeserializer } from "../models/models.js";
 import { ReturnOptionalParams } from "./options.js";
+import { TestingContext } from "./testingContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -82,7 +82,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _$returnSend(
-  context: Client,
+  context: TestingContext,
   options: ReturnOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -108,7 +108,7 @@ export async function _$returnDeserialize(result: PathUncheckedResponse): Promis
  *         to the operation to override the generated name.
  */
 export async function $return(
-  context: Client,
+  context: TestingContext,
   options: ReturnOptionalParams = { requestOptions: {} },
 ): Promise<Test> {
   const result = await _$returnSend(context, options);
@@ -130,9 +130,9 @@ op global(): Test;
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
 import { Test, testDeserializer } from "../models/models.js";
 import { GlobalOptionalParams } from "./options.js";
+import { TestingContext } from "./testingContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -141,7 +141,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _globalSend(
-  context: Client,
+  context: TestingContext,
   options: GlobalOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -162,7 +162,7 @@ export async function _globalDeserialize(result: PathUncheckedResponse): Promise
 }
 
 export async function global(
-  context: Client,
+  context: TestingContext,
   options: GlobalOptionalParams = { requestOptions: {} },
 ): Promise<Test> {
   const result = await _globalSend(context, options);

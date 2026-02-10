@@ -46,10 +46,10 @@ Raw json files.
 Operations
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
 import { listCredentialsRequestSerializer } from "../models/models.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import { PostOptionalParams } from "./options.js";
+import { TestingContext } from "./testingContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -58,7 +58,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _postSend(
-  context: Client,
+  context: TestingContext,
   options: PostOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
@@ -97,7 +97,7 @@ export async function _postDeserialize(result: PathUncheckedResponse): Promise<v
 
 /** show example demo */
 export async function post(
-  context: Client,
+  context: TestingContext,
   options: PostOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _postSend(context, options);

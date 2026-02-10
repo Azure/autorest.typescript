@@ -44,7 +44,7 @@ export interface User {
 
 ```ts operations function getUser
 export async function getUser(
-  context: Client,
+  context: TestingContext,
   options: GetUserOptionalParams = { requestOptions: {} },
 ): Promise<{
   name: string;
@@ -105,7 +105,7 @@ include-headers-in-response: true
 
 ```ts operations function deleteUser
 export async function deleteUser(
-  context: Client,
+  context: TestingContext,
   options: DeleteUserOptionalParams = { requestOptions: {} },
 ): Promise<{ requestId: string; optionalHeader?: string }> {
   const result = await _deleteUserSend(context, options);
@@ -153,7 +153,7 @@ include-headers-in-response: true
 
 ```ts operations function getAccountInfo
 export async function getAccountInfo(
-  context: Client,
+  context: TestingContext,
   options: GetAccountInfoOptionalParams = { requestOptions: {} },
 ): Promise<{ date: Date; legalHold: boolean; contentMd5: Uint8Array; requestId?: string }> {
   const result = await _getAccountInfoSend(context, options);

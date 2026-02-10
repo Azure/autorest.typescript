@@ -261,9 +261,9 @@ mustEmptyDiagnostic: false
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
 import { DocumentBase, documentBaseSerializer } from "../models/models.js";
 import { PublishOptionalParams } from "./options.js";
+import { TestingContext } from "./testingContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -272,7 +272,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _publishSend(
-  context: Client,
+  context: TestingContext,
   endpointParam: DocumentBase,
   options: PublishOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -295,7 +295,7 @@ export async function _publishDeserialize(result: PathUncheckedResponse): Promis
 }
 
 export async function publish(
-  context: Client,
+  context: TestingContext,
   endpointParam: DocumentBase,
   options: PublishOptionalParams = { requestOptions: {} },
 ): Promise<void> {

@@ -346,8 +346,8 @@ model StreamingChatCompletionOptions {
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
 import { CreateStreamingOptionalParams } from "./options.js";
+import { TestingContext } from "./testingContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -356,7 +356,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _createStreamingSend(
-  context: Client,
+  context: TestingContext,
   options: CreateStreamingOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -378,7 +378,7 @@ export async function _createStreamingDeserialize(result: PathUncheckedResponse)
 }
 
 export async function createStreaming(
-  context: Client,
+  context: TestingContext,
   options: CreateStreamingOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _createStreamingSend(context, options);
@@ -423,7 +423,7 @@ export interface Foo {
 ```ts models function fooSerializer
 export function fooSerializer(item: Foo): any {
   return {
-    prop1: item["prop1"].toISOString().split('T')[0],
+    prop1: item["prop1"].toISOString().split("T")[0],
     prop2: item["prop2"],
     prop3: item["prop3"].toISOString(),
     prop4: item["prop4"],
@@ -447,9 +447,9 @@ export function fooDeserializer(item: any): Foo {
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
 import { Foo, fooSerializer, fooDeserializer } from "../models/models.js";
 import { ReadOptionalParams } from "./options.js";
+import { TestingContext } from "./testingContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -458,7 +458,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _readSend(
-  context: Client,
+  context: TestingContext,
   body: Foo,
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -482,7 +482,7 @@ export async function _readDeserialize(result: PathUncheckedResponse): Promise<F
 }
 
 export async function read(
-  context: Client,
+  context: TestingContext,
   body: Foo,
   options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<Foo> {
@@ -502,8 +502,8 @@ op read(@header prop: utcDateTime): OkResponse;
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
 import { ReadOptionalParams } from "./options.js";
+import { TestingContext } from "./testingContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -512,7 +512,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _readSend(
-  context: Client,
+  context: TestingContext,
   prop: Date,
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -534,7 +534,7 @@ export async function _readDeserialize(result: PathUncheckedResponse): Promise<v
 }
 
 export async function read(
-  context: Client,
+  context: TestingContext,
   prop: Date,
   options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<void> {
@@ -584,9 +584,9 @@ export function fooSerializer(item: Foo): any {
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
 import { Foo, fooSerializer, fooDeserializer } from "../models/models.js";
 import { ReadOptionalParams } from "./options.js";
+import { TestingContext } from "./testingContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -595,7 +595,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _readSend(
-  context: Client,
+  context: TestingContext,
   body: Foo,
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -619,7 +619,7 @@ export async function _readDeserialize(result: PathUncheckedResponse): Promise<F
 }
 
 export async function read(
-  context: Client,
+  context: TestingContext,
   body: Foo,
   options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<Foo> {
@@ -669,9 +669,9 @@ export function fooSerializer(item: Foo): any {
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
 import { Foo, fooSerializer, fooDeserializer } from "../models/models.js";
 import { ReadOptionalParams } from "./options.js";
+import { TestingContext } from "./testingContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -680,7 +680,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _readSend(
-  context: Client,
+  context: TestingContext,
   body: Foo,
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -704,7 +704,7 @@ export async function _readDeserialize(result: PathUncheckedResponse): Promise<F
 }
 
 export async function read(
-  context: Client,
+  context: TestingContext,
   body: Foo,
   options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<Foo> {
@@ -751,9 +751,9 @@ export function fooSerializer(item: Foo): any {
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
 import { Foo, fooSerializer, fooDeserializer } from "../models/models.js";
 import { ReadOptionalParams } from "./options.js";
+import { TestingContext } from "./testingContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -762,7 +762,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _readSend(
-  context: Client,
+  context: TestingContext,
   body: Foo,
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -786,7 +786,7 @@ export async function _readDeserialize(result: PathUncheckedResponse): Promise<F
 }
 
 export async function read(
-  context: Client,
+  context: TestingContext,
   body: Foo,
   options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<Foo> {
@@ -824,9 +824,9 @@ export interface Foo {
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
 import { Foo, fooSerializer, fooDeserializer } from "../models/models.js";
 import { ReadOptionalParams } from "./options.js";
+import { TestingContext } from "./testingContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -835,7 +835,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _readSend(
-  context: Client,
+  context: TestingContext,
   body: Foo,
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -859,7 +859,7 @@ export async function _readDeserialize(result: PathUncheckedResponse): Promise<F
 }
 
 export async function read(
-  context: Client,
+  context: TestingContext,
   body: Foo,
   options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<Foo> {
@@ -898,9 +898,9 @@ export interface Foo {
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
 import { Foo, fooSerializer, fooDeserializer } from "../models/models.js";
 import { ReadOptionalParams } from "./options.js";
+import { TestingContext } from "./testingContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -909,7 +909,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _readSend(
-  context: Client,
+  context: TestingContext,
   body: Foo,
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -933,7 +933,7 @@ export async function _readDeserialize(result: PathUncheckedResponse): Promise<F
 }
 
 export async function read(
-  context: Client,
+  context: TestingContext,
   body: Foo,
   options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<Foo> {
@@ -975,9 +975,9 @@ export interface Foo {
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
 import { Foo, fooSerializer, fooDeserializer } from "../models/models.js";
 import { ReadOptionalParams } from "./options.js";
+import { TestingContext } from "./testingContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -986,7 +986,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _readSend(
-  context: Client,
+  context: TestingContext,
   body: Foo,
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -1010,7 +1010,7 @@ export async function _readDeserialize(result: PathUncheckedResponse): Promise<F
 }
 
 export async function read(
-  context: Client,
+  context: TestingContext,
   body: Foo,
   options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<Foo> {
@@ -1069,9 +1069,9 @@ export function fooDeserializer(item: any): Foo {
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
 import { Foo, fooSerializer, fooDeserializer } from "../models/models.js";
 import { ReadOptionalParams } from "./options.js";
+import { TestingContext } from "./testingContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -1080,7 +1080,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _readSend(
-  context: Client,
+  context: TestingContext,
   body: Foo,
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -1104,7 +1104,7 @@ export async function _readDeserialize(result: PathUncheckedResponse): Promise<F
 }
 
 export async function read(
-  context: Client,
+  context: TestingContext,
   body: Foo,
   options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<Foo> {
@@ -1164,9 +1164,9 @@ export function fooDeserializer(item: any): Foo {
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
 import { Foo, fooSerializer, fooDeserializer } from "../models/models.js";
 import { ReadOptionalParams } from "./options.js";
+import { TestingContext } from "./testingContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -1175,7 +1175,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _readSend(
-  context: Client,
+  context: TestingContext,
   body: Foo,
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -1199,7 +1199,7 @@ export async function _readDeserialize(result: PathUncheckedResponse): Promise<F
 }
 
 export async function read(
-  context: Client,
+  context: TestingContext,
   body: Foo,
   options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<Foo> {
@@ -1259,9 +1259,9 @@ export function fooDeserializer(item: any): Foo {
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
 import { Foo, fooSerializer, fooDeserializer } from "../models/models.js";
 import { ReadOptionalParams } from "./options.js";
+import { TestingContext } from "./testingContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -1270,7 +1270,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _readSend(
-  context: Client,
+  context: TestingContext,
   body: Foo,
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -1294,7 +1294,7 @@ export async function _readDeserialize(result: PathUncheckedResponse): Promise<F
 }
 
 export async function read(
-  context: Client,
+  context: TestingContext,
   body: Foo,
   options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<Foo> {
@@ -1444,9 +1444,9 @@ export function petDeserializer(item: any): Pet {
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
 import { Cat, catDeserializer } from "../models/models.js";
 import { ReadOptionalParams } from "./options.js";
+import { TestingContext } from "./testingContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -1455,7 +1455,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _readSend(
-  context: Client,
+  context: TestingContext,
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -1476,7 +1476,7 @@ export async function _readDeserialize(result: PathUncheckedResponse): Promise<C
 }
 
 export async function read(
-  context: Client,
+  context: TestingContext,
   options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<Cat> {
   const result = await _readSend(context, options);
@@ -1553,9 +1553,9 @@ export function animalDeserializer(item: any): Animal {
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
 import { Cat, catDeserializer } from "../models/models.js";
 import { ReadOptionalParams } from "./options.js";
+import { TestingContext } from "./testingContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -1564,7 +1564,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _readSend(
-  context: Client,
+  context: TestingContext,
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -1585,7 +1585,7 @@ export async function _readDeserialize(result: PathUncheckedResponse): Promise<C
 }
 
 export async function read(
-  context: Client,
+  context: TestingContext,
   options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<Cat> {
   const result = await _readSend(context, options);
@@ -1689,9 +1689,9 @@ export function petUnionDeserializer(item: any): PetUnion {
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
 import { PSDog, psDogSerializer, psDogDeserializer } from "../models/models.js";
 import { ReadOptionalParams } from "./options.js";
+import { TestingContext } from "./testingContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -1700,7 +1700,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _readSend(
-  context: Client,
+  context: TestingContext,
   body: PSDog,
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -1724,7 +1724,7 @@ export async function _readDeserialize(result: PathUncheckedResponse): Promise<P
 }
 
 export async function read(
-  context: Client,
+  context: TestingContext,
   body: PSDog,
   options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<PSDog> {
@@ -1829,9 +1829,9 @@ export function dogDeserializer(item: any): Dog {
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
 import { petUnionDeserializer, PetUnion } from "../models/models.js";
 import { ReadOptionalParams } from "./options.js";
+import { TestingContext } from "./testingContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -1840,7 +1840,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _readSend(
-  context: Client,
+  context: TestingContext,
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -1861,7 +1861,7 @@ export async function _readDeserialize(result: PathUncheckedResponse): Promise<P
 }
 
 export async function read(
-  context: Client,
+  context: TestingContext,
   options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<PetUnion> {
   const result = await _readSend(context, options);
@@ -2009,9 +2009,9 @@ export function petUnionArrayDeserializer(result: Array<PetUnion>): any[] {
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
 import { petUnionDeserializer, PetUnion } from "../models/models.js";
 import { ReadOptionalParams } from "./options.js";
+import { TestingContext } from "./testingContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -2020,7 +2020,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _readSend(
-  context: Client,
+  context: TestingContext,
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -2041,7 +2041,7 @@ export async function _readDeserialize(result: PathUncheckedResponse): Promise<P
 }
 
 export async function read(
-  context: Client,
+  context: TestingContext,
   options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<PetUnion> {
   const result = await _readSend(context, options);
@@ -2104,9 +2104,9 @@ export function barDeserializer(item: any): Bar {
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
 import { Foo, fooDeserializer } from "../models/models.js";
 import { ReadOptionalParams } from "./options.js";
+import { TestingContext } from "./testingContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -2115,7 +2115,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _readSend(
-  context: Client,
+  context: TestingContext,
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -2136,7 +2136,7 @@ export async function _readDeserialize(result: PathUncheckedResponse): Promise<F
 }
 
 export async function read(
-  context: Client,
+  context: TestingContext,
   options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<Foo> {
   const result = await _readSend(context, options);
@@ -2201,8 +2201,8 @@ export type SchemaContentTypeValues =
 ## Operations
 
 ```ts operations
-import { DemoServiceContext as Client } from "./index.js";
 import { SchemaContentTypeValues } from "../models/models.js";
+import { DemoServiceContext } from "./demoServiceContext.js";
 import { GetOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -2212,7 +2212,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _getSend(
-  context: Client,
+  context: DemoServiceContext,
   contentType: SchemaContentTypeValues,
   body: string,
   options: GetOptionalParams = { requestOptions: {} },
@@ -2236,7 +2236,7 @@ export async function _getDeserialize(result: PathUncheckedResponse): Promise<vo
 }
 
 export async function get(
-  context: Client,
+  context: DemoServiceContext,
   contentType: SchemaContentTypeValues,
   body: string,
   options: GetOptionalParams = { requestOptions: {} },
@@ -2340,7 +2340,7 @@ needAzureCore: false
 ## Operations
 
 ```ts operations
-import { DemoServiceContext as Client } from "./index.js";
+import { DemoServiceContext } from "./demoServiceContext.js";
 import { GetOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -2350,7 +2350,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _getSend(
-  context: Client,
+  context: DemoServiceContext,
   testHeader: "A" | "B",
   body: string,
   options: GetOptionalParams = { requestOptions: {} },
@@ -2375,7 +2375,7 @@ export async function _getDeserialize(result: PathUncheckedResponse): Promise<vo
 }
 
 export async function get(
-  context: Client,
+  context: DemoServiceContext,
   testHeader: "A" | "B",
   body: string,
   options: GetOptionalParams = { requestOptions: {} },

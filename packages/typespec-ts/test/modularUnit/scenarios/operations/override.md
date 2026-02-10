@@ -53,8 +53,8 @@ export interface GetSecretOriginalOptionalParams extends OperationOptions {}
 ## Operations
 
 ```ts operations
-import { KeyVaultContext as Client } from "./index.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import { KeyVaultContext } from "./keyVaultContext.js";
 import { GetSecretOriginalOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -64,7 +64,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _getSecretOriginalSend(
-  context: Client,
+  context: KeyVaultContext,
   secretName: string,
   options: GetSecretOriginalOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -90,7 +90,7 @@ export async function _getSecretOriginalDeserialize(result: PathUncheckedRespons
 }
 
 export async function getSecretOriginal(
-  context: Client,
+  context: KeyVaultContext,
   secretName: string,
   options: GetSecretOriginalOptionalParams = { requestOptions: {} },
 ): Promise<void> {
@@ -291,9 +291,9 @@ export interface RemoveOptionalOriginalOptionalParams extends OperationOptions {
 ## Operations
 
 ```ts operations
-import { OverrideContext as Client } from "./index.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import { RemoveOptionalOriginalOptionalParams } from "./options.js";
+import { OverrideContext } from "./overrideContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -302,7 +302,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _removeOptionalOriginalSend(
-  context: Client,
+  context: OverrideContext,
   param1: string,
   options: RemoveOptionalOriginalOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -339,7 +339,7 @@ export async function _removeOptionalOriginalDeserialize(
 }
 
 export async function removeOptionalOriginal(
-  context: Client,
+  context: OverrideContext,
   param1: string,
   options: RemoveOptionalOriginalOptionalParams = { requestOptions: {} },
 ): Promise<void> {

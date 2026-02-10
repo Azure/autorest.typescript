@@ -573,6 +573,8 @@ export async function emitModularOperationsFromTypeSpec(
   ) {
     emitTypes(dpgContext, { sourceRoot: "" });
     const clientMap = Array.from(getClientHierarchyMap(dpgContext));
+    // Build client context first so it's registered in the binder
+    buildClientContext(dpgContext, clientMap[0]!, modularEmitterOptions);
     const res = buildOperationFiles(
       dpgContext,
       clientMap[0]!,

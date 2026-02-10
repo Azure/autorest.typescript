@@ -54,7 +54,7 @@ export type Versions = "2021-10-01-preview";
 Should normal operation with enum parameter:
 
 ```ts operations
-import { ContosoContext as Client } from "./index.js";
+import { ContosoContext } from "./contosoContext.js";
 import { FooOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -64,7 +64,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _fooSend(
-  context: Client,
+  context: ContosoContext,
   options: FooOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -88,7 +88,7 @@ export async function _fooDeserialize(result: PathUncheckedResponse): Promise<vo
 }
 
 export async function foo(
-  context: Client,
+  context: ContosoContext,
   options: FooOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _fooSend(context, options);

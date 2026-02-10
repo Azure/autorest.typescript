@@ -23,8 +23,8 @@ mustEmptyDiagnostic: false
 Should normal path parameter:
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
 import { TestOptionalParams } from "./options.js";
+import { TestingContext } from "./testingContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -33,7 +33,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _testSend(
-  context: Client,
+  context: TestingContext,
   options: TestOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -54,7 +54,7 @@ export async function _testDeserialize(result: PathUncheckedResponse): Promise<s
 }
 
 export async function test(
-  context: Client,
+  context: TestingContext,
   options: TestOptionalParams = { requestOptions: {} },
 ): Promise<string> {
   const result = await _testSend(context, options);

@@ -51,13 +51,13 @@ needAzureCore: true
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
 import {
   ResourceOperationStatusWidgetSuiteWidgetSuiteError,
   resourceOperationStatusWidgetSuiteWidgetSuiteErrorDeserializer,
 } from "../models/models.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import { GetWidgetOperationStatusOptionalParams } from "./options.js";
+import { TestingContext } from "./testingContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -66,7 +66,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _getWidgetOperationStatusSend(
-  context: Client,
+  context: TestingContext,
   apiVersion: string,
   name: string,
   operationId: string,
@@ -104,7 +104,7 @@ export async function _getWidgetOperationStatusDeserialize(
 
 /** Get the status of a long-running operation on widgets. */
 export async function getWidgetOperationStatus(
-  context: Client,
+  context: TestingContext,
   apiVersion: string,
   name: string,
   operationId: string,

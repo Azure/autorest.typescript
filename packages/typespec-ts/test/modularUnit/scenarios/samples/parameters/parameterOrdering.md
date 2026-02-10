@@ -66,7 +66,6 @@ withVersionedApiVersion: true
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
 import {
   TestVerificationContent,
   testVerificationContentSerializer,
@@ -75,6 +74,7 @@ import {
 } from "../models/models.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import { VerifyOptionalParams } from "./options.js";
+import { TestingContext } from "./testingContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -83,7 +83,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _verifySend(
-  context: Client,
+  context: TestingContext,
   body: TestVerificationContent,
   apcGatewayId: string,
   options: VerifyOptionalParams = { requestOptions: {} },
@@ -127,7 +127,7 @@ export async function _verifyDeserialize(
 
 /** Resource action operation template. */
 export async function verify(
-  context: Client,
+  context: TestingContext,
   body: TestVerificationContent,
   apcGatewayId: string,
   options: VerifyOptionalParams = { requestOptions: {} },

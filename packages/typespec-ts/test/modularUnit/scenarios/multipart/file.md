@@ -34,9 +34,9 @@ export function requestBodySerializer(item: RequestBody): any {
 ## Operations
 
 ```ts operations
-import { TestingContext as Client } from "./index.js";
 import { RequestBody, requestBodySerializer } from "../models/models.js";
 import { DoThingOptionalParams } from "./options.js";
+import { TestingContext } from "./testingContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -45,7 +45,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _doThingSend(
-  context: Client,
+  context: TestingContext,
   bodyParam: RequestBody,
   options: DoThingOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -68,7 +68,7 @@ export async function _doThingDeserialize(result: PathUncheckedResponse): Promis
 }
 
 export async function doThing(
-  context: Client,
+  context: TestingContext,
   bodyParam: RequestBody,
   options: DoThingOptionalParams = { requestOptions: {} },
 ): Promise<void> {
