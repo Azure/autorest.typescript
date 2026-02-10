@@ -34,7 +34,7 @@ export type YDataSourcePropertiesUnion =
   | YDataSourceProperties;
 
 export function yDataSourcePropertiesUnionDeserializer(item: any): YDataSourcePropertiesUnion {
-  switch (item.connectorType) {
+  switch (item["connectorType"]) {
     case "EventHubSource":
       return yDataverseDataverseSourceConnectorPropertiesDeserializer(
         item as YDataverseDataverseSourceConnectorProperties,
