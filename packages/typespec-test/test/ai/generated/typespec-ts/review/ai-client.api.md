@@ -19,7 +19,7 @@ export interface Agent {
     model: string;
     name: string | null;
     object: "assistant";
-    responseFormat?: AgentsApiResponseFormatOption | null;
+    responseFormat?: AgentsApiResponseFormatOption;
     temperature: number | null;
     toolResources: ToolResources | null;
     tools: ToolDefinitionUnion[];
@@ -60,67 +60,67 @@ export interface AgentsCancelVectorStoreFileBatchOptionalParams extends Operatio
 
 // @public
 export interface AgentsCreateAgentOptionalParams extends OperationOptions {
-    description?: string | null;
-    instructions?: string | null;
-    metadata?: Record<string, string> | null;
-    name?: string | null;
-    responseFormat?: AgentsApiResponseFormatOption | null;
-    temperature?: number | null;
-    toolResources?: ToolResources | null;
+    description?: string;
+    instructions?: string;
+    metadata?: Record<string, string>;
+    name?: string;
+    responseFormat?: AgentsApiResponseFormatOption;
+    temperature?: number;
+    toolResources?: ToolResources;
     tools?: ToolDefinitionUnion[];
-    topP?: number | null;
+    topP?: number;
 }
 
 // @public
 export interface AgentsCreateMessageOptionalParams extends OperationOptions {
-    attachments?: MessageAttachment[] | null;
-    metadata?: Record<string, string> | null;
+    attachments?: MessageAttachment[];
+    metadata?: Record<string, string>;
 }
 
 // @public
 export interface AgentsCreateRunOptionalParams extends OperationOptions {
-    additionalInstructions?: string | null;
-    additionalMessages?: ThreadMessageOptions[] | null;
+    additionalInstructions?: string;
+    additionalMessages?: ThreadMessageOptions[];
     include?: RunAdditionalFieldList[];
-    instructions?: string | null;
-    maxCompletionTokens?: number | null;
-    maxPromptTokens?: number | null;
-    metadata?: Record<string, string> | null;
-    model?: string | null;
+    instructions?: string;
+    maxCompletionTokens?: number;
+    maxPromptTokens?: number;
+    metadata?: Record<string, string>;
+    model?: string;
     parallelToolCalls?: boolean;
-    responseFormat?: AgentsApiResponseFormatOption | null;
+    responseFormat?: AgentsApiResponseFormatOption;
     stream?: boolean;
-    temperature?: number | null;
-    toolChoice?: AgentsApiToolChoiceOption | null;
-    tools?: ToolDefinitionUnion[] | null;
-    topP?: number | null;
-    truncationStrategy?: TruncationObject | null;
+    temperature?: number;
+    toolChoice?: AgentsApiToolChoiceOption;
+    tools?: ToolDefinitionUnion[];
+    topP?: number;
+    truncationStrategy?: TruncationObject;
 }
 
 // @public
 export interface AgentsCreateThreadAndRunOptionalParams extends OperationOptions {
-    instructions?: string | null;
-    maxCompletionTokens?: number | null;
-    maxPromptTokens?: number | null;
-    metadata?: Record<string, string> | null;
-    model?: string | null;
+    instructions?: string;
+    maxCompletionTokens?: number;
+    maxPromptTokens?: number;
+    metadata?: Record<string, string>;
+    model?: string;
     parallelToolCalls?: boolean;
-    responseFormat?: AgentsApiResponseFormatOption | null;
+    responseFormat?: AgentsApiResponseFormatOption;
     stream?: boolean;
-    temperature?: number | null;
+    temperature?: number;
     thread?: AgentThreadCreationOptions;
-    toolChoice?: AgentsApiToolChoiceOption | null;
-    toolResources?: UpdateToolResourcesOptions | null;
-    tools?: ToolDefinitionUnion[] | null;
-    topP?: number | null;
-    truncationStrategy?: TruncationObject | null;
+    toolChoice?: AgentsApiToolChoiceOption;
+    toolResources?: UpdateToolResourcesOptions;
+    tools?: ToolDefinitionUnion[];
+    topP?: number;
+    truncationStrategy?: TruncationObject;
 }
 
 // @public
 export interface AgentsCreateThreadOptionalParams extends OperationOptions {
     messages?: ThreadMessageOptions[];
-    metadata?: Record<string, string> | null;
-    toolResources?: ToolResources | null;
+    metadata?: Record<string, string>;
+    toolResources?: ToolResources;
 }
 
 // @public
@@ -142,7 +142,7 @@ export interface AgentsCreateVectorStoreOptionalParams extends OperationOptions 
     chunkingStrategy?: VectorStoreChunkingStrategyRequestUnion;
     expiresAfter?: VectorStoreExpirationPolicy;
     fileIds?: string[];
-    metadata?: Record<string, string> | null;
+    metadata?: Record<string, string>;
     name?: string;
     storeConfiguration?: VectorStoreConfiguration;
 }
@@ -275,9 +275,9 @@ export interface AgentsListVectorStoresOptionalParams extends OperationOptions {
 
 // @public
 export interface AgentsModifyVectorStoreOptionalParams extends OperationOptions {
-    expiresAfter?: VectorStoreExpirationPolicy | null;
-    metadata?: Record<string, string> | null;
-    name?: string | null;
+    expiresAfter?: VectorStoreExpirationPolicy;
+    metadata?: Record<string, string>;
+    name?: string;
 }
 
 // @public
@@ -339,7 +339,7 @@ export interface AgentsOperations {
 
 // @public
 export interface AgentsSubmitToolOutputsToRunOptionalParams extends OperationOptions {
-    stream?: boolean | null;
+    stream?: boolean;
 }
 
 // @public
@@ -347,32 +347,32 @@ export type AgentStreamEvent = string | ThreadStreamEvent | RunStreamEvent | Run
 
 // @public
 export interface AgentsUpdateAgentOptionalParams extends OperationOptions {
-    description?: string | null;
-    instructions?: string | null;
-    metadata?: Record<string, string> | null;
+    description?: string;
+    instructions?: string;
+    metadata?: Record<string, string>;
     model?: string;
-    name?: string | null;
-    responseFormat?: AgentsApiResponseFormatOption | null;
-    temperature?: number | null;
+    name?: string;
+    responseFormat?: AgentsApiResponseFormatOption;
+    temperature?: number;
     toolResources?: ToolResources;
     tools?: ToolDefinitionUnion[];
-    topP?: number | null;
+    topP?: number;
 }
 
 // @public
 export interface AgentsUpdateMessageOptionalParams extends OperationOptions {
-    metadata?: Record<string, string> | null;
+    metadata?: Record<string, string>;
 }
 
 // @public
 export interface AgentsUpdateRunOptionalParams extends OperationOptions {
-    metadata?: Record<string, string> | null;
+    metadata?: Record<string, string>;
 }
 
 // @public
 export interface AgentsUpdateThreadOptionalParams extends OperationOptions {
-    metadata?: Record<string, string> | null;
-    toolResources?: ToolResources | null;
+    metadata?: Record<string, string>;
+    toolResources?: ToolResources;
 }
 
 // @public
@@ -391,8 +391,8 @@ export interface AgentThread {
 // @public
 export interface AgentThreadCreationOptions {
     messages?: ThreadMessageOptions[];
-    metadata?: Record<string, string> | null;
-    toolResources?: ToolResources | null;
+    metadata?: Record<string, string>;
+    toolResources?: ToolResources;
 }
 
 // @public (undocumented)
@@ -1202,7 +1202,7 @@ export interface RunStep {
     stepDetails: RunStepDetailsUnion;
     threadId: string;
     type: RunStepType;
-    usage?: RunStepCompletionUsage | null;
+    usage?: RunStepCompletionUsage;
 }
 
 // @public
@@ -1329,7 +1329,7 @@ export interface RunStepDeltaFileSearchToolCall extends RunStepDeltaToolCall {
 export interface RunStepDeltaFunction {
     arguments?: string;
     name?: string;
-    output?: string | null;
+    output?: string;
 }
 
 // @public
@@ -1527,9 +1527,9 @@ export interface ThreadMessage {
 
 // @public
 export interface ThreadMessageOptions {
-    attachments?: MessageAttachment[] | null;
+    attachments?: MessageAttachment[];
     content: string;
-    metadata?: Record<string, string> | null;
+    metadata?: Record<string, string>;
     role: MessageRole;
 }
 
@@ -1551,16 +1551,16 @@ export interface ThreadRun {
     model: string;
     object: "thread.run";
     parallelToolCalls: boolean;
-    requiredAction?: RequiredActionUnion | null;
+    requiredAction?: RequiredActionUnion;
     responseFormat: AgentsApiResponseFormatOption | null;
     startedAt: Date | null;
     status: RunStatus;
-    temperature?: number | null;
+    temperature?: number;
     threadId: string;
     toolChoice: AgentsApiToolChoiceOption | null;
-    toolResources?: UpdateToolResourcesOptions | null;
+    toolResources?: UpdateToolResourcesOptions;
     tools: ToolDefinitionUnion[];
-    topP?: number | null;
+    topP?: number;
     truncationStrategy: TruncationObject | null;
     usage: RunCompletionUsage | null;
 }
@@ -1609,7 +1609,7 @@ export type TriggerUnion = RecurrenceTrigger | CronTrigger | Trigger;
 
 // @public
 export interface TruncationObject {
-    lastMessages?: number | null;
+    lastMessages?: number;
     type: TruncationStrategy;
 }
 
@@ -1637,7 +1637,7 @@ export interface UpdateToolResourcesOptions {
 export interface VectorStore {
     createdAt: Date;
     expiresAfter?: VectorStoreExpirationPolicy;
-    expiresAt?: Date | null;
+    expiresAt?: Date;
     fileCounts: VectorStoreFileCount;
     id: string;
     lastActiveAt: Date | null;

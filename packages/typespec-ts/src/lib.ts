@@ -15,6 +15,13 @@ import {
 import { Options } from "prettier";
 
 export interface EmitterOptions {
+  /**
+   * Indicates whether to include response headers in the generated response type for modular operations.
+   * When set to true, modular operation responses with model or void bodies will have their headers
+   * represented as properties on the response type. Other SDK styles and response shapes are not
+   * currently affected by this option.
+   */
+  "include-headers-in-response"?: boolean;
   "include-shortcuts"?: boolean;
   "multi-client"?: boolean;
   batch?: any[];
@@ -71,12 +78,19 @@ export interface EmitterOptions {
   "default-value-object"?: boolean;
   //TODO should remove this after finish the release tool test
   "should-use-pnpm-dep"?: boolean;
+  "ignore-nullable-on-optional"?: boolean;
 }
 
 export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
   type: "object",
   additionalProperties: true,
   properties: {
+    "include-headers-in-response": {
+      type: "boolean",
+      nullable: true,
+      description:
+        "This option is used to indicate whether to include response headers in the generated response type. When set to true, the generated response type will include response headers as properties."
+    },
     "include-shortcuts": {
       type: "boolean",
       nullable: true,
@@ -343,6 +357,12 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
       type: "boolean",
       nullable: true,
       description: "Internal option for test."
+    },
+    "ignore-nullable-on-optional": {
+      type: "boolean",
+      nullable: true,
+      description:
+        "If an optional property is also marked as nullable, it will be treated as just optional. Defaults to `true` for Azure services."
     }
   },
   required: []

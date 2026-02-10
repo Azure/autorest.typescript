@@ -413,10 +413,15 @@ export async function emitModularModelsFromTypeSpec(
   );
   const binder = useBinder();
   let modelFile = undefined;
+  const includeResponseHeaders =
+    options["include-headers-in-response"] === true;
+  dpgContext.rlcOptions!.includeHeadersInResponse = includeResponseHeaders;
   dpgContext.rlcOptions!.isModularLibrary = true;
   dpgContext.rlcOptions!.compatibilityMode = options["compatibility-mode"];
   dpgContext.rlcOptions!.experimentalExtensibleEnums =
     options["experimental-extensible-enums"];
+  dpgContext.rlcOptions!.ignoreNullableOnOptional =
+    options["ignore-nullable-on-optional"] ?? true;
   const modularEmitterOptions = transformModularEmitterOptions(dpgContext, "", {
     casing: "camel"
   });
@@ -474,6 +479,9 @@ export async function emitRootIndexFromTypeSpec(
   );
   const binder = useBinder();
   const project = useContext("outputProject");
+  const includeResponseHeaders =
+    options["include-headers-in-response"] === true;
+  dpgContext.rlcOptions!.includeHeadersInResponse = includeResponseHeaders;
   dpgContext.rlcOptions!.isModularLibrary = true;
   dpgContext.rlcOptions!.compatibilityMode = options["compatibility-mode"];
   dpgContext.rlcOptions!.experimentalExtensibleEnums =
@@ -549,6 +557,9 @@ export async function emitModularOperationsFromTypeSpec(
   });
   const dpgContext = await createDpgContextTestHelper(context.program);
   const binder = useBinder();
+  const includeResponseHeaders =
+    options["include-headers-in-response"] === true;
+  dpgContext.rlcOptions!.includeHeadersInResponse = includeResponseHeaders;
   dpgContext.rlcOptions!.isModularLibrary = true;
   dpgContext.rlcOptions!.experimentalExtensibleEnums =
     options["experimental-extensible-enums"];
@@ -596,6 +607,9 @@ export async function emitModularClientContextFromTypeSpec(
   });
   const dpgContext = await createDpgContextTestHelper(context.program);
   const binder = useBinder();
+  const includeResponseHeaders =
+    options["include-headers-in-response"] === true;
+  dpgContext.rlcOptions!.includeHeadersInResponse = includeResponseHeaders;
   dpgContext.rlcOptions!.isModularLibrary = true;
   dpgContext.rlcOptions!.typespecTitleMap = options["typespec-title-map"];
   const modularEmitterOptions = transformModularEmitterOptions(dpgContext, "", {
@@ -634,6 +648,9 @@ export async function emitModularClientFromTypeSpec(
   });
   const dpgContext = await createDpgContextTestHelper(context.program);
   const binder = useBinder();
+  const includeResponseHeaders =
+    options["include-headers-in-response"] === true;
+  dpgContext.rlcOptions!.includeHeadersInResponse = includeResponseHeaders;
   dpgContext.rlcOptions!.isModularLibrary = true;
   dpgContext.rlcOptions!.typespecTitleMap = options["typespec-title-map"];
   const modularEmitterOptions = transformModularEmitterOptions(dpgContext, "", {
