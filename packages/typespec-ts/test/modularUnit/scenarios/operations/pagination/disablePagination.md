@@ -88,9 +88,9 @@ export function testDeserializer(item: any): Test {
 ## Operations
 
 ```ts operations
+import { testServiceContext as Client } from "./index.js";
 import { ListTestResult, listTestResultDeserializer } from "../models/models.js";
 import { FooOptionalParams, BarOptionalParams } from "./options.js";
-import { testServiceContext } from "./testServiceContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -99,7 +99,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _fooSend(
-  context: testServiceContext,
+  context: Client,
   options: FooOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -120,7 +120,7 @@ export async function _fooDeserialize(result: PathUncheckedResponse): Promise<Li
 }
 
 export async function foo(
-  context: testServiceContext,
+  context: Client,
   options: FooOptionalParams = { requestOptions: {} },
 ): Promise<ListTestResult> {
   const result = await _fooSend(context, options);
@@ -128,7 +128,7 @@ export async function foo(
 }
 
 export function _barSend(
-  context: testServiceContext,
+  context: Client,
   options: BarOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -149,7 +149,7 @@ export async function _barDeserialize(result: PathUncheckedResponse): Promise<Li
 }
 
 export async function bar(
-  context: testServiceContext,
+  context: Client,
   options: BarOptionalParams = { requestOptions: {} },
 ): Promise<ListTestResult> {
   const result = await _barSend(context, options);

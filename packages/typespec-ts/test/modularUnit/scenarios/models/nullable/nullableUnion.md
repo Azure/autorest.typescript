@@ -57,9 +57,9 @@ export type A = {
 ## Operations
 
 ```ts operations
+import { TestingContext as Client } from "./index.js";
 import { _postRequestSerializer, _postRequestDeserializer, A } from "../models/models.js";
 import { PostOptionalParams } from "./options.js";
-import { TestingContext } from "./testingContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -68,7 +68,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _postSend(
-  context: TestingContext,
+  context: Client,
   body: A,
   options: PostOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -96,7 +96,7 @@ export async function _postDeserialize(result: PathUncheckedResponse): Promise<A
 }
 
 export async function post(
-  context: TestingContext,
+  context: Client,
   body: A,
   options: PostOptionalParams = { requestOptions: {} },
 ): Promise<A> {

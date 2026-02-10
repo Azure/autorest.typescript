@@ -22,9 +22,9 @@ op `record`(param: Record<int32>): void;
 Should enable URI template parse for parameters:
 
 ```ts operations
+import { TestingContext as Client } from "./index.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import { RecordOptionalParams, ArrayOptionalParams, PrimitiveOptionalParams } from "./options.js";
-import { TestingContext } from "./testingContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -33,7 +33,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _recordSend(
-  context: TestingContext,
+  context: Client,
   param: Record<string, number>,
   options: RecordOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -59,7 +59,7 @@ export async function _recordDeserialize(result: PathUncheckedResponse): Promise
 }
 
 export async function record(
-  context: TestingContext,
+  context: Client,
   param: Record<string, number>,
   options: RecordOptionalParams = { requestOptions: {} },
 ): Promise<void> {
@@ -68,7 +68,7 @@ export async function record(
 }
 
 export function _arraySend(
-  context: TestingContext,
+  context: Client,
   param: string[],
   options: ArrayOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -96,7 +96,7 @@ export async function _arrayDeserialize(result: PathUncheckedResponse): Promise<
 }
 
 export async function array(
-  context: TestingContext,
+  context: Client,
   param: string[],
   options: ArrayOptionalParams = { requestOptions: {} },
 ): Promise<void> {
@@ -105,7 +105,7 @@ export async function array(
 }
 
 export function _primitiveSend(
-  context: TestingContext,
+  context: Client,
   param: string,
   options: PrimitiveOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -131,7 +131,7 @@ export async function _primitiveDeserialize(result: PathUncheckedResponse): Prom
 }
 
 export async function primitive(
-  context: TestingContext,
+  context: Client,
   param: string,
   options: PrimitiveOptionalParams = { requestOptions: {} },
 ): Promise<void> {

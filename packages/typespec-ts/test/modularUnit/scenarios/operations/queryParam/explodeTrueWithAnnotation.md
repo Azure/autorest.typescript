@@ -31,9 +31,9 @@ op required(...RequiredSelectQueryParameter): void;
 Should enable URI template parse for parameters:
 
 ```ts operations
+import { TestingContext as Client } from "./index.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import { RequiredOptionalParams, OptionalOptionalParams } from "./options.js";
-import { TestingContext } from "./testingContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -42,7 +42,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _requiredSend(
-  context: TestingContext,
+  context: Client,
   select: string[],
   options: RequiredOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -70,7 +70,7 @@ export async function _requiredDeserialize(result: PathUncheckedResponse): Promi
 }
 
 export async function required(
-  context: TestingContext,
+  context: Client,
   select: string[],
   options: RequiredOptionalParams = { requestOptions: {} },
 ): Promise<void> {
@@ -79,7 +79,7 @@ export async function required(
 }
 
 export function _optionalSend(
-  context: TestingContext,
+  context: Client,
   foo: string,
   apiVersion: string,
   options: OptionalOptionalParams = { requestOptions: {} },
@@ -112,7 +112,7 @@ export async function _optionalDeserialize(result: PathUncheckedResponse): Promi
 }
 
 export async function optional(
-  context: TestingContext,
+  context: Client,
   foo: string,
   apiVersion: string,
   options: OptionalOptionalParams = { requestOptions: {} },

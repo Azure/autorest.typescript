@@ -139,6 +139,7 @@ export interface BackupOptionalParams extends OperationOptions {
 Should generate operations correctly:
 
 ```ts operations
+import { HardwareSecurityModulesContext as Client } from "./index.js";
 import {
   backupRequestPropertiesSerializer,
   BackupResult,
@@ -147,7 +148,6 @@ import {
 } from "../models/models.js";
 import { getLongRunningPoller } from "../static-helpers/pollingHelpers.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
-import { HardwareSecurityModulesContext } from "./hardwareSecurityModulesContext.js";
 import { BackupOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -158,7 +158,7 @@ import {
 import { PollerLike, OperationState } from "@azure/core-lro";
 
 export function _backupSend(
-  context: HardwareSecurityModulesContext,
+  context: Client,
   resourceGroupName: string,
   cloudHsmClusterName: string,
   options: BackupOptionalParams = { requestOptions: {} },
@@ -200,7 +200,7 @@ export async function _backupDeserialize(result: PathUncheckedResponse): Promise
 
 /** A long-running resource action. */
 export function backup(
-  context: HardwareSecurityModulesContext,
+  context: Client,
   resourceGroupName: string,
   cloudHsmClusterName: string,
   options: BackupOptionalParams = { requestOptions: {} },

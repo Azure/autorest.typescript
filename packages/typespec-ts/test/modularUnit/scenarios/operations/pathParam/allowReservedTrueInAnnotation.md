@@ -16,9 +16,9 @@ op annotation(@path(#{ allowReserved: true }) param: string): void;
 Should enable `allowReserved:true` for path parameter:
 
 ```ts operations
+import { TestingContext as Client } from "./index.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import { AnnotationOptionalParams } from "./options.js";
-import { TestingContext } from "./testingContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -27,7 +27,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _annotationSend(
-  context: TestingContext,
+  context: Client,
   param: string,
   options: AnnotationOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -53,7 +53,7 @@ export async function _annotationDeserialize(result: PathUncheckedResponse): Pro
 }
 
 export async function annotation(
-  context: TestingContext,
+  context: Client,
   param: string,
   options: AnnotationOptionalParams = { requestOptions: {} },
 ): Promise<void> {

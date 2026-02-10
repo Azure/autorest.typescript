@@ -49,6 +49,7 @@ export function streamingChatCompletionOptionsDeserializer(
 ## Operations
 
 ```ts operations
+import { TestingContext as Client } from "./index.js";
 import {
   StreamingChatCompletionOptions,
   streamingChatCompletionOptionsSerializer,
@@ -56,7 +57,6 @@ import {
 } from "../models/models.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import { ReadOptionalParams } from "./options.js";
-import { TestingContext } from "./testingContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -65,7 +65,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _readSend(
-  context: TestingContext,
+  context: Client,
   id: string,
   body: StreamingChatCompletionOptions,
   options: ReadOptionalParams = { requestOptions: {} },
@@ -101,7 +101,7 @@ export async function _readDeserialize(
 }
 
 export async function read(
-  context: TestingContext,
+  context: Client,
   id: string,
   body: StreamingChatCompletionOptions,
   options: ReadOptionalParams = { requestOptions: {} },
@@ -135,8 +135,8 @@ op read(...StreamingChatCompletionOptions): {
 ## Operations
 
 ```ts operations
+import { TestingContext as Client } from "./index.js";
 import { ReadOptionalParams } from "./options.js";
-import { TestingContext } from "./testingContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -145,7 +145,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _readSend(
-  context: TestingContext,
+  context: Client,
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -168,7 +168,7 @@ export async function _readDeserialize(result: PathUncheckedResponse): Promise<t
 }
 
 export async function read(
-  context: TestingContext,
+  context: Client,
   options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<true> {
   const result = await _readSend(context, options);

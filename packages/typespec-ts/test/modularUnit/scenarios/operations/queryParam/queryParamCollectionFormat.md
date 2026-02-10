@@ -36,11 +36,11 @@ interface QueryOperations {
 ## Operations
 
 ```ts operations
+import { TestingContext as Client } from "./index.js";
 import { buildPipeCollection } from "../static-helpers/serialization/build-pipe-collection.js";
 import { buildSsvCollection } from "../static-helpers/serialization/build-ssv-collection.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import { CreateOptionalParams, ReadOptionalParams } from "./options.js";
-import { TestingContext } from "./testingContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -49,7 +49,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _createSend(
-  context: TestingContext,
+  context: Client,
   ssvArray: number[],
   pipeArray: string[],
   options: CreateOptionalParams = { requestOptions: {} },
@@ -92,7 +92,7 @@ export async function _createDeserialize(result: PathUncheckedResponse): Promise
 }
 
 export async function create(
-  context: TestingContext,
+  context: Client,
   ssvArray: number[],
   pipeArray: string[],
   options: CreateOptionalParams = { requestOptions: {} },
@@ -102,7 +102,7 @@ export async function create(
 }
 
 export function _readSend(
-  context: TestingContext,
+  context: Client,
   simpleArray: string[],
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -135,7 +135,7 @@ export async function _readDeserialize(result: PathUncheckedResponse): Promise<v
 }
 
 export async function read(
-  context: TestingContext,
+  context: Client,
   simpleArray: string[],
   options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<void> {
@@ -167,9 +167,9 @@ interface QueryOperations {
 ## Operations
 
 ```ts operations
+import { TestingContext as Client } from "./index.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import { ReadOptionalParams } from "./options.js";
-import { TestingContext } from "./testingContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -178,7 +178,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _readSend(
-  context: TestingContext,
+  context: Client,
   ssvArray: number[],
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -211,7 +211,7 @@ export async function _readDeserialize(result: PathUncheckedResponse): Promise<v
 }
 
 export async function read(
-  context: TestingContext,
+  context: Client,
   ssvArray: number[],
   options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<void> {

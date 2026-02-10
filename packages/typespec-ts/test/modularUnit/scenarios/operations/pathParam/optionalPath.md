@@ -13,9 +13,9 @@ op read(@path param?: string): OkResponse;
 Should normal path parameter:
 
 ```ts operations
+import { TestingContext as Client } from "./index.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import { ReadOptionalParams } from "./options.js";
-import { TestingContext } from "./testingContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -24,7 +24,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _readSend(
-  context: TestingContext,
+  context: Client,
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
@@ -49,7 +49,7 @@ export async function _readDeserialize(result: PathUncheckedResponse): Promise<v
 }
 
 export async function read(
-  context: TestingContext,
+  context: Client,
   options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _readSend(context, options);

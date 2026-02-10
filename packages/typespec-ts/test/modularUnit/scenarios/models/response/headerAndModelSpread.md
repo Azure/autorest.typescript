@@ -35,7 +35,7 @@ export interface User {
 
 ```ts operations function getUser
 export async function getUser(
-  context: TestingContext,
+  context: Client,
   options: GetUserOptionalParams = { requestOptions: {} },
 ): Promise<{
   name: string;

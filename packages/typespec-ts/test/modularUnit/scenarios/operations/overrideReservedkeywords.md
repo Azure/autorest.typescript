@@ -59,9 +59,9 @@ withRawContent: true
 ## Operations
 
 ```ts operations
+import { ContosoContext as Client } from "./index.js";
 import { errorResponseDeserializer } from "../models/models.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
-import { ContosoContext } from "./contosoContext.js";
 import { CheckNameAvailabilityOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -71,7 +71,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _checkNameAvailabilitySend(
-  context: ContosoContext,
+  context: Client,
   apiVersion: string,
   name: string,
   typeParam: string,
@@ -110,7 +110,7 @@ export async function _checkNameAvailabilityDeserialize(
 }
 
 export async function checkNameAvailability(
-  context: ContosoContext,
+  context: Client,
   apiVersion: string,
   name: string,
   typeParam: string,

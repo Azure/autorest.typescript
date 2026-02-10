@@ -356,6 +356,7 @@ export enum KnownVersions {
 ## Operations
 
 ```ts operations
+import { ContosoContext as Client } from "./index.js";
 import {
   _OperationListResult,
   _operationListResultDeserializer,
@@ -370,7 +371,6 @@ import {
   buildPagedAsyncIterator,
 } from "../static-helpers/pagingHelpers.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
-import { ContosoContext } from "./contosoContext.js";
 import { CreateOrUpdateOptionalParams, ListOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -380,7 +380,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _createOrUpdateSend(
-  context: ContosoContext,
+  context: Client,
   resourceGroupName: string,
   avsSummaryName: string,
   resource: AvsSummary,
@@ -423,7 +423,7 @@ export async function _createOrUpdateDeserialize(
 
 /** Create a AvsSummary */
 export async function createOrUpdate(
-  context: ContosoContext,
+  context: Client,
   resourceGroupName: string,
   avsSummaryName: string,
   resource: AvsSummary,
@@ -440,7 +440,7 @@ export async function createOrUpdate(
 }
 
 export function _listSend(
-  context: ContosoContext,
+  context: Client,
   options: ListOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
@@ -475,7 +475,7 @@ export async function _listDeserialize(
 
 /** List the operations for the provider */
 export function list(
-  context: ContosoContext,
+  context: Client,
   options: ListOptionalParams = { requestOptions: {} },
 ): PagedAsyncIterableIterator<Operation> {
   return buildPagedAsyncIterator(

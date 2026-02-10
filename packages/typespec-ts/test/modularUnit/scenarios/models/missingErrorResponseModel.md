@@ -100,9 +100,9 @@ export enum KnownVersions {
 ## Operations
 
 ```ts operations
+import { TestServiceContext as Client } from "./index.js";
 import { AssetChainSummaryResult, assetChainSummaryResultDeserializer } from "../models/models.js";
 import { GetAssetChainSummaryOptionalParams } from "./options.js";
-import { TestServiceContext } from "./testServiceContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -111,7 +111,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _getAssetChainSummarySend(
-  context: TestServiceContext,
+  context: Client,
   options: GetAssetChainSummaryOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -134,7 +134,7 @@ export async function _getAssetChainSummaryDeserialize(
 }
 
 export async function getAssetChainSummary(
-  context: TestServiceContext,
+  context: Client,
   options: GetAssetChainSummaryOptionalParams = { requestOptions: {} },
 ): Promise<AssetChainSummaryResult> {
   const result = await _getAssetChainSummarySend(context, options);

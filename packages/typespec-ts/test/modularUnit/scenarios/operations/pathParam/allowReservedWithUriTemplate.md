@@ -16,9 +16,9 @@ op template(param: string): void;
 Should enable `allowReserved:true` for path parameter:
 
 ```ts operations
+import { TestingContext as Client } from "./index.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import { TemplateOptionalParams } from "./options.js";
-import { TestingContext } from "./testingContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -27,7 +27,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _templateSend(
-  context: TestingContext,
+  context: Client,
   param: string,
   options: TemplateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -53,7 +53,7 @@ export async function _templateDeserialize(result: PathUncheckedResponse): Promi
 }
 
 export async function template(
-  context: TestingContext,
+  context: Client,
   param: string,
   options: TemplateOptionalParams = { requestOptions: {} },
 ): Promise<void> {

@@ -50,10 +50,10 @@ withVersionedApiVersion: true
 ## Operations
 
 ```ts operations
+import { TestingContext as Client } from "./index.js";
 import { KeyBundle, keyBundleDeserializer } from "../models/models.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import { UpdateKeyOptionalParams } from "./options.js";
-import { TestingContext } from "./testingContext.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -62,7 +62,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _updateKeySend(
-  context: TestingContext,
+  context: Client,
   keyName: string,
   keyVersion: string,
   parameters: string,
@@ -100,7 +100,7 @@ export async function _updateKeyDeserialize(result: PathUncheckedResponse): Prom
 
 /** The most basic operation. */
 export async function updateKey(
-  context: TestingContext,
+  context: Client,
   keyName: string,
   keyVersion: string,
   parameters: string,
