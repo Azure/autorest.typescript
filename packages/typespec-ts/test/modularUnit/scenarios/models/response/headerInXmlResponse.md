@@ -52,7 +52,17 @@ export async function getUser(
   contentType: "application/xml";
 }> {
   const result = await _getUserSend(context, options);
-  const headers = {
+  const headers = _getUserDeserializeHeaders(result);
+  const payload = await _getUserDeserialize(result);
+  return { ...payload, ...headers };
+}
+```
+
+```ts operations function _getUserDeserializeHeaders
+export function _getUserDeserializeHeaders(
+  result: PathUncheckedResponse
+): { userId?: string; createdAt?: Date; contentType: "application/xml" } {
+  return {
     userId:
       result.headers["x-user-id"] === undefined || result.headers["x-user-id"] === null
         ? result.headers["x-user-id"]
@@ -63,8 +73,6 @@ export async function getUser(
         : new Date(result.headers["created-at"]),
     contentType: result.headers["content-type"] as any,
   };
-  const payload = await _getUserDeserialize(result);
-  return { ...payload, ...headers };
 }
 ```
 
@@ -100,7 +108,16 @@ export async function deleteUser(
   options: DeleteUserOptionalParams = { requestOptions: {} },
 ): Promise<{ requestId: string; optionalHeader?: string }> {
   const result = await _deleteUserSend(context, options);
-  const headers = {
+  const headers = _deleteUserDeserializeHeaders(result);
+  return { ...headers };
+}
+```
+
+```ts operations function _deleteUserDeserializeHeaders
+export function _deleteUserDeserializeHeaders(
+  result: PathUncheckedResponse
+): { requestId: string; optionalHeader?: string } {
+  return {
     requestId: result.headers["x-request-id"],
     optionalHeader:
       result.headers["x-optional-header"] === undefined ||
@@ -108,7 +125,6 @@ export async function deleteUser(
         ? result.headers["x-optional-header"]
         : result.headers["x-optional-header"],
   };
-  return { ...headers };
 }
 ```
 
@@ -148,7 +164,16 @@ export async function getAccountInfo(
   options: GetAccountInfoOptionalParams = { requestOptions: {} },
 ): Promise<{ date: Date; legalHold: boolean; contentMd5: Uint8Array; requestId?: string }> {
   const result = await _getAccountInfoSend(context, options);
-  const headers = {
+  const headers = _getAccountInfoDeserializeHeaders(result);
+  return { ...headers };
+}
+```
+
+```ts operations function _getAccountInfoDeserializeHeaders
+export function _getAccountInfoDeserializeHeaders(
+  result: PathUncheckedResponse
+): { date: Date; legalHold: boolean; contentMd5: Uint8Array; requestId?: string } {
+  return {
     date: new Date(result.headers["date"]),
     legalHold: result.headers["x-ms-legal-hold"].trim().toLowerCase() === "true",
     contentMd5:
@@ -160,7 +185,6 @@ export async function getAccountInfo(
         ? result.headers["x-ms-request-id"]
         : result.headers["x-ms-request-id"],
   };
-  return { ...headers };
 }
 ```
 
