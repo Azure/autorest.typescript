@@ -54,6 +54,8 @@ function extractRLCOptions(
   const flavor = getFlavor(emitterOptions, packageDetails);
   const moduleKind = getModuleKind(emitterOptions);
   const serviceInfo = getServiceInfo(program, isModularLibrary);
+  const includeHeadersInResponse =
+    emitterOptions["include-headers-in-response"] === true;
   const azureSdkForJs = getAzureSdkForJs(emitterOptions, flavor);
   const generateMetadata = getGenerateMetadata(emitterOptions);
   const generateTest = getGenerateTest(emitterOptions, flavor);
@@ -92,10 +94,15 @@ function extractRLCOptions(
     emitterOptions["compatibility-query-multi-format"];
   const typespecTitleMap = emitterOptions["typespec-title-map"];
   const hasSubscriptionId = getSubscriptionId(dpgContext);
+  const ignoreNullableOnOptional = getIgnoreNullableOnOptional(
+    emitterOptions,
+    flavor
+  );
   const isMultiService = (dpgContext.allServiceNamespaces?.length ?? 0) > 1;
 
   return {
     ...credentialInfo,
+    includeHeadersInResponse,
     flavor,
     moduleKind,
     includeShortcuts,
@@ -126,6 +133,7 @@ function extractRLCOptions(
     typespecTitleMap,
     ignoreEnumMemberNameNormalize,
     hasSubscriptionId,
+    ignoreNullableOnOptional,
     isMultiService
   };
 }
@@ -262,6 +270,18 @@ function detectIfNameConflicts(
 
   // No conflicts if we didn't detect any
   return false;
+}
+
+function getIgnoreNullableOnOptional(
+  emitterOptions: EmitterOptions,
+  flavor: PackageFlavor
+): boolean {
+  // If explicitly set in options, use that value
+  if (emitterOptions["ignore-nullable-on-optional"] !== undefined) {
+    return Boolean(emitterOptions["ignore-nullable-on-optional"]);
+  }
+  // Default to true for Azure services (same as HLC behavior)
+  return flavor === "azure";
 }
 
 function getIncludeShortcuts(emitterOptions: EmitterOptions) {

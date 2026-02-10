@@ -81,11 +81,13 @@ import {
   SdkModelPropertyType,
   SdkModelType,
   SdkPagingServiceMethod,
+  SdkServiceResponseHeader,
   SdkType
 } from "@azure-tools/typespec-client-generator-core";
-import { isMetadata } from "@typespec/http";
+import { isHeader, isMetadata } from "@typespec/http";
 import { useContext } from "../../contextManager.js";
 import { isExtensibleEnum } from "../type-expressions/get-enum-expression.js";
+import { emitInlineModel } from "../type-expressions/get-model-expression.js";
 
 export function getSendPrivateFunction(
   dpgContext: SdkContext,
@@ -573,12 +575,37 @@ export function getOperationFunction(
 
   // TODO: Support operation overloads
   const response = operation.response;
+  const responseHeaders = getResponseHeaders(operation.operation.responses);
+  const hasHeaderOnlyResponse = !response.type && responseHeaders.length > 0;
+  const isResponseHeadersEnabled =
+    context.rlcOptions?.includeHeadersInResponse === true;
+
   let returnType = { name: "", type: "void" };
   if (response.type) {
     const type = response.type;
+
+    // If feature flag enabled, we'll append the response headers to the operation response type.
+    if (
+      type.kind === "model" &&
+      responseHeaders.length > 0 &&
+      isResponseHeadersEnabled
+    ) {
+      // Build a composite type that includes both model and additional header properties
+      returnType = {
+        name: (type as any).name ?? "",
+        type: `${buildCompositeResponseType(context, type, responseHeaders)}`
+      };
+    } else {
+      returnType = {
+        name: (type as any).name ?? "",
+        type: getTypeExpression(context, type!)
+      };
+    }
+  } else if (hasHeaderOnlyResponse && isResponseHeadersEnabled) {
+    // Here we handle returning headers when the operation return type is void
     returnType = {
-      name: (type as any).name ?? "",
-      type: getTypeExpression(context, type!)
+      name: "",
+      type: `${buildHeaderOnlyResponseType(context, responseHeaders)}`
     };
   }
   const { name, fixme = [] } = getOperationName(operation);
@@ -609,7 +636,23 @@ export function getOperationFunction(
   } else {
     statements.push(`const result = await _${name}Send(${parameterList});`);
   }
-  statements.push(`return _${name}Deserialize(result);`);
+
+  // If the response has headers and the feature flag to include headers in response is enabled, build the headers object and include it in the return value
+  if (responseHeaders.length > 0 && isResponseHeadersEnabled) {
+    statements.push(
+      `const headers = ${buildHeaderOnlyResponseValue(context, responseHeaders)};`
+    );
+
+    // If there is no body payload just return the headers
+    if (hasHeaderOnlyResponse) {
+      statements.push(`return {...headers };`);
+    } else {
+      statements.push(`const payload = await _${name}Deserialize(result);`);
+      statements.push(`return { ...payload, ...headers };`);
+    }
+  } else {
+    statements.push(`return _${name}Deserialize(result);`);
+  }
 
   return {
     ...functionStatement,
@@ -1840,6 +1883,77 @@ export function serializeRequestValue(
 }
 
 /**
+ * Wrapper of deserializeResponseValue, this is used to handle the special cases for response header deserialization, since response header only supports primitive types, we will have a simpler deserialization logic comparing to response body, and we also need to handle the null/undefined cases differently since if a header is missing, the value will be undefined instead of null.
+ * Note: that this has been added to isolate these changes behind the feature flag. Once the feature flag is removed, we can consider merging this back to deserializeResponseValue if the special handling logic is not needed anymore.
+ */
+export function deserializeResponseHeadersValue(
+  context: SdkContext,
+  type: SdkType,
+  restValue: string,
+  required: boolean,
+  format?: string,
+  recursionDepth: number = 0
+) {
+  const nullOrUndefinedPrefix =
+    isTypeNullable(type) || getOptionalForType(type) || !required
+      ? `${restValue} === undefined || ${restValue} === null ? ${restValue}: `
+      : "";
+
+  switch (type.kind) {
+    case "constant":
+      return `${restValue} as any`;
+    case "boolean":
+      return `${nullOrUndefinedPrefix} ${restValue}.trim().toLowerCase() === "true"`;
+    case "int16":
+    case "int32":
+    case "int64":
+    case "uint16":
+    case "uint32":
+    case "uint64":
+    case "float":
+    case "decimal":
+    case "decimal128":
+    case "float32":
+    case "float64":
+    case "int8":
+    case "integer":
+    case "numeric":
+    case "safeint":
+    case "uint8":
+      return `${nullOrUndefinedPrefix} Number(${restValue})`;
+    case "enum":
+      if (isNormalUnion(type)) {
+        return `${restValue}`;
+      } else if (isSpecialHandledUnion(type)) {
+        const deserializeFunctionName = type
+          ? buildModelDeserializer(context, getNullableValidType(type), {
+              nameOnly: true,
+              skipDiscriminatedUnionSuffix: false
+            })
+          : undefined;
+        if (deserializeFunctionName) {
+          return `${deserializeFunctionName}(${restValue})`;
+        } else {
+          return `${restValue} as any`;
+        }
+      } else {
+        return `${restValue} as any`;
+      }
+    default: {
+      const val = deserializeResponseValue(
+        context,
+        type,
+        restValue,
+        true,
+        format,
+        recursionDepth
+      );
+      return `${nullOrUndefinedPrefix} ${val}`;
+    }
+  }
+}
+
+/**
  * This function helps converting strings into JS complex types recursively.
  * We need to drill down into Array elements to make sure that the element type is
  * deserialized correctly
@@ -2131,4 +2245,111 @@ function getApiVersionExpression(
     ? ` ?? "${queryApiVersionParam.clientDefaultValue}"`
     : "";
   return `${paramAccess}${defaultValueSuffix}`;
+}
+
+/**
+ * Extracts and deduplicates all response headers from operation responses.
+ * @param responses - The operation responses
+ * @returns Array of unique response headers
+ */
+export function getResponseHeaders(
+  responses: SdkHttpOperation["responses"]
+): SdkServiceResponseHeader[] {
+  const headerMap = new Map<string, SdkServiceResponseHeader>();
+  for (const response of responses ?? []) {
+    for (const header of response.headers ?? []) {
+      const key = header.serializedName ?? header.name;
+      if (!headerMap.has(key)) {
+        headerMap.set(key, header);
+      }
+    }
+  }
+  return Array.from(headerMap.values());
+}
+
+/**
+ * Builds a composite return type for operations that return both a model and additional headers.
+ * Combines model properties and header properties into an inline object type.
+ * @param context - The SDK context
+ * @param modelType - The model type
+ * @param headers - The response headers that are NOT in the model
+ * @returns The composite type expression as a string (e.g., "{ name: string; email: string; requestId: string }")
+ */
+function buildCompositeResponseType(
+  context: SdkContext,
+  modelType: SdkModelType,
+  headers: SdkServiceResponseHeader[]
+): string {
+  const allParents = getAllAncestors(modelType);
+  const modelProps: (SdkModelPropertyType | SdkServiceResponseHeader)[] =
+    getAllProperties(context, modelType, allParents);
+
+  // Collect header property names already in the model to avoid duplicates
+  const modelHeaderNames = new Set<string>();
+  for (const property of modelProps) {
+    if (isHeader(context.program, property.__raw!)) {
+      modelHeaderNames.add(property.name.toLowerCase());
+    }
+  }
+
+  // Add only additional host response header properties not already in model
+  for (const header of headers) {
+    if (modelHeaderNames.has(header.name.toLowerCase())) {
+      continue;
+    }
+    modelProps.push(header);
+  }
+
+  return emitInlineModel(context, modelProps);
+}
+
+/**
+ * Builds an inline type string for header-only responses.
+ * @param context - The SDK context
+ * @param headers - The response headers
+ * @returns The inline type expression as a string (e.g., "{ requestId: string; optionalHeader?: string }")
+ */
+function buildHeaderOnlyResponseType(
+  context: SdkContext,
+  headers: SdkServiceResponseHeader[]
+): string {
+  const properties: string[] = [];
+
+  for (const header of headers) {
+    const headerName = normalizeModelPropertyName(context, header);
+    const headerType = getTypeExpression(context, header.type);
+    const isOptional = header.optional ? "?" : "";
+    properties.push(`${headerName}${isOptional}: ${headerType}`);
+  }
+
+  return `{ ${properties.join("; ")} }`;
+}
+
+/**
+ * Builds the object literal expression for a header-only response.
+ * Handles type conversions for headers (string to boolean, Date, number, Uint8Array).
+ * @param operation - The service operation
+ * @param headers - The response headers
+ * @returns JavaScript expression string for the header-only response object
+ */
+function buildHeaderOnlyResponseValue(
+  context: SdkContext,
+  headers: SdkServiceResponseHeader[]
+): string {
+  const props = headers.map((header) => {
+    const headerName = (header.serializedName ?? header.name).toLowerCase();
+    const key = normalizeModelPropertyName(context, header);
+    const value = deserializeResponseHeadersValue(
+      context,
+      header.type,
+      `result.headers[${JSON.stringify(headerName)}]`,
+      !header.optional,
+      getEncodeForType(header.type),
+      0
+    );
+
+    return `${key}: ${value}`;
+  });
+
+  return `{ ${props.join(", ")} }`;
 }
