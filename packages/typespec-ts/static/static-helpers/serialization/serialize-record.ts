@@ -2,11 +2,11 @@ export function serializeRecord(
   item: any,
   excludes?: string[],
   serializer?: (item: any) => any
-) {
-  excludes = excludes ?? [];
+): Record<string, any> {
+  const propertiesToExclude = excludes ?? [];
   const res: any = {};
   for (const key of Object.keys(item)) {
-    if (excludes.includes(key) || item[key] === undefined) {
+    if (propertiesToExclude.includes(key) || item[key] === undefined) {
       continue;
     }
     if (serializer) {
