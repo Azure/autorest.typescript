@@ -202,6 +202,10 @@ export interface OperationLroDetail {
 export type PackageFlavor = "azure" | undefined;
 
 export interface RLCOptions {
+  /**
+   * Whether to include response headers in the generated response types. If true, the generated response types will include headers as properties.
+   */
+  includeHeadersInResponse?: boolean;
   includeShortcuts?: boolean;
   multiClient?: boolean;
   batch?: any[];
