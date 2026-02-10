@@ -683,7 +683,7 @@ needAzureCore: true
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { errorDeserializer } from "../models/models.js";
+import { errorDeserializer, _Bar, _barDeserializer } from "../models/models.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
@@ -708,7 +708,7 @@ export function _testSend(
     });
 }
 
-export async function _testDeserialize(result: PathUncheckedResponse): Promise<string[]> {
+export async function _testDeserialize(result: PathUncheckedResponse): Promise<_Bar> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -716,9 +716,7 @@ export async function _testDeserialize(result: PathUncheckedResponse): Promise<s
     throw error;
   }
 
-  return result.body.map((p: any) => {
-    return p;
-  });
+  return _barDeserializer(result.body);
 }
 
 export function test(
@@ -772,7 +770,7 @@ needAzureCore: true
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { errorDeserializer } from "../models/models.js";
+import { errorDeserializer, _Child, _childDeserializer } from "../models/models.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
@@ -797,7 +795,7 @@ export function _testSend(
     });
 }
 
-export async function _testDeserialize(result: PathUncheckedResponse): Promise<string[]> {
+export async function _testDeserialize(result: PathUncheckedResponse): Promise<_Child> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -805,9 +803,7 @@ export async function _testDeserialize(result: PathUncheckedResponse): Promise<s
     throw error;
   }
 
-  return result.body.map((p: any) => {
-    return p;
-  });
+  return _childDeserializer(result.body);
 }
 
 export function test(
@@ -1211,7 +1207,7 @@ export function testDeserializer(item: any): Test {
 
 ```ts operations
 import { testServiceContext as Client } from "./index.js";
-import { testArrayDeserializer, Test } from "../models/models.js";
+import { _ListTestResult, _listTestResultDeserializer, Test } from "../models/models.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
@@ -1236,13 +1232,13 @@ export function _fooSend(
     });
 }
 
-export async function _fooDeserialize(result: PathUncheckedResponse): Promise<Test[]> {
+export async function _fooDeserialize(result: PathUncheckedResponse): Promise<_ListTestResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return testArrayDeserializer(result.body);
+  return _listTestResultDeserializer(result.body);
 }
 
 export function foo(
@@ -1270,13 +1266,13 @@ export function _barSend(
     });
 }
 
-export async function _barDeserialize(result: PathUncheckedResponse): Promise<Test[]> {
+export async function _barDeserialize(result: PathUncheckedResponse): Promise<_ListTestResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return testArrayDeserializer(result.body);
+  return _listTestResultDeserializer(result.body);
 }
 
 export function bar(

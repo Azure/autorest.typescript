@@ -3,11 +3,12 @@
 
 import { ComputeContext as Client } from "../index.js";
 import { ComputeActionGroup, computeActionGroupDeserializer } from "../../models/compute/models.js";
+import { ComputeDiskActionGroup } from "../../models/computeDisk/models.js";
 import {
-  computeDiskActionGroupArrayDeserializer,
-  ComputeDiskActionGroup,
-} from "../../models/computeDisk/models.js";
-import { errorResponseDeserializer } from "../../models/models.js";
+  errorResponseDeserializer,
+  _ActionGroupListResult,
+  _actionGroupListResultDeserializer,
+} from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
@@ -45,7 +46,7 @@ export function _listSend(
 
 export async function _listDeserialize(
   result: PathUncheckedResponse,
-): Promise<ComputeDiskActionGroup[]> {
+): Promise<_ActionGroupListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -53,7 +54,7 @@ export async function _listDeserialize(
     throw error;
   }
 
-  return computeDiskActionGroupArrayDeserializer(result.body);
+  return _actionGroupListResultDeserializer(result.body);
 }
 
 /** List ActionGroup resources by subscription ID */

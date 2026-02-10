@@ -6,11 +6,14 @@ import {
   standard5XXResponseDeserializer,
   TodoAttachment,
   todoAttachmentSerializer,
-  todoAttachmentArrayDeserializer,
   FileAttachmentMultipartRequest,
   fileAttachmentMultipartRequestSerializer,
 } from "../../../models/models.js";
-import { notFoundErrorResponseDeserializer } from "../../../models/todoItems/models.js";
+import {
+  notFoundErrorResponseDeserializer,
+  _PageTodoAttachment,
+  _pageTodoAttachmentDeserializer,
+} from "../../../models/todoItems/models.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
@@ -158,7 +161,9 @@ export function _listSend(
     });
 }
 
-export async function _listDeserialize(result: PathUncheckedResponse): Promise<TodoAttachment[]> {
+export async function _listDeserialize(
+  result: PathUncheckedResponse,
+): Promise<_PageTodoAttachment> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -173,7 +178,7 @@ export async function _listDeserialize(result: PathUncheckedResponse): Promise<T
     throw error;
   }
 
-  return todoAttachmentArrayDeserializer(result.body);
+  return _pageTodoAttachmentDeserializer(result.body);
 }
 
 export function list(

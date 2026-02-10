@@ -22,16 +22,18 @@ import {
   TextBlocklist,
   textBlocklistSerializer,
   textBlocklistDeserializer,
-  textBlocklistArrayDeserializer,
+  _PagedTextBlocklist,
+  _pagedTextBlocklistDeserializer,
   AddOrUpdateTextBlocklistItemsOptions,
   addOrUpdateTextBlocklistItemsOptionsSerializer,
-  textBlocklistItemArrayDeserializer,
   TextBlocklistItem,
   textBlocklistItemDeserializer,
   AddOrUpdateTextBlocklistItemsResult,
   addOrUpdateTextBlocklistItemsResultDeserializer,
   RemoveTextBlocklistItemsOptions,
   removeTextBlocklistItemsOptionsSerializer,
+  _PagedTextBlocklistItem,
+  _pagedTextBlocklistItemDeserializer,
 } from "../models/models.js";
 import {
   PagedAsyncIterableIterator,
@@ -87,13 +89,13 @@ export function _listTextBlocklistItemsSend(
 
 export async function _listTextBlocklistItemsDeserialize(
   result: PathUncheckedResponse,
-): Promise<TextBlocklistItem[]> {
+): Promise<_PagedTextBlocklistItem> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return textBlocklistItemArrayDeserializer(result.body);
+  return _pagedTextBlocklistItemDeserializer(result.body);
 }
 
 /** Get all blocklistItems in a text blocklist. */
@@ -276,13 +278,13 @@ export function _listTextBlocklistsSend(
 
 export async function _listTextBlocklistsDeserialize(
   result: PathUncheckedResponse,
-): Promise<TextBlocklist[]> {
+): Promise<_PagedTextBlocklist> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return textBlocklistArrayDeserializer(result.body);
+  return _pagedTextBlocklistDeserializer(result.body);
 }
 
 /** Get all text blocklists details. */

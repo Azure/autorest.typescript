@@ -14,7 +14,8 @@ import {
   containerSaSSerializer,
   ContainerSasToken,
   containerSasTokenDeserializer,
-  dataTypeArrayDeserializer,
+  _DataTypeListResult,
+  _dataTypeListResultDeserializer,
 } from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
@@ -67,7 +68,7 @@ export function _listByDataProductSend(
 
 export async function _listByDataProductDeserialize(
   result: PathUncheckedResponse,
-): Promise<DataType[]> {
+): Promise<_DataTypeListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -75,7 +76,7 @@ export async function _listByDataProductDeserialize(
     throw error;
   }
 
-  return dataTypeArrayDeserializer(result.body);
+  return _dataTypeListResultDeserializer(result.body);
 }
 
 /** List data type by parent resource. */

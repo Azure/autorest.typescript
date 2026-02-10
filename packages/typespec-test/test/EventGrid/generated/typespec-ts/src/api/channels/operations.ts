@@ -9,7 +9,8 @@ import {
   channelDeserializer,
   ChannelUpdateParameters,
   channelUpdateParametersSerializer,
-  channelArrayDeserializer,
+  _ChannelsListResult,
+  _channelsListResultDeserializer,
   EventSubscriptionFullUrl,
   eventSubscriptionFullUrlDeserializer,
 } from "../../models/models.js";
@@ -124,7 +125,7 @@ export function _listByPartnerNamespaceSend(
 
 export async function _listByPartnerNamespaceDeserialize(
   result: PathUncheckedResponse,
-): Promise<Channel[]> {
+): Promise<_ChannelsListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -132,7 +133,7 @@ export async function _listByPartnerNamespaceDeserialize(
     throw error;
   }
 
-  return channelArrayDeserializer(result.body);
+  return _channelsListResultDeserializer(result.body);
 }
 
 /** List all the channels in a partner namespace. */

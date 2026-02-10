@@ -158,13 +158,22 @@ export function getDeserializePrivateFunction(
   ];
   const isLroOnly = isLroOnlyOperation(operation);
   const isLroAndPaging = isLroAndPagingOperation(operation);
+  const isPagingOnly = isPagingOnlyOperation(operation);
 
   // TODO: Support operation overloads
   // TODO: Support multiple responses
   const response = operation.response;
+  const restResponse = operation.operation.responses[0];
   let returnType;
   if (isLroOnly || isLroAndPaging) {
     returnType = buildLroReturnType(context, operation);
+  } else if (isPagingOnly && restResponse?.type) {
+    // For paging operations, use the full response model (e.g., _OperationListResult)
+    // instead of just the array element type
+    returnType = {
+      name: (restResponse as any).name ?? "",
+      type: getTypeExpression(context, restResponse.type)
+    };
   } else if (response.type) {
     returnType = {
       name: (response as any).name ?? "",
@@ -197,7 +206,9 @@ export function getDeserializePrivateFunction(
   const deserializedType =
     isLroOnly || isLroAndPaging
       ? operation?.lroMetadata?.finalResponse?.result
-      : response.type;
+      : isPagingOnly && restResponse?.type
+        ? restResponse.type
+        : response.type;
   const lroSubSegments = isLroOnly
     ? operation?.lroMetadata?.finalResponse?.resultSegments
     : undefined;

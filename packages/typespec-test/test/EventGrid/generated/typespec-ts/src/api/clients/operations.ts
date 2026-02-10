@@ -7,7 +7,8 @@ import {
   CustomClient,
   customClientSerializer,
   customClientDeserializer,
-  customClientArrayDeserializer,
+  _ClientsListResult,
+  _clientsListResultDeserializer,
 } from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
@@ -59,7 +60,7 @@ export function _listByNamespaceSend(
 
 export async function _listByNamespaceDeserialize(
   result: PathUncheckedResponse,
-): Promise<CustomClient[]> {
+): Promise<_ClientsListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -67,7 +68,7 @@ export async function _listByNamespaceDeserialize(
     throw error;
   }
 
-  return customClientArrayDeserializer(result.body);
+  return _clientsListResultDeserializer(result.body);
 }
 
 /** Get all the permission bindings under a namespace. */

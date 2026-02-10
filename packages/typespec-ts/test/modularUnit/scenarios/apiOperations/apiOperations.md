@@ -1208,7 +1208,8 @@ withRawContent: true
 ```ts operations
 import { ContosoContext as Client } from "./index.js";
 import {
-  operationArrayDeserializer,
+  _OperationListResult,
+  _operationListResultDeserializer,
   Operation,
   errorResponseDeserializer,
   FileShareSnapshotUpdate,
@@ -1321,7 +1322,9 @@ export function _listSend(
     });
 }
 
-export async function _listDeserialize(result: PathUncheckedResponse): Promise<Operation[]> {
+export async function _listDeserialize(
+  result: PathUncheckedResponse,
+): Promise<_OperationListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -1329,7 +1332,7 @@ export async function _listDeserialize(result: PathUncheckedResponse): Promise<O
     throw error;
   }
 
-  return operationArrayDeserializer(result.body);
+  return _operationListResultDeserializer(result.body);
 }
 
 /** List the operations for the provider */

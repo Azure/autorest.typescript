@@ -3,7 +3,8 @@
 
 import { EventGridContext as Client } from "../index.js";
 import {
-  operationArrayDeserializer,
+  _OperationsListResult,
+  _operationsListResultDeserializer,
   Operation,
   errorResponseDeserializer,
 } from "../../models/models.js";
@@ -41,7 +42,9 @@ export function _listSend(
     });
 }
 
-export async function _listDeserialize(result: PathUncheckedResponse): Promise<Operation[]> {
+export async function _listDeserialize(
+  result: PathUncheckedResponse,
+): Promise<_OperationsListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -49,7 +52,7 @@ export async function _listDeserialize(result: PathUncheckedResponse): Promise<O
     throw error;
   }
 
-  return operationArrayDeserializer(result.body);
+  return _operationsListResultDeserializer(result.body);
 }
 
 /** List the available operations supported by the Microsoft.EventGrid resource provider. */

@@ -6,7 +6,8 @@ import {
   errorResponseDeserializer,
   PrivateLinkResource,
   privateLinkResourceDeserializer,
-  privateLinkResourceArrayDeserializer,
+  _PrivateLinkResourcesListResult,
+  _privateLinkResourcesListResultDeserializer,
 } from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
@@ -56,7 +57,7 @@ export function _listByResourceSend(
 
 export async function _listByResourceDeserialize(
   result: PathUncheckedResponse,
-): Promise<PrivateLinkResource[]> {
+): Promise<_PrivateLinkResourcesListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -64,7 +65,7 @@ export async function _listByResourceDeserialize(
     throw error;
   }
 
-  return privateLinkResourceArrayDeserializer(result.body);
+  return _privateLinkResourcesListResultDeserializer(result.body);
 }
 
 /** List all the private link resources under a topic, domain, or partner namespace or namespace. */

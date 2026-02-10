@@ -11,7 +11,8 @@ import {
   partnerSerializer,
   PartnerConfigurationUpdateParameters,
   partnerConfigurationUpdateParametersSerializer,
-  partnerConfigurationArrayDeserializer,
+  _PartnerConfigurationsListResult,
+  _partnerConfigurationsListResultDeserializer,
 } from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
@@ -165,7 +166,7 @@ export function _listBySubscriptionSend(
 
 export async function _listBySubscriptionDeserialize(
   result: PathUncheckedResponse,
-): Promise<PartnerConfiguration[]> {
+): Promise<_PartnerConfigurationsListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -173,7 +174,7 @@ export async function _listBySubscriptionDeserialize(
     throw error;
   }
 
-  return partnerConfigurationArrayDeserializer(result.body);
+  return _partnerConfigurationsListResultDeserializer(result.body);
 }
 
 /** List all the partner configurations under an Azure subscription. */
@@ -220,7 +221,7 @@ export function _listByResourceGroupSend(
 
 export async function _listByResourceGroupDeserialize(
   result: PathUncheckedResponse,
-): Promise<PartnerConfiguration[]> {
+): Promise<_PartnerConfigurationsListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -228,7 +229,7 @@ export async function _listByResourceGroupDeserialize(
     throw error;
   }
 
-  return partnerConfigurationArrayDeserializer(result.body);
+  return _partnerConfigurationsListResultDeserializer(result.body);
 }
 
 /** List all the partner configurations under a resource group. */

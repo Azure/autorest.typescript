@@ -6,7 +6,8 @@ import {
   errorResponseDeserializer,
   VerifiedPartner,
   verifiedPartnerDeserializer,
-  verifiedPartnerArrayDeserializer,
+  _VerifiedPartnersListResult,
+  _verifiedPartnersListResultDeserializer,
 } from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
@@ -47,7 +48,9 @@ export function _listSend(
     });
 }
 
-export async function _listDeserialize(result: PathUncheckedResponse): Promise<VerifiedPartner[]> {
+export async function _listDeserialize(
+  result: PathUncheckedResponse,
+): Promise<_VerifiedPartnersListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -55,7 +58,7 @@ export async function _listDeserialize(result: PathUncheckedResponse): Promise<V
     throw error;
   }
 
-  return verifiedPartnerArrayDeserializer(result.body);
+  return _verifiedPartnersListResultDeserializer(result.body);
 }
 
 /** Get a list of all verified partners. */

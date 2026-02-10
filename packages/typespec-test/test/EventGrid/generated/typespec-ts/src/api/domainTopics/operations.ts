@@ -6,7 +6,8 @@ import {
   errorResponseDeserializer,
   DomainTopic,
   domainTopicDeserializer,
-  domainTopicArrayDeserializer,
+  _DomainTopicsListResult,
+  _domainTopicsListResultDeserializer,
 } from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
@@ -58,7 +59,7 @@ export function _listByDomainSend(
 
 export async function _listByDomainDeserialize(
   result: PathUncheckedResponse,
-): Promise<DomainTopic[]> {
+): Promise<_DomainTopicsListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -66,7 +67,7 @@ export async function _listByDomainDeserialize(
     throw error;
   }
 
-  return domainTopicArrayDeserializer(result.body);
+  return _domainTopicsListResultDeserializer(result.body);
 }
 
 /** List all the topics in a domain. */

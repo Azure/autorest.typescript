@@ -23,7 +23,8 @@ import {
   _listRolesAssignmentsRequestSerializer,
   ListRoleAssignments,
   listRoleAssignmentsDeserializer,
-  dataProductArrayDeserializer,
+  _DataProductListResult,
+  _dataProductListResultDeserializer,
 } from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
@@ -76,7 +77,7 @@ export function _listBySubscriptionSend(
 
 export async function _listBySubscriptionDeserialize(
   result: PathUncheckedResponse,
-): Promise<DataProduct[]> {
+): Promise<_DataProductListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -84,7 +85,7 @@ export async function _listBySubscriptionDeserialize(
     throw error;
   }
 
-  return dataProductArrayDeserializer(result.body);
+  return _dataProductListResultDeserializer(result.body);
 }
 
 /** List data products by subscription. */
@@ -127,7 +128,7 @@ export function _listByResourceGroupSend(
 
 export async function _listByResourceGroupDeserialize(
   result: PathUncheckedResponse,
-): Promise<DataProduct[]> {
+): Promise<_DataProductListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -135,7 +136,7 @@ export async function _listByResourceGroupDeserialize(
     throw error;
   }
 
-  return dataProductArrayDeserializer(result.body);
+  return _dataProductListResultDeserializer(result.body);
 }
 
 /** List data products by resource group. */

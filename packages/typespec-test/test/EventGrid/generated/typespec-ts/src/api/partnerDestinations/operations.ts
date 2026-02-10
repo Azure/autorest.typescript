@@ -9,7 +9,8 @@ import {
   partnerDestinationDeserializer,
   PartnerDestinationUpdateParameters,
   partnerDestinationUpdateParametersSerializer,
-  partnerDestinationArrayDeserializer,
+  _PartnerDestinationsListResult,
+  _partnerDestinationsListResultDeserializer,
 } from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
@@ -110,7 +111,7 @@ export function _listBySubscriptionSend(
 
 export async function _listBySubscriptionDeserialize(
   result: PathUncheckedResponse,
-): Promise<PartnerDestination[]> {
+): Promise<_PartnerDestinationsListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -118,7 +119,7 @@ export async function _listBySubscriptionDeserialize(
     throw error;
   }
 
-  return partnerDestinationArrayDeserializer(result.body);
+  return _partnerDestinationsListResultDeserializer(result.body);
 }
 
 /** List all the partner destinations under an Azure subscription. */
@@ -167,7 +168,7 @@ export function _listByResourceGroupSend(
 
 export async function _listByResourceGroupDeserialize(
   result: PathUncheckedResponse,
-): Promise<PartnerDestination[]> {
+): Promise<_PartnerDestinationsListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -175,7 +176,7 @@ export async function _listByResourceGroupDeserialize(
     throw error;
   }
 
-  return partnerDestinationArrayDeserializer(result.body);
+  return _partnerDestinationsListResultDeserializer(result.body);
 }
 
 /** List all the partner destinations under a resource group. */

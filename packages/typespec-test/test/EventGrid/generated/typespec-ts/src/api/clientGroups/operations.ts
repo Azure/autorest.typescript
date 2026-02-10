@@ -7,7 +7,8 @@ import {
   ClientGroup,
   clientGroupSerializer,
   clientGroupDeserializer,
-  clientGroupArrayDeserializer,
+  _ClientGroupsListResult,
+  _clientGroupsListResultDeserializer,
 } from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
@@ -59,7 +60,7 @@ export function _listByNamespaceSend(
 
 export async function _listByNamespaceDeserialize(
   result: PathUncheckedResponse,
-): Promise<ClientGroup[]> {
+): Promise<_ClientGroupsListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -67,7 +68,7 @@ export async function _listByNamespaceDeserialize(
     throw error;
   }
 
-  return clientGroupArrayDeserializer(result.body);
+  return _clientGroupsListResultDeserializer(result.body);
 }
 
 /** Get all the client groups under a namespace. */

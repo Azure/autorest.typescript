@@ -6,7 +6,8 @@ import {
   TestProfile,
   testProfileSerializer,
   testProfileDeserializer,
-  testProfileArrayDeserializer,
+  _PagedTestProfile,
+  _pagedTestProfileDeserializer,
 } from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
@@ -58,13 +59,13 @@ export function _listTestProfilesSend(
 
 export async function _listTestProfilesDeserialize(
   result: PathUncheckedResponse,
-): Promise<TestProfile[]> {
+): Promise<_PagedTestProfile> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return testProfileArrayDeserializer(result.body);
+  return _pagedTestProfileDeserializer(result.body);
 }
 
 /** Get all test profiles for the given filters. */

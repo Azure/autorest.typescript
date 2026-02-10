@@ -4,11 +4,13 @@
 import { EventGridContext as Client } from "../index.js";
 import {
   errorResponseDeserializer,
-  eventTypeArrayDeserializer,
+  _EventTypesListResult,
+  _eventTypesListResultDeserializer,
   EventType,
   TopicTypeInfo,
   topicTypeInfoDeserializer,
-  topicTypeInfoArrayDeserializer,
+  _TopicTypesListResult,
+  _topicTypesListResultDeserializer,
 } from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
@@ -52,7 +54,7 @@ export function _listEventTypesSend(
 
 export async function _listEventTypesDeserialize(
   result: PathUncheckedResponse,
-): Promise<EventType[]> {
+): Promise<_EventTypesListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -60,7 +62,7 @@ export async function _listEventTypesDeserialize(
     throw error;
   }
 
-  return eventTypeArrayDeserializer(result.body);
+  return _eventTypesListResultDeserializer(result.body);
 }
 
 /** List event types for a topic type. */
@@ -103,7 +105,9 @@ export function _listSend(
     });
 }
 
-export async function _listDeserialize(result: PathUncheckedResponse): Promise<TopicTypeInfo[]> {
+export async function _listDeserialize(
+  result: PathUncheckedResponse,
+): Promise<_TopicTypesListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -111,7 +115,7 @@ export async function _listDeserialize(result: PathUncheckedResponse): Promise<T
     throw error;
   }
 
-  return topicTypeInfoArrayDeserializer(result.body);
+  return _topicTypesListResultDeserializer(result.body);
 }
 
 /** List all registered topic types. */
