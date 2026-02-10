@@ -358,7 +358,7 @@ export async function $onEmit(context: EmitContext) {
         interfaceOnly: true
       });
       const { subfolder } = getModularClientOptions(subClient);
-      if (isMultiClients || (subfolder && subfolder !== "")) {
+      if (isMultiClients || subfolder) {
         buildSubClientIndexFile(dpgContext, subClient, modularEmitterOptions);
       }
       buildRootIndex(
