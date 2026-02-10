@@ -91,7 +91,11 @@ import { emitLoggerFile } from "./modular/emitLoggerFile.js";
 import { emitTypes } from "./modular/emitModels.js";
 import { existsSync } from "fs";
 import { getModuleExports } from "./modular/buildProjectFiles.js";
-import { getClientHierarchyMap, getRLCClients, getModularClientOptions } from "./utils/clientUtils.js";
+import {
+  getClientHierarchyMap,
+  getRLCClients,
+  getModularClientOptions
+} from "./utils/clientUtils.js";
 import { join } from "path";
 import { loadStaticHelpers } from "./framework/load-static-helpers.js";
 import { packageUsesXmlSerialization } from "./modular/serialization/buildXmlSerializerFunction.js";
