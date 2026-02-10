@@ -9,6 +9,18 @@ Your job is to create `.spec.ts` test files for Spector scenarios in `packages/t
 
 The user may provide one or more test case paths. Process each path through the workflow below independently. Report results for all paths at the end.
 
+## Prerequisites
+
+Before starting the workflow, ensure the repository is bootstrapped and built:
+
+```bash
+cd <repo-root>
+pnpm install
+pnpm build
+```
+
+Skip this if the user confirms these have already been run.
+
 ## Workflow
 
 For each test case path (e.g., `encode/numeric`):
@@ -56,9 +68,9 @@ Place the new entry near similar paths (e.g., near other `encode/*` entries like
 
 ### Step 5: Create tspconfig.yaml and .spec.ts
 
-**tspconfig.yaml:** Create `test/azureModularIntegration/generated/<path>/tspconfig.yaml`. Find a similar existing tspconfig.yaml in the `generated/` directory (e.g., for `encode/numeric`, look at `generated/encode/bytes/tspconfig.yaml` or `generated/encode/datetime/tspconfig.yaml`) and copy it. Then change only `package-details.name` to `"@msinternal/<category-subcategory>"` (e.g., `@msinternal/encode-numeric`).
+**tspconfig.yaml:** Create `test/azureModularIntegration/generated/<path>/tspconfig.yaml` using the template below. Set `package-details.name` to `"@msinternal/<category-subcategory>"` based on the path. If other tspconfig.yaml files exist in the same `generated/` parent directory, check them for any additional options that may be needed.
 
-Standard template:
+Template:
 
 ```yaml
 emit:
@@ -66,14 +78,14 @@ emit:
 options:
   "@azure-tools/typespec-ts":
     emitter-output-dir: "{project-root}"
-    generate-metadata: true
     generate-test: false
     add-credentials: false
     flavor: azure
     azure-sdk-for-js: false
     is-typespec-test: true
     package-details:
-      name: "@msinternal/encode-numeric"
+      name: "@msinternal/<category-subcategory>"
+      description: "<Category Subcategory> Test Service"
 ```
 
 **.spec.ts file:** Create `test/azureModularIntegration/<camelCaseName>.spec.ts`.
