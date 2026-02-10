@@ -4,6 +4,7 @@ import { TodoContext as Client } from "../index.js";
 import {
   standard4XXResponseDeserializer,
   standard5XXResponseDeserializer,
+  todoItemArrayDeserializer,
   TodoItem,
   todoItemSerializer,
   todoItemDeserializer,
@@ -12,8 +13,6 @@ import {
   toDoItemMultipartRequestSerializer,
 } from "../../models/models.js";
 import {
-  _TodoPage,
-  _todoPageDeserializer,
   invalidTodoItemDeserializer,
   notFoundErrorResponseDeserializer,
   TodoItemPatch,
@@ -288,7 +287,7 @@ export function _listSend(
     });
 }
 
-export async function _listDeserialize(result: PathUncheckedResponse): Promise<_TodoPage> {
+export async function _listDeserialize(result: PathUncheckedResponse): Promise<TodoItem[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -301,7 +300,7 @@ export async function _listDeserialize(result: PathUncheckedResponse): Promise<_
     throw error;
   }
 
-  return _todoPageDeserializer(result.body);
+  return todoItemArrayDeserializer(result.body);
 }
 
 export function list(

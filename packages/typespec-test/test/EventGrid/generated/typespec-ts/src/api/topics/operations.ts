@@ -13,10 +13,8 @@ import {
   topicDeserializer,
   TopicUpdateParameters,
   topicUpdateParametersSerializer,
-  _TopicsListResult,
-  _topicsListResultDeserializer,
-  _EventTypesListResult,
-  _eventTypesListResultDeserializer,
+  topicArrayDeserializer,
+  eventTypeArrayDeserializer,
   EventType,
 } from "../../models/models.js";
 import {
@@ -76,7 +74,7 @@ export function _listEventTypesSend(
 
 export async function _listEventTypesDeserialize(
   result: PathUncheckedResponse,
-): Promise<_EventTypesListResult> {
+): Promise<EventType[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -84,7 +82,7 @@ export async function _listEventTypesDeserialize(
     throw error;
   }
 
-  return _eventTypesListResultDeserializer(result.body);
+  return eventTypeArrayDeserializer(result.body);
 }
 
 /** List event types for a topic. */
@@ -253,7 +251,7 @@ export function _listBySubscriptionSend(
 
 export async function _listBySubscriptionDeserialize(
   result: PathUncheckedResponse,
-): Promise<_TopicsListResult> {
+): Promise<Topic[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -261,7 +259,7 @@ export async function _listBySubscriptionDeserialize(
     throw error;
   }
 
-  return _topicsListResultDeserializer(result.body);
+  return topicArrayDeserializer(result.body);
 }
 
 /** List all the topics under an Azure subscription. */
@@ -310,7 +308,7 @@ export function _listByResourceGroupSend(
 
 export async function _listByResourceGroupDeserialize(
   result: PathUncheckedResponse,
-): Promise<_TopicsListResult> {
+): Promise<Topic[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -318,7 +316,7 @@ export async function _listByResourceGroupDeserialize(
     throw error;
   }
 
-  return _topicsListResultDeserializer(result.body);
+  return topicArrayDeserializer(result.body);
 }
 
 /** List all the topics under a resource group. */

@@ -9,8 +9,7 @@ import {
   systemTopicDeserializer,
   SystemTopicUpdateParameters,
   systemTopicUpdateParametersSerializer,
-  _SystemTopicsListResult,
-  _systemTopicsListResultDeserializer,
+  systemTopicArrayDeserializer,
 } from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
@@ -60,7 +59,7 @@ export function _listBySubscriptionSend(
 
 export async function _listBySubscriptionDeserialize(
   result: PathUncheckedResponse,
-): Promise<_SystemTopicsListResult> {
+): Promise<SystemTopic[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -68,7 +67,7 @@ export async function _listBySubscriptionDeserialize(
     throw error;
   }
 
-  return _systemTopicsListResultDeserializer(result.body);
+  return systemTopicArrayDeserializer(result.body);
 }
 
 /** List all the system topics under an Azure subscription. */
@@ -117,7 +116,7 @@ export function _listByResourceGroupSend(
 
 export async function _listByResourceGroupDeserialize(
   result: PathUncheckedResponse,
-): Promise<_SystemTopicsListResult> {
+): Promise<SystemTopic[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -125,7 +124,7 @@ export async function _listByResourceGroupDeserialize(
     throw error;
   }
 
-  return _systemTopicsListResultDeserializer(result.body);
+  return systemTopicArrayDeserializer(result.body);
 }
 
 /** List all the system topics under a resource group. */

@@ -9,8 +9,7 @@ import {
   domainDeserializer,
   DomainUpdateParameters,
   domainUpdateParametersSerializer,
-  _DomainsListResult,
-  _domainsListResultDeserializer,
+  domainArrayDeserializer,
   DomainSharedAccessKeys,
   domainSharedAccessKeysDeserializer,
   DomainRegenerateKeyRequest,
@@ -176,7 +175,7 @@ export function _listBySubscriptionSend(
 
 export async function _listBySubscriptionDeserialize(
   result: PathUncheckedResponse,
-): Promise<_DomainsListResult> {
+): Promise<Domain[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -184,7 +183,7 @@ export async function _listBySubscriptionDeserialize(
     throw error;
   }
 
-  return _domainsListResultDeserializer(result.body);
+  return domainArrayDeserializer(result.body);
 }
 
 /** List all the domains under an Azure subscription. */
@@ -233,7 +232,7 @@ export function _listByResourceGroupSend(
 
 export async function _listByResourceGroupDeserialize(
   result: PathUncheckedResponse,
-): Promise<_DomainsListResult> {
+): Promise<Domain[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -241,7 +240,7 @@ export async function _listByResourceGroupDeserialize(
     throw error;
   }
 
-  return _domainsListResultDeserializer(result.body);
+  return domainArrayDeserializer(result.body);
 }
 
 /** List all the domains under a resource group. */

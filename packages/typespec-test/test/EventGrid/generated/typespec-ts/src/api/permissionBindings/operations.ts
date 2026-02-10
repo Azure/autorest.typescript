@@ -7,8 +7,7 @@ import {
   PermissionBinding,
   permissionBindingSerializer,
   permissionBindingDeserializer,
-  _PermissionBindingsListResult,
-  _permissionBindingsListResultDeserializer,
+  permissionBindingArrayDeserializer,
 } from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
@@ -60,7 +59,7 @@ export function _listByNamespaceSend(
 
 export async function _listByNamespaceDeserialize(
   result: PathUncheckedResponse,
-): Promise<_PermissionBindingsListResult> {
+): Promise<PermissionBinding[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -68,7 +67,7 @@ export async function _listByNamespaceDeserialize(
     throw error;
   }
 
-  return _permissionBindingsListResultDeserializer(result.body);
+  return permissionBindingArrayDeserializer(result.body);
 }
 
 /** Get all the permission bindings under a namespace. */

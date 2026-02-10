@@ -162,16 +162,13 @@ export function getDeserializePrivateFunction(
   // TODO: Support operation overloads
   // TODO: Support multiple responses
   const response = operation.response;
-  const restResponse =
-    operation.operation.responses.find((r) => r.type !== undefined) ??
-    operation.operation.responses[0];
   let returnType;
   if (isLroOnly || isLroAndPaging) {
     returnType = buildLroReturnType(context, operation);
-  } else if (response.type && restResponse) {
+  } else if (response.type) {
     returnType = {
-      name: (restResponse as any).name ?? "",
-      type: getTypeExpression(context, restResponse.type!)
+      name: (response as any).name ?? "",
+      type: getTypeExpression(context, response.type)
     };
   } else {
     returnType = { name: "", type: "void" };
@@ -200,9 +197,7 @@ export function getDeserializePrivateFunction(
   const deserializedType =
     isLroOnly || isLroAndPaging
       ? operation?.lroMetadata?.finalResponse?.result
-      : restResponse
-        ? restResponse.type
-        : response.type;
+      : response.type;
   const lroSubSegments = isLroOnly
     ? operation?.lroMetadata?.finalResponse?.resultSegments
     : undefined;

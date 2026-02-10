@@ -12,8 +12,7 @@ import {
   multivariateModelInfoSerializer,
   MultivariateAnomalyDetectionModel,
   multivariateAnomalyDetectionModelDeserializer,
-  _MultivariateModelList,
-  _multivariateModelListDeserializer,
+  multivariateAnomalyDetectionModelArrayDeserializer,
   MultivariateMultivariateLastDetectionOptions,
   multivariateMultivariateLastDetectionOptionsSerializer,
   MultivariateMultivariateLastDetectionResult,
@@ -272,7 +271,7 @@ export function _listMultivariateModelsSend(
 
 export async function _listMultivariateModelsDeserialize(
   result: PathUncheckedResponse,
-): Promise<_MultivariateModelList> {
+): Promise<MultivariateAnomalyDetectionModel[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -280,7 +279,7 @@ export async function _listMultivariateModelsDeserialize(
     throw error;
   }
 
-  return _multivariateModelListDeserializer(result.body);
+  return multivariateAnomalyDetectionModelArrayDeserializer(result.body);
 }
 
 /** List models of a resource. */

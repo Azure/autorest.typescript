@@ -6,8 +6,6 @@ import {
   Widget,
   widgetDeserializer,
   widgetErrorDeserializer,
-  _ListWidgetsPagesResults,
-  _listWidgetsPagesResultsDeserializer,
   widgetArrayDeserializer,
   SAPUser,
   sapUserSerializer,
@@ -336,7 +334,7 @@ export function _queryWidgetsPagesSend(
 
 export async function _queryWidgetsPagesDeserialize(
   result: PathUncheckedResponse,
-): Promise<_ListWidgetsPagesResults> {
+): Promise<Widget[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -344,7 +342,7 @@ export async function _queryWidgetsPagesDeserialize(
     throw error;
   }
 
-  return _listWidgetsPagesResultsDeserializer(result.body);
+  return widgetArrayDeserializer(result.body);
 }
 
 export function queryWidgetsPages(
@@ -388,7 +386,7 @@ export function _listWidgetsPagesSend(
 
 export async function _listWidgetsPagesDeserialize(
   result: PathUncheckedResponse,
-): Promise<_ListWidgetsPagesResults> {
+): Promise<Widget[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -396,7 +394,7 @@ export async function _listWidgetsPagesDeserialize(
     throw error;
   }
 
-  return _listWidgetsPagesResultsDeserializer(result.body);
+  return widgetArrayDeserializer(result.body);
 }
 
 export function listWidgetsPages(

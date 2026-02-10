@@ -4,11 +4,10 @@
 import { EventGridContext as Client } from "../index.js";
 import {
   errorResponseDeserializer,
+  privateEndpointConnectionArrayDeserializer,
   PrivateEndpointConnection,
   privateEndpointConnectionSerializer,
   privateEndpointConnectionDeserializer,
-  _PrivateEndpointConnectionListResult,
-  _privateEndpointConnectionListResultDeserializer,
   PrivateEndpointConnectionsParentType,
 } from "../../models/models.js";
 import {
@@ -63,7 +62,7 @@ export function _listByResourceSend(
 
 export async function _listByResourceDeserialize(
   result: PathUncheckedResponse,
-): Promise<_PrivateEndpointConnectionListResult> {
+): Promise<PrivateEndpointConnection[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -71,7 +70,7 @@ export async function _listByResourceDeserialize(
     throw error;
   }
 
-  return _privateEndpointConnectionListResultDeserializer(result.body);
+  return privateEndpointConnectionArrayDeserializer(result.body);
 }
 
 /** Get all private endpoint connections under a topic, domain, or partner namespace or namespace. */

@@ -21,11 +21,9 @@ import {
   MetricNamespaceCollection,
   metricNamespaceCollectionDeserializer,
   metricRequestPayloadSerializer,
-  _Metrics,
-  _metricsDeserializer,
+  timeSeriesElementArrayDeserializer,
   TimeSeriesElement,
-  _PagedTestRun,
-  _pagedTestRunDeserializer,
+  testRunArrayDeserializer,
 } from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
@@ -129,15 +127,13 @@ export function _listTestRunsSend(
     });
 }
 
-export async function _listTestRunsDeserialize(
-  result: PathUncheckedResponse,
-): Promise<_PagedTestRun> {
+export async function _listTestRunsDeserialize(result: PathUncheckedResponse): Promise<TestRun[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return _pagedTestRunDeserializer(result.body);
+  return testRunArrayDeserializer(result.body);
 }
 
 /** Get all test runs for the given filters. */
@@ -191,13 +187,15 @@ export function _listMetricsSend(
     });
 }
 
-export async function _listMetricsDeserialize(result: PathUncheckedResponse): Promise<_Metrics> {
+export async function _listMetricsDeserialize(
+  result: PathUncheckedResponse,
+): Promise<TimeSeriesElement[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return _metricsDeserializer(result.body);
+  return timeSeriesElementArrayDeserializer(result.body);
 }
 
 /** List the metric values for a load test run. */

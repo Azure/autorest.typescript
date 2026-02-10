@@ -9,8 +9,7 @@ import {
   partnerNamespaceDeserializer,
   PartnerNamespaceUpdateParameters,
   partnerNamespaceUpdateParametersSerializer,
-  _PartnerNamespacesListResult,
-  _partnerNamespacesListResultDeserializer,
+  partnerNamespaceArrayDeserializer,
   PartnerNamespaceSharedAccessKeys,
   partnerNamespaceSharedAccessKeysDeserializer,
   PartnerNamespaceRegenerateKeyRequest,
@@ -181,7 +180,7 @@ export function _listBySubscriptionSend(
 
 export async function _listBySubscriptionDeserialize(
   result: PathUncheckedResponse,
-): Promise<_PartnerNamespacesListResult> {
+): Promise<PartnerNamespace[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -189,7 +188,7 @@ export async function _listBySubscriptionDeserialize(
     throw error;
   }
 
-  return _partnerNamespacesListResultDeserializer(result.body);
+  return partnerNamespaceArrayDeserializer(result.body);
 }
 
 /** List all the partner namespaces under an Azure subscription. */
@@ -238,7 +237,7 @@ export function _listByResourceGroupSend(
 
 export async function _listByResourceGroupDeserialize(
   result: PathUncheckedResponse,
-): Promise<_PartnerNamespacesListResult> {
+): Promise<PartnerNamespace[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -246,7 +245,7 @@ export async function _listByResourceGroupDeserialize(
     throw error;
   }
 
-  return _partnerNamespacesListResultDeserializer(result.body);
+  return partnerNamespaceArrayDeserializer(result.body);
 }
 
 /** List all the partner namespaces under a resource group. */

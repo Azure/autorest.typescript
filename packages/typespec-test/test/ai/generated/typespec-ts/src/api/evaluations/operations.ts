@@ -6,13 +6,11 @@ import {
   Evaluation,
   evaluationSerializer,
   evaluationDeserializer,
-  _PagedEvaluation,
-  _pagedEvaluationDeserializer,
+  evaluationArrayDeserializer,
   EvaluationSchedule,
   evaluationScheduleSerializer,
   evaluationScheduleDeserializer,
-  _PagedEvaluationSchedule,
-  _pagedEvaluationScheduleDeserializer,
+  evaluationScheduleArrayDeserializer,
 } from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
@@ -105,13 +103,13 @@ export function _listScheduleSend(
 
 export async function _listScheduleDeserialize(
   result: PathUncheckedResponse,
-): Promise<_PagedEvaluationSchedule> {
+): Promise<EvaluationSchedule[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return _pagedEvaluationScheduleDeserializer(result.body);
+  return evaluationScheduleArrayDeserializer(result.body);
 }
 
 /** Resource list operation template. */
@@ -318,13 +316,13 @@ export function _listSend(
     });
 }
 
-export async function _listDeserialize(result: PathUncheckedResponse): Promise<_PagedEvaluation> {
+export async function _listDeserialize(result: PathUncheckedResponse): Promise<Evaluation[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return _pagedEvaluationDeserializer(result.body);
+  return evaluationArrayDeserializer(result.body);
 }
 
 /** Resource list operation template. */

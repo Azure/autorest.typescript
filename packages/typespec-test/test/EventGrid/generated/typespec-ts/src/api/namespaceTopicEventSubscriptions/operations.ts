@@ -4,16 +4,14 @@
 import { EventGridContext as Client } from "../index.js";
 import {
   errorResponseDeserializer,
+  deliveryAttributeMappingUnionArrayDeserializer,
   DeliveryAttributeMappingUnion,
-  _DeliveryAttributeListResult,
-  _deliveryAttributeListResultDeserializer,
   Subscription,
   subscriptionSerializer,
   subscriptionDeserializer,
   SubscriptionUpdateParameters,
   subscriptionUpdateParametersSerializer,
-  _SubscriptionsListResult,
-  _subscriptionsListResultDeserializer,
+  subscriptionArrayDeserializer,
   SubscriptionFullUrl,
   subscriptionFullUrlDeserializer,
 } from "../../models/models.js";
@@ -137,7 +135,7 @@ export function _getDeliveryAttributesSend(
 
 export async function _getDeliveryAttributesDeserialize(
   result: PathUncheckedResponse,
-): Promise<_DeliveryAttributeListResult> {
+): Promise<DeliveryAttributeMappingUnion[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -145,7 +143,7 @@ export async function _getDeliveryAttributesDeserialize(
     throw error;
   }
 
-  return _deliveryAttributeListResultDeserializer(result.body);
+  return deliveryAttributeMappingUnionArrayDeserializer(result.body);
 }
 
 /** Get all delivery attributes for an event subscription of a namespace topic. */
@@ -210,7 +208,7 @@ export function _listByNamespaceTopicSend(
 
 export async function _listByNamespaceTopicDeserialize(
   result: PathUncheckedResponse,
-): Promise<_SubscriptionsListResult> {
+): Promise<Subscription[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -218,7 +216,7 @@ export async function _listByNamespaceTopicDeserialize(
     throw error;
   }
 
-  return _subscriptionsListResultDeserializer(result.body);
+  return subscriptionArrayDeserializer(result.body);
 }
 
 /** List event subscriptions that belong to a specific namespace topic. */

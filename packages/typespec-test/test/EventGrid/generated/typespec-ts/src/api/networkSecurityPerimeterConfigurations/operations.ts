@@ -6,8 +6,7 @@ import {
   errorResponseDeserializer,
   NetworkSecurityPerimeterConfiguration,
   networkSecurityPerimeterConfigurationDeserializer,
-  _NetworkSecurityPerimeterConfigurationList,
-  _networkSecurityPerimeterConfigurationListDeserializer,
+  networkSecurityPerimeterConfigurationArrayDeserializer,
   NetworkSecurityPerimeterResourceType,
 } from "../../models/models.js";
 import {
@@ -138,7 +137,7 @@ export function _listSend(
 
 export async function _listDeserialize(
   result: PathUncheckedResponse,
-): Promise<_NetworkSecurityPerimeterConfigurationList> {
+): Promise<NetworkSecurityPerimeterConfiguration[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -146,7 +145,7 @@ export async function _listDeserialize(
     throw error;
   }
 
-  return _networkSecurityPerimeterConfigurationListDeserializer(result.body);
+  return networkSecurityPerimeterConfigurationArrayDeserializer(result.body);
 }
 
 /** Get all network security perimeter configurations associated with a topic or domain. */

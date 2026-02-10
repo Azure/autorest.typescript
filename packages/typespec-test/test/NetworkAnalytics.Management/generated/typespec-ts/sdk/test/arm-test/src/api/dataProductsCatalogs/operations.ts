@@ -6,8 +6,7 @@ import {
   errorResponseDeserializer,
   DataProductsCatalog,
   dataProductsCatalogDeserializer,
-  _DataProductsCatalogListResult,
-  _dataProductsCatalogListResultDeserializer,
+  dataProductsCatalogArrayDeserializer,
 } from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
@@ -50,7 +49,7 @@ export function _listBySubscriptionSend(
 
 export async function _listBySubscriptionDeserialize(
   result: PathUncheckedResponse,
-): Promise<_DataProductsCatalogListResult> {
+): Promise<DataProductsCatalog[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -58,7 +57,7 @@ export async function _listBySubscriptionDeserialize(
     throw error;
   }
 
-  return _dataProductsCatalogListResultDeserializer(result.body);
+  return dataProductsCatalogArrayDeserializer(result.body);
 }
 
 /** List data catalog by subscription. */
@@ -101,7 +100,7 @@ export function _listByResourceGroupSend(
 
 export async function _listByResourceGroupDeserialize(
   result: PathUncheckedResponse,
-): Promise<_DataProductsCatalogListResult> {
+): Promise<DataProductsCatalog[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -109,7 +108,7 @@ export async function _listByResourceGroupDeserialize(
     throw error;
   }
 
-  return _dataProductsCatalogListResultDeserializer(result.body);
+  return dataProductsCatalogArrayDeserializer(result.body);
 }
 
 /** List data catalog by resource group. */

@@ -3,11 +3,9 @@
 
 import { SchemaRegistryContext as Client } from "../index.js";
 import {
-  _PagedSchemaGroup,
-  _pagedSchemaGroupDeserializer,
+  schemaGroupArrayDeserializer,
   SchemaGroup,
-  _PagedVersion,
-  _pagedVersionDeserializer,
+  schemaVersionArrayDeserializer,
   SchemaVersion,
   SchemaContentTypeValues,
 } from "../../models/models.js";
@@ -213,13 +211,13 @@ export function _listSchemaVersionsSend(
 
 export async function _listSchemaVersionsDeserialize(
   result: PathUncheckedResponse,
-): Promise<_PagedVersion> {
+): Promise<SchemaVersion[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return _pagedVersionDeserializer(result.body);
+  return schemaVersionArrayDeserializer(result.body);
 }
 
 /** Gets the list of all versions of one schema. */
@@ -300,13 +298,13 @@ export function _listSchemaGroupsSend(
 
 export async function _listSchemaGroupsDeserialize(
   result: PathUncheckedResponse,
-): Promise<_PagedSchemaGroup> {
+): Promise<SchemaGroup[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return _pagedSchemaGroupDeserializer(result.body);
+  return schemaGroupArrayDeserializer(result.body);
 }
 
 /** Gets the list of schema groups user is authorized to access. */

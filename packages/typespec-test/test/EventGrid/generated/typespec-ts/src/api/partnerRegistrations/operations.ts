@@ -9,8 +9,7 @@ import {
   partnerRegistrationDeserializer,
   PartnerRegistrationUpdateParameters,
   partnerRegistrationUpdateParametersSerializer,
-  _PartnerRegistrationsListResult,
-  _partnerRegistrationsListResultDeserializer,
+  partnerRegistrationArrayDeserializer,
 } from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
@@ -60,7 +59,7 @@ export function _listBySubscriptionSend(
 
 export async function _listBySubscriptionDeserialize(
   result: PathUncheckedResponse,
-): Promise<_PartnerRegistrationsListResult> {
+): Promise<PartnerRegistration[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -68,7 +67,7 @@ export async function _listBySubscriptionDeserialize(
     throw error;
   }
 
-  return _partnerRegistrationsListResultDeserializer(result.body);
+  return partnerRegistrationArrayDeserializer(result.body);
 }
 
 /** List all the partner registrations under an Azure subscription. */
@@ -117,7 +116,7 @@ export function _listByResourceGroupSend(
 
 export async function _listByResourceGroupDeserialize(
   result: PathUncheckedResponse,
-): Promise<_PartnerRegistrationsListResult> {
+): Promise<PartnerRegistration[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -125,7 +124,7 @@ export async function _listByResourceGroupDeserialize(
     throw error;
   }
 
-  return _partnerRegistrationsListResultDeserializer(result.body);
+  return partnerRegistrationArrayDeserializer(result.body);
 }
 
 /** List all the partner registrations under a resource group. */

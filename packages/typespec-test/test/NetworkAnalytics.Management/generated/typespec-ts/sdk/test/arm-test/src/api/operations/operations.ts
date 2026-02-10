@@ -3,8 +3,7 @@
 
 import { NetworkAnalyticsApiContext as Client } from "../index.js";
 import {
-  _OperationListResult,
-  _operationListResultDeserializer,
+  operationArrayDeserializer,
   Operation,
   errorResponseDeserializer,
 } from "../../models/models.js";
@@ -42,9 +41,7 @@ export function _listSend(
     });
 }
 
-export async function _listDeserialize(
-  result: PathUncheckedResponse,
-): Promise<_OperationListResult> {
+export async function _listDeserialize(result: PathUncheckedResponse): Promise<Operation[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -52,7 +49,7 @@ export async function _listDeserialize(
     throw error;
   }
 
-  return _operationListResultDeserializer(result.body);
+  return operationArrayDeserializer(result.body);
 }
 
 /** List the operations for the provider */

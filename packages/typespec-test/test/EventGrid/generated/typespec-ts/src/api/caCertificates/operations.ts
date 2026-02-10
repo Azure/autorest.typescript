@@ -7,8 +7,7 @@ import {
   CaCertificate,
   caCertificateSerializer,
   caCertificateDeserializer,
-  _CaCertificatesListResult,
-  _caCertificatesListResultDeserializer,
+  caCertificateArrayDeserializer,
 } from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
@@ -60,7 +59,7 @@ export function _listByNamespaceSend(
 
 export async function _listByNamespaceDeserialize(
   result: PathUncheckedResponse,
-): Promise<_CaCertificatesListResult> {
+): Promise<CaCertificate[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -68,7 +67,7 @@ export async function _listByNamespaceDeserialize(
     throw error;
   }
 
-  return _caCertificatesListResultDeserializer(result.body);
+  return caCertificateArrayDeserializer(result.body);
 }
 
 /** Get all the CA certificates under a namespace. */

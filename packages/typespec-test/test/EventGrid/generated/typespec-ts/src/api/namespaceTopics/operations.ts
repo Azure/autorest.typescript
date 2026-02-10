@@ -9,8 +9,7 @@ import {
   namespaceTopicDeserializer,
   NamespaceTopicUpdateParameters,
   namespaceTopicUpdateParametersSerializer,
-  _NamespaceTopicsListResult,
-  _namespaceTopicsListResultDeserializer,
+  namespaceTopicArrayDeserializer,
   TopicSharedAccessKeys,
   topicSharedAccessKeysDeserializer,
   TopicRegenerateKeyRequest,
@@ -198,7 +197,7 @@ export function _listByNamespaceSend(
 
 export async function _listByNamespaceDeserialize(
   result: PathUncheckedResponse,
-): Promise<_NamespaceTopicsListResult> {
+): Promise<NamespaceTopic[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -206,7 +205,7 @@ export async function _listByNamespaceDeserialize(
     throw error;
   }
 
-  return _namespaceTopicsListResultDeserializer(result.body);
+  return namespaceTopicArrayDeserializer(result.body);
 }
 
 /** List all the namespace topics under a namespace. */

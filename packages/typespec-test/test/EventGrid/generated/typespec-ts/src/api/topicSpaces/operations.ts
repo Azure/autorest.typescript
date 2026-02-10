@@ -7,8 +7,7 @@ import {
   TopicSpace,
   topicSpaceSerializer,
   topicSpaceDeserializer,
-  _TopicSpacesListResult,
-  _topicSpacesListResultDeserializer,
+  topicSpaceArrayDeserializer,
 } from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
@@ -60,7 +59,7 @@ export function _listByNamespaceSend(
 
 export async function _listByNamespaceDeserialize(
   result: PathUncheckedResponse,
-): Promise<_TopicSpacesListResult> {
+): Promise<TopicSpace[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -68,7 +67,7 @@ export async function _listByNamespaceDeserialize(
     throw error;
   }
 
-  return _topicSpacesListResultDeserializer(result.body);
+  return topicSpaceArrayDeserializer(result.body);
 }
 
 /** Get all the topic spaces under a namespace. */

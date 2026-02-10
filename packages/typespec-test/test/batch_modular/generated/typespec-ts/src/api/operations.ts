@@ -3,18 +3,15 @@
 
 import { BatchContext as Client } from "./index.js";
 import {
-  _ApplicationListResult,
-  _applicationListResultDeserializer,
+  batchApplicationArrayDeserializer,
   BatchApplication,
   batchApplicationDeserializer,
   batchErrorDeserializer,
-  _PoolListUsageMetricsResult,
-  _poolListUsageMetricsResultDeserializer,
+  poolUsageMetricsArrayDeserializer,
   PoolUsageMetrics,
   BatchPoolCreateOptions,
   batchPoolCreateOptionsSerializer,
-  _BatchPoolListResult,
-  _batchPoolListResultDeserializer,
+  batchPoolArrayDeserializer,
   BatchPool,
   batchPoolDeserializer,
   AutoScaleRun,
@@ -31,11 +28,9 @@ import {
   batchPoolReplaceOptionsSerializer,
   NodeRemoveOptions,
   nodeRemoveOptionsSerializer,
-  _AccountListSupportedImagesResult,
-  _accountListSupportedImagesResultDeserializer,
+  imageInformationArrayDeserializer,
   ImageInformation,
-  _PoolNodeCountsListResult,
-  _poolNodeCountsListResultDeserializer,
+  poolNodeCountsArrayDeserializer,
   PoolNodeCounts,
   BatchJob,
   batchJobSerializer,
@@ -47,18 +42,15 @@ import {
   batchJobTerminateOptionsSerializer,
   BatchJobCreateOptions,
   batchJobCreateOptionsSerializer,
-  _BatchJobListResult,
-  _batchJobListResultDeserializer,
-  _BatchJobListPreparationAndReleaseTaskStatusResult,
-  _batchJobListPreparationAndReleaseTaskStatusResultDeserializer,
+  batchJobArrayDeserializer,
+  jobPreparationAndReleaseTaskExecutionInformationArrayDeserializer,
   JobPreparationAndReleaseTaskExecutionInformation,
   TaskCountsResult,
   taskCountsResultDeserializer,
   BatchCertificate,
   batchCertificateSerializer,
   batchCertificateDeserializer,
-  _CertificateListResult,
-  _certificateListResultDeserializer,
+  batchCertificateArrayDeserializer,
   BatchJobSchedule,
   batchJobScheduleSerializer,
   batchJobScheduleDeserializer,
@@ -66,12 +58,10 @@ import {
   batchJobScheduleUpdateOptionsSerializer,
   BatchJobScheduleCreateOptions,
   batchJobScheduleCreateOptionsSerializer,
-  _BatchJobScheduleListResult,
-  _batchJobScheduleListResultDeserializer,
+  batchJobScheduleArrayDeserializer,
   BatchTaskCreateOptions,
   batchTaskCreateOptionsSerializer,
-  _BatchTaskListResult,
-  _batchTaskListResultDeserializer,
+  batchTaskArrayDeserializer,
   BatchTask,
   batchTaskSerializer,
   batchTaskDeserializer,
@@ -81,8 +71,7 @@ import {
   taskAddCollectionResultDeserializer,
   BatchTaskListSubtasksResult,
   batchTaskListSubtasksResultDeserializer,
-  _NodeFileListResult,
-  _nodeFileListResultDeserializer,
+  nodeFileArrayDeserializer,
   NodeFile,
   BatchNodeUserCreateOptions,
   batchNodeUserCreateOptionsSerializer,
@@ -99,12 +88,10 @@ import {
   uploadBatchServiceLogsOptionsSerializer,
   UploadBatchServiceLogsResult,
   uploadBatchServiceLogsResultDeserializer,
-  _BatchNodeListResult,
-  _batchNodeListResultDeserializer,
+  batchNodeArrayDeserializer,
   NodeVMExtension,
   nodeVMExtensionDeserializer,
-  _NodeVMExtensionList,
-  _nodeVMExtensionListDeserializer,
+  nodeVMExtensionArrayDeserializer,
 } from "../models/models.js";
 import {
   PagedAsyncIterableIterator,
@@ -240,7 +227,7 @@ export function _listNodeFilesSend(
 
 export async function _listNodeFilesDeserialize(
   result: PathUncheckedResponse,
-): Promise<_NodeFileListResult> {
+): Promise<NodeFile[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -248,7 +235,7 @@ export async function _listNodeFilesDeserialize(
     throw error;
   }
 
-  return _nodeFileListResultDeserializer(result.body);
+  return nodeFileArrayDeserializer(result.body);
 }
 
 /** Lists all of the files in Task directories on the specified Compute Node. */
@@ -536,7 +523,7 @@ export function _listNodeExtensionsSend(
 
 export async function _listNodeExtensionsDeserialize(
   result: PathUncheckedResponse,
-): Promise<_NodeVMExtensionList> {
+): Promise<NodeVMExtension[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -544,7 +531,7 @@ export async function _listNodeExtensionsDeserialize(
     throw error;
   }
 
-  return _nodeVMExtensionListDeserializer(result.body);
+  return nodeVMExtensionArrayDeserializer(result.body);
 }
 
 /** Lists the Compute Nodes Extensions in the specified Pool. */
@@ -676,9 +663,7 @@ export function _listNodesSend(
     });
 }
 
-export async function _listNodesDeserialize(
-  result: PathUncheckedResponse,
-): Promise<_BatchNodeListResult> {
+export async function _listNodesDeserialize(result: PathUncheckedResponse): Promise<BatchNode[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -686,7 +671,7 @@ export async function _listNodesDeserialize(
     throw error;
   }
 
-  return _batchNodeListResultDeserializer(result.body);
+  return batchNodeArrayDeserializer(result.body);
 }
 
 /** Lists the Compute Nodes in the specified Pool. */
@@ -1483,7 +1468,7 @@ export function _listTaskFilesSend(
 
 export async function _listTaskFilesDeserialize(
   result: PathUncheckedResponse,
-): Promise<_NodeFileListResult> {
+): Promise<NodeFile[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -1491,7 +1476,7 @@ export async function _listTaskFilesDeserialize(
     throw error;
   }
 
-  return _nodeFileListResultDeserializer(result.body);
+  return nodeFileArrayDeserializer(result.body);
 }
 
 /** Lists the files in a Task's directory on its Compute Node. */
@@ -2339,9 +2324,7 @@ export function _listTasksSend(
     });
 }
 
-export async function _listTasksDeserialize(
-  result: PathUncheckedResponse,
-): Promise<_BatchTaskListResult> {
+export async function _listTasksDeserialize(result: PathUncheckedResponse): Promise<BatchTask[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -2349,7 +2332,7 @@ export async function _listTasksDeserialize(
     throw error;
   }
 
-  return _batchTaskListResultDeserializer(result.body);
+  return batchTaskArrayDeserializer(result.body);
 }
 
 /**
@@ -2487,7 +2470,7 @@ export function _listJobSchedulesSend(
 
 export async function _listJobSchedulesDeserialize(
   result: PathUncheckedResponse,
-): Promise<_BatchJobScheduleListResult> {
+): Promise<BatchJobSchedule[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -2495,7 +2478,7 @@ export async function _listJobSchedulesDeserialize(
     throw error;
   }
 
-  return _batchJobScheduleListResultDeserializer(result.body);
+  return batchJobScheduleArrayDeserializer(result.body);
 }
 
 /** Lists all of the Job Schedules in the specified Account. */
@@ -3443,7 +3426,7 @@ export function _listCertificatesSend(
 
 export async function _listCertificatesDeserialize(
   result: PathUncheckedResponse,
-): Promise<_CertificateListResult> {
+): Promise<BatchCertificate[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -3451,7 +3434,7 @@ export async function _listCertificatesDeserialize(
     throw error;
   }
 
-  return _certificateListResultDeserializer(result.body);
+  return batchCertificateArrayDeserializer(result.body);
 }
 
 /** Lists all of the Certificates that have been added to the specified Account. */
@@ -3637,7 +3620,7 @@ export function _listJobPreparationAndReleaseTaskStatusSend(
 
 export async function _listJobPreparationAndReleaseTaskStatusDeserialize(
   result: PathUncheckedResponse,
-): Promise<_BatchJobListPreparationAndReleaseTaskStatusResult> {
+): Promise<JobPreparationAndReleaseTaskExecutionInformation[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -3645,7 +3628,7 @@ export async function _listJobPreparationAndReleaseTaskStatusDeserialize(
     throw error;
   }
 
-  return _batchJobListPreparationAndReleaseTaskStatusResultDeserializer(result.body);
+  return jobPreparationAndReleaseTaskExecutionInformationArrayDeserializer(result.body);
 }
 
 /**
@@ -3720,7 +3703,7 @@ export function _listJobsFromScheduleSend(
 
 export async function _listJobsFromScheduleDeserialize(
   result: PathUncheckedResponse,
-): Promise<_BatchJobListResult> {
+): Promise<BatchJob[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -3728,7 +3711,7 @@ export async function _listJobsFromScheduleDeserialize(
     throw error;
   }
 
-  return _batchJobListResultDeserializer(result.body);
+  return batchJobArrayDeserializer(result.body);
 }
 
 /** Lists the Jobs that have been created under the specified Job Schedule. */
@@ -3796,9 +3779,7 @@ export function _listJobsSend(
     });
 }
 
-export async function _listJobsDeserialize(
-  result: PathUncheckedResponse,
-): Promise<_BatchJobListResult> {
+export async function _listJobsDeserialize(result: PathUncheckedResponse): Promise<BatchJob[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -3806,7 +3787,7 @@ export async function _listJobsDeserialize(
     throw error;
   }
 
-  return _batchJobListResultDeserializer(result.body);
+  return batchJobArrayDeserializer(result.body);
 }
 
 /** Lists all of the Jobs in the specified Account. */
@@ -4503,7 +4484,7 @@ export function _listPoolNodeCountsSend(
 
 export async function _listPoolNodeCountsDeserialize(
   result: PathUncheckedResponse,
-): Promise<_PoolNodeCountsListResult> {
+): Promise<PoolNodeCounts[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -4511,7 +4492,7 @@ export async function _listPoolNodeCountsDeserialize(
     throw error;
   }
 
-  return _poolNodeCountsListResultDeserializer(result.body);
+  return poolNodeCountsArrayDeserializer(result.body);
 }
 
 /**
@@ -4573,7 +4554,7 @@ export function _listSupportedImagesSend(
 
 export async function _listSupportedImagesDeserialize(
   result: PathUncheckedResponse,
-): Promise<_AccountListSupportedImagesResult> {
+): Promise<ImageInformation[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -4581,7 +4562,7 @@ export async function _listSupportedImagesDeserialize(
     throw error;
   }
 
-  return _accountListSupportedImagesResultDeserializer(result.body);
+  return imageInformationArrayDeserializer(result.body);
 }
 
 /** Lists all Virtual Machine Images supported by the Azure Batch service. */
@@ -5484,9 +5465,7 @@ export function _listPoolsSend(
     });
 }
 
-export async function _listPoolsDeserialize(
-  result: PathUncheckedResponse,
-): Promise<_BatchPoolListResult> {
+export async function _listPoolsDeserialize(result: PathUncheckedResponse): Promise<BatchPool[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -5494,7 +5473,7 @@ export async function _listPoolsDeserialize(
     throw error;
   }
 
-  return _batchPoolListResultDeserializer(result.body);
+  return batchPoolArrayDeserializer(result.body);
 }
 
 /** Lists all of the Pools in the specified Account. */
@@ -5616,7 +5595,7 @@ export function _listPoolUsageMetricsSend(
 
 export async function _listPoolUsageMetricsDeserialize(
   result: PathUncheckedResponse,
-): Promise<_PoolListUsageMetricsResult> {
+): Promise<PoolUsageMetrics[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -5624,7 +5603,7 @@ export async function _listPoolUsageMetricsDeserialize(
     throw error;
   }
 
-  return _poolListUsageMetricsResultDeserializer(result.body);
+  return poolUsageMetricsArrayDeserializer(result.body);
 }
 
 /**
@@ -5754,7 +5733,7 @@ export function _listApplicationsSend(
 
 export async function _listApplicationsDeserialize(
   result: PathUncheckedResponse,
-): Promise<_ApplicationListResult> {
+): Promise<BatchApplication[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -5762,7 +5741,7 @@ export async function _listApplicationsDeserialize(
     throw error;
   }
 
-  return _applicationListResultDeserializer(result.body);
+  return batchApplicationArrayDeserializer(result.body);
 }
 
 /**

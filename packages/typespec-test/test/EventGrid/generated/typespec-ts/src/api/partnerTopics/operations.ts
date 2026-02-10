@@ -9,8 +9,7 @@ import {
   partnerTopicDeserializer,
   PartnerTopicUpdateParameters,
   partnerTopicUpdateParametersSerializer,
-  _PartnerTopicsListResult,
-  _partnerTopicsListResultDeserializer,
+  partnerTopicArrayDeserializer,
 } from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
@@ -158,7 +157,7 @@ export function _listBySubscriptionSend(
 
 export async function _listBySubscriptionDeserialize(
   result: PathUncheckedResponse,
-): Promise<_PartnerTopicsListResult> {
+): Promise<PartnerTopic[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -166,7 +165,7 @@ export async function _listBySubscriptionDeserialize(
     throw error;
   }
 
-  return _partnerTopicsListResultDeserializer(result.body);
+  return partnerTopicArrayDeserializer(result.body);
 }
 
 /** List all the partner topics under an Azure subscription. */
@@ -215,7 +214,7 @@ export function _listByResourceGroupSend(
 
 export async function _listByResourceGroupDeserialize(
   result: PathUncheckedResponse,
-): Promise<_PartnerTopicsListResult> {
+): Promise<PartnerTopic[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -223,7 +222,7 @@ export async function _listByResourceGroupDeserialize(
     throw error;
   }
 
-  return _partnerTopicsListResultDeserializer(result.body);
+  return partnerTopicArrayDeserializer(result.body);
 }
 
 /** List all the partner topics under a resource group. */

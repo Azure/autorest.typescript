@@ -6,16 +6,14 @@ import {
   errorResponseDeserializer,
   EventSubscriptionFullUrl,
   eventSubscriptionFullUrlDeserializer,
-  _EventSubscriptionsListResult,
-  _eventSubscriptionsListResultDeserializer,
+  eventSubscriptionArrayDeserializer,
   EventSubscription,
   eventSubscriptionSerializer,
   eventSubscriptionDeserializer,
+  deliveryAttributeMappingUnionArrayDeserializer,
   DeliveryAttributeMappingUnion,
   EventSubscriptionUpdateParameters,
   eventSubscriptionUpdateParametersSerializer,
-  _DeliveryAttributeListResult,
-  _deliveryAttributeListResultDeserializer,
 } from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
@@ -83,7 +81,7 @@ export function _listRegionalByResourceGroupForTopicTypeSend(
 
 export async function _listRegionalByResourceGroupForTopicTypeDeserialize(
   result: PathUncheckedResponse,
-): Promise<_EventSubscriptionsListResult> {
+): Promise<EventSubscription[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -91,7 +89,7 @@ export async function _listRegionalByResourceGroupForTopicTypeDeserialize(
     throw error;
   }
 
-  return _eventSubscriptionsListResultDeserializer(result.body);
+  return eventSubscriptionArrayDeserializer(result.body);
 }
 
 /** List all event subscriptions from the given location under a specific Azure subscription and resource group and topic type. */
@@ -156,7 +154,7 @@ export function _listRegionalBySubscriptionForTopicTypeSend(
 
 export async function _listRegionalBySubscriptionForTopicTypeDeserialize(
   result: PathUncheckedResponse,
-): Promise<_EventSubscriptionsListResult> {
+): Promise<EventSubscription[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -164,7 +162,7 @@ export async function _listRegionalBySubscriptionForTopicTypeDeserialize(
     throw error;
   }
 
-  return _eventSubscriptionsListResultDeserializer(result.body);
+  return eventSubscriptionArrayDeserializer(result.body);
 }
 
 /** List all event subscriptions from the given location under a specific Azure subscription and topic type. */
@@ -219,7 +217,7 @@ export function _listRegionalByResourceGroupSend(
 
 export async function _listRegionalByResourceGroupDeserialize(
   result: PathUncheckedResponse,
-): Promise<_EventSubscriptionsListResult> {
+): Promise<EventSubscription[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -227,7 +225,7 @@ export async function _listRegionalByResourceGroupDeserialize(
     throw error;
   }
 
-  return _eventSubscriptionsListResultDeserializer(result.body);
+  return eventSubscriptionArrayDeserializer(result.body);
 }
 
 /** List all event subscriptions from the given location under a specific Azure subscription and resource group. */
@@ -278,7 +276,7 @@ export function _listRegionalBySubscriptionSend(
 
 export async function _listRegionalBySubscriptionDeserialize(
   result: PathUncheckedResponse,
-): Promise<_EventSubscriptionsListResult> {
+): Promise<EventSubscription[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -286,7 +284,7 @@ export async function _listRegionalBySubscriptionDeserialize(
     throw error;
   }
 
-  return _eventSubscriptionsListResultDeserializer(result.body);
+  return eventSubscriptionArrayDeserializer(result.body);
 }
 
 /** List all event subscriptions from the given location under a specific Azure subscription. */
@@ -340,7 +338,7 @@ export function _listGlobalByResourceGroupForTopicTypeSend(
 
 export async function _listGlobalByResourceGroupForTopicTypeDeserialize(
   result: PathUncheckedResponse,
-): Promise<_EventSubscriptionsListResult> {
+): Promise<EventSubscription[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -348,7 +346,7 @@ export async function _listGlobalByResourceGroupForTopicTypeDeserialize(
     throw error;
   }
 
-  return _eventSubscriptionsListResultDeserializer(result.body);
+  return eventSubscriptionArrayDeserializer(result.body);
 }
 
 /** List all global event subscriptions under a resource group for a specific topic type. */
@@ -409,7 +407,7 @@ export function _listGlobalBySubscriptionForTopicTypeSend(
 
 export async function _listGlobalBySubscriptionForTopicTypeDeserialize(
   result: PathUncheckedResponse,
-): Promise<_EventSubscriptionsListResult> {
+): Promise<EventSubscription[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -417,7 +415,7 @@ export async function _listGlobalBySubscriptionForTopicTypeDeserialize(
     throw error;
   }
 
-  return _eventSubscriptionsListResultDeserializer(result.body);
+  return eventSubscriptionArrayDeserializer(result.body);
 }
 
 /** List all global event subscriptions under an Azure subscription for a topic type. */
@@ -517,7 +515,7 @@ export function _getDeliveryAttributesSend(
 
 export async function _getDeliveryAttributesDeserialize(
   result: PathUncheckedResponse,
-): Promise<_DeliveryAttributeListResult> {
+): Promise<DeliveryAttributeMappingUnion[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -525,7 +523,7 @@ export async function _getDeliveryAttributesDeserialize(
     throw error;
   }
 
-  return _deliveryAttributeListResultDeserializer(result.body);
+  return deliveryAttributeMappingUnionArrayDeserializer(result.body);
 }
 
 /** Get all delivery attributes for an event subscription. */
@@ -578,7 +576,7 @@ export function _listByResourceSend(
 
 export async function _listByResourceDeserialize(
   result: PathUncheckedResponse,
-): Promise<_EventSubscriptionsListResult> {
+): Promise<EventSubscription[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -586,7 +584,7 @@ export async function _listByResourceDeserialize(
     throw error;
   }
 
-  return _eventSubscriptionsListResultDeserializer(result.body);
+  return eventSubscriptionArrayDeserializer(result.body);
 }
 
 /** List all event subscriptions that have been created for a specific resource. */
@@ -645,7 +643,7 @@ export function _listGlobalBySubscriptionSend(
 
 export async function _listGlobalBySubscriptionDeserialize(
   result: PathUncheckedResponse,
-): Promise<_EventSubscriptionsListResult> {
+): Promise<EventSubscription[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -653,7 +651,7 @@ export async function _listGlobalBySubscriptionDeserialize(
     throw error;
   }
 
-  return _eventSubscriptionsListResultDeserializer(result.body);
+  return eventSubscriptionArrayDeserializer(result.body);
 }
 
 /** List all aggregated global event subscriptions under a specific Azure subscription. */
@@ -927,7 +925,7 @@ export function _listByDomainTopicSend(
 
 export async function _listByDomainTopicDeserialize(
   result: PathUncheckedResponse,
-): Promise<_EventSubscriptionsListResult> {
+): Promise<EventSubscription[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -935,7 +933,7 @@ export async function _listByDomainTopicDeserialize(
     throw error;
   }
 
-  return _eventSubscriptionsListResultDeserializer(result.body);
+  return eventSubscriptionArrayDeserializer(result.body);
 }
 
 /** List all event subscriptions that have been created for a specific domain topic. */
@@ -987,7 +985,7 @@ export function _listGlobalByResourceGroupSend(
 
 export async function _listGlobalByResourceGroupDeserialize(
   result: PathUncheckedResponse,
-): Promise<_EventSubscriptionsListResult> {
+): Promise<EventSubscription[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -995,7 +993,7 @@ export async function _listGlobalByResourceGroupDeserialize(
     throw error;
   }
 
-  return _eventSubscriptionsListResultDeserializer(result.body);
+  return eventSubscriptionArrayDeserializer(result.body);
 }
 
 /** List all global event subscriptions under a specific Azure subscription and resource group. */

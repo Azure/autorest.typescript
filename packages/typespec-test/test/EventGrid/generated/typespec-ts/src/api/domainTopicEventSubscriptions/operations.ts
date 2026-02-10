@@ -6,16 +6,14 @@ import {
   errorResponseDeserializer,
   EventSubscriptionFullUrl,
   eventSubscriptionFullUrlDeserializer,
-  _EventSubscriptionsListResult,
-  _eventSubscriptionsListResultDeserializer,
+  eventSubscriptionArrayDeserializer,
   EventSubscription,
   eventSubscriptionSerializer,
   eventSubscriptionDeserializer,
+  deliveryAttributeMappingUnionArrayDeserializer,
   DeliveryAttributeMappingUnion,
   EventSubscriptionUpdateParameters,
   eventSubscriptionUpdateParametersSerializer,
-  _DeliveryAttributeListResult,
-  _deliveryAttributeListResultDeserializer,
 } from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
@@ -137,7 +135,7 @@ export function _getDeliveryAttributesSend(
 
 export async function _getDeliveryAttributesDeserialize(
   result: PathUncheckedResponse,
-): Promise<_DeliveryAttributeListResult> {
+): Promise<DeliveryAttributeMappingUnion[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -145,7 +143,7 @@ export async function _getDeliveryAttributesDeserialize(
     throw error;
   }
 
-  return _deliveryAttributeListResultDeserializer(result.body);
+  return deliveryAttributeMappingUnionArrayDeserializer(result.body);
 }
 
 /** Get all delivery attributes for an event subscription for domain topic. */
@@ -208,7 +206,7 @@ export function _listSend(
 
 export async function _listDeserialize(
   result: PathUncheckedResponse,
-): Promise<_EventSubscriptionsListResult> {
+): Promise<EventSubscription[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -216,7 +214,7 @@ export async function _listDeserialize(
     throw error;
   }
 
-  return _eventSubscriptionsListResultDeserializer(result.body);
+  return eventSubscriptionArrayDeserializer(result.body);
 }
 
 /** List all event subscriptions that have been created for a specific domain topic. */

@@ -8,16 +8,14 @@ import {
   testDeserializer,
   TestFileInfo,
   testFileInfoDeserializer,
+  testFileInfoArrayDeserializer,
   TestAppComponents,
   testAppComponentsSerializer,
   testAppComponentsDeserializer,
   TestServerMetricConfig,
   testServerMetricConfigSerializer,
   testServerMetricConfigDeserializer,
-  _PagedTestFileInfo,
-  _pagedTestFileInfoDeserializer,
-  _PagedTest,
-  _pagedTestDeserializer,
+  testArrayDeserializer,
 } from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
@@ -208,13 +206,13 @@ export function _listTestsSend(
     });
 }
 
-export async function _listTestsDeserialize(result: PathUncheckedResponse): Promise<_PagedTest> {
+export async function _listTestsDeserialize(result: PathUncheckedResponse): Promise<Test[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return _pagedTestDeserializer(result.body);
+  return testArrayDeserializer(result.body);
 }
 
 /**
@@ -263,13 +261,13 @@ export function _listTestFilesSend(
 
 export async function _listTestFilesDeserialize(
   result: PathUncheckedResponse,
-): Promise<_PagedTestFileInfo> {
+): Promise<TestFileInfo[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return _pagedTestFileInfoDeserializer(result.body);
+  return testFileInfoArrayDeserializer(result.body);
 }
 
 /** Get all test files. */
