@@ -1076,7 +1076,7 @@ export function domainResourceDeserializer(item: any): DomainResource {
 export type DomainResourceUnion = Observation | DomainResource;
 
 export function domainResourceUnionDeserializer(item: any): DomainResourceUnion {
-  switch (item.resourceType) {
+  switch (item["resourceType"]) {
     case "Observation":
       return observationDeserializer(item as Observation);
 

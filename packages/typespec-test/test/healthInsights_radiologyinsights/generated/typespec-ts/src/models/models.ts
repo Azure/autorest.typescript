@@ -482,7 +482,7 @@ export type RadiologyInsightsInferenceUnion =
 export function radiologyInsightsInferenceUnionDeserializer(
   item: any,
 ): RadiologyInsightsInferenceUnion {
-  switch (item.kind) {
+  switch (item["kind"]) {
     case "ageMismatch":
       return ageMismatchInferenceDeserializer(item as AgeMismatchInference);
 
@@ -906,7 +906,7 @@ export type ProcedureRecommendationUnion =
   | ProcedureRecommendation;
 
 export function procedureRecommendationUnionDeserializer(item: any): ProcedureRecommendationUnion {
-  switch (item.kind) {
+  switch (item["kind"]) {
     case "genericProcedureRecommendation":
       return genericProcedureRecommendationDeserializer(item as GenericProcedureRecommendation);
 

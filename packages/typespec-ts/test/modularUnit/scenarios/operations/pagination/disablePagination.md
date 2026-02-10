@@ -63,7 +63,7 @@ export interface ListTestResult {
 export function listTestResultDeserializer(item: any): ListTestResult {
   return {
     tests: testArrayDeserializer(item["tests"]),
-    next: item["next"]
+    next: item["next"],
   };
 }
 
@@ -80,7 +80,7 @@ export interface Test {
 
 export function testDeserializer(item: any): Test {
   return {
-    id: item["id"]
+    id: item["id"],
   };
 }
 ```
@@ -89,31 +89,28 @@ export function testDeserializer(item: any): Test {
 
 ```ts operations
 import { testServiceContext as Client } from "./index.js";
-import {
-  ListTestResult,
-  listTestResultDeserializer
-} from "../models/models.js";
+import { ListTestResult, listTestResultDeserializer } from "../models/models.js";
 import { FooOptionalParams, BarOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
 export function _fooSend(
   context: Client,
-  options: FooOptionalParams = { requestOptions: {} }
+  options: FooOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/list-post").post({
-    ...operationOptionsToRequestParameters(options),
-    headers: { accept: "application/json", ...options.requestOptions?.headers }
-  });
+  return context
+    .path("/list-post")
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
+    });
 }
 
-export async function _fooDeserialize(
-  result: PathUncheckedResponse
-): Promise<ListTestResult> {
+export async function _fooDeserialize(result: PathUncheckedResponse): Promise<ListTestResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -124,7 +121,7 @@ export async function _fooDeserialize(
 
 export async function foo(
   context: Client,
-  options: FooOptionalParams = { requestOptions: {} }
+  options: FooOptionalParams = { requestOptions: {} },
 ): Promise<ListTestResult> {
   const result = await _fooSend(context, options);
   return _fooDeserialize(result);
@@ -132,17 +129,17 @@ export async function foo(
 
 export function _barSend(
   context: Client,
-  options: BarOptionalParams = { requestOptions: {} }
+  options: BarOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/list-get").post({
-    ...operationOptionsToRequestParameters(options),
-    headers: { accept: "application/json", ...options.requestOptions?.headers }
-  });
+  return context
+    .path("/list-get")
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
+    });
 }
 
-export async function _barDeserialize(
-  result: PathUncheckedResponse
-): Promise<ListTestResult> {
+export async function _barDeserialize(result: PathUncheckedResponse): Promise<ListTestResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -153,7 +150,7 @@ export async function _barDeserialize(
 
 export async function bar(
   context: Client,
-  options: BarOptionalParams = { requestOptions: {} }
+  options: BarOptionalParams = { requestOptions: {} },
 ): Promise<ListTestResult> {
   const result = await _barSend(context, options);
   return _barDeserialize(result);
