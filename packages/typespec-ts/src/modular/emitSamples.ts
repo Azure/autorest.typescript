@@ -46,6 +46,7 @@ import {
 } from "./helpers/clientHelpers.js";
 import { getOperationFunction } from "./helpers/operationHelpers.js";
 import { ModelOverrideOptions } from "./serialization/serializeUtils.js";
+import { Visibility } from "@typespec/http";
 
 /**
  * Interfaces for samples generations
@@ -449,6 +450,15 @@ function prepareExampleParameters(
         if (!propExample) {
           continue;
         }
+        // Skip readonly properties as they cannot be set by users
+        // A property is readonly only if it has ONLY Read visibility (no Create, Update, etc.)
+        if (
+          Array.isArray(prop.visibility) &&
+          prop.visibility.length === 1 &&
+          prop.visibility.includes(Visibility.Read)
+        ) {
+          continue;
+        }
         result.push(
           prepareExampleValue(
             dpgContext,
@@ -595,6 +605,15 @@ function getParameterValue(
         }
         const propValue = value.value[propName];
         if (propValue === undefined || propValue === null) {
+          continue;
+        }
+        // Skip readonly properties as they cannot be set by users
+        // A property is readonly only if it has ONLY Read visibility (no Create, Update, etc.)
+        if (
+          Array.isArray(property?.visibility) &&
+          property.visibility.length === 1 &&
+          property.visibility.includes(Visibility.Read)
+        ) {
           continue;
         }
         let propRetValue;
