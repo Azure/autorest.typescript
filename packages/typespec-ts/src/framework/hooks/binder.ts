@@ -113,11 +113,17 @@ class BinderImp implements Binder {
       .flatMap((i) => i.namedImports as ImportSpecifierStructure[])
       .map((i) => i.alias ?? i.name);
 
+    // Also check imports already in the source file (added via addImportDeclaration)
+    const sourceFileImports = sourceFile
+      .getImportDeclarations()
+      .flatMap((i) => i.getNamedImports())
+      .map((i) => i.getAliasNode()?.getText() ?? i.getName());
+
     const existingDeclarations =
       this.symbolsBySourceFile.get(sourceFile) ?? new Set<string>();
     return this.generateLocallyUniqueName(
       name,
-      new Set([...existingImports, ...existingDeclarations])
+      new Set([...existingImports, ...sourceFileImports, ...existingDeclarations])
     );
   }
 
@@ -173,6 +179,44 @@ class BinderImp implements Binder {
     fileWhereImportPointsTo: SourceFile | string,
     name: string
   ): ImportSpecifierStructure {
+    // Check if the symbol is already imported in the source file
+    const existingImport = fileWhereImportIsAdded
+      .getImportDeclarations()
+      .flatMap((i) => i.getNamedImports())
+      .find((namedImport) => {
+        const importName = namedImport.getName();
+        const aliasName = namedImport.getAliasNode()?.getText();
+        // If there's an alias, check if it matches the name we're looking for
+        // Otherwise, check if the import name matches
+        return aliasName ? aliasName === name : importName === name;
+      });
+
+    if (existingImport) {
+      // Return the existing import
+      return {
+        name: existingImport.getName(),
+        alias: existingImport.getAliasNode()?.getText(),
+        kind: StructureKind.ImportSpecifier
+      };
+    }
+
+    // Also check if we're already planning to import this symbol (in the current batch)
+    const pendingImports = this.imports.get(fileWhereImportIsAdded) || [];
+    const existingPendingImport = pendingImports
+      .flatMap((imp) => imp.namedImports as ImportSpecifierStructure[])
+      .find((spec) => {
+        const importName = spec.name;
+        const aliasName = spec.alias;
+        // If there's an alias, check if it matches the name we're looking for
+        // Otherwise, check if the import name matches
+        return aliasName ? aliasName === name : importName === name;
+      });
+
+    if (existingPendingImport) {
+      // Return the existing pending import
+      return existingPendingImport;
+    }
+
     const importAlias = this.generateLocallyUniqueImportName(
       name,
       fileWhereImportIsAdded
