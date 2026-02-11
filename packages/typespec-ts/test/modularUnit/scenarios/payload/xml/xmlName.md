@@ -132,7 +132,7 @@ export function loggingXmlSerializer(item: Logging): string {
       propertyName: "retentionPolicy",
       xmlOptions: { name: "RetentionPolicy" },
       type: "object",
-      serializer: retentionPolicySerializer,
+      serializer: retentionPolicyXmlObjectSerializer,
     },
   ];
   return serializeToXml(item, properties, "Logging");
@@ -172,6 +172,12 @@ export function loggingXmlObjectDeserializer(xmlObject: Record<string, unknown>)
     },
   ];
   return deserializeXmlObject<Logging>(xmlObject, properties);
+}
+```
+
+```ts models function retentionPolicyXmlObjectSerializer
+export function retentionPolicyXmlObjectSerializer(item: RetentionPolicy): Record<string, unknown> {
+  return { Enabled: item["enabled"], Days: item["days"] };
 }
 ```
 

@@ -328,7 +328,11 @@ export function xmlObjectToString(
     ...options
   });
 
-  return builder.build(xmlObject);
+  const xmlData: string = builder.build(xmlObject);
+  if (!xmlData) {
+    return "";
+  }
+  return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>${xmlData}`;
 }
 
 /**

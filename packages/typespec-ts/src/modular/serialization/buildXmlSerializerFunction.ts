@@ -29,7 +29,6 @@ import { NoTarget } from "@typespec/compiler";
 import { isMetadata } from "@typespec/http";
 import { normalizeModelPropertyName } from "../type-expressions/get-type-expression.js";
 import { isReadOnly } from "@azure-tools/typespec-client-generator-core";
-import { buildModelSerializer } from "./buildSerializerFunction.js";
 
 /**
  * Checks if a model type has XML serialization options defined
@@ -172,6 +171,137 @@ export function buildXmlModelSerializer(
 }
 
 /**
+ * Builds an XML object serializer function for a model type.
+ * This serializer returns a plain object with XML property names (not an XML string).
+ * Used for nested objects within XML serialization.
+ */
+export function buildXmlObjectModelSerializer(
+  context: SdkContext,
+  type: SdkModelType,
+  options: ModelSerializeOptions = {
+    nameOnly: false,
+    skipDiscriminatedUnionSuffix: false
+  }
+): FunctionDeclarationStructure | string | undefined {
+  if (!isSupportedSerializeType(type)) {
+    return undefined;
+  }
+
+  if (!type.name) {
+    reportDiagnostic(context.program, {
+      code: "anonymous-type-serialization",
+      target: type.__raw || NoTarget
+    });
+    return undefined;
+  }
+
+  if (
+    !type.usage ||
+    (type.usage !== undefined &&
+      (type.usage & UsageFlags.Input) !== UsageFlags.Input)
+  ) {
+    return undefined;
+  }
+
+  if (isAzureCoreErrorType(context.program, type.__raw!)) {
+    return undefined;
+  }
+
+  const serializerFunctionName =
+    options.predefinedName ??
+    `${normalizeModelName(
+      context,
+      type,
+      NameType.Operation,
+      options.skipDiscriminatedUnionSuffix
+    )}XmlObjectSerializer`;
+
+  if (options.nameOnly) {
+    return resolveReference(refkey(type, "xmlObjectSerializer"));
+  }
+
+  const properties = getAllProperties(context, type, getAllAncestors(type));
+
+  // Build the object literal with XML property names
+  const propertyAssignments = buildXmlObjectPropertyAssignments(
+    context,
+    properties
+  );
+
+  const statements: string[] = [];
+  statements.push(`return {${propertyAssignments}};`);
+
+  const serializerFunction: FunctionDeclarationStructure = {
+    kind: StructureKind.Function,
+    name: serializerFunctionName,
+    isExported: true,
+    parameters: [
+      {
+        name: "item",
+        type: resolveReference(refkey(type))
+      }
+    ],
+    returnType: "Record<string, unknown>",
+    statements
+  };
+
+  return serializerFunction;
+}
+
+/**
+ * Builds the property assignments for XML object serializer.
+ * Maps client property names to XML property names in the output object.
+ */
+function buildXmlObjectPropertyAssignments(
+  context: SdkContext,
+  properties: SdkModelPropertyType[]
+): string {
+  const assignments: string[] = [];
+
+  for (const property of properties) {
+    if (property.kind !== "property") {
+      continue;
+    }
+    if (isReadOnly(property)) {
+      continue;
+    }
+    if (isMetadata(context.program, property.__raw!)) {
+      continue;
+    }
+
+    const xmlOptions = property.serializationOptions?.xml;
+    const propertyName = normalizeModelPropertyName(context, property);
+    const cleanPropertyName = propertyName.replace(/^"|"$/g, "");
+
+    // Use XML name if available, fall back to serializedName, then JSON name, then property name
+    const xmlName = xmlOptions?.name ?? property.name;
+
+    // Handle nested objects and arrays
+    const nestedSerializer = getNestedXmlSerializer(context, property.type);
+
+    let valueExpr: string;
+    if (nestedSerializer && property.type.kind === "model") {
+      // Nested object - use XML object serializer
+      valueExpr = `item["${cleanPropertyName}"] !== undefined ? ${nestedSerializer}(item["${cleanPropertyName}"]) : undefined`;
+    } else if (
+      nestedSerializer &&
+      property.type.kind === "array" &&
+      property.type.valueType.kind === "model"
+    ) {
+      // Array of objects - map each item through XML object serializer
+      valueExpr = `item["${cleanPropertyName}"]?.map((i: any) => ${nestedSerializer}(i))`;
+    } else {
+      // Primitive or simple type - use directly
+      valueExpr = `item["${cleanPropertyName}"]`;
+    }
+
+    assignments.push(`"${xmlName}": ${valueExpr}`);
+  }
+
+  return assignments.join(",\n    ");
+}
+
+/**
  * Builds the property metadata array for XML serialization
  */
 function buildPropertyMetadataArray(
@@ -294,16 +424,17 @@ function getPropertyTypeInfo(type: SdkType): {
 }
 
 /**
- * Gets the nested XML serializer function reference for complex types
+ * Gets the nested XML serializer function reference for complex types.
+ * Uses the XML object serializer to properly handle XML property names.
  */
 function getNestedXmlSerializer(
   context: SdkContext,
   type: SdkType
 ): string | undefined {
   if (type.kind === "model") {
-    // For nested objects, use the regular JSON serializer which returns objects
-    // The XML builder will convert these objects to XML elements
-    const serializerName = buildModelSerializer(context, type, {
+    // For nested objects, use the XML object serializer which returns objects
+    // with XML property names for proper serialization
+    const serializerName = buildXmlObjectModelSerializer(context, type, {
       nameOnly: true,
       skipDiscriminatedUnionSuffix: false
     });
@@ -312,12 +443,16 @@ function getNestedXmlSerializer(
     }
   }
   if (type.kind === "array" && type.valueType.kind === "model") {
-    // For arrays, use the regular JSON serializer which returns objects
+    // For arrays, use the XML object serializer for items
     // The XML helper calls this for each item and handles the array mapping
-    const itemSerializer = buildModelSerializer(context, type.valueType, {
-      nameOnly: true,
-      skipDiscriminatedUnionSuffix: false
-    });
+    const itemSerializer = buildXmlObjectModelSerializer(
+      context,
+      type.valueType,
+      {
+        nameOnly: true,
+        skipDiscriminatedUnionSuffix: false
+      }
+    );
     if (typeof itemSerializer === "string") {
       return itemSerializer;
     }
