@@ -97,7 +97,7 @@ const defaultBuilderOptions: Partial<XmlBuilderOptions> = {
   ignoreAttributes: false,
   attributeNamePrefix: "@_",
   textNodeName: "#text",
-  format: true,
+  format: false,
   suppressEmptyNode: true
 };
 
