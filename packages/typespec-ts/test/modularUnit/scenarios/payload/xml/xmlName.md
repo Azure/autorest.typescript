@@ -176,7 +176,7 @@ export function loggingXmlObjectDeserializer(xmlObject: Record<string, unknown>)
 ```
 
 ```ts models function retentionPolicyXmlObjectSerializer
-export function retentionPolicyXmlObjectSerializer(item: RetentionPolicy): Record<string, unknown> {
+export function retentionPolicyXmlObjectSerializer(item: RetentionPolicy): XmlSerializedObject {
   return { Enabled: item["enabled"], Days: item["days"] };
 }
 ```
