@@ -29,6 +29,7 @@ import { NoTarget } from "@typespec/compiler";
 import { isMetadata } from "@typespec/http";
 import { normalizeModelPropertyName } from "../type-expressions/get-type-expression.js";
 import { isReadOnly } from "@azure-tools/typespec-client-generator-core";
+import { useDependencies } from "../../framework/hooks/useDependencies.js";
 
 /**
  * Checks if a model type has XML serialization options defined
@@ -229,9 +230,30 @@ export function buildXmlObjectModelSerializer(
   );
 
   const statements: string[] = [];
-  statements.push(`return {${propertyAssignments}};`);
 
-  const xmlSerializedObjectRef = resolveReference(XmlHelpers.XmlSerializedObject);
+  // Check if the model is a dictionary type (has additionalProperties)
+  // For Record<T> types, we need to spread the item properties
+  const isDictType = type.additionalProperties !== undefined;
+
+  if (isDictType && propertyAssignments.length === 0) {
+    // Pure dictionary type - spread all properties
+    statements.push(
+      `return { ...item } as ${resolveReference(XmlHelpers.XmlSerializedObject)};`
+    );
+  } else if (isDictType) {
+    // Model with both defined properties and additional properties
+    statements.push(`return {${propertyAssignments}, ...item};`);
+  } else {
+    statements.push(`return {${propertyAssignments}};`);
+  }
+
+  const xmlSerializedObjectRef = resolveReference(
+    XmlHelpers.XmlSerializedObject
+  );
+
+  // Use _item when there are no properties and not a dict type to avoid unused parameter lint error
+  const paramName =
+    propertyAssignments.length === 0 && !isDictType ? "_item" : "item";
 
   const serializerFunction: FunctionDeclarationStructure = {
     kind: StructureKind.Function,
@@ -239,7 +261,7 @@ export function buildXmlObjectModelSerializer(
     isExported: true,
     parameters: [
       {
-        name: "item",
+        name: paramName,
         type: resolveReference(refkey(type))
       }
     ],
@@ -293,14 +315,69 @@ function buildXmlObjectPropertyAssignments(
       // Array of objects - map each item through XML object serializer
       valueExpr = `item["${cleanPropertyName}"]?.map((i: any) => ${nestedSerializer}(i))`;
     } else {
-      // Primitive or simple type - use directly
-      valueExpr = `item["${cleanPropertyName}"]`;
+      // Handle type-specific serialization
+      valueExpr = buildXmlValueSerializationExpr(
+        context,
+        property.type,
+        `item["${cleanPropertyName}"]`
+      );
     }
 
     assignments.push(`"${xmlName}": ${valueExpr}`);
   }
 
   return assignments.join(",\n    ");
+}
+
+/**
+ * Builds the serialization expression for a value based on its type.
+ * Handles bytes (base64), dates, and arrays of these types.
+ */
+function buildXmlValueSerializationExpr(
+  context: SdkContext,
+  type: SdkType,
+  valueExpr: string
+): string {
+  const uint8ArrayToStringRef = resolveReference(
+    useDependencies().uint8ArrayToString
+  );
+
+  switch (type.kind) {
+    case "bytes":
+      // Convert Uint8Array to base64 string
+      return `${valueExpr} !== undefined ? ${uint8ArrayToStringRef}(${valueExpr}, "base64") : undefined`;
+
+    case "utcDateTime": {
+      // Convert Date to appropriate string format
+      const encoding = (type.encode as string) ?? "rfc3339";
+      if (encoding === "unixTimestamp") {
+        return `${valueExpr} !== undefined ? ${valueExpr}.getTime() : undefined`;
+      } else if (encoding === "rfc7231") {
+        return `${valueExpr} !== undefined ? ${valueExpr}.toUTCString() : undefined`;
+      }
+      // Default rfc3339
+      return `${valueExpr} !== undefined ? ${valueExpr}.toISOString() : undefined`;
+    }
+
+    case "array": {
+      // Handle arrays - need to serialize each element
+      const itemExpr = buildXmlValueSerializationExpr(
+        context,
+        type.valueType,
+        "i"
+      );
+      if (itemExpr !== "i") {
+        // If items need transformation, map them
+        return `${valueExpr}?.map((i: any) => ${itemExpr})`;
+      }
+      // No transformation needed
+      return valueExpr;
+    }
+
+    default:
+      // Primitive types - use directly
+      return valueExpr;
+  }
 }
 
 /**
