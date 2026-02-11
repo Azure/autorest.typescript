@@ -231,6 +231,8 @@ export function buildXmlObjectModelSerializer(
   const statements: string[] = [];
   statements.push(`return {${propertyAssignments}};`);
 
+  const xmlSerializedObjectRef = resolveReference(XmlHelpers.XmlSerializedObject);
+
   const serializerFunction: FunctionDeclarationStructure = {
     kind: StructureKind.Function,
     name: serializerFunctionName,
@@ -241,7 +243,7 @@ export function buildXmlObjectModelSerializer(
         type: resolveReference(refkey(type))
       }
     ],
-    returnType: "Record<string, unknown>",
+    returnType: xmlSerializedObjectRef,
     statements
   };
 

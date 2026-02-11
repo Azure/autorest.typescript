@@ -223,5 +223,10 @@ export const XmlHelpers = {
     kind: "function",
     name: "isJsonContentType",
     location: "serialization/xml-helpers.ts"
+  },
+  XmlSerializedObject: {
+    kind: "interface",
+    name: "XmlSerializedObject",
+    location: "serialization/xml-helpers.ts"
   }
 } as const;
