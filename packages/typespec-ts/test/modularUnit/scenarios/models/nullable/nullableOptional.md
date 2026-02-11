@@ -108,15 +108,7 @@ interface TestOperations {
 ## Models with Options
 
 ```ts models:withOptions
-import { Widget } from "../models/models.js";
-import { OperationOptions } from "@azure-rest/core-client";
-
-/** Optional parameters. */
-export interface CreateOptionalParams extends OperationOptions {
-  optionalNullableQuery?: string;
-  optionalNullableHeader?: string;
-  optionalNullableBody?: Widget;
-}
+// (file was not generated)
 ```
 
 ---
@@ -151,13 +143,5 @@ ignore-nullable-on-optional: false
 ## Models with Options
 
 ```ts models:withOptions
-import { Widget } from "../models/models.js";
-import { OperationOptions } from "@azure-rest/core-client";
-
-/** Optional parameters. */
-export interface CreateOptionalParams extends OperationOptions {
-  optionalNullableQuery?: string | null;
-  optionalNullableHeader?: string | null;
-  optionalNullableBody?: Widget | null;
-}
+// (file was not generated)
 ```

@@ -121,37 +121,6 @@ Raw json files.
 Generated samples.
 
 ```ts samples
-/** This file path is /samples-dev/createOrUpdateSample.ts */
-import { ContosoClient } from "@azure/internal-test";
-import { DefaultAzureCredential } from "@azure/identity";
-
-/**
- * This sample demonstrates how to create a Employee
- *
- * @summary create a Employee
- * x-ms-original-file: 2021-10-01-preview/json_for_Employees_CreateOrUpdate.json
- */
-async function employeesCreateOrUpdate(): Promise<void> {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "11809CA1-E126-4017-945E-AA795CD5C5A9";
-  const client = new ContosoClient(credential, subscriptionId);
-  const result = await client.createOrUpdate("rgopenapi", "9KF-f-8b", {
-    properties: {
-      age: 30,
-      city: "gydhnntudughbmxlkyzrskcdkotrxn",
-      profile: Buffer.from("ms", "base64url"),
-    },
-    tags: { key2913: "urperxmkkhhkp" },
-    location: "itajgxyqozseoygnl",
-  });
-  console.log(result);
-}
-
-async function main(): Promise<void> {
-  await employeesCreateOrUpdate();
-}
-
-main().catch(console.error);
 ```
 
 Raw json files.
@@ -186,37 +155,6 @@ Raw json files.
 Generated samples.
 
 ```ts samples
-/** This file path is /samples-dev/createOrUpdateSample.ts */
-import { ContosoClient } from "@azure/internal-test";
-import { DefaultAzureCredential } from "@azure/identity";
-
-/**
- * This sample demonstrates how to create a Employee
- *
- * @summary create a Employee
- * x-ms-original-file: 2021-10-01-preview/json_for_Employees_CreateOrUpdate.json
- */
-async function employeesCreateOrUpdate(): Promise<void> {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "11809CA1-E126-4017-945E-AA795CD5C5A9";
-  const client = new ContosoClient(credential, subscriptionId);
-  const result = await client.createOrUpdate("rgopenapi", "9KF-f-8b", {
-    properties: {
-      age: 30,
-      city: "gydhnntudughbmxlkyzrskcdkotrxn",
-      profile: Buffer.from("ms", "base64url"),
-    },
-    tags: { key2913: "urperxmkkhhkp" },
-    location: "itajgxyqozseoygnl",
-  });
-  console.log(result);
-}
-
-async function main(): Promise<void> {
-  await employeesCreateOrUpdate();
-}
-
-main().catch(console.error);
 ```
 
 # The parameter names in the sample should be consistent with those in the function signature
@@ -307,24 +245,4 @@ export async function publish(
 ## Samples
 
 ```ts samples
-/** This file path is /samples-dev/publishSample.ts */
-import { TestingClient } from "@azure/internal-test";
-
-/**
- * This sample demonstrates how to execute publish
- *
- * @summary execute publish
- * x-ms-original-file: 2021-10-01-preview/json.json
- */
-async function publishDocuments(): Promise<void> {
-  const endpoint = process.env.TESTING_ENDPOINT || "";
-  const client = new TestingClient(endpoint);
-  await client.publish({ documentType: "Exception", properties: ["stream-1", "stream-2"] });
-}
-
-async function main(): Promise<void> {
-  await publishDocuments();
-}
-
-main().catch(console.error);
 ```

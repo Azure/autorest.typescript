@@ -120,16 +120,7 @@ Raw json files.
 Generated operation options.
 
 ```ts models:withOptions
-import { BackupRequestProperties } from "../models/models.js";
-import { OperationOptions } from "@azure-rest/core-client";
-
-/** Optional parameters. */
-export interface BackupOptionalParams extends OperationOptions {
-  /** Delay to wait until next poll, in milliseconds. */
-  updateIntervalInMs?: number;
-  /** The content of the action request */
-  backupRequestProperties?: BackupRequestProperties;
-}
+// (file was not generated)
 ```
 
 ## Provide generated operations to call rest-level methods
@@ -220,31 +211,6 @@ export function backup(
 Generate optional body in option parameter:
 
 ```ts samples
-/** This file path is /samples-dev/backupSample.ts */
-import { HardwareSecurityModulesClient } from "@azure/internal-test";
-import { DefaultAzureCredential } from "@azure/identity";
-
-/**
- * This sample demonstrates how to a long-running resource action.
- *
- * @summary a long-running resource action.
- * x-ms-original-file: 2021-10-01-preview/json_for_CloudHsmClusters_backup.json
- */
-async function cloudHsmClustersBackup(): Promise<void> {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-0000-0000-0000-000000000000";
-  const client = new HardwareSecurityModulesClient(credential, subscriptionId);
-  const result = await client.backup("rgcloudhsm", "chsm1", {
-    backupRequestProperties: { azureStorageBlobContainerUri: "sss", token: "aaa" },
-  });
-  console.log(result);
-}
-
-async function main(): Promise<void> {
-  await cloudHsmClustersBackup();
-}
-
-main().catch(console.error);
 ```
 
 # Should generate optional body `header` in option parameter

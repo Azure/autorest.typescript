@@ -56,8 +56,7 @@ withRawContent: true
 The client constructor should expect all server template parameters:
 
 ```ts classicClient
-import { createOrUpdate } from "./api/operations.js";
-import { CreateOrUpdateOptionalParams } from "./api/options.js";
+import { Indexes, IndexesOptionalParams } from "./indexes/indexes.js";
 import { TokenCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
@@ -67,6 +66,15 @@ export class MachineLearningServicesClient {
   private _client: MachineLearningServicesContext;
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
+  /** The parent client parameters that are used in the constructors. */
+  private _clientParams: {
+    endpointParam: string;
+    subscriptionId: string;
+    resourceGroupName: string;
+    workspaceName: string;
+    credential: TokenCredential;
+    options: MachineLearningServicesClientOptionalParams;
+  };
 
   constructor(
     endpointParam: string,
@@ -89,14 +97,26 @@ export class MachineLearningServicesClient {
       { ...options, userAgentOptions: { userAgentPrefix } },
     );
     this.pipeline = this._client.pipeline;
+    this._clientParams = {
+      endpointParam,
+      subscriptionId,
+      resourceGroupName,
+      workspaceName,
+      credential,
+      options,
+    };
   }
 
-  createOrUpdate(
-    name: string,
-    version: string,
-    options: CreateOrUpdateOptionalParams = { requestOptions: {} },
-  ): Promise<void> {
-    return createOrUpdate(this._client, name, version, options);
+  getIndexes(options: IndexesOptionalParams = {}): Indexes {
+    return new Indexes(
+      this._clientParams.endpointParam,
+      this._clientParams.subscriptionId,
+      this._clientParams.resourceGroupName,
+      this._clientParams.workspaceName,
+      this._clientParams.credential,
+
+      { ...this._clientParams.options, ...options },
+    );
   }
 }
 ```
@@ -137,37 +157,6 @@ Raw json files for testing client constructor arguments.
 ## Samples
 
 ```ts samples
-/** This file path is /samples-dev/createOrUpdateSample.ts */
-import { MachineLearningServicesClient } from "@azure/internal-test";
-import { DefaultAzureCredential } from "@azure/identity";
-
-/**
- * This sample demonstrates how to execute createOrUpdate
- *
- * @summary execute createOrUpdate
- * x-ms-original-file: 2021-10-01-preview/json_for_Indexes_CreateOrUpdate.json
- */
-async function indexesCreateOrUpdate(): Promise<void> {
-  const endpoint = process.env.MACHINE_LEARNING_SERVICES_ENDPOINT || "";
-  const subscriptionId = process.env.MACHINE_LEARNING_SERVICES_SUBSCRIPTION_ID || "";
-  const resourceGroupName = process.env.MACHINE_LEARNING_SERVICES_RESOURCE_GROUP_NAME || "";
-  const workspaceName = process.env.MACHINE_LEARNING_SERVICES_WORKSPACE_NAME || "";
-  const credential = new DefaultAzureCredential();
-  const client = new MachineLearningServicesClient(
-    endpoint,
-    subscriptionId,
-    resourceGroupName,
-    workspaceName,
-    credential,
-  );
-  await client.createOrUpdate("test-index", "1");
-}
-
-async function main(): Promise<void> {
-  await indexesCreateOrUpdate();
-}
-
-main().catch(console.error);
 ```
 
 # Should generate client constructor with required parameters in samples

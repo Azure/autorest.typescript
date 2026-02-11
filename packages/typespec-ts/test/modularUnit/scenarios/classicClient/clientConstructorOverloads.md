@@ -42,10 +42,7 @@ withRawContent: true
 ## classicClient
 
 ```ts classicClient
-import { list } from "./api/operations.js";
-import { ListOptionalParams } from "./api/options.js";
-import { Operation } from "./models/models.js";
-import { PagedAsyncIterableIterator } from "./static-helpers/pagingHelpers.js";
+import { Operations, OperationsOptionalParams } from "./operations/operations.js";
 import { TokenCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
@@ -55,6 +52,11 @@ export class GlobalServiceClient {
   private _client: GlobalServiceContext;
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
+  /** The parent client parameters that are used in the constructors. */
+  private _clientParams: {
+    credential: TokenCredential;
+    options: GlobalServiceClientOptionalParams;
+  };
 
   /** Client.GlobalService Resource Provider management API. */
   constructor(credential: TokenCredential, options: GlobalServiceClientOptionalParams = {}) {
@@ -67,13 +69,15 @@ export class GlobalServiceClient {
       userAgentOptions: { userAgentPrefix },
     });
     this.pipeline = this._client.pipeline;
+    this._clientParams = { credential, options };
   }
 
-  /** List the operations for the provider */
-  list(
-    options: ListOptionalParams = { requestOptions: {} },
-  ): PagedAsyncIterableIterator<Operation> {
-    return list(this._client, options);
+  getOperations(options: OperationsOptionalParams = {}): Operations {
+    return new Operations(
+      this._clientParams.credential,
+
+      { ...this._clientParams.options, ...options },
+    );
   }
 }
 ```
@@ -165,19 +169,14 @@ withRawContent: true
 ## classicClient
 
 ```ts classicClient
-import { checkNameAvailability, get, list } from "./api/operations.js";
+import { Operations, OperationsOptionalParams } from "./operations/operations.js";
 import {
-  CheckNameAvailabilityOptionalParams,
-  GetOptionalParams,
-  ListOptionalParams,
-} from "./api/options.js";
-import {
-  CheckNameAvailabilityInput,
-  CheckNameAvailabilityOutput,
-  Operation,
-  StandardResource,
-} from "./models/models.js";
-import { PagedAsyncIterableIterator } from "./static-helpers/pagingHelpers.js";
+  StandardResources,
+  StandardResourcesOptionalParams,
+} from "./standardResources/standardResources.js";
+import { checkNameAvailability } from "./api/operations.js";
+import { CheckNameAvailabilityOptionalParams } from "./api/options.js";
+import { CheckNameAvailabilityInput, CheckNameAvailabilityOutput } from "./models/models.js";
 import { TokenCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
@@ -187,6 +186,12 @@ export class StandardServiceClient {
   private _client: StandardServiceContext;
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
+  /** The parent client parameters that are used in the constructors. */
+  private _clientParams: {
+    credential: TokenCredential;
+    subscriptionId: string;
+    options: StandardServiceClientOptionalParams;
+  };
 
   /** Client.StandardService Resource Provider management API. */
   constructor(
@@ -203,6 +208,7 @@ export class StandardServiceClient {
       userAgentOptions: { userAgentPrefix },
     });
     this.pipeline = this._client.pipeline;
+    this._clientParams = { credential, subscriptionId, options };
   }
 
   checkNameAvailability(
@@ -212,20 +218,22 @@ export class StandardServiceClient {
     return checkNameAvailability(this._client, body, options);
   }
 
-  /** Get a StandardResource */
-  get(
-    resourceGroupName: string,
-    standardResourceName: string,
-    options: GetOptionalParams = { requestOptions: {} },
-  ): Promise<StandardResource> {
-    return get(this._client, resourceGroupName, standardResourceName, options);
+  getOperations(options: OperationsOptionalParams = {}): Operations {
+    return new Operations(
+      this._clientParams.credential,
+      this._clientParams.subscriptionId,
+
+      { ...this._clientParams.options, ...options },
+    );
   }
 
-  /** List the operations for the provider */
-  list(
-    options: ListOptionalParams = { requestOptions: {} },
-  ): PagedAsyncIterableIterator<Operation> {
-    return list(this._client, options);
+  getStandardResources(options: StandardResourcesOptionalParams = {}): StandardResources {
+    return new StandardResources(
+      this._clientParams.credential,
+      this._clientParams.subscriptionId,
+
+      { ...this._clientParams.options, ...options },
+    );
   }
 }
 ```
@@ -311,10 +319,11 @@ withRawContent: true
 ## classicClient
 
 ```ts classicClient
-import { listSkus, get, list } from "./api/operations.js";
-import { ListSkusOptionalParams, GetOptionalParams, ListOptionalParams } from "./api/options.js";
-import { SkuListResult, Operation, MixedResource } from "./models/models.js";
-import { PagedAsyncIterableIterator } from "./static-helpers/pagingHelpers.js";
+import { Operations, OperationsOptionalParams } from "./operations/operations.js";
+import { MixedResources, MixedResourcesOptionalParams } from "./mixedResources/mixedResources.js";
+import { listSkus } from "./api/operations.js";
+import { ListSkusOptionalParams } from "./api/options.js";
+import { SkuListResult } from "./models/models.js";
 import { TokenCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
@@ -324,6 +333,12 @@ export class MixedServiceClient {
   private _client: MixedServiceContext;
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
+  /** The parent client parameters that are used in the constructors. */
+  private _clientParams: {
+    credential: TokenCredential;
+    subscriptionId: string;
+    options: MixedServiceClientOptionalParams;
+  };
 
   constructor(credential: TokenCredential, options?: MixedServiceClientOptionalParams);
   constructor(
@@ -355,26 +370,29 @@ export class MixedServiceClient {
       userAgentOptions: { userAgentPrefix },
     });
     this.pipeline = this._client.pipeline;
+    this._clientParams = { credential, subscriptionId, options };
   }
 
   listSkus(options: ListSkusOptionalParams = { requestOptions: {} }): Promise<SkuListResult> {
     return listSkus(this._client, options);
   }
 
-  /** Get a MixedResource */
-  get(
-    resourceGroupName: string,
-    mixedResourceName: string,
-    options: GetOptionalParams = { requestOptions: {} },
-  ): Promise<MixedResource> {
-    return get(this._client, resourceGroupName, mixedResourceName, options);
+  getOperations(options: OperationsOptionalParams = {}): Operations {
+    return new Operations(
+      this._clientParams.credential,
+      this._clientParams.subscriptionId,
+
+      { ...this._clientParams.options, ...options },
+    );
   }
 
-  /** List the operations for the provider */
-  list(
-    options: ListOptionalParams = { requestOptions: {} },
-  ): PagedAsyncIterableIterator<Operation> {
-    return list(this._client, options);
+  getMixedResources(options: MixedResourcesOptionalParams = {}): MixedResources {
+    return new MixedResources(
+      this._clientParams.credential,
+      this._clientParams.subscriptionId,
+
+      { ...this._clientParams.options, ...options },
+    );
   }
 }
 ```

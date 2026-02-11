@@ -175,27 +175,4 @@ interface Operations {
 ## Samples
 
 ```ts samples
-/** This file path is /samples-dev/createSample.ts */
-import { FaceServiceClient } from "@azure/internal-test";
-
-/**
- * This sample demonstrates how to the most basic operation that applies to a resource.
- *
- * @summary the most basic operation that applies to a resource.
- * x-ms-original-file: 2021-10-01-preview/json.json
- */
-async function createLargeFaceList(): Promise<void> {
-  const endpoint = process.env.FACE_SERVICE_ENDPOINT || "";
-  const client = new FaceServiceClient(endpoint);
-  await client.create("test_face_list_001", "My Test Face List", {
-    userData: "This is test data",
-    recognitionModel: "recognition_02",
-  });
-}
-
-async function main(): Promise<void> {
-  await createLargeFaceList();
-}
-
-main().catch(console.error);
 ```
