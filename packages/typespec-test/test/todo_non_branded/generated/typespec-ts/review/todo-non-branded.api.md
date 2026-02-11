@@ -15,10 +15,53 @@ export interface ApiError {
     message: string;
 }
 
+// @public (undocumented)
+export class Attachments {
+    constructor(endpointParam: string, credential: KeyCredential, options?: AttachmentsOptionalParams);
+    // (undocumented)
+    createFileAttachment(itemId: number, body: FileAttachmentMultipartRequest, options?: CreateFileAttachmentOptionalParams): Promise<void>;
+    // (undocumented)
+    createJsonAttachment(itemId: number, contents: TodoAttachment, options?: CreateJsonAttachmentOptionalParams): Promise<void>;
+    // Warning: (ae-forgotten-export) The symbol "PagedAsyncIterableIterator" needs to be exported by the entry point index.d.ts
+    //
+    // (undocumented)
+    list(itemId: number, options?: AttachmentsListOptionalParams): PagedAsyncIterableIterator<TodoAttachment>;
+    readonly pipeline: Pipeline;
+}
+
 // @public
-export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
-    continuationToken?: string;
-};
+export interface AttachmentsListOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface AttachmentsOptionalParams extends ClientOptions {
+}
+
+// @public
+export interface CreateFileAttachmentOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface CreateFormOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface CreateJsonAttachmentOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface CreateJsonOptionalParams extends OperationOptions {
+    // (undocumented)
+    attachments?: TodoAttachment[];
+}
+
+// @public
+export interface CreateOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface DeleteOptionalParams extends OperationOptions {
+}
 
 // @public
 export interface FileAttachmentMultipartRequest {
@@ -34,6 +77,10 @@ export interface FileAttachmentMultipartRequest {
 export type FileContents = string | NodeJS.ReadableStream | ReadableStream<Uint8Array> | Uint8Array | Blob;
 
 // @public
+export interface GetOptionalParams extends OperationOptions {
+}
+
+// @public
 export interface InvalidTodoItem extends ApiError {
 }
 
@@ -44,21 +91,15 @@ export interface InvalidUserResponse extends ApiError {
 }
 
 // @public
+export interface ListOptionalParams extends OperationOptions {
+    limit?: number;
+    offset?: number;
+}
+
+// @public
 export interface NotFoundErrorResponse {
     // (undocumented)
     code: "not-found";
-}
-
-// @public
-export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends PageSettings = PageSettings> {
-    [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
-    byPage: (settings?: TPageSettings) => AsyncIterableIterator<ContinuablePage<TElement, TPage>>;
-    next(): Promise<IteratorResult<TElement>>;
-}
-
-// @public
-export interface PageSettings {
-    continuationToken?: string;
 }
 
 // @public
@@ -79,9 +120,11 @@ export interface TodoAttachment {
 // @public (undocumented)
 export class TodoClient {
     constructor(endpointParam: string, credential: KeyCredential, options?: TodoClientOptionalParams);
+    // (undocumented)
+    getTodoItems(options?: TodoItemsOptionalParams): TodoItems;
+    // (undocumented)
+    getUsers(options?: UsersOptionalParams): Users;
     readonly pipeline: Pipeline;
-    readonly todoItems: TodoItemsOperations;
-    readonly users: UsersOperations;
 }
 
 // @public
@@ -132,71 +175,27 @@ export interface TodoItemPatch {
     title?: string;
 }
 
-// @public
-export interface TodoItemsAttachmentsCreateFileAttachmentOptionalParams extends OperationOptions {
+// @public (undocumented)
+export class TodoItems {
+    constructor(endpointParam: string, credential: KeyCredential, options?: TodoItemsOptionalParams);
+    // (undocumented)
+    createForm(body: ToDoItemMultipartRequest, options?: CreateFormOptionalParams): Promise<TodoItem>;
+    // (undocumented)
+    createJson(item: TodoItem, options?: CreateJsonOptionalParams): Promise<TodoItem>;
+    delete(id: number, options?: DeleteOptionalParams): Promise<void>;
+    // (undocumented)
+    get(id: number, options?: GetOptionalParams): Promise<TodoItem>;
+    // (undocumented)
+    getAttachments(options?: AttachmentsOptionalParams): Attachments;
+    // (undocumented)
+    list(options?: ListOptionalParams): PagedAsyncIterableIterator<TodoItem>;
+    readonly pipeline: Pipeline;
+    // (undocumented)
+    update(id: number, patch: TodoItemPatch, options?: UpdateOptionalParams): Promise<TodoItem>;
 }
 
 // @public
-export interface TodoItemsAttachmentsCreateJsonAttachmentOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface TodoItemsAttachmentsListOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface TodoItemsAttachmentsOperations {
-    // (undocumented)
-    createFileAttachment: (itemId: number, body: FileAttachmentMultipartRequest, options?: TodoItemsAttachmentsCreateFileAttachmentOptionalParams) => Promise<void>;
-    // (undocumented)
-    createJsonAttachment: (itemId: number, contents: TodoAttachment, options?: TodoItemsAttachmentsCreateJsonAttachmentOptionalParams) => Promise<void>;
-    // (undocumented)
-    list: (itemId: number, options?: TodoItemsAttachmentsListOptionalParams) => PagedAsyncIterableIterator<TodoAttachment>;
-}
-
-// @public
-export interface TodoItemsCreateFormOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface TodoItemsCreateJsonOptionalParams extends OperationOptions {
-    // (undocumented)
-    attachments?: TodoAttachment[];
-}
-
-// @public
-export interface TodoItemsDeleteOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface TodoItemsGetOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface TodoItemsListOptionalParams extends OperationOptions {
-    limit?: number;
-    offset?: number;
-}
-
-// @public
-export interface TodoItemsOperations {
-    // (undocumented)
-    attachments: TodoItemsAttachmentsOperations;
-    // (undocumented)
-    createForm: (body: ToDoItemMultipartRequest, options?: TodoItemsCreateFormOptionalParams) => Promise<TodoItem>;
-    // (undocumented)
-    createJson: (item: TodoItem, options?: TodoItemsCreateJsonOptionalParams) => Promise<TodoItem>;
-    delete: (id: number, options?: TodoItemsDeleteOptionalParams) => Promise<void>;
-    // (undocumented)
-    get: (id: number, options?: TodoItemsGetOptionalParams) => Promise<TodoItem>;
-    // (undocumented)
-    list: (options?: TodoItemsListOptionalParams) => PagedAsyncIterableIterator<TodoItem>;
-    // (undocumented)
-    update: (id: number, patch: TodoItemPatch, options?: TodoItemsUpdateOptionalParams) => Promise<TodoItem>;
-}
-
-// @public
-export interface TodoItemsUpdateOptionalParams extends OperationOptions {
+export interface TodoItemsOptionalParams extends ClientOptions {
 }
 
 // @public
@@ -209,6 +208,10 @@ export interface TodoLabelRecord {
 
 // @public
 export type TodoLabels = string | string[] | TodoLabelRecord | TodoLabelRecord[];
+
+// @public
+export interface UpdateOptionalParams extends OperationOptions {
+}
 
 // @public
 export interface User {
@@ -233,14 +236,16 @@ export interface UserExistsResponse extends ApiError {
     code: "user-exists";
 }
 
-// @public
-export interface UsersCreateOptionalParams extends OperationOptions {
+// @public (undocumented)
+export class Users {
+    constructor(endpointParam: string, credential: KeyCredential, options?: UsersOptionalParams);
+    // (undocumented)
+    create(user: User, options?: CreateOptionalParams): Promise<UserCreatedResponse>;
+    readonly pipeline: Pipeline;
 }
 
 // @public
-export interface UsersOperations {
-    // (undocumented)
-    create: (user: User, options?: UsersCreateOptionalParams) => Promise<UserCreatedResponse>;
+export interface UsersOptionalParams extends ClientOptions {
 }
 
 // (No @packageDocumentation comment for this package)

@@ -1,12 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
-  PageSettings,
-  ContinuablePage,
-  PagedAsyncIterableIterator,
-} from "./static-helpers/pagingHelpers.js";
-
 export { BatchClient } from "./batchClient.js";
 export {
   BatchApplication,
@@ -202,8 +196,96 @@ export {
   StatusLevelTypes,
   KnownVersions,
 } from "./models/index.js";
+export { BatchClientOptionalParams } from "./api/index.js";
+export { Applications } from "./applications/applications.js";
 export {
-  BatchClientOptionalParams,
+  ApplicationsOptionalParams,
+  GetApplicationOptionalParams,
+  ListApplicationsOptionalParams,
+} from "./applications/api/index.js";
+export { Pools } from "./pools/pools.js";
+export {
+  RemoveNodesOptionalParams,
+  ReplacePoolPropertiesOptionalParams,
+  StopPoolResizeOptionalParams,
+  ResizePoolOptionalParams,
+  EvaluatePoolAutoScaleOptionalParams,
+  EnablePoolAutoScaleOptionalParams,
+  DisablePoolAutoScaleOptionalParams,
+  UpdatePoolOptionalParams,
+  GetPoolOptionalParams,
+  PoolExistsOptionalParams,
+  DeletePoolOptionalParams,
+  ListPoolsOptionalParams,
+  CreatePoolOptionalParams,
+  ListPoolUsageMetricsOptionalParams,
+  PoolsOptionalParams,
+} from "./pools/api/index.js";
+export { Accounts } from "./accounts/accounts.js";
+export {
+  AccountsOptionalParams,
+  ListPoolNodeCountsOptionalParams,
+  ListSupportedImagesOptionalParams,
+} from "./accounts/api/index.js";
+export { Jobs } from "./jobs/jobs.js";
+export {
+  JobsOptionalParams,
+  GetJobTaskCountsOptionalParams,
+  ListJobPreparationAndReleaseTaskStatusOptionalParams,
+  ListJobsFromScheduleOptionalParams,
+  ListJobsOptionalParams,
+  CreateJobOptionalParams,
+  TerminateJobOptionalParams,
+  EnableJobOptionalParams,
+  DisableJobOptionalParams,
+  ReplaceJobOptionalParams,
+  UpdateJobOptionalParams,
+  GetJobOptionalParams,
+  DeleteJobOptionalParams,
+} from "./jobs/api/index.js";
+export { Certificates } from "./certificates/certificates.js";
+export {
+  CertificatesOptionalParams,
+  GetCertificateOptionalParams,
+  DeleteCertificateOptionalParams,
+  CancelCertificateDeletionOptionalParams,
+  ListCertificatesOptionalParams,
+  CreateCertificateOptionalParams,
+} from "./certificates/api/index.js";
+export { JobSchedules } from "./jobSchedules/jobSchedules.js";
+export {
+  JobSchedulesOptionalParams,
+  ListJobSchedulesOptionalParams,
+  CreateJobScheduleOptionalParams,
+  TerminateJobScheduleOptionalParams,
+  EnableJobScheduleOptionalParams,
+  DisableJobScheduleOptionalParams,
+  ReplaceJobScheduleOptionalParams,
+  UpdateJobScheduleOptionalParams,
+  GetJobScheduleOptionalParams,
+  DeleteJobScheduleOptionalParams,
+  JobScheduleExistsOptionalParams,
+} from "./jobSchedules/api/index.js";
+export { Tasks } from "./tasks/tasks.js";
+export {
+  ListTaskFilesOptionalParams,
+  GetTaskFilePropertiesOptionalParams,
+  GetTaskFileOptionalParams,
+  DeleteTaskFileOptionalParams,
+  ReactivateTaskOptionalParams,
+  TerminateTaskOptionalParams,
+  ListSubTasksOptionalParams,
+  ReplaceTaskOptionalParams,
+  GetTaskOptionalParams,
+  DeleteTaskOptionalParams,
+  CreateTaskCollectionOptionalParams,
+  ListTasksOptionalParams,
+  CreateTaskOptionalParams,
+  TasksOptionalParams,
+} from "./tasks/api/index.js";
+export { Nodes } from "./nodes/nodes.js";
+export {
+  NodesOptionalParams,
   ListNodeFilesOptionalParams,
   GetNodeFilePropertiesOptionalParams,
   GetNodeFileOptionalParams,
@@ -222,63 +304,4 @@ export {
   ReplaceNodeUserOptionalParams,
   DeleteNodeUserOptionalParams,
   CreateNodeUserOptionalParams,
-  ListTaskFilesOptionalParams,
-  GetTaskFilePropertiesOptionalParams,
-  GetTaskFileOptionalParams,
-  DeleteTaskFileOptionalParams,
-  ReactivateTaskOptionalParams,
-  TerminateTaskOptionalParams,
-  ListSubTasksOptionalParams,
-  ReplaceTaskOptionalParams,
-  GetTaskOptionalParams,
-  DeleteTaskOptionalParams,
-  CreateTaskCollectionOptionalParams,
-  ListTasksOptionalParams,
-  CreateTaskOptionalParams,
-  ListJobSchedulesOptionalParams,
-  CreateJobScheduleOptionalParams,
-  TerminateJobScheduleOptionalParams,
-  EnableJobScheduleOptionalParams,
-  DisableJobScheduleOptionalParams,
-  ReplaceJobScheduleOptionalParams,
-  UpdateJobScheduleOptionalParams,
-  GetJobScheduleOptionalParams,
-  DeleteJobScheduleOptionalParams,
-  JobScheduleExistsOptionalParams,
-  GetCertificateOptionalParams,
-  DeleteCertificateOptionalParams,
-  CancelCertificateDeletionOptionalParams,
-  ListCertificatesOptionalParams,
-  CreateCertificateOptionalParams,
-  GetJobTaskCountsOptionalParams,
-  ListJobPreparationAndReleaseTaskStatusOptionalParams,
-  ListJobsFromScheduleOptionalParams,
-  ListJobsOptionalParams,
-  CreateJobOptionalParams,
-  TerminateJobOptionalParams,
-  EnableJobOptionalParams,
-  DisableJobOptionalParams,
-  ReplaceJobOptionalParams,
-  UpdateJobOptionalParams,
-  GetJobOptionalParams,
-  DeleteJobOptionalParams,
-  ListPoolNodeCountsOptionalParams,
-  ListSupportedImagesOptionalParams,
-  RemoveNodesOptionalParams,
-  ReplacePoolPropertiesOptionalParams,
-  StopPoolResizeOptionalParams,
-  ResizePoolOptionalParams,
-  EvaluatePoolAutoScaleOptionalParams,
-  EnablePoolAutoScaleOptionalParams,
-  DisablePoolAutoScaleOptionalParams,
-  UpdatePoolOptionalParams,
-  GetPoolOptionalParams,
-  PoolExistsOptionalParams,
-  DeletePoolOptionalParams,
-  ListPoolsOptionalParams,
-  CreatePoolOptionalParams,
-  ListPoolUsageMetricsOptionalParams,
-  GetApplicationOptionalParams,
-  ListApplicationsOptionalParams,
-} from "./api/index.js";
-export { PageSettings, ContinuablePage, PagedAsyncIterableIterator };
+} from "./nodes/api/index.js";

@@ -1,16 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import { Univariate, UnivariateOptionalParams } from "./univariate/univariate.js";
+import { Multivariate, MultivariateOptionalParams } from "./multivariate/multivariate.js";
 import {
   createAnomalyDetector,
   AnomalyDetectorContext,
   AnomalyDetectorClientOptionalParams,
 } from "./api/index.js";
-import {
-  MultivariateOperations,
-  _getMultivariateOperations,
-} from "./classic/multivariate/index.js";
-import { UnivariateOperations, _getUnivariateOperations } from "./classic/univariate/index.js";
 import { KeyCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
@@ -20,6 +17,12 @@ export class AnomalyDetectorClient {
   private _client: AnomalyDetectorContext;
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
+  /** The parent client parameters that are used in the constructors. */
+  private _clientParams: {
+    endpointParam: string;
+    credential: KeyCredential;
+    options: AnomalyDetectorClientOptionalParams;
+  };
 
   /**
    * The Anomaly Detector API detects anomalies automatically in time series data.
@@ -53,12 +56,24 @@ export class AnomalyDetectorClient {
       userAgentOptions: { userAgentPrefix },
     });
     this.pipeline = this._client.pipeline;
-    this.multivariate = _getMultivariateOperations(this._client);
-    this.univariate = _getUnivariateOperations(this._client);
+    this._clientParams = { endpointParam, credential, options };
   }
 
-  /** The operation groups for multivariate */
-  public readonly multivariate: MultivariateOperations;
-  /** The operation groups for univariate */
-  public readonly univariate: UnivariateOperations;
+  getUnivariate(options: UnivariateOptionalParams = {}): Univariate {
+    return new Univariate(
+      this._clientParams.endpointParam,
+      this._clientParams.credential,
+
+      { ...this._clientParams.options, ...options },
+    );
+  }
+
+  getMultivariate(options: MultivariateOptionalParams = {}): Multivariate {
+    return new Multivariate(
+      this._clientParams.endpointParam,
+      this._clientParams.credential,
+
+      { ...this._clientParams.options, ...options },
+    );
+  }
 }

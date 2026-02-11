@@ -2,15 +2,8 @@
 // Licensed under the MIT License.
 
 import { AzureClouds, AzureSupportedClouds } from "./static-helpers/cloudSettingHelpers.js";
-import {
-  PageSettings,
-  ContinuablePage,
-  PagedAsyncIterableIterator,
-} from "./static-helpers/pagingHelpers.js";
 
 export { NetworkAnalyticsApi } from "./networkAnalyticsApi.js";
-export { SimplePollerLike } from "./static-helpers/simplePollerHelpers.js";
-export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
 export {
   Operation,
   OperationDisplay,
@@ -71,39 +64,44 @@ export {
   KnownVersions,
 } from "./models/index.js";
 export { NetworkAnalyticsApiOptionalParams } from "./api/index.js";
-export {
-  DataProductsListBySubscriptionOptionalParams,
-  DataProductsListByResourceGroupOptionalParams,
-  DataProductsListRolesAssignmentsOptionalParams,
-  DataProductsRemoveUserRoleOptionalParams,
-  DataProductsAddUserRoleOptionalParams,
-  DataProductsRotateKeyOptionalParams,
-  DataProductsGenerateStorageAccountSasTokenOptionalParams,
-  DataProductsDeleteOptionalParams,
-  DataProductsUpdateOptionalParams,
-  DataProductsGetOptionalParams,
-  DataProductsCreateOptionalParams,
-} from "./api/dataProducts/index.js";
-export {
-  DataProductsCatalogsListBySubscriptionOptionalParams,
-  DataProductsCatalogsListByResourceGroupOptionalParams,
-  DataProductsCatalogsGetOptionalParams,
-} from "./api/dataProductsCatalogs/index.js";
-export {
-  DataTypesListByDataProductOptionalParams,
-  DataTypesGenerateStorageContainerSasTokenOptionalParams,
-  DataTypesDeleteDataOptionalParams,
-  DataTypesDeleteOptionalParams,
-  DataTypesUpdateOptionalParams,
-  DataTypesGetOptionalParams,
-  DataTypesCreateOptionalParams,
-} from "./api/dataTypes/index.js";
-export { OperationsListOptionalParams } from "./api/operations/index.js";
-export {
-  DataProductsOperations,
-  DataProductsCatalogsOperations,
-  DataTypesOperations,
-  OperationsOperations,
-} from "./classic/index.js";
-export { PageSettings, ContinuablePage, PagedAsyncIterableIterator };
 export { AzureClouds, AzureSupportedClouds };
+export { Operations } from "./operations/operations.js";
+export { OperationsOptionalParams, ListOptionalParams } from "./operations/api/index.js";
+export { DataProductsCatalogs } from "./dataProductsCatalogs/dataProductsCatalogs.js";
+export {
+  DataProductsCatalogsOptionalParams,
+  ListBySubscriptionOptionalParams,
+  ListByResourceGroupOptionalParams,
+  GetOptionalParams,
+} from "./dataProductsCatalogs/api/index.js";
+export { DataTypes } from "./dataTypes/dataTypes.js";
+export { restorePoller, RestorePollerOptions } from "./dataTypes/restorePollerHelpers.js";
+export {
+  DataTypesOptionalParams,
+  ListByDataProductOptionalParams,
+  GenerateStorageContainerSasTokenOptionalParams,
+  DeleteDataOptionalParams,
+  DeleteOptionalParams,
+  UpdateOptionalParams,
+  GetOptionalParams as DataTypesGetOptionalParams,
+  CreateOptionalParams,
+} from "./dataTypes/api/index.js";
+export { DataProducts } from "./dataProducts/dataProducts.js";
+export {
+  restorePoller as DataProductsrestorePoller,
+  RestorePollerOptions as DataProductsRestorePollerOptions,
+} from "./dataProducts/restorePollerHelpers.js";
+export {
+  DataProductsOptionalParams,
+  ListBySubscriptionOptionalParams as DataProductsListBySubscriptionOptionalParams,
+  ListByResourceGroupOptionalParams as DataProductsListByResourceGroupOptionalParams,
+  ListRolesAssignmentsOptionalParams,
+  RemoveUserRoleOptionalParams,
+  AddUserRoleOptionalParams,
+  RotateKeyOptionalParams,
+  GenerateStorageAccountSasTokenOptionalParams,
+  DeleteOptionalParams as DataProductsDeleteOptionalParams,
+  UpdateOptionalParams as DataProductsUpdateOptionalParams,
+  GetOptionalParams as DataProductsGetOptionalParams,
+  CreateOptionalParams as DataProductsCreateOptionalParams,
+} from "./dataProducts/api/index.js";

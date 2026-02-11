@@ -15,8 +15,10 @@ export {
   ChatChoiceRecord,
   KnownAPIVersion,
 } from "./models/index.js";
+export { ChatProtocolClientOptionalParams } from "./api/index.js";
+export { GenericChatClient } from "./genericChat/genericChatClient.js";
 export {
-  ChatProtocolClientOptionalParams,
+  GenericChatClientOptionalParams,
   CreateOptionalParams,
   CreateStreamingOptionalParams,
-} from "./api/index.js";
+} from "./genericChat/api/index.js";

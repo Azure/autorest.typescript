@@ -2,14 +2,14 @@
 // Licensed under the MIT License.
 
 import {
+  ConfidentialLedger,
+  ConfidentialLedgerOptionalParams,
+} from "./confidentialLedger/confidentialLedger.js";
+import {
   createParametrizedHost,
   ParametrizedHostContext,
   ParametrizedHostClientOptionalParams,
 } from "./api/index.js";
-import {
-  ConfidentialLedgerOperations,
-  _getConfidentialLedgerOperations,
-} from "./classic/confidentialLedger/index.js";
 import { TokenCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
@@ -19,6 +19,11 @@ export class ParametrizedHostClient {
   private _client: ParametrizedHostContext;
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
+  /** The parent client parameters that are used in the constructors. */
+  private _clientParams: {
+    credential: TokenCredential;
+    options: ParametrizedHostClientOptionalParams;
+  };
 
   constructor(credential: TokenCredential, options: ParametrizedHostClientOptionalParams = {}) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
@@ -30,9 +35,14 @@ export class ParametrizedHostClient {
       userAgentOptions: { userAgentPrefix },
     });
     this.pipeline = this._client.pipeline;
-    this.confidentialLedger = _getConfidentialLedgerOperations(this._client);
+    this._clientParams = { credential, options };
   }
 
-  /** The operation groups for confidentialLedger */
-  public readonly confidentialLedger: ConfidentialLedgerOperations;
+  getConfidentialLedger(options: ConfidentialLedgerOptionalParams = {}): ConfidentialLedger {
+    return new ConfidentialLedger(
+      this._clientParams.credential,
+
+      { ...this._clientParams.options, ...options },
+    );
+  }
 }

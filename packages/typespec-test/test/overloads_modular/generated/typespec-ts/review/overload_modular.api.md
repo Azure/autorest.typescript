@@ -10,18 +10,25 @@ import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
 
-// @public
-export interface FooOperationsGetAvatarAsJpegOptionalParams extends OperationOptions {
+// @public (undocumented)
+export class FooOperations {
+    constructor(endpointParam: string, credential: KeyCredential | TokenCredential, options?: FooOperationsOptionalParams);
+    getAvatarAsJpeg(image: Uint8Array, options?: GetAvatarAsJpegOptionalParams): Promise<void>;
+    getAvatarAsPng(image: Uint8Array, options?: GetAvatarAsPngOptionalParams): Promise<void>;
+    readonly pipeline: Pipeline;
 }
 
 // @public
-export interface FooOperationsGetAvatarAsPngOptionalParams extends OperationOptions {
+export interface FooOperationsOptionalParams extends ClientOptions {
+    apiVersion?: string;
 }
 
 // @public
-export interface FooOperationsOperations {
-    getAvatarAsJpeg: (image: Uint8Array, options?: FooOperationsGetAvatarAsJpegOptionalParams) => Promise<void>;
-    getAvatarAsPng: (image: Uint8Array, options?: FooOperationsGetAvatarAsPngOptionalParams) => Promise<void>;
+export interface GetAvatarAsJpegOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface GetAvatarAsPngOptionalParams extends OperationOptions {
 }
 
 // @public
@@ -32,7 +39,8 @@ export enum KnownVersions {
 // @public (undocumented)
 export class WidgetManagerClient {
     constructor(endpointParam: string, credential: KeyCredential | TokenCredential, options?: WidgetManagerClientOptionalParams);
-    readonly fooOperations: FooOperationsOperations;
+    // (undocumented)
+    getFooOperations(options?: FooOperationsOptionalParams): FooOperations;
     readonly pipeline: Pipeline;
 }
 

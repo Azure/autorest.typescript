@@ -1,21 +1,18 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import { Operations, OperationsOptionalParams } from "./operations/operations.js";
+import {
+  DataProductsCatalogs,
+  DataProductsCatalogsOptionalParams,
+} from "./dataProductsCatalogs/dataProductsCatalogs.js";
+import { DataTypes, DataTypesOptionalParams } from "./dataTypes/dataTypes.js";
+import { DataProducts, DataProductsOptionalParams } from "./dataProducts/dataProducts.js";
 import {
   createNetworkAnalyticsApi,
   NetworkAnalyticsApiContext,
   NetworkAnalyticsApiOptionalParams,
 } from "./api/index.js";
-import {
-  DataProductsOperations,
-  _getDataProductsOperations,
-} from "./classic/dataProducts/index.js";
-import {
-  DataProductsCatalogsOperations,
-  _getDataProductsCatalogsOperations,
-} from "./classic/dataProductsCatalogs/index.js";
-import { DataTypesOperations, _getDataTypesOperations } from "./classic/dataTypes/index.js";
-import { OperationsOperations, _getOperationsOperations } from "./classic/operations/index.js";
 import { TokenCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
@@ -25,6 +22,12 @@ export class NetworkAnalyticsApi {
   private _client: NetworkAnalyticsApiContext;
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
+  /** The parent client parameters that are used in the constructors. */
+  private _clientParams: {
+    credential: TokenCredential;
+    subscriptionId: string;
+    options: NetworkAnalyticsApiOptionalParams;
+  };
 
   constructor(
     credential: TokenCredential,
@@ -40,18 +43,45 @@ export class NetworkAnalyticsApi {
       userAgentOptions: { userAgentPrefix },
     });
     this.pipeline = this._client.pipeline;
-    this.dataProducts = _getDataProductsOperations(this._client);
-    this.dataTypes = _getDataTypesOperations(this._client);
-    this.dataProductsCatalogs = _getDataProductsCatalogsOperations(this._client);
-    this.operations = _getOperationsOperations(this._client);
+    this._clientParams = { credential, subscriptionId, options };
   }
 
-  /** The operation groups for dataProducts */
-  public readonly dataProducts: DataProductsOperations;
-  /** The operation groups for dataTypes */
-  public readonly dataTypes: DataTypesOperations;
-  /** The operation groups for dataProductsCatalogs */
-  public readonly dataProductsCatalogs: DataProductsCatalogsOperations;
-  /** The operation groups for operations */
-  public readonly operations: OperationsOperations;
+  getOperations(options: OperationsOptionalParams = {}): Operations {
+    return new Operations(
+      this._clientParams.credential,
+      this._clientParams.subscriptionId,
+
+      { ...this._clientParams.options, ...options },
+    );
+  }
+
+  /** Operations on data catalog resource. */
+  getDataProductsCatalogs(options: DataProductsCatalogsOptionalParams = {}): DataProductsCatalogs {
+    return new DataProductsCatalogs(
+      this._clientParams.credential,
+      this._clientParams.subscriptionId,
+
+      { ...this._clientParams.options, ...options },
+    );
+  }
+
+  /** Operations on data type resource. */
+  getDataTypes(options: DataTypesOptionalParams = {}): DataTypes {
+    return new DataTypes(
+      this._clientParams.credential,
+      this._clientParams.subscriptionId,
+
+      { ...this._clientParams.options, ...options },
+    );
+  }
+
+  /** Operations on data product resource. */
+  getDataProducts(options: DataProductsOptionalParams = {}): DataProducts {
+    return new DataProducts(
+      this._clientParams.credential,
+      this._clientParams.subscriptionId,
+
+      { ...this._clientParams.options, ...options },
+    );
+  }
 }

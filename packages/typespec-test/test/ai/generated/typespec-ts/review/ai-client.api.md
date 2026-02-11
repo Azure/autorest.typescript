@@ -33,6 +33,56 @@ export interface AgentDeletionStatus {
     object: "assistant.deleted";
 }
 
+// @public (undocumented)
+export class Agents {
+    constructor(endpointParam: string, subscriptionId: string, resourceGroupName: string, projectName: string, credential: TokenCredential, options?: AgentsOptionalParams);
+    cancelRun(threadId: string, runId: string, options?: CancelRunOptionalParams): Promise<ThreadRun>;
+    cancelVectorStoreFileBatch(vectorStoreId: string, batchId: string, options?: CancelVectorStoreFileBatchOptionalParams): Promise<VectorStoreFileBatch>;
+    createAgent(model: string, options?: CreateAgentOptionalParams): Promise<Agent>;
+    createMessage(threadId: string, role: MessageRole, content: string, options?: CreateMessageOptionalParams): Promise<ThreadMessage>;
+    createRun(threadId: string, assistantId: string, options?: CreateRunOptionalParams): Promise<ThreadRun>;
+    createThread(options?: CreateThreadOptionalParams): Promise<AgentThread>;
+    createThreadAndRun(assistantId: string, options?: CreateThreadAndRunOptionalParams): Promise<ThreadRun>;
+    createVectorStore(options?: CreateVectorStoreOptionalParams): Promise<VectorStore>;
+    createVectorStoreFile(vectorStoreId: string, options?: CreateVectorStoreFileOptionalParams): Promise<VectorStoreFile>;
+    createVectorStoreFileBatch(vectorStoreId: string, options?: CreateVectorStoreFileBatchOptionalParams): Promise<VectorStoreFileBatch>;
+    deleteAgent(assistantId: string, options?: DeleteAgentOptionalParams): Promise<AgentDeletionStatus>;
+    deleteFile(fileId: string, options?: DeleteFileOptionalParams): Promise<FileDeletionStatus>;
+    deleteThread(threadId: string, options?: DeleteThreadOptionalParams): Promise<ThreadDeletionStatus>;
+    deleteVectorStore(vectorStoreId: string, options?: DeleteVectorStoreOptionalParams): Promise<VectorStoreDeletionStatus>;
+    deleteVectorStoreFile(vectorStoreId: string, fileId: string, options?: DeleteVectorStoreFileOptionalParams): Promise<VectorStoreFileDeletionStatus>;
+    getAgent(assistantId: string, options?: GetAgentOptionalParams): Promise<Agent>;
+    getFile(fileId: string, options?: GetFileOptionalParams): Promise<OpenAIFile>;
+    getFileContent(fileId: string, options?: GetFileContentOptionalParams): Promise<Uint8Array>;
+    getMessage(threadId: string, messageId: string, options?: GetMessageOptionalParams): Promise<ThreadMessage>;
+    getRun(threadId: string, runId: string, options?: GetRunOptionalParams): Promise<ThreadRun>;
+    getRunStep(threadId: string, runId: string, stepId: string, options?: GetRunStepOptionalParams): Promise<RunStep>;
+    getThread(threadId: string, options?: GetThreadOptionalParams): Promise<AgentThread>;
+    getVectorStore(vectorStoreId: string, options?: GetVectorStoreOptionalParams): Promise<VectorStore>;
+    getVectorStoreFile(vectorStoreId: string, fileId: string, options?: GetVectorStoreFileOptionalParams): Promise<VectorStoreFile>;
+    getVectorStoreFileBatch(vectorStoreId: string, batchId: string, options?: GetVectorStoreFileBatchOptionalParams): Promise<VectorStoreFileBatch>;
+    listAgents(options?: ListAgentsOptionalParams): Promise<OpenAIPageableListOfAgent>;
+    listFiles(options?: ListFilesOptionalParams): Promise<FileListResponse>;
+    listMessages(threadId: string, options?: ListMessagesOptionalParams): Promise<OpenAIPageableListOfThreadMessage>;
+    listRuns(threadId: string, options?: ListRunsOptionalParams): Promise<OpenAIPageableListOfThreadRun>;
+    listRunSteps(threadId: string, runId: string, options?: ListRunStepsOptionalParams): Promise<OpenAIPageableListOfRunStep>;
+    listVectorStoreFileBatchFiles(vectorStoreId: string, batchId: string, options?: ListVectorStoreFileBatchFilesOptionalParams): Promise<OpenAIPageableListOfVectorStoreFile>;
+    listVectorStoreFiles(vectorStoreId: string, options?: ListVectorStoreFilesOptionalParams): Promise<OpenAIPageableListOfVectorStoreFile>;
+    listVectorStores(options?: ListVectorStoresOptionalParams): Promise<OpenAIPageableListOfVectorStore>;
+    modifyVectorStore(vectorStoreId: string, options?: ModifyVectorStoreOptionalParams): Promise<VectorStore>;
+    readonly pipeline: Pipeline;
+    submitToolOutputsToRun(threadId: string, runId: string, toolOutputs: ToolOutput[], options?: SubmitToolOutputsToRunOptionalParams): Promise<ThreadRun>;
+    updateAgent(assistantId: string, options?: UpdateAgentOptionalParams): Promise<Agent>;
+    updateMessage(threadId: string, messageId: string, options?: UpdateMessageOptionalParams): Promise<ThreadMessage>;
+    updateRun(threadId: string, runId: string, options?: UpdateRunOptionalParams): Promise<ThreadRun>;
+    updateThread(threadId: string, options?: UpdateThreadOptionalParams): Promise<AgentThread>;
+    uploadFile(body: {
+        file: Uint8Array;
+        purpose: FilePurpose;
+        filename?: string;
+    }, options?: UploadFileOptionalParams): Promise<OpenAIFile>;
+}
+
 // @public
 export interface AgentsApiResponseFormat {
     type?: ResponseFormat;
@@ -51,236 +101,6 @@ export type AgentsApiToolChoiceOption = string | AgentsApiToolChoiceOptionMode |
 export type AgentsApiToolChoiceOptionMode = "none" | "auto";
 
 // @public
-export interface AgentsCancelRunOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface AgentsCancelVectorStoreFileBatchOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface AgentsCreateAgentOptionalParams extends OperationOptions {
-    description?: string;
-    instructions?: string;
-    metadata?: Record<string, string>;
-    name?: string;
-    responseFormat?: AgentsApiResponseFormatOption;
-    temperature?: number;
-    toolResources?: ToolResources;
-    tools?: ToolDefinitionUnion[];
-    topP?: number;
-}
-
-// @public
-export interface AgentsCreateMessageOptionalParams extends OperationOptions {
-    attachments?: MessageAttachment[];
-    metadata?: Record<string, string>;
-}
-
-// @public
-export interface AgentsCreateRunOptionalParams extends OperationOptions {
-    additionalInstructions?: string;
-    additionalMessages?: ThreadMessageOptions[];
-    include?: RunAdditionalFieldList[];
-    instructions?: string;
-    maxCompletionTokens?: number;
-    maxPromptTokens?: number;
-    metadata?: Record<string, string>;
-    model?: string;
-    parallelToolCalls?: boolean;
-    responseFormat?: AgentsApiResponseFormatOption;
-    stream?: boolean;
-    temperature?: number;
-    toolChoice?: AgentsApiToolChoiceOption;
-    tools?: ToolDefinitionUnion[];
-    topP?: number;
-    truncationStrategy?: TruncationObject;
-}
-
-// @public
-export interface AgentsCreateThreadAndRunOptionalParams extends OperationOptions {
-    instructions?: string;
-    maxCompletionTokens?: number;
-    maxPromptTokens?: number;
-    metadata?: Record<string, string>;
-    model?: string;
-    parallelToolCalls?: boolean;
-    responseFormat?: AgentsApiResponseFormatOption;
-    stream?: boolean;
-    temperature?: number;
-    thread?: AgentThreadCreationOptions;
-    toolChoice?: AgentsApiToolChoiceOption;
-    toolResources?: UpdateToolResourcesOptions;
-    tools?: ToolDefinitionUnion[];
-    topP?: number;
-    truncationStrategy?: TruncationObject;
-}
-
-// @public
-export interface AgentsCreateThreadOptionalParams extends OperationOptions {
-    messages?: ThreadMessageOptions[];
-    metadata?: Record<string, string>;
-    toolResources?: ToolResources;
-}
-
-// @public
-export interface AgentsCreateVectorStoreFileBatchOptionalParams extends OperationOptions {
-    chunkingStrategy?: VectorStoreChunkingStrategyRequestUnion;
-    dataSources?: VectorStoreDataSource[];
-    fileIds?: string[];
-}
-
-// @public
-export interface AgentsCreateVectorStoreFileOptionalParams extends OperationOptions {
-    chunkingStrategy?: VectorStoreChunkingStrategyRequestUnion;
-    dataSources?: VectorStoreDataSource[];
-    fileId?: string;
-}
-
-// @public
-export interface AgentsCreateVectorStoreOptionalParams extends OperationOptions {
-    chunkingStrategy?: VectorStoreChunkingStrategyRequestUnion;
-    expiresAfter?: VectorStoreExpirationPolicy;
-    fileIds?: string[];
-    metadata?: Record<string, string>;
-    name?: string;
-    storeConfiguration?: VectorStoreConfiguration;
-}
-
-// @public
-export interface AgentsDeleteAgentOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface AgentsDeleteFileOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface AgentsDeleteThreadOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface AgentsDeleteVectorStoreFileOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface AgentsDeleteVectorStoreOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface AgentsGetAgentOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface AgentsGetFileContentOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface AgentsGetFileOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface AgentsGetMessageOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface AgentsGetRunOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface AgentsGetRunStepOptionalParams extends OperationOptions {
-    include?: RunAdditionalFieldList[];
-}
-
-// @public
-export interface AgentsGetThreadOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface AgentsGetVectorStoreFileBatchOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface AgentsGetVectorStoreFileOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface AgentsGetVectorStoreOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface AgentsListAgentsOptionalParams extends OperationOptions {
-    after?: string;
-    before?: string;
-    limit?: number;
-    order?: ListSortOrder;
-}
-
-// @public
-export interface AgentsListFilesOptionalParams extends OperationOptions {
-    purpose?: FilePurpose;
-}
-
-// @public
-export interface AgentsListMessagesOptionalParams extends OperationOptions {
-    after?: string;
-    before?: string;
-    limit?: number;
-    order?: ListSortOrder;
-    runId?: string;
-}
-
-// @public
-export interface AgentsListRunsOptionalParams extends OperationOptions {
-    after?: string;
-    before?: string;
-    limit?: number;
-    order?: ListSortOrder;
-}
-
-// @public
-export interface AgentsListRunStepsOptionalParams extends OperationOptions {
-    after?: string;
-    before?: string;
-    include?: RunAdditionalFieldList[];
-    limit?: number;
-    order?: ListSortOrder;
-}
-
-// @public
-export interface AgentsListVectorStoreFileBatchFilesOptionalParams extends OperationOptions {
-    after?: string;
-    before?: string;
-    filter?: VectorStoreFileStatusFilter;
-    limit?: number;
-    order?: ListSortOrder;
-}
-
-// @public
-export interface AgentsListVectorStoreFilesOptionalParams extends OperationOptions {
-    after?: string;
-    before?: string;
-    filter?: VectorStoreFileStatusFilter;
-    limit?: number;
-    order?: ListSortOrder;
-}
-
-// @public
-export interface AgentsListVectorStoresOptionalParams extends OperationOptions {
-    after?: string;
-    before?: string;
-    limit?: number;
-    order?: ListSortOrder;
-}
-
-// @public
-export interface AgentsModifyVectorStoreOptionalParams extends OperationOptions {
-    expiresAfter?: VectorStoreExpirationPolicy;
-    metadata?: Record<string, string>;
-    name?: string;
-}
-
-// @public
 export interface AgentsNamedToolChoice {
     function?: FunctionName;
     type: AgentsNamedToolChoiceType;
@@ -290,94 +110,12 @@ export interface AgentsNamedToolChoice {
 export type AgentsNamedToolChoiceType = "function" | "code_interpreter" | "file_search" | "bing_grounding" | "fabric_aiskill" | "sharepoint_grounding" | "azure_ai_search";
 
 // @public
-export interface AgentsOperations {
-    cancelRun: (threadId: string, runId: string, options?: AgentsCancelRunOptionalParams) => Promise<ThreadRun>;
-    cancelVectorStoreFileBatch: (vectorStoreId: string, batchId: string, options?: AgentsCancelVectorStoreFileBatchOptionalParams) => Promise<VectorStoreFileBatch>;
-    createAgent: (model: string, options?: AgentsCreateAgentOptionalParams) => Promise<Agent>;
-    createMessage: (threadId: string, role: MessageRole, content: string, options?: AgentsCreateMessageOptionalParams) => Promise<ThreadMessage>;
-    createRun: (threadId: string, assistantId: string, options?: AgentsCreateRunOptionalParams) => Promise<ThreadRun>;
-    createThread: (options?: AgentsCreateThreadOptionalParams) => Promise<AgentThread>;
-    createThreadAndRun: (assistantId: string, options?: AgentsCreateThreadAndRunOptionalParams) => Promise<ThreadRun>;
-    createVectorStore: (options?: AgentsCreateVectorStoreOptionalParams) => Promise<VectorStore>;
-    createVectorStoreFile: (vectorStoreId: string, options?: AgentsCreateVectorStoreFileOptionalParams) => Promise<VectorStoreFile>;
-    createVectorStoreFileBatch: (vectorStoreId: string, options?: AgentsCreateVectorStoreFileBatchOptionalParams) => Promise<VectorStoreFileBatch>;
-    deleteAgent: (assistantId: string, options?: AgentsDeleteAgentOptionalParams) => Promise<AgentDeletionStatus>;
-    deleteFile: (fileId: string, options?: AgentsDeleteFileOptionalParams) => Promise<FileDeletionStatus>;
-    deleteThread: (threadId: string, options?: AgentsDeleteThreadOptionalParams) => Promise<ThreadDeletionStatus>;
-    deleteVectorStore: (vectorStoreId: string, options?: AgentsDeleteVectorStoreOptionalParams) => Promise<VectorStoreDeletionStatus>;
-    deleteVectorStoreFile: (vectorStoreId: string, fileId: string, options?: AgentsDeleteVectorStoreFileOptionalParams) => Promise<VectorStoreFileDeletionStatus>;
-    getAgent: (assistantId: string, options?: AgentsGetAgentOptionalParams) => Promise<Agent>;
-    getFile: (fileId: string, options?: AgentsGetFileOptionalParams) => Promise<OpenAIFile>;
-    getFileContent: (fileId: string, options?: AgentsGetFileContentOptionalParams) => Promise<Uint8Array>;
-    getMessage: (threadId: string, messageId: string, options?: AgentsGetMessageOptionalParams) => Promise<ThreadMessage>;
-    getRun: (threadId: string, runId: string, options?: AgentsGetRunOptionalParams) => Promise<ThreadRun>;
-    getRunStep: (threadId: string, runId: string, stepId: string, options?: AgentsGetRunStepOptionalParams) => Promise<RunStep>;
-    getThread: (threadId: string, options?: AgentsGetThreadOptionalParams) => Promise<AgentThread>;
-    getVectorStore: (vectorStoreId: string, options?: AgentsGetVectorStoreOptionalParams) => Promise<VectorStore>;
-    getVectorStoreFile: (vectorStoreId: string, fileId: string, options?: AgentsGetVectorStoreFileOptionalParams) => Promise<VectorStoreFile>;
-    getVectorStoreFileBatch: (vectorStoreId: string, batchId: string, options?: AgentsGetVectorStoreFileBatchOptionalParams) => Promise<VectorStoreFileBatch>;
-    listAgents: (options?: AgentsListAgentsOptionalParams) => Promise<OpenAIPageableListOfAgent>;
-    listFiles: (options?: AgentsListFilesOptionalParams) => Promise<FileListResponse>;
-    listMessages: (threadId: string, options?: AgentsListMessagesOptionalParams) => Promise<OpenAIPageableListOfThreadMessage>;
-    listRuns: (threadId: string, options?: AgentsListRunsOptionalParams) => Promise<OpenAIPageableListOfThreadRun>;
-    listRunSteps: (threadId: string, runId: string, options?: AgentsListRunStepsOptionalParams) => Promise<OpenAIPageableListOfRunStep>;
-    listVectorStoreFileBatchFiles: (vectorStoreId: string, batchId: string, options?: AgentsListVectorStoreFileBatchFilesOptionalParams) => Promise<OpenAIPageableListOfVectorStoreFile>;
-    listVectorStoreFiles: (vectorStoreId: string, options?: AgentsListVectorStoreFilesOptionalParams) => Promise<OpenAIPageableListOfVectorStoreFile>;
-    listVectorStores: (options?: AgentsListVectorStoresOptionalParams) => Promise<OpenAIPageableListOfVectorStore>;
-    modifyVectorStore: (vectorStoreId: string, options?: AgentsModifyVectorStoreOptionalParams) => Promise<VectorStore>;
-    submitToolOutputsToRun: (threadId: string, runId: string, toolOutputs: ToolOutput[], options?: AgentsSubmitToolOutputsToRunOptionalParams) => Promise<ThreadRun>;
-    updateAgent: (assistantId: string, options?: AgentsUpdateAgentOptionalParams) => Promise<Agent>;
-    updateMessage: (threadId: string, messageId: string, options?: AgentsUpdateMessageOptionalParams) => Promise<ThreadMessage>;
-    updateRun: (threadId: string, runId: string, options?: AgentsUpdateRunOptionalParams) => Promise<ThreadRun>;
-    updateThread: (threadId: string, options?: AgentsUpdateThreadOptionalParams) => Promise<AgentThread>;
-    uploadFile: (body: {
-        file: Uint8Array;
-        purpose: FilePurpose;
-        filename?: string;
-    }, options?: AgentsUploadFileOptionalParams) => Promise<OpenAIFile>;
-}
-
-// @public
-export interface AgentsSubmitToolOutputsToRunOptionalParams extends OperationOptions {
-    stream?: boolean;
+export interface AgentsOptionalParams extends ClientOptions {
+    apiVersion?: string;
 }
 
 // @public
 export type AgentStreamEvent = string | ThreadStreamEvent | RunStreamEvent | RunStepStreamEvent | MessageStreamEvent | ErrorEvent | DoneEvent;
-
-// @public
-export interface AgentsUpdateAgentOptionalParams extends OperationOptions {
-    description?: string;
-    instructions?: string;
-    metadata?: Record<string, string>;
-    model?: string;
-    name?: string;
-    responseFormat?: AgentsApiResponseFormatOption;
-    temperature?: number;
-    toolResources?: ToolResources;
-    tools?: ToolDefinitionUnion[];
-    topP?: number;
-}
-
-// @public
-export interface AgentsUpdateMessageOptionalParams extends OperationOptions {
-    metadata?: Record<string, string>;
-}
-
-// @public
-export interface AgentsUpdateRunOptionalParams extends OperationOptions {
-    metadata?: Record<string, string>;
-}
-
-// @public
-export interface AgentsUpdateThreadOptionalParams extends OperationOptions {
-    metadata?: Record<string, string>;
-    toolResources?: ToolResources;
-}
-
-// @public
-export interface AgentsUploadFileOptionalParams extends OperationOptions {
-}
 
 // @public
 export interface AgentThread {
@@ -398,11 +136,15 @@ export interface AgentThreadCreationOptions {
 // @public (undocumented)
 export class AIProjectClient {
     constructor(endpointParam: string, subscriptionId: string, resourceGroupName: string, projectName: string, credential: TokenCredential, options?: AIProjectClientOptionalParams);
-    readonly agents: AgentsOperations;
-    readonly connections: ConnectionsOperations;
-    readonly evaluations: EvaluationsOperations;
+    // (undocumented)
+    getAgents(options?: AgentsOptionalParams): Agents;
+    // (undocumented)
+    getConnections(options?: ConnectionsOptionalParams): Connections;
+    // (undocumented)
+    getEvaluations(options?: EvaluationsOptionalParams): Evaluations;
+    // (undocumented)
+    getTelemetry(options?: TelemetryOptionalParams): Telemetry;
     readonly pipeline: Pipeline;
-    readonly telemetry: TelemetryOperations;
 }
 
 // @public
@@ -470,6 +212,14 @@ export interface BingGroundingToolDefinition extends ToolDefinition {
 }
 
 // @public
+export interface CancelRunOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface CancelVectorStoreFileBatchOptionalParams extends OperationOptions {
+}
+
+// @public
 export interface CodeInterpreterToolDefinition extends ToolDefinition {
     type: "code_interpreter";
 }
@@ -480,40 +230,121 @@ export interface CodeInterpreterToolResource {
     fileIds?: string[];
 }
 
-// @public
-export interface ConnectionsGetConnectionOptionalParams extends OperationOptions {
+// @public (undocumented)
+export class Connections {
+    constructor(endpointParam: string, subscriptionId: string, resourceGroupName: string, projectName: string, credential: TokenCredential, options?: ConnectionsOptionalParams);
+    getConnection(connectionName: string, options?: GetConnectionOptionalParams): Promise<GetConnectionResponse>;
+    getConnectionWithSecrets(connectionName: string, ignored: string, options?: GetConnectionWithSecretsOptionalParams): Promise<GetConnectionResponse>;
+    getWorkspace(options?: GetWorkspaceOptionalParams): Promise<GetWorkspaceResponse>;
+    listConnections(options?: ListConnectionsOptionalParams): Promise<ListConnectionsResponse>;
+    readonly pipeline: Pipeline;
 }
 
 // @public
-export interface ConnectionsGetConnectionWithSecretsOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface ConnectionsGetWorkspaceOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface ConnectionsListConnectionsOptionalParams extends OperationOptions {
-    category?: ConnectionType;
-    includeAll?: boolean;
-    target?: string;
-}
-
-// @public
-export interface ConnectionsOperations {
-    getConnection: (connectionName: string, options?: ConnectionsGetConnectionOptionalParams) => Promise<GetConnectionResponse>;
-    getConnectionWithSecrets: (connectionName: string, ignored: string, options?: ConnectionsGetConnectionWithSecretsOptionalParams) => Promise<GetConnectionResponse>;
-    getWorkspace: (options?: ConnectionsGetWorkspaceOptionalParams) => Promise<GetWorkspaceResponse>;
-    listConnections: (options?: ConnectionsListConnectionsOptionalParams) => Promise<ListConnectionsResponse>;
+export interface ConnectionsOptionalParams extends ClientOptions {
+    apiVersion?: string;
 }
 
 // @public
 export type ConnectionType = "AzureOpenAI" | "Serverless" | "AzureBlob" | "AIServices" | "CognitiveSearch";
 
 // @public
-export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
-    continuationToken?: string;
-};
+export interface CreateAgentOptionalParams extends OperationOptions {
+    description?: string;
+    instructions?: string;
+    metadata?: Record<string, string>;
+    name?: string;
+    responseFormat?: AgentsApiResponseFormatOption;
+    temperature?: number;
+    toolResources?: ToolResources;
+    tools?: ToolDefinitionUnion[];
+    topP?: number;
+}
+
+// @public
+export interface CreateMessageOptionalParams extends OperationOptions {
+    attachments?: MessageAttachment[];
+    metadata?: Record<string, string>;
+}
+
+// @public
+export interface CreateOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface CreateOrReplaceScheduleOptionalParams extends OperationOptions {
+    clientRequestId?: string;
+}
+
+// @public
+export interface CreateRunOptionalParams extends OperationOptions {
+    additionalInstructions?: string;
+    additionalMessages?: ThreadMessageOptions[];
+    include?: RunAdditionalFieldList[];
+    instructions?: string;
+    maxCompletionTokens?: number;
+    maxPromptTokens?: number;
+    metadata?: Record<string, string>;
+    model?: string;
+    parallelToolCalls?: boolean;
+    responseFormat?: AgentsApiResponseFormatOption;
+    stream?: boolean;
+    temperature?: number;
+    toolChoice?: AgentsApiToolChoiceOption;
+    tools?: ToolDefinitionUnion[];
+    topP?: number;
+    truncationStrategy?: TruncationObject;
+}
+
+// @public
+export interface CreateThreadAndRunOptionalParams extends OperationOptions {
+    instructions?: string;
+    maxCompletionTokens?: number;
+    maxPromptTokens?: number;
+    metadata?: Record<string, string>;
+    model?: string;
+    parallelToolCalls?: boolean;
+    responseFormat?: AgentsApiResponseFormatOption;
+    stream?: boolean;
+    temperature?: number;
+    thread?: AgentThreadCreationOptions;
+    toolChoice?: AgentsApiToolChoiceOption;
+    toolResources?: UpdateToolResourcesOptions;
+    tools?: ToolDefinitionUnion[];
+    topP?: number;
+    truncationStrategy?: TruncationObject;
+}
+
+// @public
+export interface CreateThreadOptionalParams extends OperationOptions {
+    messages?: ThreadMessageOptions[];
+    metadata?: Record<string, string>;
+    toolResources?: ToolResources;
+}
+
+// @public
+export interface CreateVectorStoreFileBatchOptionalParams extends OperationOptions {
+    chunkingStrategy?: VectorStoreChunkingStrategyRequestUnion;
+    dataSources?: VectorStoreDataSource[];
+    fileIds?: string[];
+}
+
+// @public
+export interface CreateVectorStoreFileOptionalParams extends OperationOptions {
+    chunkingStrategy?: VectorStoreChunkingStrategyRequestUnion;
+    dataSources?: VectorStoreDataSource[];
+    fileId?: string;
+}
+
+// @public
+export interface CreateVectorStoreOptionalParams extends OperationOptions {
+    chunkingStrategy?: VectorStoreChunkingStrategyRequestUnion;
+    expiresAfter?: VectorStoreExpirationPolicy;
+    fileIds?: string[];
+    metadata?: Record<string, string>;
+    name?: string;
+    storeConfiguration?: VectorStoreConfiguration;
+}
 
 // @public
 export interface CredentialsApiKeyAuth {
@@ -540,6 +371,30 @@ export interface Dataset extends InputData {
 }
 
 // @public
+export interface DeleteAgentOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface DeleteFileOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface DeleteThreadOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface DeleteVectorStoreFileOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface DeleteVectorStoreOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface DisableScheduleOptionalParams extends OperationOptions {
+}
+
+// @public
 export type DoneEvent = "done";
 
 // @public
@@ -558,6 +413,21 @@ export interface Evaluation {
     tags?: Record<string, string>;
 }
 
+// @public (undocumented)
+export class Evaluations {
+    constructor(endpointParam: string, subscriptionId: string, resourceGroupName: string, projectName: string, credential: TokenCredential, options?: EvaluationsOptionalParams);
+    create(evaluation: Evaluation, options?: CreateOptionalParams): Promise<Evaluation>;
+    createOrReplaceSchedule(name: string, resource: EvaluationSchedule, options?: CreateOrReplaceScheduleOptionalParams): Promise<EvaluationSchedule>;
+    disableSchedule(name: string, options?: DisableScheduleOptionalParams): Promise<void>;
+    get(id: string, options?: GetOptionalParams): Promise<Evaluation>;
+    getSchedule(name: string, options?: GetScheduleOptionalParams): Promise<EvaluationSchedule>;
+    list(options?: ListOptionalParams): PagedAsyncIterableIterator<Evaluation>;
+    // Warning: (ae-forgotten-export) The symbol "PagedAsyncIterableIterator" needs to be exported by the entry point index.d.ts
+    listSchedule(options?: ListScheduleOptionalParams): PagedAsyncIterableIterator<EvaluationSchedule>;
+    readonly pipeline: Pipeline;
+    update(id: string, resource: Evaluation, options?: UpdateOptionalParams): Promise<Evaluation>;
+}
+
 // @public
 export interface EvaluationSchedule {
     data: ApplicationInsightsConfiguration;
@@ -573,59 +443,8 @@ export interface EvaluationSchedule {
 }
 
 // @public
-export interface EvaluationsCreateOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface EvaluationsCreateOrReplaceScheduleOptionalParams extends OperationOptions {
-    clientRequestId?: string;
-}
-
-// @public
-export interface EvaluationsDisableScheduleOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface EvaluationsGetOptionalParams extends OperationOptions {
-    clientRequestId?: string;
-}
-
-// @public
-export interface EvaluationsGetScheduleOptionalParams extends OperationOptions {
-    clientRequestId?: string;
-}
-
-// @public
-export interface EvaluationsListOptionalParams extends OperationOptions {
-    clientRequestId?: string;
-    maxpagesize?: number;
-    skip?: number;
-    top?: number;
-}
-
-// @public
-export interface EvaluationsListScheduleOptionalParams extends OperationOptions {
-    clientRequestId?: string;
-    maxpagesize?: number;
-    skip?: number;
-    top?: number;
-}
-
-// @public
-export interface EvaluationsOperations {
-    create: (evaluation: Evaluation, options?: EvaluationsCreateOptionalParams) => Promise<Evaluation>;
-    createOrReplaceSchedule: (name: string, resource: EvaluationSchedule, options?: EvaluationsCreateOrReplaceScheduleOptionalParams) => Promise<EvaluationSchedule>;
-    disableSchedule: (name: string, options?: EvaluationsDisableScheduleOptionalParams) => Promise<void>;
-    get: (id: string, options?: EvaluationsGetOptionalParams) => Promise<Evaluation>;
-    getSchedule: (name: string, options?: EvaluationsGetScheduleOptionalParams) => Promise<EvaluationSchedule>;
-    list: (options?: EvaluationsListOptionalParams) => PagedAsyncIterableIterator<Evaluation>;
-    listSchedule: (options?: EvaluationsListScheduleOptionalParams) => PagedAsyncIterableIterator<EvaluationSchedule>;
-    update: (id: string, resource: Evaluation, options?: EvaluationsUpdateOptionalParams) => Promise<Evaluation>;
-}
-
-// @public
-export interface EvaluationsUpdateOptionalParams extends OperationOptions {
-    clientRequestId?: string;
+export interface EvaluationsOptionalParams extends ClientOptions {
+    apiVersion?: string;
 }
 
 // @public
@@ -709,6 +528,14 @@ export interface FunctionToolDefinition extends ToolDefinition {
 }
 
 // @public
+export interface GetAgentOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface GetAppInsightsOptionalParams extends OperationOptions {
+}
+
+// @public
 export interface GetAppInsightsResponse {
     id: string;
     name: string;
@@ -716,10 +543,69 @@ export interface GetAppInsightsResponse {
 }
 
 // @public
+export interface GetConnectionOptionalParams extends OperationOptions {
+}
+
+// @public
 export interface GetConnectionResponse {
     id: string;
     name: string;
     properties: InternalConnectionPropertiesUnion;
+}
+
+// @public
+export interface GetConnectionWithSecretsOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface GetFileContentOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface GetFileOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface GetMessageOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface GetOptionalParams extends OperationOptions {
+    clientRequestId?: string;
+}
+
+// @public
+export interface GetRunOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface GetRunStepOptionalParams extends OperationOptions {
+    include?: RunAdditionalFieldList[];
+}
+
+// @public
+export interface GetScheduleOptionalParams extends OperationOptions {
+    clientRequestId?: string;
+}
+
+// @public
+export interface GetThreadOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface GetVectorStoreFileBatchOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface GetVectorStoreFileOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface GetVectorStoreOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface GetWorkspaceOptionalParams extends OperationOptions {
 }
 
 // @public
@@ -784,12 +670,100 @@ export enum KnownVersions {
 }
 
 // @public
+export interface ListAgentsOptionalParams extends OperationOptions {
+    after?: string;
+    before?: string;
+    limit?: number;
+    order?: ListSortOrder;
+}
+
+// @public
+export interface ListConnectionsOptionalParams extends OperationOptions {
+    category?: ConnectionType;
+    includeAll?: boolean;
+    target?: string;
+}
+
+// @public
 export interface ListConnectionsResponse {
     value: GetConnectionResponse[];
 }
 
 // @public
+export interface ListFilesOptionalParams extends OperationOptions {
+    purpose?: FilePurpose;
+}
+
+// @public
+export interface ListMessagesOptionalParams extends OperationOptions {
+    after?: string;
+    before?: string;
+    limit?: number;
+    order?: ListSortOrder;
+    runId?: string;
+}
+
+// @public
+export interface ListOptionalParams extends OperationOptions {
+    clientRequestId?: string;
+    maxpagesize?: number;
+    skip?: number;
+    top?: number;
+}
+
+// @public
+export interface ListRunsOptionalParams extends OperationOptions {
+    after?: string;
+    before?: string;
+    limit?: number;
+    order?: ListSortOrder;
+}
+
+// @public
+export interface ListRunStepsOptionalParams extends OperationOptions {
+    after?: string;
+    before?: string;
+    include?: RunAdditionalFieldList[];
+    limit?: number;
+    order?: ListSortOrder;
+}
+
+// @public
+export interface ListScheduleOptionalParams extends OperationOptions {
+    clientRequestId?: string;
+    maxpagesize?: number;
+    skip?: number;
+    top?: number;
+}
+
+// @public
 export type ListSortOrder = "asc" | "desc";
+
+// @public
+export interface ListVectorStoreFileBatchFilesOptionalParams extends OperationOptions {
+    after?: string;
+    before?: string;
+    filter?: VectorStoreFileStatusFilter;
+    limit?: number;
+    order?: ListSortOrder;
+}
+
+// @public
+export interface ListVectorStoreFilesOptionalParams extends OperationOptions {
+    after?: string;
+    before?: string;
+    filter?: VectorStoreFileStatusFilter;
+    limit?: number;
+    order?: ListSortOrder;
+}
+
+// @public
+export interface ListVectorStoresOptionalParams extends OperationOptions {
+    after?: string;
+    before?: string;
+    limit?: number;
+    order?: ListSortOrder;
+}
 
 // @public
 export interface MessageAttachment {
@@ -975,6 +949,13 @@ export interface MicrosoftFabricToolDefinition extends ToolDefinition {
 }
 
 // @public
+export interface ModifyVectorStoreOptionalParams extends OperationOptions {
+    expiresAfter?: VectorStoreExpirationPolicy;
+    metadata?: Record<string, string>;
+    name?: string;
+}
+
+// @public
 export interface OpenAIFile {
     bytes: number;
     createdAt: Date;
@@ -1090,18 +1071,6 @@ export interface OpenApiManagedSecurityScheme {
 export interface OpenApiToolDefinition extends ToolDefinition {
     openapi: OpenApiFunctionDefinition;
     type: "openapi";
-}
-
-// @public
-export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends PageSettings = PageSettings> {
-    [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
-    byPage: (settings?: TPageSettings) => AsyncIterableIterator<ContinuablePage<TElement, TPage>>;
-    next(): Promise<IteratorResult<TElement>>;
-}
-
-// @public
-export interface PageSettings {
-    continuationToken?: string;
 }
 
 // @public
@@ -1484,6 +1453,11 @@ export interface SubmitToolOutputsDetails {
 }
 
 // @public
+export interface SubmitToolOutputsToRunOptionalParams extends OperationOptions {
+    stream?: boolean;
+}
+
+// @public
 export interface SystemData {
     readonly createdAt?: Date;
     readonly createdBy?: string;
@@ -1491,13 +1465,16 @@ export interface SystemData {
     readonly lastModifiedAt?: Date;
 }
 
-// @public
-export interface TelemetryGetAppInsightsOptionalParams extends OperationOptions {
+// @public (undocumented)
+export class Telemetry {
+    constructor(endpointParam: string, subscriptionId: string, resourceGroupName: string, projectName: string, credential: TokenCredential, options?: TelemetryOptionalParams);
+    getAppInsights(appInsightsResourceUrl: string, options?: GetAppInsightsOptionalParams): Promise<GetAppInsightsResponse>;
+    readonly pipeline: Pipeline;
 }
 
 // @public
-export interface TelemetryOperations {
-    getAppInsights: (appInsightsResourceUrl: string, options?: TelemetryGetAppInsightsOptionalParams) => Promise<GetAppInsightsResponse>;
+export interface TelemetryOptionalParams extends ClientOptions {
+    apiVersion?: string;
 }
 
 // @public
@@ -1617,6 +1594,20 @@ export interface TruncationObject {
 export type TruncationStrategy = "auto" | "last_messages";
 
 // @public
+export interface UpdateAgentOptionalParams extends OperationOptions {
+    description?: string;
+    instructions?: string;
+    metadata?: Record<string, string>;
+    model?: string;
+    name?: string;
+    responseFormat?: AgentsApiResponseFormatOption;
+    temperature?: number;
+    toolResources?: ToolResources;
+    tools?: ToolDefinitionUnion[];
+    topP?: number;
+}
+
+// @public
 export interface UpdateCodeInterpreterToolResourceOptions {
     fileIds?: string[];
 }
@@ -1627,10 +1618,35 @@ export interface UpdateFileSearchToolResourceOptions {
 }
 
 // @public
+export interface UpdateMessageOptionalParams extends OperationOptions {
+    metadata?: Record<string, string>;
+}
+
+// @public
+export interface UpdateOptionalParams extends OperationOptions {
+    clientRequestId?: string;
+}
+
+// @public
+export interface UpdateRunOptionalParams extends OperationOptions {
+    metadata?: Record<string, string>;
+}
+
+// @public
+export interface UpdateThreadOptionalParams extends OperationOptions {
+    metadata?: Record<string, string>;
+    toolResources?: ToolResources;
+}
+
+// @public
 export interface UpdateToolResourcesOptions {
     azureAISearch?: AzureAISearchResource;
     codeInterpreter?: UpdateCodeInterpreterToolResourceOptions;
     fileSearch?: UpdateFileSearchToolResourceOptions;
+}
+
+// @public
+export interface UploadFileOptionalParams extends OperationOptions {
 }
 
 // @public

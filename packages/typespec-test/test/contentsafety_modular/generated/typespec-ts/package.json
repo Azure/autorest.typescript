@@ -12,7 +12,13 @@
       "./package.json": "./package.json",
       ".": "./src/index.ts",
       "./models": "./src/models/index.ts",
-      "./api": "./src/api/index.ts"
+      "./api": "./src/api/index.ts",
+      "./textOperations": "./src/textOperations/index.ts",
+      "./textOperations/api": "./src/textOperations/api/index.ts",
+      "./imageOperations": "./src/imageOperations/index.ts",
+      "./imageOperations/api": "./src/imageOperations/api/index.ts",
+      "./textBlocklists": "./src/textBlocklists/index.ts",
+      "./textBlocklists/api": "./src/textBlocklists/api/index.ts"
     },
     "dialects": [
       "esm",
@@ -123,6 +129,114 @@
       "require": {
         "types": "./dist/commonjs/api/index.d.ts",
         "default": "./dist/commonjs/api/index.js"
+      }
+    },
+    "./textOperations": {
+      "browser": {
+        "types": "./dist/browser/textOperations/index.d.ts",
+        "default": "./dist/browser/textOperations/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/textOperations/index.d.ts",
+        "default": "./dist/react-native/textOperations/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/textOperations/index.d.ts",
+        "default": "./dist/esm/textOperations/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/textOperations/index.d.ts",
+        "default": "./dist/commonjs/textOperations/index.js"
+      }
+    },
+    "./textOperations/api": {
+      "browser": {
+        "types": "./dist/browser/textOperations/api/index.d.ts",
+        "default": "./dist/browser/textOperations/api/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/textOperations/api/index.d.ts",
+        "default": "./dist/react-native/textOperations/api/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/textOperations/api/index.d.ts",
+        "default": "./dist/esm/textOperations/api/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/textOperations/api/index.d.ts",
+        "default": "./dist/commonjs/textOperations/api/index.js"
+      }
+    },
+    "./imageOperations": {
+      "browser": {
+        "types": "./dist/browser/imageOperations/index.d.ts",
+        "default": "./dist/browser/imageOperations/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/imageOperations/index.d.ts",
+        "default": "./dist/react-native/imageOperations/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/imageOperations/index.d.ts",
+        "default": "./dist/esm/imageOperations/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/imageOperations/index.d.ts",
+        "default": "./dist/commonjs/imageOperations/index.js"
+      }
+    },
+    "./imageOperations/api": {
+      "browser": {
+        "types": "./dist/browser/imageOperations/api/index.d.ts",
+        "default": "./dist/browser/imageOperations/api/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/imageOperations/api/index.d.ts",
+        "default": "./dist/react-native/imageOperations/api/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/imageOperations/api/index.d.ts",
+        "default": "./dist/esm/imageOperations/api/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/imageOperations/api/index.d.ts",
+        "default": "./dist/commonjs/imageOperations/api/index.js"
+      }
+    },
+    "./textBlocklists": {
+      "browser": {
+        "types": "./dist/browser/textBlocklists/index.d.ts",
+        "default": "./dist/browser/textBlocklists/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/textBlocklists/index.d.ts",
+        "default": "./dist/react-native/textBlocklists/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/textBlocklists/index.d.ts",
+        "default": "./dist/esm/textBlocklists/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/textBlocklists/index.d.ts",
+        "default": "./dist/commonjs/textBlocklists/index.js"
+      }
+    },
+    "./textBlocklists/api": {
+      "browser": {
+        "types": "./dist/browser/textBlocklists/api/index.d.ts",
+        "default": "./dist/browser/textBlocklists/api/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/textBlocklists/api/index.d.ts",
+        "default": "./dist/react-native/textBlocklists/api/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/textBlocklists/api/index.d.ts",
+        "default": "./dist/esm/textBlocklists/api/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/textBlocklists/api/index.d.ts",
+        "default": "./dist/commonjs/textBlocklists/api/index.js"
       }
     }
   },

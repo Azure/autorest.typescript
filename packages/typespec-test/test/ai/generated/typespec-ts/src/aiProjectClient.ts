@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import { Agents, AgentsOptionalParams } from "./agents/agents.js";
+import { Connections, ConnectionsOptionalParams } from "./connections/connections.js";
+import { Telemetry, TelemetryOptionalParams } from "./telemetry/telemetry.js";
+import { Evaluations, EvaluationsOptionalParams } from "./evaluations/evaluations.js";
 import { createAIProject, AIProjectContext, AIProjectClientOptionalParams } from "./api/index.js";
-import { AgentsOperations, _getAgentsOperations } from "./classic/agents/index.js";
-import { ConnectionsOperations, _getConnectionsOperations } from "./classic/connections/index.js";
-import { EvaluationsOperations, _getEvaluationsOperations } from "./classic/evaluations/index.js";
-import { TelemetryOperations, _getTelemetryOperations } from "./classic/telemetry/index.js";
 import { TokenCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
@@ -15,6 +15,15 @@ export class AIProjectClient {
   private _client: AIProjectContext;
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
+  /** The parent client parameters that are used in the constructors. */
+  private _clientParams: {
+    endpointParam: string;
+    subscriptionId: string;
+    resourceGroupName: string;
+    projectName: string;
+    credential: TokenCredential;
+    options: AIProjectClientOptionalParams;
+  };
 
   constructor(
     endpointParam: string,
@@ -37,18 +46,61 @@ export class AIProjectClient {
       { ...options, userAgentOptions: { userAgentPrefix } },
     );
     this.pipeline = this._client.pipeline;
-    this.evaluations = _getEvaluationsOperations(this._client);
-    this.telemetry = _getTelemetryOperations(this._client);
-    this.connections = _getConnectionsOperations(this._client);
-    this.agents = _getAgentsOperations(this._client);
+    this._clientParams = {
+      endpointParam,
+      subscriptionId,
+      resourceGroupName,
+      projectName,
+      credential,
+      options,
+    };
   }
 
-  /** The operation groups for evaluations */
-  public readonly evaluations: EvaluationsOperations;
-  /** The operation groups for telemetry */
-  public readonly telemetry: TelemetryOperations;
-  /** The operation groups for connections */
-  public readonly connections: ConnectionsOperations;
-  /** The operation groups for agents */
-  public readonly agents: AgentsOperations;
+  getAgents(options: AgentsOptionalParams = {}): Agents {
+    return new Agents(
+      this._clientParams.endpointParam,
+      this._clientParams.subscriptionId,
+      this._clientParams.resourceGroupName,
+      this._clientParams.projectName,
+      this._clientParams.credential,
+
+      { ...this._clientParams.options, ...options },
+    );
+  }
+
+  getConnections(options: ConnectionsOptionalParams = {}): Connections {
+    return new Connections(
+      this._clientParams.endpointParam,
+      this._clientParams.subscriptionId,
+      this._clientParams.resourceGroupName,
+      this._clientParams.projectName,
+      this._clientParams.credential,
+
+      { ...this._clientParams.options, ...options },
+    );
+  }
+
+  getTelemetry(options: TelemetryOptionalParams = {}): Telemetry {
+    return new Telemetry(
+      this._clientParams.endpointParam,
+      this._clientParams.subscriptionId,
+      this._clientParams.resourceGroupName,
+      this._clientParams.projectName,
+      this._clientParams.credential,
+
+      { ...this._clientParams.options, ...options },
+    );
+  }
+
+  getEvaluations(options: EvaluationsOptionalParams = {}): Evaluations {
+    return new Evaluations(
+      this._clientParams.endpointParam,
+      this._clientParams.subscriptionId,
+      this._clientParams.resourceGroupName,
+      this._clientParams.projectName,
+      this._clientParams.credential,
+
+      { ...this._clientParams.options, ...options },
+    );
+  }
 }

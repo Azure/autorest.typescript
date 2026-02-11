@@ -19,20 +19,24 @@ export {
   YDataverseV2DataverseEventPosition,
 } from "./models/y/dataverseV2/index.js";
 export { FooClientOptionalParams, Op1OptionalParams } from "./api/index.js";
-export { BOp1OptionalParams } from "./api/b/index.js";
-export { DOp1OptionalParams } from "./api/d/index.js";
-export { BCOp1OptionalParams } from "./api/b/c/index.js";
+export { B } from "./b/b.js";
+export { BOptionalParams, Op1OptionalParams as BOp1OptionalParams } from "./b/api/index.js";
+export { Y } from "./y/y.js";
+export { YOptionalParams } from "./y/api/index.js";
+export { D } from "./d/d.js";
+export { DOptionalParams, Op1OptionalParams as DOp1OptionalParams } from "./d/api/index.js";
+export { E } from "./b/e/e.js";
+export { EOptionalParams } from "./b/e/api/index.js";
+export { C } from "./b/c/c.js";
+export { COptionalParams, Op1OptionalParams as COp1OptionalParams } from "./b/c/api/index.js";
+export { TestOperations } from "./y/testOperations/testOperations.js";
 export {
-  YTestOperationsTestDataverseV2OptionalParams,
-  YTestOperationsTestDataverseOptionalParams,
-} from "./api/y/testOperations/index.js";
-export { BECOp1OptionalParams } from "./api/b/e/c/index.js";
+  TestDataverseV2OptionalParams,
+  TestDataverseOptionalParams,
+  TestOperationsOptionalParams,
+} from "./y/testOperations/api/index.js";
+export { C } from "./b/e/c/c.js";
 export {
-  BOperations,
-  DOperations,
-  YOperations,
-  BCOperations,
-  BEOperations,
-  YTestOperationsOperations,
-  BECOperations,
-} from "./classic/index.js";
+  COptionalParams as CCOptionalParams,
+  Op1OptionalParams as COp1OptionalParams,
+} from "./b/e/c/api/index.js";

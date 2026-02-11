@@ -15,13 +15,22 @@ export interface Collection {
     readonly collectionId: string;
 }
 
-// @public
-export interface ConfidentialLedgerListCollectionsOptionalParams extends OperationOptions {
+// @public (undocumented)
+export class ConfidentialLedger {
+    constructor(credential: TokenCredential, options?: ConfidentialLedgerOptionalParams);
+    listCollections(options?: ListCollectionsOptionalParams): Promise<Collection[]>;
+    readonly pipeline: Pipeline;
 }
 
 // @public
-export interface ConfidentialLedgerOperations {
-    listCollections: (options?: ConfidentialLedgerListCollectionsOptionalParams) => Promise<Collection[]>;
+export interface ConfidentialLedgerOptionalParams extends ClientOptions {
+    apiVersion?: string;
+    // (undocumented)
+    host?: string;
+    // (undocumented)
+    subdomain?: string;
+    // (undocumented)
+    sufix?: string;
 }
 
 // @public
@@ -29,10 +38,15 @@ export enum KnownVersions {
     V1 = "v1"
 }
 
+// @public
+export interface ListCollectionsOptionalParams extends OperationOptions {
+}
+
 // @public (undocumented)
 export class ParametrizedHostClient {
     constructor(credential: TokenCredential, options?: ParametrizedHostClientOptionalParams);
-    readonly confidentialLedger: ConfidentialLedgerOperations;
+    // (undocumented)
+    getConfidentialLedger(options?: ConfidentialLedgerOptionalParams): ConfidentialLedger;
     readonly pipeline: Pipeline;
 }
 
