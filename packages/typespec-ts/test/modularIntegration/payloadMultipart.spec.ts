@@ -160,9 +160,7 @@ describe("Multipart Client", () => {
       });
     });
 
-    // TODO fix the serialization
-    it.skip("non-string (float value)", async () => {
-      // the generation is correct now, but the serialization is not
+    it("non-string (float value)", async () => {
       await client.formData.httpParts.nonString.float({ temperature: 0.5 });
     });
 
