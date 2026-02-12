@@ -1,6 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import {
+  PageSettings,
+  ContinuablePage,
+  PagedAsyncIterableIterator,
+} from "./static-helpers/pagingHelpers.js";
+
 export { SchemaRegistryClient } from "./schemaRegistryClient.js";
 export {
   SchemaGroup,
@@ -13,13 +19,13 @@ export {
   ContentTypeEnum,
 } from "./models/index.js";
 export { SchemaRegistryClientOptionalParams } from "./api/index.js";
-export { SchemaOperations } from "./schemaOperations/schemaOperations.js";
 export {
-  RegisterSchemaOptionalParams,
-  GetSchemaIdByContentOptionalParams,
-  GetSchemaByVersionOptionalParams,
-  ListSchemaVersionsOptionalParams,
-  GetSchemaByIdOptionalParams,
-  ListSchemaGroupsOptionalParams,
-  SchemaOperationsOptionalParams,
-} from "./schemaOperations/api/index.js";
+  SchemaOperationsRegisterSchemaOptionalParams,
+  SchemaOperationsGetSchemaIdByContentOptionalParams,
+  SchemaOperationsGetSchemaByVersionOptionalParams,
+  SchemaOperationsListSchemaVersionsOptionalParams,
+  SchemaOperationsGetSchemaByIdOptionalParams,
+  SchemaOperationsListSchemaGroupsOptionalParams,
+} from "./api/schemaOperations/index.js";
+export { SchemaOperationsOperations } from "./classic/index.js";
+export { PageSettings, ContinuablePage, PagedAsyncIterableIterator };

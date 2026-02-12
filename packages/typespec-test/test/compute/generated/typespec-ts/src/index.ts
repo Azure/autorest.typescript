@@ -2,8 +2,14 @@
 // Licensed under the MIT License.
 
 import { AzureClouds, AzureSupportedClouds } from "./static-helpers/cloudSettingHelpers.js";
+import {
+  PageSettings,
+  ContinuablePage,
+  PagedAsyncIterableIterator,
+} from "./static-helpers/pagingHelpers.js";
 
 export { ComputeClient } from "./computeClient.js";
+export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
 export {
   KnownResourceProvisioningState,
   ResourceProvisioningState,
@@ -33,51 +39,37 @@ export {
   ComputeActionGroupsProperties,
 } from "./models/compute/index.js";
 export {
-  ComputeDiskActionGroup,
-  ComputeDiskActionGroupsProperties,
   ComputeDiskDisk,
   ComputeDiskDiskProperties,
   ComputeDiskDiskAccess,
   ComputeDiskDiskAccessProperties,
+  ComputeDiskActionGroup,
+  ComputeDiskActionGroupsProperties,
 } from "./models/computeDisk/index.js";
 export { ComputeClientOptionalParams } from "./api/index.js";
+export {
+  ActionGroupsListOptionalParams,
+  ActionGroupsGetOptionalParams,
+} from "./api/actionGroups/index.js";
+export {
+  DiskAccessesCreateOrUpdateOptionalParams,
+  DiskAccessesGetOptionalParams,
+} from "./api/diskAccesses/index.js";
+export { DisksCreateOrUpdateOptionalParams, DisksGetOptionalParams } from "./api/disks/index.js";
+export {
+  RestorePointCollectionsCreateOrUpdateOptionalParams,
+  RestorePointCollectionsGetOptionalParams,
+} from "./api/restorePointCollections/index.js";
+export {
+  VirtualMachinesCreateOrUpdateOptionalParams,
+  VirtualMachinesGetOptionalParams,
+} from "./api/virtualMachines/index.js";
+export {
+  ActionGroupsOperations,
+  DiskAccessesOperations,
+  DisksOperations,
+  RestorePointCollectionsOperations,
+  VirtualMachinesOperations,
+} from "./classic/index.js";
+export { PageSettings, ContinuablePage, PagedAsyncIterableIterator };
 export { AzureClouds, AzureSupportedClouds };
-export { VirtualMachines } from "./virtualMachines/virtualMachines.js";
-export { restorePoller, RestorePollerOptions } from "./virtualMachines/restorePollerHelpers.js";
-export {
-  CreateOrUpdateOptionalParams,
-  GetOptionalParams,
-  VirtualMachinesOptionalParams,
-} from "./virtualMachines/api/index.js";
-export { RestorePointCollections } from "./restorePointCollections/restorePointCollections.js";
-export {
-  CreateOrUpdateOptionalParams as RestorePointCollectionsCreateOrUpdateOptionalParams,
-  GetOptionalParams as RestorePointCollectionsGetOptionalParams,
-  RestorePointCollectionsOptionalParams,
-} from "./restorePointCollections/api/index.js";
-export { ActionGroups } from "./actionGroups/actionGroups.js";
-export {
-  ActionGroupsOptionalParams,
-  ListOptionalParams,
-  GetOptionalParams as ActionGroupsGetOptionalParams,
-} from "./actionGroups/api/index.js";
-export { Disks } from "./disks/disks.js";
-export {
-  restorePoller as DisksrestorePoller,
-  RestorePollerOptions as DisksRestorePollerOptions,
-} from "./disks/restorePollerHelpers.js";
-export {
-  DisksOptionalParams,
-  CreateOrUpdateOptionalParams as DisksCreateOrUpdateOptionalParams,
-  GetOptionalParams as DisksGetOptionalParams,
-} from "./disks/api/index.js";
-export { DiskAccesses } from "./diskAccesses/diskAccesses.js";
-export {
-  restorePoller as DiskAccessesrestorePoller,
-  RestorePollerOptions as DiskAccessesRestorePollerOptions,
-} from "./diskAccesses/restorePollerHelpers.js";
-export {
-  DiskAccessesOptionalParams,
-  CreateOrUpdateOptionalParams as DiskAccessesCreateOrUpdateOptionalParams,
-  GetOptionalParams as DiskAccessesGetOptionalParams,
-} from "./diskAccesses/api/index.js";

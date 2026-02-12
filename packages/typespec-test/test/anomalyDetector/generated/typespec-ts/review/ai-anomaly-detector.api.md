@@ -12,11 +12,9 @@ import { Pipeline } from '@azure/core-rest-pipeline';
 // @public (undocumented)
 export class AnomalyDetectorClient {
     constructor(endpointParam: string, credential: KeyCredential, options?: AnomalyDetectorClientOptionalParams);
-    // (undocumented)
-    getMultivariate(options?: MultivariateOptionalParams): Multivariate;
-    // (undocumented)
-    getUnivariate(options?: UnivariateOptionalParams): Univariate;
+    readonly multivariate: MultivariateOperations;
     readonly pipeline: Pipeline;
+    readonly univariate: UnivariateOperations;
 }
 
 // @public
@@ -28,56 +26,9 @@ export interface AnomalyDetectorClientOptionalParams extends ClientOptions {
 export type APIVersion = "v1.1";
 
 // @public
-export interface DeleteMultivariateModelOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface DetectMultivariateBatchAnomalyOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface DetectMultivariateLastAnomalyOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface DetectUnivariateChangePointOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface DetectUnivariateEntireSeriesOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface DetectUnivariateLastPointOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface GetMultivariateBatchDetectionResultOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface GetMultivariateModelOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface ListMultivariateModelsOptionalParams extends OperationOptions {
-    skip?: number;
-    top?: number;
-}
-
-// @public (undocumented)
-export class Multivariate {
-    constructor(endpointParam: string, credential: KeyCredential, options?: MultivariateOptionalParams);
-    deleteMultivariateModel(modelId: string, options?: DeleteMultivariateModelOptionalParams): Promise<void>;
-    detectMultivariateBatchAnomaly(modelId: string, options: MultivariateMultivariateBatchDetectionOptions, optionalParams?: DetectMultivariateBatchAnomalyOptionalParams): Promise<MultivariateMultivariateDetectionResult>;
-    detectMultivariateLastAnomaly(modelId: string, options: MultivariateMultivariateLastDetectionOptions, optionalParams?: DetectMultivariateLastAnomalyOptionalParams): Promise<MultivariateMultivariateLastDetectionResult>;
-    getMultivariateBatchDetectionResult(resultId: string, options?: GetMultivariateBatchDetectionResultOptionalParams): Promise<MultivariateMultivariateDetectionResult>;
-    getMultivariateModel(modelId: string, options?: GetMultivariateModelOptionalParams): Promise<MultivariateAnomalyDetectionModel>;
-    // Warning: (ae-forgotten-export) The symbol "PagedAsyncIterableIterator" needs to be exported by the entry point index.d.ts
-    listMultivariateModels(options?: ListMultivariateModelsOptionalParams): PagedAsyncIterableIterator<MultivariateAnomalyDetectionModel>;
-    readonly pipeline: Pipeline;
-    trainMultivariateModel(modelInfo: MultivariateModelInfo, options?: TrainMultivariateModelOptionalParams): Promise<MultivariateAnomalyDetectionModel>;
-}
+export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
+    continuationToken?: string;
+};
 
 // @public
 export type MultivariateAlignMode = "Inner" | "Outer";
@@ -128,6 +79,18 @@ export interface MultivariateCorrelationChanges {
 export type MultivariateDataSchema = "OneTable" | "MultiTable";
 
 // @public
+export interface MultivariateDeleteMultivariateModelOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface MultivariateDetectMultivariateBatchAnomalyOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface MultivariateDetectMultivariateLastAnomalyOptionalParams extends OperationOptions {
+}
+
+// @public
 export interface MultivariateDiagnosticsInfo {
     modelState?: MultivariateModelState;
     variableStates?: MultivariateVariableState[];
@@ -141,6 +104,20 @@ export interface MultivariateErrorResponse {
 
 // @public
 export type MultivariateFillNAMethod = "Previous" | "Subsequent" | "Linear" | "Zero" | "Fixed";
+
+// @public
+export interface MultivariateGetMultivariateBatchDetectionResultOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface MultivariateGetMultivariateModelOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface MultivariateListMultivariateModelsOptionalParams extends OperationOptions {
+    skip?: number;
+    top?: number;
+}
 
 // @public
 export interface MultivariateModelInfo {
@@ -206,14 +183,24 @@ export interface MultivariateMultivariateLastDetectionResult {
 }
 
 // @public
-export interface MultivariateOptionalParams extends ClientOptions {
-    apiVersion?: string;
+export interface MultivariateOperations {
+    deleteMultivariateModel: (modelId: string, options?: MultivariateDeleteMultivariateModelOptionalParams) => Promise<void>;
+    detectMultivariateBatchAnomaly: (modelId: string, options: MultivariateMultivariateBatchDetectionOptions, optionalParams?: MultivariateDetectMultivariateBatchAnomalyOptionalParams) => Promise<MultivariateMultivariateDetectionResult>;
+    detectMultivariateLastAnomaly: (modelId: string, options: MultivariateMultivariateLastDetectionOptions, optionalParams?: MultivariateDetectMultivariateLastAnomalyOptionalParams) => Promise<MultivariateMultivariateLastDetectionResult>;
+    getMultivariateBatchDetectionResult: (resultId: string, options?: MultivariateGetMultivariateBatchDetectionResultOptionalParams) => Promise<MultivariateMultivariateDetectionResult>;
+    getMultivariateModel: (modelId: string, options?: MultivariateGetMultivariateModelOptionalParams) => Promise<MultivariateAnomalyDetectionModel>;
+    listMultivariateModels: (options?: MultivariateListMultivariateModelsOptionalParams) => PagedAsyncIterableIterator<MultivariateAnomalyDetectionModel>;
+    trainMultivariateModel: (modelInfo: MultivariateModelInfo, options?: MultivariateTrainMultivariateModelOptionalParams) => Promise<MultivariateAnomalyDetectionModel>;
 }
 
 // @public
 export interface MultivariateResponseError {
     code: string;
     message: string;
+}
+
+// @public
+export interface MultivariateTrainMultivariateModelOptionalParams extends OperationOptions {
 }
 
 // @public
@@ -233,16 +220,15 @@ export interface MultivariateVariableValues {
 }
 
 // @public
-export interface TrainMultivariateModelOptionalParams extends OperationOptions {
+export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends PageSettings = PageSettings> {
+    [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
+    byPage: (settings?: TPageSettings) => AsyncIterableIterator<ContinuablePage<TElement, TPage>>;
+    next(): Promise<IteratorResult<TElement>>;
 }
 
-// @public (undocumented)
-export class Univariate {
-    constructor(endpointParam: string, credential: KeyCredential, options?: UnivariateOptionalParams);
-    detectUnivariateChangePoint(options: UnivariateUnivariateChangePointDetectionOptions, optionalParams?: DetectUnivariateChangePointOptionalParams): Promise<UnivariateUnivariateChangePointDetectionResult>;
-    detectUnivariateEntireSeries(options: UnivariateUnivariateDetectionOptions, optionalParams?: DetectUnivariateEntireSeriesOptionalParams): Promise<UnivariateUnivariateEntireDetectionResult>;
-    detectUnivariateLastPoint(options: UnivariateUnivariateDetectionOptions, optionalParams?: DetectUnivariateLastPointOptionalParams): Promise<UnivariateUnivariateLastDetectionResult>;
-    readonly pipeline: Pipeline;
+// @public
+export interface PageSettings {
+    continuationToken?: string;
 }
 
 // @public
@@ -255,11 +241,25 @@ export interface UnivariateAnomalyDetectorError {
 export type UnivariateAnomalyDetectorErrorCodes = "InvalidCustomInterval" | "BadArgument" | "InvalidGranularity" | "InvalidPeriod" | "InvalidModelArgument" | "InvalidSeries" | "InvalidJsonFormat" | "RequiredGranularity" | "RequiredSeries" | "InvalidImputeMode" | "InvalidImputeFixedValue";
 
 // @public
+export interface UnivariateDetectUnivariateChangePointOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface UnivariateDetectUnivariateEntireSeriesOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface UnivariateDetectUnivariateLastPointOptionalParams extends OperationOptions {
+}
+
+// @public
 export type UnivariateImputeMode = "auto" | "previous" | "linear" | "fixed" | "zero" | "notFill";
 
 // @public
-export interface UnivariateOptionalParams extends ClientOptions {
-    apiVersion?: string;
+export interface UnivariateOperations {
+    detectUnivariateChangePoint: (options: UnivariateUnivariateChangePointDetectionOptions, optionalParams?: UnivariateDetectUnivariateChangePointOptionalParams) => Promise<UnivariateUnivariateChangePointDetectionResult>;
+    detectUnivariateEntireSeries: (options: UnivariateUnivariateDetectionOptions, optionalParams?: UnivariateDetectUnivariateEntireSeriesOptionalParams) => Promise<UnivariateUnivariateEntireDetectionResult>;
+    detectUnivariateLastPoint: (options: UnivariateUnivariateDetectionOptions, optionalParams?: UnivariateDetectUnivariateLastPointOptionalParams) => Promise<UnivariateUnivariateLastDetectionResult>;
 }
 
 // @public

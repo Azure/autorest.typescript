@@ -3,11 +3,10 @@
 
 export { DemoServiceClient } from "./demoServiceClient.js";
 export { DemoServiceClientOptionalParams } from "./api/index.js";
-export { A } from "./a/a.js";
 export {
-  AOptionalParams,
-  Test4OptionalParams,
-  Test3OptionalParams,
-  Test2OptionalParams,
-  Test1OptionalParams,
-} from "./a/api/index.js";
+  ATest4OptionalParams,
+  ATest3OptionalParams,
+  ATest2OptionalParams,
+  ATest1OptionalParams,
+} from "./api/a/index.js";
+export { AOperations } from "./classic/index.js";

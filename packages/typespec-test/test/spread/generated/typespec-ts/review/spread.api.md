@@ -8,54 +8,47 @@ import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
-// @public (undocumented)
-export class A {
-    constructor(endpointParam: string, options?: AOptionalParams);
-    readonly pipeline: Pipeline;
+// @public
+export interface AOperations {
     // (undocumented)
-    test1(a: string, b: string, c: string, options?: Test1OptionalParams): Promise<void>;
+    test1: (a: string, b: string, c: string, options?: ATest1OptionalParams) => Promise<void>;
     // (undocumented)
-    test2(prop: string, options?: Test2OptionalParams): Promise<void>;
+    test2: (prop: string, options?: ATest2OptionalParams) => Promise<void>;
     // (undocumented)
-    test3(body: {
+    test3: (body: {
         prop: string;
-    }, options?: Test3OptionalParams): Promise<void>;
+    }, options?: ATest3OptionalParams) => Promise<void>;
     // (undocumented)
-    test4(body: {
+    test4: (body: {
         prop: string;
-    }, options?: Test4OptionalParams): Promise<void>;
+    }, options?: ATest4OptionalParams) => Promise<void>;
 }
 
 // @public
-export interface AOptionalParams extends ClientOptions {
+export interface ATest1OptionalParams extends OperationOptions {
+}
+
+// @public
+export interface ATest2OptionalParams extends OperationOptions {
+}
+
+// @public
+export interface ATest3OptionalParams extends OperationOptions {
+}
+
+// @public
+export interface ATest4OptionalParams extends OperationOptions {
 }
 
 // @public (undocumented)
 export class DemoServiceClient {
     constructor(endpointParam: string, options?: DemoServiceClientOptionalParams);
-    // (undocumented)
-    getA(options?: AOptionalParams): A;
+    readonly a: AOperations;
     readonly pipeline: Pipeline;
 }
 
 // @public
 export interface DemoServiceClientOptionalParams extends ClientOptions {
-}
-
-// @public
-export interface Test1OptionalParams extends OperationOptions {
-}
-
-// @public
-export interface Test2OptionalParams extends OperationOptions {
-}
-
-// @public
-export interface Test3OptionalParams extends OperationOptions {
-}
-
-// @public
-export interface Test4OptionalParams extends OperationOptions {
 }
 
 // (No @packageDocumentation comment for this package)

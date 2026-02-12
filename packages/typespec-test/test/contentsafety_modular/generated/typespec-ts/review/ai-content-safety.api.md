@@ -68,19 +68,30 @@ export interface AnalyzeTextResult {
 // @public (undocumented)
 export class ContentSafetyClient {
     constructor(endpointParam: string, credential: KeyCredential | TokenCredential, options?: ContentSafetyClientOptionalParams);
-    // (undocumented)
-    getImageOperations(options?: ImageOperationsOptionalParams): ImageOperations;
-    // (undocumented)
-    getTextBlocklists(options?: TextBlocklistsOptionalParams): TextBlocklists;
-    // (undocumented)
-    getTextOperations(options?: TextOperationsOptionalParams): TextOperations;
+    addOrUpdateBlocklistItems(blocklistName: string, body: AddOrUpdateTextBlocklistItemsOptions, options?: AddOrUpdateBlocklistItemsOptionalParams): Promise<AddOrUpdateTextBlocklistItemsResult>;
+    analyzeImage(body: AnalyzeImageOptions, options?: AnalyzeImageOptionalParams): Promise<AnalyzeImageResult>;
+    analyzeText(body: AnalyzeTextOptions, options?: AnalyzeTextOptionalParams): Promise<AnalyzeTextResult>;
+    createOrUpdateTextBlocklist(blocklistName: string, resource: TextBlocklist, options?: CreateOrUpdateTextBlocklistOptionalParams): Promise<TextBlocklist>;
+    deleteTextBlocklist(blocklistName: string, options?: DeleteTextBlocklistOptionalParams): Promise<void>;
+    detectTextProtectedMaterial(body: DetectTextProtectedMaterialOptions, options?: DetectTextProtectedMaterialOptionalParams): Promise<DetectTextProtectedMaterialResult>;
+    getTextBlocklist(blocklistName: string, options?: GetTextBlocklistOptionalParams): Promise<TextBlocklist>;
+    getTextBlocklistItem(blocklistName: string, blocklistItemId: string, options?: GetTextBlocklistItemOptionalParams): Promise<TextBlocklistItem>;
+    listTextBlocklistItems(blocklistName: string, options?: ListTextBlocklistItemsOptionalParams): PagedAsyncIterableIterator<TextBlocklistItem>;
+    listTextBlocklists(options?: ListTextBlocklistsOptionalParams): PagedAsyncIterableIterator<TextBlocklist>;
     readonly pipeline: Pipeline;
+    removeBlocklistItems(blocklistName: string, body: RemoveTextBlocklistItemsOptions, options?: RemoveBlocklistItemsOptionalParams): Promise<void>;
+    shieldPrompt(body: ShieldPromptOptions, options?: ShieldPromptOptionalParams): Promise<ShieldPromptResult>;
 }
 
 // @public
 export interface ContentSafetyClientOptionalParams extends ClientOptions {
     apiVersion?: string;
 }
+
+// @public
+export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
+    continuationToken?: string;
+};
 
 // @public
 export interface CreateOrUpdateTextBlocklistOptionalParams extends OperationOptions {
@@ -132,18 +143,6 @@ export interface ImageData {
     content?: Uint8Array;
 }
 
-// @public (undocumented)
-export class ImageOperations {
-    constructor(endpointParam: string, credential: KeyCredential | TokenCredential, options?: ImageOperationsOptionalParams);
-    analyzeImage(body: AnalyzeImageOptions, options?: AnalyzeImageOptionalParams): Promise<AnalyzeImageResult>;
-    readonly pipeline: Pipeline;
-}
-
-// @public
-export interface ImageOperationsOptionalParams extends ClientOptions {
-    apiVersion?: string;
-}
-
 // @public
 export enum KnownVersions {
     V20231001 = "2023-10-01",
@@ -159,6 +158,18 @@ export interface ListTextBlocklistItemsOptionalParams extends OperationOptions {
 
 // @public
 export interface ListTextBlocklistsOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends PageSettings = PageSettings> {
+    [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
+    byPage: (settings?: TPageSettings) => AsyncIterableIterator<ContinuablePage<TElement, TPage>>;
+    next(): Promise<IteratorResult<TElement>>;
+}
+
+// @public
+export interface PageSettings {
+    continuationToken?: string;
 }
 
 // @public
@@ -207,26 +218,6 @@ export interface TextBlocklistMatch {
     blocklistName: string;
 }
 
-// @public (undocumented)
-export class TextBlocklists {
-    constructor(endpointParam: string, credential: KeyCredential | TokenCredential, options?: TextBlocklistsOptionalParams);
-    addOrUpdateBlocklistItems(blocklistName: string, body: AddOrUpdateTextBlocklistItemsOptions, options?: AddOrUpdateBlocklistItemsOptionalParams): Promise<AddOrUpdateTextBlocklistItemsResult>;
-    createOrUpdateTextBlocklist(blocklistName: string, resource: TextBlocklist, options?: CreateOrUpdateTextBlocklistOptionalParams): Promise<TextBlocklist>;
-    deleteTextBlocklist(blocklistName: string, options?: DeleteTextBlocklistOptionalParams): Promise<void>;
-    getTextBlocklist(blocklistName: string, options?: GetTextBlocklistOptionalParams): Promise<TextBlocklist>;
-    getTextBlocklistItem(blocklistName: string, blocklistItemId: string, options?: GetTextBlocklistItemOptionalParams): Promise<TextBlocklistItem>;
-    // Warning: (ae-forgotten-export) The symbol "PagedAsyncIterableIterator" needs to be exported by the entry point index.d.ts
-    listTextBlocklistItems(blocklistName: string, options?: ListTextBlocklistItemsOptionalParams): PagedAsyncIterableIterator<TextBlocklistItem>;
-    listTextBlocklists(options?: ListTextBlocklistsOptionalParams): PagedAsyncIterableIterator<TextBlocklist>;
-    readonly pipeline: Pipeline;
-    removeBlocklistItems(blocklistName: string, body: RemoveTextBlocklistItemsOptions, options?: RemoveBlocklistItemsOptionalParams): Promise<void>;
-}
-
-// @public
-export interface TextBlocklistsOptionalParams extends ClientOptions {
-    apiVersion?: string;
-}
-
 // @public
 export interface TextCategoriesAnalysis {
     category: TextCategory;
@@ -235,20 +226,6 @@ export interface TextCategoriesAnalysis {
 
 // @public
 export type TextCategory = "Hate" | "SelfHarm" | "Sexual" | "Violence";
-
-// @public (undocumented)
-export class TextOperations {
-    constructor(endpointParam: string, credential: KeyCredential | TokenCredential, options?: TextOperationsOptionalParams);
-    analyzeText(body: AnalyzeTextOptions, options?: AnalyzeTextOptionalParams): Promise<AnalyzeTextResult>;
-    detectTextProtectedMaterial(body: DetectTextProtectedMaterialOptions, options?: DetectTextProtectedMaterialOptionalParams): Promise<DetectTextProtectedMaterialResult>;
-    readonly pipeline: Pipeline;
-    shieldPrompt(body: ShieldPromptOptions, options?: ShieldPromptOptionalParams): Promise<ShieldPromptResult>;
-}
-
-// @public
-export interface TextOperationsOptionalParams extends ClientOptions {
-    apiVersion?: string;
-}
 
 // @public
 export interface TextProtectedMaterialAnalysisResult {

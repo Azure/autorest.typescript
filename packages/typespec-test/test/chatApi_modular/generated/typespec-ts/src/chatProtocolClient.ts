@@ -2,14 +2,18 @@
 // Licensed under the MIT License.
 
 import {
-  GenericChatClient,
-  GenericChatClientOptionalParams,
-} from "./genericChat/genericChatClient.js";
-import {
   createChatProtocol,
   ChatProtocolContext,
   ChatProtocolClientOptionalParams,
 } from "./api/index.js";
+import { create, createStreaming } from "./api/operations.js";
+import { CreateOptionalParams, CreateStreamingOptionalParams } from "./api/options.js";
+import {
+  StreamingChatCompletionOptionsRecord,
+  ChatCompletionChunkRecord,
+  ChatCompletionOptionsRecord,
+  ChatCompletionRecord,
+} from "./models/models.js";
 import { KeyCredential, TokenCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
@@ -19,12 +23,6 @@ export class ChatProtocolClient {
   private _client: ChatProtocolContext;
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
-  /** The parent client parameters that are used in the constructors. */
-  private _clientParams: {
-    endpointParam: string;
-    credential: KeyCredential | TokenCredential;
-    options: ChatProtocolClientOptionalParams;
-  };
 
   /** Azure APIs for the Azure Chat protocol. */
   constructor(
@@ -41,15 +39,21 @@ export class ChatProtocolClient {
       userAgentOptions: { userAgentPrefix },
     });
     this.pipeline = this._client.pipeline;
-    this._clientParams = { endpointParam, credential, options };
   }
 
-  getGenericChatClient(options: GenericChatClientOptionalParams = {}): GenericChatClient {
-    return new GenericChatClient(
-      this._clientParams.endpointParam,
-      this._clientParams.credential,
+  /** Creates a new chat completion. */
+  create(
+    body: ChatCompletionOptionsRecord,
+    options: CreateOptionalParams = { requestOptions: {} },
+  ): Promise<ChatCompletionRecord> {
+    return create(this._client, body, options);
+  }
 
-      { ...this._clientParams.options, ...options },
-    );
+  /** Creates a new streaming chat completion. */
+  createStreaming(
+    body: StreamingChatCompletionOptionsRecord,
+    options: CreateStreamingOptionalParams = { requestOptions: {} },
+  ): Promise<ChatCompletionChunkRecord> {
+    return createStreaming(this._client, body, options);
   }
 }

@@ -1,12 +1,15 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { FooOperations, FooOperationsOptionalParams } from "./fooOperations/fooOperations.js";
 import {
   createWidgetManager,
   WidgetManagerContext,
   WidgetManagerClientOptionalParams,
 } from "./api/index.js";
+import {
+  FooOperationsOperations,
+  _getFooOperationsOperations,
+} from "./classic/fooOperations/index.js";
 import { KeyCredential, TokenCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
@@ -16,12 +19,6 @@ export class WidgetManagerClient {
   private _client: WidgetManagerContext;
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
-  /** The parent client parameters that are used in the constructors. */
-  private _clientParams: {
-    endpointParam: string;
-    credential: KeyCredential | TokenCredential;
-    options: WidgetManagerClientOptionalParams;
-  };
 
   constructor(
     endpointParam: string,
@@ -37,15 +34,9 @@ export class WidgetManagerClient {
       userAgentOptions: { userAgentPrefix },
     });
     this.pipeline = this._client.pipeline;
-    this._clientParams = { endpointParam, credential, options };
+    this.fooOperations = _getFooOperationsOperations(this._client);
   }
 
-  getFooOperations(options: FooOperationsOptionalParams = {}): FooOperations {
-    return new FooOperations(
-      this._clientParams.endpointParam,
-      this._clientParams.credential,
-
-      { ...this._clientParams.options, ...options },
-    );
-  }
+  /** The operation groups for fooOperations */
+  public readonly fooOperations: FooOperationsOperations;
 }

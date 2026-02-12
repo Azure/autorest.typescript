@@ -20,17 +20,7 @@ export interface AnalyzeResult {
 }
 
 // @public
-export interface AnalyzeWidgetOptionalParams extends OperationOptions {
-}
-
-// @public (undocumented)
-export class Budgets {
-    constructor(endpointParam: string, credential: KeyCredential, options?: BudgetsOptionalParams);
-    continue(options?: ContinueOptionalParams): Promise<void>;
-    createOrReplace(name: string, resource: SAPUser, options?: BudgetsCreateOrReplaceOptionalParams): PollerLike<OperationState<SAPUser>, SAPUser>;
-    // (undocumented)
-    getBudgets(name: string, options?: GetBudgetsOptionalParams): Promise<Widget[]>;
-    readonly pipeline: Pipeline;
+export interface BudgetsContinueOptionalParams extends OperationOptions {
 }
 
 // @public
@@ -39,52 +29,25 @@ export interface BudgetsCreateOrReplaceOptionalParams extends OperationOptions {
 }
 
 // @public
-export interface BudgetsOptionalParams extends ClientOptions {
-    apiVersion?: string;
+export interface BudgetsGetBudgetsOptionalParams extends OperationOptions {
 }
 
 // @public
-export function BudgetsrestorePoller<TResponse extends PathUncheckedResponse, TResult>(client: Budgets, serializedState: string, sourceOperation: (...args: any[]) => PollerLike<OperationState<TResult>, TResult>, options?: BudgetsRestorePollerOptions<TResult>): PollerLike<OperationState<TResult>, TResult>;
-
-// @public (undocumented)
-export interface BudgetsRestorePollerOptions<TResult, TResponse extends PathUncheckedResponse = PathUncheckedResponse> extends OperationOptions {
-    abortSignal?: AbortSignalLike;
-    processResponseBody?: (result: TResponse) => Promise<TResult>;
-    updateIntervalInMs?: number;
+export interface BudgetsOperations {
+    continue: (options?: BudgetsContinueOptionalParams) => Promise<void>;
+    createOrReplace: (name: string, resource: SAPUser, options?: BudgetsCreateOrReplaceOptionalParams) => PollerLike<OperationState<SAPUser>, SAPUser>;
+    // (undocumented)
+    getBudgets: (name: string, options?: BudgetsGetBudgetsOptionalParams) => Promise<Widget[]>;
 }
 
 // @public
-export interface ContinueOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface CreateOrReplaceOptionalParams extends OperationOptions {
-    updateIntervalInMs?: number;
-}
-
-// @public
-export interface CreateWidgetOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface DeleteWidgetOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface GetBudgetsOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface GetWidgetOptionalParams extends OperationOptions {
-}
+export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
+    continuationToken?: string;
+};
 
 // @public
 export enum KnownVersions {
     _100 = "1.0.0"
-}
-
-// @public
-export interface ListWidgetsPagesOptionalParams extends OperationOptions {
 }
 
 // @public
@@ -94,11 +57,19 @@ export interface NonReferencedModel {
 }
 
 // @public
-export interface QueryWidgetsPagesOptionalParams extends OperationOptions {
+export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends PageSettings = PageSettings> {
+    [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
+    byPage: (settings?: TPageSettings) => AsyncIterableIterator<ContinuablePage<TElement, TPage>>;
+    next(): Promise<IteratorResult<TElement>>;
 }
 
 // @public
-export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(client: SAPWidgets, serializedState: string, sourceOperation: (...args: any[]) => PollerLike<OperationState<TResult>, TResult>, options?: RestorePollerOptions<TResult>): PollerLike<OperationState<TResult>, TResult>;
+export interface PageSettings {
+    continuationToken?: string;
+}
+
+// @public
+export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(client: SAPWidgetServiceClient, serializedState: string, sourceOperation: (...args: any[]) => PollerLike<OperationState<TResult>, TResult>, options?: RestorePollerOptions<TResult>): PollerLike<OperationState<TResult>, TResult>;
 
 // @public (undocumented)
 export interface RestorePollerOptions<TResult, TResponse extends PathUncheckedResponse = PathUncheckedResponse> extends OperationOptions {
@@ -108,7 +79,71 @@ export interface RestorePollerOptions<TResult, TResponse extends PathUncheckedRe
 }
 
 // @public
-export interface SAPListWidgetsOptionalParams extends OperationOptions {
+export interface SAPUser {
+    id: string;
+    readonly name: string;
+    role: string;
+}
+
+// @public
+export interface SAPWidgetsAnalyzeWidgetOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface SAPWidgetsCreateOrReplaceOptionalParams extends OperationOptions {
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface SAPWidgetsCreateWidgetOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface SAPWidgetsDeleteWidgetOptionalParams extends OperationOptions {
+}
+
+// @public (undocumented)
+export class SAPWidgetServiceClient {
+    constructor(endpointParam: string, credential: KeyCredential, options?: SAPWidgetServiceClientOptionalParams);
+    readonly budgets: BudgetsOperations;
+    readonly pipeline: Pipeline;
+    readonly sapWidgets: SAPWidgetsOperations;
+}
+
+// @public
+export interface SAPWidgetServiceClientOptionalParams extends ClientOptions {
+    apiVersion?: string;
+}
+
+// @public
+export interface SAPWidgetsGetWidgetOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface SAPWidgetsListWidgetsPagesOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface SAPWidgetsOperations {
+    analyzeWidget: (id: string, options?: SAPWidgetsAnalyzeWidgetOptionalParams) => Promise<AnalyzeResult>;
+    createOrReplace: (name: string, resource: SAPUser, options?: SAPWidgetsCreateOrReplaceOptionalParams) => PollerLike<OperationState<SAPUser>, SAPUser>;
+    createWidget: (weight: number, color: "red" | "blue", options?: SAPWidgetsCreateWidgetOptionalParams) => Promise<Widget>;
+    deleteWidget: (id: string, options?: SAPWidgetsDeleteWidgetOptionalParams) => Promise<void>;
+    getWidget: (id: string, options?: SAPWidgetsGetWidgetOptionalParams) => Promise<Widget>;
+    // (undocumented)
+    listWidgetsPages: (page: number, pageSize: number, options?: SAPWidgetsListWidgetsPagesOptionalParams) => PagedAsyncIterableIterator<Widget>;
+    // (undocumented)
+    queryWidgetsPages: (page: number, pageSize: number, options?: SAPWidgetsQueryWidgetsPagesOptionalParams) => PagedAsyncIterableIterator<Widget>;
+    sapListWidgets: (requiredHeader: string, bytesHeader: Uint8Array, value: Uint8Array, csvArrayHeader: Uint8Array[], utcDateHeader: Date, options?: SAPWidgetsSAPListWidgetsOptionalParams) => Promise<Widget[]>;
+    updateWidget: (id: string, options?: SAPWidgetsUpdateWidgetOptionalParams) => Promise<Widget>;
+}
+
+// @public
+export interface SAPWidgetsQueryWidgetsPagesOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface SAPWidgetsSAPListWidgetsOptionalParams extends OperationOptions {
     // (undocumented)
     nullableDateHeader?: Date;
     // (undocumented)
@@ -120,53 +155,7 @@ export interface SAPListWidgetsOptionalParams extends OperationOptions {
 }
 
 // @public
-export interface SAPUser {
-    id: string;
-    readonly name: string;
-    role: string;
-}
-
-// @public (undocumented)
-export class SAPWidgets {
-    constructor(endpointParam: string, credential: KeyCredential, options?: SAPWidgetsOptionalParams);
-    analyzeWidget(id: string, options?: AnalyzeWidgetOptionalParams): Promise<AnalyzeResult>;
-    createOrReplace(name: string, resource: SAPUser, options?: CreateOrReplaceOptionalParams): PollerLike<OperationState<SAPUser>, SAPUser>;
-    createWidget(weight: number, color: "red" | "blue", options?: CreateWidgetOptionalParams): Promise<Widget>;
-    deleteWidget(id: string, options?: DeleteWidgetOptionalParams): Promise<void>;
-    getWidget(id: string, options?: GetWidgetOptionalParams): Promise<Widget>;
-    // (undocumented)
-    listWidgetsPages(page: number, pageSize: number, options?: ListWidgetsPagesOptionalParams): PagedAsyncIterableIterator<Widget>;
-    readonly pipeline: Pipeline;
-    // Warning: (ae-forgotten-export) The symbol "PagedAsyncIterableIterator" needs to be exported by the entry point index.d.ts
-    //
-    // (undocumented)
-    queryWidgetsPages(page: number, pageSize: number, options?: QueryWidgetsPagesOptionalParams): PagedAsyncIterableIterator<Widget>;
-    sapListWidgets(requiredHeader: string, bytesHeader: Uint8Array, value: Uint8Array, csvArrayHeader: Uint8Array[], utcDateHeader: Date, options?: SAPListWidgetsOptionalParams): Promise<Widget[]>;
-    updateWidget(id: string, options?: UpdateWidgetOptionalParams): Promise<Widget>;
-}
-
-// @public (undocumented)
-export class SAPWidgetServiceClient {
-    constructor(endpointParam: string, credential: KeyCredential, options?: SAPWidgetServiceClientOptionalParams);
-    // (undocumented)
-    getBudgets(options?: BudgetsOptionalParams): Budgets;
-    // (undocumented)
-    getSAPWidgets(options?: SAPWidgetsOptionalParams): SAPWidgets;
-    readonly pipeline: Pipeline;
-}
-
-// @public
-export interface SAPWidgetServiceClientOptionalParams extends ClientOptions {
-    apiVersion?: string;
-}
-
-// @public
-export interface SAPWidgetsOptionalParams extends ClientOptions {
-    apiVersion?: string;
-}
-
-// @public
-export interface UpdateWidgetOptionalParams extends OperationOptions {
+export interface SAPWidgetsUpdateWidgetOptionalParams extends OperationOptions {
     color?: "red" | "blue";
     weight?: number;
 }

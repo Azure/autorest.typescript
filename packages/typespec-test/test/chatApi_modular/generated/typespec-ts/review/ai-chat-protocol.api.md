@@ -54,8 +54,8 @@ export interface ChatMessageDelta {
 // @public (undocumented)
 export class ChatProtocolClient {
     constructor(endpointParam: string, credential: KeyCredential | TokenCredential, options?: ChatProtocolClientOptionalParams);
-    // (undocumented)
-    getGenericChatClient(options?: GenericChatClientOptionalParams): GenericChatClient;
+    create(body: ChatCompletionOptionsRecord, options?: CreateOptionalParams): Promise<ChatCompletionRecord>;
+    createStreaming(body: StreamingChatCompletionOptionsRecord, options?: CreateStreamingOptionalParams): Promise<ChatCompletionChunkRecord>;
     readonly pipeline: Pipeline;
 }
 
@@ -85,18 +85,6 @@ export interface CreateStreamingOptionalParams extends OperationOptions {
 
 // @public
 export type FinishReason = "stop" | "length";
-
-// @public (undocumented)
-export class GenericChatClient {
-    constructor(endpointParam: string, credential: KeyCredential | TokenCredential, options?: GenericChatClientOptionalParams);
-    create(body: ChatCompletionOptionsRecord, options?: CreateOptionalParams): Promise<ChatCompletionRecord>;
-    createStreaming(body: StreamingChatCompletionOptionsRecord, options?: CreateStreamingOptionalParams): Promise<ChatCompletionChunkRecord>;
-    readonly pipeline: Pipeline;
-}
-
-// @public
-export interface GenericChatClientOptionalParams extends ClientOptions {
-}
 
 // @public
 export enum KnownAPIVersion {

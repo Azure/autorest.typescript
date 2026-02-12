@@ -13,16 +13,9 @@ import { TokenCredential } from '@azure/core-auth';
 export type ContentTypeEnum = "application/octet-stream" | "application/json; serialization=Avro" | "application/json; serialization=json" | "text/vnd.ms.protobuf";
 
 // @public
-export interface GetSchemaByIdOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface GetSchemaByVersionOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface GetSchemaIdByContentOptionalParams extends OperationOptions {
-}
+export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
+    continuationToken?: string;
+};
 
 // @public
 export enum KnownServiceApiVersions {
@@ -32,15 +25,15 @@ export enum KnownServiceApiVersions {
 }
 
 // @public
-export interface ListSchemaGroupsOptionalParams extends OperationOptions {
+export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends PageSettings = PageSettings> {
+    [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
+    byPage: (settings?: TPageSettings) => AsyncIterableIterator<ContinuablePage<TElement, TPage>>;
+    next(): Promise<IteratorResult<TElement>>;
 }
 
 // @public
-export interface ListSchemaVersionsOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface RegisterSchemaOptionalParams extends OperationOptions {
+export interface PageSettings {
+    continuationToken?: string;
 }
 
 // @public
@@ -60,22 +53,38 @@ export interface SchemaGroup {
     readonly groupName: string;
 }
 
-// @public (undocumented)
-export class SchemaOperations {
-    constructor(endpointParam: string, credential: TokenCredential, options?: SchemaOperationsOptionalParams);
-    getSchemaById(id: string, options?: GetSchemaByIdOptionalParams): Promise<Uint8Array>;
-    getSchemaByVersion(groupName: string, name: string, schemaVersion: number, options?: GetSchemaByVersionOptionalParams): Promise<Uint8Array>;
-    getSchemaIdByContent(groupName: string, name: string, contentType: SchemaContentTypeValues, schemaContent: Uint8Array, options?: GetSchemaIdByContentOptionalParams): Promise<void>;
-    listSchemaGroups(options?: ListSchemaGroupsOptionalParams): PagedAsyncIterableIterator<SchemaGroup>;
-    // Warning: (ae-forgotten-export) The symbol "PagedAsyncIterableIterator" needs to be exported by the entry point index.d.ts
-    listSchemaVersions(groupName: string, name: string, options?: ListSchemaVersionsOptionalParams): PagedAsyncIterableIterator<SchemaVersion>;
-    readonly pipeline: Pipeline;
-    registerSchema(groupName: string, name: string, content: Uint8Array, contentType: SchemaContentTypeValues, options?: RegisterSchemaOptionalParams): Promise<void>;
+// @public
+export interface SchemaOperationsGetSchemaByIdOptionalParams extends OperationOptions {
 }
 
 // @public
-export interface SchemaOperationsOptionalParams extends ClientOptions {
-    apiVersion?: string;
+export interface SchemaOperationsGetSchemaByVersionOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface SchemaOperationsGetSchemaIdByContentOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface SchemaOperationsListSchemaGroupsOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface SchemaOperationsListSchemaVersionsOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface SchemaOperationsOperations {
+    getSchemaById: (id: string, options?: SchemaOperationsGetSchemaByIdOptionalParams) => Promise<Uint8Array>;
+    getSchemaByVersion: (groupName: string, name: string, schemaVersion: number, options?: SchemaOperationsGetSchemaByVersionOptionalParams) => Promise<Uint8Array>;
+    getSchemaIdByContent: (groupName: string, name: string, contentType: SchemaContentTypeValues, schemaContent: Uint8Array, options?: SchemaOperationsGetSchemaIdByContentOptionalParams) => Promise<void>;
+    listSchemaGroups: (options?: SchemaOperationsListSchemaGroupsOptionalParams) => PagedAsyncIterableIterator<SchemaGroup>;
+    listSchemaVersions: (groupName: string, name: string, options?: SchemaOperationsListSchemaVersionsOptionalParams) => PagedAsyncIterableIterator<SchemaVersion>;
+    registerSchema: (groupName: string, name: string, content: Uint8Array, contentType: SchemaContentTypeValues, options?: SchemaOperationsRegisterSchemaOptionalParams) => Promise<void>;
+}
+
+// @public
+export interface SchemaOperationsRegisterSchemaOptionalParams extends OperationOptions {
 }
 
 // @public
@@ -90,9 +99,8 @@ export interface SchemaProperties {
 // @public (undocumented)
 export class SchemaRegistryClient {
     constructor(endpointParam: string, credential: TokenCredential, options?: SchemaRegistryClientOptionalParams);
-    // (undocumented)
-    getSchemaOperations(options?: SchemaOperationsOptionalParams): SchemaOperations;
     readonly pipeline: Pipeline;
+    readonly schemaOperations: SchemaOperationsOperations;
 }
 
 // @public

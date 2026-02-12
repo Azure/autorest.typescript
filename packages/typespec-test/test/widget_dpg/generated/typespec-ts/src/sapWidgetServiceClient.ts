@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { SAPWidgets, SAPWidgetsOptionalParams } from "./sapWidgets/sapWidgets.js";
-import { Budgets, BudgetsOptionalParams } from "./budgets/budgets.js";
 import {
   createSAPWidgetService,
   SAPWidgetServiceContext,
   SAPWidgetServiceClientOptionalParams,
 } from "./api/index.js";
+import { BudgetsOperations, _getBudgetsOperations } from "./classic/budgets/index.js";
+import { SAPWidgetsOperations, _getSAPWidgetsOperations } from "./classic/sapWidgets/index.js";
 import { KeyCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
@@ -17,12 +17,6 @@ export class SAPWidgetServiceClient {
   private _client: SAPWidgetServiceContext;
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
-  /** The parent client parameters that are used in the constructors. */
-  private _clientParams: {
-    endpointParam: string;
-    credential: KeyCredential;
-    options: SAPWidgetServiceClientOptionalParams;
-  };
 
   constructor(
     endpointParam: string,
@@ -38,24 +32,12 @@ export class SAPWidgetServiceClient {
       userAgentOptions: { userAgentPrefix },
     });
     this.pipeline = this._client.pipeline;
-    this._clientParams = { endpointParam, credential, options };
+    this.budgets = _getBudgetsOperations(this._client);
+    this.sapWidgets = _getSAPWidgetsOperations(this._client);
   }
 
-  getSAPWidgets(options: SAPWidgetsOptionalParams = {}): SAPWidgets {
-    return new SAPWidgets(
-      this._clientParams.endpointParam,
-      this._clientParams.credential,
-
-      { ...this._clientParams.options, ...options },
-    );
-  }
-
-  getBudgets(options: BudgetsOptionalParams = {}): Budgets {
-    return new Budgets(
-      this._clientParams.endpointParam,
-      this._clientParams.credential,
-
-      { ...this._clientParams.options, ...options },
-    );
-  }
+  /** The operation groups for budgets */
+  public readonly budgets: BudgetsOperations;
+  /** The operation groups for sapWidgets */
+  public readonly sapWidgets: SAPWidgetsOperations;
 }

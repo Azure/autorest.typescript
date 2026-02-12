@@ -2,6 +2,11 @@
 // Licensed under the MIT License.
 
 import { FileContents } from "./static-helpers/multipartHelpers.js";
+import {
+  PageSettings,
+  ContinuablePage,
+  PagedAsyncIterableIterator,
+} from "./static-helpers/pagingHelpers.js";
 
 export { AIProjectClient } from "./aiProjectClient.js";
 export {
@@ -241,70 +246,70 @@ export {
   VectorStoreFileStatusFilter,
 } from "./models/agents/index.js";
 export { AIProjectClientOptionalParams } from "./api/index.js";
+export {
+  AgentsListVectorStoreFileBatchFilesOptionalParams,
+  AgentsCancelVectorStoreFileBatchOptionalParams,
+  AgentsGetVectorStoreFileBatchOptionalParams,
+  AgentsCreateVectorStoreFileBatchOptionalParams,
+  AgentsDeleteVectorStoreFileOptionalParams,
+  AgentsGetVectorStoreFileOptionalParams,
+  AgentsCreateVectorStoreFileOptionalParams,
+  AgentsListVectorStoreFilesOptionalParams,
+  AgentsDeleteVectorStoreOptionalParams,
+  AgentsModifyVectorStoreOptionalParams,
+  AgentsGetVectorStoreOptionalParams,
+  AgentsCreateVectorStoreOptionalParams,
+  AgentsListVectorStoresOptionalParams,
+  AgentsGetFileContentOptionalParams,
+  AgentsGetFileOptionalParams,
+  AgentsDeleteFileOptionalParams,
+  AgentsUploadFileOptionalParams,
+  AgentsListFilesOptionalParams,
+  AgentsListRunStepsOptionalParams,
+  AgentsGetRunStepOptionalParams,
+  AgentsCreateThreadAndRunOptionalParams,
+  AgentsCancelRunOptionalParams,
+  AgentsSubmitToolOutputsToRunOptionalParams,
+  AgentsUpdateRunOptionalParams,
+  AgentsGetRunOptionalParams,
+  AgentsListRunsOptionalParams,
+  AgentsCreateRunOptionalParams,
+  AgentsUpdateMessageOptionalParams,
+  AgentsGetMessageOptionalParams,
+  AgentsListMessagesOptionalParams,
+  AgentsCreateMessageOptionalParams,
+  AgentsDeleteThreadOptionalParams,
+  AgentsUpdateThreadOptionalParams,
+  AgentsGetThreadOptionalParams,
+  AgentsCreateThreadOptionalParams,
+  AgentsDeleteAgentOptionalParams,
+  AgentsUpdateAgentOptionalParams,
+  AgentsGetAgentOptionalParams,
+  AgentsListAgentsOptionalParams,
+  AgentsCreateAgentOptionalParams,
+} from "./api/agents/index.js";
+export {
+  ConnectionsGetConnectionWithSecretsOptionalParams,
+  ConnectionsGetConnectionOptionalParams,
+  ConnectionsListConnectionsOptionalParams,
+  ConnectionsGetWorkspaceOptionalParams,
+} from "./api/connections/index.js";
+export {
+  EvaluationsDisableScheduleOptionalParams,
+  EvaluationsListScheduleOptionalParams,
+  EvaluationsCreateOrReplaceScheduleOptionalParams,
+  EvaluationsGetScheduleOptionalParams,
+  EvaluationsUpdateOptionalParams,
+  EvaluationsListOptionalParams,
+  EvaluationsCreateOptionalParams,
+  EvaluationsGetOptionalParams,
+} from "./api/evaluations/index.js";
+export { TelemetryGetAppInsightsOptionalParams } from "./api/telemetry/index.js";
+export {
+  AgentsOperations,
+  ConnectionsOperations,
+  EvaluationsOperations,
+  TelemetryOperations,
+} from "./classic/index.js";
+export { PageSettings, ContinuablePage, PagedAsyncIterableIterator };
 export { FileContents };
-export { Agents } from "./agents/agents.js";
-export {
-  AgentsOptionalParams,
-  ListVectorStoreFileBatchFilesOptionalParams,
-  CancelVectorStoreFileBatchOptionalParams,
-  GetVectorStoreFileBatchOptionalParams,
-  CreateVectorStoreFileBatchOptionalParams,
-  DeleteVectorStoreFileOptionalParams,
-  GetVectorStoreFileOptionalParams,
-  CreateVectorStoreFileOptionalParams,
-  ListVectorStoreFilesOptionalParams,
-  DeleteVectorStoreOptionalParams,
-  ModifyVectorStoreOptionalParams,
-  GetVectorStoreOptionalParams,
-  CreateVectorStoreOptionalParams,
-  ListVectorStoresOptionalParams,
-  GetFileContentOptionalParams,
-  GetFileOptionalParams,
-  DeleteFileOptionalParams,
-  UploadFileOptionalParams,
-  ListFilesOptionalParams,
-  ListRunStepsOptionalParams,
-  GetRunStepOptionalParams,
-  CreateThreadAndRunOptionalParams,
-  CancelRunOptionalParams,
-  SubmitToolOutputsToRunOptionalParams,
-  UpdateRunOptionalParams,
-  GetRunOptionalParams,
-  ListRunsOptionalParams,
-  CreateRunOptionalParams,
-  UpdateMessageOptionalParams,
-  GetMessageOptionalParams,
-  ListMessagesOptionalParams,
-  CreateMessageOptionalParams,
-  DeleteThreadOptionalParams,
-  UpdateThreadOptionalParams,
-  GetThreadOptionalParams,
-  CreateThreadOptionalParams,
-  DeleteAgentOptionalParams,
-  UpdateAgentOptionalParams,
-  GetAgentOptionalParams,
-  ListAgentsOptionalParams,
-  CreateAgentOptionalParams,
-} from "./agents/api/index.js";
-export { Connections } from "./connections/connections.js";
-export {
-  ConnectionsOptionalParams,
-  GetConnectionWithSecretsOptionalParams,
-  GetConnectionOptionalParams,
-  ListConnectionsOptionalParams,
-  GetWorkspaceOptionalParams,
-} from "./connections/api/index.js";
-export { Telemetry } from "./telemetry/telemetry.js";
-export { GetAppInsightsOptionalParams, TelemetryOptionalParams } from "./telemetry/api/index.js";
-export { Evaluations } from "./evaluations/evaluations.js";
-export {
-  EvaluationsOptionalParams,
-  DisableScheduleOptionalParams,
-  ListScheduleOptionalParams,
-  CreateOrReplaceScheduleOptionalParams,
-  GetScheduleOptionalParams,
-  UpdateOptionalParams,
-  ListOptionalParams,
-  CreateOptionalParams,
-  GetOptionalParams,
-} from "./evaluations/api/index.js";

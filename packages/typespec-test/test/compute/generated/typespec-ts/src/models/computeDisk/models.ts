@@ -15,51 +15,6 @@ import {
  */
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-export function computeDiskActionGroupArrayDeserializer(
-  result: Array<ComputeDiskActionGroup>,
-): any[] {
-  return result.map((item) => {
-    return computeDiskActionGroupDeserializer(item);
-  });
-}
-
-/** Concrete tracked resource types can be created by aliasing this type using a specific property type. */
-export interface ComputeDiskActionGroup extends TrackedResource {
-  /** The resource-specific properties for this resource. */
-  properties?: ComputeDiskActionGroupsProperties;
-}
-
-export function computeDiskActionGroupDeserializer(item: any): ComputeDiskActionGroup {
-  return {
-    tags: !item["tags"]
-      ? item["tags"]
-      : Object.fromEntries(Object.entries(item["tags"]).map(([k, p]: [string, any]) => [k, p])),
-    location: item["location"],
-    id: item["id"],
-    name: item["name"],
-    type: item["type"],
-    systemData: !item["systemData"]
-      ? item["systemData"]
-      : systemDataDeserializer(item["systemData"]),
-    properties: !item["properties"]
-      ? item["properties"]
-      : computeDiskActionGroupsPropertiesDeserializer(item["properties"]),
-  };
-}
-
-/** model interface ComputeDiskActionGroupsProperties */
-export interface ComputeDiskActionGroupsProperties {
-  readonly provisioningState?: string;
-}
-
-export function computeDiskActionGroupsPropertiesDeserializer(
-  item: any,
-): ComputeDiskActionGroupsProperties {
-  return {
-    provisioningState: item["provisioningState"],
-  };
-}
-
 /** Disk resource. */
 export interface ComputeDiskDisk extends TrackedResource {
   /** The resource-specific properties for this resource. */
@@ -168,5 +123,50 @@ export function computeDiskDiskAccessPropertiesDeserializer(
       : privateEndpointConnectionArrayDeserializer(item["privateEndpointConnections"]),
     provisioningState: item["provisioningState"],
     timeCreated: !item["timeCreated"] ? item["timeCreated"] : new Date(item["timeCreated"]),
+  };
+}
+
+export function computeDiskActionGroupArrayDeserializer(
+  result: Array<ComputeDiskActionGroup>,
+): any[] {
+  return result.map((item) => {
+    return computeDiskActionGroupDeserializer(item);
+  });
+}
+
+/** Concrete tracked resource types can be created by aliasing this type using a specific property type. */
+export interface ComputeDiskActionGroup extends TrackedResource {
+  /** The resource-specific properties for this resource. */
+  properties?: ComputeDiskActionGroupsProperties;
+}
+
+export function computeDiskActionGroupDeserializer(item: any): ComputeDiskActionGroup {
+  return {
+    tags: !item["tags"]
+      ? item["tags"]
+      : Object.fromEntries(Object.entries(item["tags"]).map(([k, p]: [string, any]) => [k, p])),
+    location: item["location"],
+    id: item["id"],
+    name: item["name"],
+    type: item["type"],
+    systemData: !item["systemData"]
+      ? item["systemData"]
+      : systemDataDeserializer(item["systemData"]),
+    properties: !item["properties"]
+      ? item["properties"]
+      : computeDiskActionGroupsPropertiesDeserializer(item["properties"]),
+  };
+}
+
+/** model interface ComputeDiskActionGroupsProperties */
+export interface ComputeDiskActionGroupsProperties {
+  readonly provisioningState?: string;
+}
+
+export function computeDiskActionGroupsPropertiesDeserializer(
+  item: any,
+): ComputeDiskActionGroupsProperties {
+  return {
+    provisioningState: item["provisioningState"],
   };
 }

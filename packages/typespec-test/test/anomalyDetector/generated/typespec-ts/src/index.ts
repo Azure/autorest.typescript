@@ -1,6 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import {
+  PageSettings,
+  ContinuablePage,
+  PagedAsyncIterableIterator,
+} from "./static-helpers/pagingHelpers.js";
+
 export { AnomalyDetectorClient } from "./anomalyDetectorClient.js";
 export { APIVersion } from "./models/index.js";
 export {
@@ -41,21 +47,19 @@ export {
   UnivariateUnivariateChangePointDetectionResult,
 } from "./models/univariate/index.js";
 export { AnomalyDetectorClientOptionalParams } from "./api/index.js";
-export { Univariate } from "./univariate/univariate.js";
 export {
-  DetectUnivariateChangePointOptionalParams,
-  DetectUnivariateLastPointOptionalParams,
-  DetectUnivariateEntireSeriesOptionalParams,
-  UnivariateOptionalParams,
-} from "./univariate/api/index.js";
-export { Multivariate } from "./multivariate/multivariate.js";
+  MultivariateDetectMultivariateLastAnomalyOptionalParams,
+  MultivariateDetectMultivariateBatchAnomalyOptionalParams,
+  MultivariateGetMultivariateModelOptionalParams,
+  MultivariateDeleteMultivariateModelOptionalParams,
+  MultivariateListMultivariateModelsOptionalParams,
+  MultivariateTrainMultivariateModelOptionalParams,
+  MultivariateGetMultivariateBatchDetectionResultOptionalParams,
+} from "./api/multivariate/index.js";
 export {
-  MultivariateOptionalParams,
-  DetectMultivariateLastAnomalyOptionalParams,
-  DetectMultivariateBatchAnomalyOptionalParams,
-  GetMultivariateModelOptionalParams,
-  DeleteMultivariateModelOptionalParams,
-  ListMultivariateModelsOptionalParams,
-  TrainMultivariateModelOptionalParams,
-  GetMultivariateBatchDetectionResultOptionalParams,
-} from "./multivariate/api/index.js";
+  UnivariateDetectUnivariateChangePointOptionalParams,
+  UnivariateDetectUnivariateLastPointOptionalParams,
+  UnivariateDetectUnivariateEntireSeriesOptionalParams,
+} from "./api/univariate/index.js";
+export { MultivariateOperations, UnivariateOperations } from "./classic/index.js";
+export { PageSettings, ContinuablePage, PagedAsyncIterableIterator };

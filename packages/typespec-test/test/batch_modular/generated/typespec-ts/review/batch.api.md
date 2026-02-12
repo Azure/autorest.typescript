@@ -12,20 +12,6 @@ import { TokenCredential } from '@azure/core-auth';
 // @public
 export type AccessScope = "job";
 
-// @public (undocumented)
-export class Accounts {
-    constructor(endpointParam: string, credential: TokenCredential, options?: AccountsOptionalParams);
-    // Warning: (ae-forgotten-export) The symbol "PagedAsyncIterableIterator" needs to be exported by the entry point index.d.ts
-    listPoolNodeCounts(options?: ListPoolNodeCountsOptionalParams): PagedAsyncIterableIterator<PoolNodeCounts>;
-    listSupportedImages(options?: ListSupportedImagesOptionalParams): PagedAsyncIterableIterator<ImageInformation>;
-    readonly pipeline: Pipeline;
-}
-
-// @public
-export interface AccountsOptionalParams extends ClientOptions {
-    apiVersion?: string;
-}
-
 // @public
 export interface AffinityInformation {
     affinityId: string;
@@ -38,19 +24,6 @@ export type AllocationState = "steady" | "resizing" | "stopping";
 export interface ApplicationPackageReference {
     applicationId: string;
     version?: string;
-}
-
-// @public (undocumented)
-export class Applications {
-    constructor(endpointParam: string, credential: TokenCredential, options?: ApplicationsOptionalParams);
-    getApplication(applicationId: string, options?: GetApplicationOptionalParams): Promise<BatchApplication>;
-    listApplications(options?: ListApplicationsOptionalParams): PagedAsyncIterableIterator<BatchApplication>;
-    readonly pipeline: Pipeline;
-}
-
-// @public
-export interface ApplicationsOptionalParams extends ClientOptions {
-    apiVersion?: string;
 }
 
 // @public
@@ -135,23 +108,83 @@ export interface BatchCertificate {
 // @public (undocumented)
 export class BatchClient {
     constructor(endpointParam: string, credential: TokenCredential, options?: BatchClientOptionalParams);
-    // (undocumented)
-    getAccounts(options?: AccountsOptionalParams): Accounts;
-    // (undocumented)
-    getApplications(options?: ApplicationsOptionalParams): Applications;
-    // (undocumented)
-    getCertificates(options?: CertificatesOptionalParams): Certificates;
-    // (undocumented)
-    getJobs(options?: JobsOptionalParams): Jobs;
-    // (undocumented)
-    getJobSchedules(options?: JobSchedulesOptionalParams): JobSchedules;
-    // (undocumented)
-    getNodes(options?: NodesOptionalParams): Nodes;
-    // (undocumented)
-    getPools(options?: PoolsOptionalParams): Pools;
-    // (undocumented)
-    getTasks(options?: TasksOptionalParams): Tasks;
+    cancelCertificateDeletion(thumbprintAlgorithm: string, thumbprint: string, options?: CancelCertificateDeletionOptionalParams): Promise<void>;
+    createCertificate(body: BatchCertificate, options?: CreateCertificateOptionalParams): Promise<void>;
+    createJob(body: BatchJobCreateOptions, options?: CreateJobOptionalParams): Promise<void>;
+    createJobSchedule(body: BatchJobScheduleCreateOptions, options?: CreateJobScheduleOptionalParams): Promise<void>;
+    createNodeUser(poolId: string, nodeId: string, body: BatchNodeUserCreateOptions, options?: CreateNodeUserOptionalParams): Promise<void>;
+    createPool(body: BatchPoolCreateOptions, options?: CreatePoolOptionalParams): Promise<void>;
+    createTask(jobId: string, body: BatchTaskCreateOptions, options?: CreateTaskOptionalParams): Promise<void>;
+    createTaskCollection(jobId: string, collection: BatchTaskCollection, options?: CreateTaskCollectionOptionalParams): Promise<TaskAddCollectionResult>;
+    deleteCertificate(thumbprintAlgorithm: string, thumbprint: string, options?: DeleteCertificateOptionalParams): Promise<void>;
+    deleteJob(jobId: string, options?: DeleteJobOptionalParams): Promise<void>;
+    deleteJobSchedule(jobScheduleId: string, options?: DeleteJobScheduleOptionalParams): Promise<void>;
+    deleteNodeFile(poolId: string, nodeId: string, filePath: string, options?: DeleteNodeFileOptionalParams): Promise<void>;
+    deleteNodeUser(poolId: string, nodeId: string, userName: string, options?: DeleteNodeUserOptionalParams): Promise<void>;
+    deletePool(poolId: string, options?: DeletePoolOptionalParams): Promise<void>;
+    deleteTask(jobId: string, taskId: string, options?: DeleteTaskOptionalParams): Promise<void>;
+    deleteTaskFile(jobId: string, taskId: string, filePath: string, options?: DeleteTaskFileOptionalParams): Promise<void>;
+    disableJob(jobId: string, body: BatchJobDisableOptions, options?: DisableJobOptionalParams): Promise<void>;
+    disableJobSchedule(jobScheduleId: string, options?: DisableJobScheduleOptionalParams): Promise<void>;
+    disableNodeScheduling(poolId: string, nodeId: string, options?: DisableNodeSchedulingOptionalParams): Promise<void>;
+    disablePoolAutoScale(poolId: string, options?: DisablePoolAutoScaleOptionalParams): Promise<void>;
+    enableJob(jobId: string, options?: EnableJobOptionalParams): Promise<void>;
+    enableJobSchedule(jobScheduleId: string, options?: EnableJobScheduleOptionalParams): Promise<void>;
+    enableNodeScheduling(poolId: string, nodeId: string, options?: EnableNodeSchedulingOptionalParams): Promise<void>;
+    enablePoolAutoScale(poolId: string, body: BatchPoolEnableAutoScaleOptions, options?: EnablePoolAutoScaleOptionalParams): Promise<void>;
+    evaluatePoolAutoScale(poolId: string, body: BatchPoolEvaluateAutoScaleOptions, options?: EvaluatePoolAutoScaleOptionalParams): Promise<AutoScaleRun>;
+    getApplication(applicationId: string, options?: GetApplicationOptionalParams): Promise<BatchApplication>;
+    getCertificate(thumbprintAlgorithm: string, thumbprint: string, options?: GetCertificateOptionalParams): Promise<BatchCertificate>;
+    getJob(jobId: string, options?: GetJobOptionalParams): Promise<BatchJob>;
+    getJobSchedule(jobScheduleId: string, options?: GetJobScheduleOptionalParams): Promise<BatchJobSchedule>;
+    getJobTaskCounts(jobId: string, options?: GetJobTaskCountsOptionalParams): Promise<TaskCountsResult>;
+    getNode(poolId: string, nodeId: string, options?: GetNodeOptionalParams): Promise<BatchNode>;
+    getNodeExtension(poolId: string, nodeId: string, extensionName: string, options?: GetNodeExtensionOptionalParams): Promise<NodeVMExtension>;
+    getNodeFile(poolId: string, nodeId: string, filePath: string, options?: GetNodeFileOptionalParams): Promise<Uint8Array>;
+    getNodeFileProperties(poolId: string, nodeId: string, filePath: string, options?: GetNodeFilePropertiesOptionalParams): Promise<void>;
+    getNodeRemoteDesktopFile(poolId: string, nodeId: string, options?: GetNodeRemoteDesktopFileOptionalParams): Promise<Uint8Array>;
+    getNodeRemoteLoginSettings(poolId: string, nodeId: string, options?: GetNodeRemoteLoginSettingsOptionalParams): Promise<BatchNodeRemoteLoginSettingsResult>;
+    getPool(poolId: string, options?: GetPoolOptionalParams): Promise<BatchPool>;
+    getTask(jobId: string, taskId: string, options?: GetTaskOptionalParams): Promise<BatchTask>;
+    getTaskFile(jobId: string, taskId: string, filePath: string, options?: GetTaskFileOptionalParams): Promise<Uint8Array>;
+    getTaskFileProperties(jobId: string, taskId: string, filePath: string, options?: GetTaskFilePropertiesOptionalParams): Promise<void>;
+    jobScheduleExists(jobScheduleId: string, options?: JobScheduleExistsOptionalParams): Promise<void>;
+    listApplications(options?: ListApplicationsOptionalParams): PagedAsyncIterableIterator<BatchApplication>;
+    listCertificates(options?: ListCertificatesOptionalParams): PagedAsyncIterableIterator<BatchCertificate>;
+    listJobPreparationAndReleaseTaskStatus(jobId: string, options?: ListJobPreparationAndReleaseTaskStatusOptionalParams): PagedAsyncIterableIterator<JobPreparationAndReleaseTaskExecutionInformation>;
+    listJobs(options?: ListJobsOptionalParams): PagedAsyncIterableIterator<BatchJob>;
+    listJobSchedules(options?: ListJobSchedulesOptionalParams): PagedAsyncIterableIterator<BatchJobSchedule>;
+    listJobsFromSchedule(jobScheduleId: string, options?: ListJobsFromScheduleOptionalParams): PagedAsyncIterableIterator<BatchJob>;
+    listNodeExtensions(poolId: string, nodeId: string, options?: ListNodeExtensionsOptionalParams): PagedAsyncIterableIterator<NodeVMExtension>;
+    listNodeFiles(poolId: string, nodeId: string, options?: ListNodeFilesOptionalParams): PagedAsyncIterableIterator<NodeFile>;
+    listNodes(poolId: string, options?: ListNodesOptionalParams): PagedAsyncIterableIterator<BatchNode>;
+    listPoolNodeCounts(options?: ListPoolNodeCountsOptionalParams): PagedAsyncIterableIterator<PoolNodeCounts>;
+    listPools(options?: ListPoolsOptionalParams): PagedAsyncIterableIterator<BatchPool>;
+    listPoolUsageMetrics(options?: ListPoolUsageMetricsOptionalParams): PagedAsyncIterableIterator<PoolUsageMetrics>;
+    listSubTasks(jobId: string, taskId: string, options?: ListSubTasksOptionalParams): Promise<BatchTaskListSubtasksResult>;
+    listSupportedImages(options?: ListSupportedImagesOptionalParams): PagedAsyncIterableIterator<ImageInformation>;
+    listTaskFiles(jobId: string, taskId: string, options?: ListTaskFilesOptionalParams): PagedAsyncIterableIterator<NodeFile>;
+    listTasks(jobId: string, options?: ListTasksOptionalParams): PagedAsyncIterableIterator<BatchTask>;
     readonly pipeline: Pipeline;
+    poolExists(poolId: string, options?: PoolExistsOptionalParams): Promise<void>;
+    reactivateTask(jobId: string, taskId: string, options?: ReactivateTaskOptionalParams): Promise<void>;
+    rebootNode(poolId: string, nodeId: string, options?: RebootNodeOptionalParams): Promise<void>;
+    reimageNode(poolId: string, nodeId: string, options?: ReimageNodeOptionalParams): Promise<void>;
+    removeNodes(poolId: string, body: NodeRemoveOptions, options?: RemoveNodesOptionalParams): Promise<void>;
+    replaceJob(jobId: string, body: BatchJob, options?: ReplaceJobOptionalParams): Promise<void>;
+    replaceJobSchedule(jobScheduleId: string, body: BatchJobSchedule, options?: ReplaceJobScheduleOptionalParams): Promise<void>;
+    replaceNodeUser(poolId: string, nodeId: string, userName: string, body: BatchNodeUserUpdateOptions, options?: ReplaceNodeUserOptionalParams): Promise<void>;
+    replacePoolProperties(poolId: string, body: BatchPoolReplaceOptions, options?: ReplacePoolPropertiesOptionalParams): Promise<void>;
+    replaceTask(jobId: string, taskId: string, body: BatchTask, options?: ReplaceTaskOptionalParams): Promise<void>;
+    resizePool(poolId: string, body: BatchPoolResizeOptions, options?: ResizePoolOptionalParams): Promise<void>;
+    stopPoolResize(poolId: string, options?: StopPoolResizeOptionalParams): Promise<void>;
+    terminateJob(jobId: string, options?: TerminateJobOptionalParams): Promise<void>;
+    terminateJobSchedule(jobScheduleId: string, options?: TerminateJobScheduleOptionalParams): Promise<void>;
+    terminateTask(jobId: string, taskId: string, options?: TerminateTaskOptionalParams): Promise<void>;
+    updateJob(jobId: string, body: BatchJobUpdateOptions, options?: UpdateJobOptionalParams): Promise<void>;
+    updateJobSchedule(jobScheduleId: string, body: BatchJobScheduleUpdateOptions, options?: UpdateJobScheduleOptionalParams): Promise<void>;
+    updatePool(poolId: string, body: BatchPoolUpdateOptions, options?: UpdatePoolOptionalParams): Promise<void>;
+    uploadNodeLogs(poolId: string, nodeId: string, body: UploadBatchServiceLogsOptions, options?: UploadNodeLogsOptionalParams): Promise<UploadBatchServiceLogsResult>;
 }
 
 // @public
@@ -565,22 +598,6 @@ export interface CertificateReference {
     visibility?: CertificateVisibility[];
 }
 
-// @public (undocumented)
-export class Certificates {
-    constructor(endpointParam: string, credential: TokenCredential, options?: CertificatesOptionalParams);
-    cancelCertificateDeletion(thumbprintAlgorithm: string, thumbprint: string, options?: CancelCertificateDeletionOptionalParams): Promise<void>;
-    createCertificate(body: BatchCertificate, options?: CreateCertificateOptionalParams): Promise<void>;
-    deleteCertificate(thumbprintAlgorithm: string, thumbprint: string, options?: DeleteCertificateOptionalParams): Promise<void>;
-    getCertificate(thumbprintAlgorithm: string, thumbprint: string, options?: GetCertificateOptionalParams): Promise<BatchCertificate>;
-    listCertificates(options?: ListCertificatesOptionalParams): PagedAsyncIterableIterator<BatchCertificate>;
-    readonly pipeline: Pipeline;
-}
-
-// @public
-export interface CertificatesOptionalParams extends ClientOptions {
-    apiVersion?: string;
-}
-
 // @public
 export type CertificateState = "active" | "deleting" | "deletefailed";
 
@@ -625,6 +642,11 @@ export type ContainerType = "dockerCompatible" | "criCompatible";
 
 // @public
 export type ContainerWorkingDirectory = "taskWorkingDirectory" | "containerImageDefault";
+
+// @public
+export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
+    continuationToken?: string;
+};
 
 // @public
 export interface CreateCertificateOptionalParams extends OperationOptions {
@@ -1283,24 +1305,6 @@ export interface JobReleaseTaskExecutionInformation {
 // @public
 export type JobReleaseTaskState = "running" | "completed";
 
-// @public (undocumented)
-export class Jobs {
-    constructor(endpointParam: string, credential: TokenCredential, options?: JobsOptionalParams);
-    createJob(body: BatchJobCreateOptions, options?: CreateJobOptionalParams): Promise<void>;
-    deleteJob(jobId: string, options?: DeleteJobOptionalParams): Promise<void>;
-    disableJob(jobId: string, body: BatchJobDisableOptions, options?: DisableJobOptionalParams): Promise<void>;
-    enableJob(jobId: string, options?: EnableJobOptionalParams): Promise<void>;
-    getJob(jobId: string, options?: GetJobOptionalParams): Promise<BatchJob>;
-    getJobTaskCounts(jobId: string, options?: GetJobTaskCountsOptionalParams): Promise<TaskCountsResult>;
-    listJobPreparationAndReleaseTaskStatus(jobId: string, options?: ListJobPreparationAndReleaseTaskStatusOptionalParams): PagedAsyncIterableIterator<JobPreparationAndReleaseTaskExecutionInformation>;
-    listJobs(options?: ListJobsOptionalParams): PagedAsyncIterableIterator<BatchJob>;
-    listJobsFromSchedule(jobScheduleId: string, options?: ListJobsFromScheduleOptionalParams): PagedAsyncIterableIterator<BatchJob>;
-    readonly pipeline: Pipeline;
-    replaceJob(jobId: string, body: BatchJob, options?: ReplaceJobOptionalParams): Promise<void>;
-    terminateJob(jobId: string, options?: TerminateJobOptionalParams): Promise<void>;
-    updateJob(jobId: string, body: BatchJobUpdateOptions, options?: UpdateJobOptionalParams): Promise<void>;
-}
-
 // @public
 export interface JobScheduleExecutionInformation {
     endTime?: Date;
@@ -1318,27 +1322,6 @@ export interface JobScheduleExistsOptionalParams extends OperationOptions {
     ocpDate?: Date;
     returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
-}
-
-// @public (undocumented)
-export class JobSchedules {
-    constructor(endpointParam: string, credential: TokenCredential, options?: JobSchedulesOptionalParams);
-    createJobSchedule(body: BatchJobScheduleCreateOptions, options?: CreateJobScheduleOptionalParams): Promise<void>;
-    deleteJobSchedule(jobScheduleId: string, options?: DeleteJobScheduleOptionalParams): Promise<void>;
-    disableJobSchedule(jobScheduleId: string, options?: DisableJobScheduleOptionalParams): Promise<void>;
-    enableJobSchedule(jobScheduleId: string, options?: EnableJobScheduleOptionalParams): Promise<void>;
-    getJobSchedule(jobScheduleId: string, options?: GetJobScheduleOptionalParams): Promise<BatchJobSchedule>;
-    jobScheduleExists(jobScheduleId: string, options?: JobScheduleExistsOptionalParams): Promise<void>;
-    listJobSchedules(options?: ListJobSchedulesOptionalParams): PagedAsyncIterableIterator<BatchJobSchedule>;
-    readonly pipeline: Pipeline;
-    replaceJobSchedule(jobScheduleId: string, body: BatchJobSchedule, options?: ReplaceJobScheduleOptionalParams): Promise<void>;
-    terminateJobSchedule(jobScheduleId: string, options?: TerminateJobScheduleOptionalParams): Promise<void>;
-    updateJobSchedule(jobScheduleId: string, body: BatchJobScheduleUpdateOptions, options?: UpdateJobScheduleOptionalParams): Promise<void>;
-}
-
-// @public
-export interface JobSchedulesOptionalParams extends ClientOptions {
-    apiVersion?: string;
 }
 
 // @public
@@ -1368,11 +1351,6 @@ export interface JobSchedulingError {
     code?: string;
     details?: NameValuePair[];
     message?: string;
-}
-
-// @public
-export interface JobsOptionalParams extends ClientOptions {
-    apiVersion?: string;
 }
 
 // @public
@@ -1724,35 +1702,6 @@ export interface NodeRemoveOptions {
     resizeTimeout?: string;
 }
 
-// @public (undocumented)
-export class Nodes {
-    constructor(endpointParam: string, credential: TokenCredential, options?: NodesOptionalParams);
-    createNodeUser(poolId: string, nodeId: string, body: BatchNodeUserCreateOptions, options?: CreateNodeUserOptionalParams): Promise<void>;
-    deleteNodeFile(poolId: string, nodeId: string, filePath: string, options?: DeleteNodeFileOptionalParams): Promise<void>;
-    deleteNodeUser(poolId: string, nodeId: string, userName: string, options?: DeleteNodeUserOptionalParams): Promise<void>;
-    disableNodeScheduling(poolId: string, nodeId: string, options?: DisableNodeSchedulingOptionalParams): Promise<void>;
-    enableNodeScheduling(poolId: string, nodeId: string, options?: EnableNodeSchedulingOptionalParams): Promise<void>;
-    getNode(poolId: string, nodeId: string, options?: GetNodeOptionalParams): Promise<BatchNode>;
-    getNodeExtension(poolId: string, nodeId: string, extensionName: string, options?: GetNodeExtensionOptionalParams): Promise<NodeVMExtension>;
-    getNodeFile(poolId: string, nodeId: string, filePath: string, options?: GetNodeFileOptionalParams): Promise<Uint8Array>;
-    getNodeFileProperties(poolId: string, nodeId: string, filePath: string, options?: GetNodeFilePropertiesOptionalParams): Promise<void>;
-    getNodeRemoteDesktopFile(poolId: string, nodeId: string, options?: GetNodeRemoteDesktopFileOptionalParams): Promise<Uint8Array>;
-    getNodeRemoteLoginSettings(poolId: string, nodeId: string, options?: GetNodeRemoteLoginSettingsOptionalParams): Promise<BatchNodeRemoteLoginSettingsResult>;
-    listNodeExtensions(poolId: string, nodeId: string, options?: ListNodeExtensionsOptionalParams): PagedAsyncIterableIterator<NodeVMExtension>;
-    listNodeFiles(poolId: string, nodeId: string, options?: ListNodeFilesOptionalParams): PagedAsyncIterableIterator<NodeFile>;
-    listNodes(poolId: string, options?: ListNodesOptionalParams): PagedAsyncIterableIterator<BatchNode>;
-    readonly pipeline: Pipeline;
-    rebootNode(poolId: string, nodeId: string, options?: RebootNodeOptionalParams): Promise<void>;
-    reimageNode(poolId: string, nodeId: string, options?: ReimageNodeOptionalParams): Promise<void>;
-    replaceNodeUser(poolId: string, nodeId: string, userName: string, body: BatchNodeUserUpdateOptions, options?: ReplaceNodeUserOptionalParams): Promise<void>;
-    uploadNodeLogs(poolId: string, nodeId: string, body: UploadBatchServiceLogsOptions, options?: UploadNodeLogsOptionalParams): Promise<UploadBatchServiceLogsResult>;
-}
-
-// @public
-export interface NodesOptionalParams extends ClientOptions {
-    apiVersion?: string;
-}
-
 // @public
 export interface NodeVMExtension {
     instanceView?: VMExtensionInstanceView;
@@ -1803,6 +1752,18 @@ export interface OutputFileUploadOptions {
 }
 
 // @public
+export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends PageSettings = PageSettings> {
+    [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
+    byPage: (settings?: TPageSettings) => AsyncIterableIterator<ContinuablePage<TElement, TPage>>;
+    next(): Promise<IteratorResult<TElement>>;
+}
+
+// @public
+export interface PageSettings {
+    continuationToken?: string;
+}
+
+// @public
 export interface PoolEndpointConfiguration {
     inboundNatPools: InboundNATPool[];
 }
@@ -1836,31 +1797,6 @@ export interface PoolNodeCounts {
     dedicated?: NodeCounts;
     lowPriority?: NodeCounts;
     poolId: string;
-}
-
-// @public (undocumented)
-export class Pools {
-    constructor(endpointParam: string, credential: TokenCredential, options?: PoolsOptionalParams);
-    createPool(body: BatchPoolCreateOptions, options?: CreatePoolOptionalParams): Promise<void>;
-    deletePool(poolId: string, options?: DeletePoolOptionalParams): Promise<void>;
-    disablePoolAutoScale(poolId: string, options?: DisablePoolAutoScaleOptionalParams): Promise<void>;
-    enablePoolAutoScale(poolId: string, body: BatchPoolEnableAutoScaleOptions, options?: EnablePoolAutoScaleOptionalParams): Promise<void>;
-    evaluatePoolAutoScale(poolId: string, body: BatchPoolEvaluateAutoScaleOptions, options?: EvaluatePoolAutoScaleOptionalParams): Promise<AutoScaleRun>;
-    getPool(poolId: string, options?: GetPoolOptionalParams): Promise<BatchPool>;
-    listPools(options?: ListPoolsOptionalParams): PagedAsyncIterableIterator<BatchPool>;
-    listPoolUsageMetrics(options?: ListPoolUsageMetricsOptionalParams): PagedAsyncIterableIterator<PoolUsageMetrics>;
-    readonly pipeline: Pipeline;
-    poolExists(poolId: string, options?: PoolExistsOptionalParams): Promise<void>;
-    removeNodes(poolId: string, body: NodeRemoveOptions, options?: RemoveNodesOptionalParams): Promise<void>;
-    replacePoolProperties(poolId: string, body: BatchPoolReplaceOptions, options?: ReplacePoolPropertiesOptionalParams): Promise<void>;
-    resizePool(poolId: string, body: BatchPoolResizeOptions, options?: ResizePoolOptionalParams): Promise<void>;
-    stopPoolResize(poolId: string, options?: StopPoolResizeOptionalParams): Promise<void>;
-    updatePool(poolId: string, body: BatchPoolUpdateOptions, options?: UpdatePoolOptionalParams): Promise<void>;
-}
-
-// @public
-export interface PoolsOptionalParams extends ClientOptions {
-    apiVersion?: string;
 }
 
 // @public
@@ -2240,25 +2176,6 @@ export interface TaskInformation {
     taskUrl?: string;
 }
 
-// @public (undocumented)
-export class Tasks {
-    constructor(endpointParam: string, credential: TokenCredential, options?: TasksOptionalParams);
-    createTask(jobId: string, body: BatchTaskCreateOptions, options?: CreateTaskOptionalParams): Promise<void>;
-    createTaskCollection(jobId: string, collection: BatchTaskCollection, options?: CreateTaskCollectionOptionalParams): Promise<TaskAddCollectionResult>;
-    deleteTask(jobId: string, taskId: string, options?: DeleteTaskOptionalParams): Promise<void>;
-    deleteTaskFile(jobId: string, taskId: string, filePath: string, options?: DeleteTaskFileOptionalParams): Promise<void>;
-    getTask(jobId: string, taskId: string, options?: GetTaskOptionalParams): Promise<BatchTask>;
-    getTaskFile(jobId: string, taskId: string, filePath: string, options?: GetTaskFileOptionalParams): Promise<Uint8Array>;
-    getTaskFileProperties(jobId: string, taskId: string, filePath: string, options?: GetTaskFilePropertiesOptionalParams): Promise<void>;
-    listSubTasks(jobId: string, taskId: string, options?: ListSubTasksOptionalParams): Promise<BatchTaskListSubtasksResult>;
-    listTaskFiles(jobId: string, taskId: string, options?: ListTaskFilesOptionalParams): PagedAsyncIterableIterator<NodeFile>;
-    listTasks(jobId: string, options?: ListTasksOptionalParams): PagedAsyncIterableIterator<BatchTask>;
-    readonly pipeline: Pipeline;
-    reactivateTask(jobId: string, taskId: string, options?: ReactivateTaskOptionalParams): Promise<void>;
-    replaceTask(jobId: string, taskId: string, body: BatchTask, options?: ReplaceTaskOptionalParams): Promise<void>;
-    terminateTask(jobId: string, taskId: string, options?: TerminateTaskOptionalParams): Promise<void>;
-}
-
 // @public
 export interface TaskSchedulingPolicy {
     nodeFillType: BatchNodeFillType;
@@ -2271,11 +2188,6 @@ export interface TaskSlotCounts {
     failed: number;
     running: number;
     succeeded: number;
-}
-
-// @public
-export interface TasksOptionalParams extends ClientOptions {
-    apiVersion?: string;
 }
 
 // @public

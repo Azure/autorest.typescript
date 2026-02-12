@@ -1,7 +1,14 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import {
+  PageSettings,
+  ContinuablePage,
+  PagedAsyncIterableIterator,
+} from "./static-helpers/pagingHelpers.js";
+
 export { SAPWidgetServiceClient } from "./sapWidgetServiceClient.js";
+export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
 export {
   Widget,
   WidgetError,
@@ -11,28 +18,21 @@ export {
   KnownVersions,
 } from "./models/index.js";
 export { SAPWidgetServiceClientOptionalParams } from "./api/index.js";
-export { SAPWidgets } from "./sapWidgets/sapWidgets.js";
-export { restorePoller, RestorePollerOptions } from "./sapWidgets/restorePollerHelpers.js";
 export {
-  AnalyzeWidgetOptionalParams,
-  DeleteWidgetOptionalParams,
-  UpdateWidgetOptionalParams,
-  CreateOrReplaceOptionalParams,
-  CreateWidgetOptionalParams,
-  GetWidgetOptionalParams,
-  QueryWidgetsPagesOptionalParams,
-  ListWidgetsPagesOptionalParams,
-  SAPListWidgetsOptionalParams,
-  SAPWidgetsOptionalParams,
-} from "./sapWidgets/api/index.js";
-export { Budgets } from "./budgets/budgets.js";
+  BudgetsContinueOptionalParams,
+  BudgetsGetBudgetsOptionalParams,
+  BudgetsCreateOrReplaceOptionalParams,
+} from "./api/budgets/index.js";
 export {
-  restorePoller as BudgetsrestorePoller,
-  RestorePollerOptions as BudgetsRestorePollerOptions,
-} from "./budgets/restorePollerHelpers.js";
-export {
-  BudgetsOptionalParams,
-  ContinueOptionalParams,
-  GetBudgetsOptionalParams,
-  CreateOrReplaceOptionalParams as BudgetsCreateOrReplaceOptionalParams,
-} from "./budgets/api/index.js";
+  SAPWidgetsAnalyzeWidgetOptionalParams,
+  SAPWidgetsDeleteWidgetOptionalParams,
+  SAPWidgetsUpdateWidgetOptionalParams,
+  SAPWidgetsCreateOrReplaceOptionalParams,
+  SAPWidgetsCreateWidgetOptionalParams,
+  SAPWidgetsGetWidgetOptionalParams,
+  SAPWidgetsQueryWidgetsPagesOptionalParams,
+  SAPWidgetsListWidgetsPagesOptionalParams,
+  SAPWidgetsSAPListWidgetsOptionalParams,
+} from "./api/sapWidgets/index.js";
+export { BudgetsOperations, SAPWidgetsOperations } from "./classic/index.js";
+export { PageSettings, ContinuablePage, PagedAsyncIterableIterator };

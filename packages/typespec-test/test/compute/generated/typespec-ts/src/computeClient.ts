@@ -1,18 +1,24 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
-  VirtualMachines,
-  VirtualMachinesOptionalParams,
-} from "./virtualMachines/virtualMachines.js";
-import {
-  RestorePointCollections,
-  RestorePointCollectionsOptionalParams,
-} from "./restorePointCollections/restorePointCollections.js";
-import { ActionGroups, ActionGroupsOptionalParams } from "./actionGroups/actionGroups.js";
-import { Disks, DisksOptionalParams } from "./disks/disks.js";
-import { DiskAccesses, DiskAccessesOptionalParams } from "./diskAccesses/diskAccesses.js";
 import { createCompute, ComputeContext, ComputeClientOptionalParams } from "./api/index.js";
+import {
+  ActionGroupsOperations,
+  _getActionGroupsOperations,
+} from "./classic/actionGroups/index.js";
+import {
+  DiskAccessesOperations,
+  _getDiskAccessesOperations,
+} from "./classic/diskAccesses/index.js";
+import { DisksOperations, _getDisksOperations } from "./classic/disks/index.js";
+import {
+  RestorePointCollectionsOperations,
+  _getRestorePointCollectionsOperations,
+} from "./classic/restorePointCollections/index.js";
+import {
+  VirtualMachinesOperations,
+  _getVirtualMachinesOperations,
+} from "./classic/virtualMachines/index.js";
 import { TokenCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
@@ -22,12 +28,6 @@ export class ComputeClient {
   private _client: ComputeContext;
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
-  /** The parent client parameters that are used in the constructors. */
-  private _clientParams: {
-    credential: TokenCredential;
-    subscriptionId: string;
-    options: ComputeClientOptionalParams;
-  };
 
   /** Compute Client */
   constructor(
@@ -44,53 +44,21 @@ export class ComputeClient {
       userAgentOptions: { userAgentPrefix },
     });
     this.pipeline = this._client.pipeline;
-    this._clientParams = { credential, subscriptionId, options };
+    this.actionGroups = _getActionGroupsOperations(this._client);
+    this.diskAccesses = _getDiskAccessesOperations(this._client);
+    this.disks = _getDisksOperations(this._client);
+    this.restorePointCollections = _getRestorePointCollectionsOperations(this._client);
+    this.virtualMachines = _getVirtualMachinesOperations(this._client);
   }
 
-  getVirtualMachines(options: VirtualMachinesOptionalParams = {}): VirtualMachines {
-    return new VirtualMachines(
-      this._clientParams.credential,
-      this._clientParams.subscriptionId,
-
-      { ...this._clientParams.options, ...options },
-    );
-  }
-
-  getRestorePointCollections(
-    options: RestorePointCollectionsOptionalParams = {},
-  ): RestorePointCollections {
-    return new RestorePointCollections(
-      this._clientParams.credential,
-      this._clientParams.subscriptionId,
-
-      { ...this._clientParams.options, ...options },
-    );
-  }
-
-  getActionGroups(options: ActionGroupsOptionalParams = {}): ActionGroups {
-    return new ActionGroups(
-      this._clientParams.credential,
-      this._clientParams.subscriptionId,
-
-      { ...this._clientParams.options, ...options },
-    );
-  }
-
-  getDisks(options: DisksOptionalParams = {}): Disks {
-    return new Disks(
-      this._clientParams.credential,
-      this._clientParams.subscriptionId,
-
-      { ...this._clientParams.options, ...options },
-    );
-  }
-
-  getDiskAccesses(options: DiskAccessesOptionalParams = {}): DiskAccesses {
-    return new DiskAccesses(
-      this._clientParams.credential,
-      this._clientParams.subscriptionId,
-
-      { ...this._clientParams.options, ...options },
-    );
-  }
+  /** The operation groups for actionGroups */
+  public readonly actionGroups: ActionGroupsOperations;
+  /** The operation groups for diskAccesses */
+  public readonly diskAccesses: DiskAccessesOperations;
+  /** The operation groups for disks */
+  public readonly disks: DisksOperations;
+  /** The operation groups for restorePointCollections */
+  public readonly restorePointCollections: RestorePointCollectionsOperations;
+  /** The operation groups for virtualMachines */
+  public readonly virtualMachines: VirtualMachinesOperations;
 }

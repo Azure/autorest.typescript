@@ -1,6 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import {
+  PageSettings,
+  ContinuablePage,
+  PagedAsyncIterableIterator,
+} from "./static-helpers/pagingHelpers.js";
+
 export { ContentSafetyClient } from "./contentSafetyClient.js";
 export {
   AnalyzeTextOptions,
@@ -29,21 +35,8 @@ export {
   RemoveTextBlocklistItemsOptions,
   KnownVersions,
 } from "./models/index.js";
-export { ContentSafetyClientOptionalParams } from "./api/index.js";
-export { TextOperations } from "./textOperations/textOperations.js";
 export {
-  DetectTextProtectedMaterialOptionalParams,
-  ShieldPromptOptionalParams,
-  AnalyzeTextOptionalParams,
-  TextOperationsOptionalParams,
-} from "./textOperations/api/index.js";
-export { ImageOperations } from "./imageOperations/imageOperations.js";
-export {
-  ImageOperationsOptionalParams,
-  AnalyzeImageOptionalParams,
-} from "./imageOperations/api/index.js";
-export { TextBlocklists } from "./textBlocklists/textBlocklists.js";
-export {
+  ContentSafetyClientOptionalParams,
   ListTextBlocklistItemsOptionalParams,
   GetTextBlocklistItemOptionalParams,
   RemoveBlocklistItemsOptionalParams,
@@ -52,5 +45,9 @@ export {
   DeleteTextBlocklistOptionalParams,
   CreateOrUpdateTextBlocklistOptionalParams,
   GetTextBlocklistOptionalParams,
-  TextBlocklistsOptionalParams,
-} from "./textBlocklists/api/index.js";
+  AnalyzeImageOptionalParams,
+  DetectTextProtectedMaterialOptionalParams,
+  ShieldPromptOptionalParams,
+  AnalyzeTextOptionalParams,
+} from "./api/index.js";
+export { PageSettings, ContinuablePage, PagedAsyncIterableIterator };
