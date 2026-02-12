@@ -323,7 +323,6 @@ export async function $onEmit(context: EmitContext) {
       }
     );
 
-    const isMultiClients = dpgContext.sdkPackage.clients.length > 1;
     emitTypes(dpgContext, { sourceRoot: modularSourcesRoot });
     buildSubpathIndexFile(modularEmitterOptions, "models", undefined, {
       recursive: true
@@ -358,8 +357,8 @@ export async function $onEmit(context: EmitContext) {
         interfaceOnly: true
       });
       const { subfolder } = getModularClientOptions(subClient);
-      // Generate index file for multi-client scenarios or nested clients (non-empty subfolder)
-      if (isMultiClients || subfolder) {
+      // Generate index file for clients with subfolders (multi-client scenarios and nested clients)
+      if (subfolder) {
         buildSubClientIndexFile(dpgContext, subClient, modularEmitterOptions);
       }
       buildRootIndex(

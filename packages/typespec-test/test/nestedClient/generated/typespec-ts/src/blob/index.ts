@@ -2,4 +2,4 @@
 // Licensed under the MIT License.
 
 export { BlobClient } from "./blobClient.js";
-export { BlobContext, BlobClientOptionalParams, DownloadOptionalParams as BlobClientDownloadOptionalParams } from "./api/index.js";
+export { BlobContext, BlobClientOptionalParams, DownloadOptionalParams } from "./api/index.js";
