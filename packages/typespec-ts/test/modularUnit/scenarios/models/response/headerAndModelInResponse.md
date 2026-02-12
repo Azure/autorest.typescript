@@ -48,3 +48,11 @@ export async function getUser(
   return { ...payload, ...headers };
 }
 ```
+
+```ts operations function _getUserDeserializeHeaders
+export function _getUserDeserializeHeaders(
+  result: PathUncheckedResponse,
+): { requestId: string } {
+  return { requestId: result.headers["request-id"] };
+}
+```

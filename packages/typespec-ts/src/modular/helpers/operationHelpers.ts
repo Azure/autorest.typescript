@@ -639,9 +639,7 @@ export function getOperationFunction(
 
   // If the response has headers and the feature flag to include headers in response is enabled, build the headers object and include it in the return value
   if (responseHeaders.length > 0 && isResponseHeadersEnabled) {
-    statements.push(
-      `const headers = ${buildHeaderOnlyResponseValue(context, responseHeaders)};`
-    );
+    statements.push(`const headers = _${name}DeserializeHeaders(result);`);
 
     // If there is no body payload just return the headers
     if (hasHeaderOnlyResponse) {
