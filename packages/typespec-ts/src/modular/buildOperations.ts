@@ -7,6 +7,7 @@ import {
 } from "ts-morph";
 import {
   getDeserializePrivateFunction,
+  getDeserializeHeadersPrivateFunction,
   getExpectedStatuses,
   getOperationFunction,
   getOperationOptionsName,
@@ -91,10 +92,16 @@ export function buildOperationFiles(
         dpgContext,
         op
       );
-      operationGroupFile.addFunctions([
+      const deserializeHeadersDeclaration =
+        getDeserializeHeadersPrivateFunction(dpgContext, op);
+      const functionsToAdd = [
         sendOperationDeclaration,
         deserializeOperationDeclaration
-      ]);
+      ];
+      if (deserializeHeadersDeclaration) {
+        functionsToAdd.push(deserializeHeadersDeclaration);
+      }
+      operationGroupFile.addFunctions(functionsToAdd);
       addDeclaration(
         operationGroupFile,
         operationDeclaration,
@@ -191,7 +198,7 @@ export function buildOperationOptions(
         return {
           docs: getDocsFromDescription(p.doc),
           hasQuestionToken: true,
-          type: getTypeExpression(context, p.type),
+          type: getTypeExpression(context, p.type, { isOptional: true }),
           name: normalizeName(p.name, NameType.Parameter)
         };
       })

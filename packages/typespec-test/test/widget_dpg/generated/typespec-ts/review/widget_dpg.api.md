@@ -145,9 +145,9 @@ export interface SAPWidgetsQueryWidgetsPagesOptionalParams extends OperationOpti
 // @public
 export interface SAPWidgetsSAPListWidgetsOptionalParams extends OperationOptions {
     // (undocumented)
-    nullableDateHeader?: Date | null;
+    nullableDateHeader?: Date;
     // (undocumented)
-    nullableOptionalHeader?: string | null;
+    nullableOptionalHeader?: string;
     // (undocumented)
     optionalDateHeader?: Date;
     // (undocumented)
