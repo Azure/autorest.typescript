@@ -272,6 +272,134 @@ describe("XML Helpers", () => {
 
       expect(result).toContain("<data>SGVsbG8=</data>"); // Base64 of "Hello"
     });
+
+    it("should serialize bytes to base64url when bytesEncoding is base64url", () => {
+      // Use bytes that will produce +, /, and = in standard base64
+      // ">>>???" encodes to "Pj4+Pz8/" in base64 and "Pj4-Pz8_" in base64url
+      const item = { data: new Uint8Array([62, 62, 62, 63, 63, 63]) };
+      const properties: XmlPropertyMetadata[] = [
+        {
+          propertyName: "data",
+          xmlOptions: { name: "data" },
+          type: "bytes",
+          bytesEncoding: "base64url"
+        }
+      ];
+
+      const result = serializeToXml(item, properties, "Model");
+
+      expect(result).toContain("<data>Pj4-Pz8_</data>"); // Base64url (no padding)
+    });
+
+    it("should serialize arrays of bytes using itemType", () => {
+      const item = {
+        blocks: [
+          new Uint8Array([72, 101, 108, 108, 111]), // "Hello"
+          new Uint8Array([87, 111, 114, 108, 100]) // "World"
+        ]
+      };
+      const properties: XmlPropertyMetadata[] = [
+        {
+          propertyName: "blocks",
+          xmlOptions: { name: "Block", unwrapped: true },
+          type: "array",
+          itemType: "bytes"
+        }
+      ];
+
+      const result = serializeToXml(item, properties, "Model");
+
+      expect(result).toContain("<Block>SGVsbG8=</Block>"); // Base64 of "Hello"
+      expect(result).toContain("<Block>V29ybGQ=</Block>"); // Base64 of "World"
+    });
+
+    it("should serialize arrays of bytes using bytesEncoding for base64url", () => {
+      const item = {
+        blocks: [
+          new Uint8Array([62, 62, 62]), // ">>>" -> "Pj4+" in base64, "Pj4-" in base64url
+          new Uint8Array([63, 63, 63]) // "???" -> "Pz8/" in base64, "Pz8_" in base64url
+        ]
+      };
+      const properties: XmlPropertyMetadata[] = [
+        {
+          propertyName: "blocks",
+          xmlOptions: { name: "Block", unwrapped: true },
+          type: "array",
+          itemType: "bytes",
+          bytesEncoding: "base64url"
+        }
+      ];
+
+      const result = serializeToXml(item, properties, "Model");
+
+      expect(result).toContain("<Block>Pj4-</Block>"); // Base64url (without padding)
+      expect(result).toContain("<Block>Pz8_</Block>"); // Base64url (without padding)
+    });
+
+    it("should serialize arrays of dates using itemType and dateEncoding", () => {
+      const item = {
+        timestamps: [
+          new Date("2023-08-01T12:00:00Z"),
+          new Date("2023-08-02T12:00:00Z")
+        ]
+      };
+      const properties: XmlPropertyMetadata[] = [
+        {
+          propertyName: "timestamps",
+          xmlOptions: { name: "Timestamp", unwrapped: true },
+          type: "array",
+          itemType: "date",
+          dateEncoding: "rfc3339"
+        }
+      ];
+
+      const result = serializeToXml(item, properties, "Model");
+
+      expect(result).toContain(
+        "<Timestamp>2023-08-01T12:00:00.000Z</Timestamp>"
+      );
+      expect(result).toContain(
+        "<Timestamp>2023-08-02T12:00:00.000Z</Timestamp>"
+      );
+    });
+
+    it("should serialize arrays of dates with rfc7231 encoding using dateEncoding", () => {
+      const item = {
+        timestamps: [new Date("2023-08-01T12:00:00Z")]
+      };
+      const properties: XmlPropertyMetadata[] = [
+        {
+          propertyName: "timestamps",
+          xmlOptions: { name: "timestamps", itemsName: "Timestamp" },
+          type: "array",
+          itemType: "date",
+          dateEncoding: "rfc7231"
+        }
+      ];
+
+      const result = serializeToXml(item, properties, "Model");
+
+      expect(result).toContain("Tue, 01 Aug 2023 12:00:00 GMT");
+    });
+
+    it("should serialize arrays of dates with unixTimestamp encoding using dateEncoding", () => {
+      const item = {
+        timestamps: [new Date("2023-08-01T12:00:00Z")]
+      };
+      const properties: XmlPropertyMetadata[] = [
+        {
+          propertyName: "timestamps",
+          xmlOptions: { name: "timestamps", itemsName: "Timestamp" },
+          type: "array",
+          itemType: "date",
+          dateEncoding: "unixTimestamp"
+        }
+      ];
+
+      const result = serializeToXml(item, properties, "Model");
+
+      expect(result).toContain("<Timestamp>1690891200</Timestamp>");
+    });
   });
 
   describe("serializeModelToXml", () => {
@@ -717,6 +845,149 @@ describe("XML Helpers", () => {
 
       expect(result.data).toBeInstanceOf(Uint8Array);
       expect(Array.from(result.data)).toEqual([72, 101, 108, 108, 111]);
+    });
+
+    it("should deserialize bytes from base64url when bytesEncoding is base64url", () => {
+      // "Pj4-Pz8_" is base64url of [62, 62, 62, 63, 63, 63]
+      const xml = "<Model><data>Pj4-Pz8_</data></Model>";
+      const properties: XmlPropertyDeserializeMetadata[] = [
+        {
+          propertyName: "data",
+          xmlOptions: { name: "data" },
+          type: "bytes",
+          bytesEncoding: "base64url"
+        }
+      ];
+
+      const result = deserializeFromXml<{ data: Uint8Array }>(
+        xml,
+        properties,
+        "Model"
+      );
+
+      expect(result.data).toBeInstanceOf(Uint8Array);
+      expect(Array.from(result.data)).toEqual([62, 62, 62, 63, 63, 63]);
+    });
+
+    it("should deserialize arrays of bytes using itemType", () => {
+      const xml = `<Model>
+        <Block>SGVsbG8=</Block>
+        <Block>V29ybGQ=</Block>
+      </Model>`;
+      const properties: XmlPropertyDeserializeMetadata[] = [
+        {
+          propertyName: "blocks",
+          xmlOptions: { name: "Block", unwrapped: true },
+          type: "array",
+          itemType: "bytes"
+        }
+      ];
+
+      const result = deserializeFromXml<{ blocks: Uint8Array[] }>(
+        xml,
+        properties,
+        "Model"
+      );
+
+      expect(result.blocks).toHaveLength(2);
+      expect(result.blocks[0]).toBeInstanceOf(Uint8Array);
+      expect(Array.from(result.blocks[0])).toEqual([72, 101, 108, 108, 111]); // "Hello"
+      expect(result.blocks[1]).toBeInstanceOf(Uint8Array);
+      expect(Array.from(result.blocks[1])).toEqual([87, 111, 114, 108, 100]); // "World"
+    });
+
+    it("should deserialize arrays of bytes using bytesEncoding for base64url", () => {
+      const xml = `<Model>
+        <Block>Pj4-</Block>
+        <Block>Pz8_</Block>
+      </Model>`;
+      const properties: XmlPropertyDeserializeMetadata[] = [
+        {
+          propertyName: "blocks",
+          xmlOptions: { name: "Block", unwrapped: true },
+          type: "array",
+          itemType: "bytes",
+          bytesEncoding: "base64url"
+        }
+      ];
+
+      const result = deserializeFromXml<{ blocks: Uint8Array[] }>(
+        xml,
+        properties,
+        "Model"
+      );
+
+      expect(result.blocks).toHaveLength(2);
+      expect(result.blocks[0]).toBeInstanceOf(Uint8Array);
+      expect(Array.from(result.blocks[0])).toEqual([62, 62, 62]); // ">>>"
+      expect(result.blocks[1]).toBeInstanceOf(Uint8Array);
+      expect(Array.from(result.blocks[1])).toEqual([63, 63, 63]); // "???"
+    });
+
+    it("should deserialize arrays of dates using itemType and dateEncoding", () => {
+      const xml = `<Model>
+        <Timestamp>2023-08-01T12:00:00.000Z</Timestamp>
+        <Timestamp>2023-08-02T12:00:00.000Z</Timestamp>
+      </Model>`;
+      const properties: XmlPropertyDeserializeMetadata[] = [
+        {
+          propertyName: "timestamps",
+          xmlOptions: { name: "Timestamp", unwrapped: true },
+          type: "array",
+          itemType: "date",
+          dateEncoding: "rfc3339"
+        }
+      ];
+
+      const result = deserializeFromXml<{ timestamps: Date[] }>(
+        xml,
+        properties,
+        "Model"
+      );
+
+      expect(result.timestamps).toHaveLength(2);
+      expect(result.timestamps[0]).toBeInstanceOf(Date);
+      expect(result.timestamps[0].toISOString()).toBe(
+        "2023-08-01T12:00:00.000Z"
+      );
+      expect(result.timestamps[1]).toBeInstanceOf(Date);
+      expect(result.timestamps[1].toISOString()).toBe(
+        "2023-08-02T12:00:00.000Z"
+      );
+    });
+
+    it("should deserialize arrays of dates with unixTimestamp encoding using dateEncoding", () => {
+      const xml = `<Model>
+        <timestamps>
+          <Timestamp>1690891200</Timestamp>
+          <Timestamp>1690977600</Timestamp>
+        </timestamps>
+      </Model>`;
+      const properties: XmlPropertyDeserializeMetadata[] = [
+        {
+          propertyName: "timestamps",
+          xmlOptions: { name: "timestamps", itemsName: "Timestamp" },
+          type: "array",
+          itemType: "date",
+          dateEncoding: "unixTimestamp"
+        }
+      ];
+
+      const result = deserializeFromXml<{ timestamps: Date[] }>(
+        xml,
+        properties,
+        "Model"
+      );
+
+      expect(result.timestamps).toHaveLength(2);
+      expect(result.timestamps[0]).toBeInstanceOf(Date);
+      expect(result.timestamps[0].toISOString()).toBe(
+        "2023-08-01T12:00:00.000Z"
+      );
+      expect(result.timestamps[1]).toBeInstanceOf(Date);
+      expect(result.timestamps[1].toISOString()).toBe(
+        "2023-08-02T12:00:00.000Z"
+      );
     });
 
     it("should handle empty arrays", () => {

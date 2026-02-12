@@ -41,6 +41,10 @@ export interface XmlPropertyMetadata {
   type?: "array" | "object" | "primitive" | "date" | "bytes" | "dict";
   /** Date encoding format */
   dateEncoding?: "rfc3339" | "rfc7231" | "unixTimestamp";
+  /** Bytes encoding format (base64 or base64url) */
+  bytesEncoding?: "base64" | "base64url";
+  /** For arrays - type of each item for special handling */
+  itemType?: "primitive" | "date" | "bytes";
 }
 
 /**
@@ -57,6 +61,10 @@ export interface XmlPropertyDeserializeMetadata {
   type?: "array" | "object" | "primitive" | "date" | "bytes" | "dict";
   /** Date encoding format */
   dateEncoding?: "rfc3339" | "rfc7231" | "unixTimestamp";
+  /** Bytes encoding format (base64 or base64url) */
+  bytesEncoding?: "base64" | "base64url";
+  /** For arrays - type of each item for special handling */
+  itemType?: "primitive" | "date" | "bytes";
 }
 
 /**
@@ -160,12 +168,28 @@ function collectNamespaces(
 }
 
 /**
+ * Encodes a Uint8Array to base64 string
+ */
+function encodeBase64(value: Uint8Array): string {
+  return btoa(String.fromCharCode(...value));
+}
+
+/**
+ * Encodes a Uint8Array to base64url string (URL-safe base64 without padding)
+ */
+function encodeBase64Url(value: Uint8Array): string {
+  const base64 = encodeBase64(value);
+  return base64.replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+}
+
+/**
  * Serializes a primitive value for XML
  */
 function serializePrimitiveValue(
   value: any,
   type?: "array" | "object" | "primitive" | "date" | "bytes" | "dict",
-  dateEncoding?: "rfc3339" | "rfc7231" | "unixTimestamp"
+  dateEncoding?: "rfc3339" | "rfc7231" | "unixTimestamp",
+  bytesEncoding?: "base64" | "base64url"
 ): string | number | boolean {
   if (value === null || value === undefined) {
     return "";
@@ -184,8 +208,9 @@ function serializePrimitiveValue(
   }
 
   if (type === "bytes" && value instanceof Uint8Array) {
-    // Convert bytes to base64
-    return btoa(String.fromCharCode(...value));
+    return bytesEncoding === "base64url"
+      ? encodeBase64Url(value)
+      : encodeBase64(value);
   }
 
   if (typeof value === "boolean" || typeof value === "number") {
@@ -212,7 +237,12 @@ function serializeArrayProperty(
     if (serializer) {
       return serializer(item);
     }
-    return serializePrimitiveValue(item, metadata.type, metadata.dateEncoding);
+    return serializePrimitiveValue(
+      item,
+      metadata.itemType ?? metadata.type,
+      metadata.dateEncoding,
+      metadata.bytesEncoding
+    );
   });
 
   if (xmlOptions.unwrapped) {
@@ -268,7 +298,8 @@ export function serializeModelToXml(
       attributes[attrName] = serializePrimitiveValue(
         value,
         type,
-        prop.dateEncoding
+        prop.dateEncoding,
+        prop.bytesEncoding
       );
     } else if (type === "dict" && value !== null && typeof value === "object") {
       // Serialize dictionary - each key-value pair becomes an element
@@ -295,13 +326,19 @@ export function serializeModelToXml(
       result[elementName] = serializer(value);
     } else if (xmlOptions.unwrapped && !Array.isArray(value)) {
       // Unwrapped primitive - this becomes the text content of the parent element
-      result["#text"] = serializePrimitiveValue(value, type, prop.dateEncoding);
+      result["#text"] = serializePrimitiveValue(
+        value,
+        type,
+        prop.dateEncoding,
+        prop.bytesEncoding
+      );
     } else {
       // Serialize primitive
       result[elementName] = serializePrimitiveValue(
         value,
         type,
-        prop.dateEncoding
+        prop.dateEncoding,
+        prop.bytesEncoding
       );
     }
   }
@@ -365,12 +402,36 @@ export function parseXmlString(
 }
 
 /**
+ * Decodes a base64 string to Uint8Array
+ */
+function decodeBase64(value: string): Uint8Array {
+  const binaryString = atob(value);
+  const bytes = new Uint8Array(binaryString.length);
+  for (let i = 0; i < binaryString.length; i++) {
+    bytes[i] = binaryString.charCodeAt(i);
+  }
+  return bytes;
+}
+
+/**
+ * Decodes a base64url string to Uint8Array
+ */
+function decodeBase64Url(value: string): Uint8Array {
+  // Convert base64url to base64 and add padding if needed
+  let base64 = value.replace(/-/g, "+").replace(/_/g, "/");
+  const paddingNeeded = (4 - (base64.length % 4)) % 4;
+  base64 += "=".repeat(paddingNeeded);
+  return decodeBase64(base64);
+}
+
+/**
  * Deserializes a primitive value from XML
  */
 function deserializePrimitiveValue(
   value: any,
   type?: "array" | "object" | "primitive" | "date" | "bytes" | "dict",
-  dateEncoding?: "rfc3339" | "rfc7231" | "unixTimestamp"
+  dateEncoding?: "rfc3339" | "rfc7231" | "unixTimestamp",
+  bytesEncoding?: "base64" | "base64url"
 ): any {
   if (value === null || value === undefined || value === "") {
     return undefined;
@@ -384,13 +445,9 @@ function deserializePrimitiveValue(
   }
 
   if (type === "bytes" && typeof value === "string") {
-    // Convert base64 to bytes
-    const binaryString = atob(value);
-    const bytes = new Uint8Array(binaryString.length);
-    for (let i = 0; i < binaryString.length; i++) {
-      bytes[i] = binaryString.charCodeAt(i);
-    }
-    return bytes;
+    return bytesEncoding === "base64url"
+      ? decodeBase64Url(value)
+      : decodeBase64(value);
   }
 
   return value;
@@ -483,7 +540,12 @@ function deserializeArrayProperty(
     if (deserializer) {
       return deserializer(unwrappedItem);
     }
-    return deserializePrimitiveValue(unwrappedItem, type, dateEncoding);
+    return deserializePrimitiveValue(
+      unwrappedItem,
+      metadata.itemType ?? type,
+      dateEncoding,
+      metadata.bytesEncoding
+    );
   });
 }
 
@@ -505,60 +567,7 @@ export function deserializeXmlToModel<T = Record<string, any>>(
   let content = xmlObject[rootElementName] ?? xmlObject[rootName] ?? xmlObject;
   content = unwrapSingleElementArray(content);
 
-  const result: Record<string, any> = {};
-
-  for (const prop of properties) {
-    const { propertyName, xmlOptions, deserializer, type, dateEncoding } = prop;
-
-    if (type === "array" || xmlOptions.itemsName) {
-      // Deserialize array
-      result[propertyName] = deserializeArrayProperty(content, prop);
-    } else if (type === "dict") {
-      // Deserialize dictionary - each child element is a key-value pair
-      const rawValue = getElementValue(content, xmlOptions);
-      if (rawValue !== undefined && typeof rawValue === "object") {
-        const dict: Record<string, string> = {};
-        for (const [key, val] of Object.entries(rawValue)) {
-          // Skip attributes (start with @_) and text nodes (#text)
-          if (!key.startsWith("@_") && key !== "#text") {
-            dict[key] = String(val);
-          }
-        }
-        result[propertyName] = dict;
-      }
-    } else if (xmlOptions.unwrapped && type !== "object") {
-      // Unwrapped primitive - get text content from the element
-      const rawValue = content["#text"];
-      if (rawValue !== undefined) {
-        result[propertyName] = deserializePrimitiveValue(
-          rawValue,
-          type,
-          dateEncoding
-        );
-      }
-    } else {
-      // Get element or attribute value
-      const rawValue = getElementValue(content, xmlOptions);
-
-      if (rawValue === undefined) {
-        continue;
-      }
-
-      if (deserializer && typeof rawValue === "object") {
-        // Deserialize nested object
-        result[propertyName] = deserializer(rawValue);
-      } else {
-        // Deserialize primitive
-        result[propertyName] = deserializePrimitiveValue(
-          rawValue,
-          type,
-          dateEncoding
-        );
-      }
-    }
-  }
-
-  return result as T;
+  return deserializeXmlObject<T>(content, properties);
 }
 
 /**
@@ -621,7 +630,8 @@ export function deserializeXmlObject<T = Record<string, any>>(
         result[propertyName] = deserializePrimitiveValue(
           rawValue,
           type,
-          dateEncoding
+          dateEncoding,
+          prop.bytesEncoding
         );
       }
     } else {
@@ -640,7 +650,8 @@ export function deserializeXmlObject<T = Record<string, any>>(
         result[propertyName] = deserializePrimitiveValue(
           rawValue,
           type,
-          dateEncoding
+          dateEncoding,
+          prop.bytesEncoding
         );
       }
     }
