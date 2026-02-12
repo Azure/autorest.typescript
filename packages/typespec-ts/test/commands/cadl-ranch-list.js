@@ -3,10 +3,10 @@ export const azureRlcTsps = [
     outputPath: "routes",
     inputPath: "routes"
   },
-  // {
-  //   outputPath: "payload/multipart",
-  //   inputPath: "payload/multipart"
-  // },
+  {
+    outputPath: "payload/multipart",
+    inputPath: "payload/multipart"
+  },
   {
     outputPath: "union-body",
     inputPath: "union-body"
@@ -398,10 +398,10 @@ export const rlcTsps = [
     outputPath: "routes",
     inputPath: "routes"
   },
-  // {
-  //   outputPath: "payload/multipart",
-  //   inputPath: "payload/multipart"
-  // },
+  {
+    outputPath: "payload/multipart",
+    inputPath: "payload/multipart"
+  },
   {
     outputPath: "union-body",
     inputPath: "union-body"

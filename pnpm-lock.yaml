@@ -427,8 +427,8 @@ importers:
         specifier: ^1.8.0
         version: 1.8.0(@typespec/compiler@1.8.0(@types/node@25.0.8))(@typespec/streams@0.77.0(@typespec/compiler@1.8.0(@types/node@25.0.8)))
       '@typespec/http-specs':
-        specifier: 0.1.0-alpha.32-dev.1
-        version: 0.1.0-alpha.32-dev.1(@types/node@25.0.8)(@typespec/compiler@1.8.0(@types/node@25.0.8))(@typespec/http@1.8.0(@typespec/compiler@1.8.0(@types/node@25.0.8))(@typespec/streams@0.77.0(@typespec/compiler@1.8.0(@types/node@25.0.8))))(@typespec/rest@0.78.0(@typespec/compiler@1.8.0(@types/node@25.0.8))(@typespec/http@1.8.0(@typespec/compiler@1.8.0(@types/node@25.0.8))(@typespec/streams@0.77.0(@typespec/compiler@1.8.0(@types/node@25.0.8)))))(@typespec/streams@0.77.0(@typespec/compiler@1.8.0(@types/node@25.0.8)))(@typespec/versioning@0.78.0(@typespec/compiler@1.8.0(@types/node@25.0.8)))(@typespec/xml@0.78.0(@typespec/compiler@1.8.0(@types/node@25.0.8)))
+        specifier: 0.1.0-alpha.33-dev.0
+        version: 0.1.0-alpha.33-dev.0(@types/node@25.0.8)(@typespec/compiler@1.8.0(@types/node@25.0.8))(@typespec/http@1.8.0(@typespec/compiler@1.8.0(@types/node@25.0.8))(@typespec/streams@0.77.0(@typespec/compiler@1.8.0(@types/node@25.0.8))))(@typespec/rest@0.78.0(@typespec/compiler@1.8.0(@types/node@25.0.8))(@typespec/http@1.8.0(@typespec/compiler@1.8.0(@types/node@25.0.8))(@typespec/streams@0.77.0(@typespec/compiler@1.8.0(@types/node@25.0.8)))))(@typespec/streams@0.77.0(@typespec/compiler@1.8.0(@types/node@25.0.8)))(@typespec/versioning@0.78.0(@typespec/compiler@1.8.0(@types/node@25.0.8)))(@typespec/xml@0.78.0(@typespec/compiler@1.8.0(@types/node@25.0.8)))
       '@typespec/openapi':
         specifier: ^1.8.0
         version: 1.8.0(@typespec/compiler@1.8.0(@types/node@25.0.8))(@typespec/http@1.8.0(@typespec/compiler@1.8.0(@types/node@25.0.8))(@typespec/streams@0.77.0(@typespec/compiler@1.8.0(@types/node@25.0.8))))
@@ -1796,15 +1796,15 @@ packages:
     peerDependencies:
       '@typespec/compiler': ^1.7.0
 
-  '@typespec/http-specs@0.1.0-alpha.32-dev.1':
-    resolution: {integrity: sha512-b+uzFhToERrmV154eqnCoQiw4Jekn+DRamfZVAl7ndVeayDq9zLNZyPnCmeU1+bdKxUGO8WoGkpA9BeGP3teeA==}
+  '@typespec/http-specs@0.1.0-alpha.33-dev.0':
+    resolution: {integrity: sha512-OogLlA0FQ1dETpaQJF72ZBkRHQiAYJga//27AEajFDrnidtV0/D+wOhwB2n6GMZerdi+csVK9uOoGOp7+81qnQ==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
-      '@typespec/compiler': ^1.8.0
-      '@typespec/http': ^1.8.0
-      '@typespec/rest': ^0.78.0 || >=0.79.0-dev <0.79.0
-      '@typespec/versioning': ^0.78.0 || >=0.79.0-dev <0.79.0
-      '@typespec/xml': ^0.78.0 || >=0.79.0-dev <0.79.0
+      '@typespec/compiler': ^1.9.0
+      '@typespec/http': ^1.9.0
+      '@typespec/rest': ^0.79.0 || >=0.80.0-dev <0.80.0
+      '@typespec/versioning': ^0.79.0 || >=0.80.0-dev <0.80.0
+      '@typespec/xml': ^0.79.0 || >=0.80.0-dev <0.80.0
 
   '@typespec/http@1.8.0':
     resolution: {integrity: sha512-ZKa4RISabwL8cUAmE3BkoNmtCYRjerO0+1Ba6XdDJKG+vJC5EGM2hkDf+ZmYsYZgrX0cvbhPXUKKh28zBV60hw==}
@@ -6832,7 +6832,7 @@ snapshots:
     dependencies:
       '@typespec/compiler': 1.8.0(@types/node@25.0.8)
 
-  '@typespec/http-specs@0.1.0-alpha.32-dev.1(@types/node@25.0.8)(@typespec/compiler@1.8.0(@types/node@25.0.8))(@typespec/http@1.8.0(@typespec/compiler@1.8.0(@types/node@25.0.8))(@typespec/streams@0.77.0(@typespec/compiler@1.8.0(@types/node@25.0.8))))(@typespec/rest@0.78.0(@typespec/compiler@1.8.0(@types/node@25.0.8))(@typespec/http@1.8.0(@typespec/compiler@1.8.0(@types/node@25.0.8))(@typespec/streams@0.77.0(@typespec/compiler@1.8.0(@types/node@25.0.8)))))(@typespec/streams@0.77.0(@typespec/compiler@1.8.0(@types/node@25.0.8)))(@typespec/versioning@0.78.0(@typespec/compiler@1.8.0(@types/node@25.0.8)))(@typespec/xml@0.78.0(@typespec/compiler@1.8.0(@types/node@25.0.8)))':
+  '@typespec/http-specs@0.1.0-alpha.33-dev.0(@types/node@25.0.8)(@typespec/compiler@1.8.0(@types/node@25.0.8))(@typespec/http@1.8.0(@typespec/compiler@1.8.0(@types/node@25.0.8))(@typespec/streams@0.77.0(@typespec/compiler@1.8.0(@types/node@25.0.8))))(@typespec/rest@0.78.0(@typespec/compiler@1.8.0(@types/node@25.0.8))(@typespec/http@1.8.0(@typespec/compiler@1.8.0(@types/node@25.0.8))(@typespec/streams@0.77.0(@typespec/compiler@1.8.0(@types/node@25.0.8)))))(@typespec/streams@0.77.0(@typespec/compiler@1.8.0(@types/node@25.0.8)))(@typespec/versioning@0.78.0(@typespec/compiler@1.8.0(@types/node@25.0.8)))(@typespec/xml@0.78.0(@typespec/compiler@1.8.0(@types/node@25.0.8)))':
     dependencies:
       '@typespec/compiler': 1.8.0(@types/node@25.0.8)
       '@typespec/http': 1.8.0(@typespec/compiler@1.8.0(@types/node@25.0.8))(@typespec/streams@0.77.0(@typespec/compiler@1.8.0(@types/node@25.0.8)))
