@@ -332,10 +332,10 @@ export const azureRlcTsps = [
     outputPath: "azure/resource-manager/large-header",
     inputPath: "azure/resource-manager/large-header"
   },
-  {
-    outputPath: "azure/client-generator-core/client-initialization",
-    inputPath: "azure/client-generator-core/client-initialization"
-  },
+  // {
+  //   outputPath: "azure/client-generator-core/client-initialization",
+  //   inputPath: "azure/client-generator-core/client-initialization"
+  // },
   {
     outputPath: "azure/client-generator-core/deserialize-empty-string-as-null",
     inputPath: "azure/client-generator-core/deserialize-empty-string-as-null"
@@ -763,10 +763,10 @@ export const azureModularTsps = [
     outputPath: "payload/media-type",
     inputPath: "payload/media-type"
   },
-  {
-    outputPath: "payload/multipart",
-    inputPath: "payload/multipart"
-  },
+  // {
+  //   outputPath: "payload/multipart",
+  //   inputPath: "payload/multipart"
+  // },
   {
     outputPath: "payload/xml",
     inputPath: "payload/xml"
@@ -904,8 +904,16 @@ export const azureModularTsps = [
     inputPath: "azure/encode/duration"
   },
   {
-    outputPath: "azure/client-generator-core/client-initialization",
-    inputPath: "azure/client-generator-core/client-initialization"
+    outputPath: "azure/client-generator-core/client-initialization/default",
+    inputPath: "azure/client-generator-core/client-initialization/default"
+  },
+  {
+    outputPath: "azure/client-generator-core/client-initialization/individually",
+    inputPath: "azure/client-generator-core/client-initialization/individually"
+  },
+  {
+    outputPath: "azure/client-generator-core/client-initialization/individuallyParent",
+    inputPath: "azure/client-generator-core/client-initialization/individuallyParent"
   },
   {
     outputPath: "azure/resource-manager/non-resource",
@@ -1114,10 +1122,10 @@ export const modularTsps = [
     outputPath: "payload/media-type",
     inputPath: "payload/media-type"
   },
-  {
-    outputPath: "payload/multipart",
-    inputPath: "payload/multipart"
-  },
+  // {
+  //   outputPath: "payload/multipart",
+  //   inputPath: "payload/multipart"
+  // },
   {
     outputPath: "server/versions/versioned",
     inputPath: "server/versions/versioned"

@@ -36,7 +36,7 @@ export interface User {
 ```ts operations function getUser
 export async function getUser(
   context: Client,
-  options: GetUserOptionalParams = { requestOptions: {} },
+  options: GetUserOptionalParams = { requestOptions: {} }
 ): Promise<{
   name: string;
   email: string;
@@ -50,7 +50,13 @@ export async function getUser(
 ```
 
 ```ts operations function _getUserDeserializeHeaders
+<<<<<<< HEAD
 export function _getUserDeserializeHeaders(result: PathUncheckedResponse): { requestId: string } {
+=======
+export function _getUserDeserializeHeaders(result: PathUncheckedResponse): {
+  requestId: string;
+} {
+>>>>>>> 37ae257330820e16b5f81cc6eba9f112ed887b1e
   return { requestId: result.headers["request-id"] };
 }
 ```
