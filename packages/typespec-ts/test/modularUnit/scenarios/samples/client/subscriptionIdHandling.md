@@ -107,6 +107,33 @@ Raw json file for the operation with client-level subscriptionId.
 Generated sample should add subscriptionId as a client parameter:
 
 ```ts samples
+/** This file path is /samples-dev/createOrUpdateSample.ts */
+import { ContosoClient } from "@azure/internal-test";
+import { DefaultAzureCredential } from "@azure/identity";
+
+/**
+ * This sample demonstrates how to create a Employee
+ *
+ * @summary create a Employee
+ * x-ms-original-file: 2021-10-01-preview/json_for_Employees_CreateOrUpdate.json
+ */
+async function employeesCreateOrUpdate(): Promise<void> {
+  const credential = new DefaultAzureCredential();
+  const subscriptionId = "11809CA1-E126-4017-945E-AA795CD5C5A9";
+  const client = new ContosoClient(credential, subscriptionId);
+  const result = await client.createOrUpdate("rgopenapi", "9KF-f-8b", {
+    properties: { age: 30 },
+    tags: { key2913: "urperxmkkhhkp" },
+    location: "itajgxyqozseoygnl",
+  });
+  console.log(result);
+}
+
+async function main(): Promise<void> {
+  await employeesCreateOrUpdate();
+}
+
+main().catch(console.error);
 ```
 
 Raw json file for the operations list.
@@ -131,6 +158,33 @@ Raw json file for the operations list.
 Generated sample should create a client with subscriptionId:
 
 ```ts samples
+/** This file path is /samples-dev/listSample.ts */
+import { ContosoClient } from "@azure/internal-test";
+import { DefaultAzureCredential } from "@azure/identity";
+
+/**
+ * This sample demonstrates how to list the operations for the provider
+ *
+ * @summary list the operations for the provider
+ * x-ms-original-file: 2021-10-01-preview/json_for_Operations_List.json
+ */
+async function operationsList(): Promise<void> {
+  const credential = new DefaultAzureCredential();
+  const subscriptionId = "00000000-0000-0000-0000-000000000000";
+  const client = new ContosoClient(credential, subscriptionId);
+  const resArray = new Array();
+  for await (const item of client.list()) {
+    resArray.push(item);
+  }
+
+  console.log(resArray);
+}
+
+async function main(): Promise<void> {
+  await operationsList();
+}
+
+main().catch(console.error);
 ```
 
 # Should create clients without subscriptionId if the subscriptionId of operations are all method-level
@@ -251,6 +305,33 @@ Raw json file for the operation with method-level subscriptionId.
 Generated sample should add subscriptionId as a method-level parameter:
 
 ```ts samples
+/** This file path is /samples-dev/createOrUpdateSample.ts */
+import { ContosoClient } from "@azure/internal-test";
+import { DefaultAzureCredential } from "@azure/identity";
+
+/**
+ * This sample demonstrates how to create a Employee
+ *
+ * @summary create a Employee
+ * x-ms-original-file: 2021-10-01-preview/json_for_Employees_CreateOrUpdate.json
+ */
+async function employeesCreateOrUpdate(): Promise<void> {
+  const credential = new DefaultAzureCredential();
+  const client = new ContosoClient(credential);
+  const result = await client.createOrUpdate(
+    "11809CA1-E126-4017-945E-AA795CD5C5A9",
+    "rgopenapi",
+    "9KF-f-8b",
+    { properties: { age: 30 }, tags: { key2913: "urperxmkkhhkp" }, location: "itajgxyqozseoygnl" },
+  );
+  console.log(result);
+}
+
+async function main(): Promise<void> {
+  await employeesCreateOrUpdate();
+}
+
+main().catch(console.error);
 ```
 
 Raw json file for the operations list.
@@ -275,6 +356,32 @@ Raw json file for the operations list.
 Generated sample should create a client without subscriptionId:
 
 ```ts samples
+/** This file path is /samples-dev/listSample.ts */
+import { ContosoClient } from "@azure/internal-test";
+import { DefaultAzureCredential } from "@azure/identity";
+
+/**
+ * This sample demonstrates how to list the operations for the provider
+ *
+ * @summary list the operations for the provider
+ * x-ms-original-file: 2021-10-01-preview/json_for_Operations_List.json
+ */
+async function operationsList(): Promise<void> {
+  const credential = new DefaultAzureCredential();
+  const client = new ContosoClient(credential);
+  const resArray = new Array();
+  for await (const item of client.list()) {
+    resArray.push(item);
+  }
+
+  console.log(resArray);
+}
+
+async function main(): Promise<void> {
+  await operationsList();
+}
+
+main().catch(console.error);
 ```
 
 # Should create clients w/wo subscriptionId based on operation types
@@ -405,6 +512,29 @@ Raw json file for the operation with client-level subscriptionId.
 Generated sample should create a client with subscriptionId:
 
 ```ts samples
+/** This file path is /samples-dev/getSample.ts */
+import { ContosoClient } from "@azure/internal-test";
+import { DefaultAzureCredential } from "@azure/identity";
+
+/**
+ * This sample demonstrates how to get a Employee
+ *
+ * @summary get a Employee
+ * x-ms-original-file: 2021-10-01-preview/json_for_Employees_Get.json
+ */
+async function employeesGet(): Promise<void> {
+  const credential = new DefaultAzureCredential();
+  const subscriptionId = "11809CA1-E126-4017-945E-AA795CD5C5A9";
+  const client = new ContosoClient(credential, subscriptionId);
+  const result = await client.get("rgopenapi", "9KF-f-8b");
+  console.log(result);
+}
+
+async function main(): Promise<void> {
+  await employeesGet();
+}
+
+main().catch(console.error);
 ```
 
 Raw json file for the operation with method-level subscriptionId.
@@ -437,6 +567,33 @@ Raw json file for the operation with method-level subscriptionId.
 Generated sample should use subscriptionId as a method parameter:
 
 ```ts samples
+/** This file path is /samples-dev/createOrUpdateSample.ts */
+import { ContosoClient } from "@azure/internal-test";
+import { DefaultAzureCredential } from "@azure/identity";
+
+/**
+ * This sample demonstrates how to create a Employee
+ *
+ * @summary create a Employee
+ * x-ms-original-file: 2021-10-01-preview/json_for_Employees_CreateOrUpdate.json
+ */
+async function employeesCreateOrUpdate(): Promise<void> {
+  const credential = new DefaultAzureCredential();
+  const client = new ContosoClient(credential);
+  const result = await client.createOrUpdate(
+    "11809CA1-E126-4017-945E-AA795CD5C5A9",
+    "rgopenapi",
+    "9KF-f-8b",
+    { properties: { age: 30 }, tags: { key2913: "urperxmkkhhkp" }, location: "itajgxyqozseoygnl" },
+  );
+  console.log(result);
+}
+
+async function main(): Promise<void> {
+  await employeesCreateOrUpdate();
+}
+
+main().catch(console.error);
 ```
 
 Raw json file for the tenant-level operation.
@@ -467,6 +624,28 @@ Raw json file for the tenant-level operation.
 Generate sample should create a client without subscriptionId:
 
 ```ts samples
+/** This file path is /samples-dev/listSkusSample.ts */
+import { ContosoClient } from "@azure/internal-test";
+import { DefaultAzureCredential } from "@azure/identity";
+
+/**
+ * This sample demonstrates how to execute listSkus
+ *
+ * @summary execute listSkus
+ * x-ms-original-file: 2021-10-01-preview/json_for_SkusOperations_ListSkus.json
+ */
+async function skusOperationsListSkus(): Promise<void> {
+  const credential = new DefaultAzureCredential();
+  const client = new ContosoClient(credential);
+  const result = await client.listSkus("Standard");
+  console.log(result);
+}
+
+async function main(): Promise<void> {
+  await skusOperationsListSkus();
+}
+
+main().catch(console.error);
 ```
 
 Raw json file for the operations list.
@@ -491,4 +670,31 @@ Raw json file for the operations list.
 Generated sample should create a client with subscriptionId:
 
 ```ts samples
+/** This file path is /samples-dev/listSample.ts */
+import { ContosoClient } from "@azure/internal-test";
+import { DefaultAzureCredential } from "@azure/identity";
+
+/**
+ * This sample demonstrates how to list the operations for the provider
+ *
+ * @summary list the operations for the provider
+ * x-ms-original-file: 2021-10-01-preview/json_for_Operations_List.json
+ */
+async function operationsList(): Promise<void> {
+  const credential = new DefaultAzureCredential();
+  const subscriptionId = "00000000-0000-0000-0000-000000000000";
+  const client = new ContosoClient(credential, subscriptionId);
+  const resArray = new Array();
+  for await (const item of client.list()) {
+    resArray.push(item);
+  }
+
+  console.log(resArray);
+}
+
+async function main(): Promise<void> {
+  await operationsList();
+}
+
+main().catch(console.error);
 ```

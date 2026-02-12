@@ -106,6 +106,27 @@ Raw json files.
 Generated samples.
 
 ```ts samples
+/** This file path is /samples-dev/dOpDSample.ts */
+import { TestingClient } from "@azure/internal-test";
+
+/**
+ * This sample demonstrates how to show example opD
+ *
+ * @summary show example opD
+ * x-ms-original-file: 2021-10-01-preview/json_for_opD.json
+ */
+async function opD(): Promise<void> {
+  const endpoint = process.env.TESTING_ENDPOINT || "";
+  const client = new TestingClient(endpoint);
+  const result = await client.d.opD({ prop1: "body name" });
+  console.log(result);
+}
+
+async function main(): Promise<void> {
+  await opD();
+}
+
+main().catch(console.error);
 ```
 
 Raw json files.
@@ -128,4 +149,25 @@ Raw json files.
 Generated samples.
 
 ```ts samples
+/** This file path is /samples-dev/bECOpBECSample.ts */
+import { TestingClient } from "@azure/internal-test";
+
+/**
+ * This sample demonstrates how to execute opBEC
+ *
+ * @summary execute opBEC
+ * x-ms-original-file: 2021-10-01-preview/json_for_opBEC.json
+ */
+async function opBEC(): Promise<void> {
+  const endpoint = process.env.TESTING_ENDPOINT || "";
+  const client = new TestingClient(endpoint);
+  const result = await client.b.e.c.opBEC({ prop3: "body name" });
+  console.log(result);
+}
+
+async function main(): Promise<void> {
+  await opBEC();
+}
+
+main().catch(console.error);
 ```

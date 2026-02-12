@@ -67,4 +67,25 @@ interface Persons {
 ## Generated Sample
 
 ```ts samples
+/** This file path is /samples-dev/listSample.ts */
+import { SampleServiceClient } from "@azure/internal-test";
+
+/**
+ * This sample demonstrates how to execute list
+ *
+ * @summary execute list
+ * x-ms-original-file: 2021-10-01-preview/json.json
+ */
+async function listPersons(): Promise<void> {
+  const storage = process.env.SAMPLE_SERVICE_STORAGE || "";
+  const client = new SampleServiceClient(storage);
+  const result = await client.list({ start: "00000000-0000-0000-0000-000000000000", top: 20 });
+  console.log(result);
+}
+
+async function main(): Promise<void> {
+  await listPersons();
+}
+
+main().catch(console.error);
 ```

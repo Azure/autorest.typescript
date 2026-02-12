@@ -17,11 +17,7 @@ import {
   isSpreadBodyParameter,
   isTypeNullable
 } from "./typeHelpers.js";
-import {
-  getClassicalLayerPrefix,
-  getOperationName,
-  generateLocallyUniqueName
-} from "./namingHelpers.js";
+import { getClassicalLayerPrefix, getOperationName } from "./namingHelpers.js";
 import {
   getCollectionFormatHelper,
   hasCollectionFormatInfo,
@@ -71,11 +67,9 @@ import {
 } from "../type-expressions/get-type-expression.js";
 import { SdkContext } from "../../utils/interfaces.js";
 import {
-  getClientOptions,
   isHttpMetadata,
   isReadOnly,
   SdkBodyParameter,
-  SdkClientType,
   SdkConstantType,
   SdkEnumType,
   SdkHttpOperation,
@@ -98,8 +92,7 @@ import { emitInlineModel } from "../type-expressions/get-model-expression.js";
 export function getSendPrivateFunction(
   dpgContext: SdkContext,
   method: [string[], ServiceOperation],
-  clientType: string,
-  client?: SdkClientType<SdkHttpOperation>
+  clientType: string
 ): OptionalKind<FunctionDeclarationStructure> {
   const operation = method[1];
   const parameters = getOperationSignatureParameters(
@@ -128,23 +121,12 @@ export function getSendPrivateFunction(
     ...getQueryParameters(dpgContext, operation)
   ];
   if (urlTemplateParams.length > 0) {
-    // Generate a unique local variable name that doesn't conflict with parameter names
-    const paramNames = new Set(parameters.map((p) => p.name));
-    const pathVarName = generateLocallyUniqueName("path", paramNames);
-    const includeRootSlash = client
-      ? getClientOptions(client, "includeRootSlash") !== false
-      : true;
-
-    const uriTemplate = includeRootSlash
-      ? operation.operation.uriTemplate
-      : operation.operation.uriTemplate.replace(/^\//, "");
-
-    statements.push(`const ${pathVarName} = ${resolveReference(UrlTemplateHelpers.parseTemplate)}("${uriTemplate}", {
+    statements.push(`const path = ${resolveReference(UrlTemplateHelpers.parseTemplate)}("${operation.operation.uriTemplate}", {
         ${urlTemplateParams.join(",\n")}
         },{
       allowReserved: ${optionalParamName}?.requestOptions?.skipUrlEncoding
     });`);
-    pathStr = pathVarName;
+    pathStr = "path";
   }
 
   statements.push(
@@ -694,49 +676,31 @@ export function getOperationFunction(
 
   const statements: string[] = [];
 
-  // Generate unique local variable names that don't conflict with parameter names
-  const paramNames = new Set(parameters.map((p) => p.name));
-  const resultVarName = generateLocallyUniqueName("result", paramNames);
-
   const parameterList = parameters.map((p) => p.name).join(", ");
   // Special case for binary-only bodies: use helper to call streaming methods so that Core doesn't poison the response body by
   // doing a UTF-8 decode on the raw bytes.
   if (response?.type?.kind === "bytes" && response.type.encode === "bytes") {
-    const streamableMethodVarName = generateLocallyUniqueName(
-      "streamableMethod",
-      paramNames
-    );
+    statements.push(`const streamableMethod = _${name}Send(${parameterList});`);
     statements.push(
-      `const ${streamableMethodVarName} = _${name}Send(${parameterList});`
-    );
-    statements.push(
-      `const ${resultVarName} = await ${resolveReference(SerializationHelpers.getBinaryResponse)}(${streamableMethodVarName});`
+      `const result = await ${resolveReference(SerializationHelpers.getBinaryResponse)}(streamableMethod);`
     );
   } else {
-    statements.push(
-      `const ${resultVarName} = await _${name}Send(${parameterList});`
-    );
+    statements.push(`const result = await _${name}Send(${parameterList});`);
   }
 
   // If the response has headers and the feature flag to include headers in response is enabled, build the headers object and include it in the return value
   if (responseHeaders.length > 0 && isResponseHeadersEnabled) {
-    const headersVarName = generateLocallyUniqueName("headers", paramNames);
-    statements.push(
-      `const ${headersVarName} = _${name}DeserializeHeaders(result);`
-    );
+    statements.push(`const headers = _${name}DeserializeHeaders(result);`);
 
     // If there is no body payload just return the headers
     if (hasHeaderOnlyResponse) {
-      statements.push(`return {...${headersVarName} };`);
+      statements.push(`return {...headers };`);
     } else {
-      const payloadVarName = generateLocallyUniqueName("payload", paramNames);
-      statements.push(
-        `const ${payloadVarName} = await _${name}Deserialize(${resultVarName});`
-      );
-      statements.push(`return { ...${payloadVarName}, ...${headersVarName} };`);
+      statements.push(`const payload = await _${name}Deserialize(result);`);
+      statements.push(`return { ...payload, ...headers };`);
     }
   } else {
-    statements.push(`return _${name}Deserialize(${resultVarName});`);
+    statements.push(`return _${name}Deserialize(result);`);
   }
 
   return {
@@ -1358,7 +1322,7 @@ function getContentTypeValue(
   } else {
     return `contentType: ${
       !param.optional
-        ? normalizeName(param.name, NameType.Property)
+        ? "contentType"
         : `${optionalParamName}.` + param.name + " as any"
     }`;
   }

@@ -5,8 +5,8 @@ import {
   MixedParamsClient,
   PathParamClient,
   ParamAliasClient,
-  QueryParamClient
-} from "./generated/azure/client-generator-core/client-initialization/default/src/index.js";
+  ParentClient
+} from "./generated/azure/client-generator-core/client-initialization/src/index.js";
 
 describe("Azure ClientGeneratorCore Client Initialization", () => {
   const endpointOptions = {
@@ -22,11 +22,13 @@ describe("Azure ClientGeneratorCore Client Initialization", () => {
     });
 
     it("should send header parameter in withQuery operation", async () => {
-      await client.withQuery("test-id");
+      const result = await client.withQuery("test-id");
+      assert.isUndefined(result);
     });
 
     it("should send header parameter in withBody operation", async () => {
-      await client.withBody({ name: "test-name" });
+      const result = await client.withBody({ name: "test-name" });
+      assert.isUndefined(result);
     });
   });
 
@@ -42,11 +44,13 @@ describe("Azure ClientGeneratorCore Client Initialization", () => {
     });
 
     it("should send multiple parameters in withQuery operation", async () => {
-      await client.withQuery("test-id");
+      const result = await client.withQuery("test-id");
+      assert.isUndefined(result);
     });
 
     it("should send multiple parameters in withBody operation", async () => {
-      await client.withBody({ name: "test-name" });
+      const result = await client.withBody({ name: "test-name" });
+      assert.isUndefined(result);
     });
   });
 
@@ -58,11 +62,13 @@ describe("Azure ClientGeneratorCore Client Initialization", () => {
     });
 
     it("should send mixed parameters in withQuery operation", async () => {
-      await client.withQuery("us-west", "test-id");
+      const result = await client.withQuery("us-west", "test-id");
+      assert.isUndefined(result);
     });
 
     it("should send mixed parameters in withBody operation", async () => {
-      await client.withBody("us-west", { name: "test-name" });
+      const result = await client.withBody("us-west", { name: "test-name" });
+      assert.isUndefined(result);
     });
   });
 
@@ -74,7 +80,8 @@ describe("Azure ClientGeneratorCore Client Initialization", () => {
     });
 
     it("should send path parameter in withQuery operation", async () => {
-      await client.withQuery({ format: "text" });
+      const result = await client.withQuery({ format: "text" });
+      assert.isUndefined(result);
     });
 
     it("should get standalone with path parameter", async () => {
@@ -89,7 +96,8 @@ describe("Azure ClientGeneratorCore Client Initialization", () => {
     });
 
     it("should delete standalone with path parameter", async () => {
-      await client.deleteStandalone();
+      const result = await client.deleteStandalone();
+      assert.isUndefined(result);
     });
   });
 
@@ -101,38 +109,43 @@ describe("Azure ClientGeneratorCore Client Initialization", () => {
     });
 
     it("should call withOriginalName operation", async () => {
-      await client.withOriginalName();
+      const result = await client.withOriginalName();
+      assert.isUndefined(result);
     });
 
     it("should call withAliasedName operation", async () => {
-      await client.withAliasedName();
+      const result = await client.withAliasedName();
+      assert.isUndefined(result);
     });
   });
 
-  describe("QueryParam Client", () => {
-    let client: QueryParamClient;
+  describe("Parent-Child Client", () => {
+    let parentClient: ParentClient;
 
     beforeEach(() => {
-      client = new QueryParamClient("test-blob", endpointOptions);
+      parentClient = new ParentClient(endpointOptions);
     });
 
-    it("should send query parameter in withQuery operation", async () => {
-      await client.withQuery({ format: "text" });
-    });
+    it("should create child client and perform operations", async () => {
+      const childClient = parentClient.getChildClient("sample-blob");
 
-    it("should get standalone with query parameter", async () => {
-      const result = await client.getStandalone();
-      assert.strictEqual(result.name, "test-blob");
-      assert.strictEqual(result.size, 42);
-      assert.strictEqual(result.contentType, "text/plain");
+      // Test withQuery operation
+      const queryResult = await childClient.withQuery({ format: "text" });
+      assert.isUndefined(queryResult);
+
+      // Test getStandalone operation
+      const getResult = await childClient.getStandalone();
+      assert.strictEqual(getResult.name, "sample-blob");
+      assert.strictEqual(getResult.size, 42);
+      assert.strictEqual(getResult.contentType, "text/plain");
       assert.strictEqual(
-        result.createdOn.toISOString(),
+        getResult.createdOn.toISOString(),
         "2025-04-01T12:00:00.000Z"
       );
-    });
 
-    it("should delete resource with query parameter", async () => {
-      await client.deleteStandalone();
+      // Test deleteStandalone operation
+      const deleteResult = await childClient.deleteStandalone();
+      assert.isUndefined(deleteResult);
     });
   });
 });

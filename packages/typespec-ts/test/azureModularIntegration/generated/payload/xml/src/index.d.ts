@@ -196,7 +196,6 @@ export declare class XmlClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: XmlClientOptionalParams);
-    readonly xmlErrorValue: XmlErrorValueOperations;
     readonly modelWithEncodedNamesValue: ModelWithEncodedNamesValueOperations;
     readonly modelWithDictionaryValue: ModelWithDictionaryValueOperations;
     readonly modelWithTextValue: ModelWithTextValueOperations;
@@ -212,18 +211,6 @@ export declare class XmlClient {
 }
 
 export declare interface XmlClientOptionalParams extends ClientOptions {
-}
-
-export declare interface XmlErrorBody {
-    message: string;
-    code: number;
-}
-
-export declare interface XmlErrorValueGetOptionalParams extends OperationOptions {
-}
-
-export declare interface XmlErrorValueOperations {
-    get: (options?: XmlErrorValueGetOptionalParams) => Promise<SimpleModel>;
 }
 
 export { }

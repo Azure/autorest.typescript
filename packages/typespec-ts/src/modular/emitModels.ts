@@ -51,8 +51,6 @@ import {
 import {
   buildXmlModelSerializer,
   buildXmlModelDeserializer,
-  buildXmlObjectModelSerializer,
-  buildXmlObjectModelDeserializer,
   hasXmlSerialization
 } from "./serialization/buildXmlSerializerFunction.js";
 import path from "path";
@@ -386,14 +384,6 @@ function addSerializationFunctions(
   if (typeOrProperty.kind === "model" && hasXmlSerialization(typeOrProperty)) {
     const xmlSerializerRefKey = refkey(typeOrProperty, "xmlSerializer");
     const xmlDeserializerRefKey = refkey(typeOrProperty, "xmlDeserializer");
-    const xmlObjectSerializerRefKey = refkey(
-      typeOrProperty,
-      "xmlObjectSerializer"
-    );
-    const xmlObjectDeserializerRefKey = refkey(
-      typeOrProperty,
-      "xmlObjectDeserializer"
-    );
 
     const xmlSerializationFunction = buildXmlModelSerializer(
       context,
@@ -406,24 +396,6 @@ function addSerializationFunctions(
       xmlSerializationFunction.name
     ) {
       addDeclaration(sourceFile, xmlSerializationFunction, xmlSerializerRefKey);
-    }
-
-    // Also generate XML object serializer for nested object serialization
-    const xmlObjectSerializationFunction = buildXmlObjectModelSerializer(
-      context,
-      typeOrProperty,
-      options
-    );
-    if (
-      xmlObjectSerializationFunction &&
-      typeof xmlObjectSerializationFunction !== "string" &&
-      xmlObjectSerializationFunction.name
-    ) {
-      addDeclaration(
-        sourceFile,
-        xmlObjectSerializationFunction,
-        xmlObjectSerializerRefKey
-      );
     }
 
     const xmlDeserializationFunction = buildXmlModelDeserializer(
@@ -440,24 +412,6 @@ function addSerializationFunctions(
         sourceFile,
         xmlDeserializationFunction,
         xmlDeserializerRefKey
-      );
-    }
-
-    // Also generate XML object deserializer for nested object deserialization
-    const xmlObjectDeserializationFunction = buildXmlObjectModelDeserializer(
-      context,
-      typeOrProperty,
-      options
-    );
-    if (
-      xmlObjectDeserializationFunction &&
-      typeof xmlObjectDeserializationFunction !== "string" &&
-      xmlObjectDeserializationFunction.name
-    ) {
-      addDeclaration(
-        sourceFile,
-        xmlObjectDeserializationFunction,
-        xmlObjectDeserializerRefKey
       );
     }
   }
