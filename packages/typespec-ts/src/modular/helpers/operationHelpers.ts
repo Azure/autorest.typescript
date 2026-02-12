@@ -151,8 +151,7 @@ export function getSendPrivateFunction(
     `return context.path(${pathStr}).${operationMethod}({...${resolveReference(dependencies.operationOptionsToRequestParameters)}(${optionalParamName}), ${getHeaderAndBodyParameters(
       dpgContext,
       operation,
-      optionalParamName,
-      client
+      optionalParamName
     )}});`
   );
 
@@ -1154,8 +1153,7 @@ export function getOperationOptionsName(
 function getHeaderAndBodyParameters(
   dpgContext: SdkContext,
   operation: ServiceOperation,
-  optionalParamName: string = "options",
-  client?: SdkClientType<SdkHttpOperation>
+  optionalParamName: string = "options"
 ): string {
   if (!operation.operation.parameters) {
     return "";
