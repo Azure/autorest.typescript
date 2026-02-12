@@ -568,7 +568,6 @@ function getOperationSignatureParameters(
             param.methodParameterSegments[0]?.[0] === p
           );
         })[0]?.kind !== "cookie" &&
-        p.clientDefaultValue === undefined &&
         !p.optional &&
         !(
           p.isGeneratedName &&

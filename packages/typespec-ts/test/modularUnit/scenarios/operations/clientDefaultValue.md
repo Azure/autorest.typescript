@@ -139,3 +139,157 @@ export async function testQuery(
   return _testQueryDeserialize(result);
 }
 ```
+
+# Should not apply client default values for required parameters
+
+## TypeSpec
+
+```tsp
+model Configuration {
+  name: string;
+}
+
+@route("/api")
+interface Operations {
+  @get
+  @route("/required")
+  testRequired(
+    @query
+    @Azure.ClientGenerator.Core.Legacy.clientDefaultValue(10)
+    maxResults: int32,
+
+    @header
+    @Azure.ClientGenerator.Core.Legacy.clientDefaultValue("application/json")
+    customHeader: string,
+
+    @query
+    limit: int32
+  ): Configuration;
+
+  @post
+  @route("/createRequired")
+  createRequired(
+    @body
+    @Azure.ClientGenerator.Core.Legacy.clientDefaultValue("default-body")
+    body: string
+  ): string;
+}
+```
+
+```yaml
+needTCGC: true
+```
+
+## Operations
+
+```ts operations
+import { TestingContext as Client } from "./index.js";
+import { Configuration, configurationDeserializer } from "../models/models.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import {
+  CreateRequiredOptionalParams,
+  TestRequiredOptionalParams,
+} from "./options.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+
+export function _createRequiredSend(
+  context: Client,
+  body: string,
+  options: CreateRequiredOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/api/createRequired")
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "text/plain",
+      headers: { accept: "text/plain", ...options.requestOptions?.headers },
+      body: body,
+    });
+}
+
+export async function _createRequiredDeserialize(
+  result: PathUncheckedResponse,
+): Promise<string> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return result.body;
+}
+
+export async function createRequired(
+  context: Client,
+  body: string,
+  options: CreateRequiredOptionalParams = { requestOptions: {} },
+): Promise<string> {
+  const result = await _createRequiredSend(context, body, options);
+  return _createRequiredDeserialize(result);
+}
+
+export function _testRequiredSend(
+  context: Client,
+  maxResults: number,
+  sortOrder: string,
+  customHeader: string,
+  limit: number,
+  options: TestRequiredOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/api/required{?maxResults,sortOrder,limit}",
+    {
+      maxResults: maxResults,
+      sortOrder: sortOrder,
+      limit: limit,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context
+    .path(path)
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        "custom-header": customHeader,
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+    });
+}
+
+export async function _testRequiredDeserialize(
+  result: PathUncheckedResponse,
+): Promise<Configuration> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return configurationDeserializer(result.body);
+}
+
+export async function testRequired(
+  context: Client,
+  maxResults: number,
+  sortOrder: string,
+  customHeader: string,
+  limit: number,
+  options: TestRequiredOptionalParams = { requestOptions: {} },
+): Promise<Configuration> {
+  const result = await _testRequiredSend(
+    context,
+    maxResults,
+    sortOrder,
+    customHeader,
+    limit,
+    options,
+  );
+  return _testRequiredDeserialize(result);
+}
+```
