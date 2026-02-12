@@ -59,9 +59,11 @@ export async function getUser(
 ```
 
 ```ts operations function _getUserDeserializeHeaders
-export function _getUserDeserializeHeaders(
-  result: PathUncheckedResponse
-): { userId?: string; createdAt?: Date; contentType: "application/xml" } {
+export function _getUserDeserializeHeaders(result: PathUncheckedResponse): {
+  userId?: string;
+  createdAt?: Date;
+  contentType: "application/xml";
+} {
   return {
     userId:
       result.headers["x-user-id"] === undefined || result.headers["x-user-id"] === null
@@ -73,8 +75,6 @@ export function _getUserDeserializeHeaders(
         : new Date(result.headers["created-at"]),
     contentType: result.headers["content-type"] as any,
   };
-  const payload = await _getUserDeserialize(result);
-  return { ...payload, ...headers };
 }
 ```
 
@@ -116,9 +116,10 @@ export async function deleteUser(
 ```
 
 ```ts operations function _deleteUserDeserializeHeaders
-export function _deleteUserDeserializeHeaders(
-  result: PathUncheckedResponse
-): { requestId: string; optionalHeader?: string } {
+export function _deleteUserDeserializeHeaders(result: PathUncheckedResponse): {
+  requestId: string;
+  optionalHeader?: string;
+} {
   return {
     requestId: result.headers["x-request-id"],
     optionalHeader:
@@ -127,7 +128,6 @@ export function _deleteUserDeserializeHeaders(
         ? result.headers["x-optional-header"]
         : result.headers["x-optional-header"],
   };
-  return { ...headers };
 }
 ```
 
@@ -173,9 +173,12 @@ export async function getAccountInfo(
 ```
 
 ```ts operations function _getAccountInfoDeserializeHeaders
-export function _getAccountInfoDeserializeHeaders(
-  result: PathUncheckedResponse
-): { date: Date; legalHold: boolean; contentMd5: Uint8Array; requestId?: string } {
+export function _getAccountInfoDeserializeHeaders(result: PathUncheckedResponse): {
+  date: Date;
+  legalHold: boolean;
+  contentMd5: Uint8Array;
+  requestId?: string;
+} {
   return {
     date: new Date(result.headers["date"]),
     legalHold: result.headers["x-ms-legal-hold"].trim().toLowerCase() === "true",
@@ -188,7 +191,6 @@ export function _getAccountInfoDeserializeHeaders(
         ? result.headers["x-ms-request-id"]
         : result.headers["x-ms-request-id"],
   };
-  return { ...headers };
 }
 ```
 

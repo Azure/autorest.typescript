@@ -1282,7 +1282,7 @@ export function chatCompletionsToolCallUnionSerializer(item: ChatCompletionsTool
 }
 
 export function chatCompletionsToolCallUnionDeserializer(item: any): ChatCompletionsToolCallUnion {
-  switch (item.type) {
+  switch (item["type"]) {
     case "function":
       return chatCompletionsFunctionToolCallDeserializer(item as ChatCompletionsFunctionToolCall);
 
@@ -3090,7 +3090,7 @@ export function chatFinishDetailsDeserializer(item: any): ChatFinishDetails {
 export type ChatFinishDetailsUnion = StopFinishDetails | MaxTokensFinishDetails | ChatFinishDetails;
 
 export function chatFinishDetailsUnionDeserializer(item: any): ChatFinishDetailsUnion {
-  switch (item.type) {
+  switch (item["type"]) {
     case "stop":
       return stopFinishDetailsDeserializer(item as StopFinishDetails);
 
