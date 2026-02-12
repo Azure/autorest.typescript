@@ -60,9 +60,10 @@ export async function getUser(
 ```
 
 ```ts operations function _getUserDeserializeHeaders
-export function _getUserDeserializeHeaders(
-  result: PathUncheckedResponse,
-): { userId?: string; createdAt?: Date } {
+export function _getUserDeserializeHeaders(result: PathUncheckedResponse): {
+  userId?: string;
+  createdAt?: Date;
+} {
   return {
     userId:
       result.headers["x-user-id"] === undefined || result.headers["x-user-id"] === null
@@ -123,9 +124,10 @@ export async function deleteUser(
 ```
 
 ```ts operations function _deleteUserDeserializeHeaders
-export function _deleteUserDeserializeHeaders(
-  result: PathUncheckedResponse,
-): { requestId: string; optionalHeader?: string } {
+export function _deleteUserDeserializeHeaders(result: PathUncheckedResponse): {
+  requestId: string;
+  optionalHeader?: string;
+} {
   return {
     requestId: result.headers["x-request-id"],
     optionalHeader:
@@ -179,9 +181,12 @@ export async function getAccountInfo(
 ```
 
 ```ts operations function _getAccountInfoDeserializeHeaders
-export function _getAccountInfoDeserializeHeaders(
-  result: PathUncheckedResponse,
-): { date: Date; legalHold: boolean; contentMd5: Uint8Array; requestId?: string } {
+export function _getAccountInfoDeserializeHeaders(result: PathUncheckedResponse): {
+  date: Date;
+  legalHold: boolean;
+  contentMd5: Uint8Array;
+  requestId?: string;
+} {
   return {
     date: new Date(result.headers["date"]),
     legalHold: result.headers["x-ms-legal-hold"].trim().toLowerCase() === "true",
