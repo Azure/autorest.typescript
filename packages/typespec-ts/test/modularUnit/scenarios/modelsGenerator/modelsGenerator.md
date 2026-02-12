@@ -2867,3 +2867,90 @@ export function petUnionDeserializer(item: any): PetUnion {
   }
 }
 ```
+
+# only: should handle duplicate model name import between hardcode import and binder import
+
+## TypeSpec
+
+```tsp
+model Client {
+  id: string;
+  email: string;
+}
+
+op read(@body body: Client): Client;
+```
+
+## Models
+
+```ts models
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/** model interface Client */
+export interface Client {
+  id: string;
+  email: string;
+}
+
+export function clientSerializer(item: Client): any {
+  return { id: item["id"], email: item["email"] };
+}
+
+export function clientDeserializer(item: any): Client {
+  return {
+    id: item["id"],
+    email: item["email"],
+  };
+}
+```
+
+## Operations
+
+```ts operations
+import { TestingContext as Client } from "./index.js";
+import { Client as Client_1, clientSerializer, clientDeserializer } from "../models/models.js";
+import { ReadOptionalParams } from "./options.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+
+export function _readSend(
+  context: Client,
+  body: Client_1,
+  options: ReadOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/")
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
+      body: clientSerializer(body),
+    });
+}
+
+export async function _readDeserialize(result: PathUncheckedResponse): Promise<Client_1> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return clientDeserializer(result.body);
+}
+
+export async function read(
+  context: Client,
+  body: Client_1,
+  options: ReadOptionalParams = { requestOptions: {} },
+): Promise<Client_1> {
+  const result = await _readSend(context, body, options);
+  return _readDeserialize(result);
+}
+```
