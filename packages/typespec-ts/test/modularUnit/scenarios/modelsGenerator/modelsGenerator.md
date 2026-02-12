@@ -1676,7 +1676,7 @@ export function petUnionSerializer(item: PetUnion): any {
 }
 
 export function petUnionDeserializer(item: any): PetUnion {
-  switch (item.kind) {
+  switch (item["kind"]) {
     case "dog":
       return psDogDeserializer(item as PSDog);
 
@@ -1783,7 +1783,7 @@ export function petDeserializer(item: any): Pet {
 export type PetUnion = Cat | Dog | Pet;
 
 export function petUnionDeserializer(item: any): PetUnion {
-  switch (item.kind) {
+  switch (item["kind"]) {
     case "cat":
       return catDeserializer(item as Cat);
 
@@ -1925,7 +1925,7 @@ export function petDeserializer(item: any): Pet {
 export type PetUnion = Cat | DogUnion | Pet;
 
 export function petUnionDeserializer(item: any): PetUnion {
-  switch (item.kind) {
+  switch (item["kind"]) {
     case "cat":
       return catDeserializer(item as Cat);
 
@@ -1973,7 +1973,7 @@ export function dogDeserializer(item: any): Dog {
 export type DogUnion = Gold | Dog;
 
 export function dogUnionDeserializer(item: any): DogUnion {
-  switch (item.type) {
+  switch (item["type"]) {
     case "gold":
       return goldDeserializer(item as Gold);
 
@@ -2856,7 +2856,7 @@ export function petUnionSerializer(item: PetUnion): any {
 }
 
 export function petUnionDeserializer(item: any): PetUnion {
-  switch (item.kind) {
+  switch (item["kind"]) {
     case "dog":
       return servicePlacementPolicyDescriptionDeserializer(
         item as ServicePlacementPolicyDescription,

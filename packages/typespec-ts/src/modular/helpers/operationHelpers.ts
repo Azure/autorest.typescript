@@ -17,7 +17,11 @@ import {
   isSpreadBodyParameter,
   isTypeNullable
 } from "./typeHelpers.js";
-import { getClassicalLayerPrefix, getOperationName } from "./namingHelpers.js";
+import {
+  getClassicalLayerPrefix,
+  getOperationName,
+  generateLocallyUniqueName
+} from "./namingHelpers.js";
 import {
   getCollectionFormatHelper,
   hasCollectionFormatInfo,
@@ -67,9 +71,11 @@ import {
 } from "../type-expressions/get-type-expression.js";
 import { SdkContext } from "../../utils/interfaces.js";
 import {
+  getClientOptions,
   isHttpMetadata,
   isReadOnly,
   SdkBodyParameter,
+  SdkClientType,
   SdkConstantType,
   SdkEnumType,
   SdkHttpOperation,
@@ -92,7 +98,8 @@ import { emitInlineModel } from "../type-expressions/get-model-expression.js";
 export function getSendPrivateFunction(
   dpgContext: SdkContext,
   method: [string[], ServiceOperation],
-  clientType: string
+  clientType: string,
+  client?: SdkClientType<SdkHttpOperation>
 ): OptionalKind<FunctionDeclarationStructure> {
   const operation = method[1];
   const parameters = getOperationSignatureParameters(
@@ -121,12 +128,23 @@ export function getSendPrivateFunction(
     ...getQueryParameters(dpgContext, operation)
   ];
   if (urlTemplateParams.length > 0) {
-    statements.push(`const path = ${resolveReference(UrlTemplateHelpers.parseTemplate)}("${operation.operation.uriTemplate}", {
+    // Generate a unique local variable name that doesn't conflict with parameter names
+    const paramNames = new Set(parameters.map((p) => p.name));
+    const pathVarName = generateLocallyUniqueName("path", paramNames);
+    const includeRootSlash = client
+      ? getClientOptions(client, "includeRootSlash") !== false
+      : true;
+
+    const uriTemplate = includeRootSlash
+      ? operation.operation.uriTemplate
+      : operation.operation.uriTemplate.replace(/^\//, "");
+
+    statements.push(`const ${pathVarName} = ${resolveReference(UrlTemplateHelpers.parseTemplate)}("${uriTemplate}", {
         ${urlTemplateParams.join(",\n")}
         },{
       allowReserved: ${optionalParamName}?.requestOptions?.skipUrlEncoding
     });`);
-    pathStr = "path";
+    pathStr = pathVarName;
   }
 
   statements.push(
@@ -359,6 +377,57 @@ export function getDeserializePrivateFunction(
   } else {
     statements.push("return;");
   }
+
+  return {
+    ...functionStatement,
+    statements
+  };
+}
+
+/**
+ * Generates a private function to deserialize response headers.
+ * Only generated when response headers are present and include-headers-in-response is enabled.
+ */
+export function getDeserializeHeadersPrivateFunction(
+  context: SdkContext,
+  operation: ServiceOperation
+): OptionalKind<FunctionDeclarationStructure> | undefined {
+  const responseHeaders = getResponseHeaders(operation.operation.responses);
+  const isResponseHeadersEnabled =
+    context.rlcOptions?.includeHeadersInResponse === true;
+
+  // Only generate if headers exist and feature is enabled
+  if (responseHeaders.length === 0 || !isResponseHeadersEnabled) {
+    return undefined;
+  }
+
+  const { name } = getOperationName(operation);
+  const dependencies = useDependencies();
+  const PathUncheckedResponseReference = resolveReference(
+    dependencies.PathUncheckedResponse
+  );
+
+  const parameters: OptionalKind<ParameterDeclarationStructure>[] = [
+    {
+      name: "result",
+      type: PathUncheckedResponseReference
+    }
+  ];
+
+  const returnType = buildHeaderOnlyResponseType(context, responseHeaders);
+
+  const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
+    isAsync: false,
+    isExported: true,
+    name: `_${name}DeserializeHeaders`,
+    parameters,
+    returnType
+  };
+
+  const statements: string[] = [];
+  statements.push(
+    `return ${buildHeaderOnlyResponseValue(context, responseHeaders)};`
+  );
 
   return {
     ...functionStatement,
@@ -625,33 +694,49 @@ export function getOperationFunction(
 
   const statements: string[] = [];
 
+  // Generate unique local variable names that don't conflict with parameter names
+  const paramNames = new Set(parameters.map((p) => p.name));
+  const resultVarName = generateLocallyUniqueName("result", paramNames);
+
   const parameterList = parameters.map((p) => p.name).join(", ");
   // Special case for binary-only bodies: use helper to call streaming methods so that Core doesn't poison the response body by
   // doing a UTF-8 decode on the raw bytes.
   if (response?.type?.kind === "bytes" && response.type.encode === "bytes") {
-    statements.push(`const streamableMethod = _${name}Send(${parameterList});`);
+    const streamableMethodVarName = generateLocallyUniqueName(
+      "streamableMethod",
+      paramNames
+    );
     statements.push(
-      `const result = await ${resolveReference(SerializationHelpers.getBinaryResponse)}(streamableMethod);`
+      `const ${streamableMethodVarName} = _${name}Send(${parameterList});`
+    );
+    statements.push(
+      `const ${resultVarName} = await ${resolveReference(SerializationHelpers.getBinaryResponse)}(${streamableMethodVarName});`
     );
   } else {
-    statements.push(`const result = await _${name}Send(${parameterList});`);
+    statements.push(
+      `const ${resultVarName} = await _${name}Send(${parameterList});`
+    );
   }
 
   // If the response has headers and the feature flag to include headers in response is enabled, build the headers object and include it in the return value
   if (responseHeaders.length > 0 && isResponseHeadersEnabled) {
+    const headersVarName = generateLocallyUniqueName("headers", paramNames);
     statements.push(
-      `const headers = ${buildHeaderOnlyResponseValue(context, responseHeaders)};`
+      `const ${headersVarName} = _${name}DeserializeHeaders(result);`
     );
 
     // If there is no body payload just return the headers
     if (hasHeaderOnlyResponse) {
-      statements.push(`return {...headers };`);
+      statements.push(`return {...${headersVarName} };`);
     } else {
-      statements.push(`const payload = await _${name}Deserialize(result);`);
-      statements.push(`return { ...payload, ...headers };`);
+      const payloadVarName = generateLocallyUniqueName("payload", paramNames);
+      statements.push(
+        `const ${payloadVarName} = await _${name}Deserialize(${resultVarName});`
+      );
+      statements.push(`return { ...${payloadVarName}, ...${headersVarName} };`);
     }
   } else {
-    statements.push(`return _${name}Deserialize(result);`);
+    statements.push(`return _${name}Deserialize(${resultVarName});`);
   }
 
   return {
@@ -1290,7 +1375,7 @@ function getContentTypeValue(
   } else {
     return `contentType: ${
       !param.optional
-        ? "contentType"
+        ? normalizeName(param.name, NameType.Property)
         : `${optionalParamName}.` + param.name + " as any"
     }`;
   }
@@ -1693,7 +1778,7 @@ export function getRequestModelMapping(
   ).map(([name, value]) => `"${name}": ${value}`);
 }
 
-function getPropertySerializedName(
+export function getPropertySerializedName(
   property: SdkHttpParameter | SdkModelPropertyType
 ) {
   return (

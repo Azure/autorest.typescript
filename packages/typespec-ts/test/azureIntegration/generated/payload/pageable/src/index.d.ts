@@ -95,6 +95,8 @@ export declare interface Routes {
     (path: "/payload/pageable/server-driven-pagination/nested-link"): ServerDrivenPaginationNestedLink;
     (path: "/payload/pageable/pagesize/without-continuation"): PageSizeListWithoutContinuation;
     (path: "/payload/pageable/pagesize/list"): PageSizeListWithPageSize;
+    (path: "/payload/pageable/xml/list-with-continuation"): XmlPaginationListWithContinuation;
+    (path: "/payload/pageable/xml/list-with-next-link"): XmlPaginationListWithNextLink;
     (path: "/payload/pageable/server-driven-pagination/continuationtoken/request-query-response-body"): ServerDrivenPaginationContinuationTokenRequestQueryResponseBody;
     (path: "/payload/pageable/server-driven-pagination/continuationtoken/request-header-response-body"): ServerDrivenPaginationContinuationTokenRequestHeaderResponseBody;
     (path: "/payload/pageable/server-driven-pagination/continuationtoken/request-query-response-header"): ServerDrivenPaginationContinuationTokenRequestQueryResponseHeader;
@@ -350,5 +352,60 @@ export declare interface ServerDrivenPaginationNestedLink200Response extends Htt
 }
 
 export declare type ServerDrivenPaginationNestedLinkParameters = RequestParameters;
+
+export declare interface XmlPaginationListWithContinuation {
+    get(options?: XmlPaginationListWithContinuationParameters): StreamableMethod<XmlPaginationListWithContinuation200Response>;
+}
+
+export declare interface XmlPaginationListWithContinuation200Headers {
+    "content-type": "application/xml";
+}
+
+export declare interface XmlPaginationListWithContinuation200Response extends HttpResponse {
+    status: "200";
+    body: XmlPetListResultOutput;
+    headers: RawHttpHeaders & XmlPaginationListWithContinuation200Headers;
+}
+
+export declare type XmlPaginationListWithContinuationParameters = XmlPaginationListWithContinuationQueryParam & RequestParameters;
+
+export declare interface XmlPaginationListWithContinuationQueryParam {
+    queryParameters?: XmlPaginationListWithContinuationQueryParamProperties;
+}
+
+export declare interface XmlPaginationListWithContinuationQueryParamProperties {
+    marker?: string;
+}
+
+export declare interface XmlPaginationListWithNextLink {
+    get(options?: XmlPaginationListWithNextLinkParameters): StreamableMethod<XmlPaginationListWithNextLink200Response>;
+}
+
+export declare interface XmlPaginationListWithNextLink200Headers {
+    "content-type": "application/xml";
+}
+
+export declare interface XmlPaginationListWithNextLink200Response extends HttpResponse {
+    status: "200";
+    body: XmlPetListResultWithNextLinkOutput;
+    headers: RawHttpHeaders & XmlPaginationListWithNextLink200Headers;
+}
+
+export declare type XmlPaginationListWithNextLinkParameters = RequestParameters;
+
+export declare interface XmlPetListResultOutput {
+    pets: Array<XmlPetOutput>;
+    nextMarker?: string;
+}
+
+export declare interface XmlPetListResultWithNextLinkOutput {
+    pets: Array<XmlPetOutput>;
+    nextLink?: string;
+}
+
+export declare interface XmlPetOutput {
+    id: string;
+    name: string;
+}
 
 export { }
