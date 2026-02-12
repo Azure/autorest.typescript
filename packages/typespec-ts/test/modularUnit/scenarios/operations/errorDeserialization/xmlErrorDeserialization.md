@@ -1,21 +1,17 @@
-# Infer Accept Header from Response Content Types
+# XML-only error deserialization
 
-This scenario tests the generation of the Accept header when it is inferred from response content types using the `inferAcceptHeader` client option.
+Tests that when an error model uses XML serialization and the error response content type is XML-only,
+the generated deserialize function uses the XML deserializer directly.
 
 ## TypeSpec
 
-This TypeSpec defines a simple operation with JSON response content type. The `@@clientOption` decorator is used to enable accept header inference.
-
 ```tsp
-import "@typespec/http";
-import "@azure-tools/typespec-client-generator-core";
-
-using TypeSpec.Http;
-using Azure.ClientGenerator.Core;
-
-@service(#{ title: "Test Service" })
-#suppress "@azure-tools/typespec-client-generator-core/client-option" "Testing override"
-namespace TestService;
+@error
+@mediaTypeHint("application/xml")
+model StorageError {
+  @Xml.name("Code") code?: string;
+  @Xml.name("Message") message?: string;
+}
 
 model Widget {
   id: string;
@@ -24,24 +20,18 @@ model Widget {
 
 @route("/widgets/{id}")
 @get
-op getWidget(@path id: string): Widget;
-
-#suppress "@azure-tools/typespec-client-generator-core/client-option" "Testing override"
-@@clientOption(TestService, "inferAcceptHeader", true, "javascript");
-```
-
-The config would be like:
-
-```yaml
-needTCGC: true
-withRawContent: true
+op getWidget(@path id: string): Widget | StorageError;
 ```
 
 ## Operations
 
 ```ts operations
-import { TestServiceContext as Client } from "./index.js";
-import { Widget, widgetDeserializer } from "../models/models.js";
+import { TestingContext as Client } from "./index.js";
+import {
+  Widget,
+  widgetDeserializer,
+  storageErrorXmlDeserializer
+} from "../models/models.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import { GetWidgetOptionalParams } from "./options.js";
 import {
@@ -76,7 +66,9 @@ export async function _getWidgetDeserialize(
 ): Promise<Widget> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = storageErrorXmlDeserializer(result.body);
+    throw error;
   }
 
   return widgetDeserializer(result.body);
@@ -92,22 +84,19 @@ export async function getWidget(
 }
 ```
 
-# Infer Accept Header with Multiple Content Types
+# Dual-format error deserialization
 
-This scenario tests accept header inference when the response supports multiple content types.
+Tests that when an error model uses XML serialization and the error response supports both XML and JSON,
+the generated deserialize function uses runtime content-type detection to choose the correct deserializer.
 
 ## TypeSpec
 
 ```tsp
-import "@typespec/http";
-import "@azure-tools/typespec-client-generator-core";
-
-using TypeSpec.Http;
-using Azure.ClientGenerator.Core;
-
-@service(#{ title: "Test Service" })
-#suppress "@azure-tools/typespec-client-generator-core/client-option" "Testing override"
-namespace TestService;
+@error
+model ApiError {
+  @Xml.name("Code") code?: string;
+  @Xml.name("Message") message?: string;
+}
 
 model Document {
   id: string;
@@ -119,28 +108,23 @@ model Document {
 op getDocument(@path id: string): {
   @header contentType: "application/json" | "application/xml";
   @body body: Document;
+} | {
+  @header contentType: "application/json" | "application/xml";
+  @body body: ApiError;
+  @statusCode statusCode: 400 | 404 | 500;
 };
-
-#suppress "@azure-tools/typespec-client-generator-core/client-option" "Testing override"
-@@clientOption(TestService, "inferAcceptHeader", true, "javascript");
-
-```
-
-The config would be like:
-
-```yaml
-needTCGC: true
-withRawContent: true
 ```
 
 ## Operations
 
 ```ts operations
-import { TestServiceContext as Client } from "./index.js";
+import { TestingContext as Client } from "./index.js";
 import {
   Document,
   documentDeserializer,
-  documentXmlDeserializer
+  documentXmlDeserializer,
+  apiErrorDeserializer,
+  apiErrorXmlDeserializer
 } from "../models/models.js";
 import { isXmlContentType } from "../static-helpers/serialization/xml-helpers.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
@@ -166,13 +150,9 @@ export function _getDocumentSend(
       allowReserved: options?.requestOptions?.skipUrlEncoding
     }
   );
-  return context.path(path).get({
-    ...operationOptionsToRequestParameters(options),
-    headers: {
-      accept: "application/json, application/xml",
-      ...options.requestOptions?.headers
-    }
-  });
+  return context
+    .path(path)
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getDocumentDeserialize(
@@ -180,7 +160,24 @@ export async function _getDocumentDeserialize(
 ): Promise<Document> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    const responseContentType = result.headers?.["content-type"] ?? "";
+    const isXml = isXmlContentType(responseContentType);
+    const statusCode = Number.parseInt(result.status);
+    if (statusCode === 400) {
+      error.details = isXml
+        ? apiErrorXmlDeserializer(result.body)
+        : apiErrorDeserializer(result.body);
+    } else if (statusCode === 404) {
+      error.details = isXml
+        ? apiErrorXmlDeserializer(result.body)
+        : apiErrorDeserializer(result.body);
+    } else if (statusCode === 500) {
+      error.details = isXml
+        ? apiErrorXmlDeserializer(result.body)
+        : apiErrorDeserializer(result.body);
+    }
+    throw error;
   }
 
   const responseContentType = result.headers?.["content-type"] ?? "";
@@ -200,21 +197,19 @@ export async function getDocument(
 }
 ```
 
-# Accept Header Not Inferred Without Client Option
+# JSON-only error deserialization
 
-This scenario tests that the accept header is NOT inferred when the `inferAcceptHeader` client option is not set.
+Tests that when an error model has no XML serialization, the generated deserialize function
+uses the JSON deserializer as before.
 
 ## TypeSpec
 
 ```tsp
-import "@typespec/http";
-import "@azure-tools/typespec-client-generator-core";
-
-using TypeSpec.Http;
-using Azure.ClientGenerator.Core;
-
-@service(#{ title: "Test Service" })
-namespace TestService;
+@error
+model SimpleError {
+  code: string;
+  message: string;
+}
 
 model Item {
   id: string;
@@ -223,21 +218,18 @@ model Item {
 
 @route("/items/{id}")
 @get
-op getItem(@path id: string): Item;
-```
-
-The config would be like:
-
-```yaml
-needTCGC: true
-withRawContent: true
+op getItem(@path id: string): Item | SimpleError;
 ```
 
 ## Operations
 
 ```ts operations
-import { TestServiceContext as Client } from "./index.js";
-import { Item, itemDeserializer } from "../models/models.js";
+import { TestingContext as Client } from "./index.js";
+import {
+  Item,
+  itemDeserializer,
+  simpleErrorDeserializer
+} from "../models/models.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import { GetItemOptionalParams } from "./options.js";
 import {
@@ -272,7 +264,9 @@ export async function _getItemDeserialize(
 ): Promise<Item> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = simpleErrorDeserializer(result.body);
+    throw error;
   }
 
   return itemDeserializer(result.body);
