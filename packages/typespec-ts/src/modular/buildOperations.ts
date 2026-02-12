@@ -86,7 +86,8 @@ export function buildOperationFiles(
       const sendOperationDeclaration = getSendPrivateFunction(
         dpgContext,
         [prefixes, op],
-        clientType
+        clientType,
+        client
       );
       const deserializeOperationDeclaration = getDeserializePrivateFunction(
         dpgContext,
