@@ -440,11 +440,17 @@ interface ExceptionThrowDetail {
   start: number;
   end?: number;
   deserializer: string;
+  xmlDeserializer?: string;
+  /** Whether the exception response is XML-only (no JSON content type) */
+  isXmlOnly?: boolean;
 }
 
 interface OperationExceptionDetails {
   customized: ExceptionThrowDetail[];
   defaultDeserializer?: string;
+  defaultXmlDeserializer?: string;
+  /** Whether the default exception response is XML-only */
+  defaultIsXmlOnly?: boolean;
 }
 
 function getExceptionDetails(
@@ -453,6 +459,8 @@ function getExceptionDetails(
 ): OperationExceptionDetails {
   const customized: ExceptionThrowDetail[] = [];
   let defaultDeserializer: string | undefined;
+  let defaultXmlDeserializer: string | undefined;
+  let defaultIsXmlOnly: boolean | undefined;
   for (const exception of operation.operation.exceptions) {
     if (!exception.type) {
       continue;
@@ -472,22 +480,69 @@ function getExceptionDetails(
     ) {
       continue;
     }
+
+    // Check if the exception type has XML serialization support
+    // Use exception contentTypes when available, otherwise check the type itself
+    const exceptionContentTypes = exception.contentTypes ?? [];
+    const exceptionIsXml = isXmlPayload(exceptionContentTypes);
+    const exceptionIsDualFormat = hasDualFormatSupport(exceptionContentTypes);
+    const typeHasXml =
+      exception.type.kind === "model" && hasXmlSerialization(exception.type);
+
+    let xmlDeserializerName: string | undefined;
+    if (exception.type.kind === "model" && (typeHasXml || exceptionIsXml)) {
+      const xmlName = buildXmlModelDeserializer(context, exception.type, {
+        nameOnly: true,
+        skipDiscriminatedUnionSuffix: false
+      });
+      if (typeof xmlName === "string") {
+        xmlDeserializerName = xmlName;
+      }
+    }
+
+    // XML-only when all content types are XML (no JSON support)
+    const isXmlOnly =
+      xmlDeserializerName !== undefined &&
+      exceptionIsXml &&
+      !exceptionIsDualFormat;
+
     if (statusCode === "*") {
       defaultDeserializer = deserializeFunctionName;
+      defaultXmlDeserializer = xmlDeserializerName;
+      defaultIsXmlOnly = isXmlOnly;
     } else if (typeof statusCode === "number") {
       customized.push({
         start: statusCode,
-        deserializer: deserializeFunctionName
+        deserializer: deserializeFunctionName,
+        xmlDeserializer: xmlDeserializerName,
+        isXmlOnly
       });
     } else {
       customized.push({
         start: statusCode.start,
         end: statusCode.end,
-        deserializer: deserializeFunctionName
+        deserializer: deserializeFunctionName,
+        xmlDeserializer: xmlDeserializerName,
+        isXmlOnly
       });
     }
   }
-  return { customized, defaultDeserializer };
+  return {
+    customized,
+    defaultDeserializer,
+    defaultXmlDeserializer,
+    defaultIsXmlOnly
+  };
+}
+
+function getExceptionDeserializeExpr(exception: ExceptionThrowDetail): string {
+  if (!exception.xmlDeserializer) {
+    return `${exception.deserializer}(result.body)`;
+  }
+  if (exception.isXmlOnly) {
+    return `${exception.xmlDeserializer}(result.body)`;
+  }
+  return `isXml ? ${exception.xmlDeserializer}(result.body) : ${exception.deserializer}(result.body)`;
 }
 
 function getExceptionThrowStatement(
@@ -498,35 +553,72 @@ function getExceptionThrowStatement(
   const createRestErrorReference = resolveReference(
     useDependencies().createRestError
   );
-  const { customized, defaultDeserializer } = getExceptionDetails(
-    context,
-    operation
-  );
+  const {
+    customized,
+    defaultDeserializer,
+    defaultXmlDeserializer,
+    defaultIsXmlOnly
+  } = getExceptionDetails(context, operation);
+
+  // Check if any exception has XML deserialization support that requires runtime content-type check
+  const hasAnyDualFormatXml =
+    (defaultXmlDeserializer !== undefined && !defaultIsXmlOnly) ||
+    customized.some((e) => e.xmlDeserializer !== undefined && !e.isXmlOnly);
+
   if (customized.length > 0) {
     statements.push(`const error = ${createRestErrorReference}(result);`);
+    if (hasAnyDualFormatXml) {
+      const isXmlContentTypeRef = resolveReference(XmlHelpers.isXmlContentType);
+      statements.push(
+        `const responseContentType = result.headers?.["content-type"] ?? "";`
+      );
+      statements.push(
+        `const isXml = ${isXmlContentTypeRef}(responseContentType);`
+      );
+    }
     statements.push(`const statusCode = Number.parseInt(result.status);`);
     const stats: string[] = customized.map((exception) => {
+      const deserializeExpr = getExceptionDeserializeExpr(exception);
       if (exception.end) {
         return `if(statusCode >= ${exception.start} && statusCode <= ${exception.end}) {
-              error.details = ${exception.deserializer}(result.body);
+              error.details = ${deserializeExpr};
           }`;
       } else {
         return `if(statusCode === ${exception.start}) {
-             error.details = ${exception.deserializer}(result.body);
+             error.details = ${deserializeExpr};
           }`;
       }
     });
     statements.push(stats.join("\nelse "));
     if (defaultDeserializer) {
+      const defaultDeserializeExpr = !defaultXmlDeserializer
+        ? `${defaultDeserializer}(result.body)`
+        : defaultIsXmlOnly
+          ? `${defaultXmlDeserializer}(result.body)`
+          : `isXml ? ${defaultXmlDeserializer}(result.body) : ${defaultDeserializer}(result.body)`;
       statements.push(`else {
-        error.details = ${defaultDeserializer}(result.body);
+        error.details = ${defaultDeserializeExpr};
       }`);
     }
     statements.push("throw error;");
   } else {
     if (defaultDeserializer) {
-      statements.push(`const error = ${createRestErrorReference}(result);
-      error.details = ${defaultDeserializer}(result.body);`);
+      if (defaultXmlDeserializer) {
+        if (defaultIsXmlOnly) {
+          statements.push(`const error = ${createRestErrorReference}(result);
+          error.details = ${defaultXmlDeserializer}(result.body);`);
+        } else {
+          const isXmlContentTypeRef = resolveReference(
+            XmlHelpers.isXmlContentType
+          );
+          statements.push(`const error = ${createRestErrorReference}(result);
+          const responseContentType = result.headers?.["content-type"] ?? "";
+          error.details = ${isXmlContentTypeRef}(responseContentType) ? ${defaultXmlDeserializer}(result.body) : ${defaultDeserializer}(result.body);`);
+        }
+      } else {
+        statements.push(`const error = ${createRestErrorReference}(result);
+        error.details = ${defaultDeserializer}(result.body);`);
+      }
       statements.push("throw error;");
     } else {
       statements.push(`throw ${createRestErrorReference}(result);`);
