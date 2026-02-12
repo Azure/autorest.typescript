@@ -552,7 +552,11 @@ export async function $onEmit(context: EmitContext) {
       let modularPackageInfo = {};
       if (option.isModularLibrary) {
         modularPackageInfo = {
-          exports: getModuleExports(context, modularEmitterOptions)
+          exports: getModuleExports(context, modularEmitterOptions),
+          clientContextPaths: getRelativeContextPaths(
+            context,
+            modularEmitterOptions
+          )
         };
       }
       await emitContentByBuilder(
@@ -571,6 +575,19 @@ export async function $onEmit(context: EmitContext) {
           rlcClient,
           dpgContext.generationPathDetail?.metadataDir
         );
+      }
+
+      // Regenerate snippets.spec.ts if test folder exists
+      if (option.generateTest && isAzureFlavor && hasTestFolder) {
+        for (const subClient of dpgContext.sdkPackage.clients) {
+          await emitContentByBuilder(
+            program,
+            (model) =>
+              buildSnippets(model, subClient.name, option.azureSdkForJs),
+            rlcClient,
+            dpgContext.generationPathDetail?.metadataDir
+          );
+        }
       }
     }
     if (isAzureFlavor) {
