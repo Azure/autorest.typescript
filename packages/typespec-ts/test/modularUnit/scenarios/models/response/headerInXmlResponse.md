@@ -43,7 +43,7 @@ export interface User {
 ```ts operations function getUser
 export async function getUser(
   context: Client,
-  options: GetUserOptionalParams = { requestOptions: {} }
+  options: GetUserOptionalParams = { requestOptions: {} },
 ): Promise<{
   name: string;
   email: string;
@@ -52,28 +52,34 @@ export async function getUser(
   contentType: "application/xml";
 }> {
   const result = await _getUserSend(context, options);
-  const headers = {
-    userId:
-      result.headers["x-user-id"] === undefined ||
-      result.headers["x-user-id"] === null
-        ? result.headers["x-user-id"]
-        : result.headers["x-user-id"],
-    createdAt:
-      result.headers["created-at"] === undefined ||
-      result.headers["created-at"] === null
-        ? result.headers["created-at"]
-        : new Date(result.headers["created-at"]),
-    contentType: result.headers["content-type"] as any
-  };
+  const headers = _getUserDeserializeHeaders(result);
   const payload = await _getUserDeserialize(result);
   return { ...payload, ...headers };
 }
 ```
 
+```ts operations function _getUserDeserializeHeaders
+export function _getUserDeserializeHeaders(result: PathUncheckedResponse): {
+  userId?: string;
+  createdAt?: Date;
+  contentType: "application/xml";
+} {
+  return {
+    userId:
+      result.headers["x-user-id"] === undefined || result.headers["x-user-id"] === null
+        ? result.headers["x-user-id"]
+        : result.headers["x-user-id"],
+    createdAt:
+      result.headers["created-at"] === undefined || result.headers["created-at"] === null
+        ? result.headers["created-at"]
+        : new Date(result.headers["created-at"]),
+    contentType: result.headers["content-type"] as any,
+  };
+}
+```
+
 ```ts operations function _getUserDeserialize
-export async function _getUserDeserialize(
-  result: PathUncheckedResponse
-): Promise<User> {
+export async function _getUserDeserialize(result: PathUncheckedResponse): Promise<User> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -101,25 +107,32 @@ include-headers-in-response: true
 ```ts operations function deleteUser
 export async function deleteUser(
   context: Client,
-  options: DeleteUserOptionalParams = { requestOptions: {} }
+  options: DeleteUserOptionalParams = { requestOptions: {} },
 ): Promise<{ requestId: string; optionalHeader?: string }> {
   const result = await _deleteUserSend(context, options);
-  const headers = {
+  const headers = _deleteUserDeserializeHeaders(result);
+  return { ...headers };
+}
+```
+
+```ts operations function _deleteUserDeserializeHeaders
+export function _deleteUserDeserializeHeaders(result: PathUncheckedResponse): {
+  requestId: string;
+  optionalHeader?: string;
+} {
+  return {
     requestId: result.headers["x-request-id"],
     optionalHeader:
       result.headers["x-optional-header"] === undefined ||
       result.headers["x-optional-header"] === null
         ? result.headers["x-optional-header"]
-        : result.headers["x-optional-header"]
+        : result.headers["x-optional-header"],
   };
-  return { ...headers };
 }
 ```
 
 ```ts operations function _deleteUserDeserialize
-export async function _deleteUserDeserialize(
-  result: PathUncheckedResponse
-): Promise<void> {
+export async function _deleteUserDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -151,36 +164,38 @@ include-headers-in-response: true
 ```ts operations function getAccountInfo
 export async function getAccountInfo(
   context: Client,
-  options: GetAccountInfoOptionalParams = { requestOptions: {} }
-): Promise<{
+  options: GetAccountInfoOptionalParams = { requestOptions: {} },
+): Promise<{ date: Date; legalHold: boolean; contentMd5: Uint8Array; requestId?: string }> {
+  const result = await _getAccountInfoSend(context, options);
+  const headers = _getAccountInfoDeserializeHeaders(result);
+  return { ...headers };
+}
+```
+
+```ts operations function _getAccountInfoDeserializeHeaders
+export function _getAccountInfoDeserializeHeaders(result: PathUncheckedResponse): {
   date: Date;
   legalHold: boolean;
   contentMd5: Uint8Array;
   requestId?: string;
-}> {
-  const result = await _getAccountInfoSend(context, options);
-  const headers = {
+} {
+  return {
     date: new Date(result.headers["date"]),
-    legalHold:
-      result.headers["x-ms-legal-hold"].trim().toLowerCase() === "true",
+    legalHold: result.headers["x-ms-legal-hold"].trim().toLowerCase() === "true",
     contentMd5:
       typeof result.headers["content-md5"] === "string"
         ? stringToUint8Array(result.headers["content-md5"], "base64")
         : result.headers["content-md5"],
     requestId:
-      result.headers["x-ms-request-id"] === undefined ||
-      result.headers["x-ms-request-id"] === null
+      result.headers["x-ms-request-id"] === undefined || result.headers["x-ms-request-id"] === null
         ? result.headers["x-ms-request-id"]
-        : result.headers["x-ms-request-id"]
+        : result.headers["x-ms-request-id"],
   };
-  return { ...headers };
 }
 ```
 
 ```ts operations function _getAccountInfoDeserialize
-export async function _getAccountInfoDeserialize(
-  result: PathUncheckedResponse
-): Promise<void> {
+export async function _getAccountInfoDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);

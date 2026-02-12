@@ -249,6 +249,7 @@ export declare interface Routes {
     (path: "/azure/core/page/parameters"): ListWithParameters;
     (path: "/azure/core/page/custom-page"): ListWithCustomPageModel;
     (path: "/azure/core/page/with-parameterized-next-link"): WithParameterizedNextLink;
+    (path: "/azure/core/page/with-relative-next-link"): WithRelativeNextLink;
     (path: "/azure/core/page/first-item"): ListFirstItem;
     (path: "/azure/core/page/second-item"): ListSecondItem;
 }
@@ -294,5 +295,16 @@ export declare interface WithParameterizedNextLinkQueryParamProperties {
     includePending?: boolean;
     select: string;
 }
+
+export declare interface WithRelativeNextLink {
+    get(options?: WithRelativeNextLinkParameters): StreamableMethod<WithRelativeNextLink200Response>;
+}
+
+export declare interface WithRelativeNextLink200Response extends HttpResponse {
+    status: "200";
+    body: PagedUserOutput;
+}
+
+export declare type WithRelativeNextLinkParameters = RequestParameters;
 
 export { }
