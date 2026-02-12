@@ -6,4 +6,4 @@ options:
     add-credentials: false
     azure-sdk-for-js: false
     package-details:
-      name: "@azure/client-generator-core-initialization"
+      name: "@azure/client-generator-core-initialization-default"

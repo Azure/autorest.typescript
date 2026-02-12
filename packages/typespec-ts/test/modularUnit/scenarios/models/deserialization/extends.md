@@ -55,7 +55,7 @@ export function aWidgetDataDeserializer(item: any): AWidgetData {
 export type AWidgetDataUnion = AoaiModelConfig | MaasModelConfig | AWidgetData;
 
 export function aWidgetDataUnionDeserializer(item: any): AWidgetDataUnion {
-  switch (item.kind) {
+  switch (item["kind"]) {
     case "kind0":
       return aoaiModelConfigDeserializer(item as AoaiModelConfig);
 
@@ -198,7 +198,7 @@ export type DiscountTypePropertiesUnion =
   | DiscountTypeProperties;
 
 export function discountTypePropertiesUnionDeserializer(item: any): DiscountTypePropertiesUnion {
-  switch (item.discountType) {
+  switch (item["discountType"]) {
     case "ProductFamily":
       return discountTypeProductFamilyDeserializer(item as DiscountTypeProductFamily);
 
@@ -388,7 +388,7 @@ export function documentIngressUnionSerializer(item: DocumentIngressUnion): any 
 }
 
 export function documentIngressUnionDeserializer(item: any): DocumentIngressUnion {
-  switch (item.documentType) {
+  switch (item["DocumentType"]) {
     case "Request":
       return requestDeserializer(item as Request);
 
@@ -616,7 +616,7 @@ export function animalUnionSerializer(item: AnimalUnion): any {
 }
 
 export function animalUnionDeserializer(item: any): AnimalUnion {
-  switch (item.kind) {
+  switch (item["kind"]) {
     case "pet":
     case "dog":
       return petUnionDeserializer(item as PetUnion);
@@ -659,7 +659,7 @@ export function petUnionSerializer(item: PetUnion): any {
 }
 
 export function petUnionDeserializer(item: any): PetUnion {
-  switch (item.kind) {
+  switch (item["kind"]) {
     case "dog":
       return dogDeserializer(item as Dog);
 

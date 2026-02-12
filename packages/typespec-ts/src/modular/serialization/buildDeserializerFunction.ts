@@ -12,6 +12,7 @@ import { SdkContext } from "../../utils/interfaces.js";
 import {
   getAllAncestors,
   getAllProperties,
+  getPropertySerializedName,
   getResponseMapping
 } from "../helpers/operationHelpers.js";
 import {
@@ -218,8 +219,12 @@ function buildPolymorphicDeserializer(
       `);
   });
 
+  // Use wire format name for the switch since item is raw JSON from the service
+  const discriminatorWireName = getPropertySerializedName(
+    type.discriminatorProperty
+  );
   statements.push(`
-      switch (item.${normalizeName(type.discriminatorProperty.name, NameType.Property)}) {
+      switch (item["${discriminatorWireName}"]) {
        ${cases.join("\n")}
         default:
           return item;
@@ -300,8 +305,12 @@ function buildDiscriminatedUnionDeserializer(
         return ${subtypeDeserializerName}(item as ${subTypeName});
     `);
   }
+  // Use wire format name for the switch since item is raw JSON from the service
+  const discriminatorWireName = type.discriminatorProperty
+    ? getPropertySerializedName(type.discriminatorProperty)
+    : "unknown";
   output.push(`
-    switch (item.${type.discriminatorProperty ? normalizeName(type.discriminatorProperty.name, NameType.Property) : "unknown"}) {
+    switch (item["${discriminatorWireName}"]) {
      ${cases.join("\n")}
       default:
         return ${baseDeserializerName}(item);

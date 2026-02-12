@@ -97,7 +97,7 @@ const defaultBuilderOptions: Partial<XmlBuilderOptions> = {
   ignoreAttributes: false,
   attributeNamePrefix: "@_",
   textNodeName: "#text",
-  format: true,
+  format: false,
   suppressEmptyNode: true
 };
 
@@ -328,7 +328,11 @@ export function xmlObjectToString(
     ...options
   });
 
-  return builder.build(xmlObject);
+  const xmlData: string = builder.build(xmlObject);
+  if (!xmlData) {
+    return "";
+  }
+  return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>${xmlData}`;
 }
 
 /**
@@ -569,6 +573,80 @@ export function deserializeFromXml<T = Record<string, any>>(
 ): T {
   const xmlObject = parseXmlString(xmlString, parserOptions);
   return deserializeXmlToModel<T>(xmlObject, properties, rootName, rootNs);
+}
+
+/**
+ * Deserializes a pre-parsed XML object to a model.
+ * This is used for nested objects where the XML has already been parsed
+ * and we have the object content directly (without a root element wrapper).
+ * Unlike deserializeFromXml, this does not parse XML strings and does not
+ * expect a root element to unwrap.
+ */
+export function deserializeXmlObject<T = Record<string, any>>(
+  xmlObject: Record<string, unknown>,
+  properties: XmlPropertyDeserializeMetadata[]
+): T {
+  if (!xmlObject) {
+    return {} as T;
+  }
+
+  // Unwrap if parser wrapped in single-element array
+  const content = unwrapSingleElementArray(xmlObject);
+
+  const result: Record<string, any> = {};
+
+  for (const prop of properties) {
+    const { propertyName, xmlOptions, deserializer, type, dateEncoding } = prop;
+
+    if (type === "array" || xmlOptions.itemsName) {
+      // Deserialize array
+      result[propertyName] = deserializeArrayProperty(content, prop);
+    } else if (type === "dict") {
+      // Deserialize dictionary - each child element is a key-value pair
+      const rawValue = getElementValue(content, xmlOptions);
+      if (rawValue !== undefined && typeof rawValue === "object") {
+        const dict: Record<string, string> = {};
+        for (const [key, val] of Object.entries(rawValue)) {
+          // Skip attributes (start with @_) and text nodes (#text)
+          if (!key.startsWith("@_") && key !== "#text") {
+            dict[key] = String(val);
+          }
+        }
+        result[propertyName] = dict;
+      }
+    } else if (xmlOptions.unwrapped && type !== "object") {
+      // Unwrapped primitive - get text content from the element
+      const rawValue = content["#text"];
+      if (rawValue !== undefined) {
+        result[propertyName] = deserializePrimitiveValue(
+          rawValue,
+          type,
+          dateEncoding
+        );
+      }
+    } else {
+      // Get element or attribute value
+      const rawValue = getElementValue(content, xmlOptions);
+
+      if (rawValue === undefined) {
+        continue;
+      }
+
+      if (deserializer && typeof rawValue === "object") {
+        // Deserialize nested object
+        result[propertyName] = deserializer(rawValue);
+      } else {
+        // Deserialize primitive
+        result[propertyName] = deserializePrimitiveValue(
+          rawValue,
+          type,
+          dateEncoding
+        );
+      }
+    }
+  }
+
+  return result as T;
 }
 
 /**
