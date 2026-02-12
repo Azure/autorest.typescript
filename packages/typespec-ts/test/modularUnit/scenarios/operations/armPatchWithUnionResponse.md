@@ -1,4 +1,4 @@
-# ARM PATCH operation with union response type
+# Should use tcgc response type for operation retrunType
 
 ## TypeSpec
 
