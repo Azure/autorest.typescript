@@ -71,9 +71,11 @@ import {
 } from "../type-expressions/get-type-expression.js";
 import { SdkContext } from "../../utils/interfaces.js";
 import {
+  getClientOptions,
   isHttpMetadata,
   isReadOnly,
   SdkBodyParameter,
+  SdkClientType,
   SdkConstantType,
   SdkEnumType,
   SdkHttpOperation,
@@ -96,7 +98,8 @@ import { emitInlineModel } from "../type-expressions/get-model-expression.js";
 export function getSendPrivateFunction(
   dpgContext: SdkContext,
   method: [string[], ServiceOperation],
-  clientType: string
+  clientType: string,
+  client?: SdkClientType<SdkHttpOperation>
 ): OptionalKind<FunctionDeclarationStructure> {
   const operation = method[1];
   const parameters = getOperationSignatureParameters(
@@ -128,7 +131,15 @@ export function getSendPrivateFunction(
     // Generate a unique local variable name that doesn't conflict with parameter names
     const paramNames = new Set(parameters.map((p) => p.name));
     const pathVarName = generateLocallyUniqueName("path", paramNames);
-    statements.push(`const ${pathVarName} = ${resolveReference(UrlTemplateHelpers.parseTemplate)}("${operation.operation.uriTemplate}", {
+    const includeRootSlash = client
+      ? getClientOptions(client, "includeRootSlash") !== false
+      : true;
+
+    const uriTemplate = includeRootSlash
+      ? operation.operation.uriTemplate
+      : operation.operation.uriTemplate.replace(/^\//, "");
+
+    statements.push(`const ${pathVarName} = ${resolveReference(UrlTemplateHelpers.parseTemplate)}("${uriTemplate}", {
         ${urlTemplateParams.join(",\n")}
         },{
       allowReserved: ${optionalParamName}?.requestOptions?.skipUrlEncoding
@@ -1347,7 +1358,7 @@ function getContentTypeValue(
   } else {
     return `contentType: ${
       !param.optional
-        ? "contentType"
+        ? normalizeName(param.name, NameType.Property)
         : `${optionalParamName}.` + param.name + " as any"
     }`;
   }
