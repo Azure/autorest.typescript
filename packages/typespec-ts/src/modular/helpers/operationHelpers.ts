@@ -151,7 +151,8 @@ export function getSendPrivateFunction(
     `return context.path(${pathStr}).${operationMethod}({...${resolveReference(dependencies.operationOptionsToRequestParameters)}(${optionalParamName}), ${getHeaderAndBodyParameters(
       dpgContext,
       operation,
-      optionalParamName
+      optionalParamName,
+      client
     )}});`
   );
 
@@ -1061,17 +1062,19 @@ export function getOperationOptionsName(
 function getHeaderAndBodyParameters(
   dpgContext: SdkContext,
   operation: ServiceOperation,
-  optionalParamName: string = "options"
+  optionalParamName: string = "options",
+  client?: SdkClientType<SdkHttpOperation>
 ): string {
   if (!operation.operation.parameters) {
     return "";
   }
   const operationParameters = operation.operation.parameters.filter(
-    (p) => !isContentType(p)
+    (p) => !isContentType(p) && !isAccept(p)
   );
 
   const contentTypeParameter =
     operation.operation.parameters.find(isContentType);
+  const acceptParameter = operation.operation.parameters.find(isAccept);
 
   const parametersImplementation: Record<
     "header" | "body",
@@ -1110,17 +1113,22 @@ function getHeaderAndBodyParameters(
     paramStr = `${getContentTypeValue(contentTypeParameter, optionalParamName)},`;
   }
 
-  if (parametersImplementation.header.length) {
-    paramStr = `${paramStr}\nheaders: {${parametersImplementation.header
-      .map((i) =>
-        buildHeaderParameter(
-          dpgContext.program,
-          i.paramMap,
-          i.param,
-          optionalParamName
-        )
+  // Get accept header value - either from explicit parameter or inferred from response content types
+  const acceptValue = getAcceptHeaderValue(acceptParameter, operation, client);
+
+  if (parametersImplementation.header.length || acceptValue) {
+    const headerEntries = parametersImplementation.header.map((i) =>
+      buildHeaderParameter(
+        dpgContext.program,
+        i.paramMap,
+        i.param,
+        optionalParamName
       )
-      .join(",\n")}, ...${optionalParamName}.requestOptions?.headers },`;
+    );
+    if (acceptValue) {
+      headerEntries.push(`accept: ${acceptValue}`);
+    }
+    paramStr = `${paramStr}\nheaders: {${headerEntries.join(",\n")}, ...${optionalParamName}.requestOptions?.headers },`;
   }
   if (
     operation.operation.bodyParam === undefined &&
@@ -1342,6 +1350,62 @@ function isContentType(param: SdkHttpParameter): boolean {
     param.kind === "header" &&
     param.serializedName.toLowerCase() === "content-type"
   );
+}
+
+function isAccept(param: SdkHttpParameter): boolean {
+  return (
+    param.kind === "header" && param.serializedName.toLowerCase() === "accept"
+  );
+}
+
+/**
+ * Gets the Accept header value for an operation.
+ * Returns the value from explicit parameter if available,
+ * or infers from response content types when the client option is enabled.
+ */
+function getAcceptHeaderValue(
+  acceptParam: SdkHttpParameter | undefined,
+  operation: ServiceOperation,
+  client?: SdkClientType<SdkHttpOperation>
+): string | undefined {
+  // If there's an explicit constant accept parameter, use its value
+  if (acceptParam && isConstant(acceptParam.type)) {
+    return getConstantValue(acceptParam.type);
+  }
+
+  // Check if accept header inference is enabled via client option
+  const inferAcceptHeader = client
+    ? getClientOptions(client, "inferAcceptHeader") === true
+    : false;
+
+  if (!inferAcceptHeader) {
+    return undefined;
+  }
+
+  // Infer accept header from response content types
+  const responseContentTypes = getResponseContentTypes(
+    operation.operation.responses
+  );
+  if (responseContentTypes.length === 0) {
+    return undefined;
+  }
+
+  return `"${responseContentTypes.join(", ")}"`;
+}
+
+/**
+ * Extracts and deduplicates all content types from operation responses.
+ */
+function getResponseContentTypes(
+  responses: SdkHttpOperation["responses"]
+): string[] {
+  const contentTypes = new Set<string>();
+  for (const response of responses ?? []) {
+    for (const contentType of response.contentTypes ?? []) {
+      contentTypes.add(contentType);
+    }
+  }
+  return Array.from(contentTypes);
 }
 
 function getContentTypeValue(
