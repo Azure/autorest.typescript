@@ -141,9 +141,8 @@ export function getClientHierarchyMap(
   const clientMap: [string[], SdkClientType<SdkServiceOperation>][] = [];
   const individualClients = context.sdkPackage.clients.filter((client) => {
     return (
-      client.clientInitialization.initializedBy > 0 &&
       client.clientInitialization.initializedBy &
-        InitializedByFlags.Individually
+      InitializedByFlags.Individually
     );
   });
   const clients = individualClients.map((client) => {
@@ -159,9 +158,8 @@ export function getClientHierarchyMap(
     clientMap.push([hierarchy, client]);
     const childIndividualClients = client.children?.filter((client) => {
       return (
-        client.clientInitialization.initializedBy > 0 &&
         client.clientInitialization.initializedBy &
-          InitializedByFlags.Individually
+        InitializedByFlags.Individually
       );
     });
     if (childIndividualClients && childIndividualClients.length > 0) {
