@@ -903,10 +903,18 @@ export const azureModularTsps = [
     outputPath: "azure/encode/duration",
     inputPath: "azure/encode/duration"
   },
-  // {
-  //   outputPath: "azure/client-generator-core/client-initialization",
-  //   inputPath: "azure/client-generator-core/client-initialization"
-  // },
+  {
+    outputPath: "azure/client-generator-core/client-initialization/default",
+    inputPath: "azure/client-generator-core/client-initialization/default"
+  },
+  {
+    outputPath: "azure/client-generator-core/client-initialization/individually",
+    inputPath: "azure/client-generator-core/client-initialization/individually"
+  },
+  {
+    outputPath: "azure/client-generator-core/client-initialization/individuallyParent",
+    inputPath: "azure/client-generator-core/client-initialization/individuallyParent"
+  },
   {
     outputPath: "azure/resource-manager/non-resource",
     inputPath: "azure/resource-manager/non-resource"
