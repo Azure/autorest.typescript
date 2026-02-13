@@ -642,9 +642,16 @@ export function deserializeXmlObject<T = Record<string, any>>(
         continue;
       }
 
-      if (deserializer && typeof rawValue === "object") {
+      if (deserializer) {
         // Deserialize nested object
-        result[propertyName] = deserializer(rawValue);
+        if (typeof rawValue === "object") {
+          result[propertyName] = deserializer(rawValue);
+        } else {
+          // When the XML element only contains text content (like <Name>text</Name>),
+          // the parser returns the text as a string. Wrap it in an object with #text
+          // so the nested deserializer can extract unwrapped text content properly.
+          result[propertyName] = deserializer({ "#text": rawValue });
+        }
       } else {
         // Deserialize primitive
         result[propertyName] = deserializePrimitiveValue(

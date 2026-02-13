@@ -741,6 +741,66 @@ describe("XML Helpers", () => {
       expect(result.data).toEqual({ name: "nested", value: 42 });
     });
 
+    it("should deserialize nested object with text-only content using deserializer", () => {
+      // When an XML element maps to a complex type but only contains text content,
+      // the parser returns a string instead of an object. The deserializer should
+      // still be called with the text wrapped in { "#text": value }.
+      const xml = `
+        <Model>
+          <Name>blob-name-value</Name>
+        </Model>
+      `;
+
+      // Simulates a nested object type with unwrapped text content (like BlobName)
+      const nameDeserializer = (v: any) => ({
+        content: v["#text"]
+      });
+
+      const properties: XmlPropertyDeserializeMetadata[] = [
+        {
+          propertyName: "name",
+          xmlOptions: { name: "Name" },
+          type: "object",
+          deserializer: nameDeserializer
+        }
+      ];
+
+      const result = deserializeFromXml(xml, properties, "Model");
+
+      expect(result.name).toEqual({ content: "blob-name-value" });
+    });
+
+    it("should deserialize nested object with text and attributes using deserializer", () => {
+      // When an XML element has both text content and attributes
+      const xml = `
+        <Model>
+          <Name Encoded="true">encoded-blob-name</Name>
+        </Model>
+      `;
+
+      // Simulates a nested object type with attribute and unwrapped text content
+      const nameDeserializer = (v: any) => ({
+        encoded: v["@_Encoded"],
+        content: v["#text"]
+      });
+
+      const properties: XmlPropertyDeserializeMetadata[] = [
+        {
+          propertyName: "name",
+          xmlOptions: { name: "Name" },
+          type: "object",
+          deserializer: nameDeserializer
+        }
+      ];
+
+      const result = deserializeFromXml(xml, properties, "Model");
+
+      expect(result.name).toEqual({
+        encoded: true,
+        content: "encoded-blob-name"
+      });
+    });
+
     it("should deserialize unwrapped text content", () => {
       const xml =
         '<ModelWithText language="foo">This is some text.</ModelWithText>';
