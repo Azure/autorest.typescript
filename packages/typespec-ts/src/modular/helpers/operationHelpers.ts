@@ -178,6 +178,7 @@ export function getDeserializePrivateFunction(
   ];
   const isLroOnly = isLroOnlyOperation(operation);
   const isLroAndPaging = isLroAndPagingOperation(operation);
+  const isPagingOnly = isPagingOnlyOperation(operation);
 
   // TODO: Support operation overloads
   // TODO: Support multiple responses
@@ -186,10 +187,17 @@ export function getDeserializePrivateFunction(
   let returnType;
   if (isLroOnly || isLroAndPaging) {
     returnType = buildLroReturnType(context, operation);
-  } else if (response.type && restResponse) {
+  } else if (isPagingOnly && restResponse?.type) {
+    // For paging operations, use the full response model (e.g., _OperationListResult)
+    // instead of just the array element type
     returnType = {
       name: (restResponse as any).name ?? "",
-      type: getTypeExpression(context, restResponse.type!)
+      type: getTypeExpression(context, restResponse.type)
+    };
+  } else if (response.type) {
+    returnType = {
+      name: (response as any).name ?? "",
+      type: getTypeExpression(context, response.type)
     };
   } else {
     returnType = { name: "", type: "void" };
@@ -218,7 +226,7 @@ export function getDeserializePrivateFunction(
   const deserializedType =
     isLroOnly || isLroAndPaging
       ? operation?.lroMetadata?.finalResponse?.result
-      : restResponse
+      : isPagingOnly && restResponse?.type
         ? restResponse.type
         : response.type;
   const lroSubSegments = isLroOnly
@@ -439,11 +447,17 @@ interface ExceptionThrowDetail {
   start: number;
   end?: number;
   deserializer: string;
+  xmlDeserializer?: string;
+  /** Whether the exception response is XML-only (no JSON content type) */
+  isXmlOnly?: boolean;
 }
 
 interface OperationExceptionDetails {
   customized: ExceptionThrowDetail[];
   defaultDeserializer?: string;
+  defaultXmlDeserializer?: string;
+  /** Whether the default exception response is XML-only */
+  defaultIsXmlOnly?: boolean;
 }
 
 function getExceptionDetails(
@@ -452,6 +466,8 @@ function getExceptionDetails(
 ): OperationExceptionDetails {
   const customized: ExceptionThrowDetail[] = [];
   let defaultDeserializer: string | undefined;
+  let defaultXmlDeserializer: string | undefined;
+  let defaultIsXmlOnly: boolean | undefined;
   for (const exception of operation.operation.exceptions) {
     if (!exception.type) {
       continue;
@@ -471,22 +487,69 @@ function getExceptionDetails(
     ) {
       continue;
     }
+
+    // Check if the exception type has XML serialization support
+    // Use exception contentTypes when available, otherwise check the type itself
+    const exceptionContentTypes = exception.contentTypes ?? [];
+    const exceptionIsXml = isXmlPayload(exceptionContentTypes);
+    const exceptionIsDualFormat = hasDualFormatSupport(exceptionContentTypes);
+    const typeHasXml =
+      exception.type.kind === "model" && hasXmlSerialization(exception.type);
+
+    let xmlDeserializerName: string | undefined;
+    if (exception.type.kind === "model" && (typeHasXml || exceptionIsXml)) {
+      const xmlName = buildXmlModelDeserializer(context, exception.type, {
+        nameOnly: true,
+        skipDiscriminatedUnionSuffix: false
+      });
+      if (typeof xmlName === "string") {
+        xmlDeserializerName = xmlName;
+      }
+    }
+
+    // XML-only when all content types are XML (no JSON support)
+    const isXmlOnly =
+      xmlDeserializerName !== undefined &&
+      exceptionIsXml &&
+      !exceptionIsDualFormat;
+
     if (statusCode === "*") {
       defaultDeserializer = deserializeFunctionName;
+      defaultXmlDeserializer = xmlDeserializerName;
+      defaultIsXmlOnly = isXmlOnly;
     } else if (typeof statusCode === "number") {
       customized.push({
         start: statusCode,
-        deserializer: deserializeFunctionName
+        deserializer: deserializeFunctionName,
+        xmlDeserializer: xmlDeserializerName,
+        isXmlOnly
       });
     } else {
       customized.push({
         start: statusCode.start,
         end: statusCode.end,
-        deserializer: deserializeFunctionName
+        deserializer: deserializeFunctionName,
+        xmlDeserializer: xmlDeserializerName,
+        isXmlOnly
       });
     }
   }
-  return { customized, defaultDeserializer };
+  return {
+    customized,
+    defaultDeserializer,
+    defaultXmlDeserializer,
+    defaultIsXmlOnly
+  };
+}
+
+function getExceptionDeserializeExpr(exception: ExceptionThrowDetail): string {
+  if (!exception.xmlDeserializer) {
+    return `${exception.deserializer}(result.body)`;
+  }
+  if (exception.isXmlOnly) {
+    return `${exception.xmlDeserializer}(result.body)`;
+  }
+  return `isXml ? ${exception.xmlDeserializer}(result.body) : ${exception.deserializer}(result.body)`;
 }
 
 function getExceptionThrowStatement(
@@ -497,35 +560,72 @@ function getExceptionThrowStatement(
   const createRestErrorReference = resolveReference(
     useDependencies().createRestError
   );
-  const { customized, defaultDeserializer } = getExceptionDetails(
-    context,
-    operation
-  );
+  const {
+    customized,
+    defaultDeserializer,
+    defaultXmlDeserializer,
+    defaultIsXmlOnly
+  } = getExceptionDetails(context, operation);
+
+  // Check if any exception has XML deserialization support that requires runtime content-type check
+  const hasAnyDualFormatXml =
+    (defaultXmlDeserializer !== undefined && !defaultIsXmlOnly) ||
+    customized.some((e) => e.xmlDeserializer !== undefined && !e.isXmlOnly);
+
   if (customized.length > 0) {
     statements.push(`const error = ${createRestErrorReference}(result);`);
+    if (hasAnyDualFormatXml) {
+      const isXmlContentTypeRef = resolveReference(XmlHelpers.isXmlContentType);
+      statements.push(
+        `const responseContentType = result.headers?.["content-type"] ?? "";`
+      );
+      statements.push(
+        `const isXml = ${isXmlContentTypeRef}(responseContentType);`
+      );
+    }
     statements.push(`const statusCode = Number.parseInt(result.status);`);
     const stats: string[] = customized.map((exception) => {
+      const deserializeExpr = getExceptionDeserializeExpr(exception);
       if (exception.end) {
         return `if(statusCode >= ${exception.start} && statusCode <= ${exception.end}) {
-              error.details = ${exception.deserializer}(result.body);
+              error.details = ${deserializeExpr};
           }`;
       } else {
         return `if(statusCode === ${exception.start}) {
-             error.details = ${exception.deserializer}(result.body);
+             error.details = ${deserializeExpr};
           }`;
       }
     });
     statements.push(stats.join("\nelse "));
     if (defaultDeserializer) {
+      const defaultDeserializeExpr = !defaultXmlDeserializer
+        ? `${defaultDeserializer}(result.body)`
+        : defaultIsXmlOnly
+          ? `${defaultXmlDeserializer}(result.body)`
+          : `isXml ? ${defaultXmlDeserializer}(result.body) : ${defaultDeserializer}(result.body)`;
       statements.push(`else {
-        error.details = ${defaultDeserializer}(result.body);
+        error.details = ${defaultDeserializeExpr};
       }`);
     }
     statements.push("throw error;");
   } else {
     if (defaultDeserializer) {
-      statements.push(`const error = ${createRestErrorReference}(result);
-      error.details = ${defaultDeserializer}(result.body);`);
+      if (defaultXmlDeserializer) {
+        if (defaultIsXmlOnly) {
+          statements.push(`const error = ${createRestErrorReference}(result);
+          error.details = ${defaultXmlDeserializer}(result.body);`);
+        } else {
+          const isXmlContentTypeRef = resolveReference(
+            XmlHelpers.isXmlContentType
+          );
+          statements.push(`const error = ${createRestErrorReference}(result);
+          const responseContentType = result.headers?.["content-type"] ?? "";
+          error.details = ${isXmlContentTypeRef}(responseContentType) ? ${defaultXmlDeserializer}(result.body) : ${defaultDeserializer}(result.body);`);
+        }
+      } else {
+        statements.push(`const error = ${createRestErrorReference}(result);
+        error.details = ${defaultDeserializer}(result.body);`);
+      }
       statements.push("throw error;");
     } else {
       statements.push(`throw ${createRestErrorReference}(result);`);
@@ -568,7 +668,6 @@ function getOperationSignatureParameters(
             param.methodParameterSegments[0]?.[0] === p
           );
         })[0]?.kind !== "cookie" &&
-        p.clientDefaultValue === undefined &&
         !p.optional &&
         !(
           p.isGeneratedName &&
@@ -1201,14 +1300,33 @@ function buildBodyParameter(
     NameType.Parameter,
     true
   );
-  const bodyNameExpression = bodyParameter.optional
+  let bodyNameExpression = bodyParameter.optional
     ? `${optionalParamName}["${bodyParamName}"]`
     : bodyParamName;
-  const nullOrUndefinedPrefix = getPropertySerializationPrefix(
-    context,
-    bodyParameter,
-    bodyParameter.optional ? optionalParamName : undefined
-  );
+
+  // Check if body parameter has a client default value with matching type
+  const hasClientDefault =
+    bodyParameter.optional &&
+    bodyParameter.clientDefaultValue !== undefined &&
+    isDefaultValueTypeMatch(bodyParameter, bodyParameter.clientDefaultValue);
+
+  // Apply client default value if present for optional body parameters
+  if (hasClientDefault) {
+    const formattedDefault = formatDefaultValue(
+      bodyParameter.clientDefaultValue
+    );
+    bodyNameExpression = `(${bodyNameExpression} ?? ${formattedDefault})`;
+  }
+
+  // Only apply nullOrUndefinedPrefix if there's no client default value
+  // because the default value already handles null/undefined cases
+  const nullOrUndefinedPrefix = hasClientDefault
+    ? ""
+    : getPropertySerializationPrefix(
+        context,
+        bodyParameter,
+        bodyParameter.optional ? optionalParamName : undefined
+      );
 
   // For dual-format operations, check the contentType option at runtime
   if (
@@ -1415,6 +1533,14 @@ function getOptional(
   serializedName: string
 ) {
   const paramName = `${param.onClient ? "context." : `${optionalParamName}?.`}${param.name}`;
+
+  // Apply client default value if present and type matches
+  const defaultSuffix =
+    param.clientDefaultValue !== undefined &&
+    isDefaultValueTypeMatch(param, param.clientDefaultValue)
+      ? ` ?? ${formatDefaultValue(param.clientDefaultValue)}`
+      : "";
+
   if (param.type.kind === "model") {
     const propertiesStr = getRequestModelMapping(
       context,
@@ -1424,7 +1550,7 @@ function getOptional(
     const serializeContent = `{${propertiesStr.join(",")}}`;
     return `"${serializedName}": ${serializeContent}`;
   }
-  return `"${serializedName}": ${serializeRequestValue(
+  const serializedValue = serializeRequestValue(
     context,
     param.type,
     paramName,
@@ -1432,7 +1558,8 @@ function getOptional(
     getEncodeForType(param.type),
     serializedName,
     true
-  )}`;
+  );
+  return `"${serializedName}": ${serializedValue}${defaultSuffix}`;
 }
 
 /**
@@ -2245,12 +2372,59 @@ export function getAllAncestors(type: SdkType): SdkType[] {
   return ancestors;
 }
 
+/**
+ * Checks if a clientDefaultValue type matches the parameter type.
+ * Returns true if the default value type is compatible with the parameter type.
+ */
+function isDefaultValueTypeMatch(
+  param: SdkHttpParameter | SdkBodyParameter,
+  defaultValue: unknown
+): boolean {
+  const defaultType = typeof defaultValue;
+  const paramType = param.type;
+
+  // Map JavaScript types to TypeSpec types
+  if (defaultType === "string") {
+    return paramType.kind === "string" || paramType.kind === "enum";
+  }
+  if (defaultType === "number") {
+    return (
+      paramType.kind === "int32" ||
+      paramType.kind === "int64" ||
+      paramType.kind === "float32" ||
+      paramType.kind === "float64" ||
+      paramType.kind === "numeric" ||
+      paramType.kind === "integer" ||
+      paramType.kind === "float" ||
+      paramType.kind === "decimal"
+    );
+  }
+  if (defaultType === "boolean") {
+    return paramType.kind === "boolean";
+  }
+
+  // For other types, don't apply the default
+  return false;
+}
+
+/**
+ * Formats a default value for code generation.
+ * Strings are wrapped in quotes, other values are used as-is.
+ */
+function formatDefaultValue(defaultValue: unknown): string {
+  if (typeof defaultValue === "string") {
+    return `"${defaultValue}"`;
+  }
+  return String(defaultValue);
+}
+
 export function getPropertySerializationPrefix(
   context: SdkContext,
   property: SdkHttpParameter | SdkModelPropertyType,
   propertyPath?: string
 ) {
   const propertyFullName = getPropertyFullName(context, property, propertyPath);
+
   if (property.optional || isTypeNullable(property.type)) {
     return `!${propertyFullName}? ${propertyFullName}:`;
   }
@@ -2276,6 +2450,7 @@ export function getPropertyFullName(
   } else if (propertyPath) {
     fullName = `${propertyPath}["${normalizedPropertyName}"]`;
   }
+
   return fullName;
 }
 
