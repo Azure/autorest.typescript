@@ -660,7 +660,6 @@ function getOperationSignatureParameters(
             param.methodParameterSegments[0]?.[0] === p
           );
         })[0]?.kind !== "cookie" &&
-        p.clientDefaultValue === undefined &&
         !p.optional &&
         !(
           p.isGeneratedName &&
@@ -1293,14 +1292,33 @@ function buildBodyParameter(
     NameType.Parameter,
     true
   );
-  const bodyNameExpression = bodyParameter.optional
+  let bodyNameExpression = bodyParameter.optional
     ? `${optionalParamName}["${bodyParamName}"]`
     : bodyParamName;
-  const nullOrUndefinedPrefix = getPropertySerializationPrefix(
-    context,
-    bodyParameter,
-    bodyParameter.optional ? optionalParamName : undefined
-  );
+
+  // Check if body parameter has a client default value with matching type
+  const hasClientDefault =
+    bodyParameter.optional &&
+    bodyParameter.clientDefaultValue !== undefined &&
+    isDefaultValueTypeMatch(bodyParameter, bodyParameter.clientDefaultValue);
+
+  // Apply client default value if present for optional body parameters
+  if (hasClientDefault) {
+    const formattedDefault = formatDefaultValue(
+      bodyParameter.clientDefaultValue
+    );
+    bodyNameExpression = `(${bodyNameExpression} ?? ${formattedDefault})`;
+  }
+
+  // Only apply nullOrUndefinedPrefix if there's no client default value
+  // because the default value already handles null/undefined cases
+  const nullOrUndefinedPrefix = hasClientDefault
+    ? ""
+    : getPropertySerializationPrefix(
+        context,
+        bodyParameter,
+        bodyParameter.optional ? optionalParamName : undefined
+      );
 
   // For dual-format operations, check the contentType option at runtime
   if (
@@ -1507,6 +1525,14 @@ function getOptional(
   serializedName: string
 ) {
   const paramName = `${param.onClient ? "context." : `${optionalParamName}?.`}${param.name}`;
+
+  // Apply client default value if present and type matches
+  const defaultSuffix =
+    param.clientDefaultValue !== undefined &&
+    isDefaultValueTypeMatch(param, param.clientDefaultValue)
+      ? ` ?? ${formatDefaultValue(param.clientDefaultValue)}`
+      : "";
+
   if (param.type.kind === "model") {
     const propertiesStr = getRequestModelMapping(
       context,
@@ -1516,7 +1542,7 @@ function getOptional(
     const serializeContent = `{${propertiesStr.join(",")}}`;
     return `"${serializedName}": ${serializeContent}`;
   }
-  return `"${serializedName}": ${serializeRequestValue(
+  const serializedValue = serializeRequestValue(
     context,
     param.type,
     paramName,
@@ -1524,7 +1550,8 @@ function getOptional(
     getEncodeForType(param.type),
     serializedName,
     true
-  )}`;
+  );
+  return `"${serializedName}": ${serializedValue}${defaultSuffix}`;
 }
 
 /**
@@ -2337,12 +2364,59 @@ export function getAllAncestors(type: SdkType): SdkType[] {
   return ancestors;
 }
 
+/**
+ * Checks if a clientDefaultValue type matches the parameter type.
+ * Returns true if the default value type is compatible with the parameter type.
+ */
+function isDefaultValueTypeMatch(
+  param: SdkHttpParameter | SdkBodyParameter,
+  defaultValue: unknown
+): boolean {
+  const defaultType = typeof defaultValue;
+  const paramType = param.type;
+
+  // Map JavaScript types to TypeSpec types
+  if (defaultType === "string") {
+    return paramType.kind === "string" || paramType.kind === "enum";
+  }
+  if (defaultType === "number") {
+    return (
+      paramType.kind === "int32" ||
+      paramType.kind === "int64" ||
+      paramType.kind === "float32" ||
+      paramType.kind === "float64" ||
+      paramType.kind === "numeric" ||
+      paramType.kind === "integer" ||
+      paramType.kind === "float" ||
+      paramType.kind === "decimal"
+    );
+  }
+  if (defaultType === "boolean") {
+    return paramType.kind === "boolean";
+  }
+
+  // For other types, don't apply the default
+  return false;
+}
+
+/**
+ * Formats a default value for code generation.
+ * Strings are wrapped in quotes, other values are used as-is.
+ */
+function formatDefaultValue(defaultValue: unknown): string {
+  if (typeof defaultValue === "string") {
+    return `"${defaultValue}"`;
+  }
+  return String(defaultValue);
+}
+
 export function getPropertySerializationPrefix(
   context: SdkContext,
   property: SdkHttpParameter | SdkModelPropertyType,
   propertyPath?: string
 ) {
   const propertyFullName = getPropertyFullName(context, property, propertyPath);
+
   if (property.optional || isTypeNullable(property.type)) {
     return `!${propertyFullName}? ${propertyFullName}:`;
   }
@@ -2368,6 +2442,7 @@ export function getPropertyFullName(
   } else if (propertyPath) {
     fullName = `${propertyPath}["${normalizedPropertyName}"]`;
   }
+
   return fullName;
 }
 
