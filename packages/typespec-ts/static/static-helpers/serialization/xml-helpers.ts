@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import { XMLBuilder, XMLParser, XmlBuilderOptions } from "fast-xml-parser";
+import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
 
 /**
  * XML serialization options for a property or model
@@ -168,21 +169,6 @@ function collectNamespaces(
 }
 
 /**
- * Encodes a Uint8Array to base64 string
- */
-function encodeBase64(value: Uint8Array): string {
-  return btoa(String.fromCharCode(...value));
-}
-
-/**
- * Encodes a Uint8Array to base64url string (URL-safe base64 without padding)
- */
-function encodeBase64Url(value: Uint8Array): string {
-  const base64 = encodeBase64(value);
-  return base64.replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
-}
-
-/**
  * Serializes a primitive value for XML
  */
 function serializePrimitiveValue(
@@ -209,8 +195,8 @@ function serializePrimitiveValue(
 
   if (type === "bytes" && value instanceof Uint8Array) {
     return bytesEncoding === "base64url"
-      ? encodeBase64Url(value)
-      : encodeBase64(value);
+      ? uint8ArrayToString(value, "base64url")
+      : uint8ArrayToString(value, "base64");
   }
 
   if (typeof value === "boolean" || typeof value === "number") {
@@ -402,29 +388,6 @@ export function parseXmlString(
 }
 
 /**
- * Decodes a base64 string to Uint8Array
- */
-function decodeBase64(value: string): Uint8Array {
-  const binaryString = atob(value);
-  const bytes = new Uint8Array(binaryString.length);
-  for (let i = 0; i < binaryString.length; i++) {
-    bytes[i] = binaryString.charCodeAt(i);
-  }
-  return bytes;
-}
-
-/**
- * Decodes a base64url string to Uint8Array
- */
-function decodeBase64Url(value: string): Uint8Array {
-  // Convert base64url to base64 and add padding if needed
-  let base64 = value.replace(/-/g, "+").replace(/_/g, "/");
-  const paddingNeeded = (4 - (base64.length % 4)) % 4;
-  base64 += "=".repeat(paddingNeeded);
-  return decodeBase64(base64);
-}
-
-/**
  * Deserializes a primitive value from XML
  */
 function deserializePrimitiveValue(
@@ -446,8 +409,8 @@ function deserializePrimitiveValue(
 
   if (type === "bytes" && typeof value === "string") {
     return bytesEncoding === "base64url"
-      ? decodeBase64Url(value)
-      : decodeBase64(value);
+      ? stringToUint8Array(value, "base64url")
+      : stringToUint8Array(value, "base64");
   }
 
   return value;
