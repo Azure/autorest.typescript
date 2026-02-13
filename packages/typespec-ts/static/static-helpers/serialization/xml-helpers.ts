@@ -408,9 +408,7 @@ function deserializePrimitiveValue(
   }
 
   if (type === "bytes" && typeof value === "string") {
-    return bytesEncoding === "base64url"
-      ? stringToUint8Array(value, "base64url")
-      : stringToUint8Array(value, "base64");
+    return stringToUint8Array(value, bytesEncoding ?? "base64");
   }
 
   return value;
