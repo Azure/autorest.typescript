@@ -27,7 +27,14 @@ interface Operations {
     customHeader?: string,
     
     @query
-    limit?: int32
+    limit?: int32,
+    
+    @query
+    @Azure.ClientGenerator.Core.Legacy.clientDefaultValue("mismatch")
+    typeMismatch?: int32,
+    
+    @query
+    serverDefault?: int32 = 100
   ): Configuration;
   
   @post
@@ -98,11 +105,13 @@ export function _testQuerySend(
   options: TestQueryOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/api/test{?maxResults,sortOrder,limit}",
+    "/api/test{?maxResults,sortOrder,limit,typeMismatch,serverDefault}",
     {
       maxResults: options?.maxResults ?? 10,
       sortOrder: options?.sortOrder ?? "asc",
       limit: options?.limit,
+      typeMismatch: options?.typeMismatch,
+      serverDefault: options?.serverDefault,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

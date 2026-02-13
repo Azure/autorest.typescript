@@ -1296,9 +1296,11 @@ function buildBodyParameter(
     ? `${optionalParamName}["${bodyParamName}"]`
     : bodyParamName;
 
-  // Check if body parameter has a client default value
+  // Check if body parameter has a client default value with matching type
   const hasClientDefault =
-    bodyParameter.optional && bodyParameter.clientDefaultValue !== undefined;
+    bodyParameter.optional &&
+    bodyParameter.clientDefaultValue !== undefined &&
+    isDefaultValueTypeMatch(bodyParameter, bodyParameter.clientDefaultValue);
 
   // Apply client default value if present for optional body parameters
   if (hasClientDefault) {
@@ -1524,9 +1526,10 @@ function getOptional(
 ) {
   const paramName = `${param.onClient ? "context." : `${optionalParamName}?.`}${param.name}`;
 
-  // Apply client default value if present
+  // Apply client default value if present and type matches
   const defaultSuffix =
-    param.clientDefaultValue !== undefined
+    param.clientDefaultValue !== undefined &&
+    isDefaultValueTypeMatch(param, param.clientDefaultValue)
       ? ` ?? ${formatDefaultValue(param.clientDefaultValue)}`
       : "";
 
@@ -2359,6 +2362,41 @@ export function getAllAncestors(type: SdkType): SdkType[] {
     ancestors.push(...getAllAncestors(type.baseModel));
   }
   return ancestors;
+}
+
+/**
+ * Checks if a clientDefaultValue type matches the parameter type.
+ * Returns true if the default value type is compatible with the parameter type.
+ */
+function isDefaultValueTypeMatch(
+  param: SdkHttpParameter | SdkBodyParameter,
+  defaultValue: unknown
+): boolean {
+  const defaultType = typeof defaultValue;
+  const paramType = param.type;
+
+  // Map JavaScript types to TypeSpec types
+  if (defaultType === "string") {
+    return paramType.kind === "string" || paramType.kind === "enum";
+  }
+  if (defaultType === "number") {
+    return (
+      paramType.kind === "int32" ||
+      paramType.kind === "int64" ||
+      paramType.kind === "float32" ||
+      paramType.kind === "float64" ||
+      paramType.kind === "numeric" ||
+      paramType.kind === "integer" ||
+      paramType.kind === "float" ||
+      paramType.kind === "decimal"
+    );
+  }
+  if (defaultType === "boolean") {
+    return paramType.kind === "boolean";
+  }
+
+  // For other types, don't apply the default
+  return false;
 }
 
 /**

@@ -27,43 +27,39 @@ op getWidget(@path id: string): Widget | StorageError;
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import {
-  Widget,
-  widgetDeserializer,
-  storageErrorXmlDeserializer
-} from "../models/models.js";
+import { Widget, widgetDeserializer, storageErrorXmlDeserializer } from "../models/models.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import { GetWidgetOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
 export function _getWidgetSend(
   context: Client,
   id: string,
-  options: GetWidgetOptionalParams = { requestOptions: {} }
+  options: GetWidgetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/widgets/{id}",
     {
-      id: id
+      id: id,
     },
     {
-      allowReserved: options?.requestOptions?.skipUrlEncoding
-    }
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
   );
-  return context.path(path).get({
-    ...operationOptionsToRequestParameters(options),
-    headers: { accept: "application/json", ...options.requestOptions?.headers }
-  });
+  return context
+    .path(path)
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
+    });
 }
 
-export async function _getWidgetDeserialize(
-  result: PathUncheckedResponse
-): Promise<Widget> {
+export async function _getWidgetDeserialize(result: PathUncheckedResponse): Promise<Widget> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -77,7 +73,7 @@ export async function _getWidgetDeserialize(
 export async function getWidget(
   context: Client,
   id: string,
-  options: GetWidgetOptionalParams = { requestOptions: {} }
+  options: GetWidgetOptionalParams = { requestOptions: {} },
 ): Promise<Widget> {
   const result = await _getWidgetSend(context, id, options);
   return _getWidgetDeserialize(result);
@@ -124,7 +120,7 @@ import {
   documentDeserializer,
   documentXmlDeserializer,
   apiErrorDeserializer,
-  apiErrorXmlDeserializer
+  apiErrorXmlDeserializer,
 } from "../models/models.js";
 import { isXmlContentType } from "../static-helpers/serialization/xml-helpers.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
@@ -133,31 +129,27 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
 export function _getDocumentSend(
   context: Client,
   id: string,
-  options: GetDocumentOptionalParams = { requestOptions: {} }
+  options: GetDocumentOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/documents/{id}",
     {
-      id: id
+      id: id,
     },
     {
-      allowReserved: options?.requestOptions?.skipUrlEncoding
-    }
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
   );
-  return context
-    .path(path)
-    .get({ ...operationOptionsToRequestParameters(options) });
+  return context.path(path).get({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _getDocumentDeserialize(
-  result: PathUncheckedResponse
-): Promise<Document> {
+export async function _getDocumentDeserialize(result: PathUncheckedResponse): Promise<Document> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -190,7 +182,7 @@ export async function _getDocumentDeserialize(
 export async function getDocument(
   context: Client,
   id: string,
-  options: GetDocumentOptionalParams = { requestOptions: {} }
+  options: GetDocumentOptionalParams = { requestOptions: {} },
 ): Promise<Document> {
   const result = await _getDocumentSend(context, id, options);
   return _getDocumentDeserialize(result);
@@ -225,43 +217,39 @@ op getItem(@path id: string): Item | SimpleError;
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import {
-  Item,
-  itemDeserializer,
-  simpleErrorDeserializer
-} from "../models/models.js";
+import { Item, itemDeserializer, simpleErrorDeserializer } from "../models/models.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import { GetItemOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
 export function _getItemSend(
   context: Client,
   id: string,
-  options: GetItemOptionalParams = { requestOptions: {} }
+  options: GetItemOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/items/{id}",
     {
-      id: id
+      id: id,
     },
     {
-      allowReserved: options?.requestOptions?.skipUrlEncoding
-    }
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
   );
-  return context.path(path).get({
-    ...operationOptionsToRequestParameters(options),
-    headers: { accept: "application/json", ...options.requestOptions?.headers }
-  });
+  return context
+    .path(path)
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
+    });
 }
 
-export async function _getItemDeserialize(
-  result: PathUncheckedResponse
-): Promise<Item> {
+export async function _getItemDeserialize(result: PathUncheckedResponse): Promise<Item> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -275,7 +263,7 @@ export async function _getItemDeserialize(
 export async function getItem(
   context: Client,
   id: string,
-  options: GetItemOptionalParams = { requestOptions: {} }
+  options: GetItemOptionalParams = { requestOptions: {} },
 ): Promise<Item> {
   const result = await _getItemSend(context, id, options);
   return _getItemDeserialize(result);
