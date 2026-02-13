@@ -186,10 +186,7 @@ needTCGC: true
 import { TestingContext as Client } from "./index.js";
 import { Configuration, configurationDeserializer } from "../models/models.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
-import {
-  CreateRequiredOptionalParams,
-  TestRequiredOptionalParams,
-} from "./options.js";
+import { CreateRequiredOptionalParams, TestRequiredOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -212,9 +209,7 @@ export function _createRequiredSend(
     });
 }
 
-export async function _createRequiredDeserialize(
-  result: PathUncheckedResponse,
-): Promise<string> {
+export async function _createRequiredDeserialize(result: PathUncheckedResponse): Promise<string> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -235,16 +230,14 @@ export async function createRequired(
 export function _testRequiredSend(
   context: Client,
   maxResults: number,
-  sortOrder: string,
   customHeader: string,
   limit: number,
   options: TestRequiredOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/api/required{?maxResults,sortOrder,limit}",
+    "/api/required{?maxResults,limit}",
     {
       maxResults: maxResults,
-      sortOrder: sortOrder,
       limit: limit,
     },
     {
@@ -277,19 +270,11 @@ export async function _testRequiredDeserialize(
 export async function testRequired(
   context: Client,
   maxResults: number,
-  sortOrder: string,
   customHeader: string,
   limit: number,
   options: TestRequiredOptionalParams = { requestOptions: {} },
 ): Promise<Configuration> {
-  const result = await _testRequiredSend(
-    context,
-    maxResults,
-    sortOrder,
-    customHeader,
-    limit,
-    options,
-  );
+  const result = await _testRequiredSend(context, maxResults, customHeader, limit, options);
   return _testRequiredDeserialize(result);
 }
 ```
