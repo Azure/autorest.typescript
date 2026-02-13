@@ -577,8 +577,8 @@ export async function $onEmit(context: EmitContext) {
         );
       }
 
-      // Regenerate snippets.spec.ts if test folder exists
-      if (option.generateTest && isAzureFlavor && hasTestFolder) {
+      // Regenerate snippets.spec.ts for test generation
+      if (option.generateTest && isAzureFlavor) {
         for (const subClient of dpgContext.sdkPackage.clients) {
           await emitContentByBuilder(
             program,
