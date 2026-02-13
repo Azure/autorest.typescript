@@ -194,9 +194,7 @@ function serializePrimitiveValue(
   }
 
   if (type === "bytes" && value instanceof Uint8Array) {
-    return bytesEncoding === "base64url"
-      ? uint8ArrayToString(value, "base64url")
-      : uint8ArrayToString(value, "base64");
+    return uint8ArrayToString(value, bytesEncoding ?? "base64");
   }
 
   if (typeof value === "boolean" || typeof value === "number") {
