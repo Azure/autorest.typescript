@@ -604,7 +604,7 @@ function getParameterValue(
           continue;
         }
         // Skip readonly properties as they cannot be set by users
-        if (isReadOnly(property as SdkModelPropertyType)) {
+        if (property && isReadOnly(property as SdkModelPropertyType)) {
           continue;
         }
         let propRetValue;
