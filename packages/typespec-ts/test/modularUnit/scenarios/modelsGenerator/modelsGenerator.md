@@ -2868,7 +2868,7 @@ export function petUnionDeserializer(item: any): PetUnion {
 }
 ```
 
-# only: should handle duplicate model name import between hardcode import and binder import
+# should handle duplicate model name import between hardcode import and binder import
 
 ## TypeSpec
 
