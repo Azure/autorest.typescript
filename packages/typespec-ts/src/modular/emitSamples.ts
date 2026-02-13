@@ -452,9 +452,7 @@ function prepareExampleParameters(
           continue;
         }
         // Skip readonly properties as they cannot be set by users
-        if (
-          isReadOnly(prop as SdkModelPropertyType)
-        ) {
+        if (isReadOnly(prop as SdkModelPropertyType)) {
           continue;
         }
         result.push(
@@ -606,9 +604,7 @@ function getParameterValue(
           continue;
         }
         // Skip readonly properties as they cannot be set by users
-        if (
-          isReadOnly(property as SdkModelPropertyType)
-        ) {
+        if (isReadOnly(property as SdkModelPropertyType)) {
           continue;
         }
         let propRetValue;
