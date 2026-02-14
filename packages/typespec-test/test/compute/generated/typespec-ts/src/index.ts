@@ -39,12 +39,12 @@ export {
   ComputeActionGroupsProperties,
 } from "./models/compute/index.js";
 export {
+  ComputeDiskActionGroup,
+  ComputeDiskActionGroupsProperties,
   ComputeDiskDisk,
   ComputeDiskDiskProperties,
   ComputeDiskDiskAccess,
   ComputeDiskDiskAccessProperties,
-  ComputeDiskActionGroup,
-  ComputeDiskActionGroupsProperties,
 } from "./models/computeDisk/index.js";
 export { ComputeClientOptionalParams } from "./api/index.js";
 export {

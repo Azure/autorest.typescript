@@ -5,6 +5,7 @@ import {
   parseXmlString,
   deserializeFromXml,
   deserializeXmlToModel,
+  deserializeXmlObject,
   xmlObjectToString,
   isXmlContentType,
   isJsonContentType,
@@ -270,6 +271,134 @@ describe("XML Helpers", () => {
       const result = serializeToXml(item, properties, "Model");
 
       expect(result).toContain("<data>SGVsbG8=</data>"); // Base64 of "Hello"
+    });
+
+    it("should serialize bytes to base64url when bytesEncoding is base64url", () => {
+      // Use bytes that will produce +, /, and = in standard base64
+      // ">>>???" encodes to "Pj4+Pz8/" in base64 and "Pj4-Pz8_" in base64url
+      const item = { data: new Uint8Array([62, 62, 62, 63, 63, 63]) };
+      const properties: XmlPropertyMetadata[] = [
+        {
+          propertyName: "data",
+          xmlOptions: { name: "data" },
+          type: "bytes",
+          bytesEncoding: "base64url"
+        }
+      ];
+
+      const result = serializeToXml(item, properties, "Model");
+
+      expect(result).toContain("<data>Pj4-Pz8_</data>"); // Base64url (no padding)
+    });
+
+    it("should serialize arrays of bytes using itemType", () => {
+      const item = {
+        blocks: [
+          new Uint8Array([72, 101, 108, 108, 111]), // "Hello"
+          new Uint8Array([87, 111, 114, 108, 100]) // "World"
+        ]
+      };
+      const properties: XmlPropertyMetadata[] = [
+        {
+          propertyName: "blocks",
+          xmlOptions: { name: "Block", unwrapped: true },
+          type: "array",
+          itemType: "bytes"
+        }
+      ];
+
+      const result = serializeToXml(item, properties, "Model");
+
+      expect(result).toContain("<Block>SGVsbG8=</Block>"); // Base64 of "Hello"
+      expect(result).toContain("<Block>V29ybGQ=</Block>"); // Base64 of "World"
+    });
+
+    it("should serialize arrays of bytes using bytesEncoding for base64url", () => {
+      const item = {
+        blocks: [
+          new Uint8Array([62, 62, 62]), // ">>>" -> "Pj4+" in base64, "Pj4-" in base64url
+          new Uint8Array([63, 63, 63]) // "???" -> "Pz8/" in base64, "Pz8_" in base64url
+        ]
+      };
+      const properties: XmlPropertyMetadata[] = [
+        {
+          propertyName: "blocks",
+          xmlOptions: { name: "Block", unwrapped: true },
+          type: "array",
+          itemType: "bytes",
+          bytesEncoding: "base64url"
+        }
+      ];
+
+      const result = serializeToXml(item, properties, "Model");
+
+      expect(result).toContain("<Block>Pj4-</Block>"); // Base64url (without padding)
+      expect(result).toContain("<Block>Pz8_</Block>"); // Base64url (without padding)
+    });
+
+    it("should serialize arrays of dates using itemType and dateEncoding", () => {
+      const item = {
+        timestamps: [
+          new Date("2023-08-01T12:00:00Z"),
+          new Date("2023-08-02T12:00:00Z")
+        ]
+      };
+      const properties: XmlPropertyMetadata[] = [
+        {
+          propertyName: "timestamps",
+          xmlOptions: { name: "Timestamp", unwrapped: true },
+          type: "array",
+          itemType: "date",
+          dateEncoding: "rfc3339"
+        }
+      ];
+
+      const result = serializeToXml(item, properties, "Model");
+
+      expect(result).toContain(
+        "<Timestamp>2023-08-01T12:00:00.000Z</Timestamp>"
+      );
+      expect(result).toContain(
+        "<Timestamp>2023-08-02T12:00:00.000Z</Timestamp>"
+      );
+    });
+
+    it("should serialize arrays of dates with rfc7231 encoding using dateEncoding", () => {
+      const item = {
+        timestamps: [new Date("2023-08-01T12:00:00Z")]
+      };
+      const properties: XmlPropertyMetadata[] = [
+        {
+          propertyName: "timestamps",
+          xmlOptions: { name: "timestamps", itemsName: "Timestamp" },
+          type: "array",
+          itemType: "date",
+          dateEncoding: "rfc7231"
+        }
+      ];
+
+      const result = serializeToXml(item, properties, "Model");
+
+      expect(result).toContain("Tue, 01 Aug 2023 12:00:00 GMT");
+    });
+
+    it("should serialize arrays of dates with unixTimestamp encoding using dateEncoding", () => {
+      const item = {
+        timestamps: [new Date("2023-08-01T12:00:00Z")]
+      };
+      const properties: XmlPropertyMetadata[] = [
+        {
+          propertyName: "timestamps",
+          xmlOptions: { name: "timestamps", itemsName: "Timestamp" },
+          type: "array",
+          itemType: "date",
+          dateEncoding: "unixTimestamp"
+        }
+      ];
+
+      const result = serializeToXml(item, properties, "Model");
+
+      expect(result).toContain("<Timestamp>1690891200</Timestamp>");
     });
   });
 
@@ -612,6 +741,66 @@ describe("XML Helpers", () => {
       expect(result.data).toEqual({ name: "nested", value: 42 });
     });
 
+    it("should deserialize nested object with text-only content using deserializer", () => {
+      // When an XML element maps to a complex type but only contains text content,
+      // the parser returns a string instead of an object. The deserializer should
+      // still be called with the text wrapped in { "#text": value }.
+      const xml = `
+        <Model>
+          <Name>blob-name-value</Name>
+        </Model>
+      `;
+
+      // Simulates a nested object type with unwrapped text content (like BlobName)
+      const nameDeserializer = (v: any) => ({
+        content: v["#text"]
+      });
+
+      const properties: XmlPropertyDeserializeMetadata[] = [
+        {
+          propertyName: "name",
+          xmlOptions: { name: "Name" },
+          type: "object",
+          deserializer: nameDeserializer
+        }
+      ];
+
+      const result = deserializeFromXml(xml, properties, "Model");
+
+      expect(result.name).toEqual({ content: "blob-name-value" });
+    });
+
+    it("should deserialize nested object with text and attributes using deserializer", () => {
+      // When an XML element has both text content and attributes
+      const xml = `
+        <Model>
+          <Name Encoded="true">encoded-blob-name</Name>
+        </Model>
+      `;
+
+      // Simulates a nested object type with attribute and unwrapped text content
+      const nameDeserializer = (v: any) => ({
+        encoded: v["@_Encoded"],
+        content: v["#text"]
+      });
+
+      const properties: XmlPropertyDeserializeMetadata[] = [
+        {
+          propertyName: "name",
+          xmlOptions: { name: "Name" },
+          type: "object",
+          deserializer: nameDeserializer
+        }
+      ];
+
+      const result = deserializeFromXml(xml, properties, "Model");
+
+      expect(result.name).toEqual({
+        encoded: true,
+        content: "encoded-blob-name"
+      });
+    });
+
     it("should deserialize unwrapped text content", () => {
       const xml =
         '<ModelWithText language="foo">This is some text.</ModelWithText>';
@@ -716,6 +905,149 @@ describe("XML Helpers", () => {
 
       expect(result.data).toBeInstanceOf(Uint8Array);
       expect(Array.from(result.data)).toEqual([72, 101, 108, 108, 111]);
+    });
+
+    it("should deserialize bytes from base64url when bytesEncoding is base64url", () => {
+      // "Pj4-Pz8_" is base64url of [62, 62, 62, 63, 63, 63]
+      const xml = "<Model><data>Pj4-Pz8_</data></Model>";
+      const properties: XmlPropertyDeserializeMetadata[] = [
+        {
+          propertyName: "data",
+          xmlOptions: { name: "data" },
+          type: "bytes",
+          bytesEncoding: "base64url"
+        }
+      ];
+
+      const result = deserializeFromXml<{ data: Uint8Array }>(
+        xml,
+        properties,
+        "Model"
+      );
+
+      expect(result.data).toBeInstanceOf(Uint8Array);
+      expect(Array.from(result.data)).toEqual([62, 62, 62, 63, 63, 63]);
+    });
+
+    it("should deserialize arrays of bytes using itemType", () => {
+      const xml = `<Model>
+        <Block>SGVsbG8=</Block>
+        <Block>V29ybGQ=</Block>
+      </Model>`;
+      const properties: XmlPropertyDeserializeMetadata[] = [
+        {
+          propertyName: "blocks",
+          xmlOptions: { name: "Block", unwrapped: true },
+          type: "array",
+          itemType: "bytes"
+        }
+      ];
+
+      const result = deserializeFromXml<{ blocks: Uint8Array[] }>(
+        xml,
+        properties,
+        "Model"
+      );
+
+      expect(result.blocks).toHaveLength(2);
+      expect(result.blocks[0]).toBeInstanceOf(Uint8Array);
+      expect(Array.from(result.blocks[0])).toEqual([72, 101, 108, 108, 111]); // "Hello"
+      expect(result.blocks[1]).toBeInstanceOf(Uint8Array);
+      expect(Array.from(result.blocks[1])).toEqual([87, 111, 114, 108, 100]); // "World"
+    });
+
+    it("should deserialize arrays of bytes using bytesEncoding for base64url", () => {
+      const xml = `<Model>
+        <Block>Pj4-</Block>
+        <Block>Pz8_</Block>
+      </Model>`;
+      const properties: XmlPropertyDeserializeMetadata[] = [
+        {
+          propertyName: "blocks",
+          xmlOptions: { name: "Block", unwrapped: true },
+          type: "array",
+          itemType: "bytes",
+          bytesEncoding: "base64url"
+        }
+      ];
+
+      const result = deserializeFromXml<{ blocks: Uint8Array[] }>(
+        xml,
+        properties,
+        "Model"
+      );
+
+      expect(result.blocks).toHaveLength(2);
+      expect(result.blocks[0]).toBeInstanceOf(Uint8Array);
+      expect(Array.from(result.blocks[0])).toEqual([62, 62, 62]); // ">>>"
+      expect(result.blocks[1]).toBeInstanceOf(Uint8Array);
+      expect(Array.from(result.blocks[1])).toEqual([63, 63, 63]); // "???"
+    });
+
+    it("should deserialize arrays of dates using itemType and dateEncoding", () => {
+      const xml = `<Model>
+        <Timestamp>2023-08-01T12:00:00.000Z</Timestamp>
+        <Timestamp>2023-08-02T12:00:00.000Z</Timestamp>
+      </Model>`;
+      const properties: XmlPropertyDeserializeMetadata[] = [
+        {
+          propertyName: "timestamps",
+          xmlOptions: { name: "Timestamp", unwrapped: true },
+          type: "array",
+          itemType: "date",
+          dateEncoding: "rfc3339"
+        }
+      ];
+
+      const result = deserializeFromXml<{ timestamps: Date[] }>(
+        xml,
+        properties,
+        "Model"
+      );
+
+      expect(result.timestamps).toHaveLength(2);
+      expect(result.timestamps[0]).toBeInstanceOf(Date);
+      expect(result.timestamps[0].toISOString()).toBe(
+        "2023-08-01T12:00:00.000Z"
+      );
+      expect(result.timestamps[1]).toBeInstanceOf(Date);
+      expect(result.timestamps[1].toISOString()).toBe(
+        "2023-08-02T12:00:00.000Z"
+      );
+    });
+
+    it("should deserialize arrays of dates with unixTimestamp encoding using dateEncoding", () => {
+      const xml = `<Model>
+        <timestamps>
+          <Timestamp>1690891200</Timestamp>
+          <Timestamp>1690977600</Timestamp>
+        </timestamps>
+      </Model>`;
+      const properties: XmlPropertyDeserializeMetadata[] = [
+        {
+          propertyName: "timestamps",
+          xmlOptions: { name: "timestamps", itemsName: "Timestamp" },
+          type: "array",
+          itemType: "date",
+          dateEncoding: "unixTimestamp"
+        }
+      ];
+
+      const result = deserializeFromXml<{ timestamps: Date[] }>(
+        xml,
+        properties,
+        "Model"
+      );
+
+      expect(result.timestamps).toHaveLength(2);
+      expect(result.timestamps[0]).toBeInstanceOf(Date);
+      expect(result.timestamps[0].toISOString()).toBe(
+        "2023-08-01T12:00:00.000Z"
+      );
+      expect(result.timestamps[1]).toBeInstanceOf(Date);
+      expect(result.timestamps[1].toISOString()).toBe(
+        "2023-08-02T12:00:00.000Z"
+      );
     });
 
     it("should handle empty arrays", () => {
@@ -869,6 +1201,455 @@ describe("XML Helpers", () => {
       const result = deserializeXmlToModel(undefined, properties, "Root");
 
       expect(result).toEqual({});
+    });
+  });
+
+  describe("deserializeXmlObject", () => {
+    it("should deserialize a pre-parsed XML object with XML property names", () => {
+      // Simulates what the XML parser produces for <RetentionPolicy><Enabled>true</Enabled><Days>7</Days></RetentionPolicy>
+      const xmlObject = {
+        Enabled: true,
+        Days: 7
+      };
+      const properties: XmlPropertyDeserializeMetadata[] = [
+        {
+          propertyName: "enabled",
+          xmlOptions: { name: "Enabled" },
+          type: "primitive"
+        },
+        {
+          propertyName: "days",
+          xmlOptions: { name: "Days" },
+          type: "primitive"
+        }
+      ];
+
+      const result = deserializeXmlObject<{
+        enabled: boolean;
+        days: number;
+      }>(xmlObject, properties);
+
+      expect(result).toEqual({ enabled: true, days: 7 });
+    });
+
+    it("should handle empty object input", () => {
+      const properties: XmlPropertyDeserializeMetadata[] = [
+        {
+          propertyName: "name",
+          xmlOptions: { name: "Name" },
+          type: "primitive"
+        }
+      ];
+
+      const result = deserializeXmlObject({}, properties);
+
+      expect(result).toEqual({});
+    });
+
+    it("should handle null input", () => {
+      const properties: XmlPropertyDeserializeMetadata[] = [];
+
+      const result = deserializeXmlObject(null as any, properties);
+
+      expect(result).toEqual({});
+    });
+
+    it("should deserialize nested objects using XML property names", () => {
+      // Simulates nested object scenario where inner deserializer must use XML names
+      const innerXmlObject = {
+        Enabled: true,
+        Days: 30
+      };
+
+      const innerProperties: XmlPropertyDeserializeMetadata[] = [
+        {
+          propertyName: "enabled",
+          xmlOptions: { name: "Enabled" },
+          type: "primitive"
+        },
+        {
+          propertyName: "days",
+          xmlOptions: { name: "Days" },
+          type: "primitive"
+        }
+      ];
+
+      // Custom deserializer that uses deserializeXmlObject for inner type
+      const retentionPolicyXmlObjectDeserializer = (obj: any) =>
+        deserializeXmlObject<{ enabled: boolean; days: number }>(
+          obj,
+          innerProperties
+        );
+
+      // Outer object as it would be parsed from XML
+      const outerXmlObject = {
+        Version: "1.0",
+        Delete: false,
+        Read: true,
+        Write: true,
+        RetentionPolicy: {
+          Enabled: true,
+          Days: 7
+        }
+      };
+
+      const outerProperties: XmlPropertyDeserializeMetadata[] = [
+        {
+          propertyName: "version",
+          xmlOptions: { name: "Version" },
+          type: "primitive"
+        },
+        {
+          propertyName: "deleteProperty",
+          xmlOptions: { name: "Delete" },
+          type: "primitive"
+        },
+        {
+          propertyName: "read",
+          xmlOptions: { name: "Read" },
+          type: "primitive"
+        },
+        {
+          propertyName: "write",
+          xmlOptions: { name: "Write" },
+          type: "primitive"
+        },
+        {
+          propertyName: "retentionPolicy",
+          xmlOptions: { name: "RetentionPolicy" },
+          type: "object",
+          deserializer: retentionPolicyXmlObjectDeserializer
+        }
+      ];
+
+      const result = deserializeXmlObject<{
+        version: string;
+        deleteProperty: boolean;
+        read: boolean;
+        write: boolean;
+        retentionPolicy: { enabled: boolean; days: number };
+      }>(outerXmlObject, outerProperties);
+
+      expect(result).toEqual({
+        version: "1.0",
+        deleteProperty: false,
+        read: true,
+        write: true,
+        retentionPolicy: {
+          enabled: true,
+          days: 7
+        }
+      });
+    });
+
+    it("should deserialize arrays with items using XML property names", () => {
+      // Inner item deserializer using XML property names
+      const blobTagXmlObjectDeserializer = (obj: any) =>
+        deserializeXmlObject<{ key: string; value: string }>(obj, [
+          {
+            propertyName: "key",
+            xmlOptions: { name: "Key" },
+            type: "primitive"
+          },
+          {
+            propertyName: "value",
+            xmlOptions: { name: "Value" },
+            type: "primitive"
+          }
+        ]);
+
+      // Simulates parsed XML for an array of tags
+      const xmlObject = {
+        TagSet: [
+          { Key: "tag1", Value: "value1" },
+          { Key: "tag2", Value: "value2" }
+        ]
+      };
+
+      const properties: XmlPropertyDeserializeMetadata[] = [
+        {
+          propertyName: "blobTagSet",
+          xmlOptions: { name: "TagSet", unwrapped: true, itemsName: "TagSet" },
+          type: "array",
+          deserializer: blobTagXmlObjectDeserializer
+        }
+      ];
+
+      const result = deserializeXmlObject<{
+        blobTagSet: Array<{ key: string; value: string }>;
+      }>(xmlObject, properties);
+
+      expect(result).toEqual({
+        blobTagSet: [
+          { key: "tag1", value: "value1" },
+          { key: "tag2", value: "value2" }
+        ]
+      });
+    });
+
+    it("should handle attributes in pre-parsed XML object", () => {
+      const xmlObject = {
+        "@_id": 123,
+        "@_enabled": true,
+        Name: "test"
+      };
+
+      const properties: XmlPropertyDeserializeMetadata[] = [
+        {
+          propertyName: "id",
+          xmlOptions: { name: "id", attribute: true },
+          type: "primitive"
+        },
+        {
+          propertyName: "enabled",
+          xmlOptions: { name: "enabled", attribute: true },
+          type: "primitive"
+        },
+        {
+          propertyName: "name",
+          xmlOptions: { name: "Name" },
+          type: "primitive"
+        }
+      ];
+
+      const result = deserializeXmlObject<{
+        id: number;
+        enabled: boolean;
+        name: string;
+      }>(xmlObject, properties);
+
+      expect(result).toEqual({ id: 123, enabled: true, name: "test" });
+    });
+
+    it("should deserialize Date values", () => {
+      const xmlObject = {
+        Created: "2023-08-01T12:00:00.000Z"
+      };
+
+      const properties: XmlPropertyDeserializeMetadata[] = [
+        {
+          propertyName: "created",
+          xmlOptions: { name: "Created" },
+          type: "date",
+          dateEncoding: "rfc3339"
+        }
+      ];
+
+      const result = deserializeXmlObject<{ created: Date }>(
+        xmlObject,
+        properties
+      );
+
+      expect(result.created).toBeInstanceOf(Date);
+      expect(result.created.toISOString()).toBe("2023-08-01T12:00:00.000Z");
+    });
+
+    it("should deserialize unix timestamp dates", () => {
+      const xmlObject = {
+        Created: 1690891200
+      };
+
+      const properties: XmlPropertyDeserializeMetadata[] = [
+        {
+          propertyName: "created",
+          xmlOptions: { name: "Created" },
+          type: "date",
+          dateEncoding: "unixTimestamp"
+        }
+      ];
+
+      const result = deserializeXmlObject<{ created: Date }>(
+        xmlObject,
+        properties
+      );
+
+      expect(result.created).toBeInstanceOf(Date);
+      expect(result.created.toISOString()).toBe("2023-08-01T12:00:00.000Z");
+    });
+
+    it("should deserialize bytes from base64", () => {
+      const xmlObject = {
+        Data: "SGVsbG8=" // Base64 of "Hello"
+      };
+
+      const properties: XmlPropertyDeserializeMetadata[] = [
+        {
+          propertyName: "data",
+          xmlOptions: { name: "Data" },
+          type: "bytes"
+        }
+      ];
+
+      const result = deserializeXmlObject<{ data: Uint8Array }>(
+        xmlObject,
+        properties
+      );
+
+      expect(result.data).toBeInstanceOf(Uint8Array);
+      expect(Array.from(result.data)).toEqual([72, 101, 108, 108, 111]);
+    });
+
+    it("should deserialize dictionaries", () => {
+      const xmlObject = {
+        Metadata: {
+          Color: "blue",
+          Count: "123"
+        }
+      };
+
+      const properties: XmlPropertyDeserializeMetadata[] = [
+        {
+          propertyName: "metadata",
+          xmlOptions: { name: "Metadata" },
+          type: "dict"
+        }
+      ];
+
+      const result = deserializeXmlObject<{
+        metadata: Record<string, string>;
+      }>(xmlObject, properties);
+
+      expect(result.metadata).toEqual({
+        Color: "blue",
+        Count: "123"
+      });
+    });
+
+    it("should skip missing properties", () => {
+      const xmlObject = {
+        Name: "test"
+      };
+
+      const properties: XmlPropertyDeserializeMetadata[] = [
+        {
+          propertyName: "name",
+          xmlOptions: { name: "Name" },
+          type: "primitive"
+        },
+        {
+          propertyName: "age",
+          xmlOptions: { name: "Age" },
+          type: "primitive"
+        }
+      ];
+
+      const result = deserializeXmlObject<{ name: string; age?: number }>(
+        xmlObject,
+        properties
+      );
+
+      expect(result).toEqual({ name: "test" });
+      expect(result).not.toHaveProperty("age");
+    });
+
+    it("should unwrap single-element arrays from parser", () => {
+      // fast-xml-parser wraps non-leaf elements in arrays
+      const xmlObject = [
+        {
+          Enabled: true,
+          Days: 7
+        }
+      ];
+
+      const properties: XmlPropertyDeserializeMetadata[] = [
+        {
+          propertyName: "enabled",
+          xmlOptions: { name: "Enabled" },
+          type: "primitive"
+        },
+        {
+          propertyName: "days",
+          xmlOptions: { name: "Days" },
+          type: "primitive"
+        }
+      ];
+
+      const result = deserializeXmlObject<{
+        enabled: boolean;
+        days: number;
+      }>(xmlObject as any, properties);
+
+      expect(result).toEqual({ enabled: true, days: 7 });
+    });
+
+    it("should handle full XML round-trip with nested objects using XML names", () => {
+      // Full round-trip test: parse XML string, then use deserializeXmlObject for nested
+      const xml = `<Logging>
+        <Version>v1.0</Version>
+        <Delete>false</Delete>
+        <Read>true</Read>
+        <Write>true</Write>
+        <RetentionPolicy>
+          <Enabled>true</Enabled>
+          <Days>7</Days>
+        </RetentionPolicy>
+      </Logging>`;
+
+      // First parse the XML
+      const parsed = parseXmlString(xml);
+
+      // The nested RetentionPolicy needs XML-aware deserialization
+      const retentionPolicyXmlObjectDeserializer = (obj: any) =>
+        deserializeXmlObject<{ enabled: boolean; days: number }>(obj, [
+          {
+            propertyName: "enabled",
+            xmlOptions: { name: "Enabled" },
+            type: "primitive"
+          },
+          {
+            propertyName: "days",
+            xmlOptions: { name: "Days" },
+            type: "primitive"
+          }
+        ]);
+
+      const properties: XmlPropertyDeserializeMetadata[] = [
+        {
+          propertyName: "version",
+          xmlOptions: { name: "Version" },
+          type: "primitive"
+        },
+        {
+          propertyName: "deleteProperty",
+          xmlOptions: { name: "Delete" },
+          type: "primitive"
+        },
+        {
+          propertyName: "read",
+          xmlOptions: { name: "Read" },
+          type: "primitive"
+        },
+        {
+          propertyName: "write",
+          xmlOptions: { name: "Write" },
+          type: "primitive"
+        },
+        {
+          propertyName: "retentionPolicy",
+          xmlOptions: { name: "RetentionPolicy" },
+          type: "object",
+          deserializer: retentionPolicyXmlObjectDeserializer
+        }
+      ];
+
+      const result = deserializeFromXml<{
+        version: string;
+        deleteProperty: boolean;
+        read: boolean;
+        write: boolean;
+        retentionPolicy: { enabled: boolean; days: number };
+      }>(xml, properties, "Logging");
+
+      expect(result).toEqual({
+        version: "v1.0",
+        deleteProperty: false,
+        read: true,
+        write: true,
+        retentionPolicy: {
+          enabled: true,
+          days: 7
+        }
+      });
     });
   });
 

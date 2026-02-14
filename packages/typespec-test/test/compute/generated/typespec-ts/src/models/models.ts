@@ -205,6 +205,21 @@ export function errorAdditionalInfoDeserializer(item: any): ErrorAdditionalInfo 
   };
 }
 
+/** The response of a ActionGroup list operation. */
+export interface _ActionGroupListResult {
+  /** The ActionGroup items on this page */
+  value: ComputeDiskActionGroup[];
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
+export function _actionGroupListResultDeserializer(item: any): _ActionGroupListResult {
+  return {
+    value: computeDiskActionGroupArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
+}
+
 export function privateEndpointConnectionArrayDeserializer(
   result: Array<PrivateEndpointConnection>,
 ): any[] {
@@ -333,18 +348,3 @@ export enum KnownPrivateEndpointConnectionProvisioningState {
  * **Failed**: Connection provisioning has failed
  */
 export type PrivateEndpointConnectionProvisioningState = string;
-
-/** The response of a ActionGroup list operation. */
-export interface _ActionGroupListResult {
-  /** The ActionGroup items on this page */
-  value: ComputeDiskActionGroup[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-export function _actionGroupListResultDeserializer(item: any): _ActionGroupListResult {
-  return {
-    value: computeDiskActionGroupArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
-  };
-}

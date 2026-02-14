@@ -452,6 +452,10 @@ model RoleAssignmentCommonProperties {
   @doc("Data Product role to be assigned to a user.")
   role: DataProductUserRole;
 }
+model Client {
+  id: string;
+  email: string;
+}
 
 @doc("The data catalog resource.")
 @singleton
@@ -627,4 +631,6 @@ interface DataProducts {
 
   @doc("List data products by subscription.")
   listBySubscription is ArmListBySubscription<DataProduct>;
+
+  read(@body body: Client): Client;
 }

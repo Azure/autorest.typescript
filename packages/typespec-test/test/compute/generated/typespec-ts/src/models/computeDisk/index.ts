@@ -2,10 +2,10 @@
 // Licensed under the MIT License.
 
 export {
+  ComputeDiskActionGroup,
+  ComputeDiskActionGroupsProperties,
   ComputeDiskDisk,
   ComputeDiskDiskProperties,
   ComputeDiskDiskAccess,
   ComputeDiskDiskAccessProperties,
-  ComputeDiskActionGroup,
-  ComputeDiskActionGroupsProperties,
 } from "./models.js";

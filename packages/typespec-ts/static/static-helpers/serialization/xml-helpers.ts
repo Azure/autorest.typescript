@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import { XMLBuilder, XMLParser, XmlBuilderOptions } from "fast-xml-parser";
+import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
 
 /**
  * XML serialization options for a property or model
@@ -41,6 +42,10 @@ export interface XmlPropertyMetadata {
   type?: "array" | "object" | "primitive" | "date" | "bytes" | "dict";
   /** Date encoding format */
   dateEncoding?: "rfc3339" | "rfc7231" | "unixTimestamp";
+  /** Bytes encoding format (base64 or base64url) */
+  bytesEncoding?: "base64" | "base64url";
+  /** For arrays - type of each item for special handling */
+  itemType?: "primitive" | "date" | "bytes";
 }
 
 /**
@@ -57,6 +62,10 @@ export interface XmlPropertyDeserializeMetadata {
   type?: "array" | "object" | "primitive" | "date" | "bytes" | "dict";
   /** Date encoding format */
   dateEncoding?: "rfc3339" | "rfc7231" | "unixTimestamp";
+  /** Bytes encoding format (base64 or base64url) */
+  bytesEncoding?: "base64" | "base64url";
+  /** For arrays - type of each item for special handling */
+  itemType?: "primitive" | "date" | "bytes";
 }
 
 /**
@@ -97,7 +106,7 @@ const defaultBuilderOptions: Partial<XmlBuilderOptions> = {
   ignoreAttributes: false,
   attributeNamePrefix: "@_",
   textNodeName: "#text",
-  format: true,
+  format: false,
   suppressEmptyNode: true
 };
 
@@ -165,7 +174,8 @@ function collectNamespaces(
 function serializePrimitiveValue(
   value: any,
   type?: "array" | "object" | "primitive" | "date" | "bytes" | "dict",
-  dateEncoding?: "rfc3339" | "rfc7231" | "unixTimestamp"
+  dateEncoding?: "rfc3339" | "rfc7231" | "unixTimestamp",
+  bytesEncoding?: "base64" | "base64url"
 ): string | number | boolean {
   if (value === null || value === undefined) {
     return "";
@@ -184,8 +194,7 @@ function serializePrimitiveValue(
   }
 
   if (type === "bytes" && value instanceof Uint8Array) {
-    // Convert bytes to base64
-    return btoa(String.fromCharCode(...value));
+    return uint8ArrayToString(value, bytesEncoding ?? "base64");
   }
 
   if (typeof value === "boolean" || typeof value === "number") {
@@ -212,7 +221,12 @@ function serializeArrayProperty(
     if (serializer) {
       return serializer(item);
     }
-    return serializePrimitiveValue(item, metadata.type, metadata.dateEncoding);
+    return serializePrimitiveValue(
+      item,
+      metadata.itemType ?? metadata.type,
+      metadata.dateEncoding,
+      metadata.bytesEncoding
+    );
   });
 
   if (xmlOptions.unwrapped) {
@@ -268,7 +282,8 @@ export function serializeModelToXml(
       attributes[attrName] = serializePrimitiveValue(
         value,
         type,
-        prop.dateEncoding
+        prop.dateEncoding,
+        prop.bytesEncoding
       );
     } else if (type === "dict" && value !== null && typeof value === "object") {
       // Serialize dictionary - each key-value pair becomes an element
@@ -295,13 +310,19 @@ export function serializeModelToXml(
       result[elementName] = serializer(value);
     } else if (xmlOptions.unwrapped && !Array.isArray(value)) {
       // Unwrapped primitive - this becomes the text content of the parent element
-      result["#text"] = serializePrimitiveValue(value, type, prop.dateEncoding);
+      result["#text"] = serializePrimitiveValue(
+        value,
+        type,
+        prop.dateEncoding,
+        prop.bytesEncoding
+      );
     } else {
       // Serialize primitive
       result[elementName] = serializePrimitiveValue(
         value,
         type,
-        prop.dateEncoding
+        prop.dateEncoding,
+        prop.bytesEncoding
       );
     }
   }
@@ -328,7 +349,11 @@ export function xmlObjectToString(
     ...options
   });
 
-  return builder.build(xmlObject);
+  const xmlData: string = builder.build(xmlObject);
+  if (!xmlData) {
+    return "";
+  }
+  return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>${xmlData}`;
 }
 
 /**
@@ -366,7 +391,8 @@ export function parseXmlString(
 function deserializePrimitiveValue(
   value: any,
   type?: "array" | "object" | "primitive" | "date" | "bytes" | "dict",
-  dateEncoding?: "rfc3339" | "rfc7231" | "unixTimestamp"
+  dateEncoding?: "rfc3339" | "rfc7231" | "unixTimestamp",
+  bytesEncoding?: "base64" | "base64url"
 ): any {
   if (value === null || value === undefined || value === "") {
     return undefined;
@@ -380,13 +406,7 @@ function deserializePrimitiveValue(
   }
 
   if (type === "bytes" && typeof value === "string") {
-    // Convert base64 to bytes
-    const binaryString = atob(value);
-    const bytes = new Uint8Array(binaryString.length);
-    for (let i = 0; i < binaryString.length; i++) {
-      bytes[i] = binaryString.charCodeAt(i);
-    }
-    return bytes;
+    return stringToUint8Array(value, bytesEncoding ?? "base64");
   }
 
   return value;
@@ -479,7 +499,12 @@ function deserializeArrayProperty(
     if (deserializer) {
       return deserializer(unwrappedItem);
     }
-    return deserializePrimitiveValue(unwrappedItem, type, dateEncoding);
+    return deserializePrimitiveValue(
+      unwrappedItem,
+      metadata.itemType ?? type,
+      dateEncoding,
+      metadata.bytesEncoding
+    );
   });
 }
 
@@ -500,6 +525,41 @@ export function deserializeXmlToModel<T = Record<string, any>>(
   const rootElementName = getElementName(rootName, rootNs);
   let content = xmlObject[rootElementName] ?? xmlObject[rootName] ?? xmlObject;
   content = unwrapSingleElementArray(content);
+
+  return deserializeXmlObject<T>(content, properties);
+}
+
+/**
+ * Full deserialization: XML string to model
+ */
+export function deserializeFromXml<T = Record<string, any>>(
+  xmlString: string,
+  properties: XmlPropertyDeserializeMetadata[],
+  rootName: string,
+  rootNs?: { namespace: string; prefix: string },
+  parserOptions?: Partial<typeof defaultParserOptions>
+): T {
+  const xmlObject = parseXmlString(xmlString, parserOptions);
+  return deserializeXmlToModel<T>(xmlObject, properties, rootName, rootNs);
+}
+
+/**
+ * Deserializes a pre-parsed XML object to a model.
+ * This is used for nested objects where the XML has already been parsed
+ * and we have the object content directly (without a root element wrapper).
+ * Unlike deserializeFromXml, this does not parse XML strings and does not
+ * expect a root element to unwrap.
+ */
+export function deserializeXmlObject<T = Record<string, any>>(
+  xmlObject: Record<string, unknown>,
+  properties: XmlPropertyDeserializeMetadata[]
+): T {
+  if (!xmlObject) {
+    return {} as T;
+  }
+
+  // Unwrap if parser wrapped in single-element array
+  const content = unwrapSingleElementArray(xmlObject);
 
   const result: Record<string, any> = {};
 
@@ -529,7 +589,8 @@ export function deserializeXmlToModel<T = Record<string, any>>(
         result[propertyName] = deserializePrimitiveValue(
           rawValue,
           type,
-          dateEncoding
+          dateEncoding,
+          prop.bytesEncoding
         );
       }
     } else {
@@ -540,35 +601,29 @@ export function deserializeXmlToModel<T = Record<string, any>>(
         continue;
       }
 
-      if (deserializer && typeof rawValue === "object") {
+      if (deserializer) {
         // Deserialize nested object
-        result[propertyName] = deserializer(rawValue);
+        if (typeof rawValue === "object") {
+          result[propertyName] = deserializer(rawValue);
+        } else {
+          // When the XML element only contains text content (like <Name>text</Name>),
+          // the parser returns the text as a string. Wrap it in an object with #text
+          // so the nested deserializer can extract unwrapped text content properly.
+          result[propertyName] = deserializer({ "#text": rawValue });
+        }
       } else {
         // Deserialize primitive
         result[propertyName] = deserializePrimitiveValue(
           rawValue,
           type,
-          dateEncoding
+          dateEncoding,
+          prop.bytesEncoding
         );
       }
     }
   }
 
   return result as T;
-}
-
-/**
- * Full deserialization: XML string to model
- */
-export function deserializeFromXml<T = Record<string, any>>(
-  xmlString: string,
-  properties: XmlPropertyDeserializeMetadata[],
-  rootName: string,
-  rootNs?: { namespace: string; prefix: string },
-  parserOptions?: Partial<typeof defaultParserOptions>
-): T {
-  const xmlObject = parseXmlString(xmlString, parserOptions);
-  return deserializeXmlToModel<T>(xmlObject, properties, rootName, rootNs);
 }
 
 /**
