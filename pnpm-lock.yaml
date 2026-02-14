@@ -296,7 +296,7 @@ importers:
         specifier: ^0.65.1
         version: 0.65.1(14b52e8329c8c1d1679333b0149744f1)
       '@azure-tools/typespec-ts':
-        specifier: workspace:^0.49.0
+        specifier: workspace:^0.49.1
         version: link:../typespec-ts
       '@typespec/compiler':
         specifier: ^1.9.0
