@@ -25,6 +25,9 @@ import {
   listRoleAssignmentsDeserializer,
   _DataProductListResult,
   _dataProductListResultDeserializer,
+  Client as Client_1,
+  clientSerializer,
+  clientDeserializer,
 } from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
@@ -33,6 +36,7 @@ import {
 import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
+  DataProductsReadOptionalParams,
   DataProductsListBySubscriptionOptionalParams,
   DataProductsListByResourceGroupOptionalParams,
   DataProductsListRolesAssignmentsOptionalParams,
@@ -52,6 +56,39 @@ import {
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 import { PollerLike, OperationState } from "@azure/core-lro";
+
+export function _readSend(
+  context: Client,
+  body: Client_1,
+  options: DataProductsReadOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/")
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
+      body: clientSerializer(body),
+    });
+}
+
+export async function _readDeserialize(result: PathUncheckedResponse): Promise<Client_1> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return clientDeserializer(result.body);
+}
+
+export async function read(
+  context: Client,
+  body: Client_1,
+  options: DataProductsReadOptionalParams = { requestOptions: {} },
+): Promise<Client_1> {
+  const result = await _readSend(context, body, options);
+  return _readDeserialize(result);
+}
 
 export function _listBySubscriptionSend(
   context: Client,

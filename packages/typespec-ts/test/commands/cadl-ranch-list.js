@@ -1201,5 +1201,9 @@ export const modularTsps = [
   {
     outputPath: "encode/array",
     inputPath: "encode/array"
+  },
+  {
+    outputPath: "payload/multipart",
+    inputPath: "payload/multipart"
   }
 ];

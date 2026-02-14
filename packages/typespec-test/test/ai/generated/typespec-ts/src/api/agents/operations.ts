@@ -64,6 +64,7 @@ import {
   VectorStoreFileBatch,
   vectorStoreFileBatchDeserializer,
 } from "../../models/agents/models.js";
+import { FileContents } from "../../static-helpers/multipartHelpers.js";
 import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   AgentsListVectorStoreFileBatchFilesOptionalParams,
@@ -892,7 +893,7 @@ export async function deleteFile(
 export function _uploadFileSend(
   context: Client,
   body: {
-    file: Uint8Array;
+    file: FileContents | { contents: FileContents; contentType?: string; filename?: string };
     purpose: FilePurpose;
     filename?: string;
   },
@@ -930,7 +931,7 @@ export async function _uploadFileDeserialize(result: PathUncheckedResponse): Pro
 export async function uploadFile(
   context: Client,
   body: {
-    file: Uint8Array;
+    file: FileContents | { contents: FileContents; contentType?: string; filename?: string };
     purpose: FilePurpose;
     filename?: string;
   },

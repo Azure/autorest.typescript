@@ -58,5 +58,6 @@ export {
   DataProductUserRole,
   RoleAssignmentDetail,
   ListRoleAssignments,
+  Client,
   KnownVersions,
 } from "./models.js";
