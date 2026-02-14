@@ -3,6 +3,7 @@
 
 import { NetworkAnalyticsApiContext } from "../../api/networkAnalyticsApiContext.js";
 import {
+  read,
   listBySubscription,
   listByResourceGroup,
   listRolesAssignments,
@@ -16,6 +17,7 @@ import {
   create,
 } from "../../api/dataProducts/operations.js";
 import {
+  DataProductsReadOptionalParams,
   DataProductsListBySubscriptionOptionalParams,
   DataProductsListByResourceGroupOptionalParams,
   DataProductsListRolesAssignmentsOptionalParams,
@@ -37,6 +39,7 @@ import {
   RoleAssignmentCommonProperties,
   RoleAssignmentDetail,
   ListRoleAssignments,
+  Client,
 } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 import { SimplePollerLike, getSimplePoller } from "../../static-helpers/simplePollerHelpers.js";
@@ -44,6 +47,7 @@ import { PollerLike, OperationState } from "@azure/core-lro";
 
 /** Interface representing a DataProducts operations. */
 export interface DataProductsOperations {
+  read: (body: Client, options?: DataProductsReadOptionalParams) => Promise<Client>;
   /** List data products by subscription. */
   listBySubscription: (
     options?: DataProductsListBySubscriptionOptionalParams,
@@ -163,6 +167,7 @@ export interface DataProductsOperations {
 
 function _getDataProducts(context: NetworkAnalyticsApiContext) {
   return {
+    read: (body: Client, options?: DataProductsReadOptionalParams) => read(context, body, options),
     listBySubscription: (options?: DataProductsListBySubscriptionOptionalParams) =>
       listBySubscription(context, options),
     listByResourceGroup: (
