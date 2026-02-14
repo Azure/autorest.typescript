@@ -165,6 +165,7 @@ export function _uploadFileRequestSerializer(item: _UploadFileRequest): any {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { _uploadFileRequestSerializer } from "../models/models.js";
+import { FileContents } from "../static-helpers/multipartHelpers.js";
 import { UploadFileOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -177,7 +178,7 @@ export function _uploadFileSend(
   context: Client,
   body: {
     name: string;
-    file: Uint8Array;
+    file: FileContents | { contents: FileContents; contentType?: string; filename?: string };
   },
   options: UploadFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -203,7 +204,7 @@ export async function uploadFile(
   context: Client,
   body: {
     name: string;
-    file: Uint8Array;
+    file: FileContents | { contents: FileContents; contentType?: string; filename?: string };
   },
   options: UploadFileOptionalParams = { requestOptions: {} },
 ): Promise<void> {
@@ -259,6 +260,7 @@ export function _uploadFilesRequestSerializer(item: _UploadFilesRequest): any {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { _uploadFilesRequestSerializer } from "../models/models.js";
+import { FileContents } from "../static-helpers/multipartHelpers.js";
 import { UploadFilesOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -270,7 +272,9 @@ import {
 export function _uploadFilesSend(
   context: Client,
   body: {
-    files: Uint8Array[];
+    files: Array<
+      FileContents | { contents: FileContents; contentType?: string; filename?: string }
+    >;
   },
   options: UploadFilesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -295,7 +299,9 @@ export async function _uploadFilesDeserialize(result: PathUncheckedResponse): Pr
 export async function uploadFiles(
   context: Client,
   body: {
-    files: Uint8Array[];
+    files: Array<
+      FileContents | { contents: FileContents; contentType?: string; filename?: string }
+    >;
   },
   options: UploadFilesOptionalParams = { requestOptions: {} },
 ): Promise<void> {
@@ -417,195 +423,6 @@ export async function downloadFile(
 ): Promise<Uint8Array> {
   const streamableMethod = _downloadFileSend(context, options);
   const result = await getBinaryResponse(streamableMethod);
-  return _downloadFileDeserialize(result);
-}
-```
-
-# should handle contentTypes has multiple form data with part array in response
-
-## TypeSpec
-
-```tsp
-@route("/downloadFile")
-@post
-op downloadFile(): {
-  @header contentType: "multipart/form-data";
-  @multipartBody body: {
-    name: HttpPart<string>;
-    file: HttpPart<bytes>[];
-  };
-};
-```
-
-## Models
-
-```ts models
-import { FileContents } from "../static-helpers/multipartHelpers.js";
-import { stringToUint8Array } from "@azure/core-util";
-
-/**
- * This file contains only generated model types and their (de)serializers.
- * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
- */
-/* eslint-disable @typescript-eslint/naming-convention */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-/** model interface _DownloadFileResponse */
-export interface _DownloadFileResponse {
-  name: string;
-  file: Array<FileContents | { contents: FileContents; contentType?: string; filename?: string }>;
-}
-
-export function _downloadFileResponseDeserializer(item: any): _DownloadFileResponse {
-  return {
-    name: item["name"],
-    file: item["file"].map((p: any) => {
-      return typeof p === "string" ? stringToUint8Array(p, "base64") : p;
-    }),
-  };
-}
-```
-
-## Operations
-
-```ts operations
-import { TestingContext as Client } from "./index.js";
-import { _downloadFileResponseDeserializer } from "../models/models.js";
-import { DownloadFileOptionalParams } from "./options.js";
-import {
-  StreamableMethod,
-  PathUncheckedResponse,
-  createRestError,
-  operationOptionsToRequestParameters,
-} from "@azure-rest/core-client";
-
-export function _downloadFileSend(
-  context: Client,
-  options: DownloadFileOptionalParams = { requestOptions: {} },
-): StreamableMethod {
-  return context
-    .path("/downloadFile")
-    .post({
-      ...operationOptionsToRequestParameters(options),
-      headers: { accept: "multipart/form-data", ...options.requestOptions?.headers },
-    });
-}
-
-export async function _downloadFileDeserialize(result: PathUncheckedResponse): Promise<{
-  name: string;
-  file: Uint8Array[];
-}> {
-  const expectedStatuses = ["200"];
-  if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
-  }
-
-  return _downloadFileResponseDeserializer(result.body) as any;
-}
-
-export async function downloadFile(
-  context: Client,
-  options: DownloadFileOptionalParams = { requestOptions: {} },
-): Promise<{
-  name: string;
-  file: Uint8Array[];
-}> {
-  const result = await _downloadFileSend(context, options);
-  return _downloadFileDeserialize(result);
-}
-```
-
-# should handle contentTypes has multiple form data with array part in response
-
-## TypeSpec
-
-```tsp
-scalar BinaryBytes extends bytes;
-
-@route("/downloadFile")
-@post
-op downloadFile(): {
-  @header contentType: "multipart/form-data";
-  @multipartBody body: {
-    name: HttpPart<string[]>;
-    file: HttpPart<BinaryBytes>;
-  };
-};
-```
-
-## Models
-
-```ts models
-import { FileContents } from "../static-helpers/multipartHelpers.js";
-import { stringToUint8Array } from "@azure/core-util";
-
-/**
- * This file contains only generated model types and their (de)serializers.
- * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
- */
-/* eslint-disable @typescript-eslint/naming-convention */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-/** model interface _DownloadFileResponse */
-export interface _DownloadFileResponse {
-  name: string[];
-  file: FileContents | { contents: FileContents; contentType?: string; filename?: string };
-}
-
-export function _downloadFileResponseDeserializer(item: any): _DownloadFileResponse {
-  return {
-    name: item["name"].map((p: any) => {
-      return p;
-    }),
-    file:
-      typeof item["file"] === "string" ? stringToUint8Array(item["file"], "base64") : item["file"],
-  };
-}
-```
-
-## Operations
-
-```ts operations
-import { TestingContext as Client } from "./index.js";
-import { _downloadFileResponseDeserializer } from "../models/models.js";
-import { DownloadFileOptionalParams } from "./options.js";
-import {
-  StreamableMethod,
-  PathUncheckedResponse,
-  createRestError,
-  operationOptionsToRequestParameters,
-} from "@azure-rest/core-client";
-
-export function _downloadFileSend(
-  context: Client,
-  options: DownloadFileOptionalParams = { requestOptions: {} },
-): StreamableMethod {
-  return context
-    .path("/downloadFile")
-    .post({
-      ...operationOptionsToRequestParameters(options),
-      headers: { accept: "multipart/form-data", ...options.requestOptions?.headers },
-    });
-}
-
-export async function _downloadFileDeserialize(result: PathUncheckedResponse): Promise<{
-  name: string[];
-  file: Uint8Array;
-}> {
-  const expectedStatuses = ["200"];
-  if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
-  }
-
-  return _downloadFileResponseDeserializer(result.body) as any;
-}
-
-export async function downloadFile(
-  context: Client,
-  options: DownloadFileOptionalParams = { requestOptions: {} },
-): Promise<{
-  name: string[];
-  file: Uint8Array;
-}> {
-  const result = await _downloadFileSend(context, options);
   return _downloadFileDeserialize(result);
 }
 ```
