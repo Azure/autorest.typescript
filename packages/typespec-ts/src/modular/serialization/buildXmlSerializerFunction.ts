@@ -422,6 +422,12 @@ function buildPropertyMetadataArray(
     if (typeInfo.dateEncoding) {
       metadataObj.push(`dateEncoding: "${typeInfo.dateEncoding}"`);
     }
+    if (typeInfo.bytesEncoding) {
+      metadataObj.push(`bytesEncoding: "${typeInfo.bytesEncoding}"`);
+    }
+    if (typeInfo.itemType) {
+      metadataObj.push(`itemType: "${typeInfo.itemType}"`);
+    }
 
     // Add serializer for complex types
     const nestedSerializer = getNestedXmlSerializer(context, property.type);
@@ -481,10 +487,30 @@ function buildXmlOptionsString(xmlOptions?: {
 function getPropertyTypeInfo(type: SdkType): {
   type?: "array" | "object" | "primitive" | "date" | "bytes" | "dict";
   dateEncoding?: "rfc3339" | "rfc7231" | "unixTimestamp";
+  bytesEncoding?: "base64" | "base64url";
+  itemType?: "primitive" | "date" | "bytes";
 } {
   switch (type.kind) {
-    case "array":
-      return { type: "array" };
+    case "array": {
+      // For arrays, also extract item type info for bytes/date items
+      const itemInfo = getPropertyTypeInfo(type.valueType);
+      const result: ReturnType<typeof getPropertyTypeInfo> = { type: "array" };
+      // Only include item type info for types that need special serialization
+      if (
+        itemInfo.type === "bytes" ||
+        itemInfo.type === "date" ||
+        itemInfo.type === "primitive"
+      ) {
+        result.itemType = itemInfo.type as "primitive" | "date" | "bytes";
+      }
+      if (itemInfo.dateEncoding) {
+        result.dateEncoding = itemInfo.dateEncoding;
+      }
+      if (itemInfo.bytesEncoding) {
+        result.bytesEncoding = itemInfo.bytesEncoding;
+      }
+      return result;
+    }
     case "model":
       return { type: "object" };
     case "dict":
@@ -495,8 +521,13 @@ function getPropertyTypeInfo(type: SdkType): {
         dateEncoding:
           (type.encode as "rfc3339" | "rfc7231" | "unixTimestamp") ?? "rfc3339"
       };
-    case "bytes":
-      return { type: "bytes" };
+    case "bytes": {
+      const encode = (type as any).encode as string | undefined;
+      // Default to base64 if no encoding specified
+      const bytesEncoding =
+        encode === "base64url" ? "base64url" : ("base64" as const);
+      return { type: "bytes", bytesEncoding };
+    }
     default:
       return { type: "primitive" };
   }
@@ -677,6 +708,12 @@ function buildDeserializePropertyMetadataArray(
     }
     if (typeInfo.dateEncoding) {
       metadataObj.push(`dateEncoding: "${typeInfo.dateEncoding}"`);
+    }
+    if (typeInfo.bytesEncoding) {
+      metadataObj.push(`bytesEncoding: "${typeInfo.bytesEncoding}"`);
+    }
+    if (typeInfo.itemType) {
+      metadataObj.push(`itemType: "${typeInfo.itemType}"`);
     }
 
     // Add deserializer for complex types
