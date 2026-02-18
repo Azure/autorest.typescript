@@ -313,7 +313,34 @@ function buildXmlObjectPropertyAssignments(
       property.type.valueType.kind === "model"
     ) {
       // Array of objects - map each item through XML object serializer
-      valueExpr = `item["${cleanPropertyName}"]?.map((i: any) => ${nestedSerializer}(i))`;
+      const mappedExpr = `item["${cleanPropertyName}"]?.map((i: any) => ${nestedSerializer}(i))`;
+      if (xmlOptions?.unwrapped) {
+        // Unwrapped: items are direct siblings under the item element name
+        const itemKey = xmlOptions?.itemsName ?? xmlName;
+        assignments.push(`"${itemKey}": ${mappedExpr}`);
+        continue;
+      } else if (xmlOptions?.itemsName) {
+        // Wrapped: items nested under wrapper element with item element name
+        valueExpr = `{ "${xmlOptions.itemsName}": ${mappedExpr} }`;
+      } else {
+        valueExpr = mappedExpr;
+      }
+    } else if (property.type.kind === "array") {
+      // Array of primitives - handle itemsName wrapping
+      const primitiveExpr = buildXmlValueSerializationExpr(
+        context,
+        property.type,
+        `item["${cleanPropertyName}"]`
+      );
+      if (xmlOptions?.unwrapped) {
+        const itemKey = xmlOptions?.itemsName ?? xmlName;
+        assignments.push(`"${itemKey}": ${primitiveExpr}`);
+        continue;
+      } else if (xmlOptions?.itemsName) {
+        valueExpr = `{ "${xmlOptions.itemsName}": ${primitiveExpr} }`;
+      } else {
+        valueExpr = primitiveExpr;
+      }
     } else {
       // Handle type-specific serialization
       valueExpr = buildXmlValueSerializationExpr(
