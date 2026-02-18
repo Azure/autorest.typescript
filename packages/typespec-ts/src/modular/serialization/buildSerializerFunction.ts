@@ -418,15 +418,23 @@ function buildModelTypeSerializer(
     statements: ["return item;"]
   };
 
+  // Check if this is truly multipart/form-data by verifying that properties have multipart serialization options
+  // This prevents multipart/mixed (and other non-form-data multipart types) from being incorrectly serialized as form data
+  const properties = getAllProperties(context, type, getAllAncestors(type));
+  const hasMultipartProperties = properties.some(
+    (prop) => prop.kind === "property" && prop.serializationOptions?.multipart
+  );
+
   if (
     (type.usage & UsageFlags.Input) === UsageFlags.Input &&
-    (type.usage & UsageFlags.MultipartFormData) === UsageFlags.MultipartFormData
+    (type.usage & UsageFlags.MultipartFormData) ===
+      UsageFlags.MultipartFormData &&
+    hasMultipartProperties
   ) {
     // For MFD models, serialize into an array of parts
     // TODO: cleaner abstraction, quite a bit of duplication with the non-MFD stuff here
     const parts: string[] = [];
 
-    const properties = getAllProperties(context, type, getAllAncestors(type));
     for (const property of properties) {
       if (property.kind !== "property") {
         continue;
