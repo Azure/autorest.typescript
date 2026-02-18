@@ -47,7 +47,10 @@ export async function _getWidgetDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
     error.details = apiErrorDeserializer(result.body);
-    Object.assign(error.details, _getWidgetDeserializeExceptionHeaders(result));
+    Object.assign(
+      error.details as any,
+      _getWidgetDeserializeExceptionHeaders(result)
+    );
     throw error;
   }
 
@@ -159,7 +162,10 @@ export async function _getItemDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
     error.details = storageErrorDeserializer(result.body);
-    Object.assign(error.details, _getItemDeserializeExceptionHeaders(result));
+    Object.assign(
+      error.details as any,
+      _getItemDeserializeExceptionHeaders(result)
+    );
     throw error;
   }
 
@@ -216,7 +222,10 @@ export async function _getWidgetDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
     error.details = storageErrorXmlDeserializer(result.body);
-    Object.assign(error.details, _getWidgetDeserializeExceptionHeaders(result));
+    Object.assign(
+      error.details as any,
+      _getWidgetDeserializeExceptionHeaders(result)
+    );
     throw error;
   }
 

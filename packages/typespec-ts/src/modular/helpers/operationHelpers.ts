@@ -651,7 +651,7 @@ function getExceptionThrowStatement(
     isResponseHeadersEnabled && exceptionHeaders.length > 0;
   const { name: opName } = getOperationName(operation);
   const exceptionHeadersCall = hasExceptionHeaders
-    ? `Object.assign(error.details, _${opName}DeserializeExceptionHeaders(result));`
+    ? `Object.assign((error.details as any), _${opName}DeserializeExceptionHeaders(result));`
     : undefined;
 
   // Check if any exception has XML deserialization support that requires runtime content-type check
@@ -920,6 +920,7 @@ export function getOperationFunction(
 
     // If there is no body payload just return the headers
     if (hasHeaderOnlyResponse) {
+      statements.push(`await _${name}Deserialize(${resultVarName});`);
       statements.push(`return {...${headersVarName} };`);
     } else {
       const payloadVarName = generateLocallyUniqueName("payload", paramNames);
