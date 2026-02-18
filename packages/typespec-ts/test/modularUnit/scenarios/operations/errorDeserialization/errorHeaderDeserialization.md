@@ -30,7 +30,9 @@ op getWidget(@path id: string): Widget | ApiError;
 ## Operations
 
 ```ts operations function _getWidgetDeserializeExceptionHeaders
-export function _getWidgetDeserializeExceptionHeaders(result: PathUncheckedResponse): {
+export function _getWidgetDeserializeExceptionHeaders(
+  result: PathUncheckedResponse
+): {
   errorCode: string;
 } {
   return { errorCode: result.headers["x-ms-error-code"] };
@@ -39,7 +41,7 @@ export function _getWidgetDeserializeExceptionHeaders(result: PathUncheckedRespo
 
 ```ts operations function _getWidgetDeserialize
 export async function _getWidgetDeserialize(
-  result: PathUncheckedResponse,
+  result: PathUncheckedResponse
 ): Promise<Widget> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
@@ -81,7 +83,7 @@ op getWidget(@path id: string): Widget | ApiError;
 
 ```ts operations function _getWidgetDeserialize
 export async function _getWidgetDeserialize(
-  result: PathUncheckedResponse,
+  result: PathUncheckedResponse
 ): Promise<Widget> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
@@ -126,7 +128,9 @@ op getItem(@path id: string): Item | StorageError;
 ## Operations
 
 ```ts operations function _getItemDeserializeExceptionHeaders
-export function _getItemDeserializeExceptionHeaders(result: PathUncheckedResponse): {
+export function _getItemDeserializeExceptionHeaders(
+  result: PathUncheckedResponse
+): {
   errorCode: string;
   isRetryable?: boolean;
   retryAfter?: Date;
@@ -142,14 +146,14 @@ export function _getItemDeserializeExceptionHeaders(result: PathUncheckedRespons
       result.headers["x-ms-retry-after"] === undefined ||
       result.headers["x-ms-retry-after"] === null
         ? result.headers["x-ms-retry-after"]
-        : new Date(result.headers["x-ms-retry-after"]),
+        : new Date(result.headers["x-ms-retry-after"])
   };
 }
 ```
 
 ```ts operations function _getItemDeserialize
 export async function _getItemDeserialize(
-  result: PathUncheckedResponse,
+  result: PathUncheckedResponse
 ): Promise<Item> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
@@ -195,7 +199,9 @@ op getWidget(@path id: string): Widget | StorageError;
 ## Operations
 
 ```ts operations function _getWidgetDeserializeExceptionHeaders
-export function _getWidgetDeserializeExceptionHeaders(result: PathUncheckedResponse): {
+export function _getWidgetDeserializeExceptionHeaders(
+  result: PathUncheckedResponse
+): {
   errorCode: string;
 } {
   return { errorCode: result.headers["x-ms-error-code"] };
@@ -204,7 +210,7 @@ export function _getWidgetDeserializeExceptionHeaders(result: PathUncheckedRespo
 
 ```ts operations function _getWidgetDeserialize
 export async function _getWidgetDeserialize(
-  result: PathUncheckedResponse,
+  result: PathUncheckedResponse
 ): Promise<Widget> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
