@@ -542,6 +542,79 @@ function getExceptionDetails(
   };
 }
 
+/**
+ * Collects and deduplicates all response headers from operation exceptions.
+ */
+function getExceptionResponseHeaders(
+  exceptions: SdkHttpOperation["exceptions"]
+): SdkServiceResponseHeader[] {
+  const headerMap = new Map<string, SdkServiceResponseHeader>();
+  for (const exception of exceptions ?? []) {
+    for (const header of exception.headers ?? []) {
+      const key = header.serializedName ?? header.name;
+      if (!headerMap.has(key)) {
+        headerMap.set(key, header);
+      }
+    }
+  }
+  return Array.from(headerMap.values());
+}
+
+/**
+ * Generates a private function to deserialize exception response headers.
+ * Only generated when exception headers are present and include-headers-in-response is enabled.
+ */
+export function getDeserializeExceptionHeadersPrivateFunction(
+  context: SdkContext,
+  operation: ServiceOperation
+): OptionalKind<FunctionDeclarationStructure> | undefined {
+  const isResponseHeadersEnabled =
+    context.rlcOptions?.includeHeadersInResponse === true;
+  if (!isResponseHeadersEnabled) {
+    return undefined;
+  }
+
+  const exceptionHeaders = getExceptionResponseHeaders(
+    operation.operation.exceptions
+  );
+  if (exceptionHeaders.length === 0) {
+    return undefined;
+  }
+
+  const { name } = getOperationName(operation);
+  const dependencies = useDependencies();
+  const PathUncheckedResponseReference = resolveReference(
+    dependencies.PathUncheckedResponse
+  );
+
+  const parameters: OptionalKind<ParameterDeclarationStructure>[] = [
+    {
+      name: "result",
+      type: PathUncheckedResponseReference
+    }
+  ];
+
+  const returnType = buildHeaderOnlyResponseType(context, exceptionHeaders);
+
+  const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
+    isAsync: false,
+    isExported: true,
+    name: `_${name}DeserializeExceptionHeaders`,
+    parameters,
+    returnType
+  };
+
+  const statements: string[] = [];
+  statements.push(
+    `return ${buildHeaderOnlyResponseValue(context, exceptionHeaders)};`
+  );
+
+  return {
+    ...functionStatement,
+    statements
+  };
+}
+
 function getExceptionDeserializeExpr(exception: ExceptionThrowDetail): string {
   if (!exception.xmlDeserializer) {
     return `${exception.deserializer}(result.body)`;
@@ -567,6 +640,20 @@ function getExceptionThrowStatement(
     defaultIsXmlOnly
   } = getExceptionDetails(context, operation);
 
+  const isResponseHeadersEnabled =
+    context.rlcOptions?.includeHeadersInResponse === true;
+
+  // Check if exception headers function exists and build the call
+  const exceptionHeaders = getExceptionResponseHeaders(
+    operation.operation.exceptions
+  );
+  const hasExceptionHeaders =
+    isResponseHeadersEnabled && exceptionHeaders.length > 0;
+  const { name: opName } = getOperationName(operation);
+  const exceptionHeadersCall = hasExceptionHeaders
+    ? `error.details = {...(error.details as any), ..._${opName}DeserializeExceptionHeaders(result)};`
+    : undefined;
+
   // Check if any exception has XML deserialization support that requires runtime content-type check
   const hasAnyDualFormatXml =
     (defaultXmlDeserializer !== undefined && !defaultIsXmlOnly) ||
@@ -586,13 +673,16 @@ function getExceptionThrowStatement(
     statements.push(`const statusCode = Number.parseInt(result.status);`);
     const stats: string[] = customized.map((exception) => {
       const deserializeExpr = getExceptionDeserializeExpr(exception);
+      const headerStmt = exceptionHeadersCall ?? "";
       if (exception.end) {
         return `if(statusCode >= ${exception.start} && statusCode <= ${exception.end}) {
               error.details = ${deserializeExpr};
+              ${headerStmt}
           }`;
       } else {
         return `if(statusCode === ${exception.start}) {
              error.details = ${deserializeExpr};
+             ${headerStmt}
           }`;
       }
     });
@@ -605,6 +695,7 @@ function getExceptionThrowStatement(
           : `isXml ? ${defaultXmlDeserializer}(result.body) : ${defaultDeserializer}(result.body)`;
       statements.push(`else {
         error.details = ${defaultDeserializeExpr};
+        ${exceptionHeadersCall ?? ""}
       }`);
     }
     statements.push("throw error;");
@@ -613,18 +704,21 @@ function getExceptionThrowStatement(
       if (defaultXmlDeserializer) {
         if (defaultIsXmlOnly) {
           statements.push(`const error = ${createRestErrorReference}(result);
-          error.details = ${defaultXmlDeserializer}(result.body);`);
+          error.details = ${defaultXmlDeserializer}(result.body);
+          ${exceptionHeadersCall ?? ""}`);
         } else {
           const isXmlContentTypeRef = resolveReference(
             XmlHelpers.isXmlContentType
           );
           statements.push(`const error = ${createRestErrorReference}(result);
           const responseContentType = result.headers?.["content-type"] ?? "";
-          error.details = ${isXmlContentTypeRef}(responseContentType) ? ${defaultXmlDeserializer}(result.body) : ${defaultDeserializer}(result.body);`);
+          error.details = ${isXmlContentTypeRef}(responseContentType) ? ${defaultXmlDeserializer}(result.body) : ${defaultDeserializer}(result.body);
+          ${exceptionHeadersCall ?? ""}`);
         }
       } else {
         statements.push(`const error = ${createRestErrorReference}(result);
-        error.details = ${defaultDeserializer}(result.body);`);
+        error.details = ${defaultDeserializer}(result.body);
+        ${exceptionHeadersCall ?? ""}`);
       }
       statements.push("throw error;");
     } else {
@@ -826,6 +920,7 @@ export function getOperationFunction(
 
     // If there is no body payload just return the headers
     if (hasHeaderOnlyResponse) {
+      statements.push(`await _${name}Deserialize(${resultVarName});`);
       statements.push(`return {...${headersVarName} };`);
     } else {
       const payloadVarName = generateLocallyUniqueName("payload", paramNames);

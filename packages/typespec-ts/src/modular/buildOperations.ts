@@ -8,6 +8,7 @@ import {
 import {
   getDeserializePrivateFunction,
   getDeserializeHeadersPrivateFunction,
+  getDeserializeExceptionHeadersPrivateFunction,
   getExpectedStatuses,
   getOperationFunction,
   getOperationOptionsName,
@@ -95,12 +96,17 @@ export function buildOperationFiles(
       );
       const deserializeHeadersDeclaration =
         getDeserializeHeadersPrivateFunction(dpgContext, op);
+      const deserializeExceptionHeadersDeclaration =
+        getDeserializeExceptionHeadersPrivateFunction(dpgContext, op);
       const functionsToAdd = [
         sendOperationDeclaration,
         deserializeOperationDeclaration
       ];
       if (deserializeHeadersDeclaration) {
         functionsToAdd.push(deserializeHeadersDeclaration);
+      }
+      if (deserializeExceptionHeadersDeclaration) {
+        functionsToAdd.push(deserializeExceptionHeadersDeclaration);
       }
       operationGroupFile.addFunctions(functionsToAdd);
       addDeclaration(

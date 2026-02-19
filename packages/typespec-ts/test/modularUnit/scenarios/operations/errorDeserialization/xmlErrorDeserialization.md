@@ -64,6 +64,7 @@ export async function _getWidgetDeserialize(result: PathUncheckedResponse): Prom
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
     error.details = storageErrorXmlDeserializer(result.body);
+
     throw error;
   }
 
@@ -254,6 +255,7 @@ export async function _getItemDeserialize(result: PathUncheckedResponse): Promis
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
     error.details = simpleErrorDeserializer(result.body);
+
     throw error;
   }
 
