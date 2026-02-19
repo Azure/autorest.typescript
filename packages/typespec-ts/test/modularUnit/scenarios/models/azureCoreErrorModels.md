@@ -79,10 +79,12 @@ export interface _OperationListResult {
   nextLink?: string;
 }
 
-export function _operationListResultDeserializer(item: any): _OperationListResult {
+export function _operationListResultDeserializer(
+  item: any
+): _OperationListResult {
   return {
     value: operationArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
+    nextLink: item["nextLink"]
   };
 }
 
@@ -110,9 +112,11 @@ export function operationDeserializer(item: any): Operation {
   return {
     name: item["name"],
     isDataAction: item["isDataAction"],
-    display: !item["display"] ? item["display"] : operationDisplayDeserializer(item["display"]),
+    display: !item["display"]
+      ? item["display"]
+      : operationDisplayDeserializer(item["display"]),
     origin: item["origin"],
-    actionType: item["actionType"],
+    actionType: item["actionType"]
   };
 }
 
@@ -133,7 +137,7 @@ export function operationDisplayDeserializer(item: any): OperationDisplay {
     provider: item["provider"],
     resource: item["resource"],
     operation: item["operation"],
-    description: item["description"],
+    description: item["description"]
   };
 }
 
@@ -150,7 +154,9 @@ export interface ErrorResponse {
 
 export function errorResponseDeserializer(item: any): ErrorResponse {
   return {
-    error: !item["error"] ? item["error"] : errorDetailDeserializer(item["error"]),
+    error: !item["error"]
+      ? item["error"]
+      : errorDetailDeserializer(item["error"])
   };
 }
 
@@ -173,20 +179,26 @@ export function errorDetailDeserializer(item: any): ErrorDetail {
     code: item["code"],
     message: item["message"],
     target: item["target"],
-    details: !item["details"] ? item["details"] : errorDetailArrayDeserializer(item["details"]),
+    details: !item["details"]
+      ? item["details"]
+      : errorDetailArrayDeserializer(item["details"]),
     additionalInfo: !item["additionalInfo"]
       ? item["additionalInfo"]
-      : errorAdditionalInfoArrayDeserializer(item["additionalInfo"]),
+      : errorAdditionalInfoArrayDeserializer(item["additionalInfo"])
   };
 }
 
-export function errorDetailArrayDeserializer(result: Array<ErrorDetail>): any[] {
+export function errorDetailArrayDeserializer(
+  result: Array<ErrorDetail>
+): any[] {
   return result.map((item) => {
     return errorDetailDeserializer(item);
   });
 }
 
-export function errorAdditionalInfoArrayDeserializer(result: Array<ErrorAdditionalInfo>): any[] {
+export function errorAdditionalInfoArrayDeserializer(
+  result: Array<ErrorAdditionalInfo>
+): any[] {
   return result.map((item) => {
     return errorAdditionalInfoDeserializer(item);
   });
@@ -200,10 +212,12 @@ export interface ErrorAdditionalInfo {
   readonly info?: any;
 }
 
-export function errorAdditionalInfoDeserializer(item: any): ErrorAdditionalInfo {
+export function errorAdditionalInfoDeserializer(
+  item: any
+): ErrorAdditionalInfo {
   return {
     type: item["type"],
-    info: item["info"],
+    info: item["info"]
   };
 }
 
@@ -217,7 +231,7 @@ export function avsSummarySerializer(item: AvsSummary): any {
   return {
     properties: !item["properties"]
       ? item["properties"]
-      : avsSummaryPropertiesSerializer(item["properties"]),
+      : avsSummaryPropertiesSerializer(item["properties"])
   };
 }
 
@@ -231,7 +245,7 @@ export function avsSummaryDeserializer(item: any): AvsSummary {
       : systemDataDeserializer(item["systemData"]),
     properties: !item["properties"]
       ? item["properties"]
-      : avsSummaryPropertiesDeserializer(item["properties"]),
+      : avsSummaryPropertiesDeserializer(item["properties"])
   };
 }
 
@@ -240,13 +254,17 @@ export interface AvsSummaryProperties {
   error: ErrorDetail_1;
 }
 
-export function avsSummaryPropertiesSerializer(item: AvsSummaryProperties): any {
+export function avsSummaryPropertiesSerializer(
+  item: AvsSummaryProperties
+): any {
   return { error: errorDetailSerializer(item["error"]) };
 }
 
-export function avsSummaryPropertiesDeserializer(item: any): AvsSummaryProperties {
+export function avsSummaryPropertiesDeserializer(
+  item: any
+): AvsSummaryProperties {
   return {
-    error: errorDetailDeserializer_1(item["error"]),
+    error: errorDetailDeserializer_1(item["error"])
   };
 }
 
@@ -258,14 +276,18 @@ export interface ErrorDetail_1 {
 }
 
 export function errorDetailSerializer(item: ErrorDetail_1): any {
-  return { code: item["code"], message: item["message"], details: item["details"] };
+  return {
+    code: item["code"],
+    message: item["message"],
+    details: item["details"]
+  };
 }
 
 export function errorDetailDeserializer_1(item: any): ErrorDetail_1 {
   return {
     code: item["code"],
     message: item["message"],
-    details: item["details"],
+    details: item["details"]
   };
 }
 
@@ -283,7 +305,7 @@ export function proxyResourceDeserializer(item: any): ProxyResource {
     type: item["type"],
     systemData: !item["systemData"]
       ? item["systemData"]
-      : systemDataDeserializer(item["systemData"]),
+      : systemDataDeserializer(item["systemData"])
   };
 }
 
@@ -310,7 +332,7 @@ export function resourceDeserializer(item: any): Resource {
     type: item["type"],
     systemData: !item["systemData"]
       ? item["systemData"]
-      : systemDataDeserializer(item["systemData"]),
+      : systemDataDeserializer(item["systemData"])
   };
 }
 
@@ -334,12 +356,14 @@ export function systemDataDeserializer(item: any): SystemData {
   return {
     createdBy: item["createdBy"],
     createdByType: item["createdByType"],
-    createdAt: !item["createdAt"] ? item["createdAt"] : new Date(item["createdAt"]),
+    createdAt: !item["createdAt"]
+      ? item["createdAt"]
+      : new Date(item["createdAt"]),
     lastModifiedBy: item["lastModifiedBy"],
     lastModifiedByType: item["lastModifiedByType"],
     lastModifiedAt: !item["lastModifiedAt"]
       ? item["lastModifiedAt"]
-      : new Date(item["lastModifiedAt"]),
+      : new Date(item["lastModifiedAt"])
   };
 }
 
@@ -349,7 +373,7 @@ export type CreatedByType = "User" | "Application" | "ManagedIdentity" | "Key";
 /** The available API versions. */
 export enum KnownVersions {
   /** 2021-10-01-preview version */
-  V20211001Preview = "2021-10-01-preview",
+  V20211001Preview = "2021-10-01-preview"
 }
 ```
 
@@ -364,11 +388,11 @@ import {
   errorResponseDeserializer,
   AvsSummary,
   avsSummarySerializer,
-  avsSummaryDeserializer,
+  avsSummaryDeserializer
 } from "../models/models.js";
 import {
   PagedAsyncIterableIterator,
-  buildPagedAsyncIterator,
+  buildPagedAsyncIterator
 } from "../static-helpers/pagingHelpers.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import { CreateOrUpdateOptionalParams, ListOptionalParams } from "./options.js";
@@ -376,7 +400,7 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters,
+  operationOptionsToRequestParameters
 } from "@azure-rest/core-client";
 
 export function _createOrUpdateSend(
@@ -384,7 +408,7 @@ export function _createOrUpdateSend(
   resourceGroupName: string,
   avsSummaryName: string,
   resource: AvsSummary,
-  options: CreateOrUpdateOptionalParams = { requestOptions: {} },
+  options: CreateOrUpdateOptionalParams = { requestOptions: {} }
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Contoso/avsSummaries/{avsSummaryName}{?api%2Dversion}",
@@ -392,29 +416,28 @@ export function _createOrUpdateSend(
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       avsSummaryName: avsSummaryName,
-      "api%2Dversion": context.apiVersion ?? "2021-10-01-preview",
+      "api%2Dversion": context.apiVersion ?? "2021-10-01-preview"
     },
     {
-      allowReserved: options?.requestOptions?.skipUrlEncoding,
-    },
+      allowReserved: options?.requestOptions?.skipUrlEncoding
+    }
   );
-  return context
-    .path(path)
-    .put({
-      ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
-      headers: { accept: "application/json", ...options.requestOptions?.headers },
-      body: avsSummarySerializer(resource),
-    });
+  return context.path(path).put({
+    ...operationOptionsToRequestParameters(options),
+    contentType: "application/json",
+    headers: { accept: "application/json", ...options.requestOptions?.headers },
+    body: avsSummarySerializer(resource)
+  });
 }
 
 export async function _createOrUpdateDeserialize(
-  result: PathUncheckedResponse,
+  result: PathUncheckedResponse
 ): Promise<AvsSummary> {
   const expectedStatuses = ["200", "201"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
     error.details = errorResponseDeserializer(result.body);
+
     throw error;
   }
 
@@ -427,46 +450,45 @@ export async function createOrUpdate(
   resourceGroupName: string,
   avsSummaryName: string,
   resource: AvsSummary,
-  options: CreateOrUpdateOptionalParams = { requestOptions: {} },
+  options: CreateOrUpdateOptionalParams = { requestOptions: {} }
 ): Promise<AvsSummary> {
   const result = await _createOrUpdateSend(
     context,
     resourceGroupName,
     avsSummaryName,
     resource,
-    options,
+    options
   );
   return _createOrUpdateDeserialize(result);
 }
 
 export function _listSend(
   context: Client,
-  options: ListOptionalParams = { requestOptions: {} },
+  options: ListOptionalParams = { requestOptions: {} }
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/providers/Microsoft.Contoso/operations{?api%2Dversion}",
     {
-      "api%2Dversion": context.apiVersion ?? "2021-10-01-preview",
+      "api%2Dversion": context.apiVersion ?? "2021-10-01-preview"
     },
     {
-      allowReserved: options?.requestOptions?.skipUrlEncoding,
-    },
+      allowReserved: options?.requestOptions?.skipUrlEncoding
+    }
   );
-  return context
-    .path(path)
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json", ...options.requestOptions?.headers },
-    });
+  return context.path(path).get({
+    ...operationOptionsToRequestParameters(options),
+    headers: { accept: "application/json", ...options.requestOptions?.headers }
+  });
 }
 
 export async function _listDeserialize(
-  result: PathUncheckedResponse,
+  result: PathUncheckedResponse
 ): Promise<_OperationListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
     error.details = errorResponseDeserializer(result.body);
+
     throw error;
   }
 
@@ -476,7 +498,7 @@ export async function _listDeserialize(
 /** List the operations for the provider */
 export function list(
   context: Client,
-  options: ListOptionalParams = { requestOptions: {} },
+  options: ListOptionalParams = { requestOptions: {} }
 ): PagedAsyncIterableIterator<Operation> {
   return buildPagedAsyncIterator(
     context,
@@ -486,8 +508,8 @@ export function list(
     {
       itemName: "value",
       nextLinkName: "nextLink",
-      apiVersion: context.apiVersion ?? "2021-10-01-preview",
-    },
+      apiVersion: context.apiVersion ?? "2021-10-01-preview"
+    }
   );
 }
 ```

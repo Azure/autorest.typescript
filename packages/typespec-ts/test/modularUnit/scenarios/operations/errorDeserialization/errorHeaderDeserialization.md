@@ -30,9 +30,7 @@ op getWidget(@path id: string): Widget | ApiError;
 ## Operations
 
 ```ts operations function _getWidgetDeserializeExceptionHeaders
-export function _getWidgetDeserializeExceptionHeaders(
-  result: PathUncheckedResponse
-): {
+export function _getWidgetDeserializeExceptionHeaders(result: PathUncheckedResponse): {
   errorCode: string;
 } {
   return { errorCode: result.headers["x-ms-error-code"] };
@@ -40,17 +38,12 @@ export function _getWidgetDeserializeExceptionHeaders(
 ```
 
 ```ts operations function _getWidgetDeserialize
-export async function _getWidgetDeserialize(
-  result: PathUncheckedResponse
-): Promise<Widget> {
+export async function _getWidgetDeserialize(result: PathUncheckedResponse): Promise<Widget> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
     error.details = apiErrorDeserializer(result.body);
-    Object.assign(
-      error.details as any,
-      _getWidgetDeserializeExceptionHeaders(result)
-    );
+    error.details = { ...(error.details as any), ..._getWidgetDeserializeExceptionHeaders(result) };
     throw error;
   }
 
@@ -85,13 +78,12 @@ op getWidget(@path id: string): Widget | ApiError;
 ## Operations
 
 ```ts operations function _getWidgetDeserialize
-export async function _getWidgetDeserialize(
-  result: PathUncheckedResponse
-): Promise<Widget> {
+export async function _getWidgetDeserialize(result: PathUncheckedResponse): Promise<Widget> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
     error.details = apiErrorDeserializer(result.body);
+
     throw error;
   }
 
@@ -131,9 +123,7 @@ op getItem(@path id: string): Item | StorageError;
 ## Operations
 
 ```ts operations function _getItemDeserializeExceptionHeaders
-export function _getItemDeserializeExceptionHeaders(
-  result: PathUncheckedResponse
-): {
+export function _getItemDeserializeExceptionHeaders(result: PathUncheckedResponse): {
   errorCode: string;
   isRetryable?: boolean;
   retryAfter?: Date;
@@ -149,23 +139,18 @@ export function _getItemDeserializeExceptionHeaders(
       result.headers["x-ms-retry-after"] === undefined ||
       result.headers["x-ms-retry-after"] === null
         ? result.headers["x-ms-retry-after"]
-        : new Date(result.headers["x-ms-retry-after"])
+        : new Date(result.headers["x-ms-retry-after"]),
   };
 }
 ```
 
 ```ts operations function _getItemDeserialize
-export async function _getItemDeserialize(
-  result: PathUncheckedResponse
-): Promise<Item> {
+export async function _getItemDeserialize(result: PathUncheckedResponse): Promise<Item> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
     error.details = storageErrorDeserializer(result.body);
-    Object.assign(
-      error.details as any,
-      _getItemDeserializeExceptionHeaders(result)
-    );
+    error.details = { ...(error.details as any), ..._getItemDeserializeExceptionHeaders(result) };
     throw error;
   }
 
@@ -205,9 +190,7 @@ op getWidget(@path id: string): Widget | StorageError;
 ## Operations
 
 ```ts operations function _getWidgetDeserializeExceptionHeaders
-export function _getWidgetDeserializeExceptionHeaders(
-  result: PathUncheckedResponse
-): {
+export function _getWidgetDeserializeExceptionHeaders(result: PathUncheckedResponse): {
   errorCode: string;
 } {
   return { errorCode: result.headers["x-ms-error-code"] };
@@ -215,17 +198,12 @@ export function _getWidgetDeserializeExceptionHeaders(
 ```
 
 ```ts operations function _getWidgetDeserialize
-export async function _getWidgetDeserialize(
-  result: PathUncheckedResponse
-): Promise<Widget> {
+export async function _getWidgetDeserialize(result: PathUncheckedResponse): Promise<Widget> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
     error.details = storageErrorXmlDeserializer(result.body);
-    Object.assign(
-      error.details as any,
-      _getWidgetDeserializeExceptionHeaders(result)
-    );
+    error.details = { ...(error.details as any), ..._getWidgetDeserializeExceptionHeaders(result) };
     throw error;
   }
 

@@ -651,7 +651,7 @@ function getExceptionThrowStatement(
     isResponseHeadersEnabled && exceptionHeaders.length > 0;
   const { name: opName } = getOperationName(operation);
   const exceptionHeadersCall = hasExceptionHeaders
-    ? `Object.assign((error.details as any), _${opName}DeserializeExceptionHeaders(result));`
+    ? `error.details = {...(error.details as any), ..._${opName}DeserializeExceptionHeaders(result)};`
     : undefined;
 
   // Check if any exception has XML deserialization support that requires runtime content-type check
