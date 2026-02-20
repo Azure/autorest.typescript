@@ -815,6 +815,114 @@ describe("Package file generation", () => {
       );
       expect(packageFile).to.not.have.property("tshy");
     });
+
+    it("should update constantPaths when clientContextPaths option is provided for Azure packages", () => {
+      const model = createMockModel({
+        moduleKind: "esm",
+        flavor: "azure",
+        isMonorepo: true,
+        hasLro: false
+      });
+
+      const initialPackageInfo = {
+        name: "@azure/test-package",
+        version: "1.0.0",
+        dependencies: {
+          "@azure/core-client": "^1.0.0"
+        },
+        "//metadata": {
+          constantPaths: [
+            { path: "src/old-path.ts", prefix: "userAgentInfo" },
+            { path: "src/other-file.ts", prefix: "packageDetails" }
+          ]
+        }
+      };
+
+      const packageFileContent = updatePackageFile(model, initialPackageInfo, {
+        clientContextPaths: [
+          "src/api/newContext.ts",
+          "src/api/anotherContext.ts"
+        ]
+      });
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      expect(packageFile["//metadata"]).to.have.property("constantPaths");
+      const constantPaths = packageFile["//metadata"]["constantPaths"];
+
+      // Should keep non-userAgentInfo entries
+      expect(constantPaths).to.deep.include({
+        path: "src/other-file.ts",
+        prefix: "packageDetails"
+      });
+
+      // Should replace old userAgentInfo entries with new ones
+      expect(constantPaths).to.deep.include({
+        path: "src/api/newContext.ts",
+        prefix: "userAgentInfo"
+      });
+      expect(constantPaths).to.deep.include({
+        path: "src/api/anotherContext.ts",
+        prefix: "userAgentInfo"
+      });
+
+      // Should not include old userAgentInfo entry
+      expect(constantPaths).to.not.deep.include({
+        path: "src/old-path.ts",
+        prefix: "userAgentInfo"
+      });
+    });
+
+    it("should not update constantPaths when clientContextPaths is empty", () => {
+      const model = createMockModel({
+        moduleKind: "esm",
+        flavor: "azure",
+        isMonorepo: true,
+        hasLro: false
+      });
+
+      const initialPackageInfo = {
+        name: "@azure/test-package",
+        version: "1.0.0",
+        "//metadata": {
+          constantPaths: [{ path: "src/old-path.ts", prefix: "userAgentInfo" }]
+        }
+      };
+
+      const packageFileContent = updatePackageFile(model, initialPackageInfo, {
+        clientContextPaths: []
+      });
+
+      // Should return undefined when nothing needs to be updated
+      expect(packageFileContent).to.be.undefined;
+    });
+
+    it("should not update constantPaths for non-Azure packages", () => {
+      const model = createMockModel({
+        moduleKind: "esm",
+        flavor: undefined,
+        isMonorepo: true,
+        hasLro: false
+      });
+
+      const initialPackageInfo = {
+        name: "@test/test-package",
+        version: "1.0.0",
+        "//metadata": {
+          constantPaths: [{ path: "src/old-path.ts", prefix: "userAgentInfo" }]
+        }
+      };
+
+      const packageFileContent = updatePackageFile(model, initialPackageInfo, {
+        clientContextPaths: ["src/api/newContext.ts"]
+      });
+
+      // Should return package.json but without updating constantPaths for non-Azure packages
+      expect(packageFileContent).to.not.be.undefined;
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+      expect(packageFile["//metadata"]["constantPaths"]).to.deep.equal([
+        { path: "src/old-path.ts", prefix: "userAgentInfo" }
+      ]);
+    });
   });
 
   describe("Flavorless lib", () => {

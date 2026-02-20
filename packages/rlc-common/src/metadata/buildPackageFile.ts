@@ -91,15 +91,17 @@ export function buildPackageFile(
 export function updatePackageFile(
   model: RLCModel,
   existingFilePathOrContent: string | Record<string, any>,
-  { exports }: PackageFileOptions = {}
+  { exports, clientContextPaths }: PackageFileOptions = {}
 ) {
   const hasLro = hasPollingOperations(model);
   const isAzure = isAzurePackage(model);
   const needsLroUpdate = isAzure && hasLro;
   const needsExportsUpdate = exports;
+  const needsConstantPathsUpdate =
+    clientContextPaths && clientContextPaths.length > 0;
 
   // Early return if nothing needs to be updated
-  if (!needsLroUpdate && !needsExportsUpdate) {
+  if (!needsLroUpdate && !needsExportsUpdate && !needsConstantPathsUpdate) {
     return;
   }
 
@@ -134,6 +136,21 @@ export function updatePackageFile(
       "@azure/core-lro": "^3.1.0",
       "@azure/abort-controller": "^2.1.2"
     };
+  }
+
+  // Update constantPaths metadata for Azure packages
+  if (needsConstantPathsUpdate && isAzure && packageInfo["//metadata"]) {
+    const metadata = packageInfo["//metadata"];
+    // Filter out existing userAgentInfo entries
+    const nonUserAgentPaths = (metadata.constantPaths || []).filter(
+      (item: any) => item.prefix !== "userAgentInfo"
+    );
+    // Add new userAgentInfo entries from clientContextPaths
+    const newUserAgentPaths = clientContextPaths!.map((path) => ({
+      path: path,
+      prefix: "userAgentInfo"
+    }));
+    metadata.constantPaths = [...nonUserAgentPaths, ...newUserAgentPaths];
   }
 
   return {
