@@ -513,6 +513,7 @@ function buildXmlOptionsString(xmlOptions?: {
  */
 function getPropertyTypeInfo(type: SdkType): {
   type?: "array" | "object" | "primitive" | "date" | "bytes" | "dict";
+  primitiveSubtype?: "string" | "number" | "boolean";
   dateEncoding?: "rfc3339" | "rfc7231" | "unixTimestamp";
   bytesEncoding?: "base64" | "base64url";
   itemType?: "primitive" | "date" | "bytes";
@@ -536,6 +537,9 @@ function getPropertyTypeInfo(type: SdkType): {
       if (itemInfo.bytesEncoding) {
         result.bytesEncoding = itemInfo.bytesEncoding;
       }
+      if (itemInfo.primitiveSubtype) {
+        result.primitiveSubtype = itemInfo.primitiveSubtype;
+      }
       return result;
     }
     case "model":
@@ -555,8 +559,16 @@ function getPropertyTypeInfo(type: SdkType): {
         encode === "base64url" ? "base64url" : ("base64" as const);
       return { type: "bytes", bytesEncoding };
     }
+    case "boolean":
+      return { type: "primitive", primitiveSubtype: "boolean" };
+    case "string":
+    case "url":
+      return { type: "primitive", primitiveSubtype: "string" };
     default:
-      return { type: "primitive" };
+      // Numeric kinds (int8, int16, int32, int64, uint8, ..., float32, float64,
+      // decimal, decimal128, numeric, integer, safeint, float) and any other
+      // scalar types default to number subtype.
+      return { type: "primitive", primitiveSubtype: "number" };
   }
 }
 
@@ -741,6 +753,9 @@ function buildDeserializePropertyMetadataArray(
     }
     if (typeInfo.itemType) {
       metadataObj.push(`itemType: "${typeInfo.itemType}"`);
+    }
+    if (typeInfo.primitiveSubtype) {
+      metadataObj.push(`primitiveSubtype: "${typeInfo.primitiveSubtype}"`);
     }
 
     // Add deserializer for complex types

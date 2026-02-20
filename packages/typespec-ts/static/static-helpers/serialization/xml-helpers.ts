@@ -60,6 +60,8 @@ export interface XmlPropertyDeserializeMetadata {
   deserializer?: (value: any) => any;
   /** Type of the property for special handling */
   type?: "array" | "object" | "primitive" | "date" | "bytes" | "dict";
+  /** Subtype for primitive properties to drive type conversion from raw XML strings */
+  primitiveSubtype?: "string" | "number" | "boolean";
   /** Date encoding format */
   dateEncoding?: "rfc3339" | "rfc7231" | "unixTimestamp";
   /** Bytes encoding format (base64 or base64url) */
@@ -88,7 +90,8 @@ const defaultParserOptions = {
   ignoreAttributes: false,
   attributeNamePrefix: "@_",
   textNodeName: "#text",
-  parseAttributeValue: true,
+  parseTagValue: false,
+  parseAttributeValue: false,
   trimValues: false, // Preserve whitespace in text content
   isArray: (
     _name: string,
@@ -392,21 +395,30 @@ function deserializePrimitiveValue(
   value: any,
   type?: "array" | "object" | "primitive" | "date" | "bytes" | "dict",
   dateEncoding?: "rfc3339" | "rfc7231" | "unixTimestamp",
-  bytesEncoding?: "base64" | "base64url"
+  bytesEncoding?: "base64" | "base64url",
+  primitiveSubtype?: "string" | "number" | "boolean"
 ): any {
   if (value === null || value === undefined || value === "") {
     return undefined;
   }
 
   if (type === "date") {
-    if (dateEncoding === "unixTimestamp" && typeof value === "number") {
-      return new Date(value * 1000);
+    if (dateEncoding === "unixTimestamp") {
+      return new Date(Number(value) * 1000);
     }
     return new Date(value);
   }
 
   if (type === "bytes" && typeof value === "string") {
     return stringToUint8Array(value, bytesEncoding ?? "base64");
+  }
+
+  // Convert raw XML string to the expected JS type
+  if (primitiveSubtype === "boolean") {
+    return String(value).toLowerCase() === "true";
+  }
+  if (primitiveSubtype === "number") {
+    return Number(value);
   }
 
   return value;
@@ -503,7 +515,8 @@ function deserializeArrayProperty(
       unwrappedItem,
       metadata.itemType ?? type,
       dateEncoding,
-      metadata.bytesEncoding
+      metadata.bytesEncoding,
+      metadata.primitiveSubtype
     );
   });
 }
@@ -564,7 +577,14 @@ export function deserializeXmlObject<T = Record<string, any>>(
   const result: Record<string, any> = {};
 
   for (const prop of properties) {
-    const { propertyName, xmlOptions, deserializer, type, dateEncoding } = prop;
+    const {
+      propertyName,
+      xmlOptions,
+      deserializer,
+      type,
+      dateEncoding,
+      primitiveSubtype
+    } = prop;
 
     if (type === "array" || xmlOptions.itemsName) {
       // Deserialize array
@@ -590,7 +610,8 @@ export function deserializeXmlObject<T = Record<string, any>>(
           rawValue,
           type,
           dateEncoding,
-          prop.bytesEncoding
+          prop.bytesEncoding,
+          primitiveSubtype
         );
       }
     } else {
@@ -617,7 +638,8 @@ export function deserializeXmlObject<T = Record<string, any>>(
           rawValue,
           type,
           dateEncoding,
-          prop.bytesEncoding
+          prop.bytesEncoding,
+          primitiveSubtype
         );
       }
     }

@@ -65,52 +65,42 @@ export function blockLookupListXmlSerializer(item: BlockLookupList): string {
   const properties: XmlPropertyMetadata[] = [
     {
       propertyName: "committed",
-      xmlOptions: {
-        name: "Committed",
-        unwrapped: true,
-        itemsName: "Committed"
-      },
+      xmlOptions: { name: "Committed", unwrapped: true, itemsName: "Committed" },
       type: "array",
       bytesEncoding: "base64",
-      itemType: "bytes"
+      itemType: "bytes",
     },
     {
       propertyName: "uncommitted",
-      xmlOptions: {
-        name: "Uncommitted",
-        unwrapped: true,
-        itemsName: "Uncommitted"
-      },
+      xmlOptions: { name: "Uncommitted", unwrapped: true, itemsName: "Uncommitted" },
       type: "array",
       bytesEncoding: "base64",
-      itemType: "bytes"
+      itemType: "bytes",
     },
     {
       propertyName: "latest",
       xmlOptions: { name: "Latest", unwrapped: true, itemsName: "Latest" },
       type: "array",
       bytesEncoding: "base64",
-      itemType: "bytes"
-    }
+      itemType: "bytes",
+    },
   ];
   return serializeToXml(item, properties, "BlockList");
 }
 ```
 
 ```ts models function blockLookupListXmlObjectSerializer
-export function blockLookupListXmlObjectSerializer(
-  item: BlockLookupList
-): XmlSerializedObject {
+export function blockLookupListXmlObjectSerializer(item: BlockLookupList): XmlSerializedObject {
   return {
     Committed: item["committed"]?.map((i: any) =>
-      i !== undefined ? uint8ArrayToString(i, "base64") : undefined
+      i !== undefined ? uint8ArrayToString(i, "base64") : undefined,
     ),
     Uncommitted: item["uncommitted"]?.map((i: any) =>
-      i !== undefined ? uint8ArrayToString(i, "base64") : undefined
+      i !== undefined ? uint8ArrayToString(i, "base64") : undefined,
     ),
     Latest: item["latest"]?.map((i: any) =>
-      i !== undefined ? uint8ArrayToString(i, "base64") : undefined
-    )
+      i !== undefined ? uint8ArrayToString(i, "base64") : undefined,
+    ),
   };
 }
 ```
@@ -172,44 +162,38 @@ export function dateArraysModelXmlSerializer(item: DateArraysModel): string {
       xmlOptions: { name: "Timestamps", itemsName: "utcDateTime" },
       type: "array",
       dateEncoding: "rfc3339",
-      itemType: "date"
+      itemType: "date",
     },
     {
       propertyName: "httpDates",
       xmlOptions: { name: "HttpDates", itemsName: "rfc7231DateTime" },
       type: "array",
       dateEncoding: "rfc7231",
-      itemType: "date"
-    }
+      itemType: "date",
+    },
   ];
   return serializeToXml(item, properties, "DateArraysModel");
 }
 ```
 
 ```ts models function dateArraysModelXmlDeserializer
-export function dateArraysModelXmlDeserializer(
-  xmlString: string
-): DateArraysModel {
+export function dateArraysModelXmlDeserializer(xmlString: string): DateArraysModel {
   const properties: XmlPropertyDeserializeMetadata[] = [
     {
       propertyName: "timestamps",
       xmlOptions: { name: "Timestamps", itemsName: "utcDateTime" },
       type: "array",
       dateEncoding: "rfc3339",
-      itemType: "date"
+      itemType: "date",
     },
     {
       propertyName: "httpDates",
       xmlOptions: { name: "HttpDates", itemsName: "rfc7231DateTime" },
       type: "array",
       dateEncoding: "rfc7231",
-      itemType: "date"
-    }
+      itemType: "date",
+    },
   ];
-  return deserializeFromXml<DateArraysModel>(
-    xmlString,
-    properties,
-    "DateArraysModel"
-  );
+  return deserializeFromXml<DateArraysModel>(xmlString, properties, "DateArraysModel");
 }
 ```
