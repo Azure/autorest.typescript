@@ -413,14 +413,6 @@ function deserializePrimitiveValue(
     return stringToUint8Array(value, bytesEncoding ?? "base64");
   }
 
-  // Convert raw XML string to the expected JS type
-  if (primitiveSubtype === "boolean") {
-    return String(value).toLowerCase() === "true";
-  }
-  if (primitiveSubtype === "number") {
-    return Number(value);
-  }
-
   return value;
 }
 
