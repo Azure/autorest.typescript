@@ -179,6 +179,11 @@ export const XmlHelpers = {
     name: "XmlPropertyDeserializeMetadata",
     location: "serialization/xml-helpers.ts"
   },
+  XmlAdditionalPropertiesConfig: {
+    kind: "interface",
+    name: "XmlAdditionalPropertiesConfig",
+    location: "serialization/xml-helpers.ts"
+  },
   serializeModelToXml: {
     kind: "function",
     name: "serializeModelToXml",
