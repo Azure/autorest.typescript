@@ -14,7 +14,10 @@ import {
   getAllAncestors,
   getAllProperties
 } from "../helpers/operationHelpers.js";
-import { normalizeModelName, getAdditionalPropertiesName } from "../emitModels.js";
+import {
+  normalizeModelName,
+  getAdditionalPropertiesName
+} from "../emitModels.js";
 import { NameType } from "@azure-tools/rlc-common";
 import { isAzureCoreErrorType } from "../../utils/modelUtils.js";
 import {
@@ -263,9 +266,7 @@ export function buildXmlObjectModelSerializer(
       );
     } else {
       // Model with both defined properties and additional properties
-      statements.push(
-        `return {${propertyAssignments}, ...item["${apName}"]};`
-      );
+      statements.push(`return {${propertyAssignments}, ...item["${apName}"]};`);
     }
   } else {
     statements.push(`return {${propertyAssignments}};`);

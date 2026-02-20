@@ -573,7 +573,11 @@ export function deserializeXmlToModel<T = Record<string, any>>(
   let content = xmlObject[rootElementName] ?? xmlObject[rootName] ?? xmlObject;
   content = unwrapSingleElementArray(content);
 
-  return deserializeXmlObject<T>(content, properties, additionalPropertiesConfig);
+  return deserializeXmlObject<T>(
+    content,
+    properties,
+    additionalPropertiesConfig
+  );
 }
 
 /**
@@ -588,7 +592,13 @@ export function deserializeFromXml<T = Record<string, any>>(
   additionalPropertiesConfig?: XmlAdditionalPropertiesConfig
 ): T {
   const xmlObject = parseXmlString(xmlString, parserOptions);
-  return deserializeXmlToModel<T>(xmlObject, properties, rootName, rootNs, additionalPropertiesConfig);
+  return deserializeXmlToModel<T>(
+    xmlObject,
+    properties,
+    rootName,
+    rootNs,
+    additionalPropertiesConfig
+  );
 }
 
 /**
@@ -683,7 +693,11 @@ export function deserializeXmlObject<T = Record<string, any>>(
 
   // Collect undeclared XML elements into additionalProperties
   if (additionalPropertiesConfig) {
-    const { propertyName, excludeNames, deserializer: apDeserializer } = additionalPropertiesConfig;
+    const {
+      propertyName,
+      excludeNames,
+      deserializer: apDeserializer
+    } = additionalPropertiesConfig;
     const additionalProps: Record<string, any> = {};
     const excludeSet = new Set(excludeNames);
     for (const [key, val] of Object.entries(content)) {
