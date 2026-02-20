@@ -429,7 +429,7 @@ describe("XML Helpers", () => {
       // fast-xml-parser wraps non-leaf elements in arrays due to our isArray config
       expect(result.root).toBeDefined();
       expect(result.root[0].name).toBe("test");
-      expect(result.root[0].age).toBe(42);
+      expect(result.root[0].age).toBe("42");
     });
 
     it("should parse attributes correctly", () => {
@@ -438,8 +438,8 @@ describe("XML Helpers", () => {
       const result = parseXmlString(xml);
 
       // Attributes and values are on the first element of the array
-      expect(result.root[0]["@_id"]).toBe(123);
-      expect(result.root[0]["@_enabled"]).toBe(true);
+      expect(result.root[0]["@_id"]).toBe("123");
+      expect(result.root[0]["@_enabled"]).toBe("true");
     });
 
     it("should preserve whitespace in text content", () => {
@@ -591,9 +591,15 @@ describe("XML Helpers", () => {
         {
           propertyName: "name",
           xmlOptions: { name: "name" },
-          type: "primitive"
+          type: "primitive",
+          primitiveSubtype: "string"
         },
-        { propertyName: "age", xmlOptions: { name: "age" }, type: "primitive" }
+        {
+          propertyName: "age",
+          xmlOptions: { name: "age" },
+          type: "primitive",
+          primitiveSubtype: "number"
+        }
       ];
 
       const result = deserializeFromXml(xml, properties, "SimpleModel");
@@ -607,18 +613,54 @@ describe("XML Helpers", () => {
         {
           propertyName: "id",
           xmlOptions: { name: "id", attribute: true },
-          type: "primitive"
+          type: "primitive",
+          primitiveSubtype: "number"
         },
         {
           propertyName: "enabled",
           xmlOptions: { name: "enabled", attribute: true },
-          type: "primitive"
+          type: "primitive",
+          primitiveSubtype: "boolean"
         }
       ];
 
       const result = deserializeFromXml(xml, properties, "Model");
 
       expect(result).toEqual({ id: 123, enabled: true });
+    });
+
+    it("should preserve string values that look like numbers", () => {
+      const xml = `<Metrics>
+        <Version>1.0</Version>
+        <Enabled>true</Enabled>
+        <IncludeAPIs>false</IncludeAPIs>
+      </Metrics>`;
+      const properties: XmlPropertyDeserializeMetadata[] = [
+        {
+          propertyName: "version",
+          xmlOptions: { name: "Version" },
+          type: "primitive",
+          primitiveSubtype: "string"
+        },
+        {
+          propertyName: "enabled",
+          xmlOptions: { name: "Enabled" },
+          type: "primitive",
+          primitiveSubtype: "boolean"
+        },
+        {
+          propertyName: "includeApis",
+          xmlOptions: { name: "IncludeAPIs" },
+          type: "primitive",
+          primitiveSubtype: "boolean"
+        }
+      ];
+
+      const result = deserializeFromXml(xml, properties, "Metrics");
+
+      expect(result.version).toBe("1.0");
+      expect(result.enabled).toBe(true);
+      expect(result.includeApis).toBe(false);
     });
 
     it("should deserialize wrapped arrays", () => {
@@ -738,7 +780,7 @@ describe("XML Helpers", () => {
 
       const result = deserializeFromXml(xml, properties, "Model");
 
-      expect(result.data).toEqual({ name: "nested", value: 42 });
+      expect(result.data).toEqual({ name: "nested", value: "42" });
     });
 
     it("should deserialize nested object with text-only content using deserializer", () => {
@@ -796,7 +838,7 @@ describe("XML Helpers", () => {
       const result = deserializeFromXml(xml, properties, "Model");
 
       expect(result.name).toEqual({
-        encoded: true,
+        encoded: "true",
         content: "encoded-blob-name"
       });
     });
@@ -1092,9 +1134,15 @@ describe("XML Helpers", () => {
         {
           propertyName: "name",
           xmlOptions: { name: "name" },
-          type: "primitive"
+          type: "primitive",
+          primitiveSubtype: "string"
         },
-        { propertyName: "age", xmlOptions: { name: "age" }, type: "primitive" }
+        {
+          propertyName: "age",
+          xmlOptions: { name: "age" },
+          type: "primitive",
+          primitiveSubtype: "number"
+        }
       ];
 
       const result = deserializeFromXml(xml, properties, "Model");
@@ -1138,7 +1186,7 @@ describe("XML Helpers", () => {
       );
 
       expect(result).toEqual({
-        modelData: { name: "foo", age: 123 },
+        modelData: { name: "foo", age: "123" },
         colors: ["red", "green", "blue"]
       });
     });
@@ -1172,14 +1220,15 @@ describe("XML Helpers", () => {
         {
           propertyName: "count",
           xmlOptions: { name: "count" },
-          type: "primitive"
+          type: "primitive",
+          primitiveSubtype: "number"
         }
       ];
 
       const result = deserializeFromXml(xml, properties, "ComplexModel");
 
       expect(result).toEqual({
-        data: { id: 123, label: "test" },
+        data: { id: "123", label: "test" },
         tags: ["a", "b", "c"],
         count: 42
       });
@@ -1594,12 +1643,14 @@ describe("XML Helpers", () => {
           {
             propertyName: "enabled",
             xmlOptions: { name: "Enabled" },
-            type: "primitive"
+            type: "primitive",
+            primitiveSubtype: "boolean"
           },
           {
             propertyName: "days",
             xmlOptions: { name: "Days" },
-            type: "primitive"
+            type: "primitive",
+            primitiveSubtype: "number"
           }
         ]);
 
@@ -1607,22 +1658,26 @@ describe("XML Helpers", () => {
         {
           propertyName: "version",
           xmlOptions: { name: "Version" },
-          type: "primitive"
+          type: "primitive",
+          primitiveSubtype: "string"
         },
         {
           propertyName: "deleteProperty",
           xmlOptions: { name: "Delete" },
-          type: "primitive"
+          type: "primitive",
+          primitiveSubtype: "boolean"
         },
         {
           propertyName: "read",
           xmlOptions: { name: "Read" },
-          type: "primitive"
+          type: "primitive",
+          primitiveSubtype: "boolean"
         },
         {
           propertyName: "write",
           xmlOptions: { name: "Write" },
-          type: "primitive"
+          type: "primitive",
+          primitiveSubtype: "boolean"
         },
         {
           propertyName: "retentionPolicy",
@@ -1738,7 +1793,7 @@ describe("XML Helpers", () => {
   describe("Round-trip serialization/deserialization", () => {
     it("should round-trip a simple model", () => {
       const original = { name: "foo", age: 123 };
-      const properties: XmlPropertyMetadata[] = [
+      const serializeProps: XmlPropertyMetadata[] = [
         {
           propertyName: "name",
           xmlOptions: { name: "name" },
@@ -1746,9 +1801,23 @@ describe("XML Helpers", () => {
         },
         { propertyName: "age", xmlOptions: { name: "age" }, type: "primitive" }
       ];
+      const deserializeProps: XmlPropertyDeserializeMetadata[] = [
+        {
+          propertyName: "name",
+          xmlOptions: { name: "name" },
+          type: "primitive",
+          primitiveSubtype: "string"
+        },
+        {
+          propertyName: "age",
+          xmlOptions: { name: "age" },
+          type: "primitive",
+          primitiveSubtype: "number"
+        }
+      ];
 
-      const xml = serializeToXml(original, properties, "Model");
-      const result = deserializeFromXml(xml, properties, "Model");
+      const xml = serializeToXml(original, serializeProps, "Model");
+      const result = deserializeFromXml(xml, deserializeProps, "Model");
 
       expect(result).toEqual(original);
     });
@@ -1773,7 +1842,7 @@ describe("XML Helpers", () => {
       // Note: boolean true serializes as just the attribute name in XML (shorthand),
       // which parses back as empty string. Use numeric values for reliable round-trip.
       const original = { id1: 123, id2: 456 };
-      const properties: XmlPropertyMetadata[] = [
+      const serializeProps: XmlPropertyMetadata[] = [
         {
           propertyName: "id1",
           xmlOptions: { name: "id1", attribute: true },
@@ -1785,9 +1854,23 @@ describe("XML Helpers", () => {
           type: "primitive"
         }
       ];
+      const deserializeProps: XmlPropertyDeserializeMetadata[] = [
+        {
+          propertyName: "id1",
+          xmlOptions: { name: "id1", attribute: true },
+          type: "primitive",
+          primitiveSubtype: "number"
+        },
+        {
+          propertyName: "id2",
+          xmlOptions: { name: "id2", attribute: true },
+          type: "primitive",
+          primitiveSubtype: "number"
+        }
+      ];
 
-      const xml = serializeToXml(original, properties, "Model");
-      const result = deserializeFromXml(xml, properties, "Model");
+      const xml = serializeToXml(original, serializeProps, "Model");
+      const result = deserializeFromXml(xml, deserializeProps, "Model");
 
       expect(result).toEqual(original);
     });

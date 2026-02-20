@@ -74,7 +74,7 @@ export interface _WebAppCollection {
 export function _webAppCollectionDeserializer(item: any): _WebAppCollection {
   return {
     value: siteArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"]
+    nextLink: item["nextLink"],
   };
 }
 
@@ -94,9 +94,7 @@ export function siteDeserializer(item: any): Site {
   return {
     tags: !item["tags"]
       ? item["tags"]
-      : Object.fromEntries(
-          Object.entries(item["tags"]).map(([k, p]: [string, any]) => [k, p])
-        ),
+      : Object.fromEntries(Object.entries(item["tags"]).map(([k, p]: [string, any]) => [k, p])),
     location: item["location"],
     id: item["id"],
     name: item["name"],
@@ -106,7 +104,7 @@ export function siteDeserializer(item: any): Site {
       : systemDataDeserializer(item["systemData"]),
     properties: !item["properties"]
       ? item["properties"]
-      : sitePropertiesDeserializer(item["properties"])
+      : sitePropertiesDeserializer(item["properties"]),
   };
 }
 
@@ -118,7 +116,7 @@ export interface SiteProperties {
 
 export function sitePropertiesDeserializer(item: any): SiteProperties {
   return {
-    state: item["state"]
+    state: item["state"],
   };
 }
 
@@ -140,10 +138,8 @@ export function trackedResourceDeserializer(item: any): TrackedResource {
       : systemDataDeserializer(item["systemData"]),
     tags: !item["tags"]
       ? item["tags"]
-      : Object.fromEntries(
-          Object.entries(item["tags"]).map(([k, p]: [string, any]) => [k, p])
-        ),
-    location: item["location"]
+      : Object.fromEntries(Object.entries(item["tags"]).map(([k, p]: [string, any]) => [k, p])),
+    location: item["location"],
   };
 }
 
@@ -166,7 +162,7 @@ export function resourceDeserializer(item: any): Resource {
     type: item["type"],
     systemData: !item["systemData"]
       ? item["systemData"]
-      : systemDataDeserializer(item["systemData"])
+      : systemDataDeserializer(item["systemData"]),
   };
 }
 
@@ -190,14 +186,12 @@ export function systemDataDeserializer(item: any): SystemData {
   return {
     createdBy: item["createdBy"],
     createdByType: item["createdByType"],
-    createdAt: !item["createdAt"]
-      ? item["createdAt"]
-      : new Date(item["createdAt"]),
+    createdAt: !item["createdAt"] ? item["createdAt"] : new Date(item["createdAt"]),
     lastModifiedBy: item["lastModifiedBy"],
     lastModifiedByType: item["lastModifiedByType"],
     lastModifiedAt: !item["lastModifiedAt"]
       ? item["lastModifiedAt"]
-      : new Date(item["lastModifiedAt"])
+      : new Date(item["lastModifiedAt"]),
   };
 }
 
@@ -212,9 +206,7 @@ export interface ErrorResponse {
 
 export function errorResponseDeserializer(item: any): ErrorResponse {
   return {
-    error: !item["error"]
-      ? item["error"]
-      : errorDetailDeserializer(item["error"])
+    error: !item["error"] ? item["error"] : errorDetailDeserializer(item["error"]),
   };
 }
 
@@ -237,26 +229,20 @@ export function errorDetailDeserializer(item: any): ErrorDetail {
     code: item["code"],
     message: item["message"],
     target: item["target"],
-    details: !item["details"]
-      ? item["details"]
-      : errorDetailArrayDeserializer(item["details"]),
+    details: !item["details"] ? item["details"] : errorDetailArrayDeserializer(item["details"]),
     additionalInfo: !item["additionalInfo"]
       ? item["additionalInfo"]
-      : errorAdditionalInfoArrayDeserializer(item["additionalInfo"])
+      : errorAdditionalInfoArrayDeserializer(item["additionalInfo"]),
   };
 }
 
-export function errorDetailArrayDeserializer(
-  result: Array<ErrorDetail>
-): any[] {
+export function errorDetailArrayDeserializer(result: Array<ErrorDetail>): any[] {
   return result.map((item) => {
     return errorDetailDeserializer(item);
   });
 }
 
-export function errorAdditionalInfoArrayDeserializer(
-  result: Array<ErrorAdditionalInfo>
-): any[] {
+export function errorAdditionalInfoArrayDeserializer(result: Array<ErrorAdditionalInfo>): any[] {
   return result.map((item) => {
     return errorAdditionalInfoDeserializer(item);
   });
@@ -270,19 +256,17 @@ export interface ErrorAdditionalInfo {
   readonly info?: any;
 }
 
-export function errorAdditionalInfoDeserializer(
-  item: any
-): ErrorAdditionalInfo {
+export function errorAdditionalInfoDeserializer(item: any): ErrorAdditionalInfo {
   return {
     type: item["type"],
-    info: item["info"]
+    info: item["info"],
   };
 }
 
 /** Known values of {@link Versions} that the service accepts. */
 export enum KnownVersions {
   /** 2023-12-01 */
-  V20231201 = "2023-12-01"
+  V20231201 = "2023-12-01",
 }
 ```
 
@@ -294,11 +278,11 @@ import {
   _WebAppCollection,
   _webAppCollectionDeserializer,
   Site,
-  errorResponseDeserializer
+  errorResponseDeserializer,
 } from "../models/models.js";
 import {
   PagedAsyncIterableIterator,
-  buildPagedAsyncIterator
+  buildPagedAsyncIterator,
 } from "../static-helpers/pagingHelpers.js";
 import { getLongRunningPoller } from "../static-helpers/pollingHelpers.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
@@ -307,7 +291,7 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 import { PollerLike, OperationState } from "@azure/core-lro";
 
@@ -315,7 +299,7 @@ export function _suspendSend(
   context: Client,
   resourceGroupName: string,
   name: string,
-  options: SuspendOptionalParams = { requestOptions: {} }
+  options: SuspendOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/suspend{?api%2Dversion}",
@@ -323,20 +307,22 @@ export function _suspendSend(
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       name: name,
-      "api%2Dversion": context.apiVersion ?? "2023-12-01"
+      "api%2Dversion": context.apiVersion ?? "2023-12-01",
     },
     {
-      allowReserved: options?.requestOptions?.skipUrlEncoding
-    }
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
   );
-  return context.path(path).post({
-    ...operationOptionsToRequestParameters(options),
-    headers: { accept: "application/json", ...options.requestOptions?.headers }
-  });
+  return context
+    .path(path)
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
+    });
 }
 
 export async function _suspendDeserialize(
-  result: PathUncheckedResponse
+  result: PathUncheckedResponse,
 ): Promise<_WebAppCollection> {
   const expectedStatuses = ["200", "201", "202"];
   if (!expectedStatuses.includes(result.status)) {
@@ -354,7 +340,7 @@ export function suspend(
   context: Client,
   resourceGroupName: string,
   name: string,
-  options: SuspendOptionalParams = { requestOptions: {} }
+  options: SuspendOptionalParams = { requestOptions: {} },
 ): PagedAsyncIterableIterator<Site> {
   const initialPagingPoller = getLongRunningPoller(
     context,
@@ -363,11 +349,10 @@ export function suspend(
     {
       updateIntervalInMs: options?.updateIntervalInMs,
       abortSignal: options?.abortSignal,
-      getInitialResponse: () =>
-        _suspendSend(context, resourceGroupName, name, options),
+      getInitialResponse: () => _suspendSend(context, resourceGroupName, name, options),
       resourceLocationConfig: "location",
-      apiVersion: context.apiVersion ?? "2023-12-01"
-    }
+      apiVersion: context.apiVersion ?? "2023-12-01",
+    },
   ) as PollerLike<OperationState<PathUncheckedResponse>, PathUncheckedResponse>;
 
   return buildPagedAsyncIterator(
@@ -375,11 +360,7 @@ export function suspend(
     async () => await initialPagingPoller,
     _suspendDeserialize,
     ["200", "201", "202"],
-    {
-      itemName: "value",
-      nextLinkName: "nextLink",
-      apiVersion: context.apiVersion ?? "2023-12-01"
-    }
+    { itemName: "value", nextLinkName: "nextLink", apiVersion: context.apiVersion ?? "2023-12-01" },
   );
 }
 ```

@@ -68,7 +68,7 @@ import {
   partnerTopicUpdateParametersSerializer,
   PartnerTopic,
   partnerTopicDeserializer,
-  errorResponseDeserializer
+  errorResponseDeserializer,
 } from "../models/models.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import { UpdateOptionalParams } from "./options.js";
@@ -76,7 +76,7 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
 export function _updateSend(
@@ -85,7 +85,7 @@ export function _updateSend(
   resourceGroupName: string,
   partnerTopicName: string,
   properties: PartnerTopicUpdateParameters,
-  options: UpdateOptionalParams = { requestOptions: {} }
+  options: UpdateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.TestArmPatch/partnerTopics/{partnerTopicName}{?api%2Dversion}",
@@ -93,23 +93,23 @@ export function _updateSend(
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       partnerTopicName: partnerTopicName,
-      "api%2Dversion": apiVersion
+      "api%2Dversion": apiVersion,
     },
     {
-      allowReserved: options?.requestOptions?.skipUrlEncoding
-    }
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
   );
-  return context.path(path).patch({
-    ...operationOptionsToRequestParameters(options),
-    contentType: "application/json",
-    headers: { accept: "application/json", ...options.requestOptions?.headers },
-    body: partnerTopicUpdateParametersSerializer(properties)
-  });
+  return context
+    .path(path)
+    .patch({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
+      body: partnerTopicUpdateParametersSerializer(properties),
+    });
 }
 
-export async function _updateDeserialize(
-  result: PathUncheckedResponse
-): Promise<PartnerTopic> {
+export async function _updateDeserialize(result: PathUncheckedResponse): Promise<PartnerTopic> {
   const expectedStatuses = ["200", "201"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -128,7 +128,7 @@ export async function update(
   resourceGroupName: string,
   partnerTopicName: string,
   properties: PartnerTopicUpdateParameters,
-  options: UpdateOptionalParams = { requestOptions: {} }
+  options: UpdateOptionalParams = { requestOptions: {} },
 ): Promise<PartnerTopic> {
   const result = await _updateSend(
     context,
@@ -136,7 +136,7 @@ export async function update(
     resourceGroupName,
     partnerTopicName,
     properties,
-    options
+    options,
   );
   return _updateDeserialize(result);
 }
