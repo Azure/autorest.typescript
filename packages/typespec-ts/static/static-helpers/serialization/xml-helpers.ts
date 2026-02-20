@@ -71,6 +71,19 @@ export interface XmlPropertyDeserializeMetadata {
 }
 
 /**
+ * Configuration for collecting additional (undeclared) XML elements
+ * into a Record property on the deserialized model.
+ */
+export interface XmlAdditionalPropertiesConfig {
+  /** Client-side property name to assign the collected record to */
+  propertyName: string;
+  /** XML element names of declared properties to exclude from collection */
+  excludeNames: string[];
+  /** Optional deserializer for complex value types */
+  deserializer?: (value: any) => any;
+}
+
+/**
  * Result of XML serialization - either a primitive value or structured XML object
  */
 export type XmlSerializedValue =
@@ -253,7 +266,8 @@ export function serializeModelToXml(
   item: Record<string, any>,
   properties: XmlPropertyMetadata[],
   rootName: string,
-  rootNs?: { namespace: string; prefix: string }
+  rootNs?: { namespace: string; prefix: string },
+  additionalPropertiesConfig?: XmlAdditionalPropertiesConfig
 ): XmlSerializedObject {
   if (item === null || item === undefined) {
     return {};
@@ -330,6 +344,18 @@ export function serializeModelToXml(
     }
   }
 
+  // Serialize additionalProperties entries as sibling XML elements
+  if (additionalPropertiesConfig) {
+    const apValue = item[additionalPropertiesConfig.propertyName];
+    if (apValue && typeof apValue === "object") {
+      for (const [key, val] of Object.entries(apValue)) {
+        result[key] = additionalPropertiesConfig.deserializer
+          ? additionalPropertiesConfig.deserializer(val)
+          : String(val);
+      }
+    }
+  }
+
   // Merge attributes into result
   Object.assign(result, attributes);
 
@@ -367,9 +393,16 @@ export function serializeToXml(
   properties: XmlPropertyMetadata[],
   rootName: string,
   rootNs?: { namespace: string; prefix: string },
-  options?: Partial<XmlBuilderOptions>
+  options?: Partial<XmlBuilderOptions>,
+  additionalPropertiesConfig?: XmlAdditionalPropertiesConfig
 ): string {
-  const xmlObject = serializeModelToXml(item, properties, rootName, rootNs);
+  const xmlObject = serializeModelToXml(
+    item,
+    properties,
+    rootName,
+    rootNs,
+    additionalPropertiesConfig
+  );
   return xmlObjectToString(xmlObject, options);
 }
 
@@ -528,7 +561,8 @@ export function deserializeXmlToModel<T = Record<string, any>>(
   xmlObject: any,
   properties: XmlPropertyDeserializeMetadata[],
   rootName: string,
-  rootNs?: { namespace: string; prefix: string }
+  rootNs?: { namespace: string; prefix: string },
+  additionalPropertiesConfig?: XmlAdditionalPropertiesConfig
 ): T {
   if (!xmlObject) {
     return {} as T;
@@ -539,7 +573,7 @@ export function deserializeXmlToModel<T = Record<string, any>>(
   let content = xmlObject[rootElementName] ?? xmlObject[rootName] ?? xmlObject;
   content = unwrapSingleElementArray(content);
 
-  return deserializeXmlObject<T>(content, properties);
+  return deserializeXmlObject<T>(content, properties, additionalPropertiesConfig);
 }
 
 /**
@@ -550,10 +584,11 @@ export function deserializeFromXml<T = Record<string, any>>(
   properties: XmlPropertyDeserializeMetadata[],
   rootName: string,
   rootNs?: { namespace: string; prefix: string },
-  parserOptions?: Partial<typeof defaultParserOptions>
+  parserOptions?: Partial<typeof defaultParserOptions>,
+  additionalPropertiesConfig?: XmlAdditionalPropertiesConfig
 ): T {
   const xmlObject = parseXmlString(xmlString, parserOptions);
-  return deserializeXmlToModel<T>(xmlObject, properties, rootName, rootNs);
+  return deserializeXmlToModel<T>(xmlObject, properties, rootName, rootNs, additionalPropertiesConfig);
 }
 
 /**
@@ -565,7 +600,8 @@ export function deserializeFromXml<T = Record<string, any>>(
  */
 export function deserializeXmlObject<T = Record<string, any>>(
   xmlObject: Record<string, unknown>,
-  properties: XmlPropertyDeserializeMetadata[]
+  properties: XmlPropertyDeserializeMetadata[],
+  additionalPropertiesConfig?: XmlAdditionalPropertiesConfig
 ): T {
   if (!xmlObject) {
     return {} as T;
@@ -643,6 +679,20 @@ export function deserializeXmlObject<T = Record<string, any>>(
         );
       }
     }
+  }
+
+  // Collect undeclared XML elements into additionalProperties
+  if (additionalPropertiesConfig) {
+    const { propertyName, excludeNames, deserializer: apDeserializer } = additionalPropertiesConfig;
+    const additionalProps: Record<string, any> = {};
+    const excludeSet = new Set(excludeNames);
+    for (const [key, val] of Object.entries(content)) {
+      if (key.startsWith("@_") || key === "#text" || excludeSet.has(key)) {
+        continue;
+      }
+      additionalProps[key] = apDeserializer ? apDeserializer(val) : String(val);
+    }
+    result[propertyName] = additionalProps;
   }
 
   return result as T;
