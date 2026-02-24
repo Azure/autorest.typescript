@@ -582,8 +582,8 @@ export async function $onEmit(context: EmitContext) {
         );
       }
 
-      // Regenerate snippets.spec.ts for test generation
-      if (option.generateTest && isAzureFlavor) {
+      // Regenerate snippets.spec.ts for documentation
+      if (option.azureSdkForJs) {
         for (const subClient of dpgContext.sdkPackage.clients) {
           await emitContentByBuilder(
             program,
