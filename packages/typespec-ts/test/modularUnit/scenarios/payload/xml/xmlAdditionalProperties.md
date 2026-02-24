@@ -46,6 +46,7 @@ export function blobMetadataXmlDeserializer(xmlString: string): BlobMetadata {
       propertyName: "encrypted",
       xmlOptions: { name: "Encrypted", attribute: true },
       type: "primitive",
+      primitiveSubtype: "string",
     },
   ];
   return deserializeFromXml<BlobMetadata>(xmlString, properties, "BlobMetadata", undefined, undefined, {
@@ -64,6 +65,7 @@ export function blobMetadataXmlObjectDeserializer(
       propertyName: "encrypted",
       xmlOptions: { name: "Encrypted", attribute: true },
       type: "primitive",
+      primitiveSubtype: "string",
     },
   ];
   return deserializeXmlObject<BlobMetadata>(xmlObject, properties, {
