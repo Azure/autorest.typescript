@@ -267,9 +267,7 @@ export async function $onEmit(context: EmitContext) {
     for (const client of clients) {
       const rlcModels = await transformRLCModel(client, dpgContext);
       rlcCodeModels.push(rlcModels);
-      const serviceName = Array.isArray(client.service)
-        ? (client.service[0]?.name ?? "Unknown")
-        : client.service.name;
+      const serviceName = client.services[0]?.name ?? "Unknown";
       serviceNameToRlcModelsMap.set(serviceName, rlcModels);
       needUnexpectedHelper.set(
         getClientName(rlcModels),
@@ -402,14 +400,16 @@ export async function $onEmit(context: EmitContext) {
   }
 
   function buildMetadataJson() {
-    const apiVersion = dpgContext.sdkPackage.metadata.apiVersion;
+    const apiVersions = dpgContext.sdkPackage.metadata.apiVersions;
     const emitterVersion = getTypespecTsVersion(context);
-    if (apiVersion === undefined && emitterVersion === undefined) {
+    if (apiVersions === undefined && emitterVersion === undefined) {
       return;
     }
     const content: Metadata = {};
-    if (apiVersion !== undefined) {
-      content.apiVersion = apiVersion;
+    if (apiVersions !== undefined && apiVersions.size > 0) {
+      // Use the first/latest API version if multiple are available
+      const firstVersion = Array.from(apiVersions.values())[0];
+      content.apiVersion = firstVersion;
     }
     if (emitterVersion !== undefined) {
       content.emitterVersion = emitterVersion;

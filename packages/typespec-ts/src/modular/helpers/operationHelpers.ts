@@ -178,6 +178,7 @@ export function getDeserializePrivateFunction(
   ];
   const isLroOnly = isLroOnlyOperation(operation);
   const isLroAndPaging = isLroAndPagingOperation(operation);
+  const isPagingOnly = isPagingOnlyOperation(operation);
 
   // TODO: Support operation overloads
   // TODO: Support multiple responses
@@ -186,10 +187,17 @@ export function getDeserializePrivateFunction(
   let returnType;
   if (isLroOnly || isLroAndPaging) {
     returnType = buildLroReturnType(context, operation);
-  } else if (response.type && restResponse) {
+  } else if (isPagingOnly && restResponse?.type) {
+    // For paging operations, use the full response model (e.g., _OperationListResult)
+    // instead of just the array element type
     returnType = {
       name: (restResponse as any).name ?? "",
-      type: getTypeExpression(context, restResponse.type!)
+      type: getTypeExpression(context, restResponse.type)
+    };
+  } else if (response.type) {
+    returnType = {
+      name: (response as any).name ?? "",
+      type: getTypeExpression(context, response.type)
     };
   } else {
     returnType = { name: "", type: "void" };
@@ -218,7 +226,7 @@ export function getDeserializePrivateFunction(
   const deserializedType =
     isLroOnly || isLroAndPaging
       ? operation?.lroMetadata?.finalResponse?.result
-      : restResponse
+      : isPagingOnly && restResponse?.type
         ? restResponse.type
         : response.type;
   const lroSubSegments = isLroOnly
@@ -534,6 +542,79 @@ function getExceptionDetails(
   };
 }
 
+/**
+ * Collects and deduplicates all response headers from operation exceptions.
+ */
+function getExceptionResponseHeaders(
+  exceptions: SdkHttpOperation["exceptions"]
+): SdkServiceResponseHeader[] {
+  const headerMap = new Map<string, SdkServiceResponseHeader>();
+  for (const exception of exceptions ?? []) {
+    for (const header of exception.headers ?? []) {
+      const key = header.serializedName ?? header.name;
+      if (!headerMap.has(key)) {
+        headerMap.set(key, header);
+      }
+    }
+  }
+  return Array.from(headerMap.values());
+}
+
+/**
+ * Generates a private function to deserialize exception response headers.
+ * Only generated when exception headers are present and include-headers-in-response is enabled.
+ */
+export function getDeserializeExceptionHeadersPrivateFunction(
+  context: SdkContext,
+  operation: ServiceOperation
+): OptionalKind<FunctionDeclarationStructure> | undefined {
+  const isResponseHeadersEnabled =
+    context.rlcOptions?.includeHeadersInResponse === true;
+  if (!isResponseHeadersEnabled) {
+    return undefined;
+  }
+
+  const exceptionHeaders = getExceptionResponseHeaders(
+    operation.operation.exceptions
+  );
+  if (exceptionHeaders.length === 0) {
+    return undefined;
+  }
+
+  const { name } = getOperationName(operation);
+  const dependencies = useDependencies();
+  const PathUncheckedResponseReference = resolveReference(
+    dependencies.PathUncheckedResponse
+  );
+
+  const parameters: OptionalKind<ParameterDeclarationStructure>[] = [
+    {
+      name: "result",
+      type: PathUncheckedResponseReference
+    }
+  ];
+
+  const returnType = buildHeaderOnlyResponseType(context, exceptionHeaders);
+
+  const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
+    isAsync: false,
+    isExported: true,
+    name: `_${name}DeserializeExceptionHeaders`,
+    parameters,
+    returnType
+  };
+
+  const statements: string[] = [];
+  statements.push(
+    `return ${buildHeaderOnlyResponseValue(context, exceptionHeaders)};`
+  );
+
+  return {
+    ...functionStatement,
+    statements
+  };
+}
+
 function getExceptionDeserializeExpr(exception: ExceptionThrowDetail): string {
   if (!exception.xmlDeserializer) {
     return `${exception.deserializer}(result.body)`;
@@ -559,6 +640,20 @@ function getExceptionThrowStatement(
     defaultIsXmlOnly
   } = getExceptionDetails(context, operation);
 
+  const isResponseHeadersEnabled =
+    context.rlcOptions?.includeHeadersInResponse === true;
+
+  // Check if exception headers function exists and build the call
+  const exceptionHeaders = getExceptionResponseHeaders(
+    operation.operation.exceptions
+  );
+  const hasExceptionHeaders =
+    isResponseHeadersEnabled && exceptionHeaders.length > 0;
+  const { name: opName } = getOperationName(operation);
+  const exceptionHeadersCall = hasExceptionHeaders
+    ? `error.details = {...(error.details as any), ..._${opName}DeserializeExceptionHeaders(result)};`
+    : undefined;
+
   // Check if any exception has XML deserialization support that requires runtime content-type check
   const hasAnyDualFormatXml =
     (defaultXmlDeserializer !== undefined && !defaultIsXmlOnly) ||
@@ -578,13 +673,16 @@ function getExceptionThrowStatement(
     statements.push(`const statusCode = Number.parseInt(result.status);`);
     const stats: string[] = customized.map((exception) => {
       const deserializeExpr = getExceptionDeserializeExpr(exception);
+      const headerStmt = exceptionHeadersCall ?? "";
       if (exception.end) {
         return `if(statusCode >= ${exception.start} && statusCode <= ${exception.end}) {
               error.details = ${deserializeExpr};
+              ${headerStmt}
           }`;
       } else {
         return `if(statusCode === ${exception.start}) {
              error.details = ${deserializeExpr};
+             ${headerStmt}
           }`;
       }
     });
@@ -597,6 +695,7 @@ function getExceptionThrowStatement(
           : `isXml ? ${defaultXmlDeserializer}(result.body) : ${defaultDeserializer}(result.body)`;
       statements.push(`else {
         error.details = ${defaultDeserializeExpr};
+        ${exceptionHeadersCall ?? ""}
       }`);
     }
     statements.push("throw error;");
@@ -605,18 +704,21 @@ function getExceptionThrowStatement(
       if (defaultXmlDeserializer) {
         if (defaultIsXmlOnly) {
           statements.push(`const error = ${createRestErrorReference}(result);
-          error.details = ${defaultXmlDeserializer}(result.body);`);
+          error.details = ${defaultXmlDeserializer}(result.body);
+          ${exceptionHeadersCall ?? ""}`);
         } else {
           const isXmlContentTypeRef = resolveReference(
             XmlHelpers.isXmlContentType
           );
           statements.push(`const error = ${createRestErrorReference}(result);
           const responseContentType = result.headers?.["content-type"] ?? "";
-          error.details = ${isXmlContentTypeRef}(responseContentType) ? ${defaultXmlDeserializer}(result.body) : ${defaultDeserializer}(result.body);`);
+          error.details = ${isXmlContentTypeRef}(responseContentType) ? ${defaultXmlDeserializer}(result.body) : ${defaultDeserializer}(result.body);
+          ${exceptionHeadersCall ?? ""}`);
         }
       } else {
         statements.push(`const error = ${createRestErrorReference}(result);
-        error.details = ${defaultDeserializer}(result.body);`);
+        error.details = ${defaultDeserializer}(result.body);
+        ${exceptionHeadersCall ?? ""}`);
       }
       statements.push("throw error;");
     } else {
@@ -660,7 +762,6 @@ function getOperationSignatureParameters(
             param.methodParameterSegments[0]?.[0] === p
           );
         })[0]?.kind !== "cookie" &&
-        p.clientDefaultValue === undefined &&
         !p.optional &&
         !(
           p.isGeneratedName &&
@@ -819,6 +920,7 @@ export function getOperationFunction(
 
     // If there is no body payload just return the headers
     if (hasHeaderOnlyResponse) {
+      statements.push(`await _${name}Deserialize(${resultVarName});`);
       statements.push(`return {...${headersVarName} };`);
     } else {
       const payloadVarName = generateLocallyUniqueName("payload", paramNames);
@@ -1293,14 +1395,33 @@ function buildBodyParameter(
     NameType.Parameter,
     true
   );
-  const bodyNameExpression = bodyParameter.optional
+  let bodyNameExpression = bodyParameter.optional
     ? `${optionalParamName}["${bodyParamName}"]`
     : bodyParamName;
-  const nullOrUndefinedPrefix = getPropertySerializationPrefix(
-    context,
-    bodyParameter,
-    bodyParameter.optional ? optionalParamName : undefined
-  );
+
+  // Check if body parameter has a client default value with matching type
+  const hasClientDefault =
+    bodyParameter.optional &&
+    bodyParameter.clientDefaultValue !== undefined &&
+    isDefaultValueTypeMatch(bodyParameter, bodyParameter.clientDefaultValue);
+
+  // Apply client default value if present for optional body parameters
+  if (hasClientDefault) {
+    const formattedDefault = formatDefaultValue(
+      bodyParameter.clientDefaultValue
+    );
+    bodyNameExpression = `(${bodyNameExpression} ?? ${formattedDefault})`;
+  }
+
+  // Only apply nullOrUndefinedPrefix if there's no client default value
+  // because the default value already handles null/undefined cases
+  const nullOrUndefinedPrefix = hasClientDefault
+    ? ""
+    : getPropertySerializationPrefix(
+        context,
+        bodyParameter,
+        bodyParameter.optional ? optionalParamName : undefined
+      );
 
   // For dual-format operations, check the contentType option at runtime
   if (
@@ -1507,6 +1628,14 @@ function getOptional(
   serializedName: string
 ) {
   const paramName = `${param.onClient ? "context." : `${optionalParamName}?.`}${param.name}`;
+
+  // Apply client default value if present and type matches
+  const defaultSuffix =
+    param.clientDefaultValue !== undefined &&
+    isDefaultValueTypeMatch(param, param.clientDefaultValue)
+      ? ` ?? ${formatDefaultValue(param.clientDefaultValue)}`
+      : "";
+
   if (param.type.kind === "model") {
     const propertiesStr = getRequestModelMapping(
       context,
@@ -1516,7 +1645,7 @@ function getOptional(
     const serializeContent = `{${propertiesStr.join(",")}}`;
     return `"${serializedName}": ${serializeContent}`;
   }
-  return `"${serializedName}": ${serializeRequestValue(
+  const serializedValue = serializeRequestValue(
     context,
     param.type,
     paramName,
@@ -1524,7 +1653,8 @@ function getOptional(
     getEncodeForType(param.type),
     serializedName,
     true
-  )}`;
+  );
+  return `"${serializedName}": ${serializedValue}${defaultSuffix}`;
 }
 
 /**
@@ -2337,12 +2467,59 @@ export function getAllAncestors(type: SdkType): SdkType[] {
   return ancestors;
 }
 
+/**
+ * Checks if a clientDefaultValue type matches the parameter type.
+ * Returns true if the default value type is compatible with the parameter type.
+ */
+function isDefaultValueTypeMatch(
+  param: SdkHttpParameter | SdkBodyParameter,
+  defaultValue: unknown
+): boolean {
+  const defaultType = typeof defaultValue;
+  const paramType = param.type;
+
+  // Map JavaScript types to TypeSpec types
+  if (defaultType === "string") {
+    return paramType.kind === "string" || paramType.kind === "enum";
+  }
+  if (defaultType === "number") {
+    return (
+      paramType.kind === "int32" ||
+      paramType.kind === "int64" ||
+      paramType.kind === "float32" ||
+      paramType.kind === "float64" ||
+      paramType.kind === "numeric" ||
+      paramType.kind === "integer" ||
+      paramType.kind === "float" ||
+      paramType.kind === "decimal"
+    );
+  }
+  if (defaultType === "boolean") {
+    return paramType.kind === "boolean";
+  }
+
+  // For other types, don't apply the default
+  return false;
+}
+
+/**
+ * Formats a default value for code generation.
+ * Strings are wrapped in quotes, other values are used as-is.
+ */
+function formatDefaultValue(defaultValue: unknown): string {
+  if (typeof defaultValue === "string") {
+    return `"${defaultValue}"`;
+  }
+  return String(defaultValue);
+}
+
 export function getPropertySerializationPrefix(
   context: SdkContext,
   property: SdkHttpParameter | SdkModelPropertyType,
   propertyPath?: string
 ) {
   const propertyFullName = getPropertyFullName(context, property, propertyPath);
+
   if (property.optional || isTypeNullable(property.type)) {
     return `!${propertyFullName}? ${propertyFullName}:`;
   }
@@ -2368,6 +2545,7 @@ export function getPropertyFullName(
   } else if (propertyPath) {
     fullName = `${propertyPath}["${normalizedPropertyName}"]`;
   }
+
   return fullName;
 }
 

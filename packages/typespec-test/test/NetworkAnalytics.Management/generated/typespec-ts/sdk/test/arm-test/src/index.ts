@@ -68,10 +68,12 @@ export {
   DataProductUserRole,
   RoleAssignmentDetail,
   ListRoleAssignments,
+  Client,
   KnownVersions,
 } from "./models/index.js";
 export { NetworkAnalyticsApiOptionalParams } from "./api/index.js";
 export {
+  DataProductsReadOptionalParams,
   DataProductsListBySubscriptionOptionalParams,
   DataProductsListByResourceGroupOptionalParams,
   DataProductsListRolesAssignmentsOptionalParams,

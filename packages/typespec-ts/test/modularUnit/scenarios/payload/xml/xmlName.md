@@ -80,8 +80,18 @@ export function retentionPolicyXmlSerializer(item: RetentionPolicy): string {
 ```ts models function retentionPolicyXmlDeserializer
 export function retentionPolicyXmlDeserializer(xmlString: string): RetentionPolicy {
   const properties: XmlPropertyDeserializeMetadata[] = [
-    { propertyName: "enabled", xmlOptions: { name: "Enabled" }, type: "primitive" },
-    { propertyName: "days", xmlOptions: { name: "Days" }, type: "primitive" },
+    {
+      propertyName: "enabled",
+      xmlOptions: { name: "Enabled" },
+      type: "primitive",
+      primitiveSubtype: "boolean",
+    },
+    {
+      propertyName: "days",
+      xmlOptions: { name: "Days" },
+      type: "primitive",
+      primitiveSubtype: "number",
+    },
   ];
   return deserializeFromXml<RetentionPolicy>(xmlString, properties, "RetentionPolicy");
 }
@@ -92,8 +102,18 @@ export function retentionPolicyXmlObjectDeserializer(
   xmlObject: Record<string, unknown>,
 ): RetentionPolicy {
   const properties: XmlPropertyDeserializeMetadata[] = [
-    { propertyName: "enabled", xmlOptions: { name: "Enabled" }, type: "primitive" },
-    { propertyName: "days", xmlOptions: { name: "Days" }, type: "primitive" },
+    {
+      propertyName: "enabled",
+      xmlOptions: { name: "Enabled" },
+      type: "primitive",
+      primitiveSubtype: "boolean",
+    },
+    {
+      propertyName: "days",
+      xmlOptions: { name: "Days" },
+      type: "primitive",
+      primitiveSubtype: "number",
+    },
   ];
   return deserializeXmlObject<RetentionPolicy>(xmlObject, properties);
 }
@@ -142,10 +162,30 @@ export function loggingXmlSerializer(item: Logging): string {
 ```ts models function loggingXmlDeserializer
 export function loggingXmlDeserializer(xmlString: string): Logging {
   const properties: XmlPropertyDeserializeMetadata[] = [
-    { propertyName: "version", xmlOptions: { name: "Version" }, type: "primitive" },
-    { propertyName: "deleteProperty", xmlOptions: { name: "Delete" }, type: "primitive" },
-    { propertyName: "read", xmlOptions: { name: "Read" }, type: "primitive" },
-    { propertyName: "write", xmlOptions: { name: "Write" }, type: "primitive" },
+    {
+      propertyName: "version",
+      xmlOptions: { name: "Version" },
+      type: "primitive",
+      primitiveSubtype: "string",
+    },
+    {
+      propertyName: "deleteProperty",
+      xmlOptions: { name: "Delete" },
+      type: "primitive",
+      primitiveSubtype: "boolean",
+    },
+    {
+      propertyName: "read",
+      xmlOptions: { name: "Read" },
+      type: "primitive",
+      primitiveSubtype: "boolean",
+    },
+    {
+      propertyName: "write",
+      xmlOptions: { name: "Write" },
+      type: "primitive",
+      primitiveSubtype: "boolean",
+    },
     {
       propertyName: "retentionPolicy",
       xmlOptions: { name: "RetentionPolicy" },
@@ -160,10 +200,30 @@ export function loggingXmlDeserializer(xmlString: string): Logging {
 ```ts models function loggingXmlObjectDeserializer
 export function loggingXmlObjectDeserializer(xmlObject: Record<string, unknown>): Logging {
   const properties: XmlPropertyDeserializeMetadata[] = [
-    { propertyName: "version", xmlOptions: { name: "Version" }, type: "primitive" },
-    { propertyName: "deleteProperty", xmlOptions: { name: "Delete" }, type: "primitive" },
-    { propertyName: "read", xmlOptions: { name: "Read" }, type: "primitive" },
-    { propertyName: "write", xmlOptions: { name: "Write" }, type: "primitive" },
+    {
+      propertyName: "version",
+      xmlOptions: { name: "Version" },
+      type: "primitive",
+      primitiveSubtype: "string",
+    },
+    {
+      propertyName: "deleteProperty",
+      xmlOptions: { name: "Delete" },
+      type: "primitive",
+      primitiveSubtype: "boolean",
+    },
+    {
+      propertyName: "read",
+      xmlOptions: { name: "Read" },
+      type: "primitive",
+      primitiveSubtype: "boolean",
+    },
+    {
+      propertyName: "write",
+      xmlOptions: { name: "Write" },
+      type: "primitive",
+      primitiveSubtype: "boolean",
+    },
     {
       propertyName: "retentionPolicy",
       xmlOptions: { name: "RetentionPolicy" },
@@ -230,8 +290,18 @@ export interface BlobTag {
 ```ts models function blobTagXmlDeserializer
 export function blobTagXmlDeserializer(xmlString: string): BlobTag {
   const properties: XmlPropertyDeserializeMetadata[] = [
-    { propertyName: "key", xmlOptions: { name: "Key" }, type: "primitive" },
-    { propertyName: "value", xmlOptions: { name: "Value" }, type: "primitive" },
+    {
+      propertyName: "key",
+      xmlOptions: { name: "Key" },
+      type: "primitive",
+      primitiveSubtype: "string",
+    },
+    {
+      propertyName: "value",
+      xmlOptions: { name: "Value" },
+      type: "primitive",
+      primitiveSubtype: "string",
+    },
   ];
   return deserializeFromXml<BlobTag>(xmlString, properties, "BlobTag");
 }
@@ -240,8 +310,18 @@ export function blobTagXmlDeserializer(xmlString: string): BlobTag {
 ```ts models function blobTagXmlObjectDeserializer
 export function blobTagXmlObjectDeserializer(xmlObject: Record<string, unknown>): BlobTag {
   const properties: XmlPropertyDeserializeMetadata[] = [
-    { propertyName: "key", xmlOptions: { name: "Key" }, type: "primitive" },
-    { propertyName: "value", xmlOptions: { name: "Value" }, type: "primitive" },
+    {
+      propertyName: "key",
+      xmlOptions: { name: "Key" },
+      type: "primitive",
+      primitiveSubtype: "string",
+    },
+    {
+      propertyName: "value",
+      xmlOptions: { name: "Value" },
+      type: "primitive",
+      primitiveSubtype: "string",
+    },
   ];
   return deserializeXmlObject<BlobTag>(xmlObject, properties);
 }

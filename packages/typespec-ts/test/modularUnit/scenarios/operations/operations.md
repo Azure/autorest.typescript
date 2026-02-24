@@ -713,6 +713,7 @@ export async function _testDeserialize(result: PathUncheckedResponse): Promise<_
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
     error.details = errorDeserializer(result.body);
+
     throw error;
   }
 
@@ -800,6 +801,7 @@ export async function _testDeserialize(result: PathUncheckedResponse): Promise<_
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
     error.details = errorDeserializer(result.body);
+
     throw error;
   }
 

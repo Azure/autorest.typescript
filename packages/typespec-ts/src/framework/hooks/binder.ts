@@ -114,11 +114,19 @@ class BinderImp implements Binder {
       .flatMap((i) => i.namedImports as ImportSpecifierStructure[])
       .map((i) => i.alias ?? i.name);
 
+    // Also check actual imports already added to the source file (e.g., manual imports)
+    const actualImports = sourceFile
+      .getImportDeclarations()
+      .flatMap((imp) => imp.getNamedImports())
+      .map(
+        (namedImp) => namedImp.getAliasNode()?.getText() ?? namedImp.getName()
+      );
+
     const existingDeclarations =
       this.symbolsBySourceFile.get(sourceFile) ?? new Set<string>();
     return generateLocallyUniqueName(
       name,
-      new Set([...existingImports, ...existingDeclarations])
+      new Set([...existingImports, ...actualImports, ...existingDeclarations])
     );
   }
 

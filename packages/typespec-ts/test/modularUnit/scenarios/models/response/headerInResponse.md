@@ -119,6 +119,7 @@ export async function deleteUser(
 ): Promise<{ requestId: string; optionalHeader?: string }> {
   const result = await _deleteUserSend(context, options);
   const headers = _deleteUserDeserializeHeaders(result);
+  await _deleteUserDeserialize(result);
   return { ...headers };
 }
 ```
@@ -176,6 +177,7 @@ export async function getAccountInfo(
 ): Promise<{ date: Date; legalHold: boolean; contentMd5: Uint8Array; requestId?: string }> {
   const result = await _getAccountInfoSend(context, options);
   const headers = _getAccountInfoDeserializeHeaders(result);
+  await _getAccountInfoDeserialize(result);
   return { ...headers };
 }
 ```
