@@ -10,7 +10,8 @@ import {
   isXmlContentType,
   isJsonContentType,
   XmlPropertyMetadata,
-  XmlPropertyDeserializeMetadata
+  XmlPropertyDeserializeMetadata,
+  XmlAdditionalPropertiesConfig
 } from "../../../static/static-helpers/serialization/xml-helpers.js";
 
 describe("XML Helpers", () => {
@@ -1708,6 +1709,160 @@ describe("XML Helpers", () => {
     });
   });
 
+  describe("deserializeXmlObject with additionalProperties", () => {
+    it("should collect undeclared elements into additionalProperties", () => {
+      // Simulates BlobMetadata: declared "encrypted" attribute + additional key-value elements
+      const xmlObject = {
+        "@_Encrypted": "true",
+        a: "c",
+        foo: "bar"
+      };
+      const properties: XmlPropertyDeserializeMetadata[] = [
+        {
+          propertyName: "encrypted",
+          xmlOptions: { name: "Encrypted", attribute: true },
+          type: "primitive"
+        }
+      ];
+      const additionalPropertiesConfig: XmlAdditionalPropertiesConfig = {
+        propertyName: "additionalProperties",
+        excludeNames: ["Encrypted"]
+      };
+
+      const result = deserializeXmlObject<{
+        encrypted: string;
+        additionalProperties: Record<string, string>;
+      }>(xmlObject, properties, additionalPropertiesConfig);
+
+      expect(result.encrypted).toBe("true");
+      expect(result.additionalProperties).toEqual({ a: "c", foo: "bar" });
+    });
+
+    it("should return empty record when no undeclared elements exist", () => {
+      const xmlObject = {
+        "@_Encrypted": "true"
+      };
+      const properties: XmlPropertyDeserializeMetadata[] = [
+        {
+          propertyName: "encrypted",
+          xmlOptions: { name: "Encrypted", attribute: true },
+          type: "primitive"
+        }
+      ];
+      const additionalPropertiesConfig: XmlAdditionalPropertiesConfig = {
+        propertyName: "additionalProperties",
+        excludeNames: ["Encrypted"]
+      };
+
+      const result = deserializeXmlObject<{
+        encrypted: string;
+        additionalProperties: Record<string, string>;
+      }>(xmlObject, properties, additionalPropertiesConfig);
+
+      expect(result.encrypted).toBe("true");
+      expect(result.additionalProperties).toEqual({});
+    });
+
+    it("should exclude declared element names from additionalProperties", () => {
+      const xmlObject = {
+        Name: "test",
+        Flavor: "vanilla",
+        Extra: "value"
+      };
+      const properties: XmlPropertyDeserializeMetadata[] = [
+        {
+          propertyName: "name",
+          xmlOptions: { name: "Name" },
+          type: "primitive"
+        },
+        {
+          propertyName: "flavor",
+          xmlOptions: { name: "Flavor" },
+          type: "primitive"
+        }
+      ];
+      const additionalPropertiesConfig: XmlAdditionalPropertiesConfig = {
+        propertyName: "additionalProperties",
+        excludeNames: ["Name", "Flavor"]
+      };
+
+      const result = deserializeXmlObject(
+        xmlObject,
+        properties,
+        additionalPropertiesConfig
+      );
+
+      expect(result).toEqual({
+        name: "test",
+        flavor: "vanilla",
+        additionalProperties: { Extra: "value" }
+      });
+    });
+
+    it("should skip attributes and #text in additionalProperties", () => {
+      const xmlObject = {
+        "@_attr1": "attrVal",
+        "#text": "textContent",
+        key1: "val1"
+      };
+      const properties: XmlPropertyDeserializeMetadata[] = [];
+      const additionalPropertiesConfig: XmlAdditionalPropertiesConfig = {
+        propertyName: "additionalProperties",
+        excludeNames: []
+      };
+
+      const result = deserializeXmlObject(
+        xmlObject,
+        properties,
+        additionalPropertiesConfig
+      );
+
+      expect(result.additionalProperties).toEqual({ key1: "val1" });
+    });
+
+    it("should work with deserializeFromXml for full XML string", () => {
+      const xml = `<Metadata><a>c</a><b>d</b></Metadata>`;
+      const properties: XmlPropertyDeserializeMetadata[] = [];
+      const additionalPropertiesConfig: XmlAdditionalPropertiesConfig = {
+        propertyName: "additionalProperties",
+        excludeNames: []
+      };
+
+      const result = deserializeFromXml<{
+        additionalProperties: Record<string, string>;
+      }>(
+        xml,
+        properties,
+        "Metadata",
+        undefined,
+        undefined,
+        additionalPropertiesConfig
+      );
+
+      expect(result.additionalProperties).toEqual({ a: "c", b: "d" });
+    });
+
+    it("should work without additionalPropertiesConfig (backward compat)", () => {
+      const xmlObject = {
+        Name: "test",
+        Extra: "value"
+      };
+      const properties: XmlPropertyDeserializeMetadata[] = [
+        {
+          propertyName: "name",
+          xmlOptions: { name: "Name" },
+          type: "primitive"
+        }
+      ];
+
+      // No additionalPropertiesConfig - should work as before
+      const result = deserializeXmlObject(xmlObject, properties);
+
+      expect(result).toEqual({ name: "test" });
+      expect(result).not.toHaveProperty("additionalProperties");
+    });
+  });
+
   describe("xmlObjectToString", () => {
     it("should convert XML object to string", () => {
       const xmlObject = {
@@ -1892,6 +2047,55 @@ describe("XML Helpers", () => {
 
       const xml = serializeToXml(original, properties, "Model");
       const result = deserializeFromXml(xml, properties, "Model");
+
+      expect(result).toEqual(original);
+    });
+
+    it("should round-trip a model with additionalProperties", () => {
+      const original = {
+        encrypted: "yes",
+        additionalProperties: { a: "c", foo: "bar" }
+      };
+      const serProperties: XmlPropertyMetadata[] = [
+        {
+          propertyName: "encrypted",
+          xmlOptions: { name: "Encrypted", attribute: true },
+          type: "primitive"
+        }
+      ];
+      const deserProperties: XmlPropertyDeserializeMetadata[] = [
+        {
+          propertyName: "encrypted",
+          xmlOptions: { name: "Encrypted", attribute: true },
+          type: "primitive"
+        }
+      ];
+      const apConfig: XmlAdditionalPropertiesConfig = {
+        propertyName: "additionalProperties",
+        excludeNames: ["Encrypted"]
+      };
+
+      const xml = serializeToXml(
+        original,
+        serProperties,
+        "Metadata",
+        undefined,
+        undefined,
+        apConfig
+      );
+
+      expect(xml).toContain("<a>c</a>");
+      expect(xml).toContain("<foo>bar</foo>");
+      expect(xml).toContain('Encrypted="yes"');
+
+      const result = deserializeFromXml(
+        xml,
+        deserProperties,
+        "Metadata",
+        undefined,
+        undefined,
+        apConfig
+      );
 
       expect(result).toEqual(original);
     });
