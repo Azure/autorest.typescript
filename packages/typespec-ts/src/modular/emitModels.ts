@@ -35,7 +35,8 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import {
   getExternalModel,
-  getModelExpression
+  getModelExpression,
+  getMultipartFileTypeExpression
 } from "./type-expressions/get-model-expression.js";
 
 import { SdkContext } from "../utils/interfaces.js";
@@ -51,6 +52,8 @@ import {
 import {
   buildXmlModelSerializer,
   buildXmlModelDeserializer,
+  buildXmlObjectModelSerializer,
+  buildXmlObjectModelDeserializer,
   hasXmlSerialization
 } from "./serialization/buildXmlSerializerFunction.js";
 import path from "path";
@@ -75,8 +78,6 @@ import {
   flattenPropertyModelMap,
   getAllOperationsFromClient
 } from "../framework/hooks/sdkTypes.js";
-import { resolveReference } from "../framework/reference.js";
-import { MultipartHelpers } from "./static-helpers-metadata.js";
 import { getAllAncestors } from "./helpers/operationHelpers.js";
 import { getAllProperties } from "./helpers/operationHelpers.js";
 import { getDirectSubtypes } from "./helpers/typeHelpers.js";
@@ -216,6 +217,10 @@ function emitType(context: SdkContext, type: SdkType, sourceFile: SourceFile) {
       return;
     }
     const apiVersionEnumOnly = type.usage === UsageFlags.ApiVersionEnum;
+    // Skip known api version enums for multi-service scenarios as users are not allowed to set api versions
+    if (apiVersionEnumOnly && context.rlcOptions?.isMultiService) {
+      return;
+    }
     const inputUsage = (type.usage & UsageFlags.Input) === UsageFlags.Input;
     const outputUsage = (type.usage & UsageFlags.Output) === UsageFlags.Output;
     const exceptionUsage =
@@ -266,6 +271,10 @@ function emitType(context: SdkContext, type: SdkType, sourceFile: SourceFile) {
 }
 
 export function getApiVersionEnum(context: SdkContext) {
+  // Skip api version enum for multi-service scenarios since each service may have different versions
+  if (context.rlcOptions?.isMultiService) {
+    return;
+  }
   const apiVersionEnum = context.sdkPackage.enums.find(
     (e) => e.usage === UsageFlags.ApiVersionEnum
   );
@@ -293,9 +302,6 @@ export function getModelNamespaces(
   context: SdkContext,
   model: SdkType
 ): string[] {
-  const deepestNamespace = getNamespaceFullName(
-    listAllServiceNamespaces(context)[0]!
-  );
   if (
     model.kind === "model" ||
     model.kind === "enum" ||
@@ -312,6 +318,14 @@ export function getModelNamespaces(
       return [];
     }
     const segments = model.namespace.split(".");
+    // Keep full namespace segments if multiple services are present because there isn't a root namespace to trim
+    if (context.rlcOptions?.isMultiService) {
+      return segments;
+    }
+
+    const allServiceNamespaces =
+      context.allServiceNamespaces ?? listAllServiceNamespaces(context);
+    const deepestNamespace = getNamespaceFullName(allServiceNamespaces[0]!);
     const rootNamespace = deepestNamespace.split(".") ?? [];
     if (segments.length > rootNamespace.length) {
       while (segments[0] === rootNamespace[0]) {
@@ -371,6 +385,14 @@ function addSerializationFunctions(
   if (typeOrProperty.kind === "model" && hasXmlSerialization(typeOrProperty)) {
     const xmlSerializerRefKey = refkey(typeOrProperty, "xmlSerializer");
     const xmlDeserializerRefKey = refkey(typeOrProperty, "xmlDeserializer");
+    const xmlObjectSerializerRefKey = refkey(
+      typeOrProperty,
+      "xmlObjectSerializer"
+    );
+    const xmlObjectDeserializerRefKey = refkey(
+      typeOrProperty,
+      "xmlObjectDeserializer"
+    );
 
     const xmlSerializationFunction = buildXmlModelSerializer(
       context,
@@ -383,6 +405,24 @@ function addSerializationFunctions(
       xmlSerializationFunction.name
     ) {
       addDeclaration(sourceFile, xmlSerializationFunction, xmlSerializerRefKey);
+    }
+
+    // Also generate XML object serializer for nested object serialization
+    const xmlObjectSerializationFunction = buildXmlObjectModelSerializer(
+      context,
+      typeOrProperty,
+      options
+    );
+    if (
+      xmlObjectSerializationFunction &&
+      typeof xmlObjectSerializationFunction !== "string" &&
+      xmlObjectSerializationFunction.name
+    ) {
+      addDeclaration(
+        sourceFile,
+        xmlObjectSerializationFunction,
+        xmlObjectSerializerRefKey
+      );
     }
 
     const xmlDeserializationFunction = buildXmlModelDeserializer(
@@ -399,6 +439,24 @@ function addSerializationFunctions(
         sourceFile,
         xmlDeserializationFunction,
         xmlDeserializerRefKey
+      );
+    }
+
+    // Also generate XML object deserializer for nested object deserialization
+    const xmlObjectDeserializationFunction = buildXmlObjectModelDeserializer(
+      context,
+      typeOrProperty,
+      options
+    );
+    if (
+      xmlObjectDeserializationFunction &&
+      typeof xmlObjectDeserializationFunction !== "string" &&
+      xmlObjectDeserializationFunction.name
+    ) {
+      addDeclaration(
+        sourceFile,
+        xmlObjectDeserializationFunction,
+        xmlObjectDeserializerRefKey
       );
     }
   }
@@ -777,45 +835,15 @@ function buildModelProperty(
       .join(" | ");
   }
   // eslint-disable-next-line
-  else if (property.kind === "property" && property.isMultipartFileInput) {
-    // eslint-disable-next-line
-    const multipartOptions = property.multipartOptions;
-    typeExpression = "{";
-    typeExpression += `contents: ${resolveReference(MultipartHelpers.FileContents)};`;
-
-    const isContentTypeOptional =
-      multipartOptions?.contentType === undefined ||
-      multipartOptions.contentType.optional ||
-      multipartOptions.defaultContentTypes.length > 0;
-    const isFilenameOptional =
-      multipartOptions?.filename === undefined ||
-      multipartOptions.filename.optional;
-
-    const contentTypeType = multipartOptions?.contentType
-      ? getTypeExpression(context, multipartOptions.contentType.type)
-      : "string";
-    const filenameType = multipartOptions?.filename
-      ? getTypeExpression(context, multipartOptions.filename.type)
-      : "string";
-
-    typeExpression += `contentType${isContentTypeOptional ? "?" : ""}: ${contentTypeType};`;
-    typeExpression += `filename${isFilenameOptional ? "?" : ""}: ${filenameType};`;
-
-    typeExpression += "}";
-
-    if (isContentTypeOptional && isFilenameOptional) {
-      // Allow passing content directly if both filename and content type are optional
-      typeExpression = `(${resolveReference(MultipartHelpers.FileContents)}) | ${typeExpression}`;
-    } else {
-      // If either one is required, still accept File at the top level since it requires a filename
-      typeExpression = `File | ${typeExpression}`;
-    }
-
-    if (property.type.kind === "array") {
-      typeExpression = `Array<${typeExpression}>`;
-    }
+  else if (
+    property.kind === "property" &&
+    property.serializationOptions.multipart?.isFilePart
+  ) {
+    typeExpression = getMultipartFileTypeExpression(context, property);
   } else {
-    typeExpression = getTypeExpression(context, property.type);
+    typeExpression = getTypeExpression(context, property.type, {
+      isOptional: property.optional
+    });
   }
 
   const propertyStructure: PropertySignatureStructure = {

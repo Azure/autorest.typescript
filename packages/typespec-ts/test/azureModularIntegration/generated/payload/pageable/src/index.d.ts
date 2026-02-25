@@ -10,6 +10,7 @@ export declare class PageableClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: PageableClientOptionalParams);
+    readonly xmlPagination: XmlPaginationOperations;
     readonly pageSize: PageSizeOperations;
     readonly serverDrivenPagination: ServerDrivenPaginationOperations;
 }
@@ -103,6 +104,23 @@ export declare interface ServerDrivenPaginationOperations {
     linkString: (options?: ServerDrivenPaginationLinkStringOptionalParams) => PagedAsyncIterableIterator<Pet>;
     link: (options?: ServerDrivenPaginationLinkOptionalParams) => PagedAsyncIterableIterator<Pet>;
     continuationToken: ServerDrivenPaginationContinuationTokenOperations;
+}
+
+export declare interface XmlPaginationListWithContinuationOptionalParams extends OperationOptions {
+    marker?: string;
+}
+
+export declare interface XmlPaginationListWithNextLinkOptionalParams extends OperationOptions {
+}
+
+export declare interface XmlPaginationOperations {
+    listWithNextLink: (options?: XmlPaginationListWithNextLinkOptionalParams) => PagedAsyncIterableIterator<XmlPet>;
+    listWithContinuation: (options?: XmlPaginationListWithContinuationOptionalParams) => PagedAsyncIterableIterator<XmlPet>;
+}
+
+export declare interface XmlPet {
+    id: string;
+    name: string;
 }
 
 export { }

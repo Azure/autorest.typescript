@@ -1,0 +1,9 @@
+emit:
+  - "@azure-tools/typespec-ts"
+options:
+  "@azure-tools/typespec-ts":
+    emitter-output-dir: "{project-root}"
+    add-credentials: false
+    azure-sdk-for-js: false
+    package-details:
+      name: "@azure/client-generator-core-initialization-individually"

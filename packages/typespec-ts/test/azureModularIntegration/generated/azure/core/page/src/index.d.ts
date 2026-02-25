@@ -40,6 +40,7 @@ export declare class PageClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: PageClientOptionalParams);
+    withRelativeNextLink(options?: WithRelativeNextLinkOptionalParams): PagedAsyncIterableIterator<User>;
     withParameterizedNextLink(select: string, options?: WithParameterizedNextLinkOptionalParams): PagedAsyncIterableIterator<User>;
     listWithCustomPageModel(options?: ListWithCustomPageModelOptionalParams): PagedAsyncIterableIterator<User>;
     listWithParameters(bodyInput: ListItemInputBody, options?: ListWithParametersOptionalParams): PagedAsyncIterableIterator<User>;
@@ -81,6 +82,9 @@ export declare interface UserOrder {
 
 export declare interface WithParameterizedNextLinkOptionalParams extends OperationOptions {
     includePending?: boolean;
+}
+
+export declare interface WithRelativeNextLinkOptionalParams extends OperationOptions {
 }
 
 export { }

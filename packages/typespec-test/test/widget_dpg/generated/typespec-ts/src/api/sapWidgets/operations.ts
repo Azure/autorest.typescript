@@ -71,6 +71,7 @@ export async function _analyzeWidgetDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
     error.details = widgetErrorDeserializer(result.body);
+
     throw error;
   }
 
@@ -109,6 +110,7 @@ export async function _deleteWidgetDeserialize(result: PathUncheckedResponse): P
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
     error.details = widgetErrorDeserializer(result.body);
+
     throw error;
   }
 
@@ -154,6 +156,7 @@ export async function _updateWidgetDeserialize(result: PathUncheckedResponse): P
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
     error.details = widgetErrorDeserializer(result.body);
+
     throw error;
   }
 
@@ -245,6 +248,7 @@ export async function _createWidgetDeserialize(result: PathUncheckedResponse): P
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
     error.details = widgetErrorDeserializer(result.body);
+
     throw error;
   }
 
@@ -294,6 +298,7 @@ export async function _getWidgetDeserialize(result: PathUncheckedResponse): Prom
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
     error.details = widgetErrorDeserializer(result.body);
+
     throw error;
   }
 
@@ -341,6 +346,7 @@ export async function _queryWidgetsPagesDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
     error.details = widgetErrorDeserializer(result.body);
+
     throw error;
   }
 
@@ -393,6 +399,7 @@ export async function _listWidgetsPagesDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
     error.details = widgetErrorDeserializer(result.body);
+
     throw error;
   }
 
@@ -466,6 +473,7 @@ export async function _sapListWidgetsDeserialize(result: PathUncheckedResponse):
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
     error.details = widgetErrorDeserializer(result.body);
+
     throw error;
   }
 

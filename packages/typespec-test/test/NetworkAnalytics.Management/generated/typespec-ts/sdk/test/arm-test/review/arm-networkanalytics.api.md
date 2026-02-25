@@ -40,6 +40,14 @@ export enum AzureClouds {
 export type AzureSupportedClouds = `${AzureClouds}`;
 
 // @public
+export interface Client {
+    // (undocumented)
+    email: string;
+    // (undocumented)
+    id: string;
+}
+
+// @public
 export interface ConsumptionEndpointsProperties {
     readonly fileAccessResourceId?: string;
     readonly fileAccessUrl?: string;
@@ -222,9 +230,15 @@ export interface DataProductsOperations {
     listByResourceGroup: (resourceGroupName: string, options?: DataProductsListByResourceGroupOptionalParams) => PagedAsyncIterableIterator<DataProduct>;
     listBySubscription: (options?: DataProductsListBySubscriptionOptionalParams) => PagedAsyncIterableIterator<DataProduct>;
     listRolesAssignments: (resourceGroupName: string, dataProductName: string, body: Record<string, any>, options?: DataProductsListRolesAssignmentsOptionalParams) => Promise<ListRoleAssignments>;
+    // (undocumented)
+    read: (body: Client, options?: DataProductsReadOptionalParams) => Promise<Client>;
     removeUserRole: (resourceGroupName: string, dataProductName: string, body: RoleAssignmentDetail, options?: DataProductsRemoveUserRoleOptionalParams) => Promise<void>;
     rotateKey: (resourceGroupName: string, dataProductName: string, body: KeyVaultInfo, options?: DataProductsRotateKeyOptionalParams) => Promise<void>;
     update: (resourceGroupName: string, dataProductName: string, properties: DataProductUpdate, options?: DataProductsUpdateOptionalParams) => PollerLike<OperationState<DataProduct>, DataProduct>;
+}
+
+// @public
+export interface DataProductsReadOptionalParams extends OperationOptions {
 }
 
 // @public
@@ -495,6 +509,7 @@ export interface ManagedServiceIdentityV4 {
 
 // @public (undocumented)
 export class NetworkAnalyticsApi {
+    constructor(credential: TokenCredential, options?: NetworkAnalyticsApiOptionalParams);
     constructor(credential: TokenCredential, subscriptionId: string, options?: NetworkAnalyticsApiOptionalParams);
     readonly dataProducts: DataProductsOperations;
     readonly dataProductsCatalogs: DataProductsCatalogsOperations;
