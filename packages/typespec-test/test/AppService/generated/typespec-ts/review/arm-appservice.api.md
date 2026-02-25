@@ -512,7 +512,7 @@ export type FunctionsDeploymentStorageType = string;
 // @public
 export interface FunctionsRuntime {
     name?: RuntimeName;
-    version?: string | null;
+    version?: string;
 }
 
 // @public

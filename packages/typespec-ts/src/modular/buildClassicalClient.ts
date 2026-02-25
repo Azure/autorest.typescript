@@ -304,8 +304,19 @@ function generateMethod(
     const pagedAsyncIterableIteratorReference = resolveReference(
       PagingHelpers.PagedAsyncIterableIterator
     );
+    let initialOperationName = normalizeName(methodName, NameType.Operation);
+    if (initialOperationName.indexOf("list") === 0) {
+      initialOperationName = initialOperationName.replace("list", "");
+    } else if (initialOperationName.indexOf("get") === 0) {
+      initialOperationName = initialOperationName.replace("get", "");
+    } else {
+      initialOperationName = normalizeName(
+        initialOperationName,
+        NameType.Class
+      );
+    }
     const beginListAndWaitName = normalizeName(
-      `beginList_${methodName}_andWait`,
+      `beginList_${initialOperationName}_andWait`,
       NameType.Method
     );
     // add begin and wait method for LRO+Paging - directly returns paged iterator

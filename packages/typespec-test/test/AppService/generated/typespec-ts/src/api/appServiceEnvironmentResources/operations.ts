@@ -62,6 +62,7 @@ export async function _suspendDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
     error.details = defaultErrorResponseDeserializer(result.body);
+
     throw error;
   }
 
@@ -130,6 +131,7 @@ export async function _resumeDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
     error.details = defaultErrorResponseDeserializer(result.body);
+
     throw error;
   }
 
@@ -201,6 +203,7 @@ export async function _changeVnetDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
     error.details = defaultErrorResponseDeserializer(result.body);
+
     throw error;
   }
 

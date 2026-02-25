@@ -48,7 +48,7 @@ export interface ArtifactStoresOperations {
     options?: ArtifactStoresListPrivateEndPointsOptionalParams,
   ) => PagedAsyncIterableIterator<ArtifactStorePrivateEndPointsFormat>;
   /** @deprecated use listPrivateEndPoints instead */
-  beginListListPrivateEndPointsAndWait: (
+  beginListPrivateEndPointsAndWait: (
     resourceGroupName: string,
     publisherName: string,
     artifactStoreName: string,
@@ -110,7 +110,7 @@ export interface ArtifactStoresOperations {
     options?: ArtifactStoresListNetworkFabricControllerPrivateEndPointsOptionalParams,
   ) => PagedAsyncIterableIterator<ArtifactStoreNetworkFabricControllerEndPoints>;
   /** @deprecated use listNetworkFabricControllerPrivateEndPoints instead */
-  beginListListNetworkFabricControllerPrivateEndPointsAndWait: (
+  beginListNetworkFabricControllerPrivateEndPointsAndWait: (
     resourceGroupName: string,
     publisherName: string,
     artifactStoreName: string,
@@ -246,7 +246,7 @@ function _getArtifactStores(context: HybridNetworkManagementContext) {
       options?: ArtifactStoresListPrivateEndPointsOptionalParams,
     ) =>
       listPrivateEndPoints(context, resourceGroupName, publisherName, artifactStoreName, options),
-    beginListListPrivateEndPointsAndWait: (
+    beginListPrivateEndPointsAndWait: (
       resourceGroupName: string,
       publisherName: string,
       artifactStoreName: string,
@@ -371,7 +371,7 @@ function _getArtifactStores(context: HybridNetworkManagementContext) {
         artifactStoreName,
         options,
       ),
-    beginListListNetworkFabricControllerPrivateEndPointsAndWait: (
+    beginListNetworkFabricControllerPrivateEndPointsAndWait: (
       resourceGroupName: string,
       publisherName: string,
       artifactStoreName: string,

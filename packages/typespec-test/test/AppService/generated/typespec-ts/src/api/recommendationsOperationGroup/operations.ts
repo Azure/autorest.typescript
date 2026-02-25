@@ -53,6 +53,7 @@ export async function _disableRecommendationForSubscriptionDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
     error.details = defaultErrorResponseDeserializer(result.body);
+
     throw error;
   }
 
@@ -93,6 +94,7 @@ export async function _resetAllFiltersDeserialize(result: PathUncheckedResponse)
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
     error.details = defaultErrorResponseDeserializer(result.body);
+
     throw error;
   }
 
@@ -139,6 +141,7 @@ export async function _listDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
     error.details = defaultErrorResponseDeserializer(result.body);
+
     throw error;
   }
 

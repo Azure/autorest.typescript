@@ -64,6 +64,7 @@ export async function _getAvailableStacksOnPremDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
     error.details = defaultErrorResponseDeserializer(result.body);
+
     throw error;
   }
 
@@ -113,6 +114,7 @@ export async function _getWebAppStacksDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
     error.details = defaultErrorResponseDeserializer(result.body);
+
     throw error;
   }
 
@@ -164,6 +166,7 @@ export async function _getWebAppStacksForLocationDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
     error.details = defaultErrorResponseDeserializer(result.body);
+
     throw error;
   }
 
@@ -218,6 +221,7 @@ export async function _getFunctionAppStacksForLocationDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
     error.details = defaultErrorResponseDeserializer(result.body);
+
     throw error;
   }
 
@@ -270,6 +274,7 @@ export async function _getFunctionAppStacksDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
     error.details = defaultErrorResponseDeserializer(result.body);
+
     throw error;
   }
 
@@ -319,6 +324,7 @@ export async function _getAvailableStacksDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
     error.details = defaultErrorResponseDeserializer(result.body);
+
     throw error;
   }
 

@@ -42,6 +42,7 @@ export async function _getSubscriptionOperationWithAsyncResponseDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
     error.details = defaultErrorResponseDeserializer(result.body);
+
     throw error;
   }
 

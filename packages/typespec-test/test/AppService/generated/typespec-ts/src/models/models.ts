@@ -3215,7 +3215,7 @@ export interface FunctionsRuntime {
   /** Function app runtime name. Available options: dotnet-isolated, node, java, powershell, python, custom */
   name?: RuntimeName;
   /** Function app runtime version. Example: 8 (for dotnet-isolated) */
-  version?: string | null;
+  version?: string;
 }
 
 export function functionsRuntimeDeserializer(item: any): FunctionsRuntime {

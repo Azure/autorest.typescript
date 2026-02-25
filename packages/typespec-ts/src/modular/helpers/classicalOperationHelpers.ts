@@ -174,7 +174,21 @@ export function getClassicalOperation(
           const pagedAsyncIterableIteratorReference = resolveReference(
             PagingHelpers.PagedAsyncIterableIterator
           );
-          const beginListAndWaitName = `beginList_${getClassicalMethodName(d)}_andWait`;
+          let initialOperationName = normalizeName(
+            getClassicalMethodName(d),
+            NameType.Operation
+          );
+          if (initialOperationName.indexOf("list") === 0) {
+            initialOperationName = initialOperationName.replace("list", "");
+          } else if (initialOperationName.indexOf("get") === 0) {
+            initialOperationName = initialOperationName.replace("get", "");
+          } else {
+            initialOperationName = normalizeName(
+              initialOperationName,
+              NameType.Class
+            );
+          }
+          const beginListAndWaitName = `beginList_${initialOperationName}_andWait`;
           properties.push({
             kind: StructureKind.PropertySignature,
             name: `${normalizeName(beginListAndWaitName, NameType.Method)}`,
@@ -272,7 +286,21 @@ export function getClassicalOperation(
               );
               const beginName = `begin_${getClassicalMethodName(d)}`;
               const beginAndWaitName = `${beginName}_andWait`;
-              const beginListAndWaitName = `beginList_${getClassicalMethodName(d)}_andWait`;
+              let initialOperationName = normalizeName(
+                getClassicalMethodName(d),
+                NameType.Operation
+              );
+              if (initialOperationName.indexOf("list") === 0) {
+                initialOperationName = initialOperationName.replace("list", "");
+              } else if (initialOperationName.indexOf("get") === 0) {
+                initialOperationName = initialOperationName.replace("get", "");
+              } else {
+                initialOperationName = normalizeName(
+                  initialOperationName,
+                  NameType.Class
+                );
+              }
+              const beginListAndWaitName = `beginList_${initialOperationName}_andWait`;
 
               if (operationInfo?.isLroPaging) {
                 ret.push(

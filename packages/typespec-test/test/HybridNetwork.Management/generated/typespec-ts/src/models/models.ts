@@ -785,7 +785,7 @@ export function configurationGroupValuePropertiesFormatUnionSerializer(
 export function configurationGroupValuePropertiesFormatUnionDeserializer(
   item: any,
 ): ConfigurationGroupValuePropertiesFormatUnion {
-  switch (item.configurationType) {
+  switch (item["configurationType"]) {
     case "Secret":
       return configurationValueWithSecretsDeserializer(item as ConfigurationValueWithSecrets);
 
@@ -840,7 +840,7 @@ export function deploymentResourceIdReferenceUnionSerializer(
 export function deploymentResourceIdReferenceUnionDeserializer(
   item: any,
 ): DeploymentResourceIdReferenceUnion {
-  switch (item.idType) {
+  switch (item["idType"]) {
     case "Secret":
       return secretDeploymentResourceReferenceDeserializer(
         item as SecretDeploymentResourceReference,
@@ -1213,7 +1213,7 @@ export function networkFunctionPropertiesFormatUnionSerializer(
 export function networkFunctionPropertiesFormatUnionDeserializer(
   item: any,
 ): NetworkFunctionPropertiesFormatUnion {
-  switch (item.configurationType) {
+  switch (item["configurationType"]) {
     case "Secret":
       return networkFunctionValueWithSecretsDeserializer(item as NetworkFunctionValueWithSecrets);
 
@@ -2129,7 +2129,7 @@ export function networkFunctionDefinitionVersionPropertiesFormatUnionSerializer(
 export function networkFunctionDefinitionVersionPropertiesFormatUnionDeserializer(
   item: any,
 ): NetworkFunctionDefinitionVersionPropertiesFormatUnion {
-  switch (item.networkFunctionType) {
+  switch (item["networkFunctionType"]) {
     case "ContainerizedNetworkFunction":
       return containerizedNetworkFunctionDefinitionVersionDeserializer(
         item as ContainerizedNetworkFunctionDefinitionVersion,
@@ -2245,7 +2245,7 @@ export function containerizedNetworkFunctionTemplateUnionSerializer(
 export function containerizedNetworkFunctionTemplateUnionDeserializer(
   item: any,
 ): ContainerizedNetworkFunctionTemplateUnion {
-  switch (item.nfviType) {
+  switch (item["nfviType"]) {
     case "AzureArcKubernetes":
       return azureArcKubernetesNetworkFunctionTemplateDeserializer(
         item as AzureArcKubernetesNetworkFunctionTemplate,
@@ -2375,7 +2375,7 @@ export function azureArcKubernetesNetworkFunctionApplicationUnionSerializer(
 export function azureArcKubernetesNetworkFunctionApplicationUnionDeserializer(
   item: any,
 ): AzureArcKubernetesNetworkFunctionApplicationUnion {
-  switch (item.artifactType) {
+  switch (item["artifactType"]) {
     case "HelmPackage":
       return azureArcKubernetesHelmApplicationDeserializer(
         item as AzureArcKubernetesHelmApplication,
@@ -2757,7 +2757,7 @@ export function virtualNetworkFunctionTemplateUnionSerializer(
 export function virtualNetworkFunctionTemplateUnionDeserializer(
   item: any,
 ): VirtualNetworkFunctionTemplateUnion {
-  switch (item.nfviType) {
+  switch (item["nfviType"]) {
     case "AzureCore":
       return azureCoreNetworkFunctionTemplateDeserializer(item as AzureCoreNetworkFunctionTemplate);
 
@@ -2901,7 +2901,7 @@ export function azureCoreNetworkFunctionApplicationUnionSerializer(
 export function azureCoreNetworkFunctionApplicationUnionDeserializer(
   item: any,
 ): AzureCoreNetworkFunctionApplicationUnion {
-  switch (item.artifactType) {
+  switch (item["artifactType"]) {
     case "VhdImageFile":
       return azureCoreNetworkFunctionVhdApplicationDeserializer(
         item as AzureCoreNetworkFunctionVhdApplication,
@@ -3339,7 +3339,7 @@ export function azureOperatorNexusNetworkFunctionApplicationUnionSerializer(
 export function azureOperatorNexusNetworkFunctionApplicationUnionDeserializer(
   item: any,
 ): AzureOperatorNexusNetworkFunctionApplicationUnion {
-  switch (item.artifactType) {
+  switch (item["artifactType"]) {
     case "ImageFile":
       return azureOperatorNexusNetworkFunctionImageApplicationDeserializer(
         item as AzureOperatorNexusNetworkFunctionImageApplication,
@@ -4141,7 +4141,7 @@ export function resourceElementTemplateUnionSerializer(item: ResourceElementTemp
 }
 
 export function resourceElementTemplateUnionDeserializer(item: any): ResourceElementTemplateUnion {
-  switch (item.resourceElementType) {
+  switch (item["type"]) {
     case "ArmResourceDefinition":
       return armResourceDefinitionResourceElementTemplateDetailsDeserializer(
         item as ArmResourceDefinitionResourceElementTemplateDetails,
@@ -5073,7 +5073,7 @@ export type ArtifactAccessCredentialUnion =
 export function artifactAccessCredentialUnionDeserializer(
   item: any,
 ): ArtifactAccessCredentialUnion {
-  switch (item.credentialType) {
+  switch (item["credentialType"]) {
     case "AzureContainerRegistryScopedToken":
       return azureContainerRegistryScopedTokenCredentialDeserializer(
         item as AzureContainerRegistryScopedTokenCredential,
@@ -5323,7 +5323,7 @@ export function nfvIsUnionSerializer(item: NFVIsUnion): any {
 }
 
 export function nfvIsUnionDeserializer(item: any): NFVIsUnion {
-  switch (item.nfviType) {
+  switch (item["nfviType"]) {
     case "AzureCore":
       return azureCoreNfviDetailsDeserializer(item as AzureCoreNfviDetails);
 
