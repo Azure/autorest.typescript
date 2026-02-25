@@ -100,3 +100,30 @@ export function getExceptionHeaderClientOptions(
   }
   return results;
 }
+
+/**
+ * Gets the header name for the restErrorCodeHeader client option.
+ * When present, the emitter generates code to set `error.code` from the specified header.
+ *
+ * Usage: @clientOption("restErrorCodeHeader", "x-ms-error-code", "javascript")
+ *
+ * @param type - A decorated SDK type (typically an SdkModelType for error models)
+ * @returns The header name string, or undefined if the option is not set
+ */
+export function getRestErrorCodeHeader(
+  type: DecoratedType
+): string | undefined {
+  for (const decorator of type.decorators) {
+    if (decorator.name !== CLIENT_OPTION_DECORATOR_NAME) {
+      continue;
+    }
+    if (decorator.arguments["name"] !== "restErrorCodeHeader") {
+      continue;
+    }
+    const value = decorator.arguments["value"];
+    if (typeof value === "string") {
+      return value;
+    }
+  }
+  return undefined;
+}

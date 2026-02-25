@@ -92,7 +92,10 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import { isHeader, isMetadata } from "@typespec/http";
 import { useContext } from "../../contextManager.js";
-import { getHeaderClientOptions } from "./clientOptionHelpers.js";
+import {
+  getHeaderClientOptions,
+  getRestErrorCodeHeader
+} from "./clientOptionHelpers.js";
 import { isExtensibleEnum } from "../type-expressions/get-enum-expression.js";
 import { emitInlineModel } from "../type-expressions/get-model-expression.js";
 
@@ -660,7 +663,16 @@ function getExceptionThrowStatement(
     operation.operation.exceptions
   );
 
-  const allHeaderCalls = [exceptionHeadersCall, clientOptionHeadersCall]
+  // Build @clientOption("restErrorCodeHeader", ...) code to set error.code from a header
+  const restErrorCodeAssignment = buildRestErrorCodeAssignment(
+    operation.operation.exceptions
+  );
+
+  const allHeaderCalls = [
+    exceptionHeadersCall,
+    clientOptionHeadersCall,
+    restErrorCodeAssignment
+  ]
     .filter(Boolean)
     .join("\n");
 
@@ -769,6 +781,26 @@ function buildClientOptionHeadersCall(
   }
 
   return `error.details = {...(error.details as any), ${assignments.join(", ")}};`;
+}
+
+/**
+ * Builds the code to conditionally set error.code from a response header,
+ * based on @clientOption("restErrorCodeHeader", ...) on exception model types.
+ */
+function buildRestErrorCodeAssignment(
+  exceptions: SdkHttpOperation["exceptions"]
+): string | undefined {
+  for (const exception of exceptions ?? []) {
+    if (!exception.type || exception.type.kind !== "model") {
+      continue;
+    }
+    const headerName = getRestErrorCodeHeader(exception.type);
+    if (headerName) {
+      return `const restErrorCodeValue = result.headers[${JSON.stringify(headerName)}];
+if (restErrorCodeValue !== undefined) { error.code = restErrorCodeValue; }`;
+    }
+  }
+  return undefined;
 }
 
 function getOptionalParamsName(
