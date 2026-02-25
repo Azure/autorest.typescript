@@ -804,6 +804,8 @@ export function getOperationFunction(
   propertyName?: string;
   isLro?: boolean;
   lroFinalReturnType?: string;
+  isLroPaging?: boolean;
+  lropagingFinalReturnType?: string;
 } {
   const operation = method[1];
   // Extract required parameters
@@ -1026,7 +1028,11 @@ function getLroAndPagingOperationFunction(
   method: [string[], SdkLroPagingServiceMethod<SdkHttpOperation>],
   clientType: string,
   optionalParamName: string = "options"
-): FunctionDeclarationStructure & { propertyName?: string } {
+): FunctionDeclarationStructure & {
+  isLroPaging?: boolean;
+  propertyName?: string;
+  lropagingFinalReturnType?: string;
+} {
   const operation = method[1];
   const parameters = getOperationSignatureParameters(
     context,
@@ -1087,6 +1093,8 @@ function getLroAndPagingOperationFunction(
     ],
     isAsync: false,
     isExported: true,
+    isLroPaging: true,
+    lropagingFinalReturnType: returnType.type,
     name,
     propertyName: normalizeName(operation.name, NameType.Property),
     parameters,
