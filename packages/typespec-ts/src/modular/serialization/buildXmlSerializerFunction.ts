@@ -14,7 +14,10 @@ import {
   getAllAncestors,
   getAllProperties
 } from "../helpers/operationHelpers.js";
-import { normalizeModelName } from "../emitModels.js";
+import {
+  normalizeModelName,
+  getAdditionalPropertiesName
+} from "../emitModels.js";
 import { NameType } from "@azure-tools/rlc-common";
 import { isAzureCoreErrorType } from "../../utils/modelUtils.js";
 import {
@@ -30,6 +33,7 @@ import { isMetadata } from "@typespec/http";
 import { normalizeModelPropertyName } from "../type-expressions/get-type-expression.js";
 import { isReadOnly } from "@azure-tools/typespec-client-generator-core";
 import { useDependencies } from "../../framework/hooks/useDependencies.js";
+import { getAdditionalPropertiesType } from "../helpers/typeHelpers.js";
 
 /**
  * Checks if a model type has XML serialization options defined
@@ -143,15 +147,34 @@ export function buildXmlModelSerializer(
     `const properties: ${xmlPropertyMetadataRef}[] = [${propertyMetadata}];`
   );
 
+  // Generate additionalProperties config if applicable
+  const additionalPropsConfigExpr = buildAdditionalPropertiesConfigExpr(
+    context,
+    type,
+    properties
+  );
+
   // Generate the serialization call
   if (xmlRootNs) {
-    statements.push(
-      `return ${serializeToXmlRef}(item, properties, "${xmlRootName}", { namespace: "${xmlRootNs.namespace}", prefix: "${xmlRootNs.prefix}" });`
-    );
+    if (additionalPropsConfigExpr) {
+      statements.push(
+        `return ${serializeToXmlRef}(item, properties, "${xmlRootName}", { namespace: "${xmlRootNs.namespace}", prefix: "${xmlRootNs.prefix}" }, undefined, ${additionalPropsConfigExpr});`
+      );
+    } else {
+      statements.push(
+        `return ${serializeToXmlRef}(item, properties, "${xmlRootName}", { namespace: "${xmlRootNs.namespace}", prefix: "${xmlRootNs.prefix}" });`
+      );
+    }
   } else {
-    statements.push(
-      `return ${serializeToXmlRef}(item, properties, "${xmlRootName}");`
-    );
+    if (additionalPropsConfigExpr) {
+      statements.push(
+        `return ${serializeToXmlRef}(item, properties, "${xmlRootName}", undefined, undefined, ${additionalPropsConfigExpr});`
+      );
+    } else {
+      statements.push(
+        `return ${serializeToXmlRef}(item, properties, "${xmlRootName}");`
+      );
+    }
   }
 
   const serializerFunction: FunctionDeclarationStructure = {
@@ -232,17 +255,19 @@ export function buildXmlObjectModelSerializer(
   const statements: string[] = [];
 
   // Check if the model is a dictionary type (has additionalProperties)
-  // For Record<T> types, we need to spread the item properties
-  const isDictType = type.additionalProperties !== undefined;
+  const additionalPropertyType = getAdditionalPropertiesType(type);
 
-  if (isDictType && propertyAssignments.length === 0) {
-    // Pure dictionary type - spread all properties
-    statements.push(
-      `return { ...item } as ${resolveReference(XmlHelpers.XmlSerializedObject)};`
-    );
-  } else if (isDictType) {
-    // Model with both defined properties and additional properties
-    statements.push(`return {${propertyAssignments}, ...item};`);
+  if (additionalPropertyType) {
+    const apName = getAdditionalPropertiesName(context, type);
+    if (propertyAssignments.length === 0) {
+      // Pure dictionary type - spread additionalProperties entries as XML elements
+      statements.push(
+        `return { ...item["${apName}"] } as ${resolveReference(XmlHelpers.XmlSerializedObject)};`
+      );
+    } else {
+      // Model with both defined properties and additional properties
+      statements.push(`return {${propertyAssignments}, ...item["${apName}"]};`);
+    }
   } else {
     statements.push(`return {${propertyAssignments}};`);
   }
@@ -253,7 +278,9 @@ export function buildXmlObjectModelSerializer(
 
   // Use _item when there are no properties and not a dict type to avoid unused parameter lint error
   const paramName =
-    propertyAssignments.length === 0 && !isDictType ? "_item" : "item";
+    propertyAssignments.length === 0 && !additionalPropertyType
+      ? "_item"
+      : "item";
 
   const serializerFunction: FunctionDeclarationStructure = {
     kind: StructureKind.Function,
@@ -680,16 +707,35 @@ export function buildXmlModelDeserializer(
     `const properties: ${xmlPropertyDeserializeMetadataRef}[] = [${propertyMetadata}];`
   );
 
+  // Generate additionalProperties config if applicable
+  const additionalPropsConfigExpr = buildAdditionalPropertiesConfigExpr(
+    context,
+    type,
+    properties
+  );
+
   // Generate the deserialization call
   const typeRef = resolveReference(refkey(type));
   if (xmlRootNs) {
-    statements.push(
-      `return ${deserializeFromXmlRef}<${typeRef}>(xmlString, properties, "${xmlRootName}", { namespace: "${xmlRootNs.namespace}", prefix: "${xmlRootNs.prefix}" });`
-    );
+    if (additionalPropsConfigExpr) {
+      statements.push(
+        `return ${deserializeFromXmlRef}<${typeRef}>(xmlString, properties, "${xmlRootName}", { namespace: "${xmlRootNs.namespace}", prefix: "${xmlRootNs.prefix}" }, undefined, ${additionalPropsConfigExpr});`
+      );
+    } else {
+      statements.push(
+        `return ${deserializeFromXmlRef}<${typeRef}>(xmlString, properties, "${xmlRootName}", { namespace: "${xmlRootNs.namespace}", prefix: "${xmlRootNs.prefix}" });`
+      );
+    }
   } else {
-    statements.push(
-      `return ${deserializeFromXmlRef}<${typeRef}>(xmlString, properties, "${xmlRootName}");`
-    );
+    if (additionalPropsConfigExpr) {
+      statements.push(
+        `return ${deserializeFromXmlRef}<${typeRef}>(xmlString, properties, "${xmlRootName}", undefined, undefined, ${additionalPropsConfigExpr});`
+      );
+    } else {
+      statements.push(
+        `return ${deserializeFromXmlRef}<${typeRef}>(xmlString, properties, "${xmlRootName}");`
+      );
+    }
   }
 
   const deserializerFunction: FunctionDeclarationStructure = {
@@ -880,11 +926,24 @@ export function buildXmlObjectModelDeserializer(
     `const properties: ${xmlPropertyDeserializeMetadataRef}[] = [${propertyMetadata}];`
   );
 
+  // Generate additionalProperties config if applicable
+  const additionalPropsConfigExpr = buildAdditionalPropertiesConfigExpr(
+    context,
+    type,
+    properties
+  );
+
   // Generate the deserialization call - no rootName needed for object deserializer
   const typeRef = resolveReference(refkey(type));
-  statements.push(
-    `return ${deserializeXmlObjectRef}<${typeRef}>(xmlObject, properties);`
-  );
+  if (additionalPropsConfigExpr) {
+    statements.push(
+      `return ${deserializeXmlObjectRef}<${typeRef}>(xmlObject, properties, ${additionalPropsConfigExpr});`
+    );
+  } else {
+    statements.push(
+      `return ${deserializeXmlObjectRef}<${typeRef}>(xmlObject, properties);`
+    );
+  }
 
   const deserializerFunction: FunctionDeclarationStructure = {
     kind: StructureKind.Function,
@@ -901,4 +960,41 @@ export function buildXmlObjectModelDeserializer(
   };
 
   return deserializerFunction;
+}
+
+/**
+ * Builds the additionalProperties config expression for XML deserializers.
+ * Returns undefined if the model has no additionalProperties.
+ */
+function buildAdditionalPropertiesConfigExpr(
+  context: SdkContext,
+  type: SdkModelType,
+  properties: SdkModelPropertyType[]
+): string | undefined {
+  const additionalPropertyType = getAdditionalPropertiesType(type);
+  if (!additionalPropertyType) {
+    return undefined;
+  }
+
+  // Resolve the XmlAdditionalPropertiesConfig type reference
+  resolveReference(XmlHelpers.XmlAdditionalPropertiesConfig);
+
+  const propName = getAdditionalPropertiesName(context, type);
+
+  // Collect XML element names of declared properties to exclude
+  const excludeNames: string[] = [];
+  for (const property of properties) {
+    if (property.kind !== "property") {
+      continue;
+    }
+    if (isMetadata(context.program, property.__raw!)) {
+      continue;
+    }
+    const xmlOptions = property.serializationOptions?.xml;
+    const jsonOptions = property.serializationOptions?.json;
+    const xmlName = xmlOptions?.name ?? jsonOptions?.name ?? property.name;
+    excludeNames.push(xmlName);
+  }
+
+  return `{ propertyName: "${propName}", excludeNames: [${excludeNames.map((n) => `"${n}"`).join(", ")}] }`;
 }
