@@ -833,9 +833,7 @@ function buildModelProperty(
     typeExpression = allDiscriminatorValues
       .map((value) => `"${value}"`)
       .join(" | ");
-  }
-   
-  else if (
+  } else if (
     property.kind === "property" &&
     property.serializationOptions.multipart?.isFilePart
   ) {
