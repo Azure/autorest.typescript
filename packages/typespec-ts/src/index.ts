@@ -589,7 +589,11 @@ export async function $onEmit(context: EmitContext) {
           await emitContentByBuilder(
             program,
             (model) =>
-              buildSnippets(model, getClassicalClientName(subClient), option.azureSdkForJs),
+              buildSnippets(
+                model,
+                getClassicalClientName(subClient),
+                option.azureSdkForJs
+              ),
             rlcClient,
             dpgContext.generationPathDetail?.metadataDir
           );
