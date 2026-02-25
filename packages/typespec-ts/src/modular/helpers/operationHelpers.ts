@@ -92,6 +92,7 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import { isHeader, isMetadata } from "@typespec/http";
 import { useContext } from "../../contextManager.js";
+import { getHeaderClientOptions } from "./clientOptionHelpers.js";
 import { isExtensibleEnum } from "../type-expressions/get-enum-expression.js";
 import { emitInlineModel } from "../type-expressions/get-model-expression.js";
 
@@ -654,6 +655,15 @@ function getExceptionThrowStatement(
     ? `error.details = {...(error.details as any), ..._${opName}DeserializeExceptionHeaders(result)};`
     : undefined;
 
+  // Build @clientOption("header", ...) extraction code (independent of include-headers-in-response)
+  const clientOptionHeadersCall = buildClientOptionHeadersCall(
+    operation.operation.exceptions
+  );
+
+  const allHeaderCalls = [exceptionHeadersCall, clientOptionHeadersCall]
+    .filter(Boolean)
+    .join("\n");
+
   // Check if any exception has XML deserialization support that requires runtime content-type check
   const hasAnyDualFormatXml =
     (defaultXmlDeserializer !== undefined && !defaultIsXmlOnly) ||
@@ -673,7 +683,7 @@ function getExceptionThrowStatement(
     statements.push(`const statusCode = Number.parseInt(result.status);`);
     const stats: string[] = customized.map((exception) => {
       const deserializeExpr = getExceptionDeserializeExpr(exception);
-      const headerStmt = exceptionHeadersCall ?? "";
+      const headerStmt = allHeaderCalls;
       if (exception.end) {
         return `if(statusCode >= ${exception.start} && statusCode <= ${exception.end}) {
               error.details = ${deserializeExpr};
@@ -695,7 +705,7 @@ function getExceptionThrowStatement(
           : `isXml ? ${defaultXmlDeserializer}(result.body) : ${defaultDeserializer}(result.body)`;
       statements.push(`else {
         error.details = ${defaultDeserializeExpr};
-        ${exceptionHeadersCall ?? ""}
+        ${allHeaderCalls}
       }`);
     }
     statements.push("throw error;");
@@ -705,7 +715,7 @@ function getExceptionThrowStatement(
         if (defaultIsXmlOnly) {
           statements.push(`const error = ${createRestErrorReference}(result);
           error.details = ${defaultXmlDeserializer}(result.body);
-          ${exceptionHeadersCall ?? ""}`);
+          ${allHeaderCalls}`);
         } else {
           const isXmlContentTypeRef = resolveReference(
             XmlHelpers.isXmlContentType
@@ -713,12 +723,12 @@ function getExceptionThrowStatement(
           statements.push(`const error = ${createRestErrorReference}(result);
           const responseContentType = result.headers?.["content-type"] ?? "";
           error.details = ${isXmlContentTypeRef}(responseContentType) ? ${defaultXmlDeserializer}(result.body) : ${defaultDeserializer}(result.body);
-          ${exceptionHeadersCall ?? ""}`);
+          ${allHeaderCalls}`);
         }
       } else {
         statements.push(`const error = ${createRestErrorReference}(result);
         error.details = ${defaultDeserializer}(result.body);
-        ${exceptionHeadersCall ?? ""}`);
+        ${allHeaderCalls}`);
       }
       statements.push("throw error;");
     } else {
@@ -726,6 +736,39 @@ function getExceptionThrowStatement(
     }
   }
   return statements.join("\n");
+}
+
+/**
+ * Builds the code to extract header values from @clientOption("header", ...) decorators
+ * on exception model types. This is independent of include-headers-in-response.
+ */
+function buildClientOptionHeadersCall(
+  exceptions: SdkHttpOperation["exceptions"]
+): string | undefined {
+  const seenProperties = new Set<string>();
+  const assignments: string[] = [];
+
+  for (const exception of exceptions ?? []) {
+    if (!exception.type || exception.type.kind !== "model") {
+      continue;
+    }
+    const headerOptions = getHeaderClientOptions(exception.type);
+    for (const opt of headerOptions) {
+      if (seenProperties.has(opt.propertyName)) {
+        continue;
+      }
+      seenProperties.add(opt.propertyName);
+      assignments.push(
+        `${opt.propertyName}: result.headers[${JSON.stringify(opt.headerName)}]`
+      );
+    }
+  }
+
+  if (assignments.length === 0) {
+    return undefined;
+  }
+
+  return `error.details = {...(error.details as any), ${assignments.join(", ")}};`;
 }
 
 function getOptionalParamsName(
