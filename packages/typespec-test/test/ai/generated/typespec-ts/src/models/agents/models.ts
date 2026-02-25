@@ -74,7 +74,7 @@ export function toolDefinitionUnionSerializer(item: ToolDefinitionUnion): any {
 }
 
 export function toolDefinitionUnionDeserializer(item: any): ToolDefinitionUnion {
-  switch (item.type) {
+  switch (item["type"]) {
     case "code_interpreter":
       return codeInterpreterToolDefinitionDeserializer(item as CodeInterpreterToolDefinition);
 
@@ -472,7 +472,7 @@ export function openApiAuthDetailsUnionSerializer(item: OpenApiAuthDetailsUnion)
 }
 
 export function openApiAuthDetailsUnionDeserializer(item: any): OpenApiAuthDetailsUnion {
-  switch (item.type) {
+  switch (item["type"]) {
     case "anonymous":
       return openApiAnonymousAuthDetailsDeserializer(item as OpenApiAnonymousAuthDetails);
 
@@ -1453,7 +1453,7 @@ export function messageContentDeserializer(item: any): MessageContent {
 export type MessageContentUnion = MessageTextContent | MessageImageFileContent | MessageContent;
 
 export function messageContentUnionDeserializer(item: any): MessageContentUnion {
-  switch (item.type) {
+  switch (item["type"]) {
     case "text":
       return messageTextContentDeserializer(item as MessageTextContent);
 
@@ -1526,7 +1526,7 @@ export type MessageTextAnnotationUnion =
   | MessageTextAnnotation;
 
 export function messageTextAnnotationUnionDeserializer(item: any): MessageTextAnnotationUnion {
-  switch (item.type) {
+  switch (item["type"]) {
     case "file_citation":
       return messageTextFileCitationAnnotationDeserializer(
         item as MessageTextFileCitationAnnotation,
@@ -1920,7 +1920,7 @@ export function requiredActionDeserializer(item: any): RequiredAction {
 export type RequiredActionUnion = SubmitToolOutputsAction | RequiredAction;
 
 export function requiredActionUnionDeserializer(item: any): RequiredActionUnion {
-  switch (item.type) {
+  switch (item["type"]) {
     case "submit_tool_outputs":
       return submitToolOutputsActionDeserializer(item as SubmitToolOutputsAction);
 
@@ -1984,7 +1984,7 @@ export function requiredToolCallDeserializer(item: any): RequiredToolCall {
 export type RequiredToolCallUnion = RequiredFunctionToolCall | RequiredToolCall;
 
 export function requiredToolCallUnionDeserializer(item: any): RequiredToolCallUnion {
-  switch (item.type) {
+  switch (item["type"]) {
     case "function":
       return requiredFunctionToolCallDeserializer(item as RequiredFunctionToolCall);
 
@@ -2347,7 +2347,7 @@ export type RunStepDetailsUnion =
   | RunStepDetails;
 
 export function runStepDetailsUnionDeserializer(item: any): RunStepDetailsUnion {
-  switch (item.type) {
+  switch (item["type"]) {
     case "message_creation":
       return runStepMessageCreationDetailsDeserializer(item as RunStepMessageCreationDetails);
 
@@ -2439,7 +2439,7 @@ export type RunStepToolCallUnion =
   | RunStepToolCall;
 
 export function runStepToolCallUnionDeserializer(item: any): RunStepToolCallUnion {
-  switch (item.type) {
+  switch (item["type"]) {
     case "code_interpreter":
       return runStepCodeInterpreterToolCallDeserializer(item as RunStepCodeInterpreterToolCall);
 
@@ -2536,7 +2536,7 @@ export type RunStepCodeInterpreterToolCallOutputUnion =
 export function runStepCodeInterpreterToolCallOutputUnionDeserializer(
   item: any,
 ): RunStepCodeInterpreterToolCallOutputUnion {
-  switch (item.type) {
+  switch (item["type"]) {
     case "logs":
       return runStepCodeInterpreterLogOutputDeserializer(item as RunStepCodeInterpreterLogOutput);
 
@@ -3359,7 +3359,7 @@ export type VectorStoreChunkingStrategyResponseUnion =
 export function vectorStoreChunkingStrategyResponseUnionDeserializer(
   item: any,
 ): VectorStoreChunkingStrategyResponseUnion {
-  switch (item.type) {
+  switch (item["type"]) {
     case "other":
       return vectorStoreAutoChunkingStrategyResponseDeserializer(
         item as VectorStoreAutoChunkingStrategyResponse,
@@ -3523,7 +3523,7 @@ export type MessageDeltaContentUnion =
   | MessageDeltaContent;
 
 export function messageDeltaContentUnionDeserializer(item: any): MessageDeltaContentUnion {
-  switch (item.type) {
+  switch (item["type"]) {
     case "image_file":
       return messageDeltaImageFileContentDeserializer(item as MessageDeltaImageFileContent);
 
@@ -3635,7 +3635,7 @@ export type MessageDeltaTextAnnotationUnion =
 export function messageDeltaTextAnnotationUnionDeserializer(
   item: any,
 ): MessageDeltaTextAnnotationUnion {
-  switch (item.type) {
+  switch (item["type"]) {
     case "file_citation":
       return messageDeltaTextFileCitationAnnotationDeserializer(
         item as MessageDeltaTextFileCitationAnnotation,
@@ -3792,7 +3792,7 @@ export type RunStepDeltaDetailUnion =
   | RunStepDeltaDetail;
 
 export function runStepDeltaDetailUnionDeserializer(item: any): RunStepDeltaDetailUnion {
-  switch (item.type) {
+  switch (item["type"]) {
     case "message_creation":
       return runStepDeltaMessageCreationDeserializer(item as RunStepDeltaMessageCreation);
 
@@ -3887,7 +3887,7 @@ export type RunStepDeltaToolCallUnion =
   | RunStepDeltaToolCall;
 
 export function runStepDeltaToolCallUnionDeserializer(item: any): RunStepDeltaToolCallUnion {
-  switch (item.type) {
+  switch (item["type"]) {
     case "function":
       return runStepDeltaFunctionToolCallDeserializer(item as RunStepDeltaFunctionToolCall);
 
@@ -4043,7 +4043,7 @@ export type RunStepDeltaCodeInterpreterOutputUnion =
 export function runStepDeltaCodeInterpreterOutputUnionDeserializer(
   item: any,
 ): RunStepDeltaCodeInterpreterOutputUnion {
-  switch (item.type) {
+  switch (item["type"]) {
     case "logs":
       return runStepDeltaCodeInterpreterLogOutputDeserializer(
         item as RunStepDeltaCodeInterpreterLogOutput,

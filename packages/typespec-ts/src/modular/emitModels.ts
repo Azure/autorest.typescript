@@ -35,7 +35,8 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import {
   getExternalModel,
-  getModelExpression
+  getModelExpression,
+  getMultipartFileTypeExpression
 } from "./type-expressions/get-model-expression.js";
 
 import { SdkContext } from "../utils/interfaces.js";
@@ -51,6 +52,8 @@ import {
 import {
   buildXmlModelSerializer,
   buildXmlModelDeserializer,
+  buildXmlObjectModelSerializer,
+  buildXmlObjectModelDeserializer,
   hasXmlSerialization
 } from "./serialization/buildXmlSerializerFunction.js";
 import path from "path";
@@ -75,8 +78,6 @@ import {
   flattenPropertyModelMap,
   getAllOperationsFromClient
 } from "../framework/hooks/sdkTypes.js";
-import { resolveReference } from "../framework/reference.js";
-import { MultipartHelpers } from "./static-helpers-metadata.js";
 import { getAllAncestors } from "./helpers/operationHelpers.js";
 import { getAllProperties } from "./helpers/operationHelpers.js";
 import { getDirectSubtypes } from "./helpers/typeHelpers.js";
@@ -384,6 +385,14 @@ function addSerializationFunctions(
   if (typeOrProperty.kind === "model" && hasXmlSerialization(typeOrProperty)) {
     const xmlSerializerRefKey = refkey(typeOrProperty, "xmlSerializer");
     const xmlDeserializerRefKey = refkey(typeOrProperty, "xmlDeserializer");
+    const xmlObjectSerializerRefKey = refkey(
+      typeOrProperty,
+      "xmlObjectSerializer"
+    );
+    const xmlObjectDeserializerRefKey = refkey(
+      typeOrProperty,
+      "xmlObjectDeserializer"
+    );
 
     const xmlSerializationFunction = buildXmlModelSerializer(
       context,
@@ -396,6 +405,24 @@ function addSerializationFunctions(
       xmlSerializationFunction.name
     ) {
       addDeclaration(sourceFile, xmlSerializationFunction, xmlSerializerRefKey);
+    }
+
+    // Also generate XML object serializer for nested object serialization
+    const xmlObjectSerializationFunction = buildXmlObjectModelSerializer(
+      context,
+      typeOrProperty,
+      options
+    );
+    if (
+      xmlObjectSerializationFunction &&
+      typeof xmlObjectSerializationFunction !== "string" &&
+      xmlObjectSerializationFunction.name
+    ) {
+      addDeclaration(
+        sourceFile,
+        xmlObjectSerializationFunction,
+        xmlObjectSerializerRefKey
+      );
     }
 
     const xmlDeserializationFunction = buildXmlModelDeserializer(
@@ -412,6 +439,24 @@ function addSerializationFunctions(
         sourceFile,
         xmlDeserializationFunction,
         xmlDeserializerRefKey
+      );
+    }
+
+    // Also generate XML object deserializer for nested object deserialization
+    const xmlObjectDeserializationFunction = buildXmlObjectModelDeserializer(
+      context,
+      typeOrProperty,
+      options
+    );
+    if (
+      xmlObjectDeserializationFunction &&
+      typeof xmlObjectDeserializationFunction !== "string" &&
+      xmlObjectDeserializationFunction.name
+    ) {
+      addDeclaration(
+        sourceFile,
+        xmlObjectDeserializationFunction,
+        xmlObjectDeserializerRefKey
       );
     }
   }
@@ -790,43 +835,11 @@ function buildModelProperty(
       .join(" | ");
   }
   // eslint-disable-next-line
-  else if (property.kind === "property" && property.isMultipartFileInput) {
-    // eslint-disable-next-line
-    const multipartOptions = property.multipartOptions;
-    typeExpression = "{";
-    typeExpression += `contents: ${resolveReference(MultipartHelpers.FileContents)};`;
-
-    const isContentTypeOptional =
-      multipartOptions?.contentType === undefined ||
-      multipartOptions.contentType.optional ||
-      multipartOptions.defaultContentTypes.length > 0;
-    const isFilenameOptional =
-      multipartOptions?.filename === undefined ||
-      multipartOptions.filename.optional;
-
-    const contentTypeType = multipartOptions?.contentType
-      ? getTypeExpression(context, multipartOptions.contentType.type)
-      : "string";
-    const filenameType = multipartOptions?.filename
-      ? getTypeExpression(context, multipartOptions.filename.type)
-      : "string";
-
-    typeExpression += `contentType${isContentTypeOptional ? "?" : ""}: ${contentTypeType};`;
-    typeExpression += `filename${isFilenameOptional ? "?" : ""}: ${filenameType};`;
-
-    typeExpression += "}";
-
-    if (isContentTypeOptional && isFilenameOptional) {
-      // Allow passing content directly if both filename and content type are optional
-      typeExpression = `(${resolveReference(MultipartHelpers.FileContents)}) | ${typeExpression}`;
-    } else {
-      // If either one is required, still accept File at the top level since it requires a filename
-      typeExpression = `File | ${typeExpression}`;
-    }
-
-    if (property.type.kind === "array") {
-      typeExpression = `Array<${typeExpression}>`;
-    }
+  else if (
+    property.kind === "property" &&
+    property.serializationOptions.multipart?.isFilePart
+  ) {
+    typeExpression = getMultipartFileTypeExpression(context, property);
   } else {
     typeExpression = getTypeExpression(context, property.type, {
       isOptional: property.optional

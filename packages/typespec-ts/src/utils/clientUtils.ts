@@ -31,9 +31,7 @@ export function getRLCClients(
   // For one client in Modular: Return the client from listClients with multi-service support
   if (modular && clients.length === 1) {
     return clients.map((client) => {
-      const services = Array.isArray(client.service)
-        ? client.service
-        : [client.service];
+      const services = client.services;
       return {
         ...client,
         services: services,
@@ -47,12 +45,8 @@ export function getRLCClients(
     // Flatten all services and return one client per service
     const services = new Set<Namespace>();
     clients.forEach((c) => {
-      const clientService = c.service;
-      if (Array.isArray(clientService)) {
-        clientService.forEach((ns) => services.add(ns));
-      } else {
-        services.add(clientService);
-      }
+      const clientService = c.services;
+      clientService.forEach((ns) => services.add(ns));
     });
 
     if (services.size > 0) {
@@ -94,9 +88,7 @@ export function getRLCClients(
 
 export function listOperationsUnderRLCClient(client: SdkClient): Operation[] {
   const operations = [];
-  const serviceArray = Array.isArray(client.service)
-    ? client.service
-    : [client.service];
+  const serviceArray = client.services;
   const queue: (Namespace | Interface)[] = [...serviceArray];
   while (queue.length > 0) {
     const current = queue.shift()!;

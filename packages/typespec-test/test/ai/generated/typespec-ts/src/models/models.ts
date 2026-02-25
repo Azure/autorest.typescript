@@ -104,7 +104,7 @@ export type InternalConnectionPropertiesUnion =
 export function internalConnectionPropertiesUnionDeserializer(
   item: any,
 ): InternalConnectionPropertiesUnion {
-  switch (item.authType) {
+  switch (item["authType"]) {
     case "ApiKey":
       return internalConnectionPropertiesApiKeyAuthDeserializer(
         item as InternalConnectionPropertiesApiKeyAuth,
@@ -332,7 +332,7 @@ export function inputDataUnionSerializer(item: InputDataUnion): any {
 }
 
 export function inputDataUnionDeserializer(item: any): InputDataUnion {
-  switch (item.type) {
+  switch (item["type"]) {
     case "app_insights":
       return applicationInsightsConfigurationDeserializer(item as ApplicationInsightsConfiguration);
 
@@ -590,7 +590,7 @@ export function triggerUnionSerializer(item: TriggerUnion): any {
 }
 
 export function triggerUnionDeserializer(item: any): TriggerUnion {
-  switch (item.type) {
+  switch (item["type"]) {
     case "Recurrence":
       return recurrenceTriggerDeserializer(item as RecurrenceTrigger);
 

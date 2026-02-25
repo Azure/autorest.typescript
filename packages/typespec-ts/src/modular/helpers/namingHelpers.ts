@@ -73,3 +73,22 @@ export function getClassicalLayerPrefix(
 export function isDefined<T>(thing: T | undefined | null): thing is T {
   return typeof thing !== "undefined" && thing !== null;
 }
+
+/**
+ * Generates a locally unique name within a set of existing names.
+ * @param name - The base name.
+ * @param existingNames - A set of names already in use.
+ * @returns A unique name not present in the existing names set.
+ */
+export function generateLocallyUniqueName(
+  name: string,
+  existingNames: Set<string>
+): string {
+  let uniqueName = name;
+  let counter = 1;
+  while (existingNames.has(uniqueName)) {
+    uniqueName = `${name}_${counter}`;
+    counter++;
+  }
+  return uniqueName;
+}

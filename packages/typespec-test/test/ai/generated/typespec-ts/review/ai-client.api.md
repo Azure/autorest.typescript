@@ -331,7 +331,11 @@ export interface AgentsOperations {
     updateRun: (threadId: string, runId: string, options?: AgentsUpdateRunOptionalParams) => Promise<ThreadRun>;
     updateThread: (threadId: string, options?: AgentsUpdateThreadOptionalParams) => Promise<AgentThread>;
     uploadFile: (body: {
-        file: Uint8Array;
+        file: FileContents | {
+            contents: FileContents;
+            contentType?: string;
+            filename?: string;
+        };
         purpose: FilePurpose;
         filename?: string;
     }, options?: AgentsUploadFileOptionalParams) => Promise<OpenAIFile>;

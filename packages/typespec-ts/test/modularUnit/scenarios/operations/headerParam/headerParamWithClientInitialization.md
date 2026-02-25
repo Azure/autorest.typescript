@@ -61,7 +61,7 @@ model SavingsPlanModel extends Azure.ResourceManager.Foundations.ProxyResource {
   >;
 
   sku: ResourceSku;
-  
+
   @doc("The resource-specific properties for this resource.")
   properties?: SavingsPlanModelProperties;
 }
@@ -203,6 +203,7 @@ export async function _getDeserialize(result: PathUncheckedResponse): Promise<Sa
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
     error.details = errorResponseDeserializer(result.body);
+
     throw error;
   }
 
@@ -231,6 +232,7 @@ export async function get(
   return _getDeserialize(result);
 }
 ```
+
 # Required header parameter with clientInitialization
 
 This scenario tests the generation of TypeScript code for an Azure Resource Manager resource read operation with header parameters, specifically the `$expand` parameter for the SavingsPlanModel.
@@ -294,7 +296,7 @@ model SavingsPlanModel extends Azure.ResourceManager.Foundations.ProxyResource {
   >;
 
   sku: ResourceSku;
-  
+
   @doc("The resource-specific properties for this resource.")
   properties?: SavingsPlanModelProperties;
 }
@@ -434,6 +436,7 @@ export async function _getDeserialize(result: PathUncheckedResponse): Promise<Sa
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
     error.details = errorResponseDeserializer(result.body);
+
     throw error;
   }
 
