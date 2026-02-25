@@ -834,7 +834,7 @@ function buildModelProperty(
       .map((value) => `"${value}"`)
       .join(" | ");
   }
-  // eslint-disable-next-line
+   
   else if (
     property.kind === "property" &&
     property.serializationOptions.multipart?.isFilePart
