@@ -41,7 +41,17 @@ interface OperationDeclarationInfo {
   // only set when isLroPaging is true
   lropagingFinalReturnType?: string;
 }
-
+export function getPagingLROMethodName(operationName: string) {
+  let initialOperationName = normalizeName(operationName, NameType.Operation);
+  if (initialOperationName.indexOf("list") === 0) {
+    initialOperationName = initialOperationName.replace("list", "");
+  } else if (initialOperationName.indexOf("get") === 0) {
+    initialOperationName = initialOperationName.replace("get", "");
+  } else {
+    initialOperationName = normalizeName(initialOperationName, NameType.Class);
+  }
+  return `beginList_${initialOperationName}_andWait`;
+}
 export function getClassicalOperation(
   dpgContext: SdkContext,
   clientMap: [string[], SdkClientType<SdkServiceOperation>],
@@ -174,21 +184,9 @@ export function getClassicalOperation(
           const pagedAsyncIterableIteratorReference = resolveReference(
             PagingHelpers.PagedAsyncIterableIterator
           );
-          let initialOperationName = normalizeName(
-            getClassicalMethodName(d),
-            NameType.Operation
+          const beginListAndWaitName = getPagingLROMethodName(
+            getClassicalMethodName(d)
           );
-          if (initialOperationName.indexOf("list") === 0) {
-            initialOperationName = initialOperationName.replace("list", "");
-          } else if (initialOperationName.indexOf("get") === 0) {
-            initialOperationName = initialOperationName.replace("get", "");
-          } else {
-            initialOperationName = normalizeName(
-              initialOperationName,
-              NameType.Class
-            );
-          }
-          const beginListAndWaitName = `beginList_${initialOperationName}_andWait`;
           properties.push({
             kind: StructureKind.PropertySignature,
             name: `${normalizeName(beginListAndWaitName, NameType.Method)}`,
@@ -286,21 +284,9 @@ export function getClassicalOperation(
               );
               const beginName = `begin_${getClassicalMethodName(d)}`;
               const beginAndWaitName = `${beginName}_andWait`;
-              let initialOperationName = normalizeName(
-                getClassicalMethodName(d),
-                NameType.Operation
+              const beginListAndWaitName = getPagingLROMethodName(
+                getClassicalMethodName(d)
               );
-              if (initialOperationName.indexOf("list") === 0) {
-                initialOperationName = initialOperationName.replace("list", "");
-              } else if (initialOperationName.indexOf("get") === 0) {
-                initialOperationName = initialOperationName.replace("get", "");
-              } else {
-                initialOperationName = normalizeName(
-                  initialOperationName,
-                  NameType.Class
-                );
-              }
-              const beginListAndWaitName = `beginList_${initialOperationName}_andWait`;
 
               if (operationInfo?.isLroPaging) {
                 ret.push(

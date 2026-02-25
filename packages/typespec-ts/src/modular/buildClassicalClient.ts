@@ -42,6 +42,7 @@ import {
   SimplePollerHelpers
 } from "./static-helpers-metadata.js";
 import { AzurePollingDependencies } from "./external-dependencies.js";
+import { getPagingLROMethodName } from "./helpers/classicalOperationHelpers.js";
 
 export function buildClassicalClient(
   dpgContext: SdkContext,
@@ -304,19 +305,8 @@ function generateMethod(
     const pagedAsyncIterableIteratorReference = resolveReference(
       PagingHelpers.PagedAsyncIterableIterator
     );
-    let initialOperationName = normalizeName(methodName, NameType.Operation);
-    if (initialOperationName.indexOf("list") === 0) {
-      initialOperationName = initialOperationName.replace("list", "");
-    } else if (initialOperationName.indexOf("get") === 0) {
-      initialOperationName = initialOperationName.replace("get", "");
-    } else {
-      initialOperationName = normalizeName(
-        initialOperationName,
-        NameType.Class
-      );
-    }
     const beginListAndWaitName = normalizeName(
-      `beginList_${initialOperationName}_andWait`,
+      `${getPagingLROMethodName(methodName)}`,
       NameType.Method
     );
     // add begin and wait method for LRO+Paging - directly returns paged iterator
