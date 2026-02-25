@@ -37,6 +37,7 @@ import {
   buildPollingHelper,
   buildPaginateHelper as buildRLCPaginateHelper,
   buildReadmeFile,
+  hasClientNameChanged,
   updateReadmeFile,
   buildRecordedClientFile,
   buildResponseTypes,
@@ -565,40 +566,47 @@ export async function $onEmit(context: EmitContext) {
           )
         };
       }
-      await emitContentByBuilder(
-        program,
-        (model) =>
-          updatePackageFile(model, existingPackageFilePath, modularPackageInfo),
-        rlcClient,
-        dpgContext.generationPathDetail?.metadataDir
-      );
 
-      // update existing README.md file if it exists
+      const updateBuilders = [
+        (model: RLCModel) =>
+          updatePackageFile(model, existingPackageFilePath, modularPackageInfo)
+      ];
+
+      // If the client name changed, regenerate the README and snippets completely;
+      // otherwise update only the API reference link in-place.
       if (hasReadmeFile) {
-        await emitContentByBuilder(
-          program,
-          (model) => updateReadmeFile(model, existingReadmeFilePath),
+        const clientNameChanged = hasClientNameChanged(
           rlcClient,
-          dpgContext.generationPathDetail?.metadataDir
+          existingReadmeFilePath
         );
-      }
+        updateBuilders.push(
+          clientNameChanged
+            ? buildReadmeFile
+            : (model: RLCModel) =>
+                updateReadmeFile(model, existingReadmeFilePath)
+        );
 
-      // Regenerate snippets.spec.ts for documentation
-      if (option.azureSdkForJs) {
-        for (const subClient of dpgContext.sdkPackage.clients) {
-          await emitContentByBuilder(
-            program,
-            (model) =>
+        // Regenerate snippets.spec.ts only when the client name changed
+        if (clientNameChanged && option.azureSdkForJs) {
+          for (const subClient of dpgContext.sdkPackage.clients) {
+            updateBuilders.push((model: RLCModel) =>
               buildSnippets(
                 model,
                 getClassicalClientName(subClient),
                 option.azureSdkForJs
-              ),
-            rlcClient,
-            dpgContext.generationPathDetail?.metadataDir
-          );
+              )
+            );
+          }
         }
       }
+
+      // update metadata relevant files
+      await emitContentByBuilder(
+        program,
+        updateBuilders,
+        rlcClient,
+        dpgContext.generationPathDetail?.metadataDir
+      );
     }
     if (isAzureFlavor) {
       await emitContentByBuilder(

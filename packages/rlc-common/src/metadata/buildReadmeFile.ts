@@ -363,6 +363,23 @@ export function buildReadmeFile(model: RLCModel) {
   };
 }
 
+export function hasClientNameChanged(
+  model: RLCModel,
+  existingReadmeFilePath: string
+): boolean {
+  try {
+    const existingContent = readFileSync(existingReadmeFilePath, "utf8");
+    const importMatch = existingContent.match(
+      /import\s*\{\s*([A-Za-z0-9_]+)\s*\}\s*from\s*["'][^"']*["']/
+    );
+    const existingClientName = importMatch?.[1];
+    const newClientName = getClientName(model);
+    return !!existingClientName && existingClientName !== newClientName;
+  } catch {
+    return false;
+  }
+}
+
 export function updateReadmeFile(
   model: RLCModel,
   existingReadmeFilePath: string
@@ -370,38 +387,20 @@ export function updateReadmeFile(
   try {
     const existingContent = readFileSync(existingReadmeFilePath, "utf8");
     const metadata = createMetadata(model) ?? {};
-    const newClientName = getClientName(model);
 
-    let updatedContent = existingContent;
-
-    // Update API reference link
     const newApiRefLink = hbs
       .compile(apiReferenceTemplate, { noEscape: true })(metadata)
       .trim();
 
-    if (newApiRefLink) {
-      const apiRefRegex =
-        /^- \[API reference documentation\]\(https:\/\/learn\.microsoft\.com\/javascript\/api\/[^)]+\)$/m;
-      updatedContent = updatedContent.replace(apiRefRegex, (match) =>
-        match ? newApiRefLink : match
-      );
+    if (!newApiRefLink) {
+      return { path: "README.md", content: existingContent };
     }
 
-    // Extract old client name from existing README import statements
-    const importMatch = existingContent.match(
-      /import\s*\{\s*([A-Za-z0-9_]+)\s*\}\s*from\s*["'][^"']*["']/
+    const apiRefRegex =
+      /^- \[API reference documentation\]\(https:\/\/learn\.microsoft\.com\/javascript\/api\/[^)]+\)$/m;
+    const updatedContent = existingContent.replace(apiRefRegex, (match) =>
+      match ? newApiRefLink : match
     );
-    const oldClientName = importMatch?.[1];
-
-    // Only update client name if we found an old name and it's different from the new one
-    if (oldClientName && newClientName && oldClientName !== newClientName) {
-      // Create a regex that matches the old client name as a whole word
-      const oldClientNameRegex = new RegExp(`\\b${oldClientName}\\b`, "g");
-      updatedContent = updatedContent.replace(
-        oldClientNameRegex,
-        newClientName
-      );
-    }
 
     return { path: "README.md", content: updatedContent };
   } catch {
