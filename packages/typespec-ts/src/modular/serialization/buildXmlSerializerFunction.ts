@@ -602,7 +602,8 @@ function getPropertyTypeInfo(type: SdkType): {
       if (type.variantTypes.length > 0) {
         const first = getPropertyTypeInfo(type.variantTypes[0]!);
         const allSame = type.variantTypes.every(
-          (v) => getPropertyTypeInfo(v).primitiveSubtype === first.primitiveSubtype
+          (v) =>
+            getPropertyTypeInfo(v).primitiveSubtype === first.primitiveSubtype
         );
         if (allSame) {
           return first;
