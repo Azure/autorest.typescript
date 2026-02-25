@@ -105,6 +105,7 @@ import { transformRLCModel } from "./transform/transform.js";
 import { transformRLCOptions } from "./transform/transfromRLCOptions.js";
 import { emitSamples } from "./modular/emitSamples.js";
 import { generateCrossLanguageDefinitionFile } from "./utils/crossLanguageDef.js";
+import { getClassicalClientName } from "./modular/helpers/namingHelpers.js";
 
 export * from "./lib.js";
 
@@ -588,7 +589,7 @@ export async function $onEmit(context: EmitContext) {
           await emitContentByBuilder(
             program,
             (model) =>
-              buildSnippets(model, subClient.name, option.azureSdkForJs),
+              buildSnippets(model, getClassicalClientName(subClient), option.azureSdkForJs),
             rlcClient,
             dpgContext.generationPathDetail?.metadataDir
           );
