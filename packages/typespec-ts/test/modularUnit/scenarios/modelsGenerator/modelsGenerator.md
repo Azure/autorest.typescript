@@ -423,7 +423,7 @@ export interface Foo {
 ```ts models function fooSerializer
 export function fooSerializer(item: Foo): any {
   return {
-    prop1: item["prop1"].toISOString().split('T')[0],
+    prop1: item["prop1"].toISOString().split("T")[0],
     prop2: item["prop2"],
     prop3: item["prop3"].toISOString(),
     prop4: item["prop4"],
@@ -1676,7 +1676,7 @@ export function petUnionSerializer(item: PetUnion): any {
 }
 
 export function petUnionDeserializer(item: any): PetUnion {
-  switch (item.kind) {
+  switch (item["kind"]) {
     case "dog":
       return psDogDeserializer(item as PSDog);
 
@@ -1783,7 +1783,7 @@ export function petDeserializer(item: any): Pet {
 export type PetUnion = Cat | Dog | Pet;
 
 export function petUnionDeserializer(item: any): PetUnion {
-  switch (item.kind) {
+  switch (item["kind"]) {
     case "cat":
       return catDeserializer(item as Cat);
 
@@ -1925,7 +1925,7 @@ export function petDeserializer(item: any): Pet {
 export type PetUnion = Cat | DogUnion | Pet;
 
 export function petUnionDeserializer(item: any): PetUnion {
-  switch (item.kind) {
+  switch (item["kind"]) {
     case "cat":
       return catDeserializer(item as Cat);
 
@@ -1973,7 +1973,7 @@ export function dogDeserializer(item: any): Dog {
 export type DogUnion = Gold | Dog;
 
 export function dogUnionDeserializer(item: any): DogUnion {
-  switch (item.type) {
+  switch (item["type"]) {
     case "gold":
       return goldDeserializer(item as Gold);
 
@@ -2856,7 +2856,7 @@ export function petUnionSerializer(item: PetUnion): any {
 }
 
 export function petUnionDeserializer(item: any): PetUnion {
-  switch (item.kind) {
+  switch (item["kind"]) {
     case "dog":
       return servicePlacementPolicyDescriptionDeserializer(
         item as ServicePlacementPolicyDescription,
@@ -2865,5 +2865,92 @@ export function petUnionDeserializer(item: any): PetUnion {
     default:
       return petDeserializer(item);
   }
+}
+```
+
+# should handle duplicate model name import between hardcode import and binder import
+
+## TypeSpec
+
+```tsp
+model Client {
+  id: string;
+  email: string;
+}
+
+op read(@body body: Client): Client;
+```
+
+## Models
+
+```ts models
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/** model interface Client */
+export interface Client {
+  id: string;
+  email: string;
+}
+
+export function clientSerializer(item: Client): any {
+  return { id: item["id"], email: item["email"] };
+}
+
+export function clientDeserializer(item: any): Client {
+  return {
+    id: item["id"],
+    email: item["email"],
+  };
+}
+```
+
+## Operations
+
+```ts operations
+import { TestingContext as Client } from "./index.js";
+import { Client as Client_1, clientSerializer, clientDeserializer } from "../models/models.js";
+import { ReadOptionalParams } from "./options.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+
+export function _readSend(
+  context: Client,
+  body: Client_1,
+  options: ReadOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/")
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
+      body: clientSerializer(body),
+    });
+}
+
+export async function _readDeserialize(result: PathUncheckedResponse): Promise<Client_1> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return clientDeserializer(result.body);
+}
+
+export async function read(
+  context: Client,
+  body: Client_1,
+  options: ReadOptionalParams = { requestOptions: {} },
+): Promise<Client_1> {
+  const result = await _readSend(context, body, options);
+  return _readDeserialize(result);
 }
 ```

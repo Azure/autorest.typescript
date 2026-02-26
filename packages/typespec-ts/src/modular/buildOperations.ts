@@ -7,6 +7,8 @@ import {
 } from "ts-morph";
 import {
   getDeserializePrivateFunction,
+  getDeserializeHeadersPrivateFunction,
+  getDeserializeExceptionHeadersPrivateFunction,
   getExpectedStatuses,
   getOperationFunction,
   getOperationOptionsName,
@@ -85,16 +87,28 @@ export function buildOperationFiles(
       const sendOperationDeclaration = getSendPrivateFunction(
         dpgContext,
         [prefixes, op],
-        clientType
+        clientType,
+        client
       );
       const deserializeOperationDeclaration = getDeserializePrivateFunction(
         dpgContext,
         op
       );
-      operationGroupFile.addFunctions([
+      const deserializeHeadersDeclaration =
+        getDeserializeHeadersPrivateFunction(dpgContext, op);
+      const deserializeExceptionHeadersDeclaration =
+        getDeserializeExceptionHeadersPrivateFunction(dpgContext, op);
+      const functionsToAdd = [
         sendOperationDeclaration,
         deserializeOperationDeclaration
-      ]);
+      ];
+      if (deserializeHeadersDeclaration) {
+        functionsToAdd.push(deserializeHeadersDeclaration);
+      }
+      if (deserializeExceptionHeadersDeclaration) {
+        functionsToAdd.push(deserializeExceptionHeadersDeclaration);
+      }
+      operationGroupFile.addFunctions(functionsToAdd);
       addDeclaration(
         operationGroupFile,
         operationDeclaration,
@@ -191,7 +205,7 @@ export function buildOperationOptions(
         return {
           docs: getDocsFromDescription(p.doc),
           hasQuestionToken: true,
-          type: getTypeExpression(context, p.type),
+          type: getTypeExpression(context, p.type, { isOptional: true }),
           name: normalizeName(p.name, NameType.Parameter)
         };
       })

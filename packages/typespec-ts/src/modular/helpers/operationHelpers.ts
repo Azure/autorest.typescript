@@ -17,7 +17,11 @@ import {
   isSpreadBodyParameter,
   isTypeNullable
 } from "./typeHelpers.js";
-import { getClassicalLayerPrefix, getOperationName } from "./namingHelpers.js";
+import {
+  getClassicalLayerPrefix,
+  getOperationName,
+  generateLocallyUniqueName
+} from "./namingHelpers.js";
 import {
   getCollectionFormatHelper,
   hasCollectionFormatInfo,
@@ -67,9 +71,11 @@ import {
 } from "../type-expressions/get-type-expression.js";
 import { SdkContext } from "../../utils/interfaces.js";
 import {
+  getClientOptions,
   isHttpMetadata,
   isReadOnly,
   SdkBodyParameter,
+  SdkClientType,
   SdkConstantType,
   SdkEnumType,
   SdkHttpOperation,
@@ -81,16 +87,23 @@ import {
   SdkModelPropertyType,
   SdkModelType,
   SdkPagingServiceMethod,
+  SdkServiceResponseHeader,
   SdkType
 } from "@azure-tools/typespec-client-generator-core";
-import { isMetadata } from "@typespec/http";
+import { isHeader, isMetadata } from "@typespec/http";
 import { useContext } from "../../contextManager.js";
+import {
+  getHeaderClientOptions,
+  getRestErrorCodeHeader
+} from "./clientOptionHelpers.js";
 import { isExtensibleEnum } from "../type-expressions/get-enum-expression.js";
+import { emitInlineModel } from "../type-expressions/get-model-expression.js";
 
 export function getSendPrivateFunction(
   dpgContext: SdkContext,
   method: [string[], ServiceOperation],
-  clientType: string
+  clientType: string,
+  client?: SdkClientType<SdkHttpOperation>
 ): OptionalKind<FunctionDeclarationStructure> {
   const operation = method[1];
   const parameters = getOperationSignatureParameters(
@@ -119,12 +132,23 @@ export function getSendPrivateFunction(
     ...getQueryParameters(dpgContext, operation)
   ];
   if (urlTemplateParams.length > 0) {
-    statements.push(`const path = ${resolveReference(UrlTemplateHelpers.parseTemplate)}("${operation.operation.uriTemplate}", {
+    // Generate a unique local variable name that doesn't conflict with parameter names
+    const paramNames = new Set(parameters.map((p) => p.name));
+    const pathVarName = generateLocallyUniqueName("path", paramNames);
+    const includeRootSlash = client
+      ? getClientOptions(client, "includeRootSlash") !== false
+      : true;
+
+    const uriTemplate = includeRootSlash
+      ? operation.operation.uriTemplate
+      : operation.operation.uriTemplate.replace(/^\//, "");
+
+    statements.push(`const ${pathVarName} = ${resolveReference(UrlTemplateHelpers.parseTemplate)}("${uriTemplate}", {
         ${urlTemplateParams.join(",\n")}
         },{
       allowReserved: ${optionalParamName}?.requestOptions?.skipUrlEncoding
     });`);
-    pathStr = "path";
+    pathStr = pathVarName;
   }
 
   statements.push(
@@ -158,6 +182,7 @@ export function getDeserializePrivateFunction(
   ];
   const isLroOnly = isLroOnlyOperation(operation);
   const isLroAndPaging = isLroAndPagingOperation(operation);
+  const isPagingOnly = isPagingOnlyOperation(operation);
 
   // TODO: Support operation overloads
   // TODO: Support multiple responses
@@ -166,10 +191,17 @@ export function getDeserializePrivateFunction(
   let returnType;
   if (isLroOnly || isLroAndPaging) {
     returnType = buildLroReturnType(context, operation);
-  } else if (response.type && restResponse) {
+  } else if (isPagingOnly && restResponse?.type) {
+    // For paging operations, use the full response model (e.g., _OperationListResult)
+    // instead of just the array element type
     returnType = {
       name: (restResponse as any).name ?? "",
-      type: getTypeExpression(context, restResponse.type!)
+      type: getTypeExpression(context, restResponse.type)
+    };
+  } else if (response.type) {
+    returnType = {
+      name: (response as any).name ?? "",
+      type: getTypeExpression(context, response.type)
     };
   } else {
     returnType = { name: "", type: "void" };
@@ -198,7 +230,7 @@ export function getDeserializePrivateFunction(
   const deserializedType =
     isLroOnly || isLroAndPaging
       ? operation?.lroMetadata?.finalResponse?.result
-      : restResponse
+      : isPagingOnly && restResponse?.type
         ? restResponse.type
         : response.type;
   const lroSubSegments = isLroOnly
@@ -364,15 +396,72 @@ export function getDeserializePrivateFunction(
   };
 }
 
+/**
+ * Generates a private function to deserialize response headers.
+ * Only generated when response headers are present and include-headers-in-response is enabled.
+ */
+export function getDeserializeHeadersPrivateFunction(
+  context: SdkContext,
+  operation: ServiceOperation
+): OptionalKind<FunctionDeclarationStructure> | undefined {
+  const responseHeaders = getResponseHeaders(operation.operation.responses);
+  const isResponseHeadersEnabled =
+    context.rlcOptions?.includeHeadersInResponse === true;
+
+  // Only generate if headers exist and feature is enabled
+  if (responseHeaders.length === 0 || !isResponseHeadersEnabled) {
+    return undefined;
+  }
+
+  const { name } = getOperationName(operation);
+  const dependencies = useDependencies();
+  const PathUncheckedResponseReference = resolveReference(
+    dependencies.PathUncheckedResponse
+  );
+
+  const parameters: OptionalKind<ParameterDeclarationStructure>[] = [
+    {
+      name: "result",
+      type: PathUncheckedResponseReference
+    }
+  ];
+
+  const returnType = buildHeaderOnlyResponseType(context, responseHeaders);
+
+  const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
+    isAsync: false,
+    isExported: true,
+    name: `_${name}DeserializeHeaders`,
+    parameters,
+    returnType
+  };
+
+  const statements: string[] = [];
+  statements.push(
+    `return ${buildHeaderOnlyResponseValue(context, responseHeaders)};`
+  );
+
+  return {
+    ...functionStatement,
+    statements
+  };
+}
+
 interface ExceptionThrowDetail {
   start: number;
   end?: number;
   deserializer: string;
+  xmlDeserializer?: string;
+  /** Whether the exception response is XML-only (no JSON content type) */
+  isXmlOnly?: boolean;
 }
 
 interface OperationExceptionDetails {
   customized: ExceptionThrowDetail[];
   defaultDeserializer?: string;
+  defaultXmlDeserializer?: string;
+  /** Whether the default exception response is XML-only */
+  defaultIsXmlOnly?: boolean;
 }
 
 function getExceptionDetails(
@@ -381,6 +470,8 @@ function getExceptionDetails(
 ): OperationExceptionDetails {
   const customized: ExceptionThrowDetail[] = [];
   let defaultDeserializer: string | undefined;
+  let defaultXmlDeserializer: string | undefined;
+  let defaultIsXmlOnly: boolean | undefined;
   for (const exception of operation.operation.exceptions) {
     if (!exception.type) {
       continue;
@@ -400,22 +491,142 @@ function getExceptionDetails(
     ) {
       continue;
     }
+
+    // Check if the exception type has XML serialization support
+    // Use exception contentTypes when available, otherwise check the type itself
+    const exceptionContentTypes = exception.contentTypes ?? [];
+    const exceptionIsXml = isXmlPayload(exceptionContentTypes);
+    const exceptionIsDualFormat = hasDualFormatSupport(exceptionContentTypes);
+    const typeHasXml =
+      exception.type.kind === "model" && hasXmlSerialization(exception.type);
+
+    let xmlDeserializerName: string | undefined;
+    if (exception.type.kind === "model" && (typeHasXml || exceptionIsXml)) {
+      const xmlName = buildXmlModelDeserializer(context, exception.type, {
+        nameOnly: true,
+        skipDiscriminatedUnionSuffix: false
+      });
+      if (typeof xmlName === "string") {
+        xmlDeserializerName = xmlName;
+      }
+    }
+
+    // XML-only when all content types are XML (no JSON support)
+    const isXmlOnly =
+      xmlDeserializerName !== undefined &&
+      exceptionIsXml &&
+      !exceptionIsDualFormat;
+
     if (statusCode === "*") {
       defaultDeserializer = deserializeFunctionName;
+      defaultXmlDeserializer = xmlDeserializerName;
+      defaultIsXmlOnly = isXmlOnly;
     } else if (typeof statusCode === "number") {
       customized.push({
         start: statusCode,
-        deserializer: deserializeFunctionName
+        deserializer: deserializeFunctionName,
+        xmlDeserializer: xmlDeserializerName,
+        isXmlOnly
       });
     } else {
       customized.push({
         start: statusCode.start,
         end: statusCode.end,
-        deserializer: deserializeFunctionName
+        deserializer: deserializeFunctionName,
+        xmlDeserializer: xmlDeserializerName,
+        isXmlOnly
       });
     }
   }
-  return { customized, defaultDeserializer };
+  return {
+    customized,
+    defaultDeserializer,
+    defaultXmlDeserializer,
+    defaultIsXmlOnly
+  };
+}
+
+/**
+ * Collects and deduplicates all response headers from operation exceptions.
+ */
+function getExceptionResponseHeaders(
+  exceptions: SdkHttpOperation["exceptions"]
+): SdkServiceResponseHeader[] {
+  const headerMap = new Map<string, SdkServiceResponseHeader>();
+  for (const exception of exceptions ?? []) {
+    for (const header of exception.headers ?? []) {
+      const key = header.serializedName ?? header.name;
+      if (!headerMap.has(key)) {
+        headerMap.set(key, header);
+      }
+    }
+  }
+  return Array.from(headerMap.values());
+}
+
+/**
+ * Generates a private function to deserialize exception response headers.
+ * Only generated when exception headers are present and include-headers-in-response is enabled.
+ */
+export function getDeserializeExceptionHeadersPrivateFunction(
+  context: SdkContext,
+  operation: ServiceOperation
+): OptionalKind<FunctionDeclarationStructure> | undefined {
+  const isResponseHeadersEnabled =
+    context.rlcOptions?.includeHeadersInResponse === true;
+  if (!isResponseHeadersEnabled) {
+    return undefined;
+  }
+
+  const exceptionHeaders = getExceptionResponseHeaders(
+    operation.operation.exceptions
+  );
+  if (exceptionHeaders.length === 0) {
+    return undefined;
+  }
+
+  const { name } = getOperationName(operation);
+  const dependencies = useDependencies();
+  const PathUncheckedResponseReference = resolveReference(
+    dependencies.PathUncheckedResponse
+  );
+
+  const parameters: OptionalKind<ParameterDeclarationStructure>[] = [
+    {
+      name: "result",
+      type: PathUncheckedResponseReference
+    }
+  ];
+
+  const returnType = buildHeaderOnlyResponseType(context, exceptionHeaders);
+
+  const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
+    isAsync: false,
+    isExported: true,
+    name: `_${name}DeserializeExceptionHeaders`,
+    parameters,
+    returnType
+  };
+
+  const statements: string[] = [];
+  statements.push(
+    `return ${buildHeaderOnlyResponseValue(context, exceptionHeaders)};`
+  );
+
+  return {
+    ...functionStatement,
+    statements
+  };
+}
+
+function getExceptionDeserializeExpr(exception: ExceptionThrowDetail): string {
+  if (!exception.xmlDeserializer) {
+    return `${exception.deserializer}(result.body)`;
+  }
+  if (exception.isXmlOnly) {
+    return `${exception.xmlDeserializer}(result.body)`;
+  }
+  return `isXml ? ${exception.xmlDeserializer}(result.body) : ${exception.deserializer}(result.body)`;
 }
 
 function getExceptionThrowStatement(
@@ -426,41 +637,170 @@ function getExceptionThrowStatement(
   const createRestErrorReference = resolveReference(
     useDependencies().createRestError
   );
-  const { customized, defaultDeserializer } = getExceptionDetails(
-    context,
-    operation
+  const {
+    customized,
+    defaultDeserializer,
+    defaultXmlDeserializer,
+    defaultIsXmlOnly
+  } = getExceptionDetails(context, operation);
+
+  const isResponseHeadersEnabled =
+    context.rlcOptions?.includeHeadersInResponse === true;
+
+  // Check if exception headers function exists and build the call
+  const exceptionHeaders = getExceptionResponseHeaders(
+    operation.operation.exceptions
   );
+  const hasExceptionHeaders =
+    isResponseHeadersEnabled && exceptionHeaders.length > 0;
+  const { name: opName } = getOperationName(operation);
+  const exceptionHeadersCall = hasExceptionHeaders
+    ? `error.details = {...(error.details as any), ..._${opName}DeserializeExceptionHeaders(result)};`
+    : undefined;
+
+  // Build @clientOption("header", ...) extraction code (independent of include-headers-in-response)
+  const clientOptionHeadersCall = buildClientOptionHeadersCall(
+    operation.operation.exceptions
+  );
+
+  // Build @clientOption("restErrorCodeHeader", ...) code to set error.code from a header
+  const restErrorCodeAssignment = buildRestErrorCodeAssignment(
+    operation.operation.exceptions
+  );
+
+  const allHeaderCalls = [
+    exceptionHeadersCall,
+    clientOptionHeadersCall,
+    restErrorCodeAssignment
+  ]
+    .filter(Boolean)
+    .join("\n");
+
+  // Check if any exception has XML deserialization support that requires runtime content-type check
+  const hasAnyDualFormatXml =
+    (defaultXmlDeserializer !== undefined && !defaultIsXmlOnly) ||
+    customized.some((e) => e.xmlDeserializer !== undefined && !e.isXmlOnly);
+
   if (customized.length > 0) {
     statements.push(`const error = ${createRestErrorReference}(result);`);
+    if (hasAnyDualFormatXml) {
+      const isXmlContentTypeRef = resolveReference(XmlHelpers.isXmlContentType);
+      statements.push(
+        `const responseContentType = result.headers?.["content-type"] ?? "";`
+      );
+      statements.push(
+        `const isXml = ${isXmlContentTypeRef}(responseContentType);`
+      );
+    }
     statements.push(`const statusCode = Number.parseInt(result.status);`);
     const stats: string[] = customized.map((exception) => {
+      const deserializeExpr = getExceptionDeserializeExpr(exception);
+      const headerStmt = allHeaderCalls;
       if (exception.end) {
         return `if(statusCode >= ${exception.start} && statusCode <= ${exception.end}) {
-              error.details = ${exception.deserializer}(result.body);
+              error.details = ${deserializeExpr};
+              ${headerStmt}
           }`;
       } else {
         return `if(statusCode === ${exception.start}) {
-             error.details = ${exception.deserializer}(result.body);
+             error.details = ${deserializeExpr};
+             ${headerStmt}
           }`;
       }
     });
     statements.push(stats.join("\nelse "));
     if (defaultDeserializer) {
+      const defaultDeserializeExpr = !defaultXmlDeserializer
+        ? `${defaultDeserializer}(result.body)`
+        : defaultIsXmlOnly
+          ? `${defaultXmlDeserializer}(result.body)`
+          : `isXml ? ${defaultXmlDeserializer}(result.body) : ${defaultDeserializer}(result.body)`;
       statements.push(`else {
-        error.details = ${defaultDeserializer}(result.body);
+        error.details = ${defaultDeserializeExpr};
+        ${allHeaderCalls}
       }`);
     }
     statements.push("throw error;");
   } else {
     if (defaultDeserializer) {
-      statements.push(`const error = ${createRestErrorReference}(result);
-      error.details = ${defaultDeserializer}(result.body);`);
+      if (defaultXmlDeserializer) {
+        if (defaultIsXmlOnly) {
+          statements.push(`const error = ${createRestErrorReference}(result);
+          error.details = ${defaultXmlDeserializer}(result.body);
+          ${allHeaderCalls}`);
+        } else {
+          const isXmlContentTypeRef = resolveReference(
+            XmlHelpers.isXmlContentType
+          );
+          statements.push(`const error = ${createRestErrorReference}(result);
+          const responseContentType = result.headers?.["content-type"] ?? "";
+          error.details = ${isXmlContentTypeRef}(responseContentType) ? ${defaultXmlDeserializer}(result.body) : ${defaultDeserializer}(result.body);
+          ${allHeaderCalls}`);
+        }
+      } else {
+        statements.push(`const error = ${createRestErrorReference}(result);
+        error.details = ${defaultDeserializer}(result.body);
+        ${allHeaderCalls}`);
+      }
       statements.push("throw error;");
     } else {
       statements.push(`throw ${createRestErrorReference}(result);`);
     }
   }
   return statements.join("\n");
+}
+
+/**
+ * Builds the code to extract header values from @clientOption("header", ...) decorators
+ * on exception model types. This is independent of include-headers-in-response.
+ */
+function buildClientOptionHeadersCall(
+  exceptions: SdkHttpOperation["exceptions"]
+): string | undefined {
+  const seenProperties = new Set<string>();
+  const assignments: string[] = [];
+
+  for (const exception of exceptions ?? []) {
+    if (!exception.type || exception.type.kind !== "model") {
+      continue;
+    }
+    const headerOptions = getHeaderClientOptions(exception.type);
+    for (const opt of headerOptions) {
+      if (seenProperties.has(opt.propertyName)) {
+        continue;
+      }
+      seenProperties.add(opt.propertyName);
+      assignments.push(
+        `${opt.propertyName}: result.headers[${JSON.stringify(opt.headerName)}]`
+      );
+    }
+  }
+
+  if (assignments.length === 0) {
+    return undefined;
+  }
+
+  return `error.details = {...(error.details as any), ${assignments.join(", ")}};`;
+}
+
+/**
+ * Builds the code to conditionally set error.code from a response header,
+ * based on @clientOption("restErrorCodeHeader", ...) on exception model types.
+ */
+function buildRestErrorCodeAssignment(
+  exceptions: SdkHttpOperation["exceptions"]
+): string | undefined {
+  for (const exception of exceptions ?? []) {
+    if (!exception.type || exception.type.kind !== "model") {
+      continue;
+    }
+    const headerName = getRestErrorCodeHeader(exception.type);
+    if (headerName) {
+      return `const restErrorCodeValue = result.headers[${JSON.stringify(headerName)}];
+if (restErrorCodeValue !== undefined) { error.code = restErrorCodeValue; }`;
+    }
+  }
+  return undefined;
 }
 
 function getOptionalParamsName(
@@ -497,7 +837,6 @@ function getOperationSignatureParameters(
             param.methodParameterSegments[0]?.[0] === p
           );
         })[0]?.kind !== "cookie" &&
-        p.clientDefaultValue === undefined &&
         !p.optional &&
         !(
           p.isGeneratedName &&
@@ -540,6 +879,8 @@ export function getOperationFunction(
   propertyName?: string;
   isLro?: boolean;
   lroFinalReturnType?: string;
+  isLroPaging?: boolean;
+  lropagingFinalReturnType?: string;
 } {
   const operation = method[1];
   // Extract required parameters
@@ -573,12 +914,37 @@ export function getOperationFunction(
 
   // TODO: Support operation overloads
   const response = operation.response;
+  const responseHeaders = getResponseHeaders(operation.operation.responses);
+  const hasHeaderOnlyResponse = !response.type && responseHeaders.length > 0;
+  const isResponseHeadersEnabled =
+    context.rlcOptions?.includeHeadersInResponse === true;
+
   let returnType = { name: "", type: "void" };
   if (response.type) {
     const type = response.type;
+
+    // If feature flag enabled, we'll append the response headers to the operation response type.
+    if (
+      type.kind === "model" &&
+      responseHeaders.length > 0 &&
+      isResponseHeadersEnabled
+    ) {
+      // Build a composite type that includes both model and additional header properties
+      returnType = {
+        name: (type as any).name ?? "",
+        type: `${buildCompositeResponseType(context, type, responseHeaders)}`
+      };
+    } else {
+      returnType = {
+        name: (type as any).name ?? "",
+        type: getTypeExpression(context, type!)
+      };
+    }
+  } else if (hasHeaderOnlyResponse && isResponseHeadersEnabled) {
+    // Here we handle returning headers when the operation return type is void
     returnType = {
-      name: (type as any).name ?? "",
-      type: getTypeExpression(context, type!)
+      name: "",
+      type: `${buildHeaderOnlyResponseType(context, responseHeaders)}`
     };
   }
   const { name, fixme = [] } = getOperationName(operation);
@@ -598,18 +964,51 @@ export function getOperationFunction(
 
   const statements: string[] = [];
 
+  // Generate unique local variable names that don't conflict with parameter names
+  const paramNames = new Set(parameters.map((p) => p.name));
+  const resultVarName = generateLocallyUniqueName("result", paramNames);
+
   const parameterList = parameters.map((p) => p.name).join(", ");
   // Special case for binary-only bodies: use helper to call streaming methods so that Core doesn't poison the response body by
   // doing a UTF-8 decode on the raw bytes.
   if (response?.type?.kind === "bytes" && response.type.encode === "bytes") {
-    statements.push(`const streamableMethod = _${name}Send(${parameterList});`);
+    const streamableMethodVarName = generateLocallyUniqueName(
+      "streamableMethod",
+      paramNames
+    );
     statements.push(
-      `const result = await ${resolveReference(SerializationHelpers.getBinaryResponse)}(streamableMethod);`
+      `const ${streamableMethodVarName} = _${name}Send(${parameterList});`
+    );
+    statements.push(
+      `const ${resultVarName} = await ${resolveReference(SerializationHelpers.getBinaryResponse)}(${streamableMethodVarName});`
     );
   } else {
-    statements.push(`const result = await _${name}Send(${parameterList});`);
+    statements.push(
+      `const ${resultVarName} = await _${name}Send(${parameterList});`
+    );
   }
-  statements.push(`return _${name}Deserialize(result);`);
+
+  // If the response has headers and the feature flag to include headers in response is enabled, build the headers object and include it in the return value
+  if (responseHeaders.length > 0 && isResponseHeadersEnabled) {
+    const headersVarName = generateLocallyUniqueName("headers", paramNames);
+    statements.push(
+      `const ${headersVarName} = _${name}DeserializeHeaders(result);`
+    );
+
+    // If there is no body payload just return the headers
+    if (hasHeaderOnlyResponse) {
+      statements.push(`await _${name}Deserialize(${resultVarName});`);
+      statements.push(`return {...${headersVarName} };`);
+    } else {
+      const payloadVarName = generateLocallyUniqueName("payload", paramNames);
+      statements.push(
+        `const ${payloadVarName} = await _${name}Deserialize(${resultVarName});`
+      );
+      statements.push(`return { ...${payloadVarName}, ...${headersVarName} };`);
+    }
+  } else {
+    statements.push(`return _${name}Deserialize(${resultVarName});`);
+  }
 
   return {
     ...functionStatement,
@@ -704,7 +1103,11 @@ function getLroAndPagingOperationFunction(
   method: [string[], SdkLroPagingServiceMethod<SdkHttpOperation>],
   clientType: string,
   optionalParamName: string = "options"
-): FunctionDeclarationStructure & { propertyName?: string } {
+): FunctionDeclarationStructure & {
+  isLroPaging?: boolean;
+  propertyName?: string;
+  lropagingFinalReturnType?: string;
+} {
   const operation = method[1];
   const parameters = getOperationSignatureParameters(
     context,
@@ -765,6 +1168,8 @@ function getLroAndPagingOperationFunction(
     ],
     isAsync: false,
     isExported: true,
+    isLroPaging: true,
+    lropagingFinalReturnType: returnType.type,
     name,
     propertyName: normalizeName(operation.name, NameType.Property),
     parameters,
@@ -1073,14 +1478,33 @@ function buildBodyParameter(
     NameType.Parameter,
     true
   );
-  const bodyNameExpression = bodyParameter.optional
+  let bodyNameExpression = bodyParameter.optional
     ? `${optionalParamName}["${bodyParamName}"]`
     : bodyParamName;
-  const nullOrUndefinedPrefix = getPropertySerializationPrefix(
-    context,
-    bodyParameter,
-    bodyParameter.optional ? optionalParamName : undefined
-  );
+
+  // Check if body parameter has a client default value with matching type
+  const hasClientDefault =
+    bodyParameter.optional &&
+    bodyParameter.clientDefaultValue !== undefined &&
+    isDefaultValueTypeMatch(bodyParameter, bodyParameter.clientDefaultValue);
+
+  // Apply client default value if present for optional body parameters
+  if (hasClientDefault) {
+    const formattedDefault = formatDefaultValue(
+      bodyParameter.clientDefaultValue
+    );
+    bodyNameExpression = `(${bodyNameExpression} ?? ${formattedDefault})`;
+  }
+
+  // Only apply nullOrUndefinedPrefix if there's no client default value
+  // because the default value already handles null/undefined cases
+  const nullOrUndefinedPrefix = hasClientDefault
+    ? ""
+    : getPropertySerializationPrefix(
+        context,
+        bodyParameter,
+        bodyParameter.optional ? optionalParamName : undefined
+      );
 
   // For dual-format operations, check the contentType option at runtime
   if (
@@ -1230,7 +1654,7 @@ function getContentTypeValue(
   } else {
     return `contentType: ${
       !param.optional
-        ? "contentType"
+        ? normalizeName(param.name, NameType.Property)
         : `${optionalParamName}.` + param.name + " as any"
     }`;
   }
@@ -1287,6 +1711,14 @@ function getOptional(
   serializedName: string
 ) {
   const paramName = `${param.onClient ? "context." : `${optionalParamName}?.`}${param.name}`;
+
+  // Apply client default value if present and type matches
+  const defaultSuffix =
+    param.clientDefaultValue !== undefined &&
+    isDefaultValueTypeMatch(param, param.clientDefaultValue)
+      ? ` ?? ${formatDefaultValue(param.clientDefaultValue)}`
+      : "";
+
   if (param.type.kind === "model") {
     const propertiesStr = getRequestModelMapping(
       context,
@@ -1296,7 +1728,7 @@ function getOptional(
     const serializeContent = `{${propertiesStr.join(",")}}`;
     return `"${serializedName}": ${serializeContent}`;
   }
-  return `"${serializedName}": ${serializeRequestValue(
+  const serializedValue = serializeRequestValue(
     context,
     param.type,
     paramName,
@@ -1304,7 +1736,8 @@ function getOptional(
     getEncodeForType(param.type),
     serializedName,
     true
-  )}`;
+  );
+  return `"${serializedName}": ${serializedValue}${defaultSuffix}`;
 }
 
 /**
@@ -1633,7 +2066,7 @@ export function getRequestModelMapping(
     .map(([name, value]) => `"${name}": ${value}`);
 }
 
-function getPropertySerializedName(
+export function getPropertySerializedName(
   property: SdkHttpParameter | SdkModelPropertyType
 ) {
   return (
@@ -1864,6 +2297,77 @@ export function serializeRequestValue(
 }
 
 /**
+ * Wrapper of deserializeResponseValue, this is used to handle the special cases for response header deserialization, since response header only supports primitive types, we will have a simpler deserialization logic comparing to response body, and we also need to handle the null/undefined cases differently since if a header is missing, the value will be undefined instead of null.
+ * Note: that this has been added to isolate these changes behind the feature flag. Once the feature flag is removed, we can consider merging this back to deserializeResponseValue if the special handling logic is not needed anymore.
+ */
+export function deserializeResponseHeadersValue(
+  context: SdkContext,
+  type: SdkType,
+  restValue: string,
+  required: boolean,
+  format?: string,
+  recursionDepth: number = 0
+) {
+  const nullOrUndefinedPrefix =
+    isTypeNullable(type) || getOptionalForType(type) || !required
+      ? `${restValue} === undefined || ${restValue} === null ? ${restValue}: `
+      : "";
+
+  switch (type.kind) {
+    case "constant":
+      return `${restValue} as any`;
+    case "boolean":
+      return `${nullOrUndefinedPrefix} ${restValue}.trim().toLowerCase() === "true"`;
+    case "int16":
+    case "int32":
+    case "int64":
+    case "uint16":
+    case "uint32":
+    case "uint64":
+    case "float":
+    case "decimal":
+    case "decimal128":
+    case "float32":
+    case "float64":
+    case "int8":
+    case "integer":
+    case "numeric":
+    case "safeint":
+    case "uint8":
+      return `${nullOrUndefinedPrefix} Number(${restValue})`;
+    case "enum":
+      if (isNormalUnion(type)) {
+        return `${restValue}`;
+      } else if (isSpecialHandledUnion(type)) {
+        const deserializeFunctionName = type
+          ? buildModelDeserializer(context, getNullableValidType(type), {
+              nameOnly: true,
+              skipDiscriminatedUnionSuffix: false
+            })
+          : undefined;
+        if (deserializeFunctionName) {
+          return `${deserializeFunctionName}(${restValue})`;
+        } else {
+          return `${restValue} as any`;
+        }
+      } else {
+        return `${restValue} as any`;
+      }
+    default: {
+      const val = deserializeResponseValue(
+        context,
+        type,
+        restValue,
+        true,
+        format,
+        recursionDepth
+      );
+      return `${nullOrUndefinedPrefix} ${val}`;
+    }
+  }
+}
+
+/**
  * This function helps converting strings into JS complex types recursively.
  * We need to drill down into Array elements to make sure that the element type is
  * deserialized correctly
@@ -2070,12 +2574,59 @@ export function getAllAncestors(type: SdkType): SdkType[] {
   return ancestors;
 }
 
+/**
+ * Checks if a clientDefaultValue type matches the parameter type.
+ * Returns true if the default value type is compatible with the parameter type.
+ */
+function isDefaultValueTypeMatch(
+  param: SdkHttpParameter | SdkBodyParameter,
+  defaultValue: unknown
+): boolean {
+  const defaultType = typeof defaultValue;
+  const paramType = param.type;
+
+  // Map JavaScript types to TypeSpec types
+  if (defaultType === "string") {
+    return paramType.kind === "string" || paramType.kind === "enum";
+  }
+  if (defaultType === "number") {
+    return (
+      paramType.kind === "int32" ||
+      paramType.kind === "int64" ||
+      paramType.kind === "float32" ||
+      paramType.kind === "float64" ||
+      paramType.kind === "numeric" ||
+      paramType.kind === "integer" ||
+      paramType.kind === "float" ||
+      paramType.kind === "decimal"
+    );
+  }
+  if (defaultType === "boolean") {
+    return paramType.kind === "boolean";
+  }
+
+  // For other types, don't apply the default
+  return false;
+}
+
+/**
+ * Formats a default value for code generation.
+ * Strings are wrapped in quotes, other values are used as-is.
+ */
+function formatDefaultValue(defaultValue: unknown): string {
+  if (typeof defaultValue === "string") {
+    return `"${defaultValue}"`;
+  }
+  return String(defaultValue);
+}
+
 export function getPropertySerializationPrefix(
   context: SdkContext,
   property: SdkHttpParameter | SdkModelPropertyType,
   propertyPath?: string
 ) {
   const propertyFullName = getPropertyFullName(context, property, propertyPath);
+
   if (property.optional || isTypeNullable(property.type)) {
     return `!${propertyFullName}? ${propertyFullName}:`;
   }
@@ -2101,6 +2652,7 @@ export function getPropertyFullName(
   } else if (propertyPath) {
     fullName = `${propertyPath}["${normalizedPropertyName}"]`;
   }
+
   return fullName;
 }
 
@@ -2155,4 +2707,111 @@ function getApiVersionExpression(
     ? ` ?? "${queryApiVersionParam.clientDefaultValue}"`
     : "";
   return `${paramAccess}${defaultValueSuffix}`;
+}
+
+/**
+ * Extracts and deduplicates all response headers from operation responses.
+ * @param responses - The operation responses
+ * @returns Array of unique response headers
+ */
+export function getResponseHeaders(
+  responses: SdkHttpOperation["responses"]
+): SdkServiceResponseHeader[] {
+  const headerMap = new Map<string, SdkServiceResponseHeader>();
+  for (const response of responses ?? []) {
+    for (const header of response.headers ?? []) {
+      const key = header.serializedName ?? header.name;
+      if (!headerMap.has(key)) {
+        headerMap.set(key, header);
+      }
+    }
+  }
+  return Array.from(headerMap.values());
+}
+
+/**
+ * Builds a composite return type for operations that return both a model and additional headers.
+ * Combines model properties and header properties into an inline object type.
+ * @param context - The SDK context
+ * @param modelType - The model type
+ * @param headers - The response headers that are NOT in the model
+ * @returns The composite type expression as a string (e.g., "{ name: string; email: string; requestId: string }")
+ */
+function buildCompositeResponseType(
+  context: SdkContext,
+  modelType: SdkModelType,
+  headers: SdkServiceResponseHeader[]
+): string {
+  const allParents = getAllAncestors(modelType);
+  const modelProps: (SdkModelPropertyType | SdkServiceResponseHeader)[] =
+    getAllProperties(context, modelType, allParents);
+
+  // Collect header property names already in the model to avoid duplicates
+  const modelHeaderNames = new Set<string>();
+  for (const property of modelProps) {
+    if (isHeader(context.program, property.__raw!)) {
+      modelHeaderNames.add(property.name.toLowerCase());
+    }
+  }
+
+  // Add only additional host response header properties not already in model
+  for (const header of headers) {
+    if (modelHeaderNames.has(header.name.toLowerCase())) {
+      continue;
+    }
+    modelProps.push(header);
+  }
+
+  return emitInlineModel(context, modelProps);
+}
+
+/**
+ * Builds an inline type string for header-only responses.
+ * @param context - The SDK context
+ * @param headers - The response headers
+ * @returns The inline type expression as a string (e.g., "{ requestId: string; optionalHeader?: string }")
+ */
+function buildHeaderOnlyResponseType(
+  context: SdkContext,
+  headers: SdkServiceResponseHeader[]
+): string {
+  const properties: string[] = [];
+
+  for (const header of headers) {
+    const headerName = normalizeModelPropertyName(context, header);
+    const headerType = getTypeExpression(context, header.type);
+    const isOptional = header.optional ? "?" : "";
+    properties.push(`${headerName}${isOptional}: ${headerType}`);
+  }
+
+  return `{ ${properties.join("; ")} }`;
+}
+
+/**
+ * Builds the object literal expression for a header-only response.
+ * Handles type conversions for headers (string to boolean, Date, number, Uint8Array).
+ * @param operation - The service operation
+ * @param headers - The response headers
+ * @returns JavaScript expression string for the header-only response object
+ */
+function buildHeaderOnlyResponseValue(
+  context: SdkContext,
+  headers: SdkServiceResponseHeader[]
+): string {
+  const props = headers.map((header) => {
+    const headerName = (header.serializedName ?? header.name).toLowerCase();
+    const key = normalizeModelPropertyName(context, header);
+    const value = deserializeResponseHeadersValue(
+      context,
+      header.type,
+      `result.headers[${JSON.stringify(headerName)}]`,
+      !header.optional,
+      getEncodeForType(header.type),
+      0
+    );
+
+    return `${key}: ${value}`;
+  });
+
+  return `{ ${props.join(", ")} }`;
 }

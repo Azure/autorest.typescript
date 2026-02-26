@@ -74,7 +74,7 @@ export function toolDefinitionUnionSerializer(item: ToolDefinitionUnion): any {
 }
 
 export function toolDefinitionUnionDeserializer(item: any): ToolDefinitionUnion {
-  switch (item.type) {
+  switch (item["type"]) {
     case "code_interpreter":
       return codeInterpreterToolDefinitionDeserializer(item as CodeInterpreterToolDefinition);
 
@@ -472,7 +472,7 @@ export function openApiAuthDetailsUnionSerializer(item: OpenApiAuthDetailsUnion)
 }
 
 export function openApiAuthDetailsUnionDeserializer(item: any): OpenApiAuthDetailsUnion {
-  switch (item.type) {
+  switch (item["type"]) {
     case "anonymous":
       return openApiAnonymousAuthDetailsDeserializer(item as OpenApiAnonymousAuthDetails);
 
@@ -1096,7 +1096,7 @@ export interface Agent {
    */
   topP: number | null;
   /** The response format of the tool calls used by this agent. */
-  responseFormat?: AgentsApiResponseFormatOption | null;
+  responseFormat?: AgentsApiResponseFormatOption;
   /** A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. */
   metadata: Record<string, string> | null;
 }
@@ -1192,9 +1192,9 @@ export interface ThreadMessageOptions {
    */
   content: string;
   /** A list of files attached to the message, and the tools they should be added to. */
-  attachments?: MessageAttachment[] | null;
+  attachments?: MessageAttachment[];
   /** A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. */
-  metadata?: Record<string, string> | null;
+  metadata?: Record<string, string>;
 }
 
 export function threadMessageOptionsSerializer(item: ThreadMessageOptions): any {
@@ -1453,7 +1453,7 @@ export function messageContentDeserializer(item: any): MessageContent {
 export type MessageContentUnion = MessageTextContent | MessageImageFileContent | MessageContent;
 
 export function messageContentUnionDeserializer(item: any): MessageContentUnion {
-  switch (item.type) {
+  switch (item["type"]) {
     case "text":
       return messageTextContentDeserializer(item as MessageTextContent);
 
@@ -1526,7 +1526,7 @@ export type MessageTextAnnotationUnion =
   | MessageTextAnnotation;
 
 export function messageTextAnnotationUnionDeserializer(item: any): MessageTextAnnotationUnion {
-  switch (item.type) {
+  switch (item["type"]) {
     case "file_citation":
       return messageTextFileCitationAnnotationDeserializer(
         item as MessageTextFileCitationAnnotation,
@@ -1691,7 +1691,7 @@ export interface TruncationObject {
    */
   type: TruncationStrategy;
   /** The number of most recent messages from the thread when constructing the context for the run. */
-  lastMessages?: number | null;
+  lastMessages?: number;
 }
 
 export function truncationObjectSerializer(item: TruncationObject): any {
@@ -1792,7 +1792,7 @@ export interface ThreadRun {
   /** The status of the agent thread run. */
   status: RunStatus;
   /** The details of the action required for the agent thread run to continue. */
-  requiredAction?: RequiredActionUnion | null;
+  requiredAction?: RequiredActionUnion;
   /** The last error, if any, encountered by this agent thread run. */
   lastError: RunError | null;
   /** The ID of the model to use. */
@@ -1818,9 +1818,9 @@ export interface ThreadRun {
   /** Usage statistics related to the run. This value will be `null` if the run is not in a terminal state (i.e. `in_progress`, `queued`, etc.). */
   usage: RunCompletionUsage | null;
   /** The sampling temperature used for this run. If not set, defaults to 1. */
-  temperature?: number | null;
+  temperature?: number;
   /** The nucleus sampling value used for this run. If not set, defaults to 1. */
-  topP?: number | null;
+  topP?: number;
   /** The maximum number of prompt tokens specified to have been used over the course of the run. */
   maxPromptTokens: number | null;
   /** The maximum number of completion tokens specified to have been used over the course of the run. */
@@ -1834,7 +1834,7 @@ export interface ThreadRun {
   /** A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. */
   metadata: Record<string, string> | null;
   /** Override the tools the agent can use for this run. This is useful for modifying the behavior on a per-run basis */
-  toolResources?: UpdateToolResourcesOptions | null;
+  toolResources?: UpdateToolResourcesOptions;
   /** Determines if tools can be executed in parallel within the run. */
   parallelToolCalls: boolean;
 }
@@ -1920,7 +1920,7 @@ export function requiredActionDeserializer(item: any): RequiredAction {
 export type RequiredActionUnion = SubmitToolOutputsAction | RequiredAction;
 
 export function requiredActionUnionDeserializer(item: any): RequiredActionUnion {
-  switch (item.type) {
+  switch (item["type"]) {
     case "submit_tool_outputs":
       return submitToolOutputsActionDeserializer(item as SubmitToolOutputsAction);
 
@@ -1984,7 +1984,7 @@ export function requiredToolCallDeserializer(item: any): RequiredToolCall {
 export type RequiredToolCallUnion = RequiredFunctionToolCall | RequiredToolCall;
 
 export function requiredToolCallUnionDeserializer(item: any): RequiredToolCallUnion {
-  switch (item.type) {
+  switch (item["type"]) {
     case "function":
       return requiredFunctionToolCallDeserializer(item as RequiredFunctionToolCall);
 
@@ -2238,9 +2238,9 @@ export interface AgentThreadCreationOptions {
    * type of tool. For example, the `code_interpreter` tool requires a list of file IDs, while the `file_search` tool requires
    * a list of vector store IDs.
    */
-  toolResources?: ToolResources | null;
+  toolResources?: ToolResources;
   /** A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. */
-  metadata?: Record<string, string> | null;
+  metadata?: Record<string, string>;
 }
 
 export function agentThreadCreationOptionsSerializer(item: AgentThreadCreationOptions): any {
@@ -2286,7 +2286,7 @@ export interface RunStep {
   /** The Unix timestamp, in seconds, representing when this failed. */
   failedAt: Date | null;
   /** Usage statistics related to the run step. This value will be `null` while the run step's status is `in_progress`. */
-  usage?: RunStepCompletionUsage | null;
+  usage?: RunStepCompletionUsage;
   /** A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. */
   metadata: Record<string, string> | null;
 }
@@ -2347,7 +2347,7 @@ export type RunStepDetailsUnion =
   | RunStepDetails;
 
 export function runStepDetailsUnionDeserializer(item: any): RunStepDetailsUnion {
-  switch (item.type) {
+  switch (item["type"]) {
     case "message_creation":
       return runStepMessageCreationDetailsDeserializer(item as RunStepMessageCreationDetails);
 
@@ -2439,7 +2439,7 @@ export type RunStepToolCallUnion =
   | RunStepToolCall;
 
 export function runStepToolCallUnionDeserializer(item: any): RunStepToolCallUnion {
-  switch (item.type) {
+  switch (item["type"]) {
     case "code_interpreter":
       return runStepCodeInterpreterToolCallDeserializer(item as RunStepCodeInterpreterToolCall);
 
@@ -2536,7 +2536,7 @@ export type RunStepCodeInterpreterToolCallOutputUnion =
 export function runStepCodeInterpreterToolCallOutputUnionDeserializer(
   item: any,
 ): RunStepCodeInterpreterToolCallOutputUnion {
-  switch (item.type) {
+  switch (item["type"]) {
     case "logs":
       return runStepCodeInterpreterLogOutputDeserializer(item as RunStepCodeInterpreterLogOutput);
 
@@ -3045,7 +3045,7 @@ export interface VectorStore {
   /** Details on when this vector store expires */
   expiresAfter?: VectorStoreExpirationPolicy;
   /** The Unix timestamp (in seconds) for when the vector store will expire. */
-  expiresAt?: Date | null;
+  expiresAt?: Date;
   /** The Unix timestamp (in seconds) for when the vector store was last active. */
   lastActiveAt: Date | null;
   /** A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. */
@@ -3359,7 +3359,7 @@ export type VectorStoreChunkingStrategyResponseUnion =
 export function vectorStoreChunkingStrategyResponseUnionDeserializer(
   item: any,
 ): VectorStoreChunkingStrategyResponseUnion {
-  switch (item.type) {
+  switch (item["type"]) {
     case "other":
       return vectorStoreAutoChunkingStrategyResponseDeserializer(
         item as VectorStoreAutoChunkingStrategyResponse,
@@ -3523,7 +3523,7 @@ export type MessageDeltaContentUnion =
   | MessageDeltaContent;
 
 export function messageDeltaContentUnionDeserializer(item: any): MessageDeltaContentUnion {
-  switch (item.type) {
+  switch (item["type"]) {
     case "image_file":
       return messageDeltaImageFileContentDeserializer(item as MessageDeltaImageFileContent);
 
@@ -3635,7 +3635,7 @@ export type MessageDeltaTextAnnotationUnion =
 export function messageDeltaTextAnnotationUnionDeserializer(
   item: any,
 ): MessageDeltaTextAnnotationUnion {
-  switch (item.type) {
+  switch (item["type"]) {
     case "file_citation":
       return messageDeltaTextFileCitationAnnotationDeserializer(
         item as MessageDeltaTextFileCitationAnnotation,
@@ -3792,7 +3792,7 @@ export type RunStepDeltaDetailUnion =
   | RunStepDeltaDetail;
 
 export function runStepDeltaDetailUnionDeserializer(item: any): RunStepDeltaDetailUnion {
-  switch (item.type) {
+  switch (item["type"]) {
     case "message_creation":
       return runStepDeltaMessageCreationDeserializer(item as RunStepDeltaMessageCreation);
 
@@ -3887,7 +3887,7 @@ export type RunStepDeltaToolCallUnion =
   | RunStepDeltaToolCall;
 
 export function runStepDeltaToolCallUnionDeserializer(item: any): RunStepDeltaToolCallUnion {
-  switch (item.type) {
+  switch (item["type"]) {
     case "function":
       return runStepDeltaFunctionToolCallDeserializer(item as RunStepDeltaFunctionToolCall);
 
@@ -3930,7 +3930,7 @@ export interface RunStepDeltaFunction {
   /** The arguments passed to the function as input. */
   arguments?: string;
   /** The output of the function, null if outputs have not yet been submitted. */
-  output?: string | null;
+  output?: string;
 }
 
 export function runStepDeltaFunctionDeserializer(item: any): RunStepDeltaFunction {
@@ -4043,7 +4043,7 @@ export type RunStepDeltaCodeInterpreterOutputUnion =
 export function runStepDeltaCodeInterpreterOutputUnionDeserializer(
   item: any,
 ): RunStepDeltaCodeInterpreterOutputUnion {
-  switch (item.type) {
+  switch (item["type"]) {
     case "logs":
       return runStepDeltaCodeInterpreterLogOutputDeserializer(
         item as RunStepDeltaCodeInterpreterLogOutput,

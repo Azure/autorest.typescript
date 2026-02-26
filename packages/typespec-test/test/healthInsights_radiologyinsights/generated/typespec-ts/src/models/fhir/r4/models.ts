@@ -1029,7 +1029,7 @@ export function observationComponentDeserializer(item: any): ObservationComponen
  */
 export interface DomainResource extends Resource {
   /** Discriminator property for DomainResource. */
-  /** The discriminator possible values: Observation, Condition, ResearchStudy */
+  /** The discriminator possible values: Observation */
   resourceType: string;
   /** Text summary of the resource, for human interpretation */
   text?: Narrative;
@@ -1076,7 +1076,7 @@ export function domainResourceDeserializer(item: any): DomainResource {
 export type DomainResourceUnion = Observation | DomainResource;
 
 export function domainResourceUnionDeserializer(item: any): DomainResourceUnion {
-  switch (item.resourceType) {
+  switch (item["resourceType"]) {
     case "Observation":
       return observationDeserializer(item as Observation);
 

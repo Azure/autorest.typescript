@@ -232,10 +232,7 @@ export function getSchemaForType(
         });
         schema.type = "object";
       }
-    } else if (
-      !isArrayModelType(program, type) &&
-      !isRecordModelType(program, type)
-    ) {
+    } else if (!isArrayModelType(type) && !isRecordModelType(type)) {
       if (usage && usage.includes(SchemaContext.Output)) {
         schema.outputTypeName = `${schema.name}Output`;
       }
@@ -659,7 +656,7 @@ function getSchemaForModel(
     isRequestBody,
     mediaTypes: contentTypes
   } = options ?? {};
-  if (isArrayModelType(dpgContext.program, model)) {
+  if (isArrayModelType(model)) {
     return getSchemaForArrayModel(dpgContext, model, options);
   }
 
@@ -680,7 +677,7 @@ function getSchemaForModel(
     true /** shouldGuard */
   );
 
-  if (model.name === "Record" && isRecordModelType(program, model)) {
+  if (model.name === "Record" && isRecordModelType(model)) {
     return getSchemaForRecordModel(dpgContext, model, { usage });
   }
   modelSchema.typeName = modelSchema.name;
@@ -748,7 +745,7 @@ function getSchemaForModel(
   if (needRef) {
     return modelSchema;
   }
-  if (isRecordModelType(program, model)) {
+  if (isRecordModelType(model)) {
     modelSchema.parents = {
       all: [getSchemaForRecordModel(dpgContext, model, { usage })],
       immediate: [getSchemaForRecordModel(dpgContext, model, { usage })]
@@ -1113,7 +1110,7 @@ function getSchemaForArrayModel(
   if (!indexer) {
     return schema;
   }
-  if (isArrayModelType(program, type)) {
+  if (isArrayModelType(type)) {
     schema = {
       type: "array",
       items: getSchemaForType(dpgContext, indexer.value!, {
@@ -1210,7 +1207,7 @@ function getSchemaForRecordModel(
   if (!indexer) {
     return schema;
   }
-  if (isRecordModelType(program, type)) {
+  if (isRecordModelType(type)) {
     const valueType = getSchemaForType(dpgContext, indexer?.value, {
       usage,
       needRef: !isAnonymousModelType(indexer.value)
@@ -1932,10 +1929,7 @@ export function getCollectionFormat(
 ): string | undefined {
   const type = param.param;
   const encode = getEncode(context.program, param.param);
-  if (
-    type.type.kind === "Model" &&
-    isArrayModelType(context.program, type.type)
-  ) {
+  if (type.type.kind === "Model" && isArrayModelType(type.type)) {
     if (param.explode) {
       return "multi";
     }
