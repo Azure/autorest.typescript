@@ -87,6 +87,7 @@ export function buildPackageFile(
 /**
  * Automatically updates the package.json with correct paging and LRO dependencies for Azure SDK.
  * Also updates tshy.exports if provided.
+ * When migrating from Swagger/autorest to TypeSpec, replaces @azure/core-client with @azure-rest/core-client.
  */
 export function updatePackageFile(
   model: RLCModel,
@@ -95,11 +96,14 @@ export function updatePackageFile(
 ) {
   const hasLro = hasPollingOperations(model);
   const isAzure = isAzurePackage(model);
+  const specSource = model.options?.sourceFrom ?? "TypeSpec";
   const needsLroUpdate = isAzure && hasLro;
   const needsExportsUpdate = exports;
+  // For Azure TypeSpec packages, we might need to migrate @azure/core-client to @azure-rest/core-client
+  const mightNeedCoreClientMigration = isAzure && specSource === "TypeSpec";
 
   // Early return if nothing needs to be updated
-  if (!needsLroUpdate && !needsExportsUpdate) {
+  if (!needsLroUpdate && !needsExportsUpdate && !mightNeedCoreClientMigration) {
     return;
   }
 
@@ -118,6 +122,8 @@ export function updatePackageFile(
     packageInfo = existingFilePathOrContent;
   }
 
+  let hasChanges = false;
+
   // Update tshy.exports if exports are provided and tshy exists
   if (needsExportsUpdate && packageInfo.tshy) {
     const newTshy = getTshyConfig({
@@ -125,6 +131,7 @@ export function updatePackageFile(
       azureSdkForJs: model.options?.azureSdkForJs
     } as PackageCommonInfoConfig);
     packageInfo.tshy.exports = newTshy.exports;
+    hasChanges = true;
   }
 
   // Update LRO dependencies for Azure packages
@@ -134,6 +141,22 @@ export function updatePackageFile(
       "@azure/core-lro": "^3.1.0",
       "@azure/abort-controller": "^2.1.2"
     };
+    hasChanges = true;
+  }
+
+  // Migrate @azure/core-client to @azure-rest/core-client when switching from Swagger/autorest to TypeSpec
+  if (mightNeedCoreClientMigration && packageInfo.dependencies?.["@azure/core-client"]) {
+    const { "@azure/core-client": _removed, ...remainingDeps } =
+      packageInfo.dependencies;
+    packageInfo.dependencies = {
+      ...remainingDeps,
+      "@azure-rest/core-client": "^2.3.1"
+    };
+    hasChanges = true;
+  }
+
+  if (!hasChanges) {
+    return;
   }
 
   return {

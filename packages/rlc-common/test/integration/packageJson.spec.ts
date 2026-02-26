@@ -815,6 +815,82 @@ describe("Package file generation", () => {
       );
       expect(packageFile).to.not.have.property("tshy");
     });
+
+    it("should replace @azure/core-client with @azure-rest/core-client when migrating from autorest to TypeSpec", () => {
+      const model = createMockModel({
+        moduleKind: "esm",
+        flavor: "azure",
+        isMonorepo: true,
+        hasLro: false,
+        source: "TypeSpec"
+      });
+
+      const initialPackageInfo = {
+        name: "@azure/test-package",
+        version: "1.0.0",
+        dependencies: {
+          "@azure/core-client": "^1.9.3",
+          "@azure/core-auth": "^1.9.0",
+          tslib: "^2.6.2"
+        }
+      };
+
+      const packageFileContent = updatePackageFile(model, initialPackageInfo);
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      expect(packageFile.dependencies).to.not.have.property("@azure/core-client");
+      expect(packageFile.dependencies).to.have.property(
+        "@azure-rest/core-client",
+        "^2.3.1"
+      );
+      expect(packageFile.dependencies).to.have.property("@azure/core-auth", "^1.9.0");
+      expect(packageFile.dependencies).to.have.property("tslib", "^2.6.2");
+    });
+
+    it("should not replace @azure/core-client when source is Swagger", () => {
+      const model = createMockModel({
+        moduleKind: "esm",
+        flavor: "azure",
+        isMonorepo: true,
+        hasLro: true,
+        source: "Swagger"
+      });
+
+      const initialPackageInfo = {
+        name: "@azure/test-package",
+        version: "1.0.0",
+        dependencies: {
+          "@azure/core-client": "^1.9.3"
+        }
+      };
+
+      const packageFileContent = updatePackageFile(model, initialPackageInfo);
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      expect(packageFile.dependencies).to.have.property("@azure/core-client", "^1.9.3");
+      expect(packageFile.dependencies).to.not.have.property("@azure-rest/core-client");
+    });
+
+    it("should return undefined when no changes are needed for Azure TypeSpec package without @azure/core-client", () => {
+      const model = createMockModel({
+        moduleKind: "esm",
+        flavor: "azure",
+        isMonorepo: true,
+        hasLro: false,
+        source: "TypeSpec"
+      });
+
+      const initialPackageInfo = {
+        name: "@azure/test-package",
+        version: "1.0.0",
+        dependencies: {
+          "@azure-rest/core-client": "^2.3.1"
+        }
+      };
+
+      const packageFileContent = updatePackageFile(model, initialPackageInfo);
+      expect(packageFileContent).to.be.undefined;
+    });
   });
 
   describe("Flavorless lib", () => {
