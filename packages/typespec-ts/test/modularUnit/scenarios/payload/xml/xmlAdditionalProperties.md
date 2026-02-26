@@ -46,31 +46,35 @@ export function blobMetadataXmlDeserializer(xmlString: string): BlobMetadata {
       propertyName: "encrypted",
       xmlOptions: { name: "Encrypted", attribute: true },
       type: "primitive",
-      primitiveSubtype: "string",
-    },
+      primitiveSubtype: "string"
+    }
   ];
-  return deserializeFromXml<BlobMetadata>(xmlString, properties, "BlobMetadata", undefined, undefined, {
-    propertyName: "additionalProperties",
-    excludeNames: ["Encrypted"],
-  });
+  return deserializeFromXml<BlobMetadata>(
+    xmlString,
+    properties,
+    "BlobMetadata",
+    undefined,
+    undefined,
+    { propertyName: "additionalProperties", excludeNames: ["Encrypted"] }
+  );
 }
 ```
 
 ```ts models function blobMetadataXmlObjectDeserializer
 export function blobMetadataXmlObjectDeserializer(
-  xmlObject: Record<string, unknown>,
+  xmlObject: Record<string, unknown>
 ): BlobMetadata {
   const properties: XmlPropertyDeserializeMetadata[] = [
     {
       propertyName: "encrypted",
       xmlOptions: { name: "Encrypted", attribute: true },
       type: "primitive",
-      primitiveSubtype: "string",
-    },
+      primitiveSubtype: "string"
+    }
   ];
   return deserializeXmlObject<BlobMetadata>(xmlObject, properties, {
     propertyName: "additionalProperties",
-    excludeNames: ["Encrypted"],
+    excludeNames: ["Encrypted"]
   });
 }
 ```
@@ -106,23 +110,27 @@ export function blobMetadataXmlSerializer(item: BlobMetadata): string {
     {
       propertyName: "encrypted",
       xmlOptions: { name: "Encrypted", attribute: true },
-      type: "primitive",
-    },
+      type: "primitive"
+    }
   ];
-  return serializeToXml(item, properties, "BlobMetadata", undefined, undefined, {
-    propertyName: "additionalProperties",
-    excludeNames: ["Encrypted"],
-  });
+  return serializeToXml(
+    item,
+    properties,
+    "BlobMetadata",
+    undefined,
+    undefined,
+    {
+      propertyName: "additionalProperties",
+      excludeNames: ["Encrypted"]
+    }
+  );
 }
 ```
 
 ```ts models function blobMetadataXmlObjectSerializer
 export function blobMetadataXmlObjectSerializer(
-  item: BlobMetadata,
+  item: BlobMetadata
 ): XmlSerializedObject {
-  return {
-    Encrypted: item["encrypted"],
-    ...item["additionalProperties"],
-  };
+  return { Encrypted: item["encrypted"], ...item["additionalProperties"] };
 }
 ```

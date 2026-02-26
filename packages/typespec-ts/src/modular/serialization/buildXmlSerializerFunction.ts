@@ -986,7 +986,9 @@ export function buildXmlObjectModelDeserializer(
 
 /**
  * Builds the additionalProperties config expression for XML deserializers.
- * Returns undefined if the model has no additionalProperties.
+ * Returns undefined if the model has no additionalProperties and is not an error model.
+ * Error models (with UsageFlags.Exception) are always treated as having additional properties
+ * so that unknown XML elements are captured during deserialization.
  */
 function buildAdditionalPropertiesConfigExpr(
   context: SdkContext,
@@ -994,14 +996,20 @@ function buildAdditionalPropertiesConfigExpr(
   properties: SdkModelPropertyType[]
 ): string | undefined {
   const additionalPropertyType = getAdditionalPropertiesType(type);
-  if (!additionalPropertyType) {
+  const isErrorModel =
+    type.usage !== undefined &&
+    (type.usage & UsageFlags.Exception) === UsageFlags.Exception;
+
+  if (!additionalPropertyType && !isErrorModel) {
     return undefined;
   }
 
   // Resolve the XmlAdditionalPropertiesConfig type reference
   resolveReference(XmlHelpers.XmlAdditionalPropertiesConfig);
 
-  const propName = getAdditionalPropertiesName(context, type);
+  const propName = additionalPropertyType
+    ? getAdditionalPropertiesName(context, type)
+    : "additionalProperties";
 
   // Collect XML element names of declared properties to exclude
   const excludeNames: string[] = [];
