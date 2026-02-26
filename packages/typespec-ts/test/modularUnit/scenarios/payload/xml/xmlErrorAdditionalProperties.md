@@ -52,28 +52,3 @@ export function storageErrorXmlDeserializer(xmlString: string): StorageError {
   );
 }
 ```
-
-```ts models function storageErrorXmlObjectDeserializer
-export function storageErrorXmlObjectDeserializer(
-  xmlObject: Record<string, unknown>,
-): StorageError {
-  const properties: XmlPropertyDeserializeMetadata[] = [
-    {
-      propertyName: "code",
-      xmlOptions: { name: "Code" },
-      type: "primitive",
-      primitiveSubtype: "string",
-    },
-    {
-      propertyName: "message",
-      xmlOptions: { name: "Message" },
-      type: "primitive",
-      primitiveSubtype: "string",
-    },
-  ];
-  return deserializeXmlObject<StorageError>(xmlObject, properties, {
-    propertyName: "additionalProperties",
-    excludeNames: ["Code", "Message"],
-  });
-}
-```
