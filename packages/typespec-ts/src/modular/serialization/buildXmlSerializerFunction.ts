@@ -591,6 +591,28 @@ function getPropertyTypeInfo(type: SdkType): {
     case "string":
     case "url":
       return { type: "primitive", primitiveSubtype: "string" };
+    case "enum":
+    case "enumvalue":
+    case "constant":
+      // Recurse into the underlying value type (e.g. string enum → string)
+      return getPropertyTypeInfo(type.valueType);
+    case "union":
+      // Inspect variant types; if all share the same subtype use it,
+      // otherwise default to string as a safe fallback
+      if (type.variantTypes.length > 0) {
+        const first = getPropertyTypeInfo(type.variantTypes[0]!);
+        const allSame = type.variantTypes.every(
+          (v) =>
+            getPropertyTypeInfo(v).primitiveSubtype === first.primitiveSubtype
+        );
+        if (allSame) {
+          return first;
+        }
+      }
+      return { type: "primitive", primitiveSubtype: "string" };
+    case "nullable":
+      // Recurse into the underlying non-null type
+      return getPropertyTypeInfo(type.type);
     default:
       // Numeric kinds (int8, int16, int32, int64, uint8, ..., float32, float64,
       // decimal, decimal128, numeric, integer, safeint, float) and any other
