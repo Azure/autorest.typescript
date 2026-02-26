@@ -14,7 +14,10 @@ import {
 } from "./packageJson/packageCommon.js";
 import { Project, SourceFile } from "ts-morph";
 import { RLCModel } from "../interfaces.js";
-import { buildAzureMonorepoPackage } from "./packageJson/buildAzureMonorepoPackage.js";
+import {
+  buildAzureMonorepoPackage,
+  getAzureMonorepoDependencies
+} from "./packageJson/buildAzureMonorepoPackage.js";
 import { buildAzureStandalonePackage } from "./packageJson/buildAzureStandalonePackage.js";
 import { buildFlavorlessPackage } from "./packageJson/buildFlavorlessPackage.js";
 import { getRelativePartFromSrcPath } from "../helpers/pathUtils.js";
@@ -85,11 +88,12 @@ export function buildPackageFile(
 }
 
 /**
- * Automatically updates the package.json with correct paging and LRO dependencies for Azure SDK.
- * Also updates tshy.exports if provided.
- * When migrating from Swagger/autorest to TypeSpec, replaces @azure/core-client with @azure-rest/core-client,
- * moves @azure/logger from devDependencies to dependencies, and adds missing monorepo devDependencies
- * (eslint, prettier, @azure/eslint-plugin-azure-sdk).
+ * Automatically updates the package.json to keep it consistent with what the TypeSpec emitter
+ * would generate. For Azure TypeSpec monorepo packages this compares the existing dependencies
+ * with the canonical set produced by `getAzureMonorepoDependencies` and merges any missing or
+ * outdated entries. For standalone Azure packages the function handles LRO dependency additions
+ * and migrates @azure/core-client → @azure-rest/core-client when moving from Swagger to TypeSpec.
+ * Also updates tshy.exports when a new export map is provided.
  */
 export function updatePackageFile(
   model: RLCModel,
@@ -100,15 +104,23 @@ export function updatePackageFile(
   const isAzure = isAzurePackage(model);
   const isMonorepo = isAzureMonorepoPackage(model);
   const specSource = model.options?.sourceFrom ?? "TypeSpec";
-  const needsLroUpdate = isAzure && hasLro;
   const needsExportsUpdate = exports;
-  // For Azure TypeSpec packages, we might need to migrate @azure/core-client to @azure-rest/core-client
-  const mightNeedCoreClientMigration = isAzure && specSource === "TypeSpec";
-  // For Azure TypeSpec monorepo packages, we might need additional dependency updates
-  const mightNeedMonorepoDepUpdates = isMonorepo && specSource === "TypeSpec";
+  // For Azure TypeSpec monorepo packages compare against the canonical deps.
+  const needsMonorepoDepMigration = isMonorepo && specSource === "TypeSpec";
+  // LRO and core-client migrations apply to non-monorepo-TypeSpec Azure packages.
+  // Monorepo TypeSpec packages use the canonical comparison below which already
+  // covers LRO deps and the @azure/core-client → @azure-rest/core-client migration.
+  const needsLroUpdate = isAzure && hasLro && !needsMonorepoDepMigration;
+  const mightNeedCoreClientMigration =
+    isAzure && !isMonorepo && specSource === "TypeSpec";
 
   // Early return if nothing needs to be updated
-  if (!needsLroUpdate && !needsExportsUpdate && !mightNeedCoreClientMigration && !mightNeedMonorepoDepUpdates) {
+  if (
+    !needsLroUpdate &&
+    !needsExportsUpdate &&
+    !mightNeedCoreClientMigration &&
+    !needsMonorepoDepMigration
+  ) {
     return;
   }
 
@@ -139,7 +151,7 @@ export function updatePackageFile(
     hasChanges = true;
   }
 
-  // Update LRO dependencies for Azure packages
+  // Update LRO dependencies for standalone Azure packages
   if (needsLroUpdate) {
     packageInfo.dependencies = {
       ...packageInfo.dependencies,
@@ -149,8 +161,11 @@ export function updatePackageFile(
     hasChanges = true;
   }
 
-  // Migrate @azure/core-client to @azure-rest/core-client when switching from Swagger/autorest to TypeSpec
-  if (mightNeedCoreClientMigration && packageInfo.dependencies?.["@azure/core-client"]) {
+  // Migrate @azure/core-client → @azure-rest/core-client for standalone Azure TypeSpec packages
+  if (
+    mightNeedCoreClientMigration &&
+    packageInfo.dependencies?.["@azure/core-client"]
+  ) {
     const { "@azure/core-client": _removed, ...remainingDeps } =
       packageInfo.dependencies;
     packageInfo.dependencies = {
@@ -160,36 +175,46 @@ export function updatePackageFile(
     hasChanges = true;
   }
 
-  // For Azure TypeSpec monorepo packages, apply additional migrations
-  if (mightNeedMonorepoDepUpdates) {
-    // Move @azure/logger from devDependencies to dependencies if needed
-    if (packageInfo.devDependencies?.["@azure/logger"] && !packageInfo.dependencies?.["@azure/logger"]) {
-      const loggerVersion = packageInfo.devDependencies["@azure/logger"];
-      const { "@azure/logger": _removedLogger, ...remainingDevDeps } =
-        packageInfo.devDependencies;
-      packageInfo.devDependencies = remainingDevDeps;
-      packageInfo.dependencies = {
-        ...packageInfo.dependencies,
-        "@azure/logger": loggerVersion
-      };
-      hasChanges = true;
-    }
+  // For Azure TypeSpec monorepo packages: compare existing deps with the canonical set
+  // produced by getAzureMonorepoDependencies and merge any missing or outdated entries.
+  if (needsMonorepoDepMigration) {
+    const canonical = getAzureMonorepoDependencies({
+      // Fields used by getAzureMonorepoDependencies: hasLro, withTests, and specSource.
+      // The other required fields (name, version, description, etc.) are not used
+      // by that function and are set to safe defaults.
+      name: "",
+      version: "",
+      description: "",
+      moduleKind: "esm",
+      withTests: model.options?.generateTest === true,
+      withSamples: false,
+      clientFilePaths: [],
+      hasLro,
+      specSource: "TypeSpec"
+    });
 
-    // Add missing monorepo devDependencies needed for TypeSpec-generated packages
-    const missingDevDeps: Record<string, string> = {};
-    if (!packageInfo.devDependencies?.["eslint"]) {
-      missingDevDeps["eslint"] = "catalog:";
-    }
-    if (!packageInfo.devDependencies?.["prettier"]) {
-      missingDevDeps["prettier"] = "catalog:";
-    }
-    if (!packageInfo.devDependencies?.["@azure/eslint-plugin-azure-sdk"]) {
-      missingDevDeps["@azure/eslint-plugin-azure-sdk"] = "workspace:^";
-    }
-    if (Object.keys(missingDevDeps).length > 0) {
+    const existingDeps = packageInfo.dependencies ?? {};
+    const existingDevDeps = packageInfo.devDependencies ?? {};
+
+    // Needs update if legacy @azure/core-client is present, or if any canonical key
+    // is missing from (or has a different value in) the existing dependencies.
+    const depsNeedUpdate =
+      "@azure/core-client" in existingDeps ||
+      Object.entries(canonical.dependencies).some(
+        ([k, v]) => existingDeps[k] !== v
+      );
+    const devDepsNeedUpdate = Object.entries(canonical.devDependencies).some(
+      ([k, v]) => existingDevDeps[k] !== v
+    );
+
+    if (depsNeedUpdate || devDepsNeedUpdate) {
+      // Remove legacy @azure/core-client and overlay canonical deps onto existing.
+      // Existing keys that are not in canonical are preserved.
+      const { "@azure/core-client": _removed, ...remainingDeps } = existingDeps;
+      packageInfo.dependencies = { ...remainingDeps, ...canonical.dependencies };
       packageInfo.devDependencies = {
-        ...packageInfo.devDependencies,
-        ...missingDevDeps
+        ...existingDevDeps,
+        ...canonical.devDependencies
       };
       hasChanges = true;
     }
