@@ -61,6 +61,7 @@ import { refkey } from "../framework/refkey.js";
 import { useContext } from "../contextManager.js";
 import { isMetadata, isOrExtendsHttpFile } from "@typespec/http";
 import { isAzureCoreErrorType } from "../utils/modelUtils.js";
+import { getHeaderClientOptions } from "./helpers/clientOptionHelpers.js";
 import { isExtensibleEnum } from "./type-expressions/get-enum-expression.js";
 import {
   getAllDiscriminatedValues,
@@ -630,6 +631,26 @@ function buildModelInterface(
         return buildModelProperty(context, property, type);
       })
     );
+  }
+
+  // Add properties from @clientOption("header", ...) that don't already exist in the model
+  const headerOptions = getHeaderClientOptions(type);
+  if (headerOptions.length > 0) {
+    const existingNames = new Set(
+      interfaceStructure.properties!.map(
+        (p: OptionalKind<PropertySignatureStructure>) => p.name
+      )
+    );
+    for (const opt of headerOptions) {
+      if (!existingNames.has(opt.propertyName)) {
+        interfaceStructure.properties!.push({
+          kind: StructureKind.PropertySignature,
+          name: opt.propertyName,
+          type: "string",
+          hasQuestionToken: true
+        });
+      }
+    }
   }
 
   if (type.baseModel) {
