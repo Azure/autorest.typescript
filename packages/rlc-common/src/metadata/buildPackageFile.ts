@@ -87,7 +87,9 @@ export function buildPackageFile(
 /**
  * Automatically updates the package.json with correct paging and LRO dependencies for Azure SDK.
  * Also updates tshy.exports if provided.
- * When migrating from Swagger/autorest to TypeSpec, replaces @azure/core-client with @azure-rest/core-client.
+ * When migrating from Swagger/autorest to TypeSpec, replaces @azure/core-client with @azure-rest/core-client,
+ * moves @azure/logger from devDependencies to dependencies, and adds missing monorepo devDependencies
+ * (eslint, prettier, @azure/eslint-plugin-azure-sdk).
  */
 export function updatePackageFile(
   model: RLCModel,
@@ -96,14 +98,17 @@ export function updatePackageFile(
 ) {
   const hasLro = hasPollingOperations(model);
   const isAzure = isAzurePackage(model);
+  const isMonorepo = isAzureMonorepoPackage(model);
   const specSource = model.options?.sourceFrom ?? "TypeSpec";
   const needsLroUpdate = isAzure && hasLro;
   const needsExportsUpdate = exports;
   // For Azure TypeSpec packages, we might need to migrate @azure/core-client to @azure-rest/core-client
   const mightNeedCoreClientMigration = isAzure && specSource === "TypeSpec";
+  // For Azure TypeSpec monorepo packages, we might need additional dependency updates
+  const mightNeedMonorepoDepUpdates = isMonorepo && specSource === "TypeSpec";
 
   // Early return if nothing needs to be updated
-  if (!needsLroUpdate && !needsExportsUpdate && !mightNeedCoreClientMigration) {
+  if (!needsLroUpdate && !needsExportsUpdate && !mightNeedCoreClientMigration && !mightNeedMonorepoDepUpdates) {
     return;
   }
 
@@ -153,6 +158,41 @@ export function updatePackageFile(
       "@azure-rest/core-client": "^2.3.1"
     };
     hasChanges = true;
+  }
+
+  // For Azure TypeSpec monorepo packages, apply additional migrations
+  if (mightNeedMonorepoDepUpdates) {
+    // Move @azure/logger from devDependencies to dependencies if needed
+    if (packageInfo.devDependencies?.["@azure/logger"] && !packageInfo.dependencies?.["@azure/logger"]) {
+      const loggerVersion = packageInfo.devDependencies["@azure/logger"];
+      const { "@azure/logger": _removedLogger, ...remainingDevDeps } =
+        packageInfo.devDependencies;
+      packageInfo.devDependencies = remainingDevDeps;
+      packageInfo.dependencies = {
+        ...packageInfo.dependencies,
+        "@azure/logger": loggerVersion
+      };
+      hasChanges = true;
+    }
+
+    // Add missing monorepo devDependencies needed for TypeSpec-generated packages
+    const missingDevDeps: Record<string, string> = {};
+    if (!packageInfo.devDependencies?.["eslint"]) {
+      missingDevDeps["eslint"] = "catalog:";
+    }
+    if (!packageInfo.devDependencies?.["prettier"]) {
+      missingDevDeps["prettier"] = "catalog:";
+    }
+    if (!packageInfo.devDependencies?.["@azure/eslint-plugin-azure-sdk"]) {
+      missingDevDeps["@azure/eslint-plugin-azure-sdk"] = "workspace:^";
+    }
+    if (Object.keys(missingDevDeps).length > 0) {
+      packageInfo.devDependencies = {
+        ...packageInfo.devDependencies,
+        ...missingDevDeps
+      };
+      hasChanges = true;
+    }
   }
 
   if (!hasChanges) {
