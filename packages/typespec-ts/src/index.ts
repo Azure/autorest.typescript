@@ -556,21 +556,19 @@ export async function $onEmit(context: EmitContext) {
       }
     } else if (hasPackageFile) {
       // update existing package.json file with correct dependencies
-      let modularPackageInfo = {};
+      const updateBuilders = [];
       if (option.isModularLibrary) {
-        modularPackageInfo = {
+        const modularPackageInfo = {
           exports: getModuleExports(context, modularEmitterOptions),
           clientContextPaths: getRelativeContextPaths(
             context,
             modularEmitterOptions
           )
         };
-      }
-
-      const updateBuilders = [
-        (model: RLCModel) =>
+        updateBuilders.push((model: RLCModel) =>
           updatePackageFile(model, existingPackageFilePath, modularPackageInfo)
-      ];
+        );
+      }
 
       // If the client name changed, regenerate the README and snippets completely;
       // otherwise update only the API reference link in-place.
