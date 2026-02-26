@@ -434,23 +434,19 @@ function buildModelTypeSerializer(
       const expr = getSerializationExpression(context, property, "item");
 
       let partDefinition: string;
-      // eslint-disable-next-line
       const multipart = property.serializationOptions.multipart;
       if (multipart?.isFilePart) {
         const createFilePartDescriptorDefinition = resolveReference(
           MultipartHelpers.createFilePartDescriptor
         );
-        // eslint-disable-next-line
         const itemPath = multipart.isMulti
           ? "x"
           : getPropertyFullName(context, property, "item");
-        /* eslint-disable */
         partDefinition = `${createFilePartDescriptorDefinition}("${multipart.name}", ${itemPath}, )`;
 
         // If the TypeSpec doesn't specify a default content type, TCGC will infer a default of "*/*".
         // In this case, we actually want the content type to be left unset so that Core will take care of
         // setting the content type correctly.
-        // eslint-disable
         const contentType =
           multipart.defaultContentTypes?.[0] === "*/*"
             ? undefined
@@ -467,7 +463,6 @@ function buildModelTypeSerializer(
       } else {
         partDefinition = `{ name: "${multipart?.name}", body: (${expr}) }`;
       }
-      /* eslint-disable */
       if (property.optional) {
         parts.push(
           `...(${getPropertyFullName(context, property, "item")} === undefined ? [] : [${partDefinition}])`

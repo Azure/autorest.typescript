@@ -854,9 +854,7 @@ function buildModelProperty(
     typeExpression = allDiscriminatorValues
       .map((value) => `"${value}"`)
       .join(" | ");
-  }
-  // eslint-disable-next-line
-  else if (
+  } else if (
     property.kind === "property" &&
     property.serializationOptions.multipart?.isFilePart
   ) {
