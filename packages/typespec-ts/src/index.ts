@@ -303,69 +303,14 @@ export async function $onEmit(context: EmitContext) {
     const modularSourcesRoot =
       dpgContext.generationPathDetail?.modularSourcesDir ?? "src";
     const project = useContext("outputProject");
-    modularEmitterOptions = transformModularEmitterOptions(
+
+    // Generate all modular sources using the shared helper
+    modularEmitterOptions = await generateModularSourcesInProject(
       dpgContext,
       modularSourcesRoot,
-      {
-        casing: "camel"
-      }
+      project
     );
 
-    emitLoggerFile(modularEmitterOptions, modularSourcesRoot);
-
-    const rootIndexFile = project.createSourceFile(
-      `${modularSourcesRoot}/index.ts`,
-      "",
-      {
-        overwrite: true
-      }
-    );
-
-    emitTypes(dpgContext, { sourceRoot: modularSourcesRoot });
-    buildSubpathIndexFile(modularEmitterOptions, "models", undefined, {
-      recursive: true
-    });
-    const clientMap = getClientHierarchyMap(dpgContext);
-    if (clientMap.length === 0) {
-      // If no clients, we still need to build the root index file
-      buildRootIndex(dpgContext, modularEmitterOptions, rootIndexFile);
-    }
-    for (const subClient of clientMap) {
-      await renameClientName(subClient[1], modularEmitterOptions);
-      buildApiOptions(dpgContext, subClient, modularEmitterOptions);
-      buildOperationFiles(dpgContext, subClient, modularEmitterOptions);
-      buildClientContext(dpgContext, subClient, modularEmitterOptions);
-      buildRestorePoller(dpgContext, subClient, modularEmitterOptions);
-      if (dpgContext.rlcOptions?.hierarchyClient) {
-        buildSubpathIndexFile(modularEmitterOptions, "api", subClient, {
-          exportIndex: false,
-          recursive: true
-        });
-      } else {
-        buildSubpathIndexFile(modularEmitterOptions, "api", subClient, {
-          recursive: true,
-          exportIndex: true
-        });
-      }
-
-      buildClassicalClient(dpgContext, subClient, modularEmitterOptions);
-      buildClassicOperationFiles(dpgContext, subClient, modularEmitterOptions);
-      buildSubpathIndexFile(modularEmitterOptions, "classic", subClient, {
-        exportIndex: true,
-        interfaceOnly: true
-      });
-      const { subfolder } = getModularClientOptions(subClient);
-      // Generate index file for clients with subfolders (multi-client scenarios and nested clients)
-      if (subfolder) {
-        buildSubClientIndexFile(dpgContext, subClient, modularEmitterOptions);
-      }
-      buildRootIndex(
-        dpgContext,
-        modularEmitterOptions,
-        rootIndexFile,
-        subClient
-      );
-    }
     // Enable modular sample generation when explicitly set to true or MPG
     if (emitterOptions["generate-sample"] === true) {
       const samples = emitSamples(dpgContext);
@@ -656,4 +601,182 @@ export async function renameClientName(
   ) {
     client.name = emitterOptions.options.typespecTitleMap[client.name]!;
   }
+}
+
+/**
+ * Core modular sources generation logic shared between onEmit and buildProject.
+ * Generates all modular source files into the provided ts-morph Project.
+ */
+async function generateModularSourcesInProject(
+  dpgContext: SdkContext,
+  sourcesRoot: string,
+  project: Project
+): Promise<ModularEmitterOptions> {
+  const modularEmitterOptions = transformModularEmitterOptions(
+    dpgContext,
+    sourcesRoot,
+    { casing: "camel" }
+  );
+
+  emitLoggerFile(modularEmitterOptions, sourcesRoot);
+
+  const rootIndexFile = project.createSourceFile(
+    `${sourcesRoot}/index.ts`,
+    "",
+    { overwrite: true }
+  );
+
+  emitTypes(dpgContext, { sourceRoot: sourcesRoot });
+  buildSubpathIndexFile(modularEmitterOptions, "models", undefined, {
+    recursive: true
+  });
+
+  const clientMap = getClientHierarchyMap(dpgContext);
+  if (clientMap.length === 0) {
+    buildRootIndex(dpgContext, modularEmitterOptions, rootIndexFile);
+  }
+  for (const subClient of clientMap) {
+    await renameClientName(subClient[1], modularEmitterOptions);
+    buildApiOptions(dpgContext, subClient, modularEmitterOptions);
+    buildOperationFiles(dpgContext, subClient, modularEmitterOptions);
+    buildClientContext(dpgContext, subClient, modularEmitterOptions);
+    buildRestorePoller(dpgContext, subClient, modularEmitterOptions);
+    if (dpgContext.rlcOptions?.hierarchyClient) {
+      buildSubpathIndexFile(modularEmitterOptions, "api", subClient, {
+        exportIndex: false,
+        recursive: true
+      });
+    } else {
+      buildSubpathIndexFile(modularEmitterOptions, "api", subClient, {
+        recursive: true,
+        exportIndex: true
+      });
+    }
+    buildClassicalClient(dpgContext, subClient, modularEmitterOptions);
+    buildClassicOperationFiles(dpgContext, subClient, modularEmitterOptions);
+    buildSubpathIndexFile(modularEmitterOptions, "classic", subClient, {
+      exportIndex: true,
+      interfaceOnly: true
+    });
+    const { subfolder } = getModularClientOptions(subClient);
+    if (subfolder) {
+      buildSubClientIndexFile(dpgContext, subClient, modularEmitterOptions);
+    }
+    buildRootIndex(
+      dpgContext,
+      modularEmitterOptions,
+      rootIndexFile,
+      subClient
+    );
+  }
+
+  return modularEmitterOptions;
+}
+
+/**
+ * Options for {@link buildProject}.
+ */
+export interface BuildProjectOptions {
+  /**
+   * Partial emitter options to forward to the typespec-ts emitter pipeline.
+   * `is-modular-library` is always forced to `true`.
+   */
+  emitterOptions?: Partial<EmitterOptions>;
+  /**
+   * Virtual root used for in-memory source paths (default: `/in-memory-output/src`).
+   */
+  sourcesRoot?: string;
+}
+
+/**
+ * Run the typespec-ts modular generation pipeline against an already-compiled
+ * TypeSpec {@link Program} and return the populated ts-morph {@link Project}
+ * WITHOUT writing anything to disk.
+ *
+ * This is the programmatic entry point consumed by flight-instructor's external
+ * emitter commands.
+ */
+export async function buildProject(
+  program: Program,
+  options: BuildProjectOptions = {}
+): Promise<Project> {
+  const sourcesRoot = options.sourcesRoot ?? "/in-memory-output/src";
+
+  // Build a minimal EmitContext that satisfies the pipeline without touching FS.
+  const fakeEmitContext = {
+    program,
+    options: {
+      "is-modular-library": true,
+      ...options.emitterOptions
+    },
+    emitterOutputDir: "/in-memory-output"
+  } as unknown as EmitContext;
+
+  const outputProject = new Project();
+  const dpgContext = await createContextWithDefaultOptions(fakeEmitContext);
+
+  // Set generation paths without any FS look-ups.
+  dpgContext.generationPathDetail = {
+    rootDir: "/in-memory-output",
+    metadataDir: "/in-memory-output",
+    rlcSourcesDir: sourcesRoot,
+    modularSourcesDir: sourcesRoot
+  };
+  dpgContext.allServiceNamespaces = listAllServiceNamespaces(dpgContext);
+
+  const rlcOptions = transformRLCOptions(
+    fakeEmitContext.options as EmitterOptions,
+    dpgContext
+  );
+  dpgContext.rlcOptions = rlcOptions;
+
+  // Wire up the shared contexts used by the builder functions.
+  provideContext("rlcMetaTree", new Map());
+  provideContext("symbolMap", new Map());
+  provideContext("outputProject", outputProject);
+  provideContext("emitContext", {
+    compilerContext: fakeEmitContext,
+    tcgcContext: dpgContext
+  });
+
+  const staticHelpers = await loadStaticHelpers(
+    outputProject,
+    {
+      ...SerializationHelpers,
+      ...PagingHelpers,
+      ...PollingHelpers,
+      ...SimplePollerHelpers,
+      ...UrlTemplateHelpers,
+      ...MultipartHelpers,
+      ...CloudSettingHelpers,
+      ...XmlHelpers
+    },
+    {
+      sourcesDir: sourcesRoot,
+      options: rlcOptions,
+      program
+    }
+  );
+
+  const extraDependencies = isAzurePackage({ options: rlcOptions })
+    ? {
+        ...AzurePollingDependencies,
+        ...AzureCoreDependencies,
+        ...AzureIdentityDependencies
+      }
+    : { ...DefaultCoreDependencies };
+
+  const binder = provideBinder(outputProject, {
+    staticHelpers,
+    dependencies: { ...extraDependencies }
+  });
+  provideSdkTypes(dpgContext);
+
+  // Generate all modular source files into the in-memory project using the shared helper.
+  await generateModularSourcesInProject(dpgContext, sourcesRoot, outputProject);
+
+  // Resolve all cross-file symbol references in the in-memory project.
+  binder.resolveAllReferences(sourcesRoot);
+
+  return outputProject;
 }
