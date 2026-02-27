@@ -36,11 +36,10 @@ interface ArrowOperations {
 }
 ```
 
-## Provide generated models with correct XML object serializers
+## Provide generated models with correct XML serializers
 
-The key validation is that `arrowConfigurationXmlObjectSerializer` wraps array items
-under the `"Field"` item element name within the `"Schema"` wrapper element, producing
-the structure `{ "Schema": { "Field": [items...] } }` instead of `{ "Schema": [items...] }`.
+The key validation is that `arrowConfigurationXmlSerializer` references `arrowFieldXmlObjectSerializer`
+for the nested array items, and `arrowFieldXmlObjectSerializer` properly maps fields to their XML names.
 
 ```ts models interface ArrowField
 /** Represents an Apache Arrow field. */
@@ -85,14 +84,6 @@ export function arrowConfigurationXmlSerializer(item: ArrowConfiguration): strin
     },
   ];
   return serializeToXml(item, properties, "ArrowConfiguration");
-}
-```
-
-```ts models function arrowConfigurationXmlObjectSerializer
-export function arrowConfigurationXmlObjectSerializer(
-  item: ArrowConfiguration,
-): XmlSerializedObject {
-  return { Schema: { Field: item["schema"]?.map((i: any) => arrowFieldXmlObjectSerializer(i)) } };
 }
 ```
 
@@ -177,11 +168,5 @@ export function blobTagsXmlSerializer(item: BlobTags): string {
     },
   ];
   return serializeToXml(item, properties, "Tags");
-}
-```
-
-```ts models function blobTagsXmlObjectSerializer
-export function blobTagsXmlObjectSerializer(item: BlobTags): XmlSerializedObject {
-  return { TagSet: item["blobTagSet"]?.map((i: any) => blobTagXmlObjectSerializer(i)) };
 }
 ```
