@@ -31,4 +31,4 @@ vitest.config.ts.timestamp*
 **/test/**/metadata.json
 .turbo/
 packages/typespec-ts/submodules
-.gitmodules
+.gitmodules**/spec-coverage.json
