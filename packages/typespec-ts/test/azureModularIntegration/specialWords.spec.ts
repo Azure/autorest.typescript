@@ -17,6 +17,27 @@ describe("Special Words Client", () => {
     });
     assert.equal(result, undefined);
   });
+  it("should post modelProperties dictMethods", async () => {
+    const result = await client.modelProperties.dictMethods({
+      keys: "ok",
+      items: "ok",
+      values: "ok",
+      popitem: "ok",
+      clear: "ok",
+      update: "ok",
+      setdefault: "ok",
+      pop: "ok",
+      get: "ok",
+      copy: "ok"
+    });
+    assert.equal(result, undefined);
+  });
+  it("should post modelProperties withList", async () => {
+    const result = await client.modelProperties.withList({
+      list: "ok"
+    });
+    assert.equal(result, undefined);
+  });
   it("should get operations And", async () => {
     const result = await client.operations.and();
     assert.equal(result, undefined);
