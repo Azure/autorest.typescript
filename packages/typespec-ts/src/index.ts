@@ -662,12 +662,7 @@ async function generateModularSourcesInProject(
     if (subfolder) {
       buildSubClientIndexFile(dpgContext, subClient, modularEmitterOptions);
     }
-    buildRootIndex(
-      dpgContext,
-      modularEmitterOptions,
-      rootIndexFile,
-      subClient
-    );
+    buildRootIndex(dpgContext, modularEmitterOptions, rootIndexFile, subClient);
   }
 
   return modularEmitterOptions;
