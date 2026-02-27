@@ -109,7 +109,7 @@ export function updatePackageFile(
     try {
       const project = new Project();
       packageFile = project.addSourceFileAtPath(existingFilePathOrContent);
-    } catch (e) {
+    } catch (_e) {
       // If the file doesn't exist, we don't need to update it.
       return;
     }
