@@ -44,6 +44,16 @@ export declare type FlattenPropertyClient = Client & {
 export declare interface FlattenPropertyClientOptions extends ClientOptions {
 }
 
+export declare interface FlattenUnknownModel {
+    name: string;
+    properties?: unknown;
+}
+
+export declare interface FlattenUnknownModelOutput {
+    name: string;
+    properties?: any;
+}
+
 export declare interface NestedFlattenModel {
     name: string;
     properties: ChildFlattenModel;
@@ -69,6 +79,36 @@ export declare interface PutFlattenModelBodyParam {
 
 export declare type PutFlattenModelParameters = PutFlattenModelBodyParam & RequestParameters;
 
+export declare interface PutFlattenReadOnlyModel {
+    put(options: PutFlattenReadOnlyModelParameters): StreamableMethod<PutFlattenReadOnlyModel200Response>;
+}
+
+export declare interface PutFlattenReadOnlyModel200Response extends HttpResponse {
+    status: "200";
+    body: SolutionOutput;
+}
+
+export declare interface PutFlattenReadOnlyModelBodyParam {
+    body: Solution;
+}
+
+export declare type PutFlattenReadOnlyModelParameters = PutFlattenReadOnlyModelBodyParam & RequestParameters;
+
+export declare interface PutFlattenUnknownModel {
+    put(options: PutFlattenUnknownModelParameters): StreamableMethod<PutFlattenUnknownModel200Response>;
+}
+
+export declare interface PutFlattenUnknownModel200Response extends HttpResponse {
+    status: "200";
+    body: FlattenUnknownModelOutput;
+}
+
+export declare interface PutFlattenUnknownModelBodyParam {
+    body: FlattenUnknownModel;
+}
+
+export declare type PutFlattenUnknownModelParameters = PutFlattenUnknownModelBodyParam & RequestParameters;
+
 export declare interface PutNestedFlattenModel {
     put(options: PutNestedFlattenModelParameters): StreamableMethod<PutNestedFlattenModel200Response>;
 }
@@ -87,6 +127,29 @@ export declare type PutNestedFlattenModelParameters = PutNestedFlattenModelBodyP
 export declare interface Routes {
     (path: "/azure/client-generator-core/flatten-property/flattenModel"): PutFlattenModel;
     (path: "/azure/client-generator-core/flatten-property/nestedFlattenModel"): PutNestedFlattenModel;
+    (path: "/azure/client-generator-core/flatten-property/flattenUnknownModel"): PutFlattenUnknownModel;
+    (path: "/azure/client-generator-core/flatten-property/flattenReadOnlyModel"): PutFlattenReadOnlyModel;
+}
+
+export declare interface Solution {
+    name: string;
+    properties: SolutionProperties;
+    propertiesOptional?: SolutionProperties;
+}
+
+export declare interface SolutionOutput {
+    name: string;
+    properties: SolutionPropertiesOutput;
+    propertiesOptional?: SolutionPropertiesOutput;
+}
+
+export declare interface SolutionProperties {
+}
+
+export declare interface SolutionPropertiesOutput {
+    readonly solutionId?: string;
+    readonly title?: string;
+    readonly content?: string;
 }
 
 export { }
