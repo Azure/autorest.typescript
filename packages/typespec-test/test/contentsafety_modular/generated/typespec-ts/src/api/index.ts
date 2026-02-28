@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-export {
-  createContentSafety,
+export type {
   ContentSafetyContext,
   ContentSafetyClientOptionalParams,
 } from "./contentSafetyContext.js";
+export { createContentSafety } from "./contentSafetyContext.js";
 export {
   listTextBlocklistItems,
   getTextBlocklistItem,
@@ -20,7 +20,7 @@ export {
   shieldPrompt,
   analyzeText,
 } from "./operations.js";
-export {
+export type {
   ListTextBlocklistItemsOptionalParams,
   GetTextBlocklistItemOptionalParams,
   RemoveBlocklistItemsOptionalParams,

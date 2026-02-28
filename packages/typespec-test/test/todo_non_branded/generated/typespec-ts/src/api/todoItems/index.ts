@@ -1,7 +1,7 @@
 // Licensed under the MIT License.
 
 export { $delete, update, get, createForm, createJson, list } from "./operations.js";
-export {
+export type {
   TodoItemsDeleteOptionalParams,
   TodoItemsUpdateOptionalParams,
   TodoItemsGetOptionalParams,

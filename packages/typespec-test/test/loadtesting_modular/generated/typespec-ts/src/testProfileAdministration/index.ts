@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 export { TestProfileAdministrationClient } from "./testProfileAdministrationClient.js";
-export {
+export type {
   ListTestProfilesOptionalParams,
   GetTestProfileOptionalParams,
   DeleteTestProfileOptionalParams,

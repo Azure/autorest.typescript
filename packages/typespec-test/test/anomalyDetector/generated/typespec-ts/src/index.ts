@@ -8,8 +8,8 @@ import {
 } from "./static-helpers/pagingHelpers.js";
 
 export { AnomalyDetectorClient } from "./anomalyDetectorClient.js";
-export { APIVersion } from "./models/index.js";
-export {
+export type { APIVersion } from "./models/index.js";
+export type {
   MultivariateMultivariateDetectionResult,
   MultivariateMultivariateBatchDetectionResultSummary,
   MultivariateMultivariateBatchDetectionStatus,
@@ -34,7 +34,7 @@ export {
   MultivariateVariableValues,
   MultivariateMultivariateLastDetectionResult,
 } from "./models/multivariate/index.js";
-export {
+export type {
   UnivariateUnivariateDetectionOptions,
   UnivariateTimeSeriesPoint,
   UnivariateTimeGranularity,
@@ -46,8 +46,8 @@ export {
   UnivariateUnivariateChangePointDetectionOptions,
   UnivariateUnivariateChangePointDetectionResult,
 } from "./models/univariate/index.js";
-export { AnomalyDetectorClientOptionalParams } from "./api/index.js";
-export {
+export type { AnomalyDetectorClientOptionalParams } from "./api/index.js";
+export type {
   MultivariateDetectMultivariateLastAnomalyOptionalParams,
   MultivariateDetectMultivariateBatchAnomalyOptionalParams,
   MultivariateGetMultivariateModelOptionalParams,
@@ -56,10 +56,10 @@ export {
   MultivariateTrainMultivariateModelOptionalParams,
   MultivariateGetMultivariateBatchDetectionResultOptionalParams,
 } from "./api/multivariate/index.js";
-export {
+export type {
   UnivariateDetectUnivariateChangePointOptionalParams,
   UnivariateDetectUnivariateLastPointOptionalParams,
   UnivariateDetectUnivariateEntireSeriesOptionalParams,
 } from "./api/univariate/index.js";
-export { MultivariateOperations, UnivariateOperations } from "./classic/index.js";
-export { PageSettings, ContinuablePage, PagedAsyncIterableIterator };
+export type { MultivariateOperations, UnivariateOperations } from "./classic/index.js";
+export type { PageSettings, ContinuablePage, PagedAsyncIterableIterator };

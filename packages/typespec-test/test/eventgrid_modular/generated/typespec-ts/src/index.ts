@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 export { EventGridClient } from "./eventGridClient.js";
-export {
+export type {
   CloudEvent,
   PublishResult,
   ReceiveResult,
@@ -14,9 +14,9 @@ export {
   RejectResult,
   RenewCloudEventLocksResult,
   ReleaseDelay,
-  KnownServiceApiVersions,
 } from "./models/index.js";
-export {
+export { KnownServiceApiVersions } from "./models/index.js";
+export type {
   EventGridClientOptionalParams,
   RenewCloudEventLocksOptionalParams,
   RejectCloudEventsOptionalParams,

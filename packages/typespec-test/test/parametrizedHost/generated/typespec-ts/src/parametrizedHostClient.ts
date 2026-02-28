@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 
 import {
-  createParametrizedHost,
   ParametrizedHostContext,
   ParametrizedHostClientOptionalParams,
+  createParametrizedHost,
 } from "./api/index.js";
 import {
   ConfidentialLedgerOperations,

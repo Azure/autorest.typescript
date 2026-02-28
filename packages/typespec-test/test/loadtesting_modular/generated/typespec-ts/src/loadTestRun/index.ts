@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 export { LoadTestRunClient } from "./loadTestRunClient.js";
-export {
+export type {
   LoadTestRunContext,
   LoadTestRunClientOptionalParams,
   StopTestRunOptionalParams,

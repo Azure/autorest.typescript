@@ -1,8 +1,5 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-export {
-  createAIProject,
-  AIProjectContext,
-  AIProjectClientOptionalParams,
-} from "./aiProjectContext.js";
+export type { AIProjectContext, AIProjectClientOptionalParams } from "./aiProjectContext.js";
+export { createAIProject } from "./aiProjectContext.js";

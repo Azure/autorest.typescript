@@ -2,4 +2,4 @@
 // Licensed under the MIT License.
 
 export { create } from "./operations.js";
-export { AudioTranslationsCreateOptionalParams } from "./options.js";
+export type { AudioTranslationsCreateOptionalParams } from "./options.js";

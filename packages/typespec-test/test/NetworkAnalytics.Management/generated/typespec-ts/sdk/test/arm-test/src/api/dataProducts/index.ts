@@ -15,7 +15,7 @@ export {
   get,
   create,
 } from "./operations.js";
-export {
+export type {
   DataProductsReadOptionalParams,
   DataProductsListBySubscriptionOptionalParams,
   DataProductsListByResourceGroupOptionalParams,

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-export {
+export type {
   CloudEvent,
   PublishResult,
   ReceiveResult,
@@ -13,5 +13,5 @@ export {
   RejectResult,
   RenewCloudEventLocksResult,
   ReleaseDelay,
-  KnownServiceApiVersions,
 } from "./models.js";
+export { KnownServiceApiVersions } from "./models.js";

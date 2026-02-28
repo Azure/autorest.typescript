@@ -1,7 +1,7 @@
 // Licensed under the MIT License.
 
 export { download, $delete, retrieve, create, list } from "./operations.js";
-export {
+export type {
   FilesDownloadOptionalParams,
   FilesDeleteOptionalParams,
   FilesRetrieveOptionalParams,

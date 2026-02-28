@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 
 import {
-  createLoadTestRun,
   LoadTestRunContext,
   LoadTestRunClientOptionalParams,
+  createLoadTestRun,
 } from "./api/index.js";
 import {
   TestRun,

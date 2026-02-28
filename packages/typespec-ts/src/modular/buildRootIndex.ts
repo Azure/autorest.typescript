@@ -20,6 +20,7 @@ import { reportDiagnostic } from "../lib.js";
 import { NoTarget } from "@typespec/compiler";
 import { isLroOnlyOperation } from "./helpers/operationHelpers.js";
 import { SdkContext } from "../utils/interfaces.js";
+import { partitionAndEmitExports } from "./buildSubpathIndex.js";
 
 export function buildRootIndex(
   context: SdkContext,
@@ -111,10 +112,15 @@ function exportModels(
 
 function exportAzureCloudTypes(context: SdkContext, rootIndexFile: SourceFile) {
   if (context.arm) {
+    // AzureClouds is an enum (runtime value), AzureSupportedClouds is a type alias
     addExportsToRootIndexFile(rootIndexFile, [
-      resolveReference(CloudSettingHelpers.AzureClouds),
-      resolveReference(CloudSettingHelpers.AzureSupportedClouds)
+      resolveReference(CloudSettingHelpers.AzureClouds)
     ]);
+    addExportsToRootIndexFile(
+      rootIndexFile,
+      [resolveReference(CloudSettingHelpers.AzureSupportedClouds)],
+      true
+    );
   }
 }
 
@@ -126,11 +132,15 @@ function exportPagingTypes(context: SdkContext, rootIndexFile: SourceFile) {
     return;
   }
 
-  addExportsToRootIndexFile(rootIndexFile, [
-    resolveReference(PagingHelpers.PageSettings),
-    resolveReference(PagingHelpers.ContinuablePage),
-    resolveReference(PagingHelpers.PagedAsyncIterableIterator)
-  ]);
+  addExportsToRootIndexFile(
+    rootIndexFile,
+    [
+      resolveReference(PagingHelpers.PageSettings),
+      resolveReference(PagingHelpers.ContinuablePage),
+      resolveReference(PagingHelpers.PagedAsyncIterableIterator)
+    ],
+    true
+  );
 }
 
 function hasPaging(context: SdkContext): boolean {
@@ -159,9 +169,11 @@ function exportFileContentsType(
       )
     )
   ) {
-    addExportsToRootIndexFile(rootIndexFile, [
-      resolveReference(MultipartHelpers.FileContents)
-    ]);
+    addExportsToRootIndexFile(
+      rootIndexFile,
+      [resolveReference(MultipartHelpers.FileContents)],
+      true
+    );
   }
 }
 
@@ -186,12 +198,14 @@ function getNewNamedExports(
 
 function addExportsToRootIndexFile(
   rootIndexFile: SourceFile,
-  namedExports: string[]
+  namedExports: string[],
+  isTypeOnly: boolean = false
 ) {
   const existingExports = getExistingExports(rootIndexFile);
   const newNamedExports = getNewNamedExports(namedExports, existingExports);
   if (newNamedExports.length > 0) {
     rootIndexFile.addExportDeclaration({
+      isTypeOnly,
       namedExports: newNamedExports
     });
   }
@@ -227,6 +241,7 @@ function exportSimplePollerLike(
     isTopLevel && subfolder && subfolder !== "" ? subfolder + "/" : ""
   }static-helpers/simplePollerHelpers.js`;
   indexFile.addExportDeclaration({
+    isTypeOnly: true,
     moduleSpecifier,
     namedExports: ["SimplePollerLike"]
   });
@@ -248,22 +263,14 @@ function exportRestoreHelpers(
   if (!helperFile) {
     return;
   }
-  const exported = [...indexFile.getExportedDeclarations().keys()];
-  const namedExports = [...helperFile.getExportedDeclarations().keys()].map(
-    (helper) => {
-      if (exported.indexOf(helper) > -1) {
-        return `${helper} as ${clientName}${helper}`;
-      }
-      return helper;
-    }
-  );
+  const exported = new Set(indexFile.getExportedDeclarations().keys());
+  const allEntries = [...helperFile.getExportedDeclarations().entries()];
   const moduleSpecifier = `./${
     isTopLevel && subfolder && subfolder !== "" ? subfolder + "/" : ""
   }restorePollerHelpers.js`;
-  indexFile.addExportDeclaration({
-    moduleSpecifier,
-    namedExports
-  });
+  const renamer = (name: string) =>
+    exported.has(name) ? `${name} as ${clientName}${name}` : name;
+  partitionAndEmitExports(indexFile, moduleSpecifier, allEntries, renamer);
 }
 
 function exportClassicalClient(
@@ -341,55 +348,52 @@ function exportModules(
       continue;
     }
 
-    const exported = [...indexFile.getExportedDeclarations().keys()];
+    const exported = new Set(indexFile.getExportedDeclarations().keys());
     const serializerOrDeserializerRegex = /.*(Serializer|Deserializer)(_\d+)?$/;
-    const namedExports = [...modelsFile.getExportedDeclarations().entries()]
-      .filter((exDeclaration) => {
-        if (exDeclaration[0].startsWith("_")) {
+    const filteredEntries = [
+      ...modelsFile.getExportedDeclarations().entries()
+    ].filter((exDeclaration) => {
+      if (exDeclaration[0].startsWith("_")) {
+        return false;
+      }
+      return exDeclaration[1].some((ex) => {
+        if (
+          options.interfaceOnly &&
+          ex.getKindName() !== "InterfaceDeclaration"
+        ) {
           return false;
         }
-        return exDeclaration[1].some((ex) => {
-          if (
-            options.interfaceOnly &&
-            ex.getKindName() !== "InterfaceDeclaration"
-          ) {
-            return false;
-          }
-          if (
-            moduleName === "models" &&
-            ex.getKindName() === "FunctionDeclaration" &&
-            serializerOrDeserializerRegex.test(exDeclaration[0])
-          ) {
-            return false;
-          }
-          if (
-            options.interfaceOnly &&
-            options.isTopLevel &&
-            exDeclaration[0].endsWith("Context")
-          ) {
-            return false;
-          }
-
-          return true;
-        });
-      })
-      .map((exDeclaration) => {
-        if (exported.indexOf(exDeclaration[0]) > -1) {
-          return `${exDeclaration[0]} as ${clientName}${exDeclaration[0]}`;
+        if (
+          moduleName === "models" &&
+          ex.getKindName() === "FunctionDeclaration" &&
+          serializerOrDeserializerRegex.test(exDeclaration[0])
+        ) {
+          return false;
         }
-        return exDeclaration[0];
+        if (
+          options.interfaceOnly &&
+          options.isTopLevel &&
+          exDeclaration[0].endsWith("Context")
+        ) {
+          return false;
+        }
+
+        return true;
       });
+    });
     const moduleSpecifier = `.${modelsFile
       .getFilePath()
       .replace(indexFile.getDirectoryPath(), "")
       .replace(/\\/g, "/")
       .replace(".ts", "")}.js`;
-    if (namedExports.length > 0) {
-      indexFile.addExportDeclaration({
-        moduleSpecifier,
-        namedExports
-      });
-    }
+    const renamer = (name: string) =>
+      exported.has(name) ? `${name} as ${clientName}${name}` : name;
+    partitionAndEmitExports(
+      indexFile,
+      moduleSpecifier,
+      filteredEntries,
+      renamer
+    );
   }
 }
 

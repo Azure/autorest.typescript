@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { BlobClient, BlobClientOptionalParams } from "./blob/blobClient.js";
-import { createStorage, StorageContext, StorageClientOptionalParams } from "./api/index.js";
+import { StorageContext, StorageClientOptionalParams, createStorage } from "./api/index.js";
 import { download } from "./api/operations.js";
 import { DownloadOptionalParams } from "./api/options.js";
 import { Pipeline } from "@azure/core-rest-pipeline";

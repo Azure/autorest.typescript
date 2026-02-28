@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 
 import {
-  createSAPWidgetService,
   SAPWidgetServiceContext,
   SAPWidgetServiceClientOptionalParams,
+  createSAPWidgetService,
 } from "./api/index.js";
 import { BudgetsOperations, _getBudgetsOperations } from "./classic/budgets/index.js";
 import { SAPWidgetsOperations, _getSAPWidgetsOperations } from "./classic/sapWidgets/index.js";

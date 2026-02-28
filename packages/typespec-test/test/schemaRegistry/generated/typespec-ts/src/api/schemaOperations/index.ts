@@ -9,7 +9,7 @@ export {
   getSchemaById,
   listSchemaGroups,
 } from "./operations.js";
-export {
+export type {
   SchemaOperationsRegisterSchemaOptionalParams,
   SchemaOperationsGetSchemaIdByContentOptionalParams,
   SchemaOperationsGetSchemaByVersionOptionalParams,

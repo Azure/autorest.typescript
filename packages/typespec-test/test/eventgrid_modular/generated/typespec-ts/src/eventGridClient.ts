@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { createEventGrid, EventGridContext, EventGridClientOptionalParams } from "./api/index.js";
+import { EventGridContext, EventGridClientOptionalParams, createEventGrid } from "./api/index.js";
 import {
   renewCloudEventLocks,
   rejectCloudEvents,
