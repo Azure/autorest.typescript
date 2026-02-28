@@ -1,11 +1,5 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-export {
-  Widget,
-  WidgetError,
-  SAPUser,
-  AnalyzeResult,
-  NonReferencedModel,
-  KnownVersions,
-} from "./models.js";
+export type { Widget, WidgetError, SAPUser, AnalyzeResult, NonReferencedModel } from "./models.js";
+export { KnownVersions } from "./models.js";

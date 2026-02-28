@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { createAIProject, AIProjectContext, AIProjectClientOptionalParams } from "./api/index.js";
+import { AIProjectContext, AIProjectClientOptionalParams, createAIProject } from "./api/index.js";
 import { AgentsOperations, _getAgentsOperations } from "./classic/agents/index.js";
 import { ConnectionsOperations, _getConnectionsOperations } from "./classic/connections/index.js";
 import { EvaluationsOperations, _getEvaluationsOperations } from "./classic/evaluations/index.js";

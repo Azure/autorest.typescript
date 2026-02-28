@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 export { $continue, getBudgets, createOrReplace } from "./operations.js";
-export {
+export type {
   BudgetsContinueOptionalParams,
   BudgetsGetBudgetsOptionalParams,
   BudgetsCreateOrReplaceOptionalParams,

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { createOpenAI, OpenAIContext, OpenAIClientOptionalParams } from "./api/index.js";
+import { OpenAIContext, OpenAIClientOptionalParams, createOpenAI } from "./api/index.js";
 import { AudioOperations, _getAudioOperations } from "./classic/audio/index.js";
 import { ChatOperations, _getChatOperations } from "./classic/chat/index.js";
 import { CompletionsOperations, _getCompletionsOperations } from "./classic/completions/index.js";

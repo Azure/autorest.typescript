@@ -1,4 +1,4 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-export { BA } from "./models.js";
+export type { BA } from "./models.js";

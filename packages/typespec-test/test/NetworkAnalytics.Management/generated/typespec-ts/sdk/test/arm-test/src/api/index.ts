@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-export {
-  createNetworkAnalyticsApi,
+export type {
   NetworkAnalyticsApiContext,
   NetworkAnalyticsApiOptionalParams,
 } from "./networkAnalyticsApiContext.js";
+export { createNetworkAnalyticsApi } from "./networkAnalyticsApiContext.js";

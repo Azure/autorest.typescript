@@ -7,7 +7,7 @@ export {
   listConnections,
   getWorkspace,
 } from "./operations.js";
-export {
+export type {
   ConnectionsGetConnectionWithSecretsOptionalParams,
   ConnectionsGetConnectionOptionalParams,
   ConnectionsListConnectionsOptionalParams,

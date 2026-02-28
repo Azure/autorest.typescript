@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 export { LoadTestAdministrationClient } from "./loadTestAdministrationClient.js";
-export {
+export type {
   LoadTestAdministrationContext,
   LoadTestAdministrationClientOptionalParams,
   DeleteTestOptionalParams,

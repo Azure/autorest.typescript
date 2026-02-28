@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-export {
+export type {
   AnalyzeTextOptions,
   TextCategory,
   AnalyzeTextOutputType,
@@ -26,5 +26,5 @@ export {
   TextBlocklistItem,
   AddOrUpdateTextBlocklistItemsResult,
   RemoveTextBlocklistItemsOptions,
-  KnownVersions,
 } from "./models.js";
+export { KnownVersions } from "./models.js";

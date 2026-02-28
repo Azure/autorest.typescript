@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-export {
+export type {
   AudioTranscriptionOptions,
   AudioTranscriptionFormat,
   AudioTranscriptionTimestampGranularity,
@@ -142,5 +142,5 @@ export {
   Embeddings,
   EmbeddingItem,
   EmbeddingsUsage,
-  KnownServiceApiVersions,
 } from "./models.js";
+export { KnownServiceApiVersions } from "./models.js";

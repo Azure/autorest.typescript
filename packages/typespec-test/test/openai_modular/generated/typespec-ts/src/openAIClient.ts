@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { createOpenAI, OpenAIContext, OpenAIClientOptionalParams } from "./api/index.js";
+import { OpenAIContext, OpenAIClientOptionalParams, createOpenAI } from "./api/index.js";
 import {
   getEmbeddings,
   generateSpeechFromText,
