@@ -51,6 +51,7 @@ import {
   buildTestNodeTsConfig,
   buildTestMainTsConfig,
   buildVitestConfig,
+  buildWarpConfig,
   getClientName,
   hasUnexpectedHelper,
   isAzurePackage,
@@ -517,6 +518,12 @@ export async function $onEmit(context: EmitContext) {
       commonBuilders.push((model) =>
         buildPackageFile(model, modularPackageInfo)
       );
+      // Generate warp.config.yml for Azure monorepo ESM packages
+      if (option.azureSdkForJs) {
+        commonBuilders.push((model) =>
+          buildWarpConfig(model, modularPackageInfo)
+        );
+      }
       commonBuilders.push(buildTsConfig);
       if (option.azureSdkForJs) {
         commonBuilders.push(buildTsSrcConfig);
@@ -567,6 +574,16 @@ export async function $onEmit(context: EmitContext) {
         rlcClient,
         dpgContext.generationPathDetail?.metadataDir
       );
+
+      // Generate/update warp.config.yml for Azure monorepo packages
+      if (option.azureSdkForJs) {
+        await emitContentByBuilder(
+          program,
+          (model) => buildWarpConfig(model, modularPackageInfo),
+          rlcClient,
+          dpgContext.generationPathDetail?.metadataDir
+        );
+      }
 
       // update existing README.md file if it exists
       if (hasReadmeFile) {
