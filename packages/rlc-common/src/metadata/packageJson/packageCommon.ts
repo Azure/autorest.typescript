@@ -50,8 +50,15 @@ export function getCommonPackageDevDependencies(
   };
 }
 
-function getEsmDevDependencies({ moduleKind }: PackageCommonInfoConfig) {
+function getEsmDevDependencies({
+  moduleKind,
+  azureSdkForJs
+}: PackageCommonInfoConfig) {
   if (moduleKind !== "esm") {
+    return {};
+  }
+  // Azure monorepo packages use warp (invoked via dev-tool), no tshy needed
+  if (azureSdkForJs) {
     return {};
   }
   return {
@@ -97,12 +104,73 @@ function getEsmEntrypointInformation(config: PackageCommonInfoConfig) {
     return;
   }
 
+  // Azure monorepo packages use warp instead of tshy
+  if (config.azureSdkForJs) {
+    return {
+      type: "module",
+      main: "./dist/commonjs/index.js",
+      module: "./dist/esm/index.js",
+      types: "./dist/commonjs/index.d.ts",
+      browser: "./dist/browser/index.js",
+      "react-native": "./dist/react-native/index.js",
+      exports: resolveWarpExports(config.exports)
+    };
+  }
+
   return {
     tshy: getTshyConfig(config),
     type: "module",
     browser: "./dist/browser/index.js",
     "react-native": "./dist/react-native/index.js"
   };
+}
+
+/**
+ * Resolve source-level exports to dist-level exports for warp.
+ * Converts { ".": "./src/index.ts" } to the nested condition map with
+ * browser/import/require conditions pointing to dist/ paths.
+ */
+export function resolveWarpExports(
+  sourceExports?: Record<string, any>
+): Record<string, any> {
+  const exports: Record<string, any> = {};
+  const allExports: Record<string, string> = {
+    "./package.json": "./package.json",
+    ".": "./src/index.ts",
+    ...sourceExports
+  };
+
+  for (const [subpath, sourcePath] of Object.entries(allExports)) {
+    // Pass-through entries (e.g. "./package.json": "./package.json")
+    if (!/\.ts$/.test(sourcePath)) {
+      exports[subpath] = sourcePath;
+      continue;
+    }
+
+    // Convert source path to dist path: "./src/foo/index.ts" -> "foo/index"
+    const relPath = sourcePath.replace(/^\.\/src\//, "").replace(/\.ts$/, "");
+
+    exports[subpath] = {
+      browser: {
+        types: `./dist/browser/${relPath}.d.ts`,
+        default: `./dist/browser/${relPath}.js`
+      },
+      "react-native": {
+        types: `./dist/react-native/${relPath}.d.ts`,
+        default: `./dist/react-native/${relPath}.js`
+      },
+      import: {
+        types: `./dist/esm/${relPath}.d.ts`,
+        default: `./dist/esm/${relPath}.js`
+      },
+      require: {
+        types: `./dist/commonjs/${relPath}.d.ts`,
+        default: `./dist/commonjs/${relPath}.js`
+      }
+    };
+  }
+
+  return exports;
 }
 
 export function getTshyConfig(config: PackageCommonInfoConfig) {
