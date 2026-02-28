@@ -6,7 +6,7 @@ export {
   detectUnivariateLastPoint,
   detectUnivariateEntireSeries,
 } from "./operations.js";
-export {
+export type {
   UnivariateDetectUnivariateChangePointOptionalParams,
   UnivariateDetectUnivariateLastPointOptionalParams,
   UnivariateDetectUnivariateEntireSeriesOptionalParams,

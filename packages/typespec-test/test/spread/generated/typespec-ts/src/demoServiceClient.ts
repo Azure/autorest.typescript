@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 
 import {
-  createDemoService,
   DemoServiceContext,
   DemoServiceClientOptionalParams,
+  createDemoService,
 } from "./api/index.js";
 import { AOperations, _getAOperations } from "./classic/a/index.js";
 import { Pipeline } from "@azure/core-rest-pipeline";

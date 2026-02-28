@@ -43,7 +43,7 @@ export {
   listAgents,
   createAgent,
 } from "./operations.js";
-export {
+export type {
   AgentsListVectorStoreFileBatchFilesOptionalParams,
   AgentsCancelVectorStoreFileBatchOptionalParams,
   AgentsGetVectorStoreFileBatchOptionalParams,

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-export {
+export type {
   GetWorkspaceResponse,
   WorkspaceProperties,
   ListConnectionsResponse,
@@ -32,5 +32,5 @@ export {
   RecurrenceSchedule,
   WeekDays,
   CronTrigger,
-  KnownVersions,
 } from "./models.js";
+export { KnownVersions } from "./models.js";

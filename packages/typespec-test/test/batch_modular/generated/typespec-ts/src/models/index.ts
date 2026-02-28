@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-export {
+export type {
   BatchApplication,
   BatchError,
   ErrorMessage,
@@ -193,5 +193,5 @@ export {
   VMExtensionInstanceView,
   InstanceViewStatus,
   StatusLevelTypes,
-  KnownVersions,
 } from "./models.js";
+export { KnownVersions } from "./models.js";

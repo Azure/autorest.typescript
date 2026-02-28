@@ -4,7 +4,7 @@
 import { FileContents } from "./static-helpers/multipartHelpers.js";
 
 export { OpenAIClient } from "./openAIClient.js";
-export {
+export type {
   AudioTranscriptionOptions,
   AudioTranscriptionFormat,
   AudioTranscriptionTimestampGranularity,
@@ -145,9 +145,9 @@ export {
   Embeddings,
   EmbeddingItem,
   EmbeddingsUsage,
-  KnownServiceApiVersions,
 } from "./models/index.js";
-export {
+export { KnownServiceApiVersions } from "./models/index.js";
+export type {
   OpenAIClientOptionalParams,
   GetEmbeddingsOptionalParams,
   GenerateSpeechFromTextOptionalParams,
@@ -159,4 +159,4 @@ export {
   GetAudioTranscriptionAsResponseObjectOptionalParams,
   GetAudioTranscriptionAsPlainTextOptionalParams,
 } from "./api/index.js";
-export { FileContents };
+export type { FileContents };

@@ -8,22 +8,23 @@ import {
 } from "./static-helpers/pagingHelpers.js";
 
 export { SAPWidgetServiceClient } from "./sapWidgetServiceClient.js";
-export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
-export {
+export type { RestorePollerOptions } from "./restorePollerHelpers.js";
+export { restorePoller } from "./restorePollerHelpers.js";
+export type {
   Widget,
   WidgetError,
   SAPUser,
   AnalyzeResult,
   NonReferencedModel,
-  KnownVersions,
 } from "./models/index.js";
-export { SAPWidgetServiceClientOptionalParams } from "./api/index.js";
-export {
+export { KnownVersions } from "./models/index.js";
+export type { SAPWidgetServiceClientOptionalParams } from "./api/index.js";
+export type {
   BudgetsContinueOptionalParams,
   BudgetsGetBudgetsOptionalParams,
   BudgetsCreateOrReplaceOptionalParams,
 } from "./api/budgets/index.js";
-export {
+export type {
   SAPWidgetsAnalyzeWidgetOptionalParams,
   SAPWidgetsDeleteWidgetOptionalParams,
   SAPWidgetsUpdateWidgetOptionalParams,
@@ -34,5 +35,5 @@ export {
   SAPWidgetsListWidgetsPagesOptionalParams,
   SAPWidgetsSAPListWidgetsOptionalParams,
 } from "./api/sapWidgets/index.js";
-export { BudgetsOperations, SAPWidgetsOperations } from "./classic/index.js";
-export { PageSettings, ContinuablePage, PagedAsyncIterableIterator };
+export type { BudgetsOperations, SAPWidgetsOperations } from "./classic/index.js";
+export type { PageSettings, ContinuablePage, PagedAsyncIterableIterator };

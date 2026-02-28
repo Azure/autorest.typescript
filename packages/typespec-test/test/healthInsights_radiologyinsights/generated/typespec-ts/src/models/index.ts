@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-export {
+export type {
   PatientRecord,
   PatientInfo,
   PatientInfoSex,
@@ -48,5 +48,5 @@ export {
   FollowupCommunicationInference,
   MedicalProfessionalType,
   RepeatabilityResult,
-  KnownApiVersion,
 } from "./models.js";
+export { KnownApiVersion } from "./models.js";

@@ -8,18 +8,18 @@ import {
 } from "./static-helpers/pagingHelpers.js";
 
 export { SchemaRegistryClient } from "./schemaRegistryClient.js";
-export {
+export type {
   SchemaGroup,
   SchemaVersion,
   SchemaProperties,
   SchemaFormat,
   Schema,
   SchemaContentTypeValues,
-  KnownServiceApiVersions,
   ContentTypeEnum,
 } from "./models/index.js";
-export { SchemaRegistryClientOptionalParams } from "./api/index.js";
-export {
+export { KnownServiceApiVersions } from "./models/index.js";
+export type { SchemaRegistryClientOptionalParams } from "./api/index.js";
+export type {
   SchemaOperationsRegisterSchemaOptionalParams,
   SchemaOperationsGetSchemaIdByContentOptionalParams,
   SchemaOperationsGetSchemaByVersionOptionalParams,
@@ -27,5 +27,5 @@ export {
   SchemaOperationsGetSchemaByIdOptionalParams,
   SchemaOperationsListSchemaGroupsOptionalParams,
 } from "./api/schemaOperations/index.js";
-export { SchemaOperationsOperations } from "./classic/index.js";
-export { PageSettings, ContinuablePage, PagedAsyncIterableIterator };
+export type { SchemaOperationsOperations } from "./classic/index.js";
+export type { PageSettings, ContinuablePage, PagedAsyncIterableIterator };

@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 
 import {
-  createChatProtocol,
   ChatProtocolContext,
   ChatProtocolClientOptionalParams,
+  createChatProtocol,
 } from "./api/index.js";
 import { create, createStreaming } from "./api/operations.js";
 import { CreateOptionalParams, CreateStreamingOptionalParams } from "./api/options.js";

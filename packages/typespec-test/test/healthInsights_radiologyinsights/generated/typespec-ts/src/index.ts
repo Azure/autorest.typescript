@@ -2,8 +2,9 @@
 // Licensed under the MIT License.
 
 export { RadiologyInsightsClient } from "./radiologyInsightsClient.js";
-export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
-export {
+export type { RestorePollerOptions } from "./restorePollerHelpers.js";
+export { restorePoller } from "./restorePollerHelpers.js";
+export type {
   PatientRecord,
   PatientInfo,
   PatientInfoSex,
@@ -50,9 +51,9 @@ export {
   FollowupCommunicationInference,
   MedicalProfessionalType,
   RepeatabilityResult,
-  KnownApiVersion,
 } from "./models/index.js";
-export {
+export { KnownApiVersion } from "./models/index.js";
+export type {
   Resource,
   Meta,
   Coding,
@@ -76,7 +77,7 @@ export {
   DomainResourceUnion,
   Narrative,
 } from "./models/fhir/r4/index.js";
-export {
+export type {
   InferRadiologyInsightsOptionalParams,
   RadiologyInsightsClientOptionalParams,
 } from "./api/index.js";

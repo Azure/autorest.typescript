@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-export {
+export type {
   StreamingChatCompletionOptionsRecord,
   ChatMessage,
   ChatRole,
@@ -12,5 +12,5 @@ export {
   ChatCompletionOptionsRecord,
   ChatCompletionRecord,
   ChatChoiceRecord,
-  KnownAPIVersion,
 } from "./models.js";
+export { KnownAPIVersion } from "./models.js";

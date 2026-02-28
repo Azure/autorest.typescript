@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 
 import {
-  createTestProfileAdministration,
   TestProfileAdministrationContext,
   TestProfileAdministrationClientOptionalParams,
+  createTestProfileAdministration,
 } from "./api/index.js";
 import { TestProfile } from "../models/models.js";
 import { PagedAsyncIterableIterator } from "../static-helpers/pagingHelpers.js";
