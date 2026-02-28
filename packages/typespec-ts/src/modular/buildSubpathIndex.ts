@@ -7,7 +7,7 @@ import { ModularEmitterOptions } from "./interfaces.js";
 import { join } from "path";
 import { getModularClientOptions } from "../utils/clientUtils.js";
 import { useContext } from "../contextManager.js";
-import { Node } from "ts-morph";
+import { Node, SourceFile } from "ts-morph";
 
 export interface buildSubpathIndexFileOptions {
   exportIndex?: boolean;
@@ -124,25 +124,11 @@ export function buildSubpathIndexFile(
           .replace(indexFile.getDirectoryPath(), "")
           .replace(/\\/g, "/")
           .replace(".ts", "")}.js`;
-        const typeOnlyExports = filteredDeclarations
-          .filter(([_, decls]) => decls.every(isTypeOnlyNode))
-          .map(([name]) => name);
-        const valueExports = filteredDeclarations
-          .filter(([_, decls]) => !decls.every(isTypeOnlyNode))
-          .map(([name]) => name);
-        if (typeOnlyExports.length > 0) {
-          indexFile.addExportDeclaration({
-            isTypeOnly: true,
-            moduleSpecifier,
-            namedExports: typeOnlyExports
-          });
-        }
-        if (valueExports.length > 0) {
-          indexFile.addExportDeclaration({
-            moduleSpecifier,
-            namedExports: valueExports
-          });
-        }
+        partitionAndEmitExports(
+          indexFile,
+          moduleSpecifier,
+          filteredDeclarations
+        );
       }
     }
   }
@@ -151,4 +137,39 @@ export function buildSubpathIndexFile(
 export function isTypeOnlyNode(node: Node): boolean {
   const kind = node.getKindName();
   return kind === "InterfaceDeclaration" || kind === "TypeAliasDeclaration";
+}
+
+/**
+ * Partition declaration entries into type-only and value exports in a single pass,
+ * then emit both export declarations on the index file.
+ */
+export function partitionAndEmitExports(
+  indexFile: SourceFile,
+  moduleSpecifier: string,
+  entries: [string, Node[]][],
+  mapName: (name: string) => string = (n) => n
+): void {
+  const typeOnlyExports: string[] = [];
+  const valueExports: string[] = [];
+  for (const [name, decls] of entries) {
+    const mapped = mapName(name);
+    if (decls.every(isTypeOnlyNode)) {
+      typeOnlyExports.push(mapped);
+    } else {
+      valueExports.push(mapped);
+    }
+  }
+  if (typeOnlyExports.length > 0) {
+    indexFile.addExportDeclaration({
+      isTypeOnly: true,
+      moduleSpecifier,
+      namedExports: typeOnlyExports
+    });
+  }
+  if (valueExports.length > 0) {
+    indexFile.addExportDeclaration({
+      moduleSpecifier,
+      namedExports: valueExports
+    });
+  }
 }

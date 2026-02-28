@@ -20,7 +20,7 @@ import { reportDiagnostic } from "../lib.js";
 import { NoTarget } from "@typespec/compiler";
 import { isLroOnlyOperation } from "./helpers/operationHelpers.js";
 import { SdkContext } from "../utils/interfaces.js";
-import { isTypeOnlyNode } from "./buildSubpathIndex.js";
+import { partitionAndEmitExports } from "./buildSubpathIndex.js";
 
 export function buildRootIndex(
   context: SdkContext,
@@ -263,34 +263,14 @@ function exportRestoreHelpers(
   if (!helperFile) {
     return;
   }
-  const exported = [...indexFile.getExportedDeclarations().keys()];
+  const exported = new Set(indexFile.getExportedDeclarations().keys());
   const allEntries = [...helperFile.getExportedDeclarations().entries()];
   const moduleSpecifier = `./${
     isTopLevel && subfolder && subfolder !== "" ? subfolder + "/" : ""
   }restorePollerHelpers.js`;
-  const typeOnlyExports = allEntries
-    .filter(([_, decls]) => decls.every(isTypeOnlyNode))
-    .map(([name]) =>
-      exported.indexOf(name) > -1 ? `${name} as ${clientName}${name}` : name
-    );
-  const valueExports = allEntries
-    .filter(([_, decls]) => !decls.every(isTypeOnlyNode))
-    .map(([name]) =>
-      exported.indexOf(name) > -1 ? `${name} as ${clientName}${name}` : name
-    );
-  if (typeOnlyExports.length > 0) {
-    indexFile.addExportDeclaration({
-      isTypeOnly: true,
-      moduleSpecifier,
-      namedExports: typeOnlyExports
-    });
-  }
-  if (valueExports.length > 0) {
-    indexFile.addExportDeclaration({
-      moduleSpecifier,
-      namedExports: valueExports
-    });
-  }
+  const renamer = (name: string) =>
+    exported.has(name) ? `${name} as ${clientName}${name}` : name;
+  partitionAndEmitExports(indexFile, moduleSpecifier, allEntries, renamer);
 }
 
 function exportClassicalClient(
@@ -368,7 +348,7 @@ function exportModules(
       continue;
     }
 
-    const exported = [...indexFile.getExportedDeclarations().keys()];
+    const exported = new Set(indexFile.getExportedDeclarations().keys());
     const serializerOrDeserializerRegex = /.*(Serializer|Deserializer)(_\d+)?$/;
     const filteredEntries = [
       ...modelsFile.getExportedDeclarations().entries()
@@ -406,29 +386,14 @@ function exportModules(
       .replace(indexFile.getDirectoryPath(), "")
       .replace(/\\/g, "/")
       .replace(".ts", "")}.js`;
-    const typeOnlyExports = filteredEntries
-      .filter(([_, decls]) => decls.every(isTypeOnlyNode))
-      .map(([name]) =>
-        exported.indexOf(name) > -1 ? `${name} as ${clientName}${name}` : name
-      );
-    const valueExports = filteredEntries
-      .filter(([_, decls]) => !decls.every(isTypeOnlyNode))
-      .map(([name]) =>
-        exported.indexOf(name) > -1 ? `${name} as ${clientName}${name}` : name
-      );
-    if (typeOnlyExports.length > 0) {
-      indexFile.addExportDeclaration({
-        isTypeOnly: true,
-        moduleSpecifier,
-        namedExports: typeOnlyExports
-      });
-    }
-    if (valueExports.length > 0) {
-      indexFile.addExportDeclaration({
-        moduleSpecifier,
-        namedExports: valueExports
-      });
-    }
+    const renamer = (name: string) =>
+      exported.has(name) ? `${name} as ${clientName}${name}` : name;
+    partitionAndEmitExports(
+      indexFile,
+      moduleSpecifier,
+      filteredEntries,
+      renamer
+    );
   }
 }
 
