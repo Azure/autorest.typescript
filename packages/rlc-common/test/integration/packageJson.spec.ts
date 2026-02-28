@@ -815,6 +815,225 @@ describe("Package file generation", () => {
       );
       expect(packageFile).to.not.have.property("tshy");
     });
+
+    it("should replace @azure/core-client with @azure-rest/core-client when migrating from autorest to TypeSpec", () => {
+      const model = createMockModel({
+        moduleKind: "esm",
+        flavor: "azure",
+        isMonorepo: true,
+        hasLro: false,
+        source: "TypeSpec"
+      });
+
+      const initialPackageInfo = {
+        name: "@azure/test-package",
+        version: "1.0.0",
+        dependencies: {
+          "@azure/core-client": "^1.9.3",
+          "@azure/core-auth": "^1.9.0",
+          tslib: "^2.6.2"
+        }
+      };
+
+      const packageFileContent = updatePackageFile(model, initialPackageInfo);
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      // @azure/core-client is removed and all canonical deps are overlaid
+      expect(packageFile.dependencies).to.not.have.property("@azure/core-client");
+      expect(packageFile.dependencies).to.have.property(
+        "@azure-rest/core-client",
+        "^2.3.1"
+      );
+      expect(packageFile.dependencies).to.have.property("@azure/core-auth", "^1.9.0");
+      // canonical tslib version wins over existing
+      expect(packageFile.dependencies).to.have.property("tslib", "^2.8.1");
+    });
+
+    it("should not replace @azure/core-client when source is Swagger", () => {
+      const model = createMockModel({
+        moduleKind: "esm",
+        flavor: "azure",
+        isMonorepo: true,
+        hasLro: true,
+        source: "Swagger"
+      });
+
+      const initialPackageInfo = {
+        name: "@azure/test-package",
+        version: "1.0.0",
+        dependencies: {
+          "@azure/core-client": "^1.9.3"
+        }
+      };
+
+      const packageFileContent = updatePackageFile(model, initialPackageInfo);
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      expect(packageFile.dependencies).to.have.property("@azure/core-client", "^1.9.3");
+      expect(packageFile.dependencies).to.not.have.property("@azure-rest/core-client");
+    });
+
+    it("should return undefined when no changes are needed for a fully migrated Azure TypeSpec monorepo package", () => {
+      const model = createMockModel({
+        moduleKind: "esm",
+        flavor: "azure",
+        isMonorepo: true,
+        hasLro: false,
+        source: "TypeSpec"
+      });
+
+      // A fully migrated package already has all keys matching canonical
+      // getAzureMonorepoDependencies({ hasLro: false, withTests: false, specSource: "TypeSpec" })
+      const initialPackageInfo = {
+        name: "@azure/test-package",
+        version: "1.0.0",
+        dependencies: {
+          "@azure-rest/core-client": "^2.3.1",
+          "@azure/core-auth": "^1.9.0",
+          "@azure/core-rest-pipeline": "^1.20.0",
+          "@azure/core-util": "^1.12.0",
+          "@azure/logger": "^1.2.0",
+          tslib: "^2.8.1"
+        },
+        devDependencies: {
+          "@azure-tools/test-credential": "workspace:^",
+          "@azure-tools/test-recorder": "workspace:^",
+          "@azure-tools/test-utils-vitest": "workspace:^",
+          "@azure/dev-tool": "workspace:^",
+          tshy: "catalog:",
+          "@azure/eslint-plugin-azure-sdk": "workspace:^",
+          "@azure/identity": "catalog:internal",
+          "@types/node": "catalog:",
+          "cross-env": "catalog:",
+          eslint: "catalog:",
+          prettier: "catalog:",
+          rimraf: "catalog:",
+          typescript: "catalog:"
+        }
+      };
+
+      const packageFileContent = updatePackageFile(model, initialPackageInfo);
+      expect(packageFileContent).to.be.undefined;
+    });
+
+    it("should add missing monorepo devDependencies when migrating to TypeSpec", () => {
+      const model = createMockModel({
+        moduleKind: "esm",
+        flavor: "azure",
+        isMonorepo: true,
+        hasLro: false,
+        source: "TypeSpec"
+      });
+
+      const initialPackageInfo = {
+        name: "@azure/test-package",
+        version: "1.0.0",
+        dependencies: {
+          "@azure-rest/core-client": "^2.3.1"
+        },
+        devDependencies: {
+          "@azure/dev-tool": "workspace:^",
+          "@types/node": "catalog:"
+        }
+      };
+
+      const packageFileContent = updatePackageFile(model, initialPackageInfo);
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      expect(packageFile.devDependencies).to.have.property("eslint", "catalog:");
+      expect(packageFile.devDependencies).to.have.property("prettier", "catalog:");
+      expect(packageFile.devDependencies).to.have.property("@azure/eslint-plugin-azure-sdk", "workspace:^");
+      // Existing devDeps should be preserved
+      expect(packageFile.devDependencies).to.have.property("@azure/dev-tool", "workspace:^");
+    });
+
+    it("should add missing @azure/logger to dependencies for monorepo TypeSpec packages", () => {
+      const model = createMockModel({
+        moduleKind: "esm",
+        flavor: "azure",
+        isMonorepo: true,
+        hasLro: false,
+        source: "TypeSpec"
+      });
+
+      const initialPackageInfo = {
+        name: "@azure/test-package",
+        version: "1.0.0",
+        dependencies: {
+          "@azure-rest/core-client": "^2.3.1"
+        },
+        devDependencies: {
+          eslint: "catalog:",
+          prettier: "catalog:",
+          "@azure/eslint-plugin-azure-sdk": "workspace:^"
+        }
+      };
+
+      const packageFileContent = updatePackageFile(model, initialPackageInfo);
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      // canonical adds @azure/logger to dependencies
+      expect(packageFile.dependencies).to.have.property("@azure/logger", "^1.2.0");
+    });
+
+    it("should not move @azure/logger from devDependencies for Swagger source", () => {
+      const model = createMockModel({
+        moduleKind: "esm",
+        flavor: "azure",
+        isMonorepo: true,
+        hasLro: false,
+        source: "Swagger"
+      });
+
+      const initialPackageInfo = {
+        name: "@azure/test-package",
+        version: "1.0.0",
+        dependencies: {
+          "@azure/core-client": "^1.9.3"
+        },
+        devDependencies: {
+          "@azure/logger": "^1.1.4"
+        }
+      };
+
+      const packageFileContent = updatePackageFile(model, initialPackageInfo);
+      // No monorepo TypeSpec migration, only LRO check (which is false)
+      // @azure/logger should stay in devDependencies
+      expect(packageFileContent).to.be.undefined;
+    });
+
+    it("should not apply monorepo devDependencies for standalone Azure TypeSpec packages", () => {
+      const model = createMockModel({
+        moduleKind: "esm",
+        flavor: "azure",
+        isMonorepo: false,
+        hasLro: false,
+        source: "TypeSpec"
+      });
+
+      const initialPackageInfo = {
+        name: "@azure/test-package",
+        version: "1.0.0",
+        dependencies: {
+          "@azure/core-client": "^1.9.3"
+        },
+        devDependencies: {
+          "@azure/logger": "^1.1.4"
+        }
+      };
+
+      const packageFileContent = updatePackageFile(model, initialPackageInfo);
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      // Should replace @azure/core-client but not add monorepo-specific devDeps
+      expect(packageFile.dependencies).to.not.have.property("@azure/core-client");
+      expect(packageFile.dependencies).to.have.property("@azure-rest/core-client", "^2.3.1");
+      expect(packageFile.devDependencies).to.not.have.property("eslint");
+      expect(packageFile.devDependencies).to.not.have.property("prettier");
+      expect(packageFile.devDependencies).to.not.have.property("@azure/eslint-plugin-azure-sdk");
+      // @azure/logger should NOT be moved (not a monorepo package)
+      expect(packageFile.devDependencies).to.have.property("@azure/logger", "^1.1.4");
+    });
   });
 
   describe("Flavorless lib", () => {
