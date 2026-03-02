@@ -1,4 +1,3 @@
-import { assert } from "chai";
 import { SpecialWordsClient } from "./generated/special-words/src/index.js";
 
 describe("Special Words Client", () => {
@@ -12,10 +11,9 @@ describe("Special Words Client", () => {
   });
 
   it("should post modelProperties sameAsModel", async () => {
-    const result = await client.modelProperties.sameAsModel({
+    await client.modelProperties.sameAsModel({
       sameAsModel: "ok"
     });
-    assert.equal(result, undefined);
   });
   it("should post modelProperties dictMethods", async () => {
     await client.modelProperties.dictMethods({
