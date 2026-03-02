@@ -2849,10 +2849,9 @@ export function getOperationResponseTypeName(
 ): string {
   const prefixes = method[0];
   const operation = method[1];
-  const prefix =
-    operation.name.indexOf("_") === -1
-      ? getClassicalLayerPrefix(prefixes, NameType.Interface)
-      : "";
+  const prefix = !operation.name.includes("_")
+    ? getClassicalLayerPrefix(prefixes, NameType.Interface)
+    : "";
   return `${prefix}${normalizeName(operation.name, NameType.Interface)}Response`;
 }
 
@@ -2921,14 +2920,14 @@ export function buildNonModelResponseTypeDeclaration(
    * BROWSER ONLY
    *
    * The response body as a browser Blob.
-   * Always \`undefined\` in node.js.
+   * Will be \`undefined\` when accessed in node.js.
    */
   blobBody?: Promise<Blob>;
   /**
    * NODEJS ONLY
    *
    * The response body as a node.js Readable stream.
-   * Always \`undefined\` in the browser.
+   * Will be \`undefined\` when accessed in the browser.
    */
   readableStreamBody?: NodeJS.ReadableStream;
 }`;

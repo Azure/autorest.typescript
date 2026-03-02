@@ -1,6 +1,6 @@
 # wrap-non-model-return wraps string scalar response with body property
 
-wrap-non-model-return wraps non-model scalar responses with a body property
+When `wrap-non-model-return` is enabled, scalar/non-model responses are wrapped with a `body` property to maintain HLC compatibility.
 
 ## TypeSpec
 
@@ -159,14 +159,14 @@ export type GetLogsResponse = {
    * BROWSER ONLY
    *
    * The response body as a browser Blob.
-   * Always `undefined` in node.js.
+   * Will be `undefined` when accessed in node.js.
    */
   blobBody?: Promise<Blob>;
   /**
    * NODEJS ONLY
    *
    * The response body as a node.js Readable stream.
-   * Always `undefined` in the browser.
+   * Will be `undefined` when accessed in the browser.
    */
   readableStreamBody?: NodeJS.ReadableStream;
 };
