@@ -2,7 +2,8 @@ import {
   FunctionDeclarationStructure,
   OptionalKind,
   ParameterDeclarationStructure,
-  StructureKind
+  StructureKind,
+  TypeAliasDeclarationStructure
 } from "ts-morph";
 import { NoTarget, Program } from "@typespec/compiler";
 import {
@@ -167,8 +168,9 @@ export function getSendPrivateFunction(
 
 export function getDeserializePrivateFunction(
   context: SdkContext,
-  operation: ServiceOperation
+  method: [string[], ServiceOperation]
 ): OptionalKind<FunctionDeclarationStructure> {
+  const operation = method[1];
   const { name } = getOperationName(operation);
   const dependencies = useDependencies();
   const PathUncheckedResponseReference = resolveReference(
@@ -189,6 +191,10 @@ export function getDeserializePrivateFunction(
   const response = operation.response;
   const restResponse = operation.operation.responses[0];
   let returnType;
+
+  // Check if we need to wrap the non-model return type
+  const { shouldWrap, isBinary } = checkWrapNonModelReturn(context, operation);
+
   if (isLroOnly || isLroAndPaging) {
     returnType = buildLroReturnType(context, operation);
   } else if (isPagingOnly && restResponse?.type) {
@@ -197,6 +203,12 @@ export function getDeserializePrivateFunction(
     returnType = {
       name: (restResponse as any).name ?? "",
       type: getTypeExpression(context, restResponse.type)
+    };
+  } else if (shouldWrap) {
+    // Use the wrapper response type name (resolved via binder for cross-file imports)
+    returnType = {
+      name: getOperationResponseTypeName(method),
+      type: resolveReference(refkey(operation, "response"))
     };
   } else if (response.type) {
     returnType = {
@@ -267,6 +279,32 @@ export function getDeserializePrivateFunction(
       isXml &&
       deserializedType.kind === "model" &&
       hasXmlSerialization(deserializedType);
+
+    // Handle wrap-non-model-return for non-LRO, non-paging operations
+    if (shouldWrap) {
+      if (isBinary) {
+        // Binary response: wrap with blobBody and readableStreamBody
+        // result.body is Uint8Array (already obtained via getBinaryResponse in operation function)
+        statements.push(
+          `return { blobBody: result.body !== undefined ? Promise.resolve(new Blob([result.body])) : undefined, readableStreamBody: undefined };`
+        );
+      } else {
+        // Non-model response: wrap with body property
+        // Generate the appropriate deserialization for the body value
+        const bodyValue = deserializeResponseValue(
+          context,
+          deserializedType,
+          "result.body",
+          true,
+          getEncodeForType(deserializedType)
+        );
+        statements.push(`return { body: ${bodyValue} };`);
+      }
+      return {
+        ...functionStatement,
+        statements
+      };
+    }
 
     // Workaround for multipart response: cast return value as any due to lack of multipart response handling in core
     const multipartCastSuffix = isMultipart ? " as any" : "";
@@ -919,8 +957,17 @@ export function getOperationFunction(
   const isResponseHeadersEnabled =
     context.rlcOptions?.includeHeadersInResponse === true;
 
+  // Check if we need to wrap the non-model return type
+  const { shouldWrap: wrapReturn } = checkWrapNonModelReturn(context, operation);
+
   let returnType = { name: "", type: "void" };
-  if (response.type) {
+  if (wrapReturn) {
+    // Use the wrapper response type name (resolved via binder for cross-file imports)
+    returnType = {
+      name: getOperationResponseTypeName(method),
+      type: resolveReference(refkey(operation, "response"))
+    };
+  } else if (response.type) {
     const type = response.type;
 
     // If feature flag enabled, we'll append the response headers to the operation response type.
@@ -2790,4 +2837,110 @@ function buildHeaderOnlyResponseValue(
   });
 
   return `{ ${props.join(", ")} }`;
+}
+
+/**
+ * Returns the name for a non-model response wrapper type.
+ * The name follows the pattern: {OperationGroupName}{MethodName}Response
+ * @param method - The method tuple [prefixes, operation]
+ */
+export function getOperationResponseTypeName(
+  method: [string[], ServiceOperation]
+): string {
+  const prefixes = method[0];
+  const operation = method[1];
+  const prefix =
+    operation.name.indexOf("_") === -1
+      ? getClassicalLayerPrefix(prefixes, NameType.Interface)
+      : "";
+  return `${prefix}${normalizeName(operation.name, NameType.Interface)}Response`;
+}
+
+/**
+ * Determines whether wrapping the non-model return type is needed for an operation.
+ * Returns an object with `shouldWrap` (whether to wrap) and `isBinary` (whether it's a binary response).
+ */
+export function checkWrapNonModelReturn(
+  context: SdkContext,
+  operation: ServiceOperation
+): { shouldWrap: boolean; isBinary: boolean } {
+  const noWrap = { shouldWrap: false, isBinary: false };
+
+  // Only for non-LRO, non-paging normal operations
+  if (
+    isLroOnlyOperation(operation) ||
+    isLroAndPagingOperation(operation) ||
+    isPagingOnlyOperation(operation)
+  ) {
+    return noWrap;
+  }
+
+  // Only if the feature flag is enabled
+  if (!context.rlcOptions?.wrapNonModelReturn) {
+    return noWrap;
+  }
+
+  const response = operation.response;
+  if (!response.type) {
+    return noWrap; // void return type - no wrap needed
+  }
+
+  const type = response.type;
+  const contentTypes = operation.operation.responses[0]?.contentTypes ?? [];
+
+  // Check if it's a binary (bytes with binary content type) response
+  if (type.__raw && isBinaryPayload(context, type.__raw, contentTypes)) {
+    return { shouldWrap: true, isBinary: true };
+  }
+
+  // Check if it's a non-model, non-record type (array, scalar, enum, etc.)
+  if (type.kind !== "model" && type.kind !== "dict") {
+    return { shouldWrap: true, isBinary: false };
+  }
+
+  return noWrap;
+}
+
+/**
+ * Builds a TypeAliasDeclarationStructure for the non-model response wrapper type.
+ * - For binary responses: { blobBody?: Promise<Blob>; readableStreamBody?: NodeJS.ReadableStream }
+ * - For other non-model responses: { body: <type> }
+ */
+export function buildNonModelResponseTypeDeclaration(
+  context: SdkContext,
+  method: [string[], ServiceOperation],
+  isBinary: boolean
+): TypeAliasDeclarationStructure {
+  const typeName = getOperationResponseTypeName(method);
+  const operation = method[1];
+  let typeBody: string;
+
+  if (isBinary) {
+    typeBody = `{
+  /**
+   * BROWSER ONLY
+   *
+   * The response body as a browser Blob.
+   * Always \`undefined\` in node.js.
+   */
+  blobBody?: Promise<Blob>;
+  /**
+   * NODEJS ONLY
+   *
+   * The response body as a node.js Readable stream.
+   * Always \`undefined\` in the browser.
+   */
+  readableStreamBody?: NodeJS.ReadableStream;
+}`;
+  } else {
+    const returnType = getTypeExpression(context, operation.response.type!);
+    typeBody = `{ body: ${returnType} }`;
+  }
+
+  return {
+    kind: StructureKind.TypeAlias,
+    name: typeName,
+    type: typeBody,
+    isExported: true
+  };
 }

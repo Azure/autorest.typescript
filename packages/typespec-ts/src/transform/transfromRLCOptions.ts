@@ -98,6 +98,7 @@ function extractRLCOptions(
     emitterOptions,
     flavor
   );
+  const wrapNonModelReturn = getWrapNonModelReturn(emitterOptions, flavor);
   const isMultiService = (dpgContext.allServiceNamespaces?.length ?? 0) > 1;
 
   return {
@@ -134,6 +135,7 @@ function extractRLCOptions(
     ignoreEnumMemberNameNormalize,
     hasSubscriptionId,
     ignoreNullableOnOptional,
+    wrapNonModelReturn,
     isMultiService
   };
 }
@@ -281,6 +283,18 @@ function getIgnoreNullableOnOptional(
     return Boolean(emitterOptions["ignore-nullable-on-optional"]);
   }
   // Default to true for Azure services (same as HLC behavior)
+  return flavor === "azure";
+}
+
+function getWrapNonModelReturn(
+  emitterOptions: EmitterOptions,
+  flavor: PackageFlavor
+): boolean {
+  // If explicitly set in options, use that value
+  if (emitterOptions["wrap-non-model-return"] !== undefined) {
+    return Boolean(emitterOptions["wrap-non-model-return"]);
+  }
+  // Default to true for Azure services to maintain HLC backward compatibility
   return flavor === "azure";
 }
 

@@ -563,6 +563,9 @@ export async function emitModularOperationsFromTypeSpec(
   dpgContext.rlcOptions!.isModularLibrary = true;
   dpgContext.rlcOptions!.experimentalExtensibleEnums =
     options["experimental-extensible-enums"];
+  if (options["wrap-non-model-return"] !== undefined) {
+    dpgContext.rlcOptions!.wrapNonModelReturn = options["wrap-non-model-return"] === true;
+  }
   const modularEmitterOptions = transformModularEmitterOptions(dpgContext, "", {
     casing: "camel"
   });

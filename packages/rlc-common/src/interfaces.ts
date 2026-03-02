@@ -261,6 +261,11 @@ export interface RLCOptions {
   compatibilityLro?: boolean;
   ignoreNullableOnOptional?: boolean;
   isMultiService?: boolean;
+  /**
+   * When set to true (default), non-model return types (arrays, scalars, enums, bytes with binary content type)
+   * will be wrapped in an XxxResponse type to maintain backward compatibility with HLC.
+   */
+  wrapNonModelReturn?: boolean;
 }
 
 export interface ServiceInfo {
