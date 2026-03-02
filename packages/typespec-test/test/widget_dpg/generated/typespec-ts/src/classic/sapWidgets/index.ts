@@ -11,6 +11,7 @@ import {
   getWidget,
   queryWidgetsPages,
   listWidgetsPages,
+  SAPWidgetsSAPListWidgetsResponse,
   sapListWidgets,
 } from "../../api/sapWidgets/operations.js";
 import {
@@ -83,7 +84,7 @@ export interface SAPWidgetsOperations {
     csvArrayHeader: Uint8Array[],
     utcDateHeader: Date,
     options?: SAPWidgetsSAPListWidgetsOptionalParams,
-  ) => Promise<Widget[]>;
+  ) => Promise<SAPWidgetsSAPListWidgetsResponse>;
 }
 
 function _getSAPWidgets(context: SAPWidgetServiceContext) {

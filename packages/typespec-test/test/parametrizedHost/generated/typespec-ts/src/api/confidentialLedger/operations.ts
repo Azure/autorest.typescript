@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { ParametrizedHostContext as Client } from "../index.js";
-import { Collection, collectionArrayDeserializer } from "../../models/models.js";
+import { Collection, collectionDeserializer } from "../../models/models.js";
 import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import { ConfidentialLedgerListCollectionsOptionalParams } from "./options.js";
 import {
@@ -11,6 +11,8 @@ import {
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
+
+export type ConfidentialLedgerListCollectionsResponse = { body: Collection[] };
 
 export function _listCollectionsSend(
   context: Client,
@@ -35,20 +37,24 @@ export function _listCollectionsSend(
 
 export async function _listCollectionsDeserialize(
   result: PathUncheckedResponse,
-): Promise<Collection[]> {
+): Promise<ConfidentialLedgerListCollectionsResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return collectionArrayDeserializer(result.body);
+  return {
+    body: result.body.map((p: any) => {
+      return collectionDeserializer(p);
+    }),
+  };
 }
 
 /** Collection ids are user-created collections of ledger entries */
 export async function listCollections(
   context: Client,
   options: ConfidentialLedgerListCollectionsOptionalParams = { requestOptions: {} },
-): Promise<Collection[]> {
+): Promise<ConfidentialLedgerListCollectionsResponse> {
   const result = await _listCollectionsSend(context, options);
   return _listCollectionsDeserialize(result);
 }

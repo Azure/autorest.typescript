@@ -464,8 +464,10 @@ export interface FilesOperations {
     // (undocumented)
     create: (file: CreateFileRequest, options?: FilesCreateOptionalParams) => Promise<OpenAIFile>;
     delete: (fileId: string, options?: FilesDeleteOptionalParams) => Promise<DeleteFileResponse>;
+    // Warning: (ae-forgotten-export) The symbol "FilesDownloadResponse" needs to be exported by the entry point index.d.ts
+    //
     // (undocumented)
-    download: (fileId: string, options?: FilesDownloadOptionalParams) => Promise<string>;
+    download: (fileId: string, options?: FilesDownloadOptionalParams) => Promise<FilesDownloadResponse>;
     // (undocumented)
     list: (options?: FilesListOptionalParams) => Promise<ListFilesResponse>;
     // (undocumented)

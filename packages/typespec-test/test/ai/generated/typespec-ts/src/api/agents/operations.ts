@@ -760,6 +760,23 @@ export async function listVectorStores(
   return _listVectorStoresDeserialize(result);
 }
 
+export type AgentsGetFileContentResponse = {
+  /**
+   * BROWSER ONLY
+   *
+   * The response body as a browser Blob.
+   * Will be `undefined` when accessed in node.js.
+   */
+  blobBody?: Promise<Blob>;
+  /**
+   * NODEJS ONLY
+   *
+   * The response body as a node.js Readable stream.
+   * Will be `undefined` when accessed in the browser.
+   */
+  readableStreamBody?: NodeJS.ReadableStream;
+};
+
 export function _getFileContentSend(
   context: Client,
   fileId: string,
@@ -785,13 +802,16 @@ export function _getFileContentSend(
 
 export async function _getFileContentDeserialize(
   result: PathUncheckedResponse,
-): Promise<Uint8Array> {
+): Promise<AgentsGetFileContentResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return result.body;
+  return {
+    blobBody: result.body !== undefined ? Promise.resolve(new Blob([result.body])) : undefined,
+    readableStreamBody: undefined,
+  };
 }
 
 /** Retrieves the raw content of a specific file. */
@@ -799,7 +819,7 @@ export async function getFileContent(
   context: Client,
   fileId: string,
   options: AgentsGetFileContentOptionalParams = { requestOptions: {} },
-): Promise<Uint8Array> {
+): Promise<AgentsGetFileContentResponse> {
   const result = await _getFileContentSend(context, fileId, options);
   return _getFileContentDeserialize(result);
 }

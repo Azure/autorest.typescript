@@ -28,6 +28,8 @@ import {
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
+export type FilesDownloadResponse = { body: string };
+
 export function _downloadSend(
   context: Client,
   fileId: string,
@@ -50,7 +52,9 @@ export function _downloadSend(
     });
 }
 
-export async function _downloadDeserialize(result: PathUncheckedResponse): Promise<string> {
+export async function _downloadDeserialize(
+  result: PathUncheckedResponse,
+): Promise<FilesDownloadResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -59,14 +63,14 @@ export async function _downloadDeserialize(result: PathUncheckedResponse): Promi
     throw error;
   }
 
-  return result.body;
+  return { body: result.body };
 }
 
 export async function download(
   context: Client,
   fileId: string,
   options: FilesDownloadOptionalParams = { requestOptions: {} },
-): Promise<string> {
+): Promise<FilesDownloadResponse> {
   const result = await _downloadSend(context, fileId, options);
   return _downloadDeserialize(result);
 }

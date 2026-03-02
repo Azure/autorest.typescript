@@ -308,7 +308,8 @@ export interface AgentsOperations {
     deleteVectorStoreFile: (vectorStoreId: string, fileId: string, options?: AgentsDeleteVectorStoreFileOptionalParams) => Promise<VectorStoreFileDeletionStatus>;
     getAgent: (assistantId: string, options?: AgentsGetAgentOptionalParams) => Promise<Agent>;
     getFile: (fileId: string, options?: AgentsGetFileOptionalParams) => Promise<OpenAIFile>;
-    getFileContent: (fileId: string, options?: AgentsGetFileContentOptionalParams) => Promise<Uint8Array>;
+    // Warning: (ae-forgotten-export) The symbol "AgentsGetFileContentResponse" needs to be exported by the entry point index.d.ts
+    getFileContent: (fileId: string, options?: AgentsGetFileContentOptionalParams) => Promise<AgentsGetFileContentResponse>;
     getMessage: (threadId: string, messageId: string, options?: AgentsGetMessageOptionalParams) => Promise<ThreadMessage>;
     getRun: (threadId: string, runId: string, options?: AgentsGetRunOptionalParams) => Promise<ThreadRun>;
     getRunStep: (threadId: string, runId: string, stepId: string, options?: AgentsGetRunStepOptionalParams) => Promise<RunStep>;

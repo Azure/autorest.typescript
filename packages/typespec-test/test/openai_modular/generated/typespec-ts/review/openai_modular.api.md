@@ -957,10 +957,13 @@ export type OnYourDataVectorSearchAuthenticationType = "api_key" | "access_token
 // @public (undocumented)
 export class OpenAIClient {
     constructor(endpointParam: string, credential: KeyCredential | TokenCredential, options?: OpenAIClientOptionalParams);
-    generateSpeechFromText(deploymentId: string, body: SpeechGenerationOptions, options?: GenerateSpeechFromTextOptionalParams): Promise<Uint8Array>;
-    getAudioTranscriptionAsPlainText(deploymentId: string, body: AudioTranscriptionOptions, options?: GetAudioTranscriptionAsPlainTextOptionalParams): Promise<string>;
+    // Warning: (ae-forgotten-export) The symbol "GenerateSpeechFromTextResponse" needs to be exported by the entry point index.d.ts
+    generateSpeechFromText(deploymentId: string, body: SpeechGenerationOptions, options?: GenerateSpeechFromTextOptionalParams): Promise<GenerateSpeechFromTextResponse>;
+    // Warning: (ae-forgotten-export) The symbol "GetAudioTranscriptionAsPlainTextResponse" needs to be exported by the entry point index.d.ts
+    getAudioTranscriptionAsPlainText(deploymentId: string, body: AudioTranscriptionOptions, options?: GetAudioTranscriptionAsPlainTextOptionalParams): Promise<GetAudioTranscriptionAsPlainTextResponse>;
     getAudioTranscriptionAsResponseObject(deploymentId: string, body: AudioTranscriptionOptions, options?: GetAudioTranscriptionAsResponseObjectOptionalParams): Promise<AudioTranscription>;
-    getAudioTranslationAsPlainText(deploymentId: string, body: AudioTranslationOptions, options?: GetAudioTranslationAsPlainTextOptionalParams): Promise<string>;
+    // Warning: (ae-forgotten-export) The symbol "GetAudioTranslationAsPlainTextResponse" needs to be exported by the entry point index.d.ts
+    getAudioTranslationAsPlainText(deploymentId: string, body: AudioTranslationOptions, options?: GetAudioTranslationAsPlainTextOptionalParams): Promise<GetAudioTranslationAsPlainTextResponse>;
     getAudioTranslationAsResponseObject(deploymentId: string, body: AudioTranslationOptions, options?: GetAudioTranslationAsResponseObjectOptionalParams): Promise<AudioTranslation>;
     getChatCompletions(deploymentId: string, body: ChatCompletionsOptions, options?: GetChatCompletionsOptionalParams): Promise<ChatCompletions>;
     getCompletions(deploymentId: string, body: CompletionsOptions, options?: GetCompletionsOptionalParams): Promise<Completions>;

@@ -140,13 +140,16 @@ export class BatchClient {
     getJobTaskCounts(jobId: string, options?: GetJobTaskCountsOptionalParams): Promise<TaskCountsResult>;
     getNode(poolId: string, nodeId: string, options?: GetNodeOptionalParams): Promise<BatchNode>;
     getNodeExtension(poolId: string, nodeId: string, extensionName: string, options?: GetNodeExtensionOptionalParams): Promise<NodeVMExtension>;
-    getNodeFile(poolId: string, nodeId: string, filePath: string, options?: GetNodeFileOptionalParams): Promise<Uint8Array>;
+    // Warning: (ae-forgotten-export) The symbol "GetNodeFileResponse" needs to be exported by the entry point index.d.ts
+    getNodeFile(poolId: string, nodeId: string, filePath: string, options?: GetNodeFileOptionalParams): Promise<GetNodeFileResponse>;
     getNodeFileProperties(poolId: string, nodeId: string, filePath: string, options?: GetNodeFilePropertiesOptionalParams): Promise<void>;
-    getNodeRemoteDesktopFile(poolId: string, nodeId: string, options?: GetNodeRemoteDesktopFileOptionalParams): Promise<Uint8Array>;
+    // Warning: (ae-forgotten-export) The symbol "GetNodeRemoteDesktopFileResponse" needs to be exported by the entry point index.d.ts
+    getNodeRemoteDesktopFile(poolId: string, nodeId: string, options?: GetNodeRemoteDesktopFileOptionalParams): Promise<GetNodeRemoteDesktopFileResponse>;
     getNodeRemoteLoginSettings(poolId: string, nodeId: string, options?: GetNodeRemoteLoginSettingsOptionalParams): Promise<BatchNodeRemoteLoginSettingsResult>;
     getPool(poolId: string, options?: GetPoolOptionalParams): Promise<BatchPool>;
     getTask(jobId: string, taskId: string, options?: GetTaskOptionalParams): Promise<BatchTask>;
-    getTaskFile(jobId: string, taskId: string, filePath: string, options?: GetTaskFileOptionalParams): Promise<Uint8Array>;
+    // Warning: (ae-forgotten-export) The symbol "GetTaskFileResponse" needs to be exported by the entry point index.d.ts
+    getTaskFile(jobId: string, taskId: string, filePath: string, options?: GetTaskFileOptionalParams): Promise<GetTaskFileResponse>;
     getTaskFileProperties(jobId: string, taskId: string, filePath: string, options?: GetTaskFilePropertiesOptionalParams): Promise<void>;
     jobScheduleExists(jobScheduleId: string, options?: JobScheduleExistsOptionalParams): Promise<void>;
     listApplications(options?: ListApplicationsOptionalParams): PagedAsyncIterableIterator<BatchApplication>;

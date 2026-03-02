@@ -4,8 +4,8 @@
 import { SAPWidgetServiceContext as Client } from "../index.js";
 import {
   Widget,
+  widgetDeserializer,
   widgetErrorDeserializer,
-  widgetArrayDeserializer,
   SAPUser,
   sapUserSerializer,
   sapUserDeserializer,
@@ -56,6 +56,8 @@ export async function $continue(
   return _$continueDeserialize(result);
 }
 
+export type BudgetsGetBudgetsResponse = { body: Widget[] };
+
 export function _getBudgetsSend(
   context: Client,
   name: string,
@@ -78,7 +80,9 @@ export function _getBudgetsSend(
     });
 }
 
-export async function _getBudgetsDeserialize(result: PathUncheckedResponse): Promise<Widget[]> {
+export async function _getBudgetsDeserialize(
+  result: PathUncheckedResponse,
+): Promise<BudgetsGetBudgetsResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -87,14 +91,18 @@ export async function _getBudgetsDeserialize(result: PathUncheckedResponse): Pro
     throw error;
   }
 
-  return widgetArrayDeserializer(result.body);
+  return {
+    body: result.body.map((p: any) => {
+      return widgetDeserializer(p);
+    }),
+  };
 }
 
 export async function getBudgets(
   context: Client,
   name: string,
   options: BudgetsGetBudgetsOptionalParams = { requestOptions: {} },
-): Promise<Widget[]> {
+): Promise<BudgetsGetBudgetsResponse> {
   const result = await _getBudgetsSend(context, name, options);
   return _getBudgetsDeserialize(result);
 }

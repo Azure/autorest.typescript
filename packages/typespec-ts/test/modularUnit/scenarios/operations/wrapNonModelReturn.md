@@ -265,6 +265,77 @@ export async function get(
 }
 ```
 
+# wrap-non-model-return wraps array-of-models response with body property
+
+Array-of-models responses are wrapped just like primitive arrays (matching HLC behavior).
+
+## TypeSpec
+
+```tsp
+model Resource {
+  id: string;
+  name: string;
+  scope: string;
+}
+
+@route("/resources")
+@get
+op list(): Resource[];
+```
+
+```yaml
+wrap-non-model-return: true
+```
+
+## Operations
+
+```ts operations
+import { TestingContext as Client } from "./index.js";
+import { Resource, resourceDeserializer } from "../models/models.js";
+import { ListOptionalParams } from "./options.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+
+export type ListResponse = { body: Resource[] };
+
+export function _listSend(
+  context: Client,
+  options: ListOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/resources")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
+    });
+}
+
+export async function _listDeserialize(result: PathUncheckedResponse): Promise<ListResponse> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return {
+    body: result.body.map((p: any) => {
+      return resourceDeserializer(p);
+    }),
+  };
+}
+
+export async function list(
+  context: Client,
+  options: ListOptionalParams = { requestOptions: {} },
+): Promise<ListResponse> {
+  const result = await _listSend(context, options);
+  return _listDeserialize(result);
+}
+```
+
 # wrap-non-model-return does not wrap model response types
 
 Model types (interfaces) are always returned directly even when wrap-non-model-return is true.

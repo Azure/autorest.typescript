@@ -21,7 +21,8 @@ export interface ConfidentialLedgerListCollectionsOptionalParams extends Operati
 
 // @public
 export interface ConfidentialLedgerOperations {
-    listCollections: (options?: ConfidentialLedgerListCollectionsOptionalParams) => Promise<Collection[]>;
+    // Warning: (ae-forgotten-export) The symbol "ConfidentialLedgerListCollectionsResponse" needs to be exported by the entry point index.d.ts
+    listCollections: (options?: ConfidentialLedgerListCollectionsOptionalParams) => Promise<ConfidentialLedgerListCollectionsResponse>;
 }
 
 // @public
