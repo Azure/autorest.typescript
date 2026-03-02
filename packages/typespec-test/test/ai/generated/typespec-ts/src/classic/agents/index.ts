@@ -16,6 +16,7 @@ import {
   getVectorStore,
   createVectorStore,
   listVectorStores,
+  AgentsGetFileContentResponse,
   getFileContent,
   getFile,
   deleteFile,
@@ -189,7 +190,7 @@ export interface AgentsOperations {
   getFileContent: (
     fileId: string,
     options?: AgentsGetFileContentOptionalParams,
-  ) => Promise<Uint8Array>;
+  ) => Promise<AgentsGetFileContentResponse>;
   /** Returns information about a specific file. Does not retrieve file content. */
   getFile: (fileId: string, options?: AgentsGetFileOptionalParams) => Promise<OpenAIFile>;
   /** Delete a previously uploaded file. */

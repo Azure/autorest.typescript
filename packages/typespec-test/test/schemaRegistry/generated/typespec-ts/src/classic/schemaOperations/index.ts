@@ -5,8 +5,10 @@ import { SchemaRegistryContext } from "../../api/schemaRegistryContext.js";
 import {
   registerSchema,
   getSchemaIdByContent,
+  SchemaOperationsGetSchemaByVersionResponse,
   getSchemaByVersion,
   listSchemaVersions,
+  SchemaOperationsGetSchemaByIdResponse,
   getSchemaById,
   listSchemaGroups,
 } from "../../api/schemaOperations/operations.js";
@@ -45,7 +47,7 @@ export interface SchemaOperationsOperations {
     name: string,
     schemaVersion: number,
     options?: SchemaOperationsGetSchemaByVersionOptionalParams,
-  ) => Promise<Uint8Array>;
+  ) => Promise<SchemaOperationsGetSchemaByVersionResponse>;
   /** Gets the list of all versions of one schema. */
   listSchemaVersions: (
     groupName: string,
@@ -56,7 +58,7 @@ export interface SchemaOperationsOperations {
   getSchemaById: (
     id: string,
     options?: SchemaOperationsGetSchemaByIdOptionalParams,
-  ) => Promise<Uint8Array>;
+  ) => Promise<SchemaOperationsGetSchemaByIdResponse>;
   /** Gets the list of schema groups user is authorized to access. */
   listSchemaGroups: (
     options?: SchemaOperationsListSchemaGroupsOptionalParams,

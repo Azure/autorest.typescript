@@ -760,6 +760,10 @@ export async function listVectorStores(
   return _listVectorStoresDeserialize(result);
 }
 
+export interface AgentsGetFileContentResponse {
+  body: Uint8Array;
+}
+
 export function _getFileContentSend(
   context: Client,
   fileId: string,
@@ -785,13 +789,13 @@ export function _getFileContentSend(
 
 export async function _getFileContentDeserialize(
   result: PathUncheckedResponse,
-): Promise<Uint8Array> {
+): Promise<AgentsGetFileContentResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return result.body;
+  return { body: result.body };
 }
 
 /** Retrieves the raw content of a specific file. */
@@ -799,7 +803,7 @@ export async function getFileContent(
   context: Client,
   fileId: string,
   options: AgentsGetFileContentOptionalParams = { requestOptions: {} },
-): Promise<Uint8Array> {
+): Promise<AgentsGetFileContentResponse> {
   const result = await _getFileContentSend(context, fileId, options);
   return _getFileContentDeserialize(result);
 }

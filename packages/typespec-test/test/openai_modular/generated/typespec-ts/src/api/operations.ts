@@ -352,6 +352,10 @@ export async function getAudioTranslationAsResponseObject(
   return _getAudioTranslationAsResponseObjectDeserialize(result);
 }
 
+export interface GetAudioTranslationAsPlainTextResponse {
+  body: string;
+}
+
 export function _getAudioTranslationAsPlainTextSend(
   context: Client,
   deploymentId: string,
@@ -380,13 +384,13 @@ export function _getAudioTranslationAsPlainTextSend(
 
 export async function _getAudioTranslationAsPlainTextDeserialize(
   result: PathUncheckedResponse,
-): Promise<string> {
+): Promise<GetAudioTranslationAsPlainTextResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return result.body;
+  return { body: result.body };
 }
 
 /** Gets English language transcribed text and associated metadata from provided spoken audio data. */
@@ -395,7 +399,7 @@ export async function getAudioTranslationAsPlainText(
   deploymentId: string,
   body: AudioTranslationOptions,
   options: GetAudioTranslationAsPlainTextOptionalParams = { requestOptions: {} },
-): Promise<string> {
+): Promise<GetAudioTranslationAsPlainTextResponse> {
   const result = await _getAudioTranslationAsPlainTextSend(context, deploymentId, body, options);
   return _getAudioTranslationAsPlainTextDeserialize(result);
 }
@@ -456,6 +460,10 @@ export async function getAudioTranscriptionAsResponseObject(
   return _getAudioTranscriptionAsResponseObjectDeserialize(result);
 }
 
+export interface GetAudioTranscriptionAsPlainTextResponse {
+  body: string;
+}
+
 export function _getAudioTranscriptionAsPlainTextSend(
   context: Client,
   deploymentId: string,
@@ -484,13 +492,13 @@ export function _getAudioTranscriptionAsPlainTextSend(
 
 export async function _getAudioTranscriptionAsPlainTextDeserialize(
   result: PathUncheckedResponse,
-): Promise<string> {
+): Promise<GetAudioTranscriptionAsPlainTextResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return result.body;
+  return { body: result.body };
 }
 
 /**
@@ -502,7 +510,7 @@ export async function getAudioTranscriptionAsPlainText(
   deploymentId: string,
   body: AudioTranscriptionOptions,
   options: GetAudioTranscriptionAsPlainTextOptionalParams = { requestOptions: {} },
-): Promise<string> {
+): Promise<GetAudioTranscriptionAsPlainTextResponse> {
   const result = await _getAudioTranscriptionAsPlainTextSend(context, deploymentId, body, options);
   return _getAudioTranscriptionAsPlainTextDeserialize(result);
 }

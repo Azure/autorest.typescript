@@ -82,7 +82,10 @@ export function buildOperationFiles(
 
     const operationGroupFile = project.createSourceFile(filepath);
     operations.forEach((op) => {
-      // Register response interface first so it can be referenced by getOperationFunction
+      // Register the response interface BEFORE calling getOperationFunction.
+      // getOperationFunction uses resolveReference(refkey(op, "responseType")) to
+      // build the return type placeholder, which requires the declaration to be
+      // registered in the binder first so it can be resolved later by resolveAllReferences.
       buildOperationResponseInterface(dpgContext, [prefixes, op], operationGroupFile);
 
       const operationDeclaration = getOperationFunction(

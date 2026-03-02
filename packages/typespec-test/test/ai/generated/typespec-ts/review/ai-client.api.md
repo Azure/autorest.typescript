@@ -175,6 +175,12 @@ export interface AgentsGetAgentOptionalParams extends OperationOptions {
 export interface AgentsGetFileContentOptionalParams extends OperationOptions {
 }
 
+// @public (undocumented)
+export interface AgentsGetFileContentResponse {
+    // (undocumented)
+    body: Uint8Array;
+}
+
 // @public
 export interface AgentsGetFileOptionalParams extends OperationOptions {
 }
@@ -308,7 +314,7 @@ export interface AgentsOperations {
     deleteVectorStoreFile: (vectorStoreId: string, fileId: string, options?: AgentsDeleteVectorStoreFileOptionalParams) => Promise<VectorStoreFileDeletionStatus>;
     getAgent: (assistantId: string, options?: AgentsGetAgentOptionalParams) => Promise<Agent>;
     getFile: (fileId: string, options?: AgentsGetFileOptionalParams) => Promise<OpenAIFile>;
-    getFileContent: (fileId: string, options?: AgentsGetFileContentOptionalParams) => Promise<Uint8Array>;
+    getFileContent: (fileId: string, options?: AgentsGetFileContentOptionalParams) => Promise<AgentsGetFileContentResponse>;
     getMessage: (threadId: string, messageId: string, options?: AgentsGetMessageOptionalParams) => Promise<ThreadMessage>;
     getRun: (threadId: string, runId: string, options?: AgentsGetRunOptionalParams) => Promise<ThreadRun>;
     getRunStep: (threadId: string, runId: string, stepId: string, options?: AgentsGetRunStepOptionalParams) => Promise<RunStep>;

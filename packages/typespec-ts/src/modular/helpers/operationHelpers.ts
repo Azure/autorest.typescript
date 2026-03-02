@@ -2818,7 +2818,9 @@ function isNonModelNonDictType(type: SdkType): boolean {
     return isNonModelNonDictType(type.type);
   }
   if (type.kind === "array") {
-    // Arrays of model types are not wrapped (treated similarly to model responses)
+    // For arrays, check if the element type should be wrapped.
+    // Arrays of model types (e.g., Bar[]) are NOT wrapped since they are treated
+    // like model responses; arrays of primitives (e.g., string[]) ARE wrapped.
     return isNonModelNonDictType(type.valueType);
   }
   return type.kind !== "model" && type.kind !== "dict";

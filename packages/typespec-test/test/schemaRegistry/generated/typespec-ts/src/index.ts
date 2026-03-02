@@ -20,6 +20,8 @@ export type {
 export { KnownServiceApiVersions } from "./models/index.js";
 export type { SchemaRegistryClientOptionalParams } from "./api/index.js";
 export type {
+  SchemaOperationsGetSchemaByVersionResponse,
+  SchemaOperationsGetSchemaByIdResponse,
   SchemaOperationsRegisterSchemaOptionalParams,
   SchemaOperationsGetSchemaIdByContentOptionalParams,
   SchemaOperationsGetSchemaByVersionOptionalParams,

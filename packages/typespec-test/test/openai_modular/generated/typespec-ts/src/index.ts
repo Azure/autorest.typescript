@@ -149,6 +149,8 @@ export type {
 export { KnownServiceApiVersions } from "./models/index.js";
 export type {
   OpenAIClientOptionalParams,
+  GetAudioTranslationAsPlainTextResponse,
+  GetAudioTranscriptionAsPlainTextResponse,
   GetEmbeddingsOptionalParams,
   GenerateSpeechFromTextOptionalParams,
   GetImageGenerationsOptionalParams,

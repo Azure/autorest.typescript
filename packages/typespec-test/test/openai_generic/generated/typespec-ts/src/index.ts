@@ -57,6 +57,7 @@ export type { CompletionsCreateOptionalParams } from "./api/completions/index.js
 export type { EditsCreateOptionalParams } from "./api/edits/index.js";
 export type { EmbeddingsCreateOptionalParams } from "./api/embeddings/index.js";
 export type {
+  FilesDownloadResponse,
   FilesDownloadOptionalParams,
   FilesDeleteOptionalParams,
   FilesRetrieveOptionalParams,

@@ -57,8 +57,20 @@ export interface SchemaGroup {
 export interface SchemaOperationsGetSchemaByIdOptionalParams extends OperationOptions {
 }
 
+// @public (undocumented)
+export interface SchemaOperationsGetSchemaByIdResponse {
+    // (undocumented)
+    body: Uint8Array;
+}
+
 // @public
 export interface SchemaOperationsGetSchemaByVersionOptionalParams extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface SchemaOperationsGetSchemaByVersionResponse {
+    // (undocumented)
+    body: Uint8Array;
 }
 
 // @public
@@ -75,8 +87,8 @@ export interface SchemaOperationsListSchemaVersionsOptionalParams extends Operat
 
 // @public
 export interface SchemaOperationsOperations {
-    getSchemaById: (id: string, options?: SchemaOperationsGetSchemaByIdOptionalParams) => Promise<Uint8Array>;
-    getSchemaByVersion: (groupName: string, name: string, schemaVersion: number, options?: SchemaOperationsGetSchemaByVersionOptionalParams) => Promise<Uint8Array>;
+    getSchemaById: (id: string, options?: SchemaOperationsGetSchemaByIdOptionalParams) => Promise<SchemaOperationsGetSchemaByIdResponse>;
+    getSchemaByVersion: (groupName: string, name: string, schemaVersion: number, options?: SchemaOperationsGetSchemaByVersionOptionalParams) => Promise<SchemaOperationsGetSchemaByVersionResponse>;
     getSchemaIdByContent: (groupName: string, name: string, contentType: SchemaContentTypeValues, schemaContent: Uint8Array, options?: SchemaOperationsGetSchemaIdByContentOptionalParams) => Promise<void>;
     listSchemaGroups: (options?: SchemaOperationsListSchemaGroupsOptionalParams) => PagedAsyncIterableIterator<SchemaGroup>;
     listSchemaVersions: (groupName: string, name: string, options?: SchemaOperationsListSchemaVersionsOptionalParams) => PagedAsyncIterableIterator<SchemaVersion>;

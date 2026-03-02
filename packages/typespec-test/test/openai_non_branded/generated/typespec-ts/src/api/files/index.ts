@@ -1,5 +1,6 @@
 // Licensed under the MIT License.
 
+export type { FilesDownloadResponse } from "./operations.js";
 export { download, $delete, retrieve, create, list } from "./operations.js";
 export type {
   FilesDownloadOptionalParams,

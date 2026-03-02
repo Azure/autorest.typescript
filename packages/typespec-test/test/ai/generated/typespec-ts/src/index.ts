@@ -247,6 +247,7 @@ export type {
 } from "./models/agents/index.js";
 export type { AIProjectClientOptionalParams } from "./api/index.js";
 export type {
+  AgentsGetFileContentResponse,
   AgentsListVectorStoreFileBatchFilesOptionalParams,
   AgentsCancelVectorStoreFileBatchOptionalParams,
   AgentsGetVectorStoreFileBatchOptionalParams,

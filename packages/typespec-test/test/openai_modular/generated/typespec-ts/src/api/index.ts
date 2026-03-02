@@ -3,6 +3,10 @@
 
 export type { OpenAIContext, OpenAIClientOptionalParams } from "./openAIContext.js";
 export { createOpenAI } from "./openAIContext.js";
+export type {
+  GetAudioTranslationAsPlainTextResponse,
+  GetAudioTranscriptionAsPlainTextResponse,
+} from "./operations.js";
 export {
   getEmbeddings,
   generateSpeechFromText,

@@ -9,8 +9,10 @@ import {
   getChatCompletions,
   getCompletions,
   getAudioTranslationAsResponseObject,
+  GetAudioTranslationAsPlainTextResponse,
   getAudioTranslationAsPlainText,
   getAudioTranscriptionAsResponseObject,
+  GetAudioTranscriptionAsPlainTextResponse,
   getAudioTranscriptionAsPlainText,
 } from "./api/operations.js";
 import {
@@ -132,7 +134,7 @@ export class OpenAIClient {
     deploymentId: string,
     body: AudioTranslationOptions,
     options: GetAudioTranslationAsPlainTextOptionalParams = { requestOptions: {} },
-  ): Promise<string> {
+  ): Promise<GetAudioTranslationAsPlainTextResponse> {
     return getAudioTranslationAsPlainText(this._client, deploymentId, body, options);
   }
 
@@ -156,7 +158,7 @@ export class OpenAIClient {
     deploymentId: string,
     body: AudioTranscriptionOptions,
     options: GetAudioTranscriptionAsPlainTextOptionalParams = { requestOptions: {} },
-  ): Promise<string> {
+  ): Promise<GetAudioTranscriptionAsPlainTextResponse> {
     return getAudioTranscriptionAsPlainText(this._client, deploymentId, body, options);
   }
 }

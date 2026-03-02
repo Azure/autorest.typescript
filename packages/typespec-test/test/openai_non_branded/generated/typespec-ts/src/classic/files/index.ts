@@ -1,7 +1,14 @@
 // Licensed under the MIT License.
 
 import { OpenAIContext } from "../../api/openAIContext.js";
-import { download, $delete, retrieve, create, list } from "../../api/files/operations.js";
+import {
+  FilesDownloadResponse,
+  download,
+  $delete,
+  retrieve,
+  create,
+  list,
+} from "../../api/files/operations.js";
 import {
   FilesDownloadOptionalParams,
   FilesDeleteOptionalParams,
@@ -18,7 +25,10 @@ import {
 
 /** Interface representing a Files operations. */
 export interface FilesOperations {
-  download: (fileId: string, options?: FilesDownloadOptionalParams) => Promise<string>;
+  download: (
+    fileId: string,
+    options?: FilesDownloadOptionalParams,
+  ) => Promise<FilesDownloadResponse>;
   /**
    *  @fixme delete is a reserved word that cannot be used as an operation name.
    *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")

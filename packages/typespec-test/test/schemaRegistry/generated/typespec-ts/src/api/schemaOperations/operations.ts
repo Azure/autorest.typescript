@@ -141,6 +141,10 @@ export async function getSchemaIdByContent(
   return _getSchemaIdByContentDeserialize(result);
 }
 
+export interface SchemaOperationsGetSchemaByVersionResponse {
+  body: Uint8Array;
+}
+
 export function _getSchemaByVersionSend(
   context: Client,
   groupName: string,
@@ -165,13 +169,15 @@ export function _getSchemaByVersionSend(
 
 export async function _getSchemaByVersionDeserialize(
   result: PathUncheckedResponse,
-): Promise<Uint8Array> {
+): Promise<SchemaOperationsGetSchemaByVersionResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return typeof result.body === "string" ? stringToUint8Array(result.body, "base64") : result.body;
+  return {
+    body: typeof result.body === "string" ? stringToUint8Array(result.body, "base64") : result.body,
+  };
 }
 
 /** Gets one specific version of one schema. */
@@ -181,7 +187,7 @@ export async function getSchemaByVersion(
   name: string,
   schemaVersion: number,
   options: SchemaOperationsGetSchemaByVersionOptionalParams = { requestOptions: {} },
-): Promise<Uint8Array> {
+): Promise<SchemaOperationsGetSchemaByVersionResponse> {
   const result = await _getSchemaByVersionSend(context, groupName, name, schemaVersion, options);
   return _getSchemaByVersionDeserialize(result);
 }
@@ -238,6 +244,10 @@ export function listSchemaVersions(
   );
 }
 
+export interface SchemaOperationsGetSchemaByIdResponse {
+  body: Uint8Array;
+}
+
 export function _getSchemaByIdSend(
   context: Client,
   id: string,
@@ -258,13 +268,15 @@ export function _getSchemaByIdSend(
 
 export async function _getSchemaByIdDeserialize(
   result: PathUncheckedResponse,
-): Promise<Uint8Array> {
+): Promise<SchemaOperationsGetSchemaByIdResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return typeof result.body === "string" ? stringToUint8Array(result.body, "base64") : result.body;
+  return {
+    body: typeof result.body === "string" ? stringToUint8Array(result.body, "base64") : result.body,
+  };
 }
 
 /** Gets a registered schema by its unique ID.  Azure Schema Registry guarantees that ID is unique within a namespace. Operation response type is based on serialization of schema requested. */
@@ -272,7 +284,7 @@ export async function getSchemaById(
   context: Client,
   id: string,
   options: SchemaOperationsGetSchemaByIdOptionalParams = { requestOptions: {} },
-): Promise<Uint8Array> {
+): Promise<SchemaOperationsGetSchemaByIdResponse> {
   const result = await _getSchemaByIdSend(context, id, options);
   return _getSchemaByIdDeserialize(result);
 }
