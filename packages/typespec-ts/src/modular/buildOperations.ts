@@ -3,7 +3,8 @@ import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import {
   SourceFile,
   InterfaceDeclarationStructure,
-  StructureKind
+  StructureKind,
+  PropertySignatureStructure
 } from "ts-morph";
 import {
   getDeserializePrivateFunction,
@@ -14,7 +15,9 @@ import {
   getOperationOptionsName,
   getSendPrivateFunction,
   isLroOnlyOperation,
-  isLroAndPagingOperation
+  isLroAndPagingOperation,
+  shouldWrapNonModelResponse,
+  getNonModelResponseInterfaceName
 } from "./helpers/operationHelpers.js";
 
 import { OperationPathAndDeserDetails } from "./interfaces.js";
@@ -79,6 +82,9 @@ export function buildOperationFiles(
 
     const operationGroupFile = project.createSourceFile(filepath);
     operations.forEach((op) => {
+      // Register response interface first so it can be referenced by getOperationFunction
+      buildOperationResponseInterface(dpgContext, [prefixes, op], operationGroupFile);
+
       const operationDeclaration = getOperationFunction(
         dpgContext,
         [prefixes, op],
@@ -92,7 +98,7 @@ export function buildOperationFiles(
       );
       const deserializeOperationDeclaration = getDeserializePrivateFunction(
         dpgContext,
-        op
+        [prefixes, op]
       );
       const deserializeHeadersDeclaration =
         getDeserializeHeadersPrivateFunction(dpgContext, op);
@@ -127,6 +133,40 @@ export function buildOperationFiles(
     operationFiles.add(operationGroupFile);
   }
   return Array.from(operationFiles);
+}
+
+/**
+ * Generates the response interface for operations that return non-model types.
+ * These interfaces wrap the response body with a { body: T } property to maintain
+ * HLC compatibility during TypeSpec migration.
+ */
+export function buildOperationResponseInterface(
+  context: SdkContext,
+  method: [string[], ServiceOperation],
+  sourceFile: SourceFile
+): void {
+  const operation = method[1];
+  if (!shouldWrapNonModelResponse(operation)) {
+    return;
+  }
+
+  const name = getNonModelResponseInterfaceName(method);
+  const bodyType = getTypeExpression(context, operation.response.type!);
+
+  const responseInterface: InterfaceDeclarationStructure = {
+    kind: StructureKind.Interface,
+    isExported: true,
+    name,
+    properties: [
+      {
+        kind: StructureKind.PropertySignature,
+        name: "body",
+        type: bodyType
+      } as PropertySignatureStructure
+    ]
+  };
+
+  addDeclaration(sourceFile, responseInterface, refkey(operation, "responseType"));
 }
 
 /**

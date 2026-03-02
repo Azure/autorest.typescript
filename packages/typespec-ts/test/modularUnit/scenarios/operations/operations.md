@@ -1290,3 +1290,116 @@ export function bar(
   );
 }
 ```
+
+# should wrap non-model scalar string response with { body } for HLC compatibility
+
+## TypeSpec
+
+```tsp
+op read(): string;
+```
+
+## Operations
+
+```ts operations
+import { TestingContext as Client } from "./index.js";
+import { ReadOptionalParams } from "./options.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+
+export interface ReadResponse {
+  body: string;
+}
+
+export function _readSend(
+  context: Client,
+  options: ReadOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: { accept: "text/plain", ...options.requestOptions?.headers },
+    });
+}
+
+export async function _readDeserialize(result: PathUncheckedResponse): Promise<ReadResponse> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return { body: result.body };
+}
+
+export async function read(
+  context: Client,
+  options: ReadOptionalParams = { requestOptions: {} },
+): Promise<ReadResponse> {
+  const result = await _readSend(context, options);
+  return _readDeserialize(result);
+}
+```
+
+# should wrap non-model string array response with { body } for HLC compatibility
+
+## TypeSpec
+
+```tsp
+model VerifiedList is string[];
+op list(): VerifiedList;
+```
+
+## Operations
+
+```ts operations
+import { TestingContext as Client } from "./index.js";
+import { ListOptionalParams } from "./options.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+
+export interface ListResponse {
+  body: string[];
+}
+
+export function _listSend(
+  context: Client,
+  options: ListOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
+    });
+}
+
+export async function _listDeserialize(result: PathUncheckedResponse): Promise<ListResponse> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return {
+    body: result.body.map((p: any) => {
+      return p;
+    }),
+  };
+}
+
+export async function list(
+  context: Client,
+  options: ListOptionalParams = { requestOptions: {} },
+): Promise<ListResponse> {
+  const result = await _listSend(context, options);
+  return _listDeserialize(result);
+}
+```

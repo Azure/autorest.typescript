@@ -69,6 +69,10 @@ import {
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
+export interface CreateResponse {
+  body: string;
+}
+
 export function _createSend(
   context: Client,
   options: CreateOptionalParams = { requestOptions: {} },
@@ -83,19 +87,19 @@ export function _createSend(
     });
 }
 
-export async function _createDeserialize(result: PathUncheckedResponse): Promise<string> {
+export async function _createDeserialize(result: PathUncheckedResponse): Promise<CreateResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return result.body;
+  return { body: result.body };
 }
 
 export async function create(
   context: Client,
   options: CreateOptionalParams = { requestOptions: {} },
-): Promise<string> {
+): Promise<CreateResponse> {
   const result = await _createSend(context, options);
   return _createDeserialize(result);
 }
@@ -203,6 +207,10 @@ import {
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
+export interface CreateRequiredResponse {
+  body: string;
+}
+
 export function _createRequiredSend(
   context: Client,
   body: string,
@@ -218,20 +226,22 @@ export function _createRequiredSend(
     });
 }
 
-export async function _createRequiredDeserialize(result: PathUncheckedResponse): Promise<string> {
+export async function _createRequiredDeserialize(
+  result: PathUncheckedResponse,
+): Promise<CreateRequiredResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return result.body;
+  return { body: result.body };
 }
 
 export async function createRequired(
   context: Client,
   body: string,
   options: CreateRequiredOptionalParams = { requestOptions: {} },
-): Promise<string> {
+): Promise<CreateRequiredResponse> {
   const result = await _createRequiredSend(context, body, options);
   return _createRequiredDeserialize(result);
 }

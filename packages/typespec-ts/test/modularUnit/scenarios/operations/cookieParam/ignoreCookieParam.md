@@ -32,6 +32,10 @@ import {
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
+export interface TestResponse {
+  body: string;
+}
+
 export function _testSend(
   context: Client,
   options: TestOptionalParams = { requestOptions: {} },
@@ -44,19 +48,19 @@ export function _testSend(
     });
 }
 
-export async function _testDeserialize(result: PathUncheckedResponse): Promise<string> {
+export async function _testDeserialize(result: PathUncheckedResponse): Promise<TestResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return result.body;
+  return { body: result.body };
 }
 
 export async function test(
   context: Client,
   options: TestOptionalParams = { requestOptions: {} },
-): Promise<string> {
+): Promise<TestResponse> {
   const result = await _testSend(context, options);
   return _testDeserialize(result);
 }

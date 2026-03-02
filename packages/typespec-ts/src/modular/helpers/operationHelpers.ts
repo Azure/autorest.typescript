@@ -167,8 +167,9 @@ export function getSendPrivateFunction(
 
 export function getDeserializePrivateFunction(
   context: SdkContext,
-  operation: ServiceOperation
+  method: [string[], ServiceOperation]
 ): OptionalKind<FunctionDeclarationStructure> {
+  const operation = method[1];
   const { name } = getOperationName(operation);
   const dependencies = useDependencies();
   const PathUncheckedResponseReference = resolveReference(
@@ -199,10 +200,18 @@ export function getDeserializePrivateFunction(
       type: getTypeExpression(context, restResponse.type)
     };
   } else if (response.type) {
-    returnType = {
-      name: (response as any).name ?? "",
-      type: getTypeExpression(context, response.type)
-    };
+    if (shouldWrapNonModelResponse(operation)) {
+      // Non-model response: wrap with { body: T } for HLC compatibility
+      returnType = {
+        name: "",
+        type: resolveReference(refkey(operation, "responseType"))
+      };
+    } else {
+      returnType = {
+        name: (response as any).name ?? "",
+        type: getTypeExpression(context, response.type)
+      };
+    }
   } else {
     returnType = { name: "", type: "void" };
   }
@@ -354,6 +363,7 @@ export function getDeserializePrivateFunction(
       }
     } else {
       // JSON response (default) - also handles multipart responses
+      const shouldWrap = shouldWrapNonModelResponse(operation);
       const deserializeFunctionName = buildModelDeserializer(
         context,
         deserializedType,
@@ -363,25 +373,26 @@ export function getDeserializePrivateFunction(
         }
       );
       if (deserializeFunctionName) {
+        const expr = `${deserializeFunctionName}(${deserializedRoot})${multipartCastSuffix}`;
         statements.push(
-          `return ${deserializeFunctionName}(${deserializedRoot})${multipartCastSuffix}`
+          shouldWrap ? `return { body: ${expr} }` : `return ${expr}`
         );
       } else if (
         isAzureCoreErrorType(context.program, deserializedType.__raw)
       ) {
-        statements.push(`return ${deserializedRoot}${multipartCastSuffix}`);
+        const expr = `${deserializedRoot}${multipartCastSuffix}`;
+        statements.push(shouldWrap ? `return { body: ${expr} }` : `return ${expr}`);
       } else {
-        statements.push(
-          `return ${deserializeResponseValue(
-            context,
-            deserializedType,
-            deserializedRoot,
-            true,
-            isBinaryPayload(context, response.type!.__raw!, contentTypes)
-              ? "binary"
-              : getEncodeForType(deserializedType)
-          )}${multipartCastSuffix}`
-        );
+        const expr = `${deserializeResponseValue(
+          context,
+          deserializedType,
+          deserializedRoot,
+          true,
+          isBinaryPayload(context, response.type!.__raw!, contentTypes)
+            ? "binary"
+            : getEncodeForType(deserializedType)
+        )}${multipartCastSuffix}`;
+        statements.push(shouldWrap ? `return { body: ${expr} }` : `return ${expr}`);
       }
     }
   } else if (returnType.type === "void") {
@@ -923,8 +934,14 @@ export function getOperationFunction(
   if (response.type) {
     const type = response.type;
 
-    // If feature flag enabled, we'll append the response headers to the operation response type.
-    if (
+    if (shouldWrapNonModelResponse(operation)) {
+      // Non-model response: wrap with XxxResponse for HLC compatibility
+      returnType = {
+        name: "",
+        type: resolveReference(refkey(operation, "responseType"))
+      };
+    } else if (
+      // If feature flag enabled, we'll append the response headers to the operation response type.
       type.kind === "model" &&
       responseHeaders.length > 0 &&
       isResponseHeadersEnabled
@@ -2790,4 +2807,65 @@ function buildHeaderOnlyResponseValue(
   });
 
   return `{ ${props.join(", ")} }`;
+}
+
+/**
+ * Checks if a type is non-model and non-dict (should be wrapped with { body: T }).
+ * Arrays of model types are also excluded since they are treated similarly to models.
+ */
+function isNonModelNonDictType(type: SdkType): boolean {
+  if (type.kind === "nullable") {
+    return isNonModelNonDictType(type.type);
+  }
+  if (type.kind === "array") {
+    // Arrays of model types are not wrapped (treated similarly to model responses)
+    return isNonModelNonDictType(type.valueType);
+  }
+  return type.kind !== "model" && type.kind !== "dict";
+}
+
+/**
+ * Checks if the operation response should be wrapped in { body: T } for HLC compatibility.
+ * Non-model, non-dict responses are wrapped to avoid breaking changes during migration.
+ */
+export function shouldWrapNonModelResponse(
+  operation: ServiceOperation
+): boolean {
+  // Only for normal operations (not LRO, not paging)
+  if (
+    isLroOnlyOperation(operation) ||
+    isLroAndPagingOperation(operation) ||
+    isPagingOnlyOperation(operation)
+  ) {
+    return false;
+  }
+
+  const response = operation.response;
+  if (!response.type) return false;
+
+  // Skip the binary streaming case (handled separately via getBinaryResponse helper)
+  if (
+    response.type.kind === "bytes" &&
+    (response.type as any).encode === "bytes"
+  ) {
+    return false;
+  }
+
+  return isNonModelNonDictType(response.type);
+}
+
+/**
+ * Gets the name for the non-model response interface (e.g., XxxResponse).
+ * Follows the same naming convention as operation options (XxxOptionalParams).
+ */
+export function getNonModelResponseInterfaceName(
+  method: [string[], ServiceOperation]
+): string {
+  const prefixes = method[0];
+  const operation = method[1];
+  const prefix =
+    operation.name.indexOf("_") === -1
+      ? getClassicalLayerPrefix(prefixes, NameType.Interface)
+      : "";
+  return `${prefix}${normalizeName(operation.name, NameType.Interface)}Response`;
 }

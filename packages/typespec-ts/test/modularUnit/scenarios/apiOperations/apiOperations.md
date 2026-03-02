@@ -513,6 +513,10 @@ import {
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
+export interface TestResponse {
+  body: string;
+}
+
 export function _testSend(
   context: Client,
   apiVersion: string,
@@ -535,20 +539,20 @@ export function _testSend(
     });
 }
 
-export async function _testDeserialize(result: PathUncheckedResponse): Promise<string> {
+export async function _testDeserialize(result: PathUncheckedResponse): Promise<TestResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return result.body;
+  return { body: result.body };
 }
 
 export async function test(
   context: Client,
   apiVersion: string,
   options: TestOptionalParams = { requestOptions: {} },
-): Promise<string> {
+): Promise<TestResponse> {
   const result = await _testSend(context, apiVersion, options);
   return _testDeserialize(result);
 }
@@ -591,7 +595,7 @@ export function createTesting(
 ## classicClient
 
 ```ts classicClient
-import { test } from "./api/operations.js";
+import { TestResponse, test } from "./api/operations.js";
 import { TestOptionalParams } from "./api/options.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
@@ -614,7 +618,10 @@ export class TestingClient {
     this.pipeline = this._client.pipeline;
   }
 
-  test(apiVersion: string, options: TestOptionalParams = { requestOptions: {} }): Promise<string> {
+  test(
+    apiVersion: string,
+    options: TestOptionalParams = { requestOptions: {} },
+  ): Promise<TestResponse> {
     return test(this._client, apiVersion, options);
   }
 }
@@ -654,6 +661,10 @@ import {
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
+export interface TestResponse {
+  body: string;
+}
+
 export function _testSend(
   context: Client,
   apiVersion: string,
@@ -676,20 +687,20 @@ export function _testSend(
     });
 }
 
-export async function _testDeserialize(result: PathUncheckedResponse): Promise<string> {
+export async function _testDeserialize(result: PathUncheckedResponse): Promise<TestResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return result.body;
+  return { body: result.body };
 }
 
 export async function test(
   context: Client,
   apiVersion: string,
   options: TestOptionalParams = { requestOptions: {} },
-): Promise<string> {
+): Promise<TestResponse> {
   const result = await _testSend(context, apiVersion, options);
   return _testDeserialize(result);
 }
@@ -732,7 +743,7 @@ export function createTesting(
 ## classicClient
 
 ```ts classicClient
-import { test } from "./api/operations.js";
+import { TestResponse, test } from "./api/operations.js";
 import { TestOptionalParams } from "./api/options.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
@@ -755,7 +766,10 @@ export class TestingClient {
     this.pipeline = this._client.pipeline;
   }
 
-  test(apiVersion: string, options: TestOptionalParams = { requestOptions: {} }): Promise<string> {
+  test(
+    apiVersion: string,
+    options: TestOptionalParams = { requestOptions: {} },
+  ): Promise<TestResponse> {
     return test(this._client, apiVersion, options);
   }
 }
@@ -789,6 +803,10 @@ import {
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
+export interface Test1Response {
+  body: string;
+}
+
 export function _test1Send(
   context: Client,
   options: Test1OptionalParams = { requestOptions: {} },
@@ -801,21 +819,25 @@ export function _test1Send(
     });
 }
 
-export async function _test1Deserialize(result: PathUncheckedResponse): Promise<string> {
+export async function _test1Deserialize(result: PathUncheckedResponse): Promise<Test1Response> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return result.body;
+  return { body: result.body };
 }
 
 export async function test1(
   context: Client,
   options: Test1OptionalParams = { requestOptions: {} },
-): Promise<string> {
+): Promise<Test1Response> {
   const result = await _test1Send(context, options);
   return _test1Deserialize(result);
+}
+
+export interface TestResponse {
+  body: string;
 }
 
 export function _testSend(
@@ -840,20 +862,20 @@ export function _testSend(
     });
 }
 
-export async function _testDeserialize(result: PathUncheckedResponse): Promise<string> {
+export async function _testDeserialize(result: PathUncheckedResponse): Promise<TestResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return result.body;
+  return { body: result.body };
 }
 
 export async function test(
   context: Client,
   apiVersion: string,
   options: TestOptionalParams = { requestOptions: {} },
-): Promise<string> {
+): Promise<TestResponse> {
   const result = await _testSend(context, apiVersion, options);
   return _testDeserialize(result);
 }
@@ -896,7 +918,7 @@ export function createTesting(
 ## classicClient
 
 ```ts classicClient
-import { test1, test } from "./api/operations.js";
+import { Test1Response, test1, TestResponse, test } from "./api/operations.js";
 import { Test1OptionalParams, TestOptionalParams } from "./api/options.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
@@ -919,11 +941,14 @@ export class TestingClient {
     this.pipeline = this._client.pipeline;
   }
 
-  test1(options: Test1OptionalParams = { requestOptions: {} }): Promise<string> {
+  test1(options: Test1OptionalParams = { requestOptions: {} }): Promise<Test1Response> {
     return test1(this._client, options);
   }
 
-  test(apiVersion: string, options: TestOptionalParams = { requestOptions: {} }): Promise<string> {
+  test(
+    apiVersion: string,
+    options: TestOptionalParams = { requestOptions: {} },
+  ): Promise<TestResponse> {
     return test(this._client, apiVersion, options);
   }
 }

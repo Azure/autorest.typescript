@@ -144,6 +144,10 @@ import {
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
+export interface ReadResponse {
+  body: true;
+}
+
 export function _readSend(
   context: Client,
   options: ReadOptionalParams = { requestOptions: {} },
@@ -158,19 +162,19 @@ export function _readSend(
     });
 }
 
-export async function _readDeserialize(result: PathUncheckedResponse): Promise<true> {
+export async function _readDeserialize(result: PathUncheckedResponse): Promise<ReadResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return result.body;
+  return { body: result.body };
 }
 
 export async function read(
   context: Client,
   options: ReadOptionalParams = { requestOptions: {} },
-): Promise<true> {
+): Promise<ReadResponse> {
   const result = await _readSend(context, options);
   return _readDeserialize(result);
 }
