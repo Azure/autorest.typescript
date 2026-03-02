@@ -958,7 +958,10 @@ export function getOperationFunction(
     context.rlcOptions?.includeHeadersInResponse === true;
 
   // Check if we need to wrap the non-model return type
-  const { shouldWrap: wrapReturn } = checkWrapNonModelReturn(context, operation);
+  const { shouldWrap: wrapReturn } = checkWrapNonModelReturn(
+    context,
+    operation
+  );
 
   let returnType = { name: "", type: "void" };
   if (wrapReturn) {

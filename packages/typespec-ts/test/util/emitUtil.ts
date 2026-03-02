@@ -11,7 +11,10 @@ import {
   buildSchemaTypes,
   initInternalImports
 } from "@azure-tools/rlc-common";
-import { emitTypes, emitNonModelResponseTypes } from "../../src/modular/emitModels.js";
+import {
+  emitTypes,
+  emitNonModelResponseTypes
+} from "../../src/modular/emitModels.js";
 import { buildApiOptions } from "../../src/modular/emitModelsOptions.js";
 import {
   compileTypeSpecFor,
@@ -578,7 +581,8 @@ export async function emitModularOperationsFromTypeSpec(
   dpgContext.rlcOptions!.experimentalExtensibleEnums =
     options["experimental-extensible-enums"];
   if (options["wrap-non-model-return"] !== undefined) {
-    dpgContext.rlcOptions!.wrapNonModelReturn = options["wrap-non-model-return"] === true;
+    dpgContext.rlcOptions!.wrapNonModelReturn =
+      options["wrap-non-model-return"] === true;
   }
   const modularEmitterOptions = transformModularEmitterOptions(dpgContext, "", {
     casing: "camel"
