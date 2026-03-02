@@ -3,7 +3,7 @@
 import { FileContents } from "./static-helpers/multipartHelpers.js";
 
 export { OpenAIClient } from "./openAIClient.js";
-export {
+export type {
   CreateCompletionRequest,
   Prompt,
   Stop,
@@ -51,45 +51,45 @@ export {
   ListFineTuningJobEventsResponse,
   FineTuningJobEvent,
 } from "./models/index.js";
-export { OpenAIClientOptionalParams } from "./api/index.js";
-export { CompletionsCreateOptionalParams } from "./api/completions/index.js";
-export { EditsCreateOptionalParams } from "./api/edits/index.js";
-export { EmbeddingsCreateOptionalParams } from "./api/embeddings/index.js";
-export {
+export type { OpenAIClientOptionalParams } from "./api/index.js";
+export type { CompletionsCreateOptionalParams } from "./api/completions/index.js";
+export type { EditsCreateOptionalParams } from "./api/edits/index.js";
+export type { EmbeddingsCreateOptionalParams } from "./api/embeddings/index.js";
+export type {
   FilesDownloadOptionalParams,
   FilesDeleteOptionalParams,
   FilesRetrieveOptionalParams,
   FilesCreateOptionalParams,
   FilesListOptionalParams,
 } from "./api/files/index.js";
-export {
+export type {
   FineTunesCancelOptionalParams,
   FineTunesListEventsOptionalParams,
   FineTunesRetrieveOptionalParams,
   FineTunesListOptionalParams,
   FineTunesCreateOptionalParams,
 } from "./api/fineTunes/index.js";
-export {
+export type {
   ImagesCreateVariationOptionalParams,
   ImagesCreateEditOptionalParams,
 } from "./api/images/index.js";
-export {
+export type {
   ModelsDeleteOptionalParams,
   ModelsRetrieveOptionalParams,
   ModelsListOptionalParams,
 } from "./api/models/index.js";
-export { ModerationsCreateOptionalParams } from "./api/moderations/index.js";
-export { AudioTranscriptionsCreateOptionalParams } from "./api/audio/transcriptions/index.js";
-export { AudioTranslationsCreateOptionalParams } from "./api/audio/translations/index.js";
-export { ChatCompletionsCreateOptionalParams } from "./api/chat/completions/index.js";
-export {
+export type { ModerationsCreateOptionalParams } from "./api/moderations/index.js";
+export type { AudioTranscriptionsCreateOptionalParams } from "./api/audio/transcriptions/index.js";
+export type { AudioTranslationsCreateOptionalParams } from "./api/audio/translations/index.js";
+export type { ChatCompletionsCreateOptionalParams } from "./api/chat/completions/index.js";
+export type {
   FineTuningJobsCancelOptionalParams,
   FineTuningJobsListEventsOptionalParams,
   FineTuningJobsRetrieveOptionalParams,
   FineTuningJobsListOptionalParams,
   FineTuningJobsCreateOptionalParams,
 } from "./api/fineTuning/jobs/index.js";
-export {
+export type {
   AudioOperations,
   ChatOperations,
   CompletionsOperations,
@@ -106,4 +106,4 @@ export {
   ChatCompletionsOperations,
   FineTuningJobsOperations,
 } from "./classic/index.js";
-export { FileContents };
+export type { FileContents };

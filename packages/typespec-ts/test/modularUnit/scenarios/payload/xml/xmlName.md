@@ -197,44 +197,6 @@ export function loggingXmlDeserializer(xmlString: string): Logging {
 }
 ```
 
-```ts models function loggingXmlObjectDeserializer
-export function loggingXmlObjectDeserializer(xmlObject: Record<string, unknown>): Logging {
-  const properties: XmlPropertyDeserializeMetadata[] = [
-    {
-      propertyName: "version",
-      xmlOptions: { name: "Version" },
-      type: "primitive",
-      primitiveSubtype: "string",
-    },
-    {
-      propertyName: "deleteProperty",
-      xmlOptions: { name: "Delete" },
-      type: "primitive",
-      primitiveSubtype: "boolean",
-    },
-    {
-      propertyName: "read",
-      xmlOptions: { name: "Read" },
-      type: "primitive",
-      primitiveSubtype: "boolean",
-    },
-    {
-      propertyName: "write",
-      xmlOptions: { name: "Write" },
-      type: "primitive",
-      primitiveSubtype: "boolean",
-    },
-    {
-      propertyName: "retentionPolicy",
-      xmlOptions: { name: "RetentionPolicy" },
-      type: "object",
-      deserializer: retentionPolicyXmlObjectDeserializer,
-    },
-  ];
-  return deserializeXmlObject<Logging>(xmlObject, properties);
-}
-```
-
 ```ts models function retentionPolicyXmlObjectSerializer
 export function retentionPolicyXmlObjectSerializer(item: RetentionPolicy): XmlSerializedObject {
   return { Enabled: item["enabled"], Days: item["days"] };
@@ -338,19 +300,5 @@ export function blobTagsXmlDeserializer(xmlString: string): BlobTags {
     },
   ];
   return deserializeFromXml<BlobTags>(xmlString, properties, "Tags");
-}
-```
-
-```ts models function blobTagsXmlObjectDeserializer
-export function blobTagsXmlObjectDeserializer(xmlObject: Record<string, unknown>): BlobTags {
-  const properties: XmlPropertyDeserializeMetadata[] = [
-    {
-      propertyName: "blobTagSet",
-      xmlOptions: { name: "TagSet", unwrapped: true, itemsName: "TagSet" },
-      type: "array",
-      deserializer: blobTagXmlObjectDeserializer,
-    },
-  ];
-  return deserializeXmlObject<BlobTags>(xmlObject, properties);
 }
 ```

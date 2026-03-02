@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-export {
-  createLoadTestAdministration,
+export type {
   LoadTestAdministrationContext,
   LoadTestAdministrationClientOptionalParams,
 } from "./loadTestAdministrationContext.js";
+export { createLoadTestAdministration } from "./loadTestAdministrationContext.js";
 export {
   deleteTest,
   deleteTestFile,
@@ -20,7 +20,7 @@ export {
   createOrUpdateAppComponents,
   createOrUpdateTest,
 } from "./operations.js";
-export {
+export type {
   DeleteTestOptionalParams,
   DeleteTestFileOptionalParams,
   UploadTestFileOptionalParams,

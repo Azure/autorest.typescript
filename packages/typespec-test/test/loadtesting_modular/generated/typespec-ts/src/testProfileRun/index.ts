@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 export { TestProfileRunClient } from "./testProfileRunClient.js";
-export {
+export type {
   StopTestProfileRunOptionalParams,
   ListTestProfileRunsOptionalParams,
   GetTestProfileRunOptionalParams,

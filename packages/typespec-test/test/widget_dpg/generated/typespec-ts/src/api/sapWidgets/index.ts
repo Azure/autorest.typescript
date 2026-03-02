@@ -12,7 +12,7 @@ export {
   listWidgetsPages,
   sapListWidgets,
 } from "./operations.js";
-export {
+export type {
   SAPWidgetsAnalyzeWidgetOptionalParams,
   SAPWidgetsDeleteWidgetOptionalParams,
   SAPWidgetsUpdateWidgetOptionalParams,

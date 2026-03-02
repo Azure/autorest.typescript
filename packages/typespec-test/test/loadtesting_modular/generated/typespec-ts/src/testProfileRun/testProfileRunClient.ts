@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 
 import {
-  createTestProfileRun,
   TestProfileRunContext,
   TestProfileRunClientOptionalParams,
+  createTestProfileRun,
 } from "./api/index.js";
 import { TestProfileRun } from "../models/models.js";
 import { PagedAsyncIterableIterator } from "../static-helpers/pagingHelpers.js";

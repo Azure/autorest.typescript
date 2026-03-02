@@ -10,7 +10,7 @@ export {
   trainMultivariateModel,
   getMultivariateBatchDetectionResult,
 } from "./operations.js";
-export {
+export type {
   MultivariateDetectMultivariateLastAnomalyOptionalParams,
   MultivariateDetectMultivariateBatchAnomalyOptionalParams,
   MultivariateGetMultivariateModelOptionalParams,

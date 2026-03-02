@@ -344,6 +344,56 @@ export function getModelNamespaces(
   return [];
 }
 
+/**
+ * Checks if a model type appears as a nested property (directly or as an array element)
+ * inside any other XML model in the emit queue. XmlObject serializers/deserializers
+ * are only needed for models that are nested inside other models.
+ */
+function isNestedInXmlModel(targetModel: SdkModelType): boolean {
+  for (const type of emitQueue) {
+    if (type.kind !== "model" || type === targetModel) {
+      continue;
+    }
+    if (!hasXmlSerialization(type)) {
+      continue;
+    }
+    // Check properties of this model and all ancestors
+    for (const property of getModelAndAncestorProperties(type)) {
+      const propType = property.type;
+      if (propType.kind === "model" && propType === targetModel) {
+        return true;
+      }
+      if (
+        propType.kind === "array" &&
+        propType.valueType.kind === "model" &&
+        propType.valueType === targetModel
+      ) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+/**
+ * Gets all properties from a model and its ancestors (base models).
+ */
+function getModelAndAncestorProperties(
+  type: SdkModelType
+): SdkModelPropertyType[] {
+  const properties: SdkModelPropertyType[] = [];
+  let current: SdkModelType | undefined = type;
+  while (current) {
+    for (const prop of current.properties) {
+      if (prop.kind === "property") {
+        properties.push(prop);
+      }
+    }
+    current = current.baseModel;
+  }
+  return properties;
+}
+
 function addSerializationFunctions(
   context: SdkContext,
   typeOrProperty: SdkType | SdkModelPropertyType,
@@ -386,14 +436,6 @@ function addSerializationFunctions(
   if (typeOrProperty.kind === "model" && hasXmlSerialization(typeOrProperty)) {
     const xmlSerializerRefKey = refkey(typeOrProperty, "xmlSerializer");
     const xmlDeserializerRefKey = refkey(typeOrProperty, "xmlDeserializer");
-    const xmlObjectSerializerRefKey = refkey(
-      typeOrProperty,
-      "xmlObjectSerializer"
-    );
-    const xmlObjectDeserializerRefKey = refkey(
-      typeOrProperty,
-      "xmlObjectDeserializer"
-    );
 
     const xmlSerializationFunction = buildXmlModelSerializer(
       context,
@@ -406,24 +448,6 @@ function addSerializationFunctions(
       xmlSerializationFunction.name
     ) {
       addDeclaration(sourceFile, xmlSerializationFunction, xmlSerializerRefKey);
-    }
-
-    // Also generate XML object serializer for nested object serialization
-    const xmlObjectSerializationFunction = buildXmlObjectModelSerializer(
-      context,
-      typeOrProperty,
-      options
-    );
-    if (
-      xmlObjectSerializationFunction &&
-      typeof xmlObjectSerializationFunction !== "string" &&
-      xmlObjectSerializationFunction.name
-    ) {
-      addDeclaration(
-        sourceFile,
-        xmlObjectSerializationFunction,
-        xmlObjectSerializerRefKey
-      );
     }
 
     const xmlDeserializationFunction = buildXmlModelDeserializer(
@@ -443,22 +467,51 @@ function addSerializationFunctions(
       );
     }
 
-    // Also generate XML object deserializer for nested object deserialization
-    const xmlObjectDeserializationFunction = buildXmlObjectModelDeserializer(
-      context,
-      typeOrProperty,
-      options
-    );
-    if (
-      xmlObjectDeserializationFunction &&
-      typeof xmlObjectDeserializationFunction !== "string" &&
-      xmlObjectDeserializationFunction.name
-    ) {
-      addDeclaration(
-        sourceFile,
-        xmlObjectDeserializationFunction,
-        xmlObjectDeserializerRefKey
+    // Only generate XML object serializer/deserializer for models that are
+    // actually nested as properties inside other XML models
+    if (isNestedInXmlModel(typeOrProperty)) {
+      const xmlObjectSerializerRefKey = refkey(
+        typeOrProperty,
+        "xmlObjectSerializer"
       );
+      const xmlObjectDeserializerRefKey = refkey(
+        typeOrProperty,
+        "xmlObjectDeserializer"
+      );
+
+      const xmlObjectSerializationFunction = buildXmlObjectModelSerializer(
+        context,
+        typeOrProperty,
+        options
+      );
+      if (
+        xmlObjectSerializationFunction &&
+        typeof xmlObjectSerializationFunction !== "string" &&
+        xmlObjectSerializationFunction.name
+      ) {
+        addDeclaration(
+          sourceFile,
+          xmlObjectSerializationFunction,
+          xmlObjectSerializerRefKey
+        );
+      }
+
+      const xmlObjectDeserializationFunction = buildXmlObjectModelDeserializer(
+        context,
+        typeOrProperty,
+        options
+      );
+      if (
+        xmlObjectDeserializationFunction &&
+        typeof xmlObjectDeserializationFunction !== "string" &&
+        xmlObjectDeserializationFunction.name
+      ) {
+        addDeclaration(
+          sourceFile,
+          xmlObjectDeserializationFunction,
+          xmlObjectDeserializerRefKey
+        );
+      }
     }
   }
 }
@@ -854,9 +907,7 @@ function buildModelProperty(
     typeExpression = allDiscriminatorValues
       .map((value) => `"${value}"`)
       .join(" | ");
-  }
-  // eslint-disable-next-line
-  else if (
+  } else if (
     property.kind === "property" &&
     property.serializationOptions.multipart?.isFilePart
   ) {

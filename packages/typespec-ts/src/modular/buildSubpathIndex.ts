@@ -7,6 +7,7 @@ import { ModularEmitterOptions } from "./interfaces.js";
 import { join } from "path";
 import { getModularClientOptions } from "../utils/clientUtils.js";
 import { useContext } from "../contextManager.js";
+import { Node, SourceFile } from "ts-morph";
 
 export interface buildSubpathIndexFileOptions {
   exportIndex?: boolean;
@@ -85,50 +86,90 @@ export function buildSubpathIndexFile(
         continue;
       }
 
-      let namedExports: string[] = [...file.getExportedDeclarations().entries()]
-        .filter((exDeclaration) => {
-          if (exDeclaration[0].startsWith("_")) {
+      let filteredDeclarations = [
+        ...file.getExportedDeclarations().entries()
+      ].filter((exDeclaration) => {
+        if (exDeclaration[0].startsWith("_")) {
+          return false;
+        }
+        return exDeclaration[1].some((ex) => {
+          if (
+            options.interfaceOnly &&
+            ex.getKindName() !== "InterfaceDeclaration"
+          ) {
             return false;
           }
-          return exDeclaration[1].some((ex) => {
-            if (
-              options.interfaceOnly &&
-              ex.getKindName() !== "InterfaceDeclaration"
-            ) {
-              return false;
-            }
 
-            // skip exporting serializers for models
-            if (
-              subpath === "models" &&
-              ex.getKindName() === "FunctionDeclaration" &&
-              serializerOrDeserializerRegex.test(exDeclaration[0])
-            ) {
-              return false;
-            }
+          // skip exporting serializers for models
+          if (
+            subpath === "models" &&
+            ex.getKindName() === "FunctionDeclaration" &&
+            serializerOrDeserializerRegex.test(exDeclaration[0])
+          ) {
+            return false;
+          }
 
-            return true;
-          });
-        })
-        .map((exDeclaration) => {
-          return exDeclaration[0];
+          return true;
         });
+      });
       // Skip to export PagedResult and BuildPagedAsyncIteratorOptions
       if (filePath.endsWith("pagingTypes.ts")) {
-        namedExports = namedExports.filter(
-          (ex) =>
-            !["PagedResult", "BuildPagedAsyncIteratorOptions"].includes(ex)
+        filteredDeclarations = filteredDeclarations.filter(
+          ([name]) =>
+            !["PagedResult", "BuildPagedAsyncIteratorOptions"].includes(name)
         );
       }
-      if (namedExports.length > 0) {
-        indexFile.addExportDeclaration({
-          moduleSpecifier: `.${filePath
-            .replace(indexFile.getDirectoryPath(), "")
-            .replace(/\\/g, "/")
-            .replace(".ts", "")}.js`,
-          namedExports
-        });
+      if (filteredDeclarations.length > 0) {
+        const moduleSpecifier = `.${filePath
+          .replace(indexFile.getDirectoryPath(), "")
+          .replace(/\\/g, "/")
+          .replace(".ts", "")}.js`;
+        partitionAndEmitExports(
+          indexFile,
+          moduleSpecifier,
+          filteredDeclarations
+        );
       }
     }
+  }
+}
+
+export function isTypeOnlyNode(node: Node): boolean {
+  const kind = node.getKindName();
+  return kind === "InterfaceDeclaration" || kind === "TypeAliasDeclaration";
+}
+
+/**
+ * Partition declaration entries into type-only and value exports in a single pass,
+ * then emit both export declarations on the index file.
+ */
+export function partitionAndEmitExports(
+  indexFile: SourceFile,
+  moduleSpecifier: string,
+  entries: [string, Node[]][],
+  mapName: (name: string) => string = (n) => n
+): void {
+  const typeOnlyExports: string[] = [];
+  const valueExports: string[] = [];
+  for (const [name, decls] of entries) {
+    const mapped = mapName(name);
+    if (decls.every(isTypeOnlyNode)) {
+      typeOnlyExports.push(mapped);
+    } else {
+      valueExports.push(mapped);
+    }
+  }
+  if (typeOnlyExports.length > 0) {
+    indexFile.addExportDeclaration({
+      isTypeOnly: true,
+      moduleSpecifier,
+      namedExports: typeOnlyExports
+    });
+  }
+  if (valueExports.length > 0) {
+    indexFile.addExportDeclaration({
+      moduleSpecifier,
+      namedExports: valueExports
+    });
   }
 }

@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 
 import {
-  createAnomalyDetector,
   AnomalyDetectorContext,
   AnomalyDetectorClientOptionalParams,
+  createAnomalyDetector,
 } from "./api/index.js";
 import {
   MultivariateOperations,

@@ -8,7 +8,7 @@ import {
 } from "./static-helpers/pagingHelpers.js";
 
 export { ContentSafetyClient } from "./contentSafetyClient.js";
-export {
+export type {
   AnalyzeTextOptions,
   TextCategory,
   AnalyzeTextOutputType,
@@ -33,9 +33,9 @@ export {
   TextBlocklistItem,
   AddOrUpdateTextBlocklistItemsResult,
   RemoveTextBlocklistItemsOptions,
-  KnownVersions,
 } from "./models/index.js";
-export {
+export { KnownVersions } from "./models/index.js";
+export type {
   ContentSafetyClientOptionalParams,
   ListTextBlocklistItemsOptionalParams,
   GetTextBlocklistItemOptionalParams,
@@ -50,4 +50,4 @@ export {
   ShieldPromptOptionalParams,
   AnalyzeTextOptionalParams,
 } from "./api/index.js";
-export { PageSettings, ContinuablePage, PagedAsyncIterableIterator };
+export type { PageSettings, ContinuablePage, PagedAsyncIterableIterator };

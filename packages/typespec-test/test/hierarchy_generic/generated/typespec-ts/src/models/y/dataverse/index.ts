@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-export {
+export type {
   YDataverseDataverseSourceConnectorProperties,
   YDataverseDataverseEventPosition,
 } from "./models.js";

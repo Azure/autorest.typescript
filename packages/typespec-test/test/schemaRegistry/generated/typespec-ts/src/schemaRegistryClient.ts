@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 
 import {
-  createSchemaRegistry,
   SchemaRegistryContext,
   SchemaRegistryClientOptionalParams,
+  createSchemaRegistry,
 } from "./api/index.js";
 import {
   SchemaOperationsOperations,

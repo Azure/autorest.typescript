@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-export {
+export type {
   SchemaGroup,
   SchemaVersion,
   SchemaProperties,
   SchemaFormat,
   Schema,
   SchemaContentTypeValues,
-  KnownServiceApiVersions,
   ContentTypeEnum,
 } from "./models.js";
+export { KnownServiceApiVersions } from "./models.js";

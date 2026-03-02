@@ -1,4 +1,4 @@
 // Licensed under the MIT License.
 
 export { create } from "./operations.js";
-export { ChatCompletionsCreateOptionalParams } from "./options.js";
+export type { ChatCompletionsCreateOptionalParams } from "./options.js";

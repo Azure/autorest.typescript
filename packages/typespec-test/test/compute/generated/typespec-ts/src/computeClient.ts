@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { createCompute, ComputeContext, ComputeClientOptionalParams } from "./api/index.js";
+import { ComputeContext, ComputeClientOptionalParams, createCompute } from "./api/index.js";
 import {
   ActionGroupsOperations,
   _getActionGroupsOperations,

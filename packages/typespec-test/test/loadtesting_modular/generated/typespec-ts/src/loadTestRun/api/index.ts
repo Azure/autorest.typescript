@@ -1,11 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-export {
-  createLoadTestRun,
-  LoadTestRunContext,
-  LoadTestRunClientOptionalParams,
-} from "./loadTestRunContext.js";
+export type { LoadTestRunContext, LoadTestRunClientOptionalParams } from "./loadTestRunContext.js";
+export { createLoadTestRun } from "./loadTestRunContext.js";
 export {
   stopTestRun,
   listTestRuns,
@@ -22,7 +19,7 @@ export {
   createOrUpdateAppComponents,
   createOrUpdateTestRun,
 } from "./operations.js";
-export {
+export type {
   StopTestRunOptionalParams,
   ListTestRunsOptionalParams,
   ListMetricsOptionalParams,

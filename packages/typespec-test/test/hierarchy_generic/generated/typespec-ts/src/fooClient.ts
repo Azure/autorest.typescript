@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { createFoo, FooContext, FooClientOptionalParams } from "./api/index.js";
+import { FooContext, FooClientOptionalParams, createFoo } from "./api/index.js";
 import { op1 } from "./api/operations.js";
 import { Op1OptionalParams } from "./api/options.js";
 import { BOperations, _getBOperations } from "./classic/b/index.js";

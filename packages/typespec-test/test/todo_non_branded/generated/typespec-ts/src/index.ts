@@ -8,7 +8,7 @@ import {
 } from "./static-helpers/pagingHelpers.js";
 
 export { TodoClient } from "./todoClient.js";
-export {
+export type {
   User,
   ApiError,
   Standard4XXResponse,
@@ -20,14 +20,18 @@ export {
   ToDoItemMultipartRequest,
   FileAttachmentMultipartRequest,
 } from "./models/index.js";
-export { InvalidTodoItem, NotFoundErrorResponse, TodoItemPatch } from "./models/todoItems/index.js";
-export {
+export type {
+  InvalidTodoItem,
+  NotFoundErrorResponse,
+  TodoItemPatch,
+} from "./models/todoItems/index.js";
+export type {
   UserCreatedResponse,
   UserExistsResponse,
   InvalidUserResponse,
 } from "./models/users/index.js";
-export { TodoClientOptionalParams } from "./api/index.js";
-export {
+export type { TodoClientOptionalParams } from "./api/index.js";
+export type {
   TodoItemsDeleteOptionalParams,
   TodoItemsUpdateOptionalParams,
   TodoItemsGetOptionalParams,
@@ -35,16 +39,16 @@ export {
   TodoItemsCreateJsonOptionalParams,
   TodoItemsListOptionalParams,
 } from "./api/todoItems/index.js";
-export { UsersCreateOptionalParams } from "./api/users/index.js";
-export {
+export type { UsersCreateOptionalParams } from "./api/users/index.js";
+export type {
   TodoItemsAttachmentsCreateFileAttachmentOptionalParams,
   TodoItemsAttachmentsCreateJsonAttachmentOptionalParams,
   TodoItemsAttachmentsListOptionalParams,
 } from "./api/todoItems/attachments/index.js";
-export {
+export type {
   TodoItemsOperations,
   UsersOperations,
   TodoItemsAttachmentsOperations,
 } from "./classic/index.js";
-export { PageSettings, ContinuablePage, PagedAsyncIterableIterator };
-export { FileContents };
+export type { PageSettings, ContinuablePage, PagedAsyncIterableIterator };
+export type { FileContents };
