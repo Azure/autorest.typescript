@@ -444,6 +444,11 @@ export async function $onEmit(context: EmitContext) {
       "README.md"
     );
     const hasReadmeFile = await existsSync(existingReadmeFilePath);
+    const existingWarpConfigFilePath = join(
+      dpgContext.generationPathDetail?.metadataDir ?? "",
+      "warp.config.yml"
+    );
+    const hasWarpConfigFile = await existsSync(existingWarpConfigFilePath);
     const shouldGenerateMetadata =
       option.generateMetadata === true || !hasPackageFile;
     const existingTestFolderPath = join(
@@ -518,8 +523,8 @@ export async function $onEmit(context: EmitContext) {
       commonBuilders.push((model) =>
         buildPackageFile(model, modularPackageInfo)
       );
-      // Generate warp.config.yml for Azure monorepo ESM packages
-      if (option.azureSdkForJs) {
+      // Generate warp.config.yml for Azure monorepo ESM packages (only if it doesn't exist)
+      if (option.azureSdkForJs && !hasWarpConfigFile) {
         commonBuilders.push((model) =>
           buildWarpConfig(model, modularPackageInfo)
         );
@@ -575,8 +580,8 @@ export async function $onEmit(context: EmitContext) {
         dpgContext.generationPathDetail?.metadataDir
       );
 
-      // Generate/update warp.config.yml for Azure monorepo packages
-      if (option.azureSdkForJs) {
+      // Generate warp.config.yml for Azure monorepo packages (only if it doesn't exist)
+      if (option.azureSdkForJs && !hasWarpConfigFile) {
         await emitContentByBuilder(
           program,
           (model) => buildWarpConfig(model, modularPackageInfo),
