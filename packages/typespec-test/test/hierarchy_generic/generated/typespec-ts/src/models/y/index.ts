@@ -1,4 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-export { YDataSourceProperties, YDataSourcePropertiesUnion, YConnectorType } from "./models.js";
+export type {
+  YDataSourceProperties,
+  YDataSourcePropertiesUnion,
+  YConnectorType,
+} from "./models.js";

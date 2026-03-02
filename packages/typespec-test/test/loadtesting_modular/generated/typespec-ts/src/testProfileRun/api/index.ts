@@ -8,15 +8,15 @@ export {
   deleteTestProfileRun,
   createOrUpdateTestProfileRun,
 } from "./operations.js";
-export {
+export type {
   StopTestProfileRunOptionalParams,
   ListTestProfileRunsOptionalParams,
   GetTestProfileRunOptionalParams,
   DeleteTestProfileRunOptionalParams,
   CreateOrUpdateTestProfileRunOptionalParams,
 } from "./options.js";
-export {
-  createTestProfileRun,
+export type {
   TestProfileRunContext,
   TestProfileRunClientOptionalParams,
 } from "./testProfileRunContext.js";
+export { createTestProfileRun } from "./testProfileRunContext.js";

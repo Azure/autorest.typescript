@@ -8,35 +8,26 @@ import {
 } from "./static-helpers/pagingHelpers.js";
 
 export { LoadTestAdministrationClient } from "./loadTestAdministration/loadTestAdministrationClient.js";
-export {
+export type {
   Test,
   PassFailCriteria,
   PassFailMetric,
-  KnownPFMetrics,
   PFMetrics,
-  KnownPFAgFunc,
   PFAgFunc,
-  KnownPFAction,
   PFAction,
-  KnownPFResult,
   PFResult,
   AutoStopCriteria,
   Secret,
-  KnownSecretType,
   SecretType,
   CertificateMetadata,
-  KnownCertificateType,
   CertificateType,
   LoadTestConfiguration,
   OptionalLoadTestConfig,
   RegionalConfiguration,
   TestInputArtifacts,
   TestFileInfo,
-  KnownFileType,
   FileType,
-  KnownFileStatus,
   FileStatus,
-  KnownTestKind,
   TestKind,
   TestAppComponents,
   AppComponent,
@@ -50,11 +41,8 @@ export {
   TestRunFileInfo,
   TestRunOutputArtifacts,
   ArtifactsContainerInfo,
-  KnownPFTestResult,
   PFTestResult,
-  KnownStatus,
   Status,
-  KnownRequestDataLevel,
   RequestDataLevel,
   TestRunAppComponents,
   TestRunServerMetricConfig,
@@ -62,12 +50,9 @@ export {
   MetricDefinitionCollection,
   MetricDefinition,
   NameAndDesc,
-  KnownAggregationType,
   AggregationType,
-  KnownMetricUnit,
   MetricUnit,
   MetricAvailability,
-  KnownTimeGrain,
   TimeGrain,
   MetricNamespaceCollection,
   MetricNamespace,
@@ -79,20 +64,37 @@ export {
   TestProfile,
   TargetResourceConfigurations,
   TargetResourceConfigurationsUnion,
-  KnownResourceKind,
   ResourceKind,
   FunctionFlexConsumptionTargetResourceConfigurations,
   FunctionFlexConsumptionResourceConfiguration,
   TestProfileRun,
-  KnownTestProfileRunStatus,
   TestProfileRunStatus,
   TestRunDetail,
   TestProfileRunRecommendation,
-  KnownRecommendationCategory,
   RecommendationCategory,
-  KnownAPIVersions,
 } from "./models/index.js";
 export {
+  KnownPFMetrics,
+  KnownPFAgFunc,
+  KnownPFAction,
+  KnownPFResult,
+  KnownSecretType,
+  KnownCertificateType,
+  KnownFileType,
+  KnownFileStatus,
+  KnownTestKind,
+  KnownPFTestResult,
+  KnownStatus,
+  KnownRequestDataLevel,
+  KnownAggregationType,
+  KnownMetricUnit,
+  KnownTimeGrain,
+  KnownResourceKind,
+  KnownTestProfileRunStatus,
+  KnownRecommendationCategory,
+  KnownAPIVersions,
+} from "./models/index.js";
+export type {
   LoadTestAdministrationClientOptionalParams,
   DeleteTestOptionalParams,
   DeleteTestFileOptionalParams,
@@ -107,9 +109,9 @@ export {
   CreateOrUpdateAppComponentsOptionalParams,
   CreateOrUpdateTestOptionalParams,
 } from "./loadTestAdministration/api/index.js";
-export { PageSettings, ContinuablePage, PagedAsyncIterableIterator };
+export type { PageSettings, ContinuablePage, PagedAsyncIterableIterator };
 export { LoadTestRunClient } from "./loadTestRun/loadTestRunClient.js";
-export {
+export type {
   LoadTestRunClientOptionalParams,
   StopTestRunOptionalParams,
   ListTestRunsOptionalParams,
@@ -127,7 +129,7 @@ export {
   CreateOrUpdateTestRunOptionalParams,
 } from "./loadTestRun/api/index.js";
 export { TestProfileAdministrationClient } from "./testProfileAdministration/testProfileAdministrationClient.js";
-export {
+export type {
   ListTestProfilesOptionalParams,
   GetTestProfileOptionalParams,
   DeleteTestProfileOptionalParams,
@@ -135,7 +137,7 @@ export {
   TestProfileAdministrationClientOptionalParams,
 } from "./testProfileAdministration/api/index.js";
 export { TestProfileRunClient } from "./testProfileRun/testProfileRunClient.js";
-export {
+export type {
   StopTestProfileRunOptionalParams,
   ListTestProfileRunsOptionalParams,
   GetTestProfileRunOptionalParams,

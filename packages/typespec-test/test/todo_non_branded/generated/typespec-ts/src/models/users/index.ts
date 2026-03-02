@@ -1,3 +1,3 @@
 // Licensed under the MIT License.
 
-export { UserCreatedResponse, UserExistsResponse, InvalidUserResponse } from "./models.js";
+export type { UserCreatedResponse, UserExistsResponse, InvalidUserResponse } from "./models.js";

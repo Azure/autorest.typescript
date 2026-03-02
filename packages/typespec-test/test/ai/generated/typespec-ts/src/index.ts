@@ -9,7 +9,7 @@ import {
 } from "./static-helpers/pagingHelpers.js";
 
 export { AIProjectClient } from "./aiProjectClient.js";
-export {
+export type {
   GetWorkspaceResponse,
   WorkspaceProperties,
   ListConnectionsResponse,
@@ -40,9 +40,9 @@ export {
   RecurrenceSchedule,
   WeekDays,
   CronTrigger,
-  KnownVersions,
 } from "./models/index.js";
-export {
+export { KnownVersions } from "./models/index.js";
+export type {
   ToolDefinition,
   ToolDefinitionUnion,
   CodeInterpreterToolDefinition,
@@ -245,8 +245,8 @@ export {
   RunAdditionalFieldList,
   VectorStoreFileStatusFilter,
 } from "./models/agents/index.js";
-export { AIProjectClientOptionalParams } from "./api/index.js";
-export {
+export type { AIProjectClientOptionalParams } from "./api/index.js";
+export type {
   AgentsListVectorStoreFileBatchFilesOptionalParams,
   AgentsCancelVectorStoreFileBatchOptionalParams,
   AgentsGetVectorStoreFileBatchOptionalParams,
@@ -288,13 +288,13 @@ export {
   AgentsListAgentsOptionalParams,
   AgentsCreateAgentOptionalParams,
 } from "./api/agents/index.js";
-export {
+export type {
   ConnectionsGetConnectionWithSecretsOptionalParams,
   ConnectionsGetConnectionOptionalParams,
   ConnectionsListConnectionsOptionalParams,
   ConnectionsGetWorkspaceOptionalParams,
 } from "./api/connections/index.js";
-export {
+export type {
   EvaluationsDisableScheduleOptionalParams,
   EvaluationsListScheduleOptionalParams,
   EvaluationsCreateOrReplaceScheduleOptionalParams,
@@ -304,12 +304,12 @@ export {
   EvaluationsCreateOptionalParams,
   EvaluationsGetOptionalParams,
 } from "./api/evaluations/index.js";
-export { TelemetryGetAppInsightsOptionalParams } from "./api/telemetry/index.js";
-export {
+export type { TelemetryGetAppInsightsOptionalParams } from "./api/telemetry/index.js";
+export type {
   AgentsOperations,
   ConnectionsOperations,
   EvaluationsOperations,
   TelemetryOperations,
 } from "./classic/index.js";
-export { PageSettings, ContinuablePage, PagedAsyncIterableIterator };
-export { FileContents };
+export type { PageSettings, ContinuablePage, PagedAsyncIterableIterator };
+export type { FileContents };

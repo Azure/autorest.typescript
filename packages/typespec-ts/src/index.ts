@@ -393,7 +393,7 @@ export async function $onEmit(context: EmitContext) {
   }
 
   interface Metadata {
-    apiVersion?: string;
+    apiVersions?: Record<string, string>;
     emitterVersion?: string;
     crossLanguageDefinitions?: {
       CrossLanguagePackageId: string;
@@ -409,9 +409,7 @@ export async function $onEmit(context: EmitContext) {
     }
     const content: Metadata = {};
     if (apiVersions !== undefined && apiVersions.size > 0) {
-      // Use the first/latest API version if multiple are available
-      const firstVersion = Array.from(apiVersions.values())[0];
-      content.apiVersion = firstVersion;
+      content.apiVersions = Object.fromEntries(apiVersions);
     }
     if (emitterVersion !== undefined) {
       content.emitterVersion = emitterVersion;

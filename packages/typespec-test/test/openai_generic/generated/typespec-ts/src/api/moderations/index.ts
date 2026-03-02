@@ -2,4 +2,4 @@
 // Licensed under the MIT License.
 
 export { create } from "./operations.js";
-export { ModerationsCreateOptionalParams } from "./options.js";
+export type { ModerationsCreateOptionalParams } from "./options.js";

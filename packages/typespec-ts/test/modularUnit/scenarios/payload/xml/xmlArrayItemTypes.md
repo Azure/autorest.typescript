@@ -89,22 +89,6 @@ export function blockLookupListXmlSerializer(item: BlockLookupList): string {
 }
 ```
 
-```ts models function blockLookupListXmlObjectSerializer
-export function blockLookupListXmlObjectSerializer(item: BlockLookupList): XmlSerializedObject {
-  return {
-    Committed: item["committed"]?.map((i: any) =>
-      i !== undefined ? uint8ArrayToString(i, "base64") : undefined,
-    ),
-    Uncommitted: item["uncommitted"]?.map((i: any) =>
-      i !== undefined ? uint8ArrayToString(i, "base64") : undefined,
-    ),
-    Latest: item["latest"]?.map((i: any) =>
-      i !== undefined ? uint8ArrayToString(i, "base64") : undefined,
-    ),
-  };
-}
-```
-
 # XML Arrays with Date Items
 
 Tests that XML serializers correctly include `itemType` and `dateEncoding` for arrays of dates.

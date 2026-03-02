@@ -1,6 +1,6 @@
 // Licensed under the MIT License.
 
-export {
+export type {
   CreateCompletionRequest,
   Prompt,
   Stop,

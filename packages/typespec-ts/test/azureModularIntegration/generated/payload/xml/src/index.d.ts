@@ -34,6 +34,22 @@ export declare interface ModelWithAttributesValueOperations {
 export declare interface ModelWithAttributesValuePutOptionalParams extends OperationOptions {
 }
 
+export declare interface ModelWithDatetime {
+    rfc3339: Date;
+    rfc7231: Date;
+}
+
+export declare interface ModelWithDatetimeValueGetOptionalParams extends OperationOptions {
+}
+
+export declare interface ModelWithDatetimeValueOperations {
+    put: (input: ModelWithDatetime, options?: ModelWithDatetimeValuePutOptionalParams) => Promise<void>;
+    get: (options?: ModelWithDatetimeValueGetOptionalParams) => Promise<ModelWithDatetime>;
+}
+
+export declare interface ModelWithDatetimeValuePutOptionalParams extends OperationOptions {
+}
+
 export declare interface ModelWithDictionary {
     metadata: Record<string, string>;
 }
@@ -78,6 +94,21 @@ export declare interface ModelWithEncodedNamesValueOperations {
 }
 
 export declare interface ModelWithEncodedNamesValuePutOptionalParams extends OperationOptions {
+}
+
+export declare interface ModelWithEnum {
+    status: Status;
+}
+
+export declare interface ModelWithEnumValueGetOptionalParams extends OperationOptions {
+}
+
+export declare interface ModelWithEnumValueOperations {
+    put: (input: ModelWithEnum, options?: ModelWithEnumValuePutOptionalParams) => Promise<void>;
+    get: (options?: ModelWithEnumValueGetOptionalParams) => Promise<ModelWithEnum>;
+}
+
+export declare interface ModelWithEnumValuePutOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelWithOptionalField {
@@ -192,11 +223,15 @@ export declare interface SimpleModelValueOperations {
 export declare interface SimpleModelValuePutOptionalParams extends OperationOptions {
 }
 
+export declare type Status = "pending" | "success" | "error";
+
 export declare class XmlClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: XmlClientOptionalParams);
     readonly xmlErrorValue: XmlErrorValueOperations;
+    readonly modelWithDatetimeValue: ModelWithDatetimeValueOperations;
+    readonly modelWithEnumValue: ModelWithEnumValueOperations;
     readonly modelWithEncodedNamesValue: ModelWithEncodedNamesValueOperations;
     readonly modelWithDictionaryValue: ModelWithDictionaryValueOperations;
     readonly modelWithTextValue: ModelWithTextValueOperations;

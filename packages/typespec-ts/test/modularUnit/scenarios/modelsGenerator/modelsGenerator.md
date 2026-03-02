@@ -61,7 +61,7 @@ export function testDeserializer(item: any): Test {
 Should be included in root index file
 
 ```ts root index
-export { Test } from "./models/index.js";
+export type { Test } from "./models/index.js";
 ```
 
 # should handle type_literals:boolean -> boolean_literals
