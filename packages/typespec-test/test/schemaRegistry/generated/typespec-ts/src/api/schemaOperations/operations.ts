@@ -10,6 +10,8 @@ import {
   _pagedVersionDeserializer,
   SchemaVersion,
   SchemaContentTypeValues,
+  SchemaOperationsGetSchemaByVersionResponse,
+  SchemaOperationsGetSchemaByIdResponse,
 } from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
@@ -141,8 +143,6 @@ export async function getSchemaIdByContent(
   return _getSchemaIdByContentDeserialize(result);
 }
 
-export type SchemaOperationsGetSchemaByVersionResponse = { body: Uint8Array };
-
 export function _getSchemaByVersionSend(
   context: Client,
   groupName: string,
@@ -241,8 +241,6 @@ export function listSchemaVersions(
     { itemName: "value", nextLinkName: "nextLink", apiVersion: context.apiVersion ?? "2023-07-01" },
   );
 }
-
-export type SchemaOperationsGetSchemaByIdResponse = { body: Uint8Array };
 
 export function _getSchemaByIdSend(
   context: Client,

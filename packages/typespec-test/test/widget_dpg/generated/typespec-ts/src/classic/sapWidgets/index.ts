@@ -11,7 +11,6 @@ import {
   getWidget,
   queryWidgetsPages,
   listWidgetsPages,
-  SAPWidgetsSAPListWidgetsResponse,
   sapListWidgets,
 } from "../../api/sapWidgets/operations.js";
 import {
@@ -25,7 +24,12 @@ import {
   SAPWidgetsListWidgetsPagesOptionalParams,
   SAPWidgetsSAPListWidgetsOptionalParams,
 } from "../../api/sapWidgets/options.js";
-import { Widget, SAPUser, AnalyzeResult } from "../../models/models.js";
+import {
+  Widget,
+  SAPUser,
+  AnalyzeResult,
+  SAPWidgetsSAPListWidgetsResponse,
+} from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 

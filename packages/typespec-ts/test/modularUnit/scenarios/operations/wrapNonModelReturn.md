@@ -16,10 +16,17 @@ op get(): PrivateDnsZoneSuffix;
 wrap-non-model-return: true
 ```
 
+## Models
+
+```ts models alias GetResponse
+export type GetResponse = { body: string };
+```
+
 ## Operations
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
+import { GetResponse } from "../models/models.js";
 import { GetOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -27,8 +34,6 @@ import {
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-
-export type GetResponse = { body: string };
 
 export function _getSend(
   context: Client,
@@ -74,10 +79,17 @@ op listDomains(): string[];
 wrap-non-model-return: true
 ```
 
+## Models
+
+```ts models alias ListDomainsResponse
+export type ListDomainsResponse = { body: string[] };
+```
+
 ## Operations
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
+import { ListDomainsResponse } from "../models/models.js";
 import { ListDomainsOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -85,8 +97,6 @@ import {
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-
-export type ListDomainsResponse = { body: string[] };
 
 export function _listDomainsSend(
   context: Client,
@@ -141,19 +151,9 @@ op getLogs(): {
 wrap-non-model-return: true
 ```
 
-## Operations
+## Models
 
-```ts operations
-import { TestingContext as Client } from "./index.js";
-import { getBinaryResponse } from "../static-helpers/serialization/get-binary-response.js";
-import { GetLogsOptionalParams } from "./options.js";
-import {
-  StreamableMethod,
-  PathUncheckedResponse,
-  createRestError,
-  operationOptionsToRequestParameters,
-} from "@azure-rest/core-client";
-
+```ts models alias GetLogsResponse
 export type GetLogsResponse = {
   /**
    * BROWSER ONLY
@@ -170,6 +170,21 @@ export type GetLogsResponse = {
    */
   readableStreamBody?: NodeJS.ReadableStream;
 };
+```
+
+## Operations
+
+```ts operations
+import { TestingContext as Client } from "./index.js";
+import { GetLogsResponse } from "../models/models.js";
+import { getBinaryResponse } from "../static-helpers/serialization/get-binary-response.js";
+import { GetLogsOptionalParams } from "./options.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
 
 export function _getLogsSend(
   context: Client,
@@ -287,11 +302,17 @@ op list(): Resource[];
 wrap-non-model-return: true
 ```
 
+## Models
+
+```ts models alias ListResponse
+export type ListResponse = { body: Resource[] };
+```
+
 ## Operations
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { Resource, resourceDeserializer } from "../models/models.js";
+import { resourceDeserializer, ListResponse } from "../models/models.js";
 import { ListOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -299,8 +320,6 @@ import {
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-
-export type ListResponse = { body: Resource[] };
 
 export function _listSend(
   context: Client,

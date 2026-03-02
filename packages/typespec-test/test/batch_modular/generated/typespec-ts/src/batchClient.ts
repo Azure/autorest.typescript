@@ -5,14 +5,12 @@ import { BatchContext, BatchClientOptionalParams, createBatch } from "./api/inde
 import {
   listNodeFiles,
   getNodeFileProperties,
-  GetNodeFileResponse,
   getNodeFile,
   deleteNodeFile,
   listNodeExtensions,
   getNodeExtension,
   listNodes,
   uploadNodeLogs,
-  GetNodeRemoteDesktopFileResponse,
   getNodeRemoteDesktopFile,
   getNodeRemoteLoginSettings,
   enableNodeScheduling,
@@ -25,7 +23,6 @@ import {
   createNodeUser,
   listTaskFiles,
   getTaskFileProperties,
-  GetTaskFileResponse,
   getTaskFile,
   deleteTaskFile,
   reactivateTask,
@@ -198,6 +195,9 @@ import {
   UploadBatchServiceLogsOptions,
   UploadBatchServiceLogsResult,
   NodeVMExtension,
+  GetNodeFileResponse,
+  GetNodeRemoteDesktopFileResponse,
+  GetTaskFileResponse,
 } from "./models/models.js";
 import { PagedAsyncIterableIterator } from "./static-helpers/pagingHelpers.js";
 import { TokenCredential } from "@azure/core-auth";

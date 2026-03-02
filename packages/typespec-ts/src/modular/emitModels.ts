@@ -79,9 +79,15 @@ import {
   flattenPropertyModelMap,
   getAllOperationsFromClient
 } from "../framework/hooks/sdkTypes.js";
-import { getAllAncestors } from "./helpers/operationHelpers.js";
-import { getAllProperties } from "./helpers/operationHelpers.js";
+import {
+  getAllAncestors,
+  getAllProperties,
+  buildNonModelResponseTypeDeclaration,
+  checkWrapNonModelReturn
+} from "./helpers/operationHelpers.js";
 import { getDirectSubtypes } from "./helpers/typeHelpers.js";
+import { getClientHierarchyMap } from "../utils/clientUtils.js";
+import { getMethodHierarchiesMap } from "../utils/operationUtil.js";
 
 type InterfaceStructure = OptionalKind<InterfaceDeclarationStructure> & {
   extends?: string[];
@@ -162,6 +168,44 @@ export function emitTypes(
   }
 
   return result;
+}
+
+/**
+ * Emits the XxxResponse wrapper type aliases for non-model return operations
+ * into the models.ts file, so they are exported publicly as part of the models API surface.
+ * This must be called after emitTypes() and before buildSubpathIndexFile("models").
+ */
+export function emitNonModelResponseTypes(
+  context: SdkContext,
+  { sourceRoot }: { sourceRoot: string }
+) {
+  const outputProject = useContext("outputProject");
+  const clientMap = getClientHierarchyMap(context);
+
+  for (const subClient of clientMap) {
+    const methodHierarchies = getMethodHierarchiesMap(context, subClient[1]);
+    for (const [prefixKey, operations] of methodHierarchies) {
+      const prefixes = prefixKey.split("/");
+      for (const op of operations) {
+        const { shouldWrap, isBinary } = checkWrapNonModelReturn(context, op);
+        if (!shouldWrap) {
+          continue;
+        }
+        const method: [string[], typeof op] = [prefixes, op];
+        const typeAlias = buildNonModelResponseTypeDeclaration(
+          context,
+          method,
+          isBinary
+        );
+        const filepath = getModelsPath(sourceRoot);
+        let modelsFile = outputProject.getSourceFile(filepath);
+        if (!modelsFile) {
+          modelsFile = outputProject.createSourceFile(filepath);
+        }
+        addDeclaration(modelsFile, typeAlias, refkey(op, "response"));
+      }
+    }
+  }
 }
 
 function emitType(context: SdkContext, type: SdkType, sourceFile: SourceFile) {

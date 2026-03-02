@@ -5,14 +5,14 @@ import { Pipeline } from '@azure/core-rest-pipeline';
 export declare interface ListByScopeOptionalParams extends OperationOptions {
 }
 
-declare type ListByScopeResponse = {
+export declare type ListByScopeResponse = {
     body: Resource[];
 };
 
 export declare interface ListOptionalParams extends OperationOptions {
 }
 
-declare type ListResponse = {
+export declare type ListResponse = {
     body: Resource[];
 };
 

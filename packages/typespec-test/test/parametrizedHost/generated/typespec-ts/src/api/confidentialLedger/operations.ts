@@ -2,7 +2,10 @@
 // Licensed under the MIT License.
 
 import { ParametrizedHostContext as Client } from "../index.js";
-import { Collection, collectionDeserializer } from "../../models/models.js";
+import {
+  collectionDeserializer,
+  ConfidentialLedgerListCollectionsResponse,
+} from "../../models/models.js";
 import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import { ConfidentialLedgerListCollectionsOptionalParams } from "./options.js";
 import {
@@ -11,8 +14,6 @@ import {
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-
-export type ConfidentialLedgerListCollectionsResponse = { body: Collection[] };
 
 export function _listCollectionsSend(
   context: Client,

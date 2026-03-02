@@ -2,14 +2,7 @@
 // Licensed under the MIT License.
 
 import { OpenAIContext } from "../../api/openAIContext.js";
-import {
-  FilesDownloadResponse,
-  download,
-  $delete,
-  retrieve,
-  create,
-  list,
-} from "../../api/files/operations.js";
+import { download, $delete, retrieve, create, list } from "../../api/files/operations.js";
 import {
   FilesDownloadOptionalParams,
   FilesDeleteOptionalParams,
@@ -22,6 +15,7 @@ import {
   OpenAIFile,
   CreateFileRequest,
   DeleteFileResponse,
+  FilesDownloadResponse,
 } from "../../models/models.js";
 
 /** Interface representing a Files operations. */

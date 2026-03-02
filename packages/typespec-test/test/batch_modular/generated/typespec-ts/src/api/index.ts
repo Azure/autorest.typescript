@@ -3,11 +3,6 @@
 
 export type { BatchContext, BatchClientOptionalParams } from "./batchContext.js";
 export { createBatch } from "./batchContext.js";
-export type {
-  GetNodeFileResponse,
-  GetNodeRemoteDesktopFileResponse,
-  GetTaskFileResponse,
-} from "./operations.js";
 export {
   listNodeFiles,
   getNodeFileProperties,

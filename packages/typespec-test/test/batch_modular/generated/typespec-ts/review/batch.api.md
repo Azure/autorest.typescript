@@ -140,15 +140,12 @@ export class BatchClient {
     getJobTaskCounts(jobId: string, options?: GetJobTaskCountsOptionalParams): Promise<TaskCountsResult>;
     getNode(poolId: string, nodeId: string, options?: GetNodeOptionalParams): Promise<BatchNode>;
     getNodeExtension(poolId: string, nodeId: string, extensionName: string, options?: GetNodeExtensionOptionalParams): Promise<NodeVMExtension>;
-    // Warning: (ae-forgotten-export) The symbol "GetNodeFileResponse" needs to be exported by the entry point index.d.ts
     getNodeFile(poolId: string, nodeId: string, filePath: string, options?: GetNodeFileOptionalParams): Promise<GetNodeFileResponse>;
     getNodeFileProperties(poolId: string, nodeId: string, filePath: string, options?: GetNodeFilePropertiesOptionalParams): Promise<void>;
-    // Warning: (ae-forgotten-export) The symbol "GetNodeRemoteDesktopFileResponse" needs to be exported by the entry point index.d.ts
     getNodeRemoteDesktopFile(poolId: string, nodeId: string, options?: GetNodeRemoteDesktopFileOptionalParams): Promise<GetNodeRemoteDesktopFileResponse>;
     getNodeRemoteLoginSettings(poolId: string, nodeId: string, options?: GetNodeRemoteLoginSettingsOptionalParams): Promise<BatchNodeRemoteLoginSettingsResult>;
     getPool(poolId: string, options?: GetPoolOptionalParams): Promise<BatchPool>;
     getTask(jobId: string, taskId: string, options?: GetTaskOptionalParams): Promise<BatchTask>;
-    // Warning: (ae-forgotten-export) The symbol "GetTaskFileResponse" needs to be exported by the entry point index.d.ts
     getTaskFile(jobId: string, taskId: string, filePath: string, options?: GetTaskFileOptionalParams): Promise<GetTaskFileResponse>;
     getTaskFileProperties(jobId: string, taskId: string, filePath: string, options?: GetTaskFilePropertiesOptionalParams): Promise<void>;
     jobScheduleExists(jobScheduleId: string, options?: JobScheduleExistsOptionalParams): Promise<void>;
@@ -1063,6 +1060,12 @@ export interface GetNodeFilePropertiesOptionalParams extends OperationOptions {
     timeOutInSeconds?: number;
 }
 
+// @public (undocumented)
+export type GetNodeFileResponse = {
+    blobBody?: Promise<Blob>;
+    readableStreamBody?: NodeJS.ReadableStream;
+};
+
 // @public
 export interface GetNodeOptionalParams extends OperationOptions {
     clientRequestId?: string;
@@ -1079,6 +1082,12 @@ export interface GetNodeRemoteDesktopFileOptionalParams extends OperationOptions
     returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
+
+// @public (undocumented)
+export type GetNodeRemoteDesktopFileResponse = {
+    blobBody?: Promise<Blob>;
+    readableStreamBody?: NodeJS.ReadableStream;
+};
 
 // @public
 export interface GetNodeRemoteLoginSettingsOptionalParams extends OperationOptions {
@@ -1122,6 +1131,12 @@ export interface GetTaskFilePropertiesOptionalParams extends OperationOptions {
     returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
+
+// @public (undocumented)
+export type GetTaskFileResponse = {
+    blobBody?: Promise<Blob>;
+    readableStreamBody?: NodeJS.ReadableStream;
+};
 
 // @public
 export interface GetTaskOptionalParams extends OperationOptions {

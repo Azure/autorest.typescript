@@ -88,7 +88,7 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import { transformModularEmitterOptions } from "./modular/buildModularOptions.js";
 import { emitLoggerFile } from "./modular/emitLoggerFile.js";
-import { emitTypes } from "./modular/emitModels.js";
+import { emitTypes, emitNonModelResponseTypes } from "./modular/emitModels.js";
 import { existsSync } from "fs";
 import { getModuleExports } from "./modular/buildProjectFiles.js";
 import {
@@ -322,6 +322,7 @@ export async function $onEmit(context: EmitContext) {
     );
 
     emitTypes(dpgContext, { sourceRoot: modularSourcesRoot });
+    emitNonModelResponseTypes(dpgContext, { sourceRoot: modularSourcesRoot });
     buildSubpathIndexFile(modularEmitterOptions, "models", undefined, {
       recursive: true
     });

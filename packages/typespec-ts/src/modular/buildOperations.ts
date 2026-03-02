@@ -14,9 +14,7 @@ import {
   getOperationOptionsName,
   getSendPrivateFunction,
   isLroOnlyOperation,
-  isLroAndPagingOperation,
-  checkWrapNonModelReturn,
-  buildNonModelResponseTypeDeclaration
+  isLroAndPagingOperation
 } from "./helpers/operationHelpers.js";
 
 import { OperationPathAndDeserDetails } from "./interfaces.js";
@@ -109,17 +107,6 @@ export function buildOperationFiles(
       }
       if (deserializeExceptionHeadersDeclaration) {
         functionsToAdd.push(deserializeExceptionHeadersDeclaration);
-      }
-
-      // If wrap-non-model-return is enabled and needed, declare the XxxResponse type alias
-      const { shouldWrap, isBinary } = checkWrapNonModelReturn(dpgContext, op);
-      if (shouldWrap) {
-        const responseTypeDeclaration = buildNonModelResponseTypeDeclaration(
-          dpgContext,
-          [prefixes, op],
-          isBinary
-        );
-        addDeclaration(operationGroupFile, responseTypeDeclaration, refkey(op, "response"));
       }
 
       operationGroupFile.addFunctions(functionsToAdd);

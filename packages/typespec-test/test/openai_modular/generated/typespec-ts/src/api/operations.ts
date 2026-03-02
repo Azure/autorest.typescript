@@ -29,6 +29,9 @@ import {
   embeddingsOptionsSerializer,
   Embeddings,
   embeddingsDeserializer,
+  GenerateSpeechFromTextResponse,
+  GetAudioTranslationAsPlainTextResponse,
+  GetAudioTranscriptionAsPlainTextResponse,
 } from "../models/models.js";
 import { getBinaryResponse } from "../static-helpers/serialization/get-binary-response.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
@@ -97,23 +100,6 @@ export async function getEmbeddings(
   const result = await _getEmbeddingsSend(context, deploymentId, body, options);
   return _getEmbeddingsDeserialize(result);
 }
-
-export type GenerateSpeechFromTextResponse = {
-  /**
-   * BROWSER ONLY
-   *
-   * The response body as a browser Blob.
-   * Will be `undefined` when accessed in node.js.
-   */
-  blobBody?: Promise<Blob>;
-  /**
-   * NODEJS ONLY
-   *
-   * The response body as a node.js Readable stream.
-   * Will be `undefined` when accessed in the browser.
-   */
-  readableStreamBody?: NodeJS.ReadableStream;
-};
 
 export function _generateSpeechFromTextSend(
   context: Client,
@@ -372,8 +358,6 @@ export async function getAudioTranslationAsResponseObject(
   return _getAudioTranslationAsResponseObjectDeserialize(result);
 }
 
-export type GetAudioTranslationAsPlainTextResponse = { body: string };
-
 export function _getAudioTranslationAsPlainTextSend(
   context: Client,
   deploymentId: string,
@@ -477,8 +461,6 @@ export async function getAudioTranscriptionAsResponseObject(
   );
   return _getAudioTranscriptionAsResponseObjectDeserialize(result);
 }
-
-export type GetAudioTranscriptionAsPlainTextResponse = { body: string };
 
 export function _getAudioTranscriptionAsPlainTextSend(
   context: Client,

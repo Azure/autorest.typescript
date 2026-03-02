@@ -155,3 +155,5 @@ export type ContentTypeEnum =
   | "application/json; serialization=Avro"
   | "application/json; serialization=json"
   | "text/vnd.ms.protobuf";
+export type SchemaOperationsGetSchemaByVersionResponse = { body: Uint8Array };
+export type SchemaOperationsGetSchemaByIdResponse = { body: Uint8Array };

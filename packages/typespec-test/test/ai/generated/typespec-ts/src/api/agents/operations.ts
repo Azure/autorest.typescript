@@ -64,6 +64,7 @@ import {
   VectorStoreFileBatch,
   vectorStoreFileBatchDeserializer,
 } from "../../models/agents/models.js";
+import { AgentsGetFileContentResponse } from "../../models/models.js";
 import { FileContents } from "../../static-helpers/multipartHelpers.js";
 import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
@@ -759,23 +760,6 @@ export async function listVectorStores(
   const result = await _listVectorStoresSend(context, options);
   return _listVectorStoresDeserialize(result);
 }
-
-export type AgentsGetFileContentResponse = {
-  /**
-   * BROWSER ONLY
-   *
-   * The response body as a browser Blob.
-   * Will be `undefined` when accessed in node.js.
-   */
-  blobBody?: Promise<Blob>;
-  /**
-   * NODEJS ONLY
-   *
-   * The response body as a node.js Readable stream.
-   * Will be `undefined` when accessed in the browser.
-   */
-  readableStreamBody?: NodeJS.ReadableStream;
-};
 
 export function _getFileContentSend(
   context: Client,

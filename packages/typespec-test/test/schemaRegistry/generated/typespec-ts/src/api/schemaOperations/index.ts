@@ -1,10 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-export type {
-  SchemaOperationsGetSchemaByVersionResponse,
-  SchemaOperationsGetSchemaByIdResponse,
-} from "./operations.js";
 export {
   registerSchema,
   getSchemaIdByContent,

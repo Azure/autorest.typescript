@@ -3,12 +3,12 @@
 
 import { SAPWidgetServiceContext as Client } from "../index.js";
 import {
-  Widget,
   widgetDeserializer,
   widgetErrorDeserializer,
   SAPUser,
   sapUserSerializer,
   sapUserDeserializer,
+  BudgetsGetBudgetsResponse,
 } from "../../models/models.js";
 import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
@@ -55,8 +55,6 @@ export async function $continue(
   const result = await _$continueSend(context, options);
   return _$continueDeserialize(result);
 }
-
-export type BudgetsGetBudgetsResponse = { body: Widget[] };
 
 export function _getBudgetsSend(
   context: Client,

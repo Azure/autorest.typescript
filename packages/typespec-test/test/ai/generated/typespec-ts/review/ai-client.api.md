@@ -175,6 +175,12 @@ export interface AgentsGetAgentOptionalParams extends OperationOptions {
 export interface AgentsGetFileContentOptionalParams extends OperationOptions {
 }
 
+// @public (undocumented)
+export type AgentsGetFileContentResponse = {
+    blobBody?: Promise<Blob>;
+    readableStreamBody?: NodeJS.ReadableStream;
+};
+
 // @public
 export interface AgentsGetFileOptionalParams extends OperationOptions {
 }
@@ -308,7 +314,6 @@ export interface AgentsOperations {
     deleteVectorStoreFile: (vectorStoreId: string, fileId: string, options?: AgentsDeleteVectorStoreFileOptionalParams) => Promise<VectorStoreFileDeletionStatus>;
     getAgent: (assistantId: string, options?: AgentsGetAgentOptionalParams) => Promise<Agent>;
     getFile: (fileId: string, options?: AgentsGetFileOptionalParams) => Promise<OpenAIFile>;
-    // Warning: (ae-forgotten-export) The symbol "AgentsGetFileContentResponse" needs to be exported by the entry point index.d.ts
     getFileContent: (fileId: string, options?: AgentsGetFileContentOptionalParams) => Promise<AgentsGetFileContentResponse>;
     getMessage: (threadId: string, messageId: string, options?: AgentsGetMessageOptionalParams) => Promise<ThreadMessage>;
     getRun: (threadId: string, runId: string, options?: AgentsGetRunOptionalParams) => Promise<ThreadRun>;

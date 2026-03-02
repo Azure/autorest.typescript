@@ -40,6 +40,7 @@ export type {
   RecurrenceSchedule,
   WeekDays,
   CronTrigger,
+  AgentsGetFileContentResponse,
 } from "./models/index.js";
 export { KnownVersions } from "./models/index.js";
 export type {

@@ -105,6 +105,9 @@ import {
   nodeVMExtensionDeserializer,
   _NodeVMExtensionList,
   _nodeVMExtensionListDeserializer,
+  GetNodeFileResponse,
+  GetNodeRemoteDesktopFileResponse,
+  GetTaskFileResponse,
 } from "../models/models.js";
 import {
   PagedAsyncIterableIterator,
@@ -350,23 +353,6 @@ export async function getNodeFileProperties(
   const result = await _getNodeFilePropertiesSend(context, poolId, nodeId, filePath, options);
   return _getNodeFilePropertiesDeserialize(result);
 }
-
-export type GetNodeFileResponse = {
-  /**
-   * BROWSER ONLY
-   *
-   * The response body as a browser Blob.
-   * Will be `undefined` when accessed in node.js.
-   */
-  blobBody?: Promise<Blob>;
-  /**
-   * NODEJS ONLY
-   *
-   * The response body as a node.js Readable stream.
-   * Will be `undefined` when accessed in the browser.
-   */
-  readableStreamBody?: NodeJS.ReadableStream;
-};
 
 export function _getNodeFileSend(
   context: Client,
@@ -808,23 +794,6 @@ export async function uploadNodeLogs(
   const result = await _uploadNodeLogsSend(context, poolId, nodeId, body, options);
   return _uploadNodeLogsDeserialize(result);
 }
-
-export type GetNodeRemoteDesktopFileResponse = {
-  /**
-   * BROWSER ONLY
-   *
-   * The response body as a browser Blob.
-   * Will be `undefined` when accessed in node.js.
-   */
-  blobBody?: Promise<Blob>;
-  /**
-   * NODEJS ONLY
-   *
-   * The response body as a node.js Readable stream.
-   * Will be `undefined` when accessed in the browser.
-   */
-  readableStreamBody?: NodeJS.ReadableStream;
-};
 
 export function _getNodeRemoteDesktopFileSend(
   context: Client,
@@ -1653,23 +1622,6 @@ export async function getTaskFileProperties(
   const result = await _getTaskFilePropertiesSend(context, jobId, taskId, filePath, options);
   return _getTaskFilePropertiesDeserialize(result);
 }
-
-export type GetTaskFileResponse = {
-  /**
-   * BROWSER ONLY
-   *
-   * The response body as a browser Blob.
-   * Will be `undefined` when accessed in node.js.
-   */
-  blobBody?: Promise<Blob>;
-  /**
-   * NODEJS ONLY
-   *
-   * The response body as a node.js Readable stream.
-   * Will be `undefined` when accessed in the browser.
-   */
-  readableStreamBody?: NodeJS.ReadableStream;
-};
 
 export function _getTaskFileSend(
   context: Client,

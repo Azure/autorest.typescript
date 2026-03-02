@@ -16,7 +16,6 @@ import {
   getVectorStore,
   createVectorStore,
   listVectorStores,
-  AgentsGetFileContentResponse,
   getFileContent,
   getFile,
   deleteFile,
@@ -113,6 +112,7 @@ import {
   VectorStoreFileDeletionStatus,
   VectorStoreFileBatch,
 } from "../../models/agents/models.js";
+import { AgentsGetFileContentResponse } from "../../models/models.js";
 import { FileContents } from "../../static-helpers/multipartHelpers.js";
 
 /** Interface representing a Agents operations. */

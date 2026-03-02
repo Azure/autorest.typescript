@@ -2,11 +2,9 @@
 // Licensed under the MIT License.
 
 import { ParametrizedHostContext } from "../../api/parametrizedHostContext.js";
-import {
-  ConfidentialLedgerListCollectionsResponse,
-  listCollections,
-} from "../../api/confidentialLedger/operations.js";
+import { listCollections } from "../../api/confidentialLedger/operations.js";
 import { ConfidentialLedgerListCollectionsOptionalParams } from "../../api/confidentialLedger/options.js";
+import { ConfidentialLedgerListCollectionsResponse } from "../../models/models.js";
 
 /** Interface representing a ConfidentialLedger operations. */
 export interface ConfidentialLedgerOperations {

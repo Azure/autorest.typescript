@@ -13,6 +13,7 @@ import {
   sapUserDeserializer,
   AnalyzeResult,
   analyzeResultDeserializer,
+  SAPWidgetsSAPListWidgetsResponse,
 } from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
@@ -419,8 +420,6 @@ export function listWidgetsPages(
     { itemName: "results", nextLinkName: "odata.nextLink" },
   );
 }
-
-export type SAPWidgetsSAPListWidgetsResponse = { body: Widget[] };
 
 export function _sapListWidgetsSend(
   context: Client,

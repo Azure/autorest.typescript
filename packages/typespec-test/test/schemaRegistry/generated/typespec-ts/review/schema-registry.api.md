@@ -57,9 +57,19 @@ export interface SchemaGroup {
 export interface SchemaOperationsGetSchemaByIdOptionalParams extends OperationOptions {
 }
 
+// @public (undocumented)
+export type SchemaOperationsGetSchemaByIdResponse = {
+    body: Uint8Array;
+};
+
 // @public
 export interface SchemaOperationsGetSchemaByVersionOptionalParams extends OperationOptions {
 }
+
+// @public (undocumented)
+export type SchemaOperationsGetSchemaByVersionResponse = {
+    body: Uint8Array;
+};
 
 // @public
 export interface SchemaOperationsGetSchemaIdByContentOptionalParams extends OperationOptions {
@@ -75,9 +85,7 @@ export interface SchemaOperationsListSchemaVersionsOptionalParams extends Operat
 
 // @public
 export interface SchemaOperationsOperations {
-    // Warning: (ae-forgotten-export) The symbol "SchemaOperationsGetSchemaByIdResponse" needs to be exported by the entry point index.d.ts
     getSchemaById: (id: string, options?: SchemaOperationsGetSchemaByIdOptionalParams) => Promise<SchemaOperationsGetSchemaByIdResponse>;
-    // Warning: (ae-forgotten-export) The symbol "SchemaOperationsGetSchemaByVersionResponse" needs to be exported by the entry point index.d.ts
     getSchemaByVersion: (groupName: string, name: string, schemaVersion: number, options?: SchemaOperationsGetSchemaByVersionOptionalParams) => Promise<SchemaOperationsGetSchemaByVersionResponse>;
     getSchemaIdByContent: (groupName: string, name: string, contentType: SchemaContentTypeValues, schemaContent: Uint8Array, options?: SchemaOperationsGetSchemaIdByContentOptionalParams) => Promise<void>;
     listSchemaGroups: (options?: SchemaOperationsListSchemaGroupsOptionalParams) => PagedAsyncIterableIterator<SchemaGroup>;

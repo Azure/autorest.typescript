@@ -32,12 +32,15 @@ export interface BudgetsCreateOrReplaceOptionalParams extends OperationOptions {
 export interface BudgetsGetBudgetsOptionalParams extends OperationOptions {
 }
 
+// @public (undocumented)
+export type BudgetsGetBudgetsResponse = {
+    body: Widget[];
+};
+
 // @public
 export interface BudgetsOperations {
     continue: (options?: BudgetsContinueOptionalParams) => Promise<void>;
     createOrReplace: (name: string, resource: SAPUser, options?: BudgetsCreateOrReplaceOptionalParams) => PollerLike<OperationState<SAPUser>, SAPUser>;
-    // Warning: (ae-forgotten-export) The symbol "BudgetsGetBudgetsResponse" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     getBudgets: (name: string, options?: BudgetsGetBudgetsOptionalParams) => Promise<BudgetsGetBudgetsResponse>;
 }
@@ -136,7 +139,6 @@ export interface SAPWidgetsOperations {
     listWidgetsPages: (page: number, pageSize: number, options?: SAPWidgetsListWidgetsPagesOptionalParams) => PagedAsyncIterableIterator<Widget>;
     // (undocumented)
     queryWidgetsPages: (page: number, pageSize: number, options?: SAPWidgetsQueryWidgetsPagesOptionalParams) => PagedAsyncIterableIterator<Widget>;
-    // Warning: (ae-forgotten-export) The symbol "SAPWidgetsSAPListWidgetsResponse" needs to be exported by the entry point index.d.ts
     sapListWidgets: (requiredHeader: string, bytesHeader: Uint8Array, value: Uint8Array, csvArrayHeader: Uint8Array[], utcDateHeader: Date, options?: SAPWidgetsSAPListWidgetsOptionalParams) => Promise<SAPWidgetsSAPListWidgetsResponse>;
     updateWidget: (id: string, options?: SAPWidgetsUpdateWidgetOptionalParams) => Promise<Widget>;
 }
@@ -156,6 +158,11 @@ export interface SAPWidgetsSAPListWidgetsOptionalParams extends OperationOptions
     // (undocumented)
     optionalHeader?: string;
 }
+
+// @public (undocumented)
+export type SAPWidgetsSAPListWidgetsResponse = {
+    body: Widget[];
+};
 
 // @public
 export interface SAPWidgetsUpdateWidgetOptionalParams extends OperationOptions {

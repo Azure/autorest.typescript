@@ -12,6 +12,7 @@ import {
   createFileRequestSerializer,
   DeleteFileResponse,
   deleteFileResponseDeserializer,
+  FilesDownloadResponse,
 } from "../../models/models.js";
 import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
@@ -27,8 +28,6 @@ import {
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-
-export type FilesDownloadResponse = { body: string };
 
 export function _downloadSend(
   context: Client,
