@@ -2,32 +2,32 @@
 // Licensed under the MIT License.
 
 export { FooClient } from "./fooClient.js";
-export { A } from "./models/index.js";
-export { BA } from "./models/b/index.js";
-export {
+export type { A } from "./models/index.js";
+export type { BA } from "./models/b/index.js";
+export type {
   YDataSourceProperties,
   YDataSourcePropertiesUnion,
   YConnectorType,
 } from "./models/y/index.js";
-export { BEA } from "./models/b/e/index.js";
-export {
+export type { BEA } from "./models/b/e/index.js";
+export type {
   YDataverseDataverseSourceConnectorProperties,
   YDataverseDataverseEventPosition,
 } from "./models/y/dataverse/index.js";
-export {
+export type {
   YDataverseV2DataverseSourceConnectorV2Properties,
   YDataverseV2DataverseEventPosition,
 } from "./models/y/dataverseV2/index.js";
-export { FooClientOptionalParams, Op1OptionalParams } from "./api/index.js";
-export { BOp1OptionalParams } from "./api/b/index.js";
-export { DOp1OptionalParams } from "./api/d/index.js";
-export { BCOp1OptionalParams } from "./api/b/c/index.js";
-export {
+export type { FooClientOptionalParams, Op1OptionalParams } from "./api/index.js";
+export type { BOp1OptionalParams } from "./api/b/index.js";
+export type { DOp1OptionalParams } from "./api/d/index.js";
+export type { BCOp1OptionalParams } from "./api/b/c/index.js";
+export type {
   YTestOperationsTestDataverseV2OptionalParams,
   YTestOperationsTestDataverseOptionalParams,
 } from "./api/y/testOperations/index.js";
-export { BECOp1OptionalParams } from "./api/b/e/c/index.js";
-export {
+export type { BECOp1OptionalParams } from "./api/b/e/c/index.js";
+export type {
   BOperations,
   DOperations,
   YOperations,

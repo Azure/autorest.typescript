@@ -2,4 +2,4 @@
 // Licensed under the MIT License.
 
 export { createOrUpdate, get } from "./operations.js";
-export { DisksCreateOrUpdateOptionalParams, DisksGetOptionalParams } from "./options.js";
+export type { DisksCreateOrUpdateOptionalParams, DisksGetOptionalParams } from "./options.js";

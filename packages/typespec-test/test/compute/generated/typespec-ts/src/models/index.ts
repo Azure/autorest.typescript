@@ -1,13 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-export {
-  KnownResourceProvisioningState,
+export type {
   ResourceProvisioningState,
   TrackedResource,
   Resource,
   SystemData,
-  KnownCreatedByType,
   CreatedByType,
   ErrorResponse,
   ErrorDetail,
@@ -16,8 +14,12 @@ export {
   PrivateEndpointConnectionProperties,
   PrivateEndpoint,
   PrivateLinkServiceConnectionState,
-  KnownPrivateEndpointServiceConnectionStatus,
   PrivateEndpointServiceConnectionStatus,
-  KnownPrivateEndpointConnectionProvisioningState,
   PrivateEndpointConnectionProvisioningState,
+} from "./models.js";
+export {
+  KnownResourceProvisioningState,
+  KnownCreatedByType,
+  KnownPrivateEndpointServiceConnectionStatus,
+  KnownPrivateEndpointConnectionProvisioningState,
 } from "./models.js";

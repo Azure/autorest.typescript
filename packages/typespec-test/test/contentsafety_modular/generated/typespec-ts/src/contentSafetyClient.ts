@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 
 import {
-  createContentSafety,
   ContentSafetyContext,
   ContentSafetyClientOptionalParams,
+  createContentSafety,
 } from "./api/index.js";
 import {
   listTextBlocklistItems,

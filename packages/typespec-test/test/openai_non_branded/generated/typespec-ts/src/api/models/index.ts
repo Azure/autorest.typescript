@@ -1,7 +1,7 @@
 // Licensed under the MIT License.
 
 export { $delete, retrieve, list } from "./operations.js";
-export {
+export type {
   ModelsDeleteOptionalParams,
   ModelsRetrieveOptionalParams,
   ModelsListOptionalParams,

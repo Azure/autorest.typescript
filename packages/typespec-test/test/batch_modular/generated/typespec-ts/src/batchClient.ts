@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { createBatch, BatchContext, BatchClientOptionalParams } from "./api/index.js";
+import { BatchContext, BatchClientOptionalParams, createBatch } from "./api/index.js";
 import {
   listNodeFiles,
   getNodeFileProperties,

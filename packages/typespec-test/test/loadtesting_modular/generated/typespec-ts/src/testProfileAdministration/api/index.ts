@@ -7,14 +7,14 @@ export {
   deleteTestProfile,
   createOrUpdateTestProfile,
 } from "./operations.js";
-export {
+export type {
   ListTestProfilesOptionalParams,
   GetTestProfileOptionalParams,
   DeleteTestProfileOptionalParams,
   CreateOrUpdateTestProfileOptionalParams,
 } from "./options.js";
-export {
-  createTestProfileAdministration,
+export type {
   TestProfileAdministrationContext,
   TestProfileAdministrationClientOptionalParams,
 } from "./testProfileAdministrationContext.js";
+export { createTestProfileAdministration } from "./testProfileAdministrationContext.js";

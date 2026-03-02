@@ -2,4 +2,4 @@
 // Licensed under the MIT License.
 
 export { create } from "./operations.js";
-export { CompletionsCreateOptionalParams } from "./options.js";
+export type { CompletionsCreateOptionalParams } from "./options.js";

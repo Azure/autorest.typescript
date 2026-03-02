@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 
 import {
-  createNetworkAnalyticsApi,
   NetworkAnalyticsApiContext,
   NetworkAnalyticsApiOptionalParams,
+  createNetworkAnalyticsApi,
 } from "./api/index.js";
 import {
   DataProductsOperations,

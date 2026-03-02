@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-export { MultivariateOperations } from "./multivariate/index.js";
-export { UnivariateOperations } from "./univariate/index.js";
+export type { MultivariateOperations } from "./multivariate/index.js";
+export type { UnivariateOperations } from "./univariate/index.js";

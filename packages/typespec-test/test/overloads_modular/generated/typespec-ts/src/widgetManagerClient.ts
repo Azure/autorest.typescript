@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 
 import {
-  createWidgetManager,
   WidgetManagerContext,
   WidgetManagerClientOptionalParams,
+  createWidgetManager,
 } from "./api/index.js";
 import {
   FooOperationsOperations,

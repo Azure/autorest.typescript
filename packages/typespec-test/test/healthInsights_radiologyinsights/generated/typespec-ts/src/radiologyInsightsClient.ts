@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 
 import {
-  createRadiologyInsights,
   RadiologyInsightsContext,
   RadiologyInsightsClientOptionalParams,
+  createRadiologyInsights,
 } from "./api/index.js";
 import { inferRadiologyInsights } from "./api/operations.js";
 import { InferRadiologyInsightsOptionalParams } from "./api/options.js";

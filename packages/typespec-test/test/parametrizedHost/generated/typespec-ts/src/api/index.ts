@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-export {
-  createParametrizedHost,
+export type {
   ParametrizedHostContext,
   ParametrizedHostClientOptionalParams,
 } from "./parametrizedHostContext.js";
+export { createParametrizedHost } from "./parametrizedHostContext.js";

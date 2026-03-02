@@ -2,4 +2,4 @@
 // Licensed under the MIT License.
 
 export { op1 } from "./operations.js";
-export { BECOp1OptionalParams } from "./options.js";
+export type { BECOp1OptionalParams } from "./options.js";

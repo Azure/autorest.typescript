@@ -1,3 +1,16 @@
+## 6.0.59 (2026-02-28)
+
+- [Bugfix] Fix LRO paging should generate `beginListXXXAndWait` operation for `compatibility-lro: true`. Please refer to [#3712](https://github.com/Azure/autorest.typescript/pull/3712)
+- [Feature] Surface error/exception response headers in generated deserialize functions. Please refer to [#3773](https://github.com/Azure/autorest.typescript/pull/3773)
+- [Bugfix] Fix XML object serializer missing itemsName wrapping for arrays. Please refer to [#3774](https://github.com/Azure/autorest.typescript/pull/3774)
+- [Bugfix] Disable parseAttributeValue in XML. Please refer to [#3780](https://github.com/Azure/autorest.typescript/pull/3780)
+- [Bugfix] Fix XML serialization/deserialization of `additionalProperties`. Please refer to [#3781](https://github.com/Azure/autorest.typescript/pull/3781)
+- [Feature] Override Error Codes and XML Serialization PrimitiveSubTypes fix. Please refer to [#3785](https://github.com/Azure/autorest.typescript/pull/3785)
+- [Feature] Add Spector test skill. Please refer to [#3786](https://github.com/Azure/autorest.typescript/pull/3786)
+- [Bugfix] Force additionalProperties on XML error model deserialization. Please refer to [#3790](https://github.com/Azure/autorest.typescript/pull/3790)
+- [Bugfix] Fix nightly CI. Please refer to [#3791](https://github.com/Azure/autorest.typescript/pull/3791)
+- [Feature] Bump TypeSpec dependencies to latest stable. Please refer to [#3794](https://github.com/Azure/autorest.typescript/pull/3794)
+
 ## 6.0.58 (2026-02-14)
 
 - [Feature] Ignore null for nullable optional properties. Please refer to [#3706](https://github.com/Azure/autorest.typescript/pull/3706)

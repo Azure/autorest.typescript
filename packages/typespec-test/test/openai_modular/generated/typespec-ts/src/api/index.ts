@@ -1,7 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-export { createOpenAI, OpenAIContext, OpenAIClientOptionalParams } from "./openAIContext.js";
+export type { OpenAIContext, OpenAIClientOptionalParams } from "./openAIContext.js";
+export { createOpenAI } from "./openAIContext.js";
 export {
   getEmbeddings,
   generateSpeechFromText,
@@ -13,7 +14,7 @@ export {
   getAudioTranscriptionAsResponseObject,
   getAudioTranscriptionAsPlainText,
 } from "./operations.js";
-export {
+export type {
   GetEmbeddingsOptionalParams,
   GenerateSpeechFromTextOptionalParams,
   GetImageGenerationsOptionalParams,

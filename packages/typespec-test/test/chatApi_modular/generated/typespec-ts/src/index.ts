@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 export { ChatProtocolClient } from "./chatProtocolClient.js";
-export {
+export type {
   StreamingChatCompletionOptionsRecord,
   ChatMessage,
   ChatRole,
@@ -13,9 +13,9 @@ export {
   ChatCompletionOptionsRecord,
   ChatCompletionRecord,
   ChatChoiceRecord,
-  KnownAPIVersion,
 } from "./models/index.js";
-export {
+export { KnownAPIVersion } from "./models/index.js";
+export type {
   ChatProtocolClientOptionalParams,
   CreateOptionalParams,
   CreateStreamingOptionalParams,

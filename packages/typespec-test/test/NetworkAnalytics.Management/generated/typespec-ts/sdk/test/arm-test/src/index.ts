@@ -9,21 +9,19 @@ import {
 } from "./static-helpers/pagingHelpers.js";
 
 export { NetworkAnalyticsApi } from "./networkAnalyticsApi.js";
-export { SimplePollerLike } from "./static-helpers/simplePollerHelpers.js";
-export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
-export {
+export type { SimplePollerLike } from "./static-helpers/simplePollerHelpers.js";
+export type { RestorePollerOptions } from "./restorePollerHelpers.js";
+export { restorePoller } from "./restorePollerHelpers.js";
+export type {
   Operation,
   OperationDisplay,
-  KnownOrigin,
   Origin,
-  KnownActionType,
   ActionType,
   ErrorResponse,
   ErrorDetail,
   ErrorAdditionalInfo,
   DataProductsCatalog,
   DataProductsCatalogProperties,
-  KnownProvisioningState,
   ProvisioningState,
   PublisherInformation,
   DataProductInformation,
@@ -31,11 +29,9 @@ export {
   ProxyResource,
   Resource,
   SystemData,
-  KnownCreatedByType,
   CreatedByType,
   DataType,
   DataTypeProperties,
-  KnownDataTypeState,
   DataTypeState,
   DataTypeUpdate,
   DataTypeUpdateProperties,
@@ -43,18 +39,15 @@ export {
   ContainerSasToken,
   DataProduct,
   DataProductProperties,
-  KnownControlState,
   ControlState,
   EncryptionKeyDetails,
   DataProductNetworkAcls,
   VirtualNetworkRule,
   IPRules,
-  KnownDefaultAction,
   DefaultAction,
   ManagedResourceGroupConfiguration,
   ConsumptionEndpointsProperties,
   ManagedServiceIdentityV4,
-  KnownManagedServiceIdentityType,
   ManagedServiceIdentityType,
   UserAssignedIdentity,
   TrackedResource,
@@ -64,15 +57,25 @@ export {
   AccountSasToken,
   KeyVaultInfo,
   RoleAssignmentCommonProperties,
-  KnownDataProductUserRole,
   DataProductUserRole,
   RoleAssignmentDetail,
   ListRoleAssignments,
   Client,
+} from "./models/index.js";
+export {
+  KnownOrigin,
+  KnownActionType,
+  KnownProvisioningState,
+  KnownCreatedByType,
+  KnownDataTypeState,
+  KnownControlState,
+  KnownDefaultAction,
+  KnownManagedServiceIdentityType,
+  KnownDataProductUserRole,
   KnownVersions,
 } from "./models/index.js";
-export { NetworkAnalyticsApiOptionalParams } from "./api/index.js";
-export {
+export type { NetworkAnalyticsApiOptionalParams } from "./api/index.js";
+export type {
   DataProductsReadOptionalParams,
   DataProductsListBySubscriptionOptionalParams,
   DataProductsListByResourceGroupOptionalParams,
@@ -86,12 +89,12 @@ export {
   DataProductsGetOptionalParams,
   DataProductsCreateOptionalParams,
 } from "./api/dataProducts/index.js";
-export {
+export type {
   DataProductsCatalogsListBySubscriptionOptionalParams,
   DataProductsCatalogsListByResourceGroupOptionalParams,
   DataProductsCatalogsGetOptionalParams,
 } from "./api/dataProductsCatalogs/index.js";
-export {
+export type {
   DataTypesListByDataProductOptionalParams,
   DataTypesGenerateStorageContainerSasTokenOptionalParams,
   DataTypesDeleteDataOptionalParams,
@@ -100,12 +103,13 @@ export {
   DataTypesGetOptionalParams,
   DataTypesCreateOptionalParams,
 } from "./api/dataTypes/index.js";
-export { OperationsListOptionalParams } from "./api/operations/index.js";
-export {
+export type { OperationsListOptionalParams } from "./api/operations/index.js";
+export type {
   DataProductsOperations,
   DataProductsCatalogsOperations,
   DataTypesOperations,
   OperationsOperations,
 } from "./classic/index.js";
-export { PageSettings, ContinuablePage, PagedAsyncIterableIterator };
-export { AzureClouds, AzureSupportedClouds };
+export type { PageSettings, ContinuablePage, PagedAsyncIterableIterator };
+export { AzureClouds };
+export type { AzureSupportedClouds };
