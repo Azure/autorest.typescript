@@ -212,11 +212,7 @@ async function traverseDirectory(
           !file.endsWith(".d.ts") &&
           /.*\..?ts$/.test(file)
         ) {
-          const target = path.join(
-            targetBaseDir,
-            relativePath,
-            file
-          );
+          const target = path.join(targetBaseDir, relativePath, file);
           result.push({ source: filePath, target });
         }
       })

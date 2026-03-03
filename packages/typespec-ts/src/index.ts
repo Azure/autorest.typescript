@@ -383,11 +383,17 @@ export async function $onEmit(context: EmitContext) {
     }
 
     // Enable modular test generation when generateTest is true
-    if (dpgContext.rlcOptions?.generateTest && isAzurePackage({ options: rlcOptions })) {
+    if (
+      dpgContext.rlcOptions?.generateTest &&
+      isAzurePackage({ options: rlcOptions })
+    ) {
       await emitTests(dpgContext);
     }
 
-    binder.resolveAllReferences(modularSourcesRoot, dpgContext.generationPathDetail?.rootDir);
+    binder.resolveAllReferences(
+      modularSourcesRoot,
+      dpgContext.generationPathDetail?.rootDir
+    );
     if (program.compilerOptions.noEmit || program.hasError()) {
       return;
     }
