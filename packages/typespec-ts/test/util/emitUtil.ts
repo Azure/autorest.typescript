@@ -13,7 +13,8 @@ import {
 } from "@azure-tools/rlc-common";
 import {
   emitTypes,
-  emitNonModelResponseTypes
+  emitNonModelResponseTypes,
+  getModelsPath
 } from "../../src/modular/emitModels.js";
 import { buildApiOptions } from "../../src/modular/emitModelsOptions.js";
 import {
@@ -450,7 +451,7 @@ export async function emitModularModelsFromTypeSpec(
     binder.resolveAllReferences("/");
     // After emitNonModelResponseTypes, the models file may have been updated or created
     const project = useContext("outputProject");
-    const modelsFile = project.getSourceFile("/models/models.ts");
+    const modelsFile = project.getSourceFile(getModelsPath(""));
     if (modelsFile) {
       modelsFile.fixUnusedIdentifiers();
       modelFile = modelsFile;

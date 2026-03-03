@@ -2924,7 +2924,7 @@ export function checkWrapNonModelReturn(
 
 /**
  * Builds a TypeAliasDeclarationStructure for the non-model response wrapper type.
- * - For binary responses: { blobBody?: Promise<Blob>; readableStreamBody?: NodeJS.ReadableStream }
+ * - For binary responses: { blobBody?: Promise<Blob>; readableStreamBody?: Promise<NodeJS.ReadableStream | undefined> }
  * - For other non-model responses: { body: <type> }
  */
 export function buildNonModelResponseTypeDeclaration(
@@ -2939,17 +2939,11 @@ export function buildNonModelResponseTypeDeclaration(
   if (isBinary) {
     typeBody = `{
   /**
-   * BROWSER ONLY
-   *
    * The response body as a browser Blob.
-   * Always \`undefined\` in node.js.
    */
   blobBody?: Promise<Blob>;
   /**
-   * NODEJS ONLY
-   *
    * The response body as a node.js Readable stream.
-   * Always \`undefined\` in the browser.
    */
   readableStreamBody?: Promise<NodeJS.ReadableStream | undefined>;
 }`;

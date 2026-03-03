@@ -182,6 +182,9 @@ export function emitNonModelResponseTypes(
   const outputProject = useContext("outputProject");
   const clientMap = getClientHierarchyMap(context);
 
+  const filepath = getModelsPath(sourceRoot);
+  let modelsFile = outputProject.getSourceFile(filepath);
+
   for (const subClient of clientMap) {
     const methodHierarchies = getMethodHierarchiesMap(context, subClient[1]);
     for (const [prefixKey, operations] of methodHierarchies) {
@@ -191,17 +194,15 @@ export function emitNonModelResponseTypes(
         if (!shouldWrap) {
           continue;
         }
+        if (!modelsFile) {
+          modelsFile = outputProject.createSourceFile(filepath);
+        }
         const method: [string[], typeof op] = [prefixes, op];
         const typeAlias = buildNonModelResponseTypeDeclaration(
           context,
           method,
           isBinary
         );
-        const filepath = getModelsPath(sourceRoot);
-        let modelsFile = outputProject.getSourceFile(filepath);
-        if (!modelsFile) {
-          modelsFile = outputProject.createSourceFile(filepath);
-        }
         addDeclaration(modelsFile, typeAlias, refkey(op, "response"));
       }
     }
