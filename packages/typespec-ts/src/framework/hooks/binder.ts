@@ -42,7 +42,7 @@ export interface Binder {
     sourceFile: SourceFile
   ): string;
   resolveReference(refkey: unknown): string;
-  resolveAllReferences(sourceRoot: string): void;
+  resolveAllReferences(sourceRoot: string, testRoot?: string): void;
 }
 
 const PLACEHOLDER_PREFIX = "__PLACEHOLDER_";
@@ -216,7 +216,7 @@ class BinderImp implements Binder {
   /**
    * Applies all tracked imports to their respective source files.
    */
-  resolveAllReferences(sourceRoot: string): void {
+  resolveAllReferences(sourceRoot: string, testRoot?: string): void {
     this.project.getSourceFiles().map((file) => {
       this.resolveDeclarationReferences(file);
       this.resolveDependencyReferences(file);
@@ -232,7 +232,7 @@ class BinderImp implements Binder {
       }
     });
 
-    this.cleanUnreferencedHelpers(sourceRoot);
+    this.cleanUnreferencedHelpers(sourceRoot, testRoot);
   }
 
   private resolveDependencyReferences(file: SourceFile) {
@@ -292,8 +292,8 @@ class BinderImp implements Binder {
     this.references.get(refkey)!.add(sourceFile);
   }
 
-  private cleanUnreferencedHelpers(sourceRoot: string) {
-    const usedHelperNames: string[] = [];
+  private cleanUnreferencedHelpers(sourceRoot: string, testRoot?: string) {
+    const usedHelperFiles = new Set<SourceFile>();
     for (const helper of this.staticHelpers.values()) {
       const sourceFile = helper[SourceFileSymbol];
       if (!sourceFile) {
@@ -305,22 +305,29 @@ class BinderImp implements Binder {
       const referencedHelper = this.references.get(refkey(helper));
 
       if (referencedHelper?.size) {
-        usedHelperNames.push(sourceFile.getBaseNameWithoutExtension());
+        usedHelperFiles.add(sourceFile);
       }
     }
 
     function isFileUnused(file: SourceFile) {
-      const name = file.getBaseNameWithoutExtension();
-
-      // If one of the used helpers' name is a prefix of this file, the file likely represents a platform-specific implementation of the helper
-      // so it should be marked as used even if the file has no direct references.
-      return !usedHelperNames.some((s) => name.startsWith(s));
+      return !usedHelperFiles.has(file);
     }
 
     this.project
       //normalizae the final path to adapt to different systems
       .getSourceFiles(
         normalizePath(path.join(sourceRoot, "static-helpers/**/*.*ts"))
+      )
+      .filter(isFileUnused)
+      .forEach((helperFile) => helperFile.delete());
+
+    if (!testRoot) {
+      return;
+    }
+    this.project
+      //normalizae the final path to adapt to different systems
+      .getSourceFiles(
+        normalizePath(path.join(testRoot, "test/generated/util/**/*.*ts"))
       )
       .filter(isFileUnused)
       .forEach((helperFile) => helperFile.delete());
