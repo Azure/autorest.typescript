@@ -94,9 +94,16 @@ function emitMethodTests(
     CreateRecorderHelpers.createRecorder
   );
 
+  // Compute the relative path from the generated test file to src/index.js.
+  // Single-client files land at test/generated/<file>.spec.ts (2 levels up),
+  // while multi-client files land at test/generated/<subFolder>/<file>.spec.ts (3 levels up).
+  const srcIndexRelativePath = options.subFolder
+    ? "../../../src/index.js"
+    : "../../src/index.js";
+
   // Import the client
   sourceFile.addImportDeclaration({
-    moduleSpecifier: "../../src/index.js",
+    moduleSpecifier: srcIndexRelativePath,
     namedImports: [clientName]
   });
 
