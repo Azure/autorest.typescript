@@ -285,7 +285,8 @@ export async function provideBinderWithAzureDependencies(project: Project) {
   };
 
   const staticHelperMap = await loadStaticHelpers(project, staticHelpers, {
-    helpersAssetDirectory: helpersDirectory
+    helpersAssetDirectory: helpersDirectory,
+    loadTestHelpers: true
   });
 
   const binder = provideBinder(project, {

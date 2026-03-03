@@ -45,6 +45,8 @@ export interface LoadStaticHelpersOptions extends Partial<ModularEmitterOptions>
   sourcesDir?: string;
   rootDir?: string;
   program?: Program;
+  /** When true, also load test helpers from static/test-helpers/ into test/generated/util/ */
+  loadTestHelpers?: boolean;
 }
 
 interface FileMetadata {
@@ -68,19 +70,24 @@ export async function loadStaticHelpers(
     options.program
   );
   await loadFiles(filesInSources, options.sourcesDir ?? "");
-  // Load static helpers used in testing code
-  const defaultTestingHelpersPath = path.join(
-    resolveProjectRoot(),
-    DEFAULT_SOURCES_TESTING_HELPERS_PATH
-  );
-  const filesInTestings = await traverseDirectory(
-    defaultTestingHelpersPath,
-    options.program,
-    [],
-    "",
-    "test/generated/util"
-  );
-  await loadFiles(filesInTestings, options.rootDir ?? "");
+  // Load static helpers used in testing code (only when loadTestHelpers is enabled)
+  if (
+    options.loadTestHelpers ??
+    (options.options?.generateTest && isAzurePackage({ options: options.options }))
+  ) {
+    const defaultTestingHelpersPath = path.join(
+      resolveProjectRoot(),
+      DEFAULT_SOURCES_TESTING_HELPERS_PATH
+    );
+    const filesInTestings = await traverseDirectory(
+      defaultTestingHelpersPath,
+      options.program,
+      [],
+      "",
+      "test/generated/util"
+    );
+    await loadFiles(filesInTestings, options.rootDir ?? "");
+  }
   return assertAllHelpersLoadedPresent(helpersMap);
 
   async function loadFiles(files: FileMetadata[], generateDir: string) {
