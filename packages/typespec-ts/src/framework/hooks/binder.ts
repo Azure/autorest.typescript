@@ -309,6 +309,39 @@ class BinderImp implements Binder {
       }
     }
 
+    // Ensure platform-specific variants (e.g. *-browser.*, *-react-native.*)
+    // are preserved whenever their base helper is referenced.
+    const platformSuffixes = ["-browser", "-react-native"];
+    const helpersWithReferences = Array.from(usedHelperFiles);
+    for (const helperFile of helpersWithReferences) {
+      const directory = helperFile.getDirectory();
+      const filePath = helperFile.getFilePath();
+      const fileName = path.basename(filePath);
+      const dotIndex = fileName.indexOf(".");
+      const baseName =
+        dotIndex === -1 ? fileName : fileName.substring(0, dotIndex);
+      const variantPrefix = `${baseName}-`;
+
+      for (const sibling of directory.getSourceFiles()) {
+        if (usedHelperFiles.has(sibling)) {
+          continue;
+        }
+        const siblingPath = sibling.getFilePath();
+        const siblingName = path.basename(siblingPath);
+        const siblingDotIndex = siblingName.indexOf(".");
+        const siblingBaseName =
+          siblingDotIndex === -1
+            ? siblingName
+            : siblingName.substring(0, siblingDotIndex);
+
+        if (
+          siblingBaseName.startsWith(variantPrefix) &&
+          platformSuffixes.some((suffix) => siblingBaseName.endsWith(suffix))
+        ) {
+          usedHelperFiles.add(sibling);
+        }
+      }
+    }
     function isFileUnused(file: SourceFile) {
       return !usedHelperFiles.has(file);
     }
