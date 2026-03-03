@@ -51,6 +51,7 @@ import {
   buildTestNodeTsConfig,
   buildTestMainTsConfig,
   buildVitestConfig,
+  buildWarpConfig,
   getClientName,
   hasUnexpectedHelper,
   isAzurePackage,
@@ -441,6 +442,11 @@ export async function $onEmit(context: EmitContext) {
       "README.md"
     );
     const hasReadmeFile = await existsSync(existingReadmeFilePath);
+    const existingWarpConfigFilePath = join(
+      dpgContext.generationPathDetail?.metadataDir ?? "",
+      "warp.config.yml"
+    );
+    const hasWarpConfigFile = await existsSync(existingWarpConfigFilePath);
     const shouldGenerateMetadata =
       option.generateMetadata === true || !hasPackageFile;
     const existingTestFolderPath = join(
@@ -515,6 +521,12 @@ export async function $onEmit(context: EmitContext) {
       commonBuilders.push((model) =>
         buildPackageFile(model, modularPackageInfo)
       );
+      // Generate warp.config.yml for Azure monorepo ESM packages (only if it doesn't exist)
+      if (option.azureSdkForJs && !hasWarpConfigFile) {
+        commonBuilders.push((model) =>
+          buildWarpConfig(model, modularPackageInfo)
+        );
+      }
       commonBuilders.push(buildTsConfig);
       if (option.azureSdkForJs) {
         commonBuilders.push(buildTsSrcConfig);
@@ -565,6 +577,16 @@ export async function $onEmit(context: EmitContext) {
         rlcClient,
         dpgContext.generationPathDetail?.metadataDir
       );
+
+      // Generate warp.config.yml for Azure monorepo packages (only if it doesn't exist)
+      if (option.azureSdkForJs && !hasWarpConfigFile) {
+        await emitContentByBuilder(
+          program,
+          (model) => buildWarpConfig(model, modularPackageInfo),
+          rlcClient,
+          dpgContext.generationPathDetail?.metadataDir
+        );
+      }
 
       // update existing README.md file if it exists
       if (hasReadmeFile) {

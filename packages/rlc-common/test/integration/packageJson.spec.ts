@@ -246,17 +246,29 @@ describe("Package file generation", () => {
       const packageFileContent = buildPackageFile(model);
       const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
 
-      const expectedTshy = {
-        project: "../../../tsconfig.src.build.json",
-        exports: { "./package.json": "./package.json", ".": "./src/index.ts" },
-        dialects: ["esm", "commonjs"],
-        esmDialects: ["browser", "react-native"],
-        selfLink: false
-      };
-
-      expect(packageFile).to.have.property("tshy");
-      expect(packageFile.tshy).to.deep.equal(expectedTshy);
+      // Azure monorepo packages use warp instead of tshy
+      expect(packageFile).to.not.have.property("tshy");
       expect(packageFile).to.have.property("type", "module");
+      expect(packageFile).to.have.property("main", "./dist/commonjs/index.js");
+      expect(packageFile).to.have.property("module", "./dist/esm/index.js");
+      expect(packageFile).to.have.property(
+        "types",
+        "./dist/commonjs/index.d.ts"
+      );
+      expect(packageFile).to.have.property(
+        "browser",
+        "./dist/browser/index.js"
+      );
+      expect(packageFile).to.have.property("exports");
+      expect(packageFile.exports["./package.json"]).to.equal("./package.json");
+      expect(packageFile.exports["."]).to.have.property("browser");
+      expect(packageFile.exports["."]).to.have.property("react-native");
+      expect(packageFile.exports["."]).to.have.property("import");
+      expect(packageFile.exports["."]).to.have.property("require");
+      expect(packageFile.exports["."]["import"]).to.deep.equal({
+        types: "./dist/esm/index.d.ts",
+        default: "./dist/esm/index.js"
+      });
     });
 
     it("[esm] should include correct devDependencies", () => {
@@ -433,7 +445,7 @@ describe("Package file generation", () => {
       );
     });
 
-    it("should include browser and react-native in package.json", () => {
+    it("should include browser and react-native entrypoints in package.json", () => {
       const model = createMockModel({
         ...baseConfig,
         azureArm: true,
@@ -448,7 +460,6 @@ describe("Package file generation", () => {
       expect(packageFile).to.have.property(
         "react-native", "./dist/react-native/index.js"
       );
-
     });
   });
 
@@ -724,7 +735,7 @@ describe("Package file generation", () => {
       expect(packageFile.dependencies).to.have.property("@azure/abort-controller", "^2.1.2");
     });
 
-    it("should update tshy.exports when exports option is provided", () => {
+    it("should update warp exports when exports option is provided for monorepo", () => {
       const model = createMockModel({
         moduleKind: "esm",
         flavor: "azure",
@@ -738,14 +749,14 @@ describe("Package file generation", () => {
         dependencies: {
           "@azure/core-client": "^1.0.0"
         },
-        tshy: {
-          exports: {
-            "./package.json": "./package.json",
-            ".": "./src/index.ts"
-          },
-          dialects: ["esm", "commonjs"],
-          esmDialects: ["browser", "react-native"],
-          selfLink: false
+        exports: {
+          "./package.json": "./package.json",
+          ".": {
+            import: {
+              types: "./dist/esm/index.d.ts",
+              default: "./dist/esm/index.js"
+            }
+          }
         }
       };
 
@@ -767,19 +778,14 @@ describe("Package file generation", () => {
         "@azure/abort-controller",
         "^2.1.2"
       );
-      expect(packageFile.tshy).to.have.property("exports");
-      expect(packageFile.tshy.exports).to.deep.equal({
-        "./package.json": "./package.json",
-        ".": "./src/index.ts",
-        "./api": "./src/api/index.ts",
-        "./models": "./src/models/index.ts"
-      });
-      expect(packageFile.tshy).to.have.property("dialects");
-      expect(packageFile.tshy).to.have.property("esmDialects");
-      expect(packageFile.tshy).to.have.property("selfLink");
+      expect(packageFile).to.have.property("exports");
+      expect(packageFile.exports["./package.json"]).to.equal("./package.json");
+      expect(packageFile.exports["."]).to.have.property("import");
+      expect(packageFile.exports["./api"]).to.have.property("import");
+      expect(packageFile.exports["./models"]).to.have.property("import");
     });
 
-    it("should not update tshy.exports when tshy does not exist in package.json", () => {
+    it("should update exports for monorepo even without tshy in package.json", () => {
       const model = createMockModel({
         moduleKind: "esm",
         flavor: "azure",
@@ -813,6 +819,10 @@ describe("Package file generation", () => {
         "@azure/abort-controller",
         "^2.1.2"
       );
+      // Monorepo uses warp exports directly in package.json
+      expect(packageFile).to.have.property("exports");
+      expect(packageFile.exports["./package.json"]).to.equal("./package.json");
+      expect(packageFile.exports["."]).to.have.property("import");
       expect(packageFile).to.not.have.property("tshy");
     });
   });
