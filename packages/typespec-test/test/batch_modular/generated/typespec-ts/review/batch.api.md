@@ -1063,7 +1063,7 @@ export interface GetNodeFilePropertiesOptionalParams extends OperationOptions {
 // @public (undocumented)
 export type GetNodeFileResponse = {
     blobBody?: Promise<Blob>;
-    readableStreamBody?: NodeJS.ReadableStream;
+    readableStreamBody?: Promise<NodeJS.ReadableStream | undefined>;
 };
 
 // @public
@@ -1086,7 +1086,7 @@ export interface GetNodeRemoteDesktopFileOptionalParams extends OperationOptions
 // @public (undocumented)
 export type GetNodeRemoteDesktopFileResponse = {
     blobBody?: Promise<Blob>;
-    readableStreamBody?: NodeJS.ReadableStream;
+    readableStreamBody?: Promise<NodeJS.ReadableStream | undefined>;
 };
 
 // @public
@@ -1135,7 +1135,7 @@ export interface GetTaskFilePropertiesOptionalParams extends OperationOptions {
 // @public (undocumented)
 export type GetTaskFileResponse = {
     blobBody?: Promise<Blob>;
-    readableStreamBody?: NodeJS.ReadableStream;
+    readableStreamBody?: Promise<NodeJS.ReadableStream | undefined>;
 };
 
 // @public

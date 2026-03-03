@@ -744,7 +744,7 @@ export interface GenerateSpeechFromTextOptionalParams extends OperationOptions {
 // @public (undocumented)
 export type GenerateSpeechFromTextResponse = {
     blobBody?: Promise<Blob>;
-    readableStreamBody?: NodeJS.ReadableStream;
+    readableStreamBody?: Promise<NodeJS.ReadableStream | undefined>;
 };
 
 // @public

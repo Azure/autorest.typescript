@@ -33,7 +33,7 @@ import {
   GetAudioTranslationAsPlainTextResponse,
   GetAudioTranscriptionAsPlainTextResponse,
 } from "../models/models.js";
-import { getBinaryResponse } from "../static-helpers/serialization/get-binary-response.js";
+import { toBlob } from "../static-helpers/serialization/to-blob.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   GetEmbeddingsOptionalParams,
@@ -128,16 +128,11 @@ export function _generateSpeechFromTextSend(
 }
 
 export async function _generateSpeechFromTextDeserialize(
-  result: PathUncheckedResponse,
+  result: StreamableMethod,
 ): Promise<GenerateSpeechFromTextResponse> {
-  const expectedStatuses = ["200"];
-  if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
-  }
-
   return {
-    blobBody: result.body !== undefined ? Promise.resolve(new Blob([result.body])) : undefined,
-    readableStreamBody: undefined,
+    blobBody: toBlob((result as StreamableMethod).asBrowserStream()),
+    readableStreamBody: (result as StreamableMethod).asNodeStream().then((r) => r.body),
   };
 }
 
@@ -148,8 +143,7 @@ export async function generateSpeechFromText(
   body: SpeechGenerationOptions,
   options: GenerateSpeechFromTextOptionalParams = { requestOptions: {} },
 ): Promise<GenerateSpeechFromTextResponse> {
-  const streamableMethod = _generateSpeechFromTextSend(context, deploymentId, body, options);
-  const result = await getBinaryResponse(streamableMethod);
+  const result = _generateSpeechFromTextSend(context, deploymentId, body, options);
   return _generateSpeechFromTextDeserialize(result);
 }
 

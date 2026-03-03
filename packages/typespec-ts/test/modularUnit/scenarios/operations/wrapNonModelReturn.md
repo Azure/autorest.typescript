@@ -159,16 +159,16 @@ export type GetLogsResponse = {
    * BROWSER ONLY
    *
    * The response body as a browser Blob.
-   * Will be `undefined` when accessed in node.js.
+   * Always `undefined` in node.js.
    */
   blobBody?: Promise<Blob>;
   /**
    * NODEJS ONLY
    *
    * The response body as a node.js Readable stream.
-   * Will be `undefined` when accessed in the browser.
+   * Always `undefined` in the browser.
    */
-  readableStreamBody?: NodeJS.ReadableStream;
+  readableStreamBody?: Promise<NodeJS.ReadableStream | undefined>;
 };
 ```
 
@@ -177,12 +177,10 @@ export type GetLogsResponse = {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { GetLogsResponse } from "../models/models.js";
-import { getBinaryResponse } from "../static-helpers/serialization/get-binary-response.js";
+import { toBlob } from "../static-helpers/serialization/to-blob.js";
 import { GetLogsOptionalParams } from "./options.js";
 import {
   StreamableMethod,
-  PathUncheckedResponse,
-  createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
@@ -198,15 +196,10 @@ export function _getLogsSend(
     });
 }
 
-export async function _getLogsDeserialize(result: PathUncheckedResponse): Promise<GetLogsResponse> {
-  const expectedStatuses = ["200"];
-  if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
-  }
-
+export async function _getLogsDeserialize(result: StreamableMethod): Promise<GetLogsResponse> {
   return {
-    blobBody: result.body !== undefined ? Promise.resolve(new Blob([result.body])) : undefined,
-    readableStreamBody: undefined,
+    blobBody: toBlob((result as StreamableMethod).asBrowserStream()),
+    readableStreamBody: (result as StreamableMethod).asNodeStream().then((r) => r.body),
   };
 }
 
@@ -214,8 +207,7 @@ export async function getLogs(
   context: Client,
   options: GetLogsOptionalParams = { requestOptions: {} },
 ): Promise<GetLogsResponse> {
-  const streamableMethod = _getLogsSend(context, options);
-  const result = await getBinaryResponse(streamableMethod);
+  const result = _getLogsSend(context, options);
   return _getLogsDeserialize(result);
 }
 ```

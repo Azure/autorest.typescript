@@ -113,7 +113,7 @@ import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../static-helpers/pagingHelpers.js";
-import { getBinaryResponse } from "../static-helpers/serialization/get-binary-response.js";
+import { toBlob } from "../static-helpers/serialization/to-blob.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   ListNodeFilesOptionalParams,
@@ -410,19 +410,11 @@ export function _getNodeFileSend(
 }
 
 export async function _getNodeFileDeserialize(
-  result: PathUncheckedResponse,
+  result: StreamableMethod,
 ): Promise<GetNodeFileResponse> {
-  const expectedStatuses = ["200"];
-  if (!expectedStatuses.includes(result.status)) {
-    const error = createRestError(result);
-    error.details = batchErrorDeserializer(result.body);
-
-    throw error;
-  }
-
   return {
-    blobBody: result.body !== undefined ? Promise.resolve(new Blob([result.body])) : undefined,
-    readableStreamBody: undefined,
+    blobBody: toBlob((result as StreamableMethod).asBrowserStream()),
+    readableStreamBody: (result as StreamableMethod).asNodeStream().then((r) => r.body),
   };
 }
 
@@ -434,8 +426,7 @@ export async function getNodeFile(
   filePath: string,
   options: GetNodeFileOptionalParams = { requestOptions: {} },
 ): Promise<GetNodeFileResponse> {
-  const streamableMethod = _getNodeFileSend(context, poolId, nodeId, filePath, options);
-  const result = await getBinaryResponse(streamableMethod);
+  const result = _getNodeFileSend(context, poolId, nodeId, filePath, options);
   return _getNodeFileDeserialize(result);
 }
 
@@ -834,19 +825,11 @@ export function _getNodeRemoteDesktopFileSend(
 }
 
 export async function _getNodeRemoteDesktopFileDeserialize(
-  result: PathUncheckedResponse,
+  result: StreamableMethod,
 ): Promise<GetNodeRemoteDesktopFileResponse> {
-  const expectedStatuses = ["200"];
-  if (!expectedStatuses.includes(result.status)) {
-    const error = createRestError(result);
-    error.details = batchErrorDeserializer(result.body);
-
-    throw error;
-  }
-
   return {
-    blobBody: result.body !== undefined ? Promise.resolve(new Blob([result.body])) : undefined,
-    readableStreamBody: undefined,
+    blobBody: toBlob((result as StreamableMethod).asBrowserStream()),
+    readableStreamBody: (result as StreamableMethod).asNodeStream().then((r) => r.body),
   };
 }
 
@@ -862,8 +845,7 @@ export async function getNodeRemoteDesktopFile(
   nodeId: string,
   options: GetNodeRemoteDesktopFileOptionalParams = { requestOptions: {} },
 ): Promise<GetNodeRemoteDesktopFileResponse> {
-  const streamableMethod = _getNodeRemoteDesktopFileSend(context, poolId, nodeId, options);
-  const result = await getBinaryResponse(streamableMethod);
+  const result = _getNodeRemoteDesktopFileSend(context, poolId, nodeId, options);
   return _getNodeRemoteDesktopFileDeserialize(result);
 }
 
@@ -1679,19 +1661,11 @@ export function _getTaskFileSend(
 }
 
 export async function _getTaskFileDeserialize(
-  result: PathUncheckedResponse,
+  result: StreamableMethod,
 ): Promise<GetTaskFileResponse> {
-  const expectedStatuses = ["200"];
-  if (!expectedStatuses.includes(result.status)) {
-    const error = createRestError(result);
-    error.details = batchErrorDeserializer(result.body);
-
-    throw error;
-  }
-
   return {
-    blobBody: result.body !== undefined ? Promise.resolve(new Blob([result.body])) : undefined,
-    readableStreamBody: undefined,
+    blobBody: toBlob((result as StreamableMethod).asBrowserStream()),
+    readableStreamBody: (result as StreamableMethod).asNodeStream().then((r) => r.body),
   };
 }
 
@@ -1703,8 +1677,7 @@ export async function getTaskFile(
   filePath: string,
   options: GetTaskFileOptionalParams = { requestOptions: {} },
 ): Promise<GetTaskFileResponse> {
-  const streamableMethod = _getTaskFileSend(context, jobId, taskId, filePath, options);
-  const result = await getBinaryResponse(streamableMethod);
+  const result = _getTaskFileSend(context, jobId, taskId, filePath, options);
   return _getTaskFileDeserialize(result);
 }
 

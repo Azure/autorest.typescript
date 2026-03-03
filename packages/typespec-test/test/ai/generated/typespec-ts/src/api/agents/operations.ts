@@ -66,6 +66,7 @@ import {
 } from "../../models/agents/models.js";
 import { AgentsGetFileContentResponse } from "../../models/models.js";
 import { FileContents } from "../../static-helpers/multipartHelpers.js";
+import { toBlob } from "../../static-helpers/serialization/to-blob.js";
 import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   AgentsListVectorStoreFileBatchFilesOptionalParams,
@@ -785,16 +786,11 @@ export function _getFileContentSend(
 }
 
 export async function _getFileContentDeserialize(
-  result: PathUncheckedResponse,
+  result: StreamableMethod,
 ): Promise<AgentsGetFileContentResponse> {
-  const expectedStatuses = ["200"];
-  if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
-  }
-
   return {
-    blobBody: result.body !== undefined ? Promise.resolve(new Blob([result.body])) : undefined,
-    readableStreamBody: undefined,
+    blobBody: toBlob((result as StreamableMethod).asBrowserStream()),
+    readableStreamBody: (result as StreamableMethod).asNodeStream().then((r) => r.body),
   };
 }
 
@@ -804,7 +800,7 @@ export async function getFileContent(
   fileId: string,
   options: AgentsGetFileContentOptionalParams = { requestOptions: {} },
 ): Promise<AgentsGetFileContentResponse> {
-  const result = await _getFileContentSend(context, fileId, options);
+  const result = _getFileContentSend(context, fileId, options);
   return _getFileContentDeserialize(result);
 }
 

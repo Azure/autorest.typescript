@@ -176,10 +176,20 @@ export function getDeserializePrivateFunction(
   const PathUncheckedResponseReference = resolveReference(
     dependencies.PathUncheckedResponse
   );
+
+  // Check if we need to wrap the non-model return type
+  const { shouldWrap, isBinary } = checkWrapNonModelReturn(context, operation);
+
+  // For binary wrap, the deserializer receives a StreamableMethod directly (not PathUncheckedResponse)
+  const resultParamType =
+    shouldWrap && isBinary
+      ? resolveReference(dependencies.StreamableMethod)
+      : PathUncheckedResponseReference;
+
   const parameters: OptionalKind<ParameterDeclarationStructure>[] = [
     {
       name: "result",
-      type: PathUncheckedResponseReference
+      type: resultParamType
     }
   ];
   const isLroOnly = isLroOnlyOperation(operation);
@@ -191,9 +201,6 @@ export function getDeserializePrivateFunction(
   const response = operation.response;
   const restResponse = operation.operation.responses[0];
   let returnType;
-
-  // Check if we need to wrap the non-model return type
-  const { shouldWrap, isBinary } = checkWrapNonModelReturn(context, operation);
 
   if (isLroOnly || isLroAndPaging) {
     returnType = buildLroReturnType(context, operation);
@@ -231,14 +238,17 @@ export function getDeserializePrivateFunction(
     dependencies.createRestError
   );
 
-  statements.push(
-    `const expectedStatuses = ${getExpectedStatuses(operation)};`
-  );
-  statements.push(
-    `if(!expectedStatuses.includes(result.status)){`,
-    `${getExceptionThrowStatement(context, operation)}`,
-    "}"
-  );
+  // For binary wrap, parameter is StreamableMethod - skip status check
+  if (!(shouldWrap && isBinary)) {
+    statements.push(
+      `const expectedStatuses = ${getExpectedStatuses(operation)};`
+    );
+    statements.push(
+      `if(!expectedStatuses.includes(result.status)){`,
+      `${getExceptionThrowStatement(context, operation)}`,
+      "}"
+    );
+  }
   const deserializedType =
     isLroOnly || isLroAndPaging
       ? operation?.lroMetadata?.finalResponse?.result
@@ -283,10 +293,14 @@ export function getDeserializePrivateFunction(
     // Handle wrap-non-model-return for non-LRO, non-paging operations
     if (shouldWrap) {
       if (isBinary) {
-        // Binary response: wrap with blobBody and readableStreamBody
-        // result.body is Uint8Array (already obtained via getBinaryResponse in operation function)
+        // Binary response: result is StreamableMethod passed directly from the operation function.
+        // Use asBrowserStream() for blobBody and asNodeStream() for readableStreamBody.
+        const toBlobReference = resolveReference(SerializationHelpers.toBlob);
+        const StreamableMethodReference = resolveReference(
+          dependencies.StreamableMethod
+        );
         statements.push(
-          `return { blobBody: result.body !== undefined ? Promise.resolve(new Blob([result.body])) : undefined, readableStreamBody: undefined };`
+          `return { blobBody: ${toBlobReference}((result as ${StreamableMethodReference}).asBrowserStream()), readableStreamBody: (result as ${StreamableMethodReference}).asNodeStream().then(r => r.body) };`
         );
       } else {
         // Non-model response: wrap with body property
@@ -958,10 +972,8 @@ export function getOperationFunction(
     context.rlcOptions?.includeHeadersInResponse === true;
 
   // Check if we need to wrap the non-model return type
-  const { shouldWrap: wrapReturn } = checkWrapNonModelReturn(
-    context,
-    operation
-  );
+  const { shouldWrap: wrapReturn, isBinary: wrapReturnIsBinary } =
+    checkWrapNonModelReturn(context, operation);
 
   let returnType = { name: "", type: "void" };
   if (wrapReturn) {
@@ -1019,9 +1031,16 @@ export function getOperationFunction(
   const resultVarName = generateLocallyUniqueName("result", paramNames);
 
   const parameterList = parameters.map((p) => p.name).join(", ");
-  // Special case for binary-only bodies: use helper to call streaming methods so that Core doesn't poison the response body by
-  // doing a UTF-8 decode on the raw bytes.
-  if (response?.type?.kind === "bytes" && response.type.encode === "bytes") {
+  // For binary wrap, pass the StreamableMethod directly to the deserializer (no getBinaryResponse).
+  // The deserializer will use asBrowserStream()/asNodeStream() to build the wrapper.
+  if (wrapReturn && wrapReturnIsBinary) {
+    statements.push(`const ${resultVarName} = _${name}Send(${parameterList});`);
+    // Special case for binary-only bodies: use helper to call streaming methods so that Core doesn't poison the response body by
+    // doing a UTF-8 decode on the raw bytes.
+  } else if (
+    response?.type?.kind === "bytes" &&
+    response.type.encode === "bytes"
+  ) {
     const streamableMethodVarName = generateLocallyUniqueName(
       "streamableMethod",
       paramNames
@@ -2923,16 +2942,16 @@ export function buildNonModelResponseTypeDeclaration(
    * BROWSER ONLY
    *
    * The response body as a browser Blob.
-   * Will be \`undefined\` when accessed in node.js.
+   * Always \`undefined\` in node.js.
    */
   blobBody?: Promise<Blob>;
   /**
    * NODEJS ONLY
    *
    * The response body as a node.js Readable stream.
-   * Will be \`undefined\` when accessed in the browser.
+   * Always \`undefined\` in the browser.
    */
-  readableStreamBody?: NodeJS.ReadableStream;
+  readableStreamBody?: Promise<NodeJS.ReadableStream | undefined>;
 }`;
   } else {
     const returnType = getTypeExpression(context, operation.response.type!);

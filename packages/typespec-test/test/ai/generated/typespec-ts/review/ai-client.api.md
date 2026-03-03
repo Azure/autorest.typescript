@@ -178,7 +178,7 @@ export interface AgentsGetFileContentOptionalParams extends OperationOptions {
 // @public (undocumented)
 export type AgentsGetFileContentResponse = {
     blobBody?: Promise<Blob>;
-    readableStreamBody?: NodeJS.ReadableStream;
+    readableStreamBody?: Promise<NodeJS.ReadableStream | undefined>;
 };
 
 // @public
