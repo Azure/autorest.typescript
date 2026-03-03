@@ -1,4 +1,4 @@
-# Should generate samples for data-plane operations
+# Should generate tests for dpg operations
 
 Test generation should handle dpg template and operations successfully.
 
