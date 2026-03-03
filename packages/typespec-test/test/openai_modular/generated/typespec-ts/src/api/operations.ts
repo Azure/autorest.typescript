@@ -130,10 +130,15 @@ export function _generateSpeechFromTextSend(
 export async function _generateSpeechFromTextDeserialize(
   result: StreamableMethod,
 ): Promise<GenerateSpeechFromTextResponse> {
-  return {
-    blobBody: toBlob((result as StreamableMethod).asBrowserStream()),
-    readableStreamBody: (result as StreamableMethod).asNodeStream().then((r) => r.body),
-  };
+  try {
+    const blobBody = toBlob((result as StreamableMethod).asBrowserStream());
+    return { blobBody, readableStreamBody: undefined };
+  } catch {
+    return {
+      blobBody: undefined,
+      readableStreamBody: (result as StreamableMethod).asNodeStream().then((r) => r.body),
+    };
+  }
 }
 
 /** Generates text-to-speech audio from the input text. */

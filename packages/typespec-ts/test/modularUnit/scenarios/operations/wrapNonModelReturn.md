@@ -191,10 +191,12 @@ export function _getLogsSend(
 }
 
 export async function _getLogsDeserialize(result: StreamableMethod): Promise<GetLogsResponse> {
-  return {
-    blobBody: toBlob((result as StreamableMethod).asBrowserStream()),
-    readableStreamBody: (result as StreamableMethod).asNodeStream().then((r) => r.body),
-  };
+  try {
+    const blobBody = toBlob((result as StreamableMethod).asBrowserStream());
+    return { blobBody, readableStreamBody: undefined };
+  } catch {
+    return { blobBody: undefined, readableStreamBody: (result as StreamableMethod).asNodeStream().then((r) => r.body) };
+  }
 }
 
 export async function getLogs(

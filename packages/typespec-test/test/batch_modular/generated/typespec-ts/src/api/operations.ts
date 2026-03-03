@@ -412,10 +412,15 @@ export function _getNodeFileSend(
 export async function _getNodeFileDeserialize(
   result: StreamableMethod,
 ): Promise<GetNodeFileResponse> {
-  return {
-    blobBody: toBlob((result as StreamableMethod).asBrowserStream()),
-    readableStreamBody: (result as StreamableMethod).asNodeStream().then((r) => r.body),
-  };
+  try {
+    const blobBody = toBlob((result as StreamableMethod).asBrowserStream());
+    return { blobBody, readableStreamBody: undefined };
+  } catch {
+    return {
+      blobBody: undefined,
+      readableStreamBody: (result as StreamableMethod).asNodeStream().then((r) => r.body),
+    };
+  }
 }
 
 /** Returns the content of the specified Compute Node file. */
@@ -827,10 +832,15 @@ export function _getNodeRemoteDesktopFileSend(
 export async function _getNodeRemoteDesktopFileDeserialize(
   result: StreamableMethod,
 ): Promise<GetNodeRemoteDesktopFileResponse> {
-  return {
-    blobBody: toBlob((result as StreamableMethod).asBrowserStream()),
-    readableStreamBody: (result as StreamableMethod).asNodeStream().then((r) => r.body),
-  };
+  try {
+    const blobBody = toBlob((result as StreamableMethod).asBrowserStream());
+    return { blobBody, readableStreamBody: undefined };
+  } catch {
+    return {
+      blobBody: undefined,
+      readableStreamBody: (result as StreamableMethod).asNodeStream().then((r) => r.body),
+    };
+  }
 }
 
 /**
@@ -1663,10 +1673,15 @@ export function _getTaskFileSend(
 export async function _getTaskFileDeserialize(
   result: StreamableMethod,
 ): Promise<GetTaskFileResponse> {
-  return {
-    blobBody: toBlob((result as StreamableMethod).asBrowserStream()),
-    readableStreamBody: (result as StreamableMethod).asNodeStream().then((r) => r.body),
-  };
+  try {
+    const blobBody = toBlob((result as StreamableMethod).asBrowserStream());
+    return { blobBody, readableStreamBody: undefined };
+  } catch {
+    return {
+      blobBody: undefined,
+      readableStreamBody: (result as StreamableMethod).asNodeStream().then((r) => r.body),
+    };
+  }
 }
 
 /** Returns the content of the specified Task file. */

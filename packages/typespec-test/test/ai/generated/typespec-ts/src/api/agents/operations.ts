@@ -788,10 +788,15 @@ export function _getFileContentSend(
 export async function _getFileContentDeserialize(
   result: StreamableMethod,
 ): Promise<AgentsGetFileContentResponse> {
-  return {
-    blobBody: toBlob((result as StreamableMethod).asBrowserStream()),
-    readableStreamBody: (result as StreamableMethod).asNodeStream().then((r) => r.body),
-  };
+  try {
+    const blobBody = toBlob((result as StreamableMethod).asBrowserStream());
+    return { blobBody, readableStreamBody: undefined };
+  } catch {
+    return {
+      blobBody: undefined,
+      readableStreamBody: (result as StreamableMethod).asNodeStream().then((r) => r.body),
+    };
+  }
 }
 
 /** Retrieves the raw content of a specific file. */
