@@ -10,7 +10,8 @@ import {
 } from "../helpers/packageUtil.js";
 import {
   PackageCommonInfoConfig,
-  getTshyConfig
+  getTshyConfig,
+  resolveWarpExports
 } from "./packageJson/packageCommon.js";
 import { Project, SourceFile } from "ts-morph";
 import { RLCModel } from "../interfaces.js";
@@ -118,13 +119,19 @@ export function updatePackageFile(
     packageInfo = existingFilePathOrContent;
   }
 
-  // Update tshy.exports if exports are provided and tshy exists
-  if (needsExportsUpdate && packageInfo.tshy) {
-    const newTshy = getTshyConfig({
-      exports,
-      azureSdkForJs: model.options?.azureSdkForJs
-    } as PackageCommonInfoConfig);
-    packageInfo.tshy.exports = newTshy.exports;
+  // Update exports based on build system (warp for monorepo, tshy for others)
+  if (needsExportsUpdate) {
+    if (model.options?.azureSdkForJs) {
+      // Warp: update resolved exports in package.json
+      packageInfo.exports = resolveWarpExports(exports);
+    } else if (packageInfo.tshy) {
+      // Tshy: update tshy.exports in package.json
+      const newTshy = getTshyConfig({
+        exports,
+        azureSdkForJs: model.options?.azureSdkForJs
+      } as PackageCommonInfoConfig);
+      packageInfo.tshy.exports = newTshy.exports;
+    }
   }
 
   // Update LRO dependencies for Azure packages
