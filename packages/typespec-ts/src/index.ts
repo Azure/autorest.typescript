@@ -148,7 +148,7 @@ export async function $onEmit(context: EmitContext) {
       ...MultipartHelpers,
       ...CloudSettingHelpers,
       ...XmlHelpers,
-      ...CreateRecorderHelpers
+      ...(rlcOptions.generateTest ? CreateRecorderHelpers : {})
     },
     {
       sourcesDir: dpgContext.generationPathDetail?.modularSourcesDir,
