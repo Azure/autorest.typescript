@@ -73,7 +73,8 @@ export async function loadStaticHelpers(
   // Load static helpers used in testing code (only when loadTestHelpers is enabled)
   if (
     options.loadTestHelpers ??
-    (options.options?.generateTest && isAzurePackage({ options: options.options }))
+    (options.options?.generateTest &&
+      isAzurePackage({ options: options.options }))
   ) {
     const defaultTestingHelpersPath = path.join(
       resolveProjectRoot(),
