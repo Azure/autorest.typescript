@@ -118,7 +118,7 @@ export function getCredentialSampleValue(
       return {
         ...defaultSetting,
         value: `{ getToken: async () => {
-          return { token: "INPUT_YOUR_TOKEN_HERE", expiresOnTimestamp: now() }; } }`
+          return { token: "INPUT_YOUR_TOKEN_HERE", expiresOnTimestamp: Date.now() }; } }`
       };
     }
   }
