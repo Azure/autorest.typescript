@@ -52,6 +52,7 @@ import {
   buildTestNodeTsConfig,
   buildTestMainTsConfig,
   buildVitestConfig,
+  buildWarpConfig,
   getClientName,
   hasUnexpectedHelper,
   isAzurePackage,
@@ -443,6 +444,11 @@ export async function $onEmit(context: EmitContext) {
       "README.md"
     );
     const hasReadmeFile = await existsSync(existingReadmeFilePath);
+    const existingWarpConfigFilePath = join(
+      dpgContext.generationPathDetail?.metadataDir ?? "",
+      "warp.config.yml"
+    );
+    const hasWarpConfigFile = await existsSync(existingWarpConfigFilePath);
     const shouldGenerateMetadata =
       option.generateMetadata === true || !hasPackageFile;
     const existingTestFolderPath = join(
@@ -517,6 +523,12 @@ export async function $onEmit(context: EmitContext) {
       commonBuilders.push((model) =>
         buildPackageFile(model, modularPackageInfo)
       );
+      // Generate warp.config.yml for Azure monorepo ESM packages (only if it doesn't exist)
+      if (option.azureSdkForJs && !hasWarpConfigFile) {
+        commonBuilders.push((model) =>
+          buildWarpConfig(model, modularPackageInfo)
+        );
+      }
       commonBuilders.push(buildTsConfig);
       if (option.azureSdkForJs) {
         commonBuilders.push(buildTsSrcConfig);
@@ -553,10 +565,12 @@ export async function $onEmit(context: EmitContext) {
         }
       }
     } else if (hasPackageFile) {
-      // update existing package.json file with correct dependencies
       const updateBuilders = [];
+      let modularPackageInfo = {};
+
+      // update existing package.json file with correct dependencies
       if (option.isModularLibrary) {
-        const modularPackageInfo = {
+        modularPackageInfo = {
           exports: getModuleExports(context, modularEmitterOptions),
           clientContextPaths: getRelativeContextPaths(
             context,
@@ -565,6 +579,13 @@ export async function $onEmit(context: EmitContext) {
         };
         updateBuilders.push((model: RLCModel) =>
           updatePackageFile(model, existingPackageFilePath, modularPackageInfo)
+        );
+      }
+
+      // Generate warp.config.yml for Azure monorepo packages (only if it doesn't exist)
+      if (option.azureSdkForJs && !hasWarpConfigFile) {
+        updateBuilders.push((model: RLCModel) =>
+          buildWarpConfig(model, modularPackageInfo)
         );
       }
 
