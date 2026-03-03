@@ -300,7 +300,7 @@ export function getDeserializePrivateFunction(
           dependencies.StreamableMethod
         );
         statements.push(
-          `try {\n    const blobBody = ${toBlobReference}((result as ${StreamableMethodReference}).asBrowserStream());\n    return { blobBody, readableStreamBody: undefined };\n  } catch {\n    return { blobBody: undefined, readableStreamBody: (result as ${StreamableMethodReference}).asNodeStream().then((r) => r.body) };\n  }`
+          `try {\n    const blobBody = ${toBlobReference}((result as ${StreamableMethodReference}).asBrowserStream());\n    return { blobBody, readableStreamBody: undefined };\n  } catch {\n    const blobBody = (result as ${StreamableMethodReference}).getBinaryResponse().then((r) => new Blob([r.body]));\n    return { blobBody, readableStreamBody: undefined };\n  }`
         );
       } else {
         // Non-model response: wrap with body property

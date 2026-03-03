@@ -173,10 +173,7 @@ import { TestingContext as Client } from "./index.js";
 import { GetLogsResponse } from "../models/models.js";
 import { toBlob } from "../static-helpers/serialization/to-blob.js";
 import { GetLogsOptionalParams } from "./options.js";
-import {
-  StreamableMethod,
-  operationOptionsToRequestParameters,
-} from "@azure-rest/core-client";
+import { StreamableMethod, operationOptionsToRequestParameters } from "@azure-rest/core-client";
 
 export function _getLogsSend(
   context: Client,
@@ -195,7 +192,10 @@ export async function _getLogsDeserialize(result: StreamableMethod): Promise<Get
     const blobBody = toBlob((result as StreamableMethod).asBrowserStream());
     return { blobBody, readableStreamBody: undefined };
   } catch {
-    return { blobBody: undefined, readableStreamBody: (result as StreamableMethod).asNodeStream().then((r) => r.body) };
+    const blobBody = (result as StreamableMethod)
+      .getBinaryResponse()
+      .then((r) => new Blob([r.body]));
+    return { blobBody, readableStreamBody: undefined };
   }
 }
 
