@@ -162,24 +162,29 @@ describe("EncodeBytesClient Modular Client", () => {
   describe("response body", () => {
     const pngFile = readFileSync(
       resolve("../../packages/typespec-ts/temp/assets/image.png")
-    ).toString("utf-8");
+    );
     it(`should get bytes with oct-stream by default`, async () => {
       const result = await client.responseBody.default({
         onResponse: (res) => {
           res.headers.get("content-type") === "application/octet-stream";
         }
       });
-      assert.strictEqual(uint8ArrayToString(result, "utf-8"), pngFile);
+      const blob = await result.blobBody!;
+      const arrayBuffer = await blob.arrayBuffer();
+      assert.deepStrictEqual(new Uint8Array(arrayBuffer), pngFile);
     });
 
     it(`should get bytes base64 encoding`, async () => {
       const result = await client.responseBody.base64();
-      assert.strictEqual(uint8ArrayToString(result, "base64"), "dGVzdA==");
+      assert.strictEqual(uint8ArrayToString(result.body, "base64"), "dGVzdA==");
     });
 
     it(`should get bytes base64url encoding`, async () => {
       const result = await client.responseBody.base64Url();
-      assert.strictEqual(uint8ArrayToString(result, "base64url"), "dGVzdA");
+      assert.strictEqual(
+        uint8ArrayToString(result.body, "base64url"),
+        "dGVzdA"
+      );
     });
 
     it(`should get bytes with custom content type`, async () => {
@@ -188,7 +193,9 @@ describe("EncodeBytesClient Modular Client", () => {
           res.headers.get("content-type") === "image/png";
         }
       });
-      assert.strictEqual(uint8ArrayToString(result, "utf-8"), pngFile);
+      const blob = await result.blobBody!;
+      const arrayBuffer = await blob.arrayBuffer();
+      assert.deepStrictEqual(new Uint8Array(arrayBuffer), pngFile);
     });
 
     it(`should get bytes with octet-stream content type`, async () => {
@@ -197,7 +204,9 @@ describe("EncodeBytesClient Modular Client", () => {
           res.headers.get("content-type") === "application/octet-stream";
         }
       });
-      assert.strictEqual(uint8ArrayToString(result, "utf-8"), pngFile);
+      const blob = await result.blobBody!;
+      const arrayBuffer = await blob.arrayBuffer();
+      assert.deepStrictEqual(new Uint8Array(arrayBuffer), pngFile);
     });
   });
 });

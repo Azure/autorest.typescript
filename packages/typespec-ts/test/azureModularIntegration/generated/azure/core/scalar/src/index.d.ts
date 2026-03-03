@@ -9,6 +9,10 @@ export declare interface AzureLocationModel {
 export declare interface GetOptionalParams extends OperationOptions {
 }
 
+export declare type GetResponse = {
+    body: string;
+};
+
 export declare interface HeaderOptionalParams extends OperationOptions {
 }
 
@@ -33,7 +37,7 @@ export declare class ScalarClient {
     header(region: string, options?: HeaderOptionalParams): Promise<void>;
     post(body: AzureLocationModel, options?: PostOptionalParams): Promise<AzureLocationModel>;
     put(body: string, options?: PutOptionalParams): Promise<void>;
-    get(options?: GetOptionalParams): Promise<string>;
+    get(options?: GetOptionalParams): Promise<GetResponse>;
 }
 
 export declare interface ScalarClientOptionalParams extends ClientOptions {

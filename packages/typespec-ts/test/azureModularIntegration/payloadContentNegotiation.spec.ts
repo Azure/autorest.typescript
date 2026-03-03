@@ -22,20 +22,23 @@ describe("Payload Content Negotiation Client", () => {
 
   it("should get image/png for same body in content negotiation", async () => {
     const result = await client.sameBody.getAvatarAsPng();
-    assert.strictEqual(uint8ArrayToString(result, "utf-8"), pngFile.toString());
+    const blob = await result.blobBody!;
+    const arrayBuffer = await blob.arrayBuffer();
+    assert.deepStrictEqual(new Uint8Array(arrayBuffer), pngFile);
   });
 
   it("should get image/jpeg for same body in content negotiation", async () => {
     const result = await client.sameBody.getAvatarAsJpeg();
-    assert.strictEqual(
-      uint8ArrayToString(result, "utf-8"),
-      jpegImage.toString()
-    );
+    const blob = await result.blobBody!;
+    const arrayBuffer = await blob.arrayBuffer();
+    assert.deepStrictEqual(new Uint8Array(arrayBuffer), jpegImage);
   });
 
   it("should get image/png for different body in content negotiation", async () => {
     const result = await client.differentBody.getAvatarAsPng();
-    assert.strictEqual(uint8ArrayToString(result, "utf-8"), pngFile.toString());
+    const blob = await result.blobBody!;
+    const arrayBuffer = await blob.arrayBuffer();
+    assert.deepStrictEqual(new Uint8Array(arrayBuffer), pngFile);
   });
 
   it("should get application/json for different body in content negotiation", async () => {
