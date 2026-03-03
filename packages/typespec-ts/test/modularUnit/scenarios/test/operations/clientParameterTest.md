@@ -123,10 +123,6 @@ describe("list Widget resources", () => {
 
 This is tsp definition.
 
-## TypeSpec
-
-This is tsp definition.
-
 ```tsp
 import "@typespec/http";
 import "@typespec/rest";
