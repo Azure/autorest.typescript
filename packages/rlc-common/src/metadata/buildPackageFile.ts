@@ -155,7 +155,7 @@ export function updatePackageFile(
         | "Swagger",
       clientFilePaths: [getClientFilePath(model)],
       isModularLibrary: true,
-      dependencies // additional deps (e.g. fast-xml-parser) spread into expected list
+      dependencies // format-specific dependencies (e.g. fast-xml-parser) to merge with canonical deps
     };
 
     const { dependencies: expectedDeps } =
