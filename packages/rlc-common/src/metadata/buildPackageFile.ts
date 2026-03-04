@@ -88,6 +88,7 @@ export function buildPackageFile(
 /**
  * Automatically updates the package.json with correct paging and LRO dependencies for Azure SDK.
  * Also updates tshy.exports if provided.
+ * When migrating from Swagger to TypeSpec (modular), replaces @azure/core-client with @azure-rest/core-client.
  */
 export function updatePackageFile(
   model: RLCModel,
@@ -100,9 +101,15 @@ export function updatePackageFile(
   const needsExportsUpdate = exports;
   const needsConstantPathsUpdate =
     clientContextPaths && clientContextPaths.length > 0;
+  const isModularLibrary = model.options?.isModularLibrary;
 
-  // Early return if nothing needs to be updated
-  if (!needsLroUpdate && !needsExportsUpdate && !needsConstantPathsUpdate) {
+  // Early return if nothing needs to be updated (defer modular migration check until file is read)
+  if (
+    !needsLroUpdate &&
+    !needsExportsUpdate &&
+    !needsConstantPathsUpdate &&
+    !isModularLibrary
+  ) {
     return;
   }
 
@@ -119,6 +126,20 @@ export function updatePackageFile(
     packageInfo = JSON.parse(packageFile.getFullText());
   } else {
     packageInfo = existingFilePathOrContent;
+  }
+
+  // Check if migration from @azure/core-client (Swagger/autorest) to @azure-rest/core-client (modular/TypeSpec) is needed
+  const needsModularMigration =
+    isModularLibrary && !!packageInfo.dependencies?.["@azure/core-client"];
+
+  // Early return if nothing actually needs to be updated
+  if (
+    !needsLroUpdate &&
+    !needsExportsUpdate &&
+    !needsConstantPathsUpdate &&
+    !needsModularMigration
+  ) {
+    return;
   }
 
   // Update exports based on build system (warp for monorepo, tshy for others)
@@ -143,6 +164,14 @@ export function updatePackageFile(
       "@azure/core-lro": "^3.1.0",
       "@azure/abort-controller": "^2.1.2"
     };
+  }
+
+  // Migrate from @azure/core-client to @azure-rest/core-client for modular packages
+  if (needsModularMigration) {
+    delete packageInfo.dependencies["@azure/core-client"];
+    if (!packageInfo.dependencies["@azure-rest/core-client"]) {
+      packageInfo.dependencies["@azure-rest/core-client"] = "^2.3.1";
+    }
   }
 
   // Update constantPaths metadata for Azure packages

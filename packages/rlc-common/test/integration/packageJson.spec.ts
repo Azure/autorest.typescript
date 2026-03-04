@@ -933,6 +933,122 @@ describe("Package file generation", () => {
         { path: "src/old-path.ts", prefix: "userAgentInfo" }
       ]);
     });
+
+    it("should replace @azure/core-client with @azure-rest/core-client when migrating from Swagger to modular TypeSpec", () => {
+      const model = createMockModel({
+        moduleKind: "esm",
+        flavor: "azure",
+        isMonorepo: true,
+        hasLro: false,
+        isModularLibrary: true
+      });
+
+      const initialPackageInfo = {
+        name: "@azure/test-package",
+        version: "1.0.0",
+        dependencies: {
+          "@azure/core-client": "^1.9.3",
+          "@azure/core-auth": "^1.9.0",
+          "@azure/core-rest-pipeline": "^1.19.1",
+          tslib: "^2.8.1"
+        }
+      };
+
+      const packageFileContent = updatePackageFile(model, initialPackageInfo);
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      // @azure/core-client should be replaced with @azure-rest/core-client
+      expect(packageFile.dependencies).to.not.have.property("@azure/core-client");
+      expect(packageFile.dependencies).to.have.property(
+        "@azure-rest/core-client",
+        "^2.3.1"
+      );
+      // Other dependencies should remain
+      expect(packageFile.dependencies).to.have.property("@azure/core-auth");
+      expect(packageFile.dependencies).to.have.property("@azure/core-rest-pipeline");
+      expect(packageFile.dependencies).to.have.property("tslib");
+    });
+
+    it("should not add @azure-rest/core-client when it already exists during modular migration", () => {
+      const model = createMockModel({
+        moduleKind: "esm",
+        flavor: "azure",
+        isMonorepo: true,
+        hasLro: false,
+        isModularLibrary: true
+      });
+
+      const initialPackageInfo = {
+        name: "@azure/test-package",
+        version: "1.0.0",
+        dependencies: {
+          "@azure/core-client": "^1.9.3",
+          "@azure-rest/core-client": "^2.2.0"
+        }
+      };
+
+      const packageFileContent = updatePackageFile(model, initialPackageInfo);
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      // @azure/core-client should be removed
+      expect(packageFile.dependencies).to.not.have.property("@azure/core-client");
+      // @azure-rest/core-client should keep its existing version
+      expect(packageFile.dependencies).to.have.property(
+        "@azure-rest/core-client",
+        "^2.2.0"
+      );
+    });
+
+    it("should return undefined when no update needed for modular library without @azure/core-client", () => {
+      const model = createMockModel({
+        moduleKind: "esm",
+        flavor: "azure",
+        isMonorepo: true,
+        hasLro: false,
+        isModularLibrary: true
+      });
+
+      const initialPackageInfo = {
+        name: "@azure/test-package",
+        version: "1.0.0",
+        dependencies: {
+          "@azure-rest/core-client": "^2.3.1"
+        }
+      };
+
+      // No options provided - no exports, no clientContextPaths, no LRO, and no @azure/core-client to migrate
+      const packageFileContent = updatePackageFile(model, initialPackageInfo);
+      expect(packageFileContent).to.be.undefined;
+    });
+
+    it("should handle both LRO update and modular migration together", () => {
+      const model = createMockModel({
+        moduleKind: "esm",
+        flavor: "azure",
+        isMonorepo: true,
+        hasLro: true,
+        isModularLibrary: true
+      });
+
+      const initialPackageInfo = {
+        name: "@azure/test-package",
+        version: "1.0.0",
+        dependencies: {
+          "@azure/core-client": "^1.9.3",
+          tslib: "^2.8.1"
+        }
+      };
+
+      const packageFileContent = updatePackageFile(model, initialPackageInfo);
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      // @azure/core-client should be replaced with @azure-rest/core-client
+      expect(packageFile.dependencies).to.not.have.property("@azure/core-client");
+      expect(packageFile.dependencies).to.have.property("@azure-rest/core-client", "^2.3.1");
+      // LRO dependencies should also be added
+      expect(packageFile.dependencies).to.have.property("@azure/core-lro", "^3.1.0");
+      expect(packageFile.dependencies).to.have.property("@azure/abort-controller", "^2.1.2");
+    });
   });
 
   describe("Flavorless lib", () => {
