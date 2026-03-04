@@ -232,13 +232,13 @@ export function getDeserializePrivateFunction(
   );
 
   statements.push(
-      `const expectedStatuses = ${getExpectedStatuses(operation)};`
-    );
-    statements.push(
-      `if(!expectedStatuses.includes(result.status)){`,
-      `${getExceptionThrowStatement(context, operation)}`,
-      "}"
-    );
+    `const expectedStatuses = ${getExpectedStatuses(operation)};`
+  );
+  statements.push(
+    `if(!expectedStatuses.includes(result.status)){`,
+    `${getExceptionThrowStatement(context, operation)}`,
+    "}"
+  );
   const deserializedType =
     isLroOnly || isLroAndPaging
       ? operation?.lroMetadata?.finalResponse?.result
@@ -374,17 +374,17 @@ export function getDeserializePrivateFunction(
           skipDiscriminatedUnionSuffix: false
         }
       );
-       // Handle wrap-non-model-return for non-LRO, non-paging operations
-    if (shouldWrap) {
-      if (isBinary) {
-        // Binary response: result is StreamableMethod passed directly from the operation function.
-        // Use asBrowserStream() for blobBody and asNodeStream() for readableStreamBody.
-        const toBlobReference = resolveReference(SerializationHelpers.toBlob);
-        const StreamableMethodReference = resolveReference(
-          dependencies.StreamableMethod
-        );
-        statements.push(
-          `const browserStream = await (result as unknown as ${StreamableMethodReference}).asBrowserStream();
+      // Handle wrap-non-model-return for non-LRO, non-paging operations
+      if (shouldWrap) {
+        if (isBinary) {
+          // Binary response: result is StreamableMethod passed directly from the operation function.
+          // Use asBrowserStream() for blobBody and asNodeStream() for readableStreamBody.
+          const toBlobReference = resolveReference(SerializationHelpers.toBlob);
+          const StreamableMethodReference = resolveReference(
+            dependencies.StreamableMethod
+          );
+          statements.push(
+            `const browserStream = await (result as unknown as ${StreamableMethodReference}).asBrowserStream();
           const nodeStream = await (result as unknown as ${StreamableMethodReference}).asNodeStream();
 
           return {
@@ -392,24 +392,24 @@ export function getDeserializePrivateFunction(
             readableStreamBody: nodeStream.body,
           };
           `
-        );
-      } else {
-        // Non-model response: wrap with body property
-        // Generate the appropriate deserialization for the body value
-        const bodyValue = deserializeResponseValue(
-          context,
-          deserializedType,
-          "result.body",
-          true,
-          getEncodeForType(deserializedType)
-        );
-        statements.push(`return { body: ${bodyValue} };`);
+          );
+        } else {
+          // Non-model response: wrap with body property
+          // Generate the appropriate deserialization for the body value
+          const bodyValue = deserializeResponseValue(
+            context,
+            deserializedType,
+            "result.body",
+            true,
+            getEncodeForType(deserializedType)
+          );
+          statements.push(`return { body: ${bodyValue} };`);
+        }
+        return {
+          ...functionStatement,
+          statements
+        };
       }
-      return {
-        ...functionStatement,
-        statements
-      };
-    }
       if (deserializeFunctionName) {
         statements.push(
           `return ${deserializeFunctionName}(${deserializedRoot})${multipartCastSuffix}`
@@ -968,8 +968,10 @@ export function getOperationFunction(
     context.rlcOptions?.includeHeadersInResponse === true;
 
   // Check if we need to wrap the non-model return type
-  const { shouldWrap: wrapReturn } =
-    checkWrapNonModelReturn(context, operation);
+  const { shouldWrap: wrapReturn } = checkWrapNonModelReturn(
+    context,
+    operation
+  );
 
   let returnType = { name: "", type: "void" };
   if (wrapReturn) {
