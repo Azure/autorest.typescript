@@ -15,7 +15,11 @@ import {
 } from "./packageJson/packageCommon.js";
 import { Project, SourceFile } from "ts-morph";
 import { RLCModel } from "../interfaces.js";
-import { buildAzureMonorepoPackage } from "./packageJson/buildAzureMonorepoPackage.js";
+import {
+  AzureMonorepoInfoConfig,
+  buildAzureMonorepoPackage,
+  getAzureMonorepoDependencies
+} from "./packageJson/buildAzureMonorepoPackage.js";
 import { buildAzureStandalonePackage } from "./packageJson/buildAzureStandalonePackage.js";
 import { buildFlavorlessPackage } from "./packageJson/buildFlavorlessPackage.js";
 import { getRelativePartFromSrcPath } from "../helpers/pathUtils.js";
@@ -86,9 +90,11 @@ export function buildPackageFile(
 }
 
 /**
- * Automatically updates the package.json with correct paging and LRO dependencies for Azure SDK.
+ * Automatically updates the package.json with correct dependencies for Azure SDK.
  * Also updates tshy.exports if provided.
- * When migrating from Swagger to TypeSpec (modular), replaces @azure/core-client with @azure-rest/core-client.
+ * For Azure monorepo modular packages: compares existing dependencies against the canonical
+ * set from getAzureMonorepoDependencies and updates any inconsistencies (missing or wrong version).
+ * Also removes @azure/core-client (Swagger-only dep) when found in modular packages.
  */
 export function updatePackageFile(
   model: RLCModel,
@@ -97,20 +103,19 @@ export function updatePackageFile(
 ) {
   const hasLro = hasPollingOperations(model);
   const isAzure = isAzurePackage(model);
-  const needsLroUpdate = isAzure && hasLro;
+  const isModularLibrary = model.options?.isModularLibrary;
+  const isAzureMonorepoLib = isAzureMonorepoPackage(model) && !!isModularLibrary;
+  const needsLroUpdate = isAzure && hasLro && !isAzureMonorepoLib;
   const needsExportsUpdate = exports;
   const needsConstantPathsUpdate =
     clientContextPaths && clientContextPaths.length > 0;
-  const needsDependenciesUpdate =
-    dependencies && Object.keys(dependencies).length > 0;
-  const isModularLibrary = model.options?.isModularLibrary;
 
-  // Early return if nothing needs to be updated (defer modular migration check until file is read)
+  // Early return if nothing needs to be updated (defer monorepo dep check until file is read)
   if (
     !needsLroUpdate &&
     !needsExportsUpdate &&
     !needsConstantPathsUpdate &&
-    !needsDependenciesUpdate &&
+    !isAzureMonorepoLib &&
     !isModularLibrary
   ) {
     return;
@@ -131,17 +136,60 @@ export function updatePackageFile(
     packageInfo = existingFilePathOrContent;
   }
 
-  // Check if migration from @azure/core-client (Swagger/autorest) to @azure-rest/core-client (modular/TypeSpec) is needed
-  const needsModularMigration =
-    isModularLibrary && !!packageInfo.dependencies?.["@azure/core-client"];
+  // For Azure monorepo modular packages: compare existing deps against the canonical
+  // set from getAzureMonorepoDependencies, update any that are missing or have wrong versions.
+  const monorepoDepUpdates: Record<string, string> = {};
+  let hasSwaggerCoreDep = false;
+
+  if (isAzureMonorepoLib) {
+    const expectedConfig: AzureMonorepoInfoConfig = {
+      name: getPackageName(model),
+      version: getPackageVersion(model),
+      description: getDescription(model),
+      moduleKind: model.options?.moduleKind ?? "esm",
+      withTests: model.options?.generateTest === true,
+      withSamples: model.options?.generateSample === true,
+      hasLro: hasPollingOperations(model),
+      specSource: (model.options?.sourceFrom ?? "TypeSpec") as
+        | "TypeSpec"
+        | "Swagger",
+      clientFilePaths: [getClientFilePath(model)],
+      isModularLibrary: true,
+      dependencies // additional deps (e.g. fast-xml-parser) spread into expected list
+    };
+
+    const { dependencies: expectedDeps } =
+      getAzureMonorepoDependencies(expectedConfig);
+    const existingDeps: Record<string, string> = packageInfo.dependencies ?? {};
+
+    for (const [dep, expectedVersion] of Object.entries(expectedDeps)) {
+      if (existingDeps[dep] !== expectedVersion) {
+        monorepoDepUpdates[dep] = expectedVersion;
+      }
+    }
+
+    // @azure/core-client is a Swagger/autorest-only dep; remove it from modular packages
+    if (existingDeps["@azure/core-client"]) {
+      hasSwaggerCoreDep = true;
+    }
+  }
+
+  const needsMonorepoDepsUpdate =
+    Object.keys(monorepoDepUpdates).length > 0 || hasSwaggerCoreDep;
+
+  // For non-azure-monorepo modular packages: simple @azure/core-client → @azure-rest/core-client migration
+  const needsNonMonorepoMigration =
+    isModularLibrary &&
+    !isAzureMonorepoLib &&
+    !!packageInfo.dependencies?.["@azure/core-client"];
 
   // Early return if nothing actually needs to be updated
   if (
     !needsLroUpdate &&
     !needsExportsUpdate &&
     !needsConstantPathsUpdate &&
-    !needsDependenciesUpdate &&
-    !needsModularMigration
+    !needsMonorepoDepsUpdate &&
+    !needsNonMonorepoMigration
   ) {
     return;
   }
@@ -161,7 +209,8 @@ export function updatePackageFile(
     }
   }
 
-  // Update LRO dependencies for Azure packages
+  // Update LRO dependencies for non-monorepo Azure packages
+  // (For monorepo packages LRO deps are handled by the getAzureMonorepoDependencies comparison above)
   if (needsLroUpdate) {
     packageInfo.dependencies = {
       ...packageInfo.dependencies,
@@ -170,20 +219,20 @@ export function updatePackageFile(
     };
   }
 
-  // Merge additional dependencies (e.g. @azure/core-util, fast-xml-parser) without overwriting existing ones
-  if (needsDependenciesUpdate) {
-    packageInfo.dependencies = {
-      ...packageInfo.dependencies
-    };
-    for (const [dep, version] of Object.entries(dependencies!)) {
-      if (!packageInfo.dependencies[dep]) {
-        packageInfo.dependencies[dep] = version;
-      }
+  // Apply monorepo dep updates: missing or wrong-versioned deps from the canonical set
+  if (needsMonorepoDepsUpdate) {
+    packageInfo.dependencies = { ...packageInfo.dependencies };
+    for (const [dep, version] of Object.entries(monorepoDepUpdates)) {
+      packageInfo.dependencies[dep] = version;
+    }
+    // Remove @azure/core-client (Swagger/autorest-only dep)
+    if (hasSwaggerCoreDep) {
+      delete packageInfo.dependencies["@azure/core-client"];
     }
   }
 
-  // Migrate from @azure/core-client to @azure-rest/core-client for modular packages
-  if (needsModularMigration) {
+  // For non-azure-monorepo modular packages: migrate @azure/core-client → @azure-rest/core-client
+  if (needsNonMonorepoMigration) {
     delete packageInfo.dependencies["@azure/core-client"];
     if (!packageInfo.dependencies["@azure-rest/core-client"]) {
       packageInfo.dependencies["@azure-rest/core-client"] = "^2.3.1";

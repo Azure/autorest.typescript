@@ -934,7 +934,7 @@ describe("Package file generation", () => {
       ]);
     });
 
-    it("should replace @azure/core-client with @azure-rest/core-client when migrating from Swagger to modular TypeSpec", () => {
+    it("should add all canonical modular dependencies and remove @azure/core-client when migrating from Swagger to TypeSpec", () => {
       const model = createMockModel({
         moduleKind: "esm",
         flavor: "azure",
@@ -948,28 +948,26 @@ describe("Package file generation", () => {
         version: "1.0.0",
         dependencies: {
           "@azure/core-client": "^1.9.3",
-          "@azure/core-auth": "^1.9.0",
-          "@azure/core-rest-pipeline": "^1.19.1",
-          tslib: "^2.8.1"
+          "@azure/core-auth": "^1.0.0",
+          "@azure/core-rest-pipeline": "^1.5.0",
+          tslib: "^2.6.2"
         }
       };
 
       const packageFileContent = updatePackageFile(model, initialPackageInfo);
       const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
 
-      // @azure/core-client should be replaced with @azure-rest/core-client
+      // @azure/core-client should be removed
       expect(packageFile.dependencies).to.not.have.property("@azure/core-client");
-      expect(packageFile.dependencies).to.have.property(
-        "@azure-rest/core-client",
-        "^2.3.1"
-      );
-      // Other dependencies should remain
-      expect(packageFile.dependencies).to.have.property("@azure/core-auth");
-      expect(packageFile.dependencies).to.have.property("@azure/core-rest-pipeline");
-      expect(packageFile.dependencies).to.have.property("tslib");
+      // Canonical dependencies should be added or updated
+      expect(packageFile.dependencies).to.have.property("@azure-rest/core-client", "^2.3.1");
+      expect(packageFile.dependencies).to.have.property("@azure/core-util", "^1.12.0");
+      expect(packageFile.dependencies).to.have.property("@azure/core-auth", "^1.9.0");
+      expect(packageFile.dependencies).to.have.property("@azure/core-rest-pipeline", "^1.20.0");
+      expect(packageFile.dependencies).to.have.property("tslib", "^2.8.1");
     });
 
-    it("should not add @azure-rest/core-client when it already exists during modular migration", () => {
+    it("should update @azure-rest/core-client to canonical version if it already exists with a different version", () => {
       const model = createMockModel({
         moduleKind: "esm",
         flavor: "azure",
@@ -992,14 +990,11 @@ describe("Package file generation", () => {
 
       // @azure/core-client should be removed
       expect(packageFile.dependencies).to.not.have.property("@azure/core-client");
-      // @azure-rest/core-client should keep its existing version
-      expect(packageFile.dependencies).to.have.property(
-        "@azure-rest/core-client",
-        "^2.2.0"
-      );
+      // @azure-rest/core-client should be updated to canonical version
+      expect(packageFile.dependencies).to.have.property("@azure-rest/core-client", "^2.3.1");
     });
 
-    it("should return undefined when no update needed for modular library without @azure/core-client", () => {
+    it("should return undefined when all canonical deps are already at correct versions and no swagger dep present", () => {
       const model = createMockModel({
         moduleKind: "esm",
         flavor: "azure",
@@ -1008,20 +1003,26 @@ describe("Package file generation", () => {
         isModularLibrary: true
       });
 
+      // All canonical dependencies at the exact expected versions
       const initialPackageInfo = {
         name: "@azure/test-package",
         version: "1.0.0",
         dependencies: {
-          "@azure-rest/core-client": "^2.3.1"
+          "@azure-rest/core-client": "^2.3.1",
+          "@azure/core-auth": "^1.9.0",
+          "@azure/core-rest-pipeline": "^1.20.0",
+          "@azure/core-util": "^1.12.0",
+          "@azure/logger": "^1.2.0",
+          tslib: "^2.8.1"
         }
       };
 
-      // No options provided - no exports, no clientContextPaths, no LRO, and no @azure/core-client to migrate
       const packageFileContent = updatePackageFile(model, initialPackageInfo);
+      // Should return undefined since nothing needs to be updated
       expect(packageFileContent).to.be.undefined;
     });
 
-    it("should handle both LRO update and modular migration together", () => {
+    it("should include LRO dependencies when package has LRO operations", () => {
       const model = createMockModel({
         moduleKind: "esm",
         flavor: "azure",
@@ -1042,15 +1043,15 @@ describe("Package file generation", () => {
       const packageFileContent = updatePackageFile(model, initialPackageInfo);
       const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
 
-      // @azure/core-client should be replaced with @azure-rest/core-client
+      // @azure/core-client should be removed
       expect(packageFile.dependencies).to.not.have.property("@azure/core-client");
+      // Canonical dependencies including LRO-specific ones should be added
       expect(packageFile.dependencies).to.have.property("@azure-rest/core-client", "^2.3.1");
-      // LRO dependencies should also be added
       expect(packageFile.dependencies).to.have.property("@azure/core-lro", "^3.1.0");
       expect(packageFile.dependencies).to.have.property("@azure/abort-controller", "^2.1.2");
     });
 
-    it("should add additional dependencies without overwriting existing ones", () => {
+    it("should spread additional dependencies (e.g. fast-xml-parser) into the canonical dep set", () => {
       const model = createMockModel({
         moduleKind: "esm",
         flavor: "azure",
@@ -1063,23 +1064,27 @@ describe("Package file generation", () => {
         name: "@azure/test-package",
         version: "1.0.0",
         dependencies: {
-          "@azure/core-util": "^1.5.0",
+          "@azure-rest/core-client": "^2.3.1",
+          "@azure/core-auth": "^1.9.0",
+          "@azure/core-rest-pipeline": "^1.20.0",
+          "@azure/core-util": "^1.12.0",
+          "@azure/logger": "^1.2.0",
           tslib: "^2.8.1"
         }
       };
 
       const packageFileContent = updatePackageFile(model, initialPackageInfo, {
-        dependencies: { "@azure/core-util": "^1.9.2", "fast-xml-parser": "^4.5.0" }
+        dependencies: { "fast-xml-parser": "^4.5.0" }
       });
       const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
 
-      // Existing @azure/core-util version should NOT be overwritten
-      expect(packageFile.dependencies).to.have.property("@azure/core-util", "^1.5.0");
-      // New dependency not previously present should be added
+      // Additional dependency should be added
       expect(packageFile.dependencies).to.have.property("fast-xml-parser", "^4.5.0");
+      // Existing canonical deps should remain unchanged
+      expect(packageFile.dependencies).to.have.property("@azure-rest/core-client", "^2.3.1");
     });
 
-    it("should add missing additional dependencies when they are not in the existing package.json", () => {
+    it("should update outdated dependency versions to canonical versions", () => {
       const model = createMockModel({
         moduleKind: "esm",
         flavor: "azure",
@@ -1092,20 +1097,20 @@ describe("Package file generation", () => {
         name: "@azure/test-package",
         version: "1.0.0",
         dependencies: {
-          "@azure/core-client": "^1.9.3"
+          "@azure-rest/core-client": "^2.3.1",
+          "@azure/core-auth": "^1.9.0",
+          "@azure/core-rest-pipeline": "^1.20.0",
+          "@azure/core-util": "^1.5.0", // outdated version
+          "@azure/logger": "^1.2.0",
+          tslib: "^2.8.1"
         }
       };
 
-      const packageFileContent = updatePackageFile(model, initialPackageInfo, {
-        dependencies: { "@azure/core-util": "^1.9.2" }
-      });
+      const packageFileContent = updatePackageFile(model, initialPackageInfo);
       const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
 
-      // @azure/core-client should be replaced with @azure-rest/core-client
-      expect(packageFile.dependencies).to.not.have.property("@azure/core-client");
-      expect(packageFile.dependencies).to.have.property("@azure-rest/core-client", "^2.3.1");
-      // Additional dependency should be added
-      expect(packageFile.dependencies).to.have.property("@azure/core-util", "^1.9.2");
+      // @azure/core-util should be updated to canonical version
+      expect(packageFile.dependencies).to.have.property("@azure/core-util", "^1.12.0");
     });
   });
 

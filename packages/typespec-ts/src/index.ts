@@ -570,11 +570,8 @@ export async function $onEmit(context: EmitContext) {
 
       // update existing package.json file with correct dependencies
       if (option.isModularLibrary) {
-        // Build additional dependencies same as in shouldGenerateMetadata branch
+        // Additional dependencies that aren't in the standard monorepo set (e.g. format-specific)
         const additionalDependencies: Record<string, string> = {};
-        if (isAzureFlavor) {
-          additionalDependencies["@azure/core-util"] = "^1.9.2";
-        }
         if (packageUsesXmlSerialization(dpgContext.sdkPackage)) {
           additionalDependencies["fast-xml-parser"] = "^4.5.0";
         }
