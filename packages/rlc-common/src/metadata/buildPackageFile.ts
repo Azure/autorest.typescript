@@ -93,7 +93,7 @@ export function buildPackageFile(
 export function updatePackageFile(
   model: RLCModel,
   existingFilePathOrContent: string | Record<string, any>,
-  { exports, clientContextPaths }: PackageFileOptions = {}
+  { exports, dependencies, clientContextPaths }: PackageFileOptions = {}
 ) {
   const hasLro = hasPollingOperations(model);
   const isAzure = isAzurePackage(model);
@@ -101,6 +101,8 @@ export function updatePackageFile(
   const needsExportsUpdate = exports;
   const needsConstantPathsUpdate =
     clientContextPaths && clientContextPaths.length > 0;
+  const needsDependenciesUpdate =
+    dependencies && Object.keys(dependencies).length > 0;
   const isModularLibrary = model.options?.isModularLibrary;
 
   // Early return if nothing needs to be updated (defer modular migration check until file is read)
@@ -108,6 +110,7 @@ export function updatePackageFile(
     !needsLroUpdate &&
     !needsExportsUpdate &&
     !needsConstantPathsUpdate &&
+    !needsDependenciesUpdate &&
     !isModularLibrary
   ) {
     return;
@@ -137,6 +140,7 @@ export function updatePackageFile(
     !needsLroUpdate &&
     !needsExportsUpdate &&
     !needsConstantPathsUpdate &&
+    !needsDependenciesUpdate &&
     !needsModularMigration
   ) {
     return;
@@ -164,6 +168,18 @@ export function updatePackageFile(
       "@azure/core-lro": "^3.1.0",
       "@azure/abort-controller": "^2.1.2"
     };
+  }
+
+  // Merge additional dependencies (e.g. @azure/core-util, fast-xml-parser) without overwriting existing ones
+  if (needsDependenciesUpdate) {
+    packageInfo.dependencies = {
+      ...packageInfo.dependencies
+    };
+    for (const [dep, version] of Object.entries(dependencies!)) {
+      if (!packageInfo.dependencies[dep]) {
+        packageInfo.dependencies[dep] = version;
+      }
+    }
   }
 
   // Migrate from @azure/core-client to @azure-rest/core-client for modular packages

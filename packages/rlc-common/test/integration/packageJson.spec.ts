@@ -1049,6 +1049,64 @@ describe("Package file generation", () => {
       expect(packageFile.dependencies).to.have.property("@azure/core-lro", "^3.1.0");
       expect(packageFile.dependencies).to.have.property("@azure/abort-controller", "^2.1.2");
     });
+
+    it("should add additional dependencies without overwriting existing ones", () => {
+      const model = createMockModel({
+        moduleKind: "esm",
+        flavor: "azure",
+        isMonorepo: true,
+        hasLro: false,
+        isModularLibrary: true
+      });
+
+      const initialPackageInfo = {
+        name: "@azure/test-package",
+        version: "1.0.0",
+        dependencies: {
+          "@azure/core-util": "^1.5.0",
+          tslib: "^2.8.1"
+        }
+      };
+
+      const packageFileContent = updatePackageFile(model, initialPackageInfo, {
+        dependencies: { "@azure/core-util": "^1.9.2", "fast-xml-parser": "^4.5.0" }
+      });
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      // Existing @azure/core-util version should NOT be overwritten
+      expect(packageFile.dependencies).to.have.property("@azure/core-util", "^1.5.0");
+      // New dependency not previously present should be added
+      expect(packageFile.dependencies).to.have.property("fast-xml-parser", "^4.5.0");
+    });
+
+    it("should add missing additional dependencies when they are not in the existing package.json", () => {
+      const model = createMockModel({
+        moduleKind: "esm",
+        flavor: "azure",
+        isMonorepo: true,
+        hasLro: false,
+        isModularLibrary: true
+      });
+
+      const initialPackageInfo = {
+        name: "@azure/test-package",
+        version: "1.0.0",
+        dependencies: {
+          "@azure/core-client": "^1.9.3"
+        }
+      };
+
+      const packageFileContent = updatePackageFile(model, initialPackageInfo, {
+        dependencies: { "@azure/core-util": "^1.9.2" }
+      });
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      // @azure/core-client should be replaced with @azure-rest/core-client
+      expect(packageFile.dependencies).to.not.have.property("@azure/core-client");
+      expect(packageFile.dependencies).to.have.property("@azure-rest/core-client", "^2.3.1");
+      // Additional dependency should be added
+      expect(packageFile.dependencies).to.have.property("@azure/core-util", "^1.9.2");
+    });
   });
 
   describe("Flavorless lib", () => {
