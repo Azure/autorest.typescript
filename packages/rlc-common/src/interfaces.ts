@@ -261,6 +261,11 @@ export interface RLCOptions {
   compatibilityLro?: boolean;
   ignoreNullableOnOptional?: boolean;
   isMultiService?: boolean;
+  /**
+   * When enabled, every regular (non-LRO, non-paging) operation return type is augmented with a
+   * `_response` property containing `rawResponse`, `parsedBody`, and `parsedHeaders`.
+   */
+  enableStorageCompat?: boolean;
 }
 
 export interface ServiceInfo {

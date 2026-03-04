@@ -9,6 +9,7 @@ import {
   PagingHelpers,
   PollingHelpers,
   SerializationHelpers,
+  StorageCompatHelpers,
   UrlTemplateHelpers,
   XmlHelpers
 } from "../static-helpers-metadata.js";
@@ -398,7 +399,8 @@ export function getDeserializePrivateFunction(
 
 /**
  * Generates a private function to deserialize response headers.
- * Only generated when response headers are present and include-headers-in-response is enabled.
+ * Only generated when response headers are present and include-headers-in-response
+ * or enable-storage-compat is enabled.
  */
 export function getDeserializeHeadersPrivateFunction(
   context: SdkContext,
@@ -407,9 +409,14 @@ export function getDeserializeHeadersPrivateFunction(
   const responseHeaders = getResponseHeaders(operation.operation.responses);
   const isResponseHeadersEnabled =
     context.rlcOptions?.includeHeadersInResponse === true;
+  const isStorageCompatEnabled =
+    context.rlcOptions?.enableStorageCompat === true;
 
-  // Only generate if headers exist and feature is enabled
-  if (responseHeaders.length === 0 || !isResponseHeadersEnabled) {
+  // Only generate if headers exist and a relevant feature is enabled
+  if (
+    responseHeaders.length === 0 ||
+    (!isResponseHeadersEnabled && !isStorageCompatEnabled)
+  ) {
     return undefined;
   }
 
@@ -918,6 +925,15 @@ export function getOperationFunction(
   const hasHeaderOnlyResponse = !response.type && responseHeaders.length > 0;
   const isResponseHeadersEnabled =
     context.rlcOptions?.includeHeadersInResponse === true;
+  const isStorageCompatEnabled =
+    context.rlcOptions?.enableStorageCompat === true;
+
+  // Track the raw body type separately for storage-compat (before header merging)
+  const hasResponseBody = !!response.type;
+  let bodyType = "void";
+  if (response.type) {
+    bodyType = getTypeExpression(context, response.type!);
+  }
 
   let returnType = { name: "", type: "void" };
   if (response.type) {
@@ -947,6 +963,26 @@ export function getOperationFunction(
       type: `${buildHeaderOnlyResponseType(context, responseHeaders)}`
     };
   }
+
+  // When storage-compat is enabled, wrap the return type with StorageCompatResponseInfo
+  // Use the raw body type (not the header-augmented return type) for TBody
+  let finalReturnType = returnType.type;
+  if (isStorageCompatEnabled) {
+    const storageCompatInfoRef = resolveReference(
+      StorageCompatHelpers.StorageCompatResponseInfo
+    );
+    const headersType =
+      responseHeaders.length > 0
+        ? buildHeaderOnlyResponseType(context, responseHeaders)
+        : "Record<string, unknown>";
+    if (!hasResponseBody) {
+      // No body (void) — return only StorageCompatResponseInfo
+      finalReturnType = `${storageCompatInfoRef}<undefined, ${headersType}>`;
+    } else {
+      finalReturnType = `${bodyType} & ${storageCompatInfoRef}<${bodyType}, ${headersType}>`;
+    }
+  }
+
   const { name, fixme = [] } = getOperationName(operation);
   const functionStatement = {
     kind: StructureKind.Function,
@@ -959,7 +995,7 @@ export function getOperationFunction(
     name,
     propertyName: normalizeName(operation.name, NameType.Property),
     parameters,
-    returnType: `Promise<${returnType.type}>`
+    returnType: `Promise<${finalReturnType}>`
   };
 
   const statements: string[] = [];
@@ -969,6 +1005,29 @@ export function getOperationFunction(
   const resultVarName = generateLocallyUniqueName("result", paramNames);
 
   const parameterList = parameters.map((p) => p.name).join(", ");
+
+  // When storage-compat is enabled, set up the onResponse interceptor before sending
+  const storageCompatVarName = generateLocallyUniqueName(
+    "_storageCompat",
+    paramNames
+  );
+  if (isStorageCompatEnabled) {
+    const createOnResponseRef = resolveReference(
+      StorageCompatHelpers.createStorageCompatOnResponse
+    );
+    statements.push(
+      `const ${storageCompatVarName} = ${createOnResponseRef}(${optionalParamName}.onResponse);`
+    );
+  }
+
+  // Build the parameterList for the send call, injecting onResponse when storage-compat is enabled
+  const sendParameterList = isStorageCompatEnabled
+    ? parameterList.replace(
+        optionalParamName,
+        `{...${optionalParamName}, onResponse: ${storageCompatVarName}.onResponse}`
+      )
+    : parameterList;
+
   // Special case for binary-only bodies: use helper to call streaming methods so that Core doesn't poison the response body by
   // doing a UTF-8 decode on the raw bytes.
   if (response?.type?.kind === "bytes" && response.type.encode === "bytes") {
@@ -977,19 +1036,55 @@ export function getOperationFunction(
       paramNames
     );
     statements.push(
-      `const ${streamableMethodVarName} = _${name}Send(${parameterList});`
+      `const ${streamableMethodVarName} = _${name}Send(${sendParameterList});`
     );
     statements.push(
       `const ${resultVarName} = await ${resolveReference(SerializationHelpers.getBinaryResponse)}(${streamableMethodVarName});`
     );
   } else {
     statements.push(
-      `const ${resultVarName} = await _${name}Send(${parameterList});`
+      `const ${resultVarName} = await _${name}Send(${sendParameterList});`
     );
   }
 
   // If the response has headers and the feature flag to include headers in response is enabled, build the headers object and include it in the return value
-  if (responseHeaders.length > 0 && isResponseHeadersEnabled) {
+  if (isStorageCompatEnabled) {
+    // Storage-compat mode: wrap the return value with _response metadata using captured PipelineResponse
+    const addStorageCompatRef = resolveReference(
+      StorageCompatHelpers.addStorageCompatResponse
+    );
+    const parsedBodyVarName = generateLocallyUniqueName(
+      "parsedBody",
+      paramNames
+    );
+    const parsedHeadersVarName = generateLocallyUniqueName(
+      "parsedHeaders",
+      paramNames
+    );
+
+    // Deserialize body
+    if (!hasResponseBody) {
+      statements.push(`await _${name}Deserialize(${resultVarName});`);
+    } else {
+      statements.push(
+        `const ${parsedBodyVarName} = await _${name}Deserialize(${resultVarName});`
+      );
+    }
+
+    // Deserialize headers if present
+    if (responseHeaders.length > 0) {
+      statements.push(
+        `const ${parsedHeadersVarName} = _${name}DeserializeHeaders(${resultVarName});`
+      );
+    }
+
+    // Build the return statement using captured PipelineResponse
+    const bodyArg = !hasResponseBody ? "undefined" : parsedBodyVarName;
+    const headersArg = responseHeaders.length > 0 ? parsedHeadersVarName : "{}";
+    statements.push(
+      `return ${addStorageCompatRef}(${storageCompatVarName}.getRawResponse()!, ${bodyArg}, ${headersArg});`
+    );
+  } else if (responseHeaders.length > 0 && isResponseHeadersEnabled) {
     const headersVarName = generateLocallyUniqueName("headers", paramNames);
     statements.push(
       `const ${headersVarName} = _${name}DeserializeHeaders(result);`
