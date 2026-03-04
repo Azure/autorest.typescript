@@ -786,19 +786,18 @@ export function _getFileContentSend(
 }
 
 export async function _getFileContentDeserialize(
-  result: PathUncheckedResponse,
+  result: StreamableMethod,
 ): Promise<AgentsGetFileContentResponse> {
-  const expectedStatuses = ["200"];
-  if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+  let browserStream, nodeStream;
+  try {
+    browserStream = await (result as unknown as StreamableMethod).asBrowserStream();
+  } catch {
+    nodeStream = await (result as unknown as StreamableMethod).asNodeStream();
   }
 
-  const browserStream = await (result as unknown as StreamableMethod).asBrowserStream();
-  const nodeStream = await (result as unknown as StreamableMethod).asNodeStream();
-
   return {
-    blobBody: toBlob(browserStream.body),
-    readableStreamBody: nodeStream.body,
+    blobBody: toBlob(browserStream?.body),
+    readableStreamBody: nodeStream?.body,
   };
 }
 
@@ -808,8 +807,8 @@ export async function getFileContent(
   fileId: string,
   options: AgentsGetFileContentOptionalParams = { requestOptions: {} },
 ): Promise<AgentsGetFileContentResponse> {
-  const result = await _getFileContentSend(context, fileId, options);
-  return _getFileContentDeserialize(result);
+  const streamableMethod = _getFileContentSend(context, fileId, options);
+  return _getFileContentDeserialize(streamableMethod);
 }
 
 export function _getFileSend(

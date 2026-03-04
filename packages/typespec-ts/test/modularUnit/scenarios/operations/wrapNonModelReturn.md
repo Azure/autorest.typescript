@@ -156,13 +156,19 @@ wrap-non-model-return: true
 ```ts models alias GetLogsResponse
 export type GetLogsResponse = {
   /**
+   * BROWSER ONLY
+   *
    * The response body as a browser Blob.
+   * Always `undefined` in node.js.
    */
   blobBody?: Promise<Blob>;
   /**
+   * NODEJS ONLY
+   *
    * The response body as a node.js Readable stream.
+   * Always `undefined` in the browser.
    */
-  readableStreamBody?: Promise<NodeJS.ReadableStream | undefined>;
+  readableStreamBody?: NodeJS.ReadableStream;
 };
 ```
 
@@ -188,23 +194,25 @@ export function _getLogsSend(
 }
 
 export async function _getLogsDeserialize(result: StreamableMethod): Promise<GetLogsResponse> {
+  let browserStream, nodeStream;
   try {
-    const blobBody = toBlob((result as StreamableMethod).asBrowserStream());
-    return { blobBody, readableStreamBody: undefined };
+    browserStream = await (result as unknown as StreamableMethod).asBrowserStream();
   } catch {
-    const blobBody = (result as StreamableMethod)
-      .getBinaryResponse()
-      .then((r) => new Blob([r.body]));
-    return { blobBody, readableStreamBody: undefined };
+    nodeStream = await (result as unknown as StreamableMethod).asNodeStream();
   }
+
+  return {
+    blobBody: toBlob(browserStream?.body),
+    readableStreamBody: nodeStream?.body,
+  };
 }
 
 export async function getLogs(
   context: Client,
   options: GetLogsOptionalParams = { requestOptions: {} },
 ): Promise<GetLogsResponse> {
-  const result = _getLogsSend(context, options);
-  return _getLogsDeserialize(result);
+  const streamableMethod = _getLogsSend(context, options);
+  return _getLogsDeserialize(streamableMethod);
 }
 ```
 

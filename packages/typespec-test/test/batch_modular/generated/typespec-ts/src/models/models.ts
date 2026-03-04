@@ -5720,31 +5720,49 @@ export enum KnownVersions {
 
 export type GetNodeFileResponse = {
   /**
+   * BROWSER ONLY
+   *
    * The response body as a browser Blob.
+   * Always `undefined` in node.js.
    */
   blobBody?: Promise<Blob>;
   /**
+   * NODEJS ONLY
+   *
    * The response body as a node.js Readable stream.
+   * Always `undefined` in the browser.
    */
-  readableStreamBody?: Promise<NodeJS.ReadableStream | undefined>;
+  readableStreamBody?: NodeJS.ReadableStream;
 };
 export type GetNodeRemoteDesktopFileResponse = {
   /**
+   * BROWSER ONLY
+   *
    * The response body as a browser Blob.
+   * Always `undefined` in node.js.
    */
   blobBody?: Promise<Blob>;
   /**
+   * NODEJS ONLY
+   *
    * The response body as a node.js Readable stream.
+   * Always `undefined` in the browser.
    */
-  readableStreamBody?: Promise<NodeJS.ReadableStream | undefined>;
+  readableStreamBody?: NodeJS.ReadableStream;
 };
 export type GetTaskFileResponse = {
   /**
+   * BROWSER ONLY
+   *
    * The response body as a browser Blob.
+   * Always `undefined` in node.js.
    */
   blobBody?: Promise<Blob>;
   /**
+   * NODEJS ONLY
+   *
    * The response body as a node.js Readable stream.
+   * Always `undefined` in the browser.
    */
-  readableStreamBody?: Promise<NodeJS.ReadableStream | undefined>;
+  readableStreamBody?: NodeJS.ReadableStream;
 };

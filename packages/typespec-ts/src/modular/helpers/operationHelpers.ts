@@ -979,10 +979,8 @@ export function getOperationFunction(
     context.rlcOptions?.includeHeadersInResponse === true;
 
   // Check if we need to wrap the non-model return type
-  const { shouldWrap: wrapReturn } = checkWrapNonModelReturn(
-    context,
-    operation
-  );
+  const { shouldWrap: wrapReturn, isBinary: wrapReturnIsBinary } =
+    checkWrapNonModelReturn(context, operation);
 
   let returnType = { name: "", type: "void" };
   if (wrapReturn) {
@@ -1040,9 +1038,27 @@ export function getOperationFunction(
   const resultVarName = generateLocallyUniqueName("result", paramNames);
 
   const parameterList = parameters.map((p) => p.name).join(", ");
-  // Special case for binary-only bodies: use helper to call streaming methods so that Core doesn't poison the response body by
-  // doing a UTF-8 decode on the raw bytes.
-  if (response?.type?.kind === "bytes" && response.type.encode === "bytes") {
+  // For binary wrap, pass the StreamableMethod directly to the deserializer.
+  // The deserializer uses asBrowserStream()/asNodeStream() to build the wrapper.
+  if (wrapReturn && wrapReturnIsBinary) {
+    const streamableMethodVarName = generateLocallyUniqueName(
+      "streamableMethod",
+      paramNames
+    );
+    statements.push(
+      `const ${streamableMethodVarName} = _${name}Send(${parameterList});`
+    );
+    statements.push(`return _${name}Deserialize(${streamableMethodVarName});`);
+    return {
+      ...functionStatement,
+      statements
+    } as FunctionDeclarationStructure & { propertyName?: string };
+  } else if (
+    // Special case for binary-only bodies: use helper to call streaming methods so that Core doesn't poison the response body by
+    // doing a UTF-8 decode on the raw bytes.
+    response?.type?.kind === "bytes" &&
+    response.type.encode === "bytes"
+  ) {
     const streamableMethodVarName = generateLocallyUniqueName(
       "streamableMethod",
       paramNames

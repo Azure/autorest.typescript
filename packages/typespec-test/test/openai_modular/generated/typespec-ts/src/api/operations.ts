@@ -130,15 +130,17 @@ export function _generateSpeechFromTextSend(
 export async function _generateSpeechFromTextDeserialize(
   result: StreamableMethod,
 ): Promise<GenerateSpeechFromTextResponse> {
+  let browserStream, nodeStream;
   try {
-    const blobBody = toBlob((result as StreamableMethod).asBrowserStream());
-    return { blobBody, readableStreamBody: undefined };
+    browserStream = await (result as unknown as StreamableMethod).asBrowserStream();
   } catch {
-    return {
-      blobBody: undefined,
-      readableStreamBody: (result as StreamableMethod).asNodeStream().then((r) => r.body),
-    };
+    nodeStream = await (result as unknown as StreamableMethod).asNodeStream();
   }
+
+  return {
+    blobBody: toBlob(browserStream?.body),
+    readableStreamBody: nodeStream?.body,
+  };
 }
 
 /** Generates text-to-speech audio from the input text. */
@@ -148,8 +150,8 @@ export async function generateSpeechFromText(
   body: SpeechGenerationOptions,
   options: GenerateSpeechFromTextOptionalParams = { requestOptions: {} },
 ): Promise<GenerateSpeechFromTextResponse> {
-  const result = _generateSpeechFromTextSend(context, deploymentId, body, options);
-  return _generateSpeechFromTextDeserialize(result);
+  const streamableMethod = _generateSpeechFromTextSend(context, deploymentId, body, options);
+  return _generateSpeechFromTextDeserialize(streamableMethod);
 }
 
 export function _getImageGenerationsSend(

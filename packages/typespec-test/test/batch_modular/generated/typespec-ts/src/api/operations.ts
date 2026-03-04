@@ -412,15 +412,17 @@ export function _getNodeFileSend(
 export async function _getNodeFileDeserialize(
   result: StreamableMethod,
 ): Promise<GetNodeFileResponse> {
+  let browserStream, nodeStream;
   try {
-    const blobBody = toBlob((result as StreamableMethod).asBrowserStream());
-    return { blobBody, readableStreamBody: undefined };
+    browserStream = await (result as unknown as StreamableMethod).asBrowserStream();
   } catch {
-    return {
-      blobBody: undefined,
-      readableStreamBody: (result as StreamableMethod).asNodeStream().then((r) => r.body),
-    };
+    nodeStream = await (result as unknown as StreamableMethod).asNodeStream();
   }
+
+  return {
+    blobBody: toBlob(browserStream?.body),
+    readableStreamBody: nodeStream?.body,
+  };
 }
 
 /** Returns the content of the specified Compute Node file. */
@@ -431,8 +433,8 @@ export async function getNodeFile(
   filePath: string,
   options: GetNodeFileOptionalParams = { requestOptions: {} },
 ): Promise<GetNodeFileResponse> {
-  const result = _getNodeFileSend(context, poolId, nodeId, filePath, options);
-  return _getNodeFileDeserialize(result);
+  const streamableMethod = _getNodeFileSend(context, poolId, nodeId, filePath, options);
+  return _getNodeFileDeserialize(streamableMethod);
 }
 
 export function _deleteNodeFileSend(
@@ -832,15 +834,17 @@ export function _getNodeRemoteDesktopFileSend(
 export async function _getNodeRemoteDesktopFileDeserialize(
   result: StreamableMethod,
 ): Promise<GetNodeRemoteDesktopFileResponse> {
+  let browserStream, nodeStream;
   try {
-    const blobBody = toBlob((result as StreamableMethod).asBrowserStream());
-    return { blobBody, readableStreamBody: undefined };
+    browserStream = await (result as unknown as StreamableMethod).asBrowserStream();
   } catch {
-    return {
-      blobBody: undefined,
-      readableStreamBody: (result as StreamableMethod).asNodeStream().then((r) => r.body),
-    };
+    nodeStream = await (result as unknown as StreamableMethod).asNodeStream();
   }
+
+  return {
+    blobBody: toBlob(browserStream?.body),
+    readableStreamBody: nodeStream?.body,
+  };
 }
 
 /**
@@ -855,8 +859,8 @@ export async function getNodeRemoteDesktopFile(
   nodeId: string,
   options: GetNodeRemoteDesktopFileOptionalParams = { requestOptions: {} },
 ): Promise<GetNodeRemoteDesktopFileResponse> {
-  const result = _getNodeRemoteDesktopFileSend(context, poolId, nodeId, options);
-  return _getNodeRemoteDesktopFileDeserialize(result);
+  const streamableMethod = _getNodeRemoteDesktopFileSend(context, poolId, nodeId, options);
+  return _getNodeRemoteDesktopFileDeserialize(streamableMethod);
 }
 
 export function _getNodeRemoteLoginSettingsSend(
@@ -1673,15 +1677,17 @@ export function _getTaskFileSend(
 export async function _getTaskFileDeserialize(
   result: StreamableMethod,
 ): Promise<GetTaskFileResponse> {
+  let browserStream, nodeStream;
   try {
-    const blobBody = toBlob((result as StreamableMethod).asBrowserStream());
-    return { blobBody, readableStreamBody: undefined };
+    browserStream = await (result as unknown as StreamableMethod).asBrowserStream();
   } catch {
-    return {
-      blobBody: undefined,
-      readableStreamBody: (result as StreamableMethod).asNodeStream().then((r) => r.body),
-    };
+    nodeStream = await (result as unknown as StreamableMethod).asNodeStream();
   }
+
+  return {
+    blobBody: toBlob(browserStream?.body),
+    readableStreamBody: nodeStream?.body,
+  };
 }
 
 /** Returns the content of the specified Task file. */
@@ -1692,8 +1698,8 @@ export async function getTaskFile(
   filePath: string,
   options: GetTaskFileOptionalParams = { requestOptions: {} },
 ): Promise<GetTaskFileResponse> {
-  const result = _getTaskFileSend(context, jobId, taskId, filePath, options);
-  return _getTaskFileDeserialize(result);
+  const streamableMethod = _getTaskFileSend(context, jobId, taskId, filePath, options);
+  return _getTaskFileDeserialize(streamableMethod);
 }
 
 export function _deleteTaskFileSend(

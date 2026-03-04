@@ -327,7 +327,6 @@ op downloadFile(): {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { getBinaryResponse } from "../static-helpers/serialization/get-binary-response.js";
 import { DownloadFileOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -362,8 +361,7 @@ export async function downloadFile(
   options: DownloadFileOptionalParams = { requestOptions: {} },
 ): Promise<Uint8Array> {
   const streamableMethod = _downloadFileSend(context, options);
-  const result = await getBinaryResponse(streamableMethod);
-  return _downloadFileDeserialize(result);
+  return _downloadFileDeserialize(streamableMethod);
 }
 ```
 
@@ -387,7 +385,6 @@ op downloadFile(): {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { getBinaryResponse } from "../static-helpers/serialization/get-binary-response.js";
 import { DownloadFileOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -422,8 +419,7 @@ export async function downloadFile(
   options: DownloadFileOptionalParams = { requestOptions: {} },
 ): Promise<Uint8Array> {
   const streamableMethod = _downloadFileSend(context, options);
-  const result = await getBinaryResponse(streamableMethod);
-  return _downloadFileDeserialize(result);
+  return _downloadFileDeserialize(streamableMethod);
 }
 ```
 
