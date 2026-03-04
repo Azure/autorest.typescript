@@ -412,17 +412,13 @@ export function _getNodeFileSend(
 export async function _getNodeFileDeserialize(
   result: StreamableMethod,
 ): Promise<GetNodeFileResponse> {
-  let browserStream, nodeStream;
   try {
-    browserStream = await (result as unknown as StreamableMethod).asBrowserStream();
+    const browserStream = await (result as unknown as StreamableMethod).asBrowserStream();
+    return { blobBody: toBlob(browserStream?.body), readableStreamBody: undefined };
   } catch {
-    nodeStream = await (result as unknown as StreamableMethod).asNodeStream();
+    const nodeStream = await (result as unknown as StreamableMethod).asNodeStream();
+    return { blobBody: undefined, readableStreamBody: nodeStream?.body };
   }
-
-  return {
-    blobBody: toBlob(browserStream?.body),
-    readableStreamBody: nodeStream?.body,
-  };
 }
 
 /** Returns the content of the specified Compute Node file. */
@@ -834,17 +830,13 @@ export function _getNodeRemoteDesktopFileSend(
 export async function _getNodeRemoteDesktopFileDeserialize(
   result: StreamableMethod,
 ): Promise<GetNodeRemoteDesktopFileResponse> {
-  let browserStream, nodeStream;
   try {
-    browserStream = await (result as unknown as StreamableMethod).asBrowserStream();
+    const browserStream = await (result as unknown as StreamableMethod).asBrowserStream();
+    return { blobBody: toBlob(browserStream?.body), readableStreamBody: undefined };
   } catch {
-    nodeStream = await (result as unknown as StreamableMethod).asNodeStream();
+    const nodeStream = await (result as unknown as StreamableMethod).asNodeStream();
+    return { blobBody: undefined, readableStreamBody: nodeStream?.body };
   }
-
-  return {
-    blobBody: toBlob(browserStream?.body),
-    readableStreamBody: nodeStream?.body,
-  };
 }
 
 /**
@@ -1677,17 +1669,13 @@ export function _getTaskFileSend(
 export async function _getTaskFileDeserialize(
   result: StreamableMethod,
 ): Promise<GetTaskFileResponse> {
-  let browserStream, nodeStream;
   try {
-    browserStream = await (result as unknown as StreamableMethod).asBrowserStream();
+    const browserStream = await (result as unknown as StreamableMethod).asBrowserStream();
+    return { blobBody: toBlob(browserStream?.body), readableStreamBody: undefined };
   } catch {
-    nodeStream = await (result as unknown as StreamableMethod).asNodeStream();
+    const nodeStream = await (result as unknown as StreamableMethod).asNodeStream();
+    return { blobBody: undefined, readableStreamBody: nodeStream?.body };
   }
-
-  return {
-    blobBody: toBlob(browserStream?.body),
-    readableStreamBody: nodeStream?.body,
-  };
 }
 
 /** Returns the content of the specified Task file. */

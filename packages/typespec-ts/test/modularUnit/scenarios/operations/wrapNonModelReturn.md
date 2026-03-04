@@ -194,17 +194,13 @@ export function _getLogsSend(
 }
 
 export async function _getLogsDeserialize(result: StreamableMethod): Promise<GetLogsResponse> {
-  let browserStream, nodeStream;
   try {
-    browserStream = await (result as unknown as StreamableMethod).asBrowserStream();
+    const browserStream = await (result as unknown as StreamableMethod).asBrowserStream();
+    return { blobBody: toBlob(browserStream?.body), readableStreamBody: undefined };
   } catch {
-    nodeStream = await (result as unknown as StreamableMethod).asNodeStream();
+    const nodeStream = await (result as unknown as StreamableMethod).asNodeStream();
+    return { blobBody: undefined, readableStreamBody: nodeStream?.body };
   }
-
-  return {
-    blobBody: toBlob(browserStream?.body),
-    readableStreamBody: nodeStream?.body,
-  };
 }
 
 export async function getLogs(
