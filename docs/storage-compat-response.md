@@ -113,8 +113,8 @@ const response = await client.getWidget("widget-1");
 // Standard typed access
 console.log(response.name); // Widget property
 
-// Raw PipelineResponse access (captured via onResponse callback)
-console.log(response._response.rawResponse.status); // 200 (number, from PipelineResponse)
+// Raw FullOperationResponse access (captured via onResponse callback)
+console.log(response._response.rawResponse.status); // 200 (number, from FullOperationResponse)
 console.log(response._response.parsedBody.name); // Same as response.name
 console.log(response._response.parsedHeaders.requestId); // Typed header
 
@@ -129,8 +129,8 @@ const response2 = await client.getWidget("widget-2", {
 ```typescript
 interface StorageCompatResponseInfo<TBody, THeaders> {
   _response: {
-    /** The raw PipelineResponse from the HTTP pipeline, captured via the onResponse callback. */
-    rawResponse: PipelineResponse;
+    /** The raw FullOperationResponse from the HTTP pipeline, captured via the onResponse callback. */
+    rawResponse: FullOperationResponse;
     /** The deserialized response body. */
     parsedBody: TBody;
     /** The deserialized response headers. */
@@ -141,7 +141,7 @@ interface StorageCompatResponseInfo<TBody, THeaders> {
 
 | Property | Type | Description |
 |----------|------|-------------|
-| `rawResponse` | `PipelineResponse` | The raw HTTP response from the pipeline, captured via the `onResponse` callback. From `@azure/core-rest-pipeline` (Azure flavor) or `@typespec/ts-http-runtime` (generic) |
+| `rawResponse` | `FullOperationResponse` | The raw HTTP response from the pipeline, captured via the `onResponse` callback. From `@azure/core-rest-pipeline` (Azure flavor) or `@typespec/ts-http-runtime` (generic) |
 | `parsedBody` | `TBody` | The deserialized response body; `undefined` for void operations |
 | `parsedHeaders` | `THeaders` | The deserialized response headers using the same deserialization as `include-headers-in-response`; `Record<string, unknown>` when no headers are defined in the spec |
 
@@ -152,8 +152,8 @@ The feature uses the `onResponse` callback mechanism built into the HTTP runtime
 1. Before calling the send function, a `createStorageCompatOnResponse()` interceptor is created
 2. The interceptor wraps any user-provided `onResponse` callback, chaining them together
 3. The interceptor's `onResponse` is injected into the operation options and passed to the send function
-4. When the HTTP pipeline fires the callback, the `FullOperationResponse` (which extends `PipelineResponse`) is captured
-5. After deserialization completes, `addStorageCompatResponse()` augments the result with the captured `PipelineResponse`
+4. When the HTTP pipeline fires the callback, the `FullOperationResponse` (which extends `FullOperationResponse`) is captured
+5. After deserialization completes, `addStorageCompatResponse()` augments the result with the captured `FullOperationResponse`
 
 ## Files Changed
 

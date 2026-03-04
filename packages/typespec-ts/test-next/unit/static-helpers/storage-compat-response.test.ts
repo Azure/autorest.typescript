@@ -5,8 +5,8 @@ import {
   StorageCompatResponseInfo
 } from "../../../static/static-helpers/storageCompatResponse.js";
 
-// Minimal mock for PipelineResponse
-function createMockPipelineResponse(
+// Minimal mock for FullOperationResponse (extends PipelineResponse)
+function createMockFullOperationResponse(
   status: number = 200,
   body: any = {},
   headers: Record<string, string> = {}
@@ -22,18 +22,7 @@ function createMockPipelineResponse(
       method: "GET",
       headers: { toJSON: () => ({}) }
     },
-    bodyAsText: JSON.stringify(body)
-  } as any;
-}
-
-// Minimal mock for FullOperationResponse (extends PipelineResponse)
-function createMockFullOperationResponse(
-  status: number = 200,
-  body: any = {},
-  headers: Record<string, string> = {}
-) {
-  return {
-    ...createMockPipelineResponse(status, body, headers),
+    bodyAsText: JSON.stringify(body),
     rawHeaders: headers,
     parsedBody: body
   } as any;
@@ -41,7 +30,7 @@ function createMockFullOperationResponse(
 
 describe("addStorageCompatResponse", () => {
   it("should augment a model response with _response metadata", () => {
-    const rawResponse = createMockPipelineResponse(200, { name: "widget-1" });
+    const rawResponse = createMockFullOperationResponse(200, { name: "widget-1" });
     const parsedBody = { name: "widget-1" };
     const parsedHeaders = { requestId: "abc-123" };
 
@@ -62,7 +51,7 @@ describe("addStorageCompatResponse", () => {
   });
 
   it("should handle void (undefined) body", () => {
-    const rawResponse = createMockPipelineResponse(204);
+    const rawResponse = createMockFullOperationResponse(204);
     const parsedHeaders = {};
 
     const result = addStorageCompatResponse(
@@ -78,7 +67,7 @@ describe("addStorageCompatResponse", () => {
   });
 
   it("should handle null body", () => {
-    const rawResponse = createMockPipelineResponse(200);
+    const rawResponse = createMockFullOperationResponse(200);
 
     const result = addStorageCompatResponse(rawResponse, null, {});
 
@@ -88,7 +77,7 @@ describe("addStorageCompatResponse", () => {
   });
 
   it("should handle string body", () => {
-    const rawResponse = createMockPipelineResponse(200, "hello");
+    const rawResponse = createMockFullOperationResponse(200, "hello");
     const parsedBody = "hello";
 
     const result = addStorageCompatResponse(rawResponse, parsedBody, {});
@@ -99,7 +88,7 @@ describe("addStorageCompatResponse", () => {
   });
 
   it("should handle complex nested model body", () => {
-    const rawResponse = createMockPipelineResponse(200, {
+    const rawResponse = createMockFullOperationResponse(200, {
       id: "1",
       nested: { value: 42 }
     });
@@ -119,7 +108,7 @@ describe("addStorageCompatResponse", () => {
   });
 
   it("should handle empty headers", () => {
-    const rawResponse = createMockPipelineResponse(200, { name: "test" });
+    const rawResponse = createMockFullOperationResponse(200, { name: "test" });
     const parsedBody = { name: "test" };
     const parsedHeaders: Record<string, unknown> = {};
 
@@ -133,7 +122,7 @@ describe("addStorageCompatResponse", () => {
   });
 
   it("should preserve the raw response object identity", () => {
-    const rawResponse = createMockPipelineResponse(200, {});
+    const rawResponse = createMockFullOperationResponse(200, {});
     const parsedBody = { value: true };
 
     const result = addStorageCompatResponse(rawResponse, parsedBody, {});
@@ -144,7 +133,7 @@ describe("addStorageCompatResponse", () => {
   });
 
   it("should type-check with StorageCompatResponseInfo", () => {
-    const rawResponse = createMockPipelineResponse(200);
+    const rawResponse = createMockFullOperationResponse(200);
     const parsedBody = { name: "test" };
     const parsedHeaders = { requestId: "abc" };
 

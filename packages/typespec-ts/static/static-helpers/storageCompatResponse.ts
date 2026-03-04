@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import type { PipelineResponse } from "@azure/core-rest-pipeline";
 import type {
   FullOperationResponse,
   RawResponseCallback
@@ -16,8 +15,8 @@ export interface StorageCompatResponseInfo<
   THeaders = Record<string, unknown>
 > {
   _response: {
-    /** The raw PipelineResponse from the HTTP pipeline. */
-    rawResponse: PipelineResponse;
+    /** The raw FullOperationResponse from the HTTP pipeline. */
+    rawResponse: FullOperationResponse;
     /** The deserialized response body. */
     parsedBody: TBody;
     /** The deserialized response headers. */
@@ -26,7 +25,7 @@ export interface StorageCompatResponseInfo<
 }
 
 /**
- * Creates an onResponse callback that captures the raw PipelineResponse.
+ * Creates an onResponse callback that captures the raw FullOperationResponse.
  * Chains with any existing user-provided onResponse callback.
  * @param originalOnResponse - The user's original onResponse callback, if any.
  * @returns An object with the onResponse callback and a getter for the captured response.
@@ -35,9 +34,9 @@ export function createStorageCompatOnResponse(
   originalOnResponse?: RawResponseCallback
 ): {
   onResponse: RawResponseCallback;
-  getRawResponse: () => PipelineResponse | undefined;
+  getRawResponse: () => FullOperationResponse | undefined;
 } {
-  let captured: PipelineResponse | undefined;
+  let captured: FullOperationResponse | undefined;
   return {
     onResponse: (rawResponse: FullOperationResponse, error?: unknown) => {
       captured = rawResponse;
@@ -61,7 +60,7 @@ type StorageCompatResult<TBody, THeaders> = TBody extends
 
 /**
  * Augments a deserialized response with raw HTTP response metadata.
- * @param rawResponse - The raw PipelineResponse from the HTTP pipeline.
+ * @param rawResponse - The raw FullOperationResponse from the HTTP pipeline.
  * @param parsedBody - The deserialized response body.
  * @param parsedHeaders - The deserialized response headers.
  * @returns The parsedBody augmented with a `_response` property.
@@ -70,7 +69,7 @@ export function addStorageCompatResponse<
   TBody,
   THeaders = Record<string, unknown>
 >(
-  rawResponse: PipelineResponse,
+  rawResponse: FullOperationResponse,
   parsedBody: TBody,
   parsedHeaders: THeaders
 ): StorageCompatResult<TBody, THeaders> {
