@@ -2,12 +2,11 @@
  * Converts a browser stream response promise to a Promise<Blob>.
  * Used for wrapping binary response `blobBody` in browser environments.
  */
-export async function toBlob(
-  browserStreamPromise: Promise<{ body?: ReadableStream<Uint8Array> }>
-): Promise<Blob> {
-  const response = await browserStreamPromise;
-  if (!response.body) {
-    return new Blob([]);
+export function toBlob(
+  browserStream?: ReadableStream<Uint8Array>,
+): Promise<Blob> | undefined {
+  if (!browserStream) {
+    return undefined;
   }
-  return new Response(response.body).blob();
+  return new Response(browserStream).blob();
 }

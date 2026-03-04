@@ -179,17 +179,10 @@ export function getDeserializePrivateFunction(
 
   // Check if we need to wrap the non-model return type
   const { shouldWrap, isBinary } = checkWrapNonModelReturn(context, operation);
-
-  // For binary wrap, the deserializer receives a StreamableMethod directly (not PathUncheckedResponse)
-  const resultParamType =
-    shouldWrap && isBinary
-      ? resolveReference(dependencies.StreamableMethod)
-      : PathUncheckedResponseReference;
-
   const parameters: OptionalKind<ParameterDeclarationStructure>[] = [
     {
       name: "result",
-      type: resultParamType
+      type: PathUncheckedResponseReference
     }
   ];
   const isLroOnly = isLroOnlyOperation(operation);
@@ -238,9 +231,7 @@ export function getDeserializePrivateFunction(
     dependencies.createRestError
   );
 
-  // For binary wrap, parameter is StreamableMethod - skip status check
-  if (!(shouldWrap && isBinary)) {
-    statements.push(
+  statements.push(
       `const expectedStatuses = ${getExpectedStatuses(operation)};`
     );
     statements.push(
@@ -248,7 +239,6 @@ export function getDeserializePrivateFunction(
       `${getExceptionThrowStatement(context, operation)}`,
       "}"
     );
-  }
   const deserializedType =
     isLroOnly || isLroAndPaging
       ? operation?.lroMetadata?.finalResponse?.result
@@ -289,36 +279,6 @@ export function getDeserializePrivateFunction(
       isXml &&
       deserializedType.kind === "model" &&
       hasXmlSerialization(deserializedType);
-
-    // Handle wrap-non-model-return for non-LRO, non-paging operations
-    if (shouldWrap) {
-      if (isBinary) {
-        // Binary response: result is StreamableMethod passed directly from the operation function.
-        // Use asBrowserStream() for blobBody and asNodeStream() for readableStreamBody.
-        const toBlobReference = resolveReference(SerializationHelpers.toBlob);
-        const StreamableMethodReference = resolveReference(
-          dependencies.StreamableMethod
-        );
-        statements.push(
-          `try {\n    const blobBody = ${toBlobReference}((result as ${StreamableMethodReference}).asBrowserStream());\n    return { blobBody, readableStreamBody: undefined };\n  } catch {\n    const blobBody = (result as ${StreamableMethodReference}).getBinaryResponse().then((r) => new Blob([r.body]));\n    return { blobBody, readableStreamBody: undefined };\n  }`
-        );
-      } else {
-        // Non-model response: wrap with body property
-        // Generate the appropriate deserialization for the body value
-        const bodyValue = deserializeResponseValue(
-          context,
-          deserializedType,
-          "result.body",
-          true,
-          getEncodeForType(deserializedType)
-        );
-        statements.push(`return { body: ${bodyValue} };`);
-      }
-      return {
-        ...functionStatement,
-        statements
-      };
-    }
 
     // Workaround for multipart response: cast return value as any due to lack of multipart response handling in core
     const multipartCastSuffix = isMultipart ? " as any" : "";
@@ -414,6 +374,42 @@ export function getDeserializePrivateFunction(
           skipDiscriminatedUnionSuffix: false
         }
       );
+       // Handle wrap-non-model-return for non-LRO, non-paging operations
+    if (shouldWrap) {
+      if (isBinary) {
+        // Binary response: result is StreamableMethod passed directly from the operation function.
+        // Use asBrowserStream() for blobBody and asNodeStream() for readableStreamBody.
+        const toBlobReference = resolveReference(SerializationHelpers.toBlob);
+        const StreamableMethodReference = resolveReference(
+          dependencies.StreamableMethod
+        );
+        statements.push(
+          `const browserStream = await (result as unknown as ${StreamableMethodReference}).asBrowserStream();
+          const nodeStream = await (result as unknown as ${StreamableMethodReference}).asNodeStream();
+
+          return {
+            blobBody: ${toBlobReference}(browserStream.body),
+            readableStreamBody: nodeStream.body,
+          };
+          `
+        );
+      } else {
+        // Non-model response: wrap with body property
+        // Generate the appropriate deserialization for the body value
+        const bodyValue = deserializeResponseValue(
+          context,
+          deserializedType,
+          "result.body",
+          true,
+          getEncodeForType(deserializedType)
+        );
+        statements.push(`return { body: ${bodyValue} };`);
+      }
+      return {
+        ...functionStatement,
+        statements
+      };
+    }
       if (deserializeFunctionName) {
         statements.push(
           `return ${deserializeFunctionName}(${deserializedRoot})${multipartCastSuffix}`
@@ -972,7 +968,7 @@ export function getOperationFunction(
     context.rlcOptions?.includeHeadersInResponse === true;
 
   // Check if we need to wrap the non-model return type
-  const { shouldWrap: wrapReturn, isBinary: wrapReturnIsBinary } =
+  const { shouldWrap: wrapReturn } =
     checkWrapNonModelReturn(context, operation);
 
   let returnType = { name: "", type: "void" };
@@ -1031,16 +1027,9 @@ export function getOperationFunction(
   const resultVarName = generateLocallyUniqueName("result", paramNames);
 
   const parameterList = parameters.map((p) => p.name).join(", ");
-  // For binary wrap, pass the StreamableMethod directly to the deserializer (no getBinaryResponse).
-  // The deserializer will use asBrowserStream()/asNodeStream() to build the wrapper.
-  if (wrapReturn && wrapReturnIsBinary) {
-    statements.push(`const ${resultVarName} = _${name}Send(${parameterList});`);
-    // Special case for binary-only bodies: use helper to call streaming methods so that Core doesn't poison the response body by
-    // doing a UTF-8 decode on the raw bytes.
-  } else if (
-    response?.type?.kind === "bytes" &&
-    response.type.encode === "bytes"
-  ) {
+  // Special case for binary-only bodies: use helper to call streaming methods so that Core doesn't poison the response body by
+  // doing a UTF-8 decode on the raw bytes.
+  if (response?.type?.kind === "bytes" && response.type.encode === "bytes") {
     const streamableMethodVarName = generateLocallyUniqueName(
       "streamableMethod",
       paramNames
@@ -2938,15 +2927,21 @@ export function buildNonModelResponseTypeDeclaration(
 
   if (isBinary) {
     typeBody = `{
-  /**
-   * The response body as a browser Blob.
-   */
-  blobBody?: Promise<Blob>;
-  /**
-   * The response body as a node.js Readable stream.
-   */
-  readableStreamBody?: Promise<NodeJS.ReadableStream | undefined>;
-}`;
+      /**
+       * BROWSER ONLY
+       *
+       * The response body as a browser Blob.
+       * Always \`undefined\` in node.js.
+       */
+      blobBody?: Promise<Blob>;
+      /**
+       * NODEJS ONLY
+       *
+       * The response body as a node.js Readable stream.
+       * Always \`undefined\` in the browser.
+       */
+      readableStreamBody?: NodeJS.ReadableStream;
+  }`;
   } else {
     const returnType = getTypeExpression(context, operation.response.type!);
     typeBody = `{ body: ${returnType} }`;

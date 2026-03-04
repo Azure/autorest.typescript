@@ -786,17 +786,20 @@ export function _getFileContentSend(
 }
 
 export async function _getFileContentDeserialize(
-  result: StreamableMethod,
+  result: PathUncheckedResponse,
 ): Promise<AgentsGetFileContentResponse> {
-  try {
-    const blobBody = toBlob((result as StreamableMethod).asBrowserStream());
-    return { blobBody, readableStreamBody: undefined };
-  } catch {
-    return {
-      blobBody: undefined,
-      readableStreamBody: (result as StreamableMethod).asNodeStream().then((r) => r.body),
-    };
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
   }
+
+  const browserStream = await (result as unknown as StreamableMethod).asBrowserStream();
+  const nodeStream = await (result as unknown as StreamableMethod).asNodeStream();
+
+  return {
+    blobBody: toBlob(browserStream.body),
+    readableStreamBody: nodeStream.body,
+  };
 }
 
 /** Retrieves the raw content of a specific file. */
@@ -805,7 +808,7 @@ export async function getFileContent(
   fileId: string,
   options: AgentsGetFileContentOptionalParams = { requestOptions: {} },
 ): Promise<AgentsGetFileContentResponse> {
-  const result = _getFileContentSend(context, fileId, options);
+  const result = await _getFileContentSend(context, fileId, options);
   return _getFileContentDeserialize(result);
 }
 
