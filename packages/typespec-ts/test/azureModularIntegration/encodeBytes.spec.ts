@@ -169,9 +169,15 @@ describe("EncodeBytesClient Modular Client", () => {
           res.headers.get("content-type") === "application/octet-stream";
         }
       });
-      const blob = await result.blobBody!;
-      const arrayBuffer = await blob.arrayBuffer();
-      assert.deepStrictEqual(new Uint8Array(arrayBuffer), pngFile);
+      const chunks: Uint8Array[] = [];
+      for await (const chunk of result.readableStreamBody!) {
+        chunks.push(chunk as Uint8Array);
+      }
+      const buffer = Buffer.concat(chunks);
+      assert.strictEqual(
+        uint8ArrayToString(buffer, "base64"),
+        uint8ArrayToString(pngFile, "base64")
+      );
     });
 
     it(`should get bytes base64 encoding`, async () => {
@@ -193,9 +199,15 @@ describe("EncodeBytesClient Modular Client", () => {
           res.headers.get("content-type") === "image/png";
         }
       });
-      const blob = await result.blobBody!;
-      const arrayBuffer = await blob.arrayBuffer();
-      assert.deepStrictEqual(new Uint8Array(arrayBuffer), pngFile);
+      const chunks: Uint8Array[] = [];
+      for await (const chunk of result.readableStreamBody!) {
+        chunks.push(chunk as Uint8Array);
+      }
+      const buffer = Buffer.concat(chunks);
+      assert.strictEqual(
+        uint8ArrayToString(buffer, "base64"),
+        uint8ArrayToString(pngFile, "base64")
+      );
     });
 
     it(`should get bytes with octet-stream content type`, async () => {
@@ -204,9 +216,15 @@ describe("EncodeBytesClient Modular Client", () => {
           res.headers.get("content-type") === "application/octet-stream";
         }
       });
-      const blob = await result.blobBody!;
-      const arrayBuffer = await blob.arrayBuffer();
-      assert.deepStrictEqual(new Uint8Array(arrayBuffer), pngFile);
+      const chunks: Uint8Array[] = [];
+      for await (const chunk of result.readableStreamBody!) {
+        chunks.push(chunk as Uint8Array);
+      }
+      const buffer = Buffer.concat(chunks);
+      assert.strictEqual(
+        uint8ArrayToString(buffer, "base64"),
+        uint8ArrayToString(pngFile, "base64")
+      );
     });
   });
 });

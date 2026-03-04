@@ -179,10 +179,15 @@ export function getDeserializePrivateFunction(
 
   // Check if we need to wrap the non-model return type
   const { shouldWrap, isBinary } = checkWrapNonModelReturn(context, operation);
+  // For binary wrap, the deserializer receives a StreamableMethod directly (not PathUncheckedResponse)Collapse commentComment on line L183MaryGao commented on Mar 4, 2026 MaryGaoon Mar 4, 2026MemberMore actionskeep this.ReactWrite a replyResolve comment
+  const resultParamType =
+    shouldWrap && isBinary
+      ? resolveReference(dependencies.StreamableMethod)
+      : PathUncheckedResponseReference;
   const parameters: OptionalKind<ParameterDeclarationStructure>[] = [
     {
       name: "result",
-      type: PathUncheckedResponseReference
+      type: resultParamType
     }
   ];
   const isLroOnly = isLroOnlyOperation(operation);
@@ -230,15 +235,17 @@ export function getDeserializePrivateFunction(
   const createRestErrorReference = resolveReference(
     dependencies.createRestError
   );
-
-  statements.push(
-    `const expectedStatuses = ${getExpectedStatuses(operation)};`
-  );
-  statements.push(
-    `if(!expectedStatuses.includes(result.status)){`,
-    `${getExceptionThrowStatement(context, operation)}`,
-    "}"
-  );
+  // For binary wrap, parameter is StreamableMethod - skip status check
+  if (!(shouldWrap && isBinary)) {
+    statements.push(
+      `const expectedStatuses = ${getExpectedStatuses(operation)};`
+    );
+    statements.push(
+      `if(!expectedStatuses.includes(result.status)){`,
+      `${getExceptionThrowStatement(context, operation)}`,
+      "}"
+    );
+  }
   const deserializedType =
     isLroOnly || isLroAndPaging
       ? operation?.lroMetadata?.finalResponse?.result
@@ -384,12 +391,16 @@ export function getDeserializePrivateFunction(
             dependencies.StreamableMethod
           );
           statements.push(
-            `const browserStream = await (result as unknown as ${StreamableMethodReference}).asBrowserStream();
-          const nodeStream = await (result as unknown as ${StreamableMethodReference}).asNodeStream();
+            `let browserStream, nodeStream;
+          try {
+            browserStream = await (result as unknown as ${StreamableMethodReference}).asBrowserStream();
+          } catch {
+            nodeStream = await (result as unknown as ${StreamableMethodReference}).asNodeStream();
+          }
 
           return {
-            blobBody: ${toBlobReference}(browserStream.body),
-            readableStreamBody: nodeStream.body,
+            blobBody: ${toBlobReference}(browserStream?.body),
+            readableStreamBody: nodeStream?.body,
           };
           `
           );
@@ -1039,9 +1050,11 @@ export function getOperationFunction(
     statements.push(
       `const ${streamableMethodVarName} = _${name}Send(${parameterList});`
     );
-    statements.push(
-      `const ${resultVarName} = await ${resolveReference(SerializationHelpers.getBinaryResponse)}(${streamableMethodVarName});`
-    );
+    statements.push(`return _${name}Deserialize(${streamableMethodVarName});`);
+    return {
+      ...functionStatement,
+      statements
+    } as FunctionDeclarationStructure & { propertyName?: string };
   } else {
     statements.push(
       `const ${resultVarName} = await _${name}Send(${parameterList});`

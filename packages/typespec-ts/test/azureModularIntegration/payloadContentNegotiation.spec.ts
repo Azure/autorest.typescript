@@ -22,23 +22,41 @@ describe("Payload Content Negotiation Client", () => {
 
   it("should get image/png for same body in content negotiation", async () => {
     const result = await client.sameBody.getAvatarAsPng();
-    const blob = await result.blobBody!;
-    const arrayBuffer = await blob.arrayBuffer();
-    assert.deepStrictEqual(new Uint8Array(arrayBuffer), pngFile);
+    const chunks: Uint8Array[] = [];
+    for await (const chunk of result.readableStreamBody!) {
+      chunks.push(chunk as Uint8Array);
+    }
+    const buffer = Buffer.concat(chunks);
+    assert.strictEqual(
+      uint8ArrayToString(buffer, "base64"),
+      uint8ArrayToString(pngFile, "base64")
+    );
   });
 
   it("should get image/jpeg for same body in content negotiation", async () => {
     const result = await client.sameBody.getAvatarAsJpeg();
-    const blob = await result.blobBody!;
-    const arrayBuffer = await blob.arrayBuffer();
-    assert.deepStrictEqual(new Uint8Array(arrayBuffer), jpegImage);
+    const chunks: Uint8Array[] = [];
+    for await (const chunk of result.readableStreamBody!) {
+      chunks.push(chunk as Uint8Array);
+    }
+    const buffer = Buffer.concat(chunks);
+    assert.strictEqual(
+      uint8ArrayToString(buffer, "base64"),
+      uint8ArrayToString(jpegImage, "base64")
+    );
   });
 
   it("should get image/png for different body in content negotiation", async () => {
     const result = await client.differentBody.getAvatarAsPng();
-    const blob = await result.blobBody!;
-    const arrayBuffer = await blob.arrayBuffer();
-    assert.deepStrictEqual(new Uint8Array(arrayBuffer), pngFile);
+    const chunks: Uint8Array[] = [];
+    for await (const chunk of result.readableStreamBody!) {
+      chunks.push(chunk as Uint8Array);
+    }
+    const buffer = Buffer.concat(chunks);
+    assert.strictEqual(
+      uint8ArrayToString(buffer, "base64"),
+      uint8ArrayToString(pngFile, "base64")
+    );
   });
 
   it("should get application/json for different body in content negotiation", async () => {
