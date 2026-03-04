@@ -169,9 +169,9 @@ describe("get a Employee", () => {
     assert.strictEqual(result.name, "complexEmployee");
     assert.strictEqual(result.type, "Microsoft.Contoso/employees");
     assert.strictEqual(result.location, "eastus");
-    assert.ok(Array.isArray(result.properties.skills));
-    assert.strictEqual(result.properties.skills.length, 3);
-    assert.strictEqual(result.properties.isActive, true);
+    assert.ok(Array.isArray(result.properties?.skills));
+    assert.strictEqual(result.properties?.skills.length, 3);
+    assert.strictEqual(result.properties?.isActive, true);
   });
 });
 ```

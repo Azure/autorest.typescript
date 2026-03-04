@@ -249,10 +249,10 @@ describe("get a Employee", () => {
     assert.strictEqual(result.name, "testEmployee");
     assert.strictEqual(result.type, "Microsoft.Contoso/employees");
     assert.strictEqual(result.location, "eastus");
-    assert.strictEqual(result.properties.age, 30);
-    assert.strictEqual(result.properties.city, "Seattle");
-    assert.strictEqual(result.properties.profile, "developer");
-    assert.strictEqual(result.tags.environment, "test");
+    assert.strictEqual(result.properties?.age, 30);
+    assert.strictEqual(result.properties?.city, "Seattle");
+    assert.strictEqual(result.properties?.profile, "developer");
+    assert.strictEqual(result.tags?.environment, "test");
   });
 });
 ```

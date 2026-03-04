@@ -178,10 +178,10 @@ describe("create a Employee", () => {
     assert.strictEqual(result.name, "9KF-f-8b");
     assert.strictEqual(result.type, "Microsoft.Contoso/employees");
     assert.strictEqual(result.location, "itajgxyqozseoygnl");
-    assert.strictEqual(result.properties.age, 30);
-    assert.strictEqual(result.properties.city, "gydhnntudughbmxlkyzrskcdkotrxn");
-    assert.equal(result.properties.profile, Buffer.from("ms", "base64url"));
-    assert.strictEqual(result.tags.key2913, "urperxmkkhhkp");
+    assert.strictEqual(result.properties?.age, 30);
+    assert.strictEqual(result.properties?.city, "gydhnntudughbmxlkyzrskcdkotrxn");
+    assert.equal(result.properties?.profile, Buffer.from("ms", "base64url"));
+    assert.strictEqual(result.tags?.key2913, "urperxmkkhhkp");
   });
 });
 ```

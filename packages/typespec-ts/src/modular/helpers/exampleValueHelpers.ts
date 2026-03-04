@@ -233,6 +233,34 @@ export function serializeExampleValue(value: SdkExampleValue): string {
         if (property && isReadOnly(property as SdkModelPropertyType)) {
           continue;
         }
+        // Handle flattened properties: inline inner model properties at current level
+        if (
+          property?.flatten &&
+          property.type.kind === "model" &&
+          propValue.kind === "model"
+        ) {
+          const innerMapper = buildTestPropertyNameMapper(property.type);
+          for (const innerPropName in propValue.value ?? {}) {
+            const innerPropValue = propValue.value[innerPropName];
+            if (innerPropValue === undefined || innerPropValue === null) {
+              continue;
+            }
+            const innerProperty = property.type.properties.find(
+              (p) => p.name === innerPropName
+            );
+            if (
+              innerProperty &&
+              isReadOnly(innerProperty as SdkModelPropertyType)
+            ) {
+              continue;
+            }
+            values.push(
+              `"${innerMapper.get(innerPropName) ?? innerPropName}": ` +
+                serializeExampleValue(innerPropValue)
+            );
+          }
+          continue;
+        }
         const propRetValue =
           `"${mapper.get(propName) ?? propName}": ` +
           serializeExampleValue(propValue);
@@ -737,14 +765,43 @@ export function generateAssertionsForValue(
 
         for (const [key, val] of entries) {
           if (val && typeof val === "object" && "kind" in val) {
-            const propPath = `${path}.${key}`;
-            const propAssertions = generateAssertionsForValue(
-              val as SdkExampleValue,
-              propPath,
-              maxDepth,
-              currentDepth + 1
-            );
-            assertions.push(...propAssertions);
+            // Check if this property is flattened in the model type
+            let property;
+            if (value.kind === "model" && value.type.kind === "model") {
+              property = value.type.properties.find(
+                (p) => p.kind === "property" && p.name === key
+              );
+            }
+            if (
+              property?.flatten &&
+              (val as SdkExampleValue).kind === "model"
+            ) {
+              // For flattened properties, recurse using the parent path so
+              // assertions reference result.xxx instead of result.properties.xxx
+              const innerAssertions = generateAssertionsForValue(
+                val as SdkExampleValue,
+                path,
+                maxDepth,
+                currentDepth + 1
+              );
+              assertions.push(...innerAssertions);
+            } else {
+              const propPath = `${path}.${key}`;
+              const nestedVal = val as SdkExampleValue;
+              // For nested model/dict values, append "?" to the path so child
+              // property accesses use optional chaining (e.g. result.systemData?.createdBy)
+              const recursePath =
+                nestedVal.kind === "model" || nestedVal.kind === "dict"
+                  ? `${propPath}?`
+                  : propPath;
+              const propAssertions = generateAssertionsForValue(
+                nestedVal,
+                recursePath,
+                maxDepth,
+                currentDepth + 1
+              );
+              assertions.push(...propAssertions);
+            }
           }
         }
       }
