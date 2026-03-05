@@ -1951,11 +1951,6 @@ function getSerializationExpressionForFlatten(
       !isReadOnly(p) &&
       !isMetadata(context.program, p.__raw!)
   );
-  // If all properties in the flattened model are read-only, omit the field entirely
-  // so it is not included in the serialized request body.
-  if (validProps.length === 0) {
-    return `undefined`;
-  }
   const optionalPrefix = property.optional
     ? `${resolveReference(SerializationHelpers.areAllPropsUndefined)}(${propertyPath}, [${validProps
         .map((p) => `"${p.name}"`)

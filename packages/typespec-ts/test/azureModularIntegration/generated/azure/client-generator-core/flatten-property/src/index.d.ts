@@ -60,9 +60,6 @@ export declare interface Solution {
     readonly solutionId?: string;
     readonly title?: string;
     readonly content?: string;
-    readonly solutionIdPropertiesOptionalSolutionId?: string;
-    readonly titlePropertiesOptionalTitle?: string;
-    readonly contentPropertiesOptionalContent?: string;
 }
 
 export declare interface SolutionProperties {
