@@ -100,6 +100,17 @@ import {
 import { isExtensibleEnum } from "../type-expressions/get-enum-expression.js";
 import { emitInlineModel } from "../type-expressions/get-model-expression.js";
 
+/**
+ * Checks whether a header should be skipped during serialization/deserialization.
+ * A header is skipped when it has the "headerCollectionPrefix" client option set,
+ * which indicates it uses a prefix-based dictionary pattern not handled by standard ser/deser.
+ */
+function shouldSkipHeaderSerialization(
+  header: SdkHttpParameter | SdkServiceResponseHeader
+): boolean {
+  return getClientOptions(header, "headerCollectionPrefix") !== undefined;
+}
+
 export function getSendPrivateFunction(
   dpgContext: SdkContext,
   method: [string[], ServiceOperation],
@@ -562,6 +573,7 @@ function getExceptionResponseHeaders(
   const headerMap = new Map<string, SdkServiceResponseHeader>();
   for (const exception of exceptions ?? []) {
     for (const header of exception.headers ?? []) {
+      if (shouldSkipHeaderSerialization(header)) continue;
       const key = header.serializedName ?? header.name;
       if (!headerMap.has(key)) {
         headerMap.set(key, header);
@@ -1472,6 +1484,10 @@ function getHeaderAndBodyParameters(
         !isConstant(param.type) &&
         (param.name === "contentType" || param.name === "accept")
       ) {
+        continue;
+      }
+      // Skip headers marked with headerCollectionPrefix client option
+      if (shouldSkipHeaderSerialization(param)) {
         continue;
       }
       // Check if this parameter still exists in the corresponding method params (after override)
@@ -2802,6 +2818,7 @@ export function getResponseHeaders(
   const headerMap = new Map<string, SdkServiceResponseHeader>();
   for (const response of responses ?? []) {
     for (const header of response.headers ?? []) {
+      if (shouldSkipHeaderSerialization(header)) continue;
       const key = header.serializedName ?? header.name;
       if (!headerMap.has(key)) {
         headerMap.set(key, header);
@@ -2826,7 +2843,19 @@ function buildCompositeResponseType(
 ): string {
   const allParents = getAllAncestors(modelType);
   const modelProps: (SdkModelPropertyType | SdkServiceResponseHeader)[] =
-    getAllProperties(context, modelType, allParents);
+    getAllProperties(context, modelType, allParents).filter((property) => {
+      // Skip model properties that are headers with headerCollectionPrefix
+      if (
+        property.__raw &&
+        isHeader(context.program, property.__raw) &&
+        shouldSkipHeaderSerialization(
+          property as SdkModelPropertyType & SdkServiceResponseHeader
+        )
+      ) {
+        return false;
+      }
+      return true;
+    });
 
   // Collect header property names already in the model to avoid duplicates
   const modelHeaderNames = new Set<string>();
