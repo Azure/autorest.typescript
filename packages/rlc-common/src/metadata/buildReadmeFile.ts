@@ -363,6 +363,23 @@ export function buildReadmeFile(model: RLCModel) {
   };
 }
 
+export function hasClientNameChanged(
+  model: RLCModel,
+  existingReadmeFilePath: string
+): boolean {
+  try {
+    const existingContent = readFileSync(existingReadmeFilePath, "utf8");
+    const importMatch = existingContent.match(
+      /import\s*\{\s*([A-Za-z0-9_]+)\s*\}\s*from\s*["'][^"']*["']/
+    );
+    const existingClientName = importMatch?.[1];
+    const newClientName = getClientName(model);
+    return !!existingClientName && existingClientName !== newClientName;
+  } catch {
+    return false;
+  }
+}
+
 export function updateReadmeFile(
   model: RLCModel,
   existingReadmeFilePath: string
