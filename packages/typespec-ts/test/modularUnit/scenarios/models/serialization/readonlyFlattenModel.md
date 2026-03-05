@@ -52,7 +52,7 @@ export interface Solution {
 }
 
 export function solutionSerializer(item: Solution): any {
-  return item;
+  return { properties: undefined, propertiesOptional: undefined };
 }
 
 /** model interface SolutionProperties */
