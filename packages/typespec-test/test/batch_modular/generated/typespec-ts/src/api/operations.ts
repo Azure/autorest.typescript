@@ -413,10 +413,10 @@ export async function _getNodeFileDeserialize(
   result: StreamableMethod,
 ): Promise<GetNodeFileResponse> {
   try {
-    const browserStream = await (result as unknown as StreamableMethod).asBrowserStream();
+    const browserStream = await result.asBrowserStream();
     return { blobBody: toBlob(browserStream?.body), readableStreamBody: undefined };
   } catch {
-    const nodeStream = await (result as unknown as StreamableMethod).asNodeStream();
+    const nodeStream = await result.asNodeStream();
     return { blobBody: undefined, readableStreamBody: nodeStream?.body };
   }
 }
@@ -831,10 +831,10 @@ export async function _getNodeRemoteDesktopFileDeserialize(
   result: StreamableMethod,
 ): Promise<GetNodeRemoteDesktopFileResponse> {
   try {
-    const browserStream = await (result as unknown as StreamableMethod).asBrowserStream();
+    const browserStream = await result.asBrowserStream();
     return { blobBody: toBlob(browserStream?.body), readableStreamBody: undefined };
   } catch {
-    const nodeStream = await (result as unknown as StreamableMethod).asNodeStream();
+    const nodeStream = await result.asNodeStream();
     return { blobBody: undefined, readableStreamBody: nodeStream?.body };
   }
 }
@@ -1670,10 +1670,10 @@ export async function _getTaskFileDeserialize(
   result: StreamableMethod,
 ): Promise<GetTaskFileResponse> {
   try {
-    const browserStream = await (result as unknown as StreamableMethod).asBrowserStream();
+    const browserStream = await result.asBrowserStream();
     return { blobBody: toBlob(browserStream?.body), readableStreamBody: undefined };
   } catch {
-    const nodeStream = await (result as unknown as StreamableMethod).asNodeStream();
+    const nodeStream = await result.asNodeStream();
     return { blobBody: undefined, readableStreamBody: nodeStream?.body };
   }
 }

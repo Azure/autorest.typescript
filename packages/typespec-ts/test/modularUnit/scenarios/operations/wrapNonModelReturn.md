@@ -195,10 +195,10 @@ export function _getLogsSend(
 
 export async function _getLogsDeserialize(result: StreamableMethod): Promise<GetLogsResponse> {
   try {
-    const browserStream = await (result as unknown as StreamableMethod).asBrowserStream();
+    const browserStream = await result.asBrowserStream();
     return { blobBody: toBlob(browserStream?.body), readableStreamBody: undefined };
   } catch {
-    const nodeStream = await (result as unknown as StreamableMethod).asNodeStream();
+    const nodeStream = await result.asNodeStream();
     return { blobBody: undefined, readableStreamBody: nodeStream?.body };
   }
 }
