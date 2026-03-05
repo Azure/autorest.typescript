@@ -1058,11 +1058,9 @@ export function getOperationFunction(
     statements.push(
       `const ${streamableMethodVarName} = _${name}Send(${parameterList});`
     );
-    statements.push(`return _${name}Deserialize(${streamableMethodVarName});`);
-    return {
-      ...functionStatement,
-      statements
-    } as FunctionDeclarationStructure & { propertyName?: string };
+    statements.push(
+      `const ${resultVarName} = await ${resolveReference(SerializationHelpers.getBinaryResponse)}(${streamableMethodVarName});`
+    );
   } else {
     statements.push(
       `const ${resultVarName} = await _${name}Send(${parameterList});`
