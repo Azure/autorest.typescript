@@ -27,6 +27,7 @@ export * from "./metadata/buildApiExtractorConfig.js";
 export * from "./metadata/buildPackageFile.js";
 export * from "./metadata/buildRollupConfig.js";
 export * from "./metadata/buildTsConfig.js";
+export * from "./metadata/buildWarpConfig.js";
 export * from "./metadata/buildESLintConfig.js";
 export * from "./metadata/buildLicenseFile.js";
 export * from "./metadata/buildVitestConfig.js";
