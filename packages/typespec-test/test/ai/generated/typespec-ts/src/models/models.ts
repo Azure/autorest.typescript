@@ -749,20 +749,3 @@ export enum KnownVersions {
   /** Azure AI API version 2024-07-01-preview. */
   _20240701Preview = "2024-07-01-preview",
 }
-
-export type AgentsGetFileContentResponse = {
-  /**
-   * BROWSER ONLY
-   *
-   * The response body as a browser Blob.
-   * Always `undefined` in node.js.
-   */
-  blobBody?: Promise<Blob>;
-  /**
-   * NODEJS ONLY
-   *
-   * The response body as a node.js Readable stream.
-   * Always `undefined` in the browser.
-   */
-  readableStreamBody?: NodeJS.ReadableStream;
-};

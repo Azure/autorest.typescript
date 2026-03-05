@@ -179,7 +179,7 @@ export function getDeserializePrivateFunction(
 
   // Check if we need to wrap the non-model return type
   const { shouldWrap, isBinary } = checkWrapNonModelReturn(context, operation);
-  // For binary wrap, the deserializer receives a StreamableMethod directly (not PathUncheckedResponse)Collapse commentComment on line L183MaryGao commented on Mar 4, 2026 MaryGaoon Mar 4, 2026MemberMore actionskeep this.ReactWrite a replyResolve comment
+  // For binary wrap, the deserializer receives a StreamableMethod directly
   const resultParamType =
     shouldWrap && isBinary
       ? resolveReference(dependencies.StreamableMethod)
@@ -1054,7 +1054,7 @@ export function getOperationFunction(
     response?.type?.kind === "bytes" &&
     response.type.encode === "bytes"
   ) {
-    const streamableMethodVarName = generateLocallyUniqueName(
+     const streamableMethodVarName = generateLocallyUniqueName(
       "streamableMethod",
       paramNames
     );

@@ -64,9 +64,7 @@ import {
   VectorStoreFileBatch,
   vectorStoreFileBatchDeserializer,
 } from "../../models/agents/models.js";
-import { AgentsGetFileContentResponse } from "../../models/models.js";
 import { FileContents } from "../../static-helpers/multipartHelpers.js";
-import { toBlob } from "../../static-helpers/serialization/to-blob.js";
 import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   AgentsListVectorStoreFileBatchFilesOptionalParams,
@@ -786,15 +784,14 @@ export function _getFileContentSend(
 }
 
 export async function _getFileContentDeserialize(
-  result: StreamableMethod,
-): Promise<AgentsGetFileContentResponse> {
-  try {
-    const browserStream = await (result as unknown as StreamableMethod).asBrowserStream();
-    return { blobBody: toBlob(browserStream?.body), readableStreamBody: undefined };
-  } catch {
-    const nodeStream = await (result as unknown as StreamableMethod).asNodeStream();
-    return { blobBody: undefined, readableStreamBody: nodeStream?.body };
+  result: PathUncheckedResponse,
+): Promise<Uint8Array> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
   }
+
+  return result.body;
 }
 
 /** Retrieves the raw content of a specific file. */
@@ -802,9 +799,9 @@ export async function getFileContent(
   context: Client,
   fileId: string,
   options: AgentsGetFileContentOptionalParams = { requestOptions: {} },
-): Promise<AgentsGetFileContentResponse> {
-  const streamableMethod = _getFileContentSend(context, fileId, options);
-  return _getFileContentDeserialize(streamableMethod);
+): Promise<Uint8Array> {
+  const result = await _getFileContentSend(context, fileId, options);
+  return _getFileContentDeserialize(result);
 }
 
 export function _getFileSend(

@@ -112,7 +112,6 @@ import {
   VectorStoreFileDeletionStatus,
   VectorStoreFileBatch,
 } from "../../models/agents/models.js";
-import { AgentsGetFileContentResponse } from "../../models/models.js";
 import { FileContents } from "../../static-helpers/multipartHelpers.js";
 
 /** Interface representing a Agents operations. */
@@ -190,7 +189,7 @@ export interface AgentsOperations {
   getFileContent: (
     fileId: string,
     options?: AgentsGetFileContentOptionalParams,
-  ) => Promise<AgentsGetFileContentResponse>;
+  ) => Promise<Uint8Array>;
   /** Returns information about a specific file. Does not retrieve file content. */
   getFile: (fileId: string, options?: AgentsGetFileOptionalParams) => Promise<OpenAIFile>;
   /** Delete a previously uploaded file. */
