@@ -27,7 +27,9 @@ export async function getWidget(
   context: Client,
   id: string,
   options: GetWidgetOptionalParams = { requestOptions: {} },
-): Promise<Widget & StorageCompatResponseInfo<Widget, { requestId?: string }>> {
+): Promise<
+  { requestId?: string } & Widget & StorageCompatResponseInfo<Widget, { requestId?: string }>
+> {
   const _storageCompat = createStorageCompatOnResponse(options.onResponse);
   const result = await _getWidgetSend(context, id, {
     ...options,
@@ -133,7 +135,12 @@ export async function setTags(
   context: Client,
   id: string,
   options: SetTagsOptionalParams = { requestOptions: {} },
-): Promise<StorageCompatResponseInfo<undefined, { requestId?: string; version: string }>> {
+): Promise<
+  { requestId?: string; version: string } & StorageCompatResponseInfo<
+    undefined,
+    { requestId?: string; version: string }
+  >
+> {
   const _storageCompat = createStorageCompatOnResponse(options.onResponse);
   const result = await _setTagsSend(context, id, {
     ...options,

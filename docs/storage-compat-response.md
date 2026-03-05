@@ -41,7 +41,7 @@ export async function getWidget(
   context: Client,
   options: GetWidgetOptionalParams = { requestOptions: {} },
 ): Promise<
-  Widget &
+  { requestId: string; etag?: string } & Widget &
     StorageCompatResponseInfo<Widget, { requestId: string; etag?: string }>
 > {
   const _storageCompat = createStorageCompatOnResponse(options.onResponse);
@@ -110,13 +110,14 @@ export async function getSimpleValue(
 const client = new StorageClient(/* ... */);
 const response = await client.getWidget("widget-1");
 
-// Standard typed access
+// Standard typed access — body and headers at top level
 console.log(response.name); // Widget property
+console.log(response.requestId); // Header property, also at top level
 
 // Raw FullOperationResponse access (captured via onResponse callback)
 console.log(response._response.rawResponse.status); // 200 (number, from FullOperationResponse)
 console.log(response._response.parsedBody.name); // Same as response.name
-console.log(response._response.parsedHeaders.requestId); // Typed header
+console.log(response._response.parsedHeaders.requestId); // Same as response.requestId
 
 // Users can still provide their own onResponse callback — it will be chained
 const response2 = await client.getWidget("widget-2", {

@@ -48,15 +48,18 @@ export function createStorageCompatOnResponse(
 
 /**
  * Computes the return type for addStorageCompatResponse:
- * - When TBody is undefined/void/null, returns just StorageCompatResponseInfo
- * - Otherwise returns TBody & StorageCompatResponseInfo
+ * - When TBody is undefined/void/null, returns THeaders & StorageCompatResponseInfo
+ * - Otherwise returns THeaders & TBody & StorageCompatResponseInfo
+ *
+ * Headers and body properties are spread at the top level of the result,
+ * in addition to being available under `_response.parsedHeaders` / `_response.parsedBody`.
  */
 type StorageCompatResult<TBody, THeaders> = TBody extends
   | undefined
   | void
   | null
-  ? StorageCompatResponseInfo<TBody, THeaders>
-  : TBody & StorageCompatResponseInfo<TBody, THeaders>;
+  ? THeaders & StorageCompatResponseInfo<TBody, THeaders>
+  : THeaders & TBody & StorageCompatResponseInfo<TBody, THeaders>;
 
 /**
  * Augments a deserialized response with raw HTTP response metadata.
@@ -77,7 +80,7 @@ export function addStorageCompatResponse<
     parsedBody !== undefined && parsedBody !== null
       ? parsedBody
       : ({} as TBody);
-  return Object.assign(base as any, {
+  return Object.assign(base as any, parsedHeaders, {
     _response: {
       rawResponse,
       parsedBody,

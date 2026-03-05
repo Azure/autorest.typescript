@@ -43,6 +43,9 @@ describe("addStorageCompatResponse", () => {
     // The original body properties should be accessible directly
     expect(result.name).toBe("widget-1");
 
+    // Header properties should be accessible at the top level
+    expect(result.requestId).toBe("abc-123");
+
     // The _response metadata should be present
     expect(result._response).toBeDefined();
     expect(result._response.rawResponse).toBe(rawResponse);
@@ -50,9 +53,9 @@ describe("addStorageCompatResponse", () => {
     expect(result._response.parsedHeaders).toBe(parsedHeaders);
   });
 
-  it("should handle void (undefined) body", () => {
+  it("should handle void (undefined) body with headers at top level", () => {
     const rawResponse = createMockFullOperationResponse(204);
-    const parsedHeaders = {};
+    const parsedHeaders = { requestId: "req-1", version: "2024-01-01" };
 
     const result = addStorageCompatResponse(
       rawResponse,
@@ -60,10 +63,14 @@ describe("addStorageCompatResponse", () => {
       parsedHeaders
     );
 
+    // Header properties should be accessible at the top level
+    expect(result.requestId).toBe("req-1");
+    expect(result.version).toBe("2024-01-01");
+
     expect(result._response).toBeDefined();
     expect(result._response.rawResponse).toBe(rawResponse);
     expect(result._response.parsedBody).toBeUndefined();
-    expect(result._response.parsedHeaders).toEqual({});
+    expect(result._response.parsedHeaders).toBe(parsedHeaders);
   });
 
   it("should handle null body", () => {
@@ -137,13 +144,15 @@ describe("addStorageCompatResponse", () => {
     const parsedBody = { name: "test" };
     const parsedHeaders = { requestId: "abc" };
 
-    const result: { name: string } & StorageCompatResponseInfo<
+    const result: { requestId: string } & { name: string } & StorageCompatResponseInfo<
       { name: string },
       { requestId: string }
     > = addStorageCompatResponse(rawResponse, parsedBody, parsedHeaders);
 
-    // TypeScript type checking validates the shape
+    // Body and header properties accessible at top level
     expect(result.name).toBe("test");
+    expect(result.requestId).toBe("abc");
+    // Also accessible via _response
     expect(result._response.parsedBody.name).toBe("test");
     expect(result._response.parsedHeaders.requestId).toBe("abc");
   });
