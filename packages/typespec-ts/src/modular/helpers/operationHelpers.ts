@@ -1054,7 +1054,7 @@ export function getOperationFunction(
     response?.type?.kind === "bytes" &&
     response.type.encode === "bytes"
   ) {
-     const streamableMethodVarName = generateLocallyUniqueName(
+    const streamableMethodVarName = generateLocallyUniqueName(
       "streamableMethod",
       paramNames
     );
