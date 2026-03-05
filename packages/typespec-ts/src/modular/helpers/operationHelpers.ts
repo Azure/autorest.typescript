@@ -387,15 +387,12 @@ export function getDeserializePrivateFunction(
           // Binary response: result is StreamableMethod passed directly from the operation function.
           // Use asBrowserStream() for blobBody and asNodeStream() for readableStreamBody.
           const toBlobReference = resolveReference(SerializationHelpers.toBlob);
-          const StreamableMethodReference = resolveReference(
-            dependencies.StreamableMethod
-          );
           statements.push(
             `try {
-            const browserStream = await (result as unknown as ${StreamableMethodReference}).asBrowserStream();
+            const browserStream = await result.asBrowserStream();
             return { blobBody: ${toBlobReference}(browserStream?.body), readableStreamBody: undefined };
           } catch {
-            const nodeStream = await (result as unknown as ${StreamableMethodReference}).asNodeStream();
+            const nodeStream = await result.asNodeStream();
             return { blobBody: undefined, readableStreamBody: nodeStream?.body };
           }`
           );
