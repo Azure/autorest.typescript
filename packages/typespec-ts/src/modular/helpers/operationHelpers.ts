@@ -1693,7 +1693,7 @@ export function getParameterMap(
       ? getHeaderSerializedName(param)
       : getPropertySerializedName(param);
 
-  if (isConstant(param.type)) {
+  if (isConstant(param.type) && !isOptional(param)) {
     return `"${serializedName}": ${getConstantValue(param.type)}`;
   }
 
