@@ -572,12 +572,20 @@ export async function $onEmit(context: EmitContext) {
 
       // update existing package.json file with correct dependencies
       if (option.isModularLibrary) {
+        // Additional dependencies that aren't in the standard monorepo set (e.g. format-specific)
+        const additionalDependencies: Record<string, string> = {};
+        if (packageUsesXmlSerialization(dpgContext.sdkPackage)) {
+          additionalDependencies["fast-xml-parser"] = "^4.5.0";
+        }
         modularPackageInfo = {
           exports: getModuleExports(context, modularEmitterOptions),
           clientContextPaths: getRelativeContextPaths(
             context,
             modularEmitterOptions
-          )
+          ),
+          ...(Object.keys(additionalDependencies).length > 0 && {
+            dependencies: additionalDependencies
+          })
         };
         updateBuilders.push((model: RLCModel) =>
           updatePackageFile(model, existingPackageFilePath, modularPackageInfo)

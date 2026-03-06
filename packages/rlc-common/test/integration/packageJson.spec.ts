@@ -933,6 +933,185 @@ describe("Package file generation", () => {
         { path: "src/old-path.ts", prefix: "userAgentInfo" }
       ]);
     });
+
+    it("should add all canonical modular dependencies and remove @azure/core-client when migrating from Swagger to TypeSpec", () => {
+      const model = createMockModel({
+        moduleKind: "esm",
+        flavor: "azure",
+        isMonorepo: true,
+        hasLro: false,
+        isModularLibrary: true
+      });
+
+      const initialPackageInfo = {
+        name: "@azure/test-package",
+        version: "1.0.0",
+        dependencies: {
+          "@azure/core-client": "^1.9.3",
+          "@azure/core-auth": "^1.0.0",
+          "@azure/core-rest-pipeline": "^1.5.0",
+          tslib: "^2.6.2"
+        }
+      };
+
+      const packageFileContent = updatePackageFile(model, initialPackageInfo);
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      // @azure/core-client should be removed
+      expect(packageFile.dependencies).to.not.have.property("@azure/core-client");
+      // Canonical dependencies should be added or updated
+      expect(packageFile.dependencies).to.have.property("@azure-rest/core-client", "^2.3.1");
+      expect(packageFile.dependencies).to.have.property("@azure/core-util", "^1.12.0");
+      expect(packageFile.dependencies).to.have.property("@azure/core-auth", "^1.9.0");
+      expect(packageFile.dependencies).to.have.property("@azure/core-rest-pipeline", "^1.20.0");
+      expect(packageFile.dependencies).to.have.property("tslib", "^2.8.1");
+    });
+
+    it("should update @azure-rest/core-client to canonical version if it already exists with a different version", () => {
+      const model = createMockModel({
+        moduleKind: "esm",
+        flavor: "azure",
+        isMonorepo: true,
+        hasLro: false,
+        isModularLibrary: true
+      });
+
+      const initialPackageInfo = {
+        name: "@azure/test-package",
+        version: "1.0.0",
+        dependencies: {
+          "@azure/core-client": "^1.9.3",
+          "@azure-rest/core-client": "^2.2.0"
+        }
+      };
+
+      const packageFileContent = updatePackageFile(model, initialPackageInfo);
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      // @azure/core-client should be removed
+      expect(packageFile.dependencies).to.not.have.property("@azure/core-client");
+      // @azure-rest/core-client should be updated to canonical version
+      expect(packageFile.dependencies).to.have.property("@azure-rest/core-client", "^2.3.1");
+    });
+
+    it("should return undefined when all canonical deps are already at correct versions and no swagger dep present", () => {
+      const model = createMockModel({
+        moduleKind: "esm",
+        flavor: "azure",
+        isMonorepo: true,
+        hasLro: false,
+        isModularLibrary: true
+      });
+
+      // All canonical dependencies at the exact expected versions
+      const initialPackageInfo = {
+        name: "@azure/test-package",
+        version: "1.0.0",
+        dependencies: {
+          "@azure-rest/core-client": "^2.3.1",
+          "@azure/core-auth": "^1.9.0",
+          "@azure/core-rest-pipeline": "^1.20.0",
+          "@azure/core-util": "^1.12.0",
+          "@azure/logger": "^1.2.0",
+          tslib: "^2.8.1"
+        }
+      };
+
+      const packageFileContent = updatePackageFile(model, initialPackageInfo);
+      // Should return undefined since nothing needs to be updated
+      expect(packageFileContent).to.be.undefined;
+    });
+
+    it("should include LRO dependencies when package has LRO operations", () => {
+      const model = createMockModel({
+        moduleKind: "esm",
+        flavor: "azure",
+        isMonorepo: true,
+        hasLro: true,
+        isModularLibrary: true
+      });
+
+      const initialPackageInfo = {
+        name: "@azure/test-package",
+        version: "1.0.0",
+        dependencies: {
+          "@azure/core-client": "^1.9.3",
+          tslib: "^2.8.1"
+        }
+      };
+
+      const packageFileContent = updatePackageFile(model, initialPackageInfo);
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      // @azure/core-client should be removed
+      expect(packageFile.dependencies).to.not.have.property("@azure/core-client");
+      // Canonical dependencies including LRO-specific ones should be added
+      expect(packageFile.dependencies).to.have.property("@azure-rest/core-client", "^2.3.1");
+      expect(packageFile.dependencies).to.have.property("@azure/core-lro", "^3.1.0");
+      expect(packageFile.dependencies).to.have.property("@azure/abort-controller", "^2.1.2");
+    });
+
+    it("should spread additional dependencies (e.g. fast-xml-parser) into the canonical dep set", () => {
+      const model = createMockModel({
+        moduleKind: "esm",
+        flavor: "azure",
+        isMonorepo: true,
+        hasLro: false,
+        isModularLibrary: true
+      });
+
+      const initialPackageInfo = {
+        name: "@azure/test-package",
+        version: "1.0.0",
+        dependencies: {
+          "@azure-rest/core-client": "^2.3.1",
+          "@azure/core-auth": "^1.9.0",
+          "@azure/core-rest-pipeline": "^1.20.0",
+          "@azure/core-util": "^1.12.0",
+          "@azure/logger": "^1.2.0",
+          tslib: "^2.8.1"
+        }
+      };
+
+      const packageFileContent = updatePackageFile(model, initialPackageInfo, {
+        dependencies: { "fast-xml-parser": "^4.5.0" }
+      });
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      // Additional dependency should be added
+      expect(packageFile.dependencies).to.have.property("fast-xml-parser", "^4.5.0");
+      // Existing canonical deps should remain unchanged
+      expect(packageFile.dependencies).to.have.property("@azure-rest/core-client", "^2.3.1");
+    });
+
+    it("should update outdated dependency versions to canonical versions", () => {
+      const model = createMockModel({
+        moduleKind: "esm",
+        flavor: "azure",
+        isMonorepo: true,
+        hasLro: false,
+        isModularLibrary: true
+      });
+
+      const initialPackageInfo = {
+        name: "@azure/test-package",
+        version: "1.0.0",
+        dependencies: {
+          "@azure-rest/core-client": "^2.3.1",
+          "@azure/core-auth": "^1.9.0",
+          "@azure/core-rest-pipeline": "^1.20.0",
+          "@azure/core-util": "^1.5.0", // outdated version
+          "@azure/logger": "^1.2.0",
+          tslib: "^2.8.1"
+        }
+      };
+
+      const packageFileContent = updatePackageFile(model, initialPackageInfo);
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      // @azure/core-util should be updated to canonical version
+      expect(packageFile.dependencies).to.have.property("@azure/core-util", "^1.12.0");
+    });
   });
 
   describe("Flavorless lib", () => {
