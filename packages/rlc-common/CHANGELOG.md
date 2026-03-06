@@ -1,3 +1,12 @@
+## 0.50.1 (2026-03-06)
+
+- [Feature] Add enable-storage-compat emitter option. Please refer to [#3814](https://github.com/Azure/autorest.typescript/pull/3814)
+- [Feature] Implement Spector integration tests for encode/array. Please refer to [#3803](https://github.com/Azure/autorest.typescript/pull/3803)
+- [Feature] Emit warp config instead of tshy for Azure monorepo packages. Please refer to [#3802](https://github.com/Azure/autorest.typescript/pull/3802)
+- [Feature] Add missing special-words model properties test coverage. Please refer to [#3796](https://github.com/Azure/autorest.typescript/pull/3796)
+- [Feature] Emit `apiVersions` map in metadata.json to support multi-service packages. Please refer to [#3784](https://github.com/Azure/autorest.typescript/pull/3784)
+- [Bugfix] Re-generation, the metadata files should be update. Please refer to [#3764](https://github.com/Azure/autorest.typescript/pull/3764)
+
 ## 0.50.0 (2026-02-28)
 
 - [Bugfix] Fix LRO paging should generate `beginListXXXAndWait` operation for `compatibility-lro: true`. Please refer to [#3712](https://github.com/Azure/autorest.typescript/pull/3712)

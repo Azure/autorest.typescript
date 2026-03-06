@@ -240,3 +240,21 @@ export const XmlHelpers = {
     location: "serialization/xml-helpers.ts"
   }
 } as const;
+
+export const StorageCompatHelpers = {
+  StorageCompatResponseInfo: {
+    kind: "interface",
+    name: "StorageCompatResponseInfo",
+    location: "storageCompatResponse.ts"
+  },
+  createStorageCompatOnResponse: {
+    kind: "function",
+    name: "createStorageCompatOnResponse",
+    location: "storageCompatResponse.ts"
+  },
+  addStorageCompatResponse: {
+    kind: "function",
+    name: "addStorageCompatResponse",
+    location: "storageCompatResponse.ts"
+  }
+} as const;

@@ -585,6 +585,8 @@ export async function emitModularOperationsFromTypeSpec(
     dpgContext.rlcOptions!.wrapNonModelReturn =
       options["wrap-non-model-return"] === true;
   }
+  dpgContext.rlcOptions!.enableStorageCompat =
+    options["enable-storage-compat"] === true;
   const modularEmitterOptions = transformModularEmitterOptions(dpgContext, "", {
     casing: "camel"
   });

@@ -18,6 +18,7 @@ import {
   PollingHelpers,
   SerializationHelpers,
   SimplePollerHelpers,
+  StorageCompatHelpers,
   UrlTemplateHelpers,
   XmlHelpers
 } from "./modular/static-helpers-metadata.js";
@@ -146,7 +147,8 @@ export async function $onEmit(context: EmitContext) {
       ...UrlTemplateHelpers,
       ...MultipartHelpers,
       ...CloudSettingHelpers,
-      ...XmlHelpers
+      ...XmlHelpers,
+      ...(rlcOptions.enableStorageCompat ? StorageCompatHelpers : {})
     },
     {
       sourcesDir: dpgContext.generationPathDetail?.modularSourcesDir,

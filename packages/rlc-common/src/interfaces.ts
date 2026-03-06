@@ -267,6 +267,11 @@ export interface RLCOptions {
    * This option defaults to true for Azure flavor and to false otherwise, unless explicitly set.
    */
   wrapNonModelReturn?: boolean;
+  /**
+   * When enabled, every regular (non-LRO, non-paging) operation return type is augmented with a
+   * `_response` property containing `rawResponse`, `parsedBody`, and `parsedHeaders`.
+   */
+  enableStorageCompat?: boolean;
 }
 
 export interface ServiceInfo {

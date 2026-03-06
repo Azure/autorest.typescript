@@ -86,6 +86,12 @@ export interface EmitterOptions {
    * Set to false to return the non-model types directly.
    */
   "wrap-non-model-return"?: boolean;
+  /**
+   * When enabled, every regular (non-LRO, non-paging) operation return type is augmented with a
+   * `_response` property containing `rawResponse`, `parsedBody`, and `parsedHeaders`.
+   * Defaults to `false`.
+   */
+  "enable-storage-compat"?: boolean;
 }
 
 export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
@@ -376,6 +382,12 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
       nullable: true,
       description:
         "When set to true (default for Azure services), non-model return types (arrays, scalars, enums, bytes with binary content type) will be wrapped in an XxxResponse type for HLC backward compatibility during TypeSpec migration."
+    },
+    "enable-storage-compat": {
+      type: "boolean",
+      nullable: true,
+      description:
+        "When enabled, every regular (non-LRO, non-paging) operation return type is augmented with a `_response` property containing `rawResponse` (PathUncheckedResponse), `parsedBody`, and `parsedHeaders`. Defaults to `false`."
     }
   },
   required: []
