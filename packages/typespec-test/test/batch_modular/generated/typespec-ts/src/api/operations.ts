@@ -105,12 +105,15 @@ import {
   nodeVMExtensionDeserializer,
   _NodeVMExtensionList,
   _nodeVMExtensionListDeserializer,
+  GetNodeFileResponse,
+  GetNodeRemoteDesktopFileResponse,
+  GetTaskFileResponse,
 } from "../models/models.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../static-helpers/pagingHelpers.js";
-import { getBinaryResponse } from "../static-helpers/serialization/get-binary-response.js";
+import { toBlob } from "../static-helpers/serialization/to-blob.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   ListNodeFilesOptionalParams,
@@ -406,16 +409,16 @@ export function _getNodeFileSend(
     });
 }
 
-export async function _getNodeFileDeserialize(result: PathUncheckedResponse): Promise<Uint8Array> {
-  const expectedStatuses = ["200"];
-  if (!expectedStatuses.includes(result.status)) {
-    const error = createRestError(result);
-    error.details = batchErrorDeserializer(result.body);
-
-    throw error;
+export async function _getNodeFileDeserialize(
+  result: StreamableMethod,
+): Promise<GetNodeFileResponse> {
+  try {
+    const browserStream = await result.asBrowserStream();
+    return { blobBody: toBlob(browserStream?.body), readableStreamBody: undefined };
+  } catch {
+    const nodeStream = await result.asNodeStream();
+    return { blobBody: undefined, readableStreamBody: nodeStream?.body };
   }
-
-  return result.body;
 }
 
 /** Returns the content of the specified Compute Node file. */
@@ -425,10 +428,9 @@ export async function getNodeFile(
   nodeId: string,
   filePath: string,
   options: GetNodeFileOptionalParams = { requestOptions: {} },
-): Promise<Uint8Array> {
+): Promise<GetNodeFileResponse> {
   const streamableMethod = _getNodeFileSend(context, poolId, nodeId, filePath, options);
-  const result = await getBinaryResponse(streamableMethod);
-  return _getNodeFileDeserialize(result);
+  return _getNodeFileDeserialize(streamableMethod);
 }
 
 export function _deleteNodeFileSend(
@@ -826,17 +828,15 @@ export function _getNodeRemoteDesktopFileSend(
 }
 
 export async function _getNodeRemoteDesktopFileDeserialize(
-  result: PathUncheckedResponse,
-): Promise<Uint8Array> {
-  const expectedStatuses = ["200"];
-  if (!expectedStatuses.includes(result.status)) {
-    const error = createRestError(result);
-    error.details = batchErrorDeserializer(result.body);
-
-    throw error;
+  result: StreamableMethod,
+): Promise<GetNodeRemoteDesktopFileResponse> {
+  try {
+    const browserStream = await result.asBrowserStream();
+    return { blobBody: toBlob(browserStream?.body), readableStreamBody: undefined };
+  } catch {
+    const nodeStream = await result.asNodeStream();
+    return { blobBody: undefined, readableStreamBody: nodeStream?.body };
   }
-
-  return result.body;
 }
 
 /**
@@ -850,10 +850,9 @@ export async function getNodeRemoteDesktopFile(
   poolId: string,
   nodeId: string,
   options: GetNodeRemoteDesktopFileOptionalParams = { requestOptions: {} },
-): Promise<Uint8Array> {
+): Promise<GetNodeRemoteDesktopFileResponse> {
   const streamableMethod = _getNodeRemoteDesktopFileSend(context, poolId, nodeId, options);
-  const result = await getBinaryResponse(streamableMethod);
-  return _getNodeRemoteDesktopFileDeserialize(result);
+  return _getNodeRemoteDesktopFileDeserialize(streamableMethod);
 }
 
 export function _getNodeRemoteLoginSettingsSend(
@@ -1667,16 +1666,16 @@ export function _getTaskFileSend(
     });
 }
 
-export async function _getTaskFileDeserialize(result: PathUncheckedResponse): Promise<Uint8Array> {
-  const expectedStatuses = ["200"];
-  if (!expectedStatuses.includes(result.status)) {
-    const error = createRestError(result);
-    error.details = batchErrorDeserializer(result.body);
-
-    throw error;
+export async function _getTaskFileDeserialize(
+  result: StreamableMethod,
+): Promise<GetTaskFileResponse> {
+  try {
+    const browserStream = await result.asBrowserStream();
+    return { blobBody: toBlob(browserStream?.body), readableStreamBody: undefined };
+  } catch {
+    const nodeStream = await result.asNodeStream();
+    return { blobBody: undefined, readableStreamBody: nodeStream?.body };
   }
-
-  return result.body;
 }
 
 /** Returns the content of the specified Task file. */
@@ -1686,10 +1685,9 @@ export async function getTaskFile(
   taskId: string,
   filePath: string,
   options: GetTaskFileOptionalParams = { requestOptions: {} },
-): Promise<Uint8Array> {
+): Promise<GetTaskFileResponse> {
   const streamableMethod = _getTaskFileSend(context, jobId, taskId, filePath, options);
-  const result = await getBinaryResponse(streamableMethod);
-  return _getTaskFileDeserialize(result);
+  return _getTaskFileDeserialize(streamableMethod);
 }
 
 export function _deleteTaskFileSend(

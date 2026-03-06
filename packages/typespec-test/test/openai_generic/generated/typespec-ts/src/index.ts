@@ -51,6 +51,7 @@ export type {
   ListPaginatedFineTuningJobsResponse,
   ListFineTuningJobEventsResponse,
   FineTuningJobEvent,
+  FilesDownloadResponse,
 } from "./models/index.js";
 export type { OpenAIClientOptionalParams } from "./api/index.js";
 export type { CompletionsCreateOptionalParams } from "./api/completions/index.js";

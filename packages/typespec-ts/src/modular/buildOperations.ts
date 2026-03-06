@@ -92,7 +92,7 @@ export function buildOperationFiles(
       );
       const deserializeOperationDeclaration = getDeserializePrivateFunction(
         dpgContext,
-        op
+        [prefixes, op]
       );
       const deserializeHeadersDeclaration =
         getDeserializeHeadersPrivateFunction(dpgContext, op);
@@ -108,6 +108,7 @@ export function buildOperationFiles(
       if (deserializeExceptionHeadersDeclaration) {
         functionsToAdd.push(deserializeExceptionHeadersDeclaration);
       }
+
       operationGroupFile.addFunctions(functionsToAdd);
       addDeclaration(
         operationGroupFile,
