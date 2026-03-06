@@ -2934,7 +2934,7 @@ export function checkWrapNonModelReturn(
 
 /**
  * Builds a TypeAliasDeclarationStructure for the non-model response wrapper type.
- * - For binary responses: { blobBody?: Promise<Blob>; readableStreamBody?: Promise<NodeJS.ReadableStream | undefined> }
+ * - For binary responses: { blobBody?: Promise<Blob>; readableStreamBody?: NodeJS.ReadableStream }
  * - For other non-model responses: { body: <type> }
  */
 export function buildNonModelResponseTypeDeclaration(
@@ -2972,6 +2972,7 @@ export function buildNonModelResponseTypeDeclaration(
     kind: StructureKind.TypeAlias,
     name: typeName,
     type: typeBody,
-    isExported: true
+    isExported: true,
+    leadingTrivia: "\n"
   };
 }

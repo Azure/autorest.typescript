@@ -120,4 +120,5 @@ export enum KnownVersions {
 }
 
 export type BudgetsGetBudgetsResponse = { body: Widget[] };
+
 export type SAPWidgetsSAPListWidgetsResponse = { body: Widget[] };

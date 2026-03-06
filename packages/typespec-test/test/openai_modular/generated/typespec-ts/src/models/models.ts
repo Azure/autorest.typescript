@@ -3657,5 +3657,7 @@ export type GenerateSpeechFromTextResponse = {
    */
   readableStreamBody?: NodeJS.ReadableStream;
 };
+
 export type GetAudioTranslationAsPlainTextResponse = { body: string };
+
 export type GetAudioTranscriptionAsPlainTextResponse = { body: string };

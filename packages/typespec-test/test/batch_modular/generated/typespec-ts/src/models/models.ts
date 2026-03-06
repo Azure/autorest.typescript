@@ -5734,6 +5734,7 @@ export type GetNodeFileResponse = {
    */
   readableStreamBody?: NodeJS.ReadableStream;
 };
+
 export type GetNodeRemoteDesktopFileResponse = {
   /**
    * BROWSER ONLY
@@ -5750,6 +5751,7 @@ export type GetNodeRemoteDesktopFileResponse = {
    */
   readableStreamBody?: NodeJS.ReadableStream;
 };
+
 export type GetTaskFileResponse = {
   /**
    * BROWSER ONLY
