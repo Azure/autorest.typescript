@@ -73,11 +73,11 @@ export function solutionPropertiesSerializer(item: SolutionProperties): any {
   return item;
 }
 
-export function _solutionPropertiesSerializer(item: Solution): any {
-  return item;
+export function _solutionPropertiesSerializer(_item: Solution): any {
+  return {};
 }
 
-export function _solutionPropertiesOptionalSerializer(item: Solution): any {
-  return item;
+export function _solutionPropertiesOptionalSerializer(_item: Solution): any {
+  return {};
 }
 ```
