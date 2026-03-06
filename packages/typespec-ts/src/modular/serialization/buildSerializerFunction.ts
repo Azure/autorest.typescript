@@ -501,6 +501,16 @@ function buildModelTypeSerializer(
       output.push(`
         return ${serializeContent}
       `);
+    } else if (options.flatten) {
+      // Private flatten serializer: all child properties are read-only, so nothing to serialize.
+      // Rename the parameter to _item to avoid TypeScript unused-variable errors.
+      const firstParam = serializerFunction.parameters?.[0];
+      if (firstParam) {
+        firstParam.name = "_item";
+      }
+      output.push(`
+        return {};
+      `);
     } else {
       output.push(`
         return item;

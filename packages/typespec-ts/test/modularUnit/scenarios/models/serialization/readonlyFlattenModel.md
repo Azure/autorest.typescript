@@ -35,6 +35,8 @@ needTCGC: true
 ## Models
 
 ```ts models
+import { areAllPropsUndefined } from "../static-helpers/serialization/check-prop-undefined.js";
+
 /**
  * This file contains only generated model types and their (de)serializers.
  * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
@@ -52,7 +54,12 @@ export interface Solution {
 }
 
 export function solutionSerializer(item: Solution): any {
-  return { properties: undefined, propertiesOptional: undefined };
+  return {
+    properties: _solutionPropertiesSerializer(item),
+    propertiesOptional: areAllPropsUndefined(item, [])
+      ? undefined
+      : _solutionPropertiesOptionalSerializer(item),
+  };
 }
 
 /** model interface SolutionProperties */
