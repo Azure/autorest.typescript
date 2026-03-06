@@ -10,7 +10,8 @@ import {
 } from "../helpers/packageUtil.js";
 import {
   PackageCommonInfoConfig,
-  getTshyConfig
+  getTshyConfig,
+  resolveWarpExports
 } from "./packageJson/packageCommon.js";
 import { Project, SourceFile } from "ts-morph";
 import { RLCModel } from "../interfaces.js";
@@ -91,15 +92,17 @@ export function buildPackageFile(
 export function updatePackageFile(
   model: RLCModel,
   existingFilePathOrContent: string | Record<string, any>,
-  { exports }: PackageFileOptions = {}
+  { exports, clientContextPaths }: PackageFileOptions = {}
 ) {
   const hasLro = hasPollingOperations(model);
   const isAzure = isAzurePackage(model);
   const needsLroUpdate = isAzure && hasLro;
   const needsExportsUpdate = exports;
+  const needsConstantPathsUpdate =
+    clientContextPaths && clientContextPaths.length > 0;
 
   // Early return if nothing needs to be updated
-  if (!needsLroUpdate && !needsExportsUpdate) {
+  if (!needsLroUpdate && !needsExportsUpdate && !needsConstantPathsUpdate) {
     return;
   }
 
@@ -118,13 +121,19 @@ export function updatePackageFile(
     packageInfo = existingFilePathOrContent;
   }
 
-  // Update tshy.exports if exports are provided and tshy exists
-  if (needsExportsUpdate && packageInfo.tshy) {
-    const newTshy = getTshyConfig({
-      exports,
-      azureSdkForJs: model.options?.azureSdkForJs
-    } as PackageCommonInfoConfig);
-    packageInfo.tshy.exports = newTshy.exports;
+  // Update exports based on build system (warp for monorepo, tshy for others)
+  if (needsExportsUpdate) {
+    if (model.options?.azureSdkForJs) {
+      // Warp: update resolved exports in package.json
+      packageInfo.exports = resolveWarpExports(exports);
+    } else if (packageInfo.tshy) {
+      // Tshy: update tshy.exports in package.json
+      const newTshy = getTshyConfig({
+        exports,
+        azureSdkForJs: model.options?.azureSdkForJs
+      } as PackageCommonInfoConfig);
+      packageInfo.tshy.exports = newTshy.exports;
+    }
   }
 
   // Update LRO dependencies for Azure packages
@@ -134,6 +143,21 @@ export function updatePackageFile(
       "@azure/core-lro": "^3.1.0",
       "@azure/abort-controller": "^2.1.2"
     };
+  }
+
+  // Update constantPaths metadata for Azure packages
+  if (needsConstantPathsUpdate && isAzure && packageInfo["//metadata"]) {
+    const metadata = packageInfo["//metadata"];
+    // Filter out existing userAgentInfo entries
+    const nonUserAgentPaths = (metadata.constantPaths || []).filter(
+      (item: any) => item.prefix !== "userAgentInfo"
+    );
+    // Add new userAgentInfo entries from clientContextPaths
+    const newUserAgentPaths = clientContextPaths!.map((path) => ({
+      path: path,
+      prefix: "userAgentInfo"
+    }));
+    metadata.constantPaths = [...nonUserAgentPaths, ...newUserAgentPaths];
   }
 
   return {
