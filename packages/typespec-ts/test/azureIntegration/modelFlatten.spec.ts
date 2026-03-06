@@ -75,12 +75,12 @@ describe("Flatten Property Rest Client", () => {
       .put({
         body: {
           name: "foo"
-        } as any
+        }
       });
     assert.strictEqual(result.status, "200");
     assert.strictEqual(result.body.name, "foo");
-    assert.strictEqual((result.body as any).solutionId, "solution1");
-    assert.strictEqual((result.body as any).title, "Solution Title");
-    assert.strictEqual((result.body as any).content, "Solution Content");
+    assert.strictEqual(result.body.properties?.solutionId, "solution1");
+    assert.strictEqual(result.body.properties?.title, "Solution Title");
+    assert.strictEqual(result.body.properties?.content, "Solution Content");
   });
 });

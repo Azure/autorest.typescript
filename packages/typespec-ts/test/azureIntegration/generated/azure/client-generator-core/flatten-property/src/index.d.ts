@@ -133,14 +133,12 @@ export declare interface Routes {
 
 export declare interface Solution {
     name: string;
-    properties: SolutionProperties;
-    propertiesOptional?: SolutionProperties;
+    properties?: SolutionProperties;
 }
 
 export declare interface SolutionOutput {
     name: string;
-    properties: SolutionPropertiesOutput;
-    propertiesOptional?: SolutionPropertiesOutput;
+    properties?: SolutionPropertiesOutput;
 }
 
 export declare interface SolutionProperties {
