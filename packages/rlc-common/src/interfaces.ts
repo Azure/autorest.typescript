@@ -261,6 +261,8 @@ export interface RLCOptions {
   compatibilityLro?: boolean;
   ignoreNullableOnOptional?: boolean;
   isMultiService?: boolean;
+  experimentalSubpath?: boolean;
+  experimentalMergeStrategy?: "merge" | "namespace";
 }
 
 export interface ServiceInfo {

@@ -9,6 +9,7 @@ import {
   TestProfileRunAdministrationCreateOrUpdateTestProfileRunOptionalParams,
   TestProfileRunAdministrationGetTestProfileRunOptionalParams,
 } from "../../../api/testProfileRunAdministration/options.js";
+import { TestProfileRun } from "../../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../../static-helpers/pagingHelpers.js";
 import {
   testProfileRunAdministrationListTestProfileRuns,
@@ -17,7 +18,6 @@ import {
   testProfileRunAdministrationCreateOrUpdateTestProfileRun,
   testProfileRunAdministrationGetTestProfileRun,
 } from "../../api/testProfileRunAdministration/operations.js";
-import { TestProfileRun } from "../../models/models.js";
 
 /** Interface representing a TestProfileRunAdministration operations. */
 export interface TestProfileRunAdministrationOperations {

@@ -86,6 +86,10 @@ function extractRLCOptions(
   const compatibilityLro = emitterOptions["compatibility-lro"];
   const experimentalExtensibleEnums =
     emitterOptions["experimental-extensible-enums"];
+  const experimentalSubpath = emitterOptions["experimental-subpath"];
+  const experimentalMergeStrategy = emitterOptions[
+    "experimental-merge-strategy"
+  ] as "merge" | "namespace" | undefined;
   const ignorePropertyNameNormalize =
     emitterOptions["ignore-property-name-normalize"];
   const ignoreEnumMemberNameNormalize =
@@ -128,6 +132,8 @@ function extractRLCOptions(
     compatibilityMode,
     compatibilityLro,
     experimentalExtensibleEnums,
+    experimentalSubpath,
+    experimentalMergeStrategy,
     ignorePropertyNameNormalize,
     compatibilityQueryMultiFormat,
     typespecTitleMap,

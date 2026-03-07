@@ -3,8 +3,14 @@
 
 import "./augmentations.js";
 import { LoadTestServiceClient } from "../index.js";
+import { _setDefaultApiVersion } from "../api/loadTestServiceContext.js";
 import { _getTestProfileAdministrationOperations } from "./classic/testProfileAdministration/index.js";
 import { _getTestProfileRunAdministrationOperations } from "./classic/testProfileRunAdministration/index.js";
+
+// Upgrade default API version for all operations when experimental features are enabled.
+// Preview API versions are supersets of stable — using the preview version for stable
+// operations ensures consistency when both stable and preview operations share a client.
+_setDefaultApiVersion("2024-05-01-preview");
 Object.defineProperty(LoadTestServiceClient.prototype, "testProfileAdministration", {
   get(this: LoadTestServiceClient) {
     const key = Symbol.for("__experimental_testProfileAdministration");
@@ -32,16 +38,3 @@ export type {
   TestProfileAdministrationOperations,
   TestProfileRunAdministrationOperations,
 } from "./classic/index.js";
-export type {
-  TestProfile,
-  TargetResourceConfigurations,
-  TargetResourceConfigurationsUnion,
-  ResourceKind,
-  FunctionFlexConsumptionTargetResourceConfigurations,
-  FunctionFlexConsumptionResourceConfiguration,
-  TestProfileRun,
-  TestProfileRunStatus,
-  TestRunDetail,
-  TestProfileRunRecommendation,
-  RecommendationCategory,
-} from "./models/index.js";

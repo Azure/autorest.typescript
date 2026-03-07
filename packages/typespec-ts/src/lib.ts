@@ -79,6 +79,8 @@ export interface EmitterOptions {
   //TODO should remove this after finish the release tool test
   "should-use-pnpm-dep"?: boolean;
   "ignore-nullable-on-optional"?: boolean;
+  "experimental-subpath"?: boolean;
+  "experimental-merge-strategy"?: "merge" | "namespace";
 }
 
 export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
@@ -363,6 +365,19 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
       nullable: true,
       description:
         "If an optional property is also marked as nullable, it will be treated as just optional. Defaults to `true` for Azure services."
+    },
+    "experimental-subpath": {
+      type: "boolean",
+      nullable: true,
+      description:
+        "Whether to generate experimental subpath exports. When enabled, preview operations are emitted under a separate `experimental` subpath."
+    },
+    "experimental-merge-strategy": {
+      type: "string",
+      enum: ["merge", "namespace"],
+      nullable: true,
+      description:
+        "Determines how preview operations are integrated into stable operation groups when both exist. 'merge' adds them as properties on the stable group; 'namespace' nests them under an 'experimental' property."
     }
   },
   required: []

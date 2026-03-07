@@ -54,7 +54,7 @@ export function _loadTestAdministrationGetServerMetricsConfigSend(
     "/tests/{testId}/server-metrics-config{?api-version}",
     {
       testId: testId,
-      "api-version": context.apiVersion ?? "2022-11-01",
+      "api-version": context.apiVersion ?? "2024-05-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -101,7 +101,7 @@ export function _loadTestAdministrationCreateOrUpdateServerMetricsConfigSend(
     "/tests/{testId}/server-metrics-config{?api-version}",
     {
       testId: testId,
-      "api-version": context.apiVersion ?? "2022-11-01",
+      "api-version": context.apiVersion ?? "2024-05-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -155,7 +155,7 @@ export function _loadTestAdministrationGetAppComponentsSend(
     "/tests/{testId}/app-components{?api-version}",
     {
       testId: testId,
-      "api-version": context.apiVersion ?? "2022-11-01",
+      "api-version": context.apiVersion ?? "2024-05-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -200,7 +200,7 @@ export function _loadTestAdministrationCreateOrUpdateAppComponentsSend(
     "/tests/{testId}/app-components{?api-version}",
     {
       testId: testId,
-      "api-version": context.apiVersion ?? "2022-11-01",
+      "api-version": context.apiVersion ?? "2024-05-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -252,7 +252,7 @@ export function _loadTestAdministrationListTestFilesSend(
     "/tests/{testId}/files{?api-version}",
     {
       testId: testId,
-      "api-version": context.apiVersion ?? "2022-11-01",
+      "api-version": context.apiVersion ?? "2024-05-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -288,7 +288,11 @@ export function loadTestAdministrationListTestFiles(
     () => _loadTestAdministrationListTestFilesSend(context, testId, options),
     _loadTestAdministrationListTestFilesDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "nextLink", apiVersion: context.apiVersion ?? "2022-11-01" },
+    {
+      itemName: "value",
+      nextLinkName: "nextLink",
+      apiVersion: context.apiVersion ?? "2024-05-01-preview",
+    },
   );
 }
 
@@ -303,7 +307,7 @@ export function _loadTestAdministrationDeleteTestFileSend(
     {
       testId: testId,
       fileName: fileName,
-      "api-version": context.apiVersion ?? "2022-11-01",
+      "api-version": context.apiVersion ?? "2024-05-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -350,7 +354,7 @@ export function _loadTestAdministrationGetTestFileSend(
     {
       testId: testId,
       fileName: fileName,
-      "api-version": context.apiVersion ?? "2022-11-01",
+      "api-version": context.apiVersion ?? "2024-05-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -398,7 +402,7 @@ export function _loadTestAdministrationUploadTestFileSend(
     {
       testId: testId,
       fileName: fileName,
-      "api-version": context.apiVersion ?? "2022-11-01",
+      "api-version": context.apiVersion ?? "2024-05-01-preview",
       fileType: options?.fileType,
     },
     {
@@ -455,7 +459,7 @@ export function _loadTestAdministrationListTestsSend(
   const path = expandUrlTemplate(
     "/tests{?api-version,orderby,search,lastModifiedStartTime,lastModifiedEndTime,maxpagesize}",
     {
-      "api-version": context.apiVersion ?? "2022-11-01",
+      "api-version": context.apiVersion ?? "2024-05-01-preview",
       orderby: options?.orderby,
       search: options?.search,
       lastModifiedStartTime: !options?.lastModifiedStartTime
@@ -502,7 +506,11 @@ export function loadTestAdministrationListTests(
     () => _loadTestAdministrationListTestsSend(context, options),
     _loadTestAdministrationListTestsDeserialize,
     ["200"],
-    { itemName: "value", nextLinkName: "nextLink", apiVersion: context.apiVersion ?? "2022-11-01" },
+    {
+      itemName: "value",
+      nextLinkName: "nextLink",
+      apiVersion: context.apiVersion ?? "2024-05-01-preview",
+    },
   );
 }
 
@@ -515,7 +523,7 @@ export function _loadTestAdministrationGetTestSend(
     "/tests/{testId}{?api-version}",
     {
       testId: testId,
-      "api-version": context.apiVersion ?? "2022-11-01",
+      "api-version": context.apiVersion ?? "2024-05-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -559,7 +567,7 @@ export function _loadTestAdministrationDeleteTestSend(
     "/tests/{testId}{?api-version}",
     {
       testId: testId,
-      "api-version": context.apiVersion ?? "2022-11-01",
+      "api-version": context.apiVersion ?? "2024-05-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -599,7 +607,7 @@ export function _loadTestAdministrationCreateOrUpdateTestSend(
     "/tests/{testId}{?api-version}",
     {
       testId: testId,
-      "api-version": context.apiVersion ?? "2022-11-01",
+      "api-version": context.apiVersion ?? "2024-05-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

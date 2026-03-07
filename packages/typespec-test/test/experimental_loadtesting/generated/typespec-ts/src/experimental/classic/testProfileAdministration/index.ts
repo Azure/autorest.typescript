@@ -8,6 +8,7 @@ import {
   TestProfileAdministrationDeleteTestProfileOptionalParams,
   TestProfileAdministrationCreateOrUpdateTestProfileOptionalParams,
 } from "../../../api/testProfileAdministration/options.js";
+import { TestProfile } from "../../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../../static-helpers/pagingHelpers.js";
 import {
   testProfileAdministrationListTestProfiles,
@@ -15,7 +16,6 @@ import {
   testProfileAdministrationDeleteTestProfile,
   testProfileAdministrationCreateOrUpdateTestProfile,
 } from "../../api/testProfileAdministration/operations.js";
-import { TestProfile } from "../../models/models.js";
 
 /** Interface representing a TestProfileAdministration operations. */
 export interface TestProfileAdministrationOperations {

@@ -61,6 +61,17 @@ export type {
   DimensionValueList,
   TestRunAppComponents,
   TestRunServerMetricConfig,
+  TestProfile,
+  TargetResourceConfigurations,
+  TargetResourceConfigurationsUnion,
+  ResourceKind,
+  FunctionFlexConsumptionTargetResourceConfigurations,
+  FunctionFlexConsumptionResourceConfiguration,
+  TestProfileRun,
+  TestProfileRunStatus,
+  TestRunDetail,
+  TestProfileRunRecommendation,
+  RecommendationCategory,
 } from "./models/index.js";
 export {
   KnownPFMetrics,
@@ -78,6 +89,9 @@ export {
   KnownAggregationType,
   KnownMetricUnit,
   KnownTimeGrain,
+  KnownResourceKind,
+  KnownTestProfileRunStatus,
+  KnownRecommendationCategory,
   KnownAPIVersions,
 } from "./models/index.js";
 export type { LoadTestServiceClientOptionalParams } from "./api/index.js";
@@ -111,5 +125,18 @@ export type {
   LoadTestRunCreateOrUpdateTestRunOptionalParams,
   LoadTestRunGetTestRunOptionalParams,
 } from "./api/loadTestRun/index.js";
+export type {
+  TestProfileAdministrationListTestProfilesOptionalParams,
+  TestProfileAdministrationGetTestProfileOptionalParams,
+  TestProfileAdministrationDeleteTestProfileOptionalParams,
+  TestProfileAdministrationCreateOrUpdateTestProfileOptionalParams,
+} from "./api/testProfileAdministration/index.js";
+export type {
+  TestProfileRunAdministrationListTestProfileRunsOptionalParams,
+  TestProfileRunAdministrationStopOptionalParams,
+  TestProfileRunAdministrationDeleteTestProfileRunOptionalParams,
+  TestProfileRunAdministrationCreateOrUpdateTestProfileRunOptionalParams,
+  TestProfileRunAdministrationGetTestProfileRunOptionalParams,
+} from "./api/testProfileRunAdministration/index.js";
 export type { LoadTestAdministrationOperations, LoadTestRunOperations } from "./classic/index.js";
 export type { PageSettings, ContinuablePage, PagedAsyncIterableIterator };

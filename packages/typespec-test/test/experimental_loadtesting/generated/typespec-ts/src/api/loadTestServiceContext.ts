@@ -42,5 +42,25 @@ export function createLoadTestService(
   };
   const clientContext = getClient(endpointUrl, credential, updatedOptions);
   const apiVersion = options.apiVersion;
-  return { ...clientContext, apiVersion } as LoadTestServiceContext;
+  const userApiVersion = apiVersion;
+  const context = { ...clientContext } as LoadTestServiceContext;
+
+  if (userApiVersion !== undefined) {
+    context.apiVersion = userApiVersion;
+  } else {
+    Object.defineProperty(context, "apiVersion", {
+      get() {
+        return _defaultApiVersion;
+      },
+      configurable: true,
+      enumerable: true,
+    });
+  }
+  return context;
+}
+let _defaultApiVersion = "2022-11-01";
+
+/** @internal */
+export function _setDefaultApiVersion(version: string): void {
+  _defaultApiVersion = version;
 }

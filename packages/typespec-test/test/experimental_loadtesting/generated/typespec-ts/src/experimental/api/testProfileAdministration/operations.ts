@@ -9,17 +9,17 @@ import {
   TestProfileAdministrationCreateOrUpdateTestProfileOptionalParams,
 } from "../../../api/testProfileAdministration/options.js";
 import {
-  PagedAsyncIterableIterator,
-  buildPagedAsyncIterator,
-} from "../../../static-helpers/pagingHelpers.js";
-import { expandUrlTemplate } from "../../../static-helpers/urlTemplate.js";
-import {
   TestProfile,
   testProfileSerializer,
   testProfileDeserializer,
   _PagedTestProfile,
   _pagedTestProfileDeserializer,
-} from "../../models/models.js";
+} from "../../../models/models.js";
+import {
+  PagedAsyncIterableIterator,
+  buildPagedAsyncIterator,
+} from "../../../static-helpers/pagingHelpers.js";
+import { expandUrlTemplate } from "../../../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,

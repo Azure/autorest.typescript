@@ -54,6 +54,17 @@ export type {
   DimensionValueList,
   TestRunAppComponents,
   TestRunServerMetricConfig,
+  TestProfile,
+  TargetResourceConfigurations,
+  TargetResourceConfigurationsUnion,
+  ResourceKind,
+  FunctionFlexConsumptionTargetResourceConfigurations,
+  FunctionFlexConsumptionResourceConfiguration,
+  TestProfileRun,
+  TestProfileRunStatus,
+  TestRunDetail,
+  TestProfileRunRecommendation,
+  RecommendationCategory,
 } from "./models.js";
 export {
   KnownPFMetrics,
@@ -71,5 +82,8 @@ export {
   KnownAggregationType,
   KnownMetricUnit,
   KnownTimeGrain,
+  KnownResourceKind,
+  KnownTestProfileRunStatus,
+  KnownRecommendationCategory,
   KnownAPIVersions,
 } from "./models.js";

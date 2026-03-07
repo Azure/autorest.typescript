@@ -108,6 +108,8 @@ import { transformRLCOptions } from "./transform/transfromRLCOptions.js";
 import { emitSamples } from "./modular/emitSamples.js";
 import { generateCrossLanguageDefinitionFile } from "./utils/crossLanguageDef.js";
 import { getClassicalClientName } from "./modular/helpers/namingHelpers.js";
+import { buildExperimental } from "./modular/buildExperimental.js";
+import { classifyPreviewFeatures } from "./modular/helpers/previewDetection.js";
 
 export * from "./lib.js";
 
@@ -334,9 +336,20 @@ export async function $onEmit(context: EmitContext) {
       buildRootIndex(dpgContext, modularEmitterOptions, rootIndexFile);
     }
     for (const subClient of clientMap) {
+      // When experimental-subpath is enabled, compute preview-only groups to exclude from stable generation
+      let previewExcludeGroups: Set<string> | undefined;
+      if (modularEmitterOptions.modularOptions.experimentalSubpath) {
+        const previewInfo = classifyPreviewFeatures(dpgContext, subClient[1]);
+        if (previewInfo.hasAnyPreview) {
+          previewExcludeGroups = new Set<string>();
+          for (const key of previewInfo.previewMethods.keys()) {
+            previewExcludeGroups.add(key);
+          }
+        }
+      }
       await renameClientName(subClient[1], modularEmitterOptions);
       buildApiOptions(dpgContext, subClient, modularEmitterOptions);
-      buildOperationFiles(dpgContext, subClient, modularEmitterOptions);
+      buildOperationFiles(dpgContext, subClient, modularEmitterOptions, previewExcludeGroups);
       buildClientContext(dpgContext, subClient, modularEmitterOptions);
       buildRestorePoller(dpgContext, subClient, modularEmitterOptions);
       if (dpgContext.rlcOptions?.hierarchyClient) {
@@ -352,7 +365,7 @@ export async function $onEmit(context: EmitContext) {
       }
 
       buildClassicalClient(dpgContext, subClient, modularEmitterOptions);
-      buildClassicOperationFiles(dpgContext, subClient, modularEmitterOptions);
+      buildClassicOperationFiles(dpgContext, subClient, modularEmitterOptions, previewExcludeGroups);
       buildSubpathIndexFile(modularEmitterOptions, "classic", subClient, {
         exportIndex: true,
         interfaceOnly: true
@@ -376,6 +389,21 @@ export async function $onEmit(context: EmitContext) {
       // TODO: remember to remove this out when RLC is splitted from Modular
       if (samples.length > 0) {
         dpgContext.rlcOptions!.generateSample = true;
+      }
+    }
+
+    // Build experimental subpath when enabled
+    if (modularEmitterOptions.modularOptions.experimentalSubpath) {
+      for (const subClient of clientMap) {
+        const previewInfo = classifyPreviewFeatures(dpgContext, subClient[1]);
+        if (previewInfo.hasAnyPreview) {
+          buildExperimental(
+            dpgContext,
+            subClient,
+            modularEmitterOptions,
+            previewInfo
+          );
+        }
       }
     }
 

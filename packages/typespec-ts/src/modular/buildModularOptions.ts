@@ -15,7 +15,10 @@ export function transformModularEmitterOptions(
       sourceRoot: modularSourcesRoot,
       compatibilityMode: !!dpgContext.rlcOptions?.compatibilityMode,
       experimentalExtensibleEnums:
-        !!dpgContext.rlcOptions?.experimentalExtensibleEnums
+        !!dpgContext.rlcOptions?.experimentalExtensibleEnums,
+      experimentalSubpath: dpgContext.rlcOptions?.experimentalSubpath,
+      experimentalMergeStrategy:
+        dpgContext.rlcOptions?.experimentalMergeStrategy
     }
   };
 

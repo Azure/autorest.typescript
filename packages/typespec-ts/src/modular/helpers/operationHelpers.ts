@@ -139,9 +139,11 @@ export function getSendPrivateFunction(
       ? getClientOptions(client, "includeRootSlash") !== false
       : true;
 
-    const uriTemplate = includeRootSlash
+    const rawTemplate = includeRootSlash
       ? operation.operation.uriTemplate
       : operation.operation.uriTemplate.replace(/^\//, "");
+    // Normalize %2D → - in URI templates (upstream fix in @typespec/http 1.10+)
+    const uriTemplate = rawTemplate.replace(/%2D/gi, "-");
 
     statements.push(`const ${pathVarName} = ${resolveReference(UrlTemplateHelpers.parseTemplate)}("${uriTemplate}", {
         ${urlTemplateParams.join(",\n")}
@@ -1842,7 +1844,7 @@ function getUriTemplateQueryParamName(name: string) {
   return `${escapeUriTemplateParamName(name)}`;
 }
 function escapeUriTemplateParamName(name: string) {
-  return encodeURIComponent(name).replace(/[:-]/g, function (c) {
+  return encodeURIComponent(name).replace(/[:]/g, function (c) {
     return "%" + c.charCodeAt(0).toString(16).toUpperCase();
   });
 }
