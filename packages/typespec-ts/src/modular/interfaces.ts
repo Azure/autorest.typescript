@@ -4,6 +4,8 @@ export interface ModularOptions {
   sourceRoot: string;
   compatibilityMode: boolean;
   experimentalExtensibleEnums: boolean;
+  betaSubpath?: boolean;
+  betaMergeStrategy?: "merge" | "namespace";
 }
 export interface ModularEmitterOptions {
   options: RLCOptions;

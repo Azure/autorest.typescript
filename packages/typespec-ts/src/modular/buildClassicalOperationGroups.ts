@@ -15,7 +15,8 @@ import { useContext } from "../contextManager.js";
 export function buildClassicOperationFiles(
   dpgContext: SdkContext,
   clientMap: [string[], SdkClientType<SdkServiceOperation>],
-  emitterOptions: ModularEmitterOptions
+  emitterOptions: ModularEmitterOptions,
+  excludeGroups?: Set<string>
 ) {
   // const sdkPackage = dpgContext.sdkPackage;
   const project = useContext("outputProject");
@@ -27,6 +28,9 @@ export function buildClassicOperationFiles(
   >();
   const methodMap = getMethodHierarchiesMap(dpgContext, client);
   for (const [prefixKey, operations] of methodMap) {
+    if (excludeGroups?.has(prefixKey)) {
+      continue;
+    }
     const prefixes = prefixKey.split("/");
     if (prefixes.length > 0 && prefixKey !== "") {
       const classicOperationFileName =
@@ -57,6 +61,9 @@ export function buildClassicOperationFiles(
     }
   }
   for (const [prefixKey, operations] of methodMap) {
+    if (excludeGroups?.has(prefixKey)) {
+      continue;
+    }
     const prefixes = prefixKey.split("/");
     if (prefixes.length > 0 && prefixKey !== "") {
       for (let layer = 0; layer < prefixes.length - 1; layer++) {

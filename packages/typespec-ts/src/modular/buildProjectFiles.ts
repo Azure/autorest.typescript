@@ -80,6 +80,10 @@ export function getModuleExports(
   };
   exports["exports"]["./api"] = "./src/api/index.ts";
 
+  if (emitterOptions.modularOptions.betaSubpath) {
+    exports["exports"]["./beta"] = "./src/beta/index.ts";
+  }
+
   return buildExportsForMultiClient(context, emitterOptions, exports);
 }
 

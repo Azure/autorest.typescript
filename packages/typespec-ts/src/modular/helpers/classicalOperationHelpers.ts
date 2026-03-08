@@ -57,17 +57,19 @@ export function getClassicalOperation(
   clientMap: [string[], SdkClientType<SdkServiceOperation>],
   classicFile: SourceFile,
   operationGroup: [string[], ServiceOperation[]],
-  layer: number = operationGroup[0].length - 1
+  layer: number = operationGroup[0].length - 1,
+  depthOffset: number = 0
 ) {
   const prefixes = operationGroup[0];
   const operations = operationGroup[1];
   const { rlcClientName } = getModularClientOptions(clientMap);
+  const importDepth = layer + 2 + depthOffset;
   const hasClientContextImport = classicFile
     .getImportDeclarations()
     .filter((i) => {
       return (
         i.getModuleSpecifierValue() ===
-        `${"../".repeat(layer + 2)}api/${normalizeName(
+        `${"../".repeat(importDepth)}api/${normalizeName(
           rlcClientName,
           NameType.File
         )}.js`
@@ -76,7 +78,7 @@ export function getClassicalOperation(
   if (!hasClientContextImport || hasClientContextImport.length === 0) {
     classicFile.addImportDeclaration({
       namedImports: [rlcClientName],
-      moduleSpecifier: `${"../".repeat(layer + 2)}api/${normalizeName(
+      moduleSpecifier: `${"../".repeat(importDepth)}api/${normalizeName(
         rlcClientName,
         NameType.File
       )}.js`
