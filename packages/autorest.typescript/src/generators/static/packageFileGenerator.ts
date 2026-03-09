@@ -8,6 +8,7 @@ import { getAutorestOptions, getSession } from "../../autorestSession";
 import { hasPollingOperations } from "../../restLevelClient/helpers/hasPollingOperations";
 import { NameType, normalizeName } from "../../utils/nameUtils";
 import { getSecurityInfoFromModel } from "../../utils/schemaHelpers";
+import { WarpConfigTemplate } from "@azure-tools/rlc-common";
 
 export function generatePackageJson(
   project: Project,
@@ -273,32 +274,10 @@ export function generateWarpConfig(project: Project) {
     return;
   }
 
-  const lines: string[] = [];
-  lines.push("# warp.config.yml — build configuration");
-  lines.push("");
-  lines.push("exports:");
-  lines.push('  "./package.json": "./package.json"');
-  lines.push('  ".": "./src/index.ts"');
-  lines.push("");
-  lines.push("targets:");
-  lines.push("  - name: browser");
-  lines.push('    tsconfig: "../../../tsconfig.src.browser.json"');
-  lines.push('    polyfillSuffix: "-browser"');
-  lines.push("");
-  lines.push("  - name: react-native");
-  lines.push('    tsconfig: "../../../tsconfig.src.react-native.json"');
-  lines.push('    polyfillSuffix: "-react-native"');
-  lines.push("");
-  lines.push("  - name: esm");
-  lines.push("    condition: import");
-  lines.push('    tsconfig: "../../../tsconfig.src.esm.json"');
-  lines.push("");
-  lines.push("  - name: commonjs");
-  lines.push("    condition: require");
-  lines.push('    tsconfig: "../../../tsconfig.src.cjs.json"');
-  lines.push("");
+  const exportsContent = ['  "./package.json": "./package.json"', '  ".": "./src/index.ts"'].join("\n");
+  const content = WarpConfigTemplate.replace("{{exports}}", exportsContent);
 
-  project.createSourceFile("warp.config.yml", lines.join("\n"), {
+  project.createSourceFile("warp.config.yml", content, {
     overwrite: true
   });
 }
