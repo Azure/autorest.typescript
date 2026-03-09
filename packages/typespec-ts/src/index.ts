@@ -579,7 +579,7 @@ export async function $onEmit(context: EmitContext) {
         );
       }
 
-      // Generate warp.config.yml for Azure monorepo packages
+      // Update warp.config.yml for Azure monorepo packages
       if (option.azureSdkForJs) {
         updateBuilders.push((model: RLCModel) =>
           buildWarpConfig(model, modularPackageInfo)
