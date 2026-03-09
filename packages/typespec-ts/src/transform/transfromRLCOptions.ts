@@ -92,6 +92,7 @@ function extractRLCOptions(
     emitterOptions["ignore-enum-member-name-normalize"];
   const compatibilityQueryMultiFormat =
     emitterOptions["compatibility-query-multi-format"];
+  const enableStorageCompat = emitterOptions["enable-storage-compat"] === true;
   const typespecTitleMap = emitterOptions["typespec-title-map"];
   const hasSubscriptionId = getSubscriptionId(dpgContext);
   const ignoreNullableOnOptional = getIgnoreNullableOnOptional(
@@ -134,7 +135,8 @@ function extractRLCOptions(
     ignoreEnumMemberNameNormalize,
     hasSubscriptionId,
     ignoreNullableOnOptional,
-    isMultiService
+    isMultiService,
+    enableStorageCompat
   };
 }
 

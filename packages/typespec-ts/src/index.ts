@@ -18,6 +18,7 @@ import {
   PollingHelpers,
   SerializationHelpers,
   SimplePollerHelpers,
+  StorageCompatHelpers,
   UrlTemplateHelpers,
   XmlHelpers
 } from "./modular/static-helpers-metadata.js";
@@ -37,6 +38,7 @@ import {
   buildPollingHelper,
   buildPaginateHelper as buildRLCPaginateHelper,
   buildReadmeFile,
+  hasClientNameChanged,
   updateReadmeFile,
   buildRecordedClientFile,
   buildResponseTypes,
@@ -51,6 +53,7 @@ import {
   buildTestNodeTsConfig,
   buildTestMainTsConfig,
   buildVitestConfig,
+  buildWarpConfig,
   getClientName,
   hasUnexpectedHelper,
   isAzurePackage,
@@ -105,6 +108,7 @@ import { transformRLCModel } from "./transform/transform.js";
 import { transformRLCOptions } from "./transform/transfromRLCOptions.js";
 import { emitSamples } from "./modular/emitSamples.js";
 import { generateCrossLanguageDefinitionFile } from "./utils/crossLanguageDef.js";
+import { getClassicalClientName } from "./modular/helpers/namingHelpers.js";
 
 export * from "./lib.js";
 
@@ -143,7 +147,8 @@ export async function $onEmit(context: EmitContext) {
       ...UrlTemplateHelpers,
       ...MultipartHelpers,
       ...CloudSettingHelpers,
-      ...XmlHelpers
+      ...XmlHelpers,
+      ...(rlcOptions.enableStorageCompat ? StorageCompatHelpers : {})
     },
     {
       sourcesDir: dpgContext.generationPathDetail?.modularSourcesDir,
@@ -515,6 +520,12 @@ export async function $onEmit(context: EmitContext) {
       commonBuilders.push((model) =>
         buildPackageFile(model, modularPackageInfo)
       );
+      // Generate warp.config.yml for Azure monorepo ESM packages
+      if (option.azureSdkForJs) {
+        commonBuilders.push((model) =>
+          buildWarpConfig(model, modularPackageInfo)
+        );
+      }
       commonBuilders.push(buildTsConfig);
       if (option.azureSdkForJs) {
         commonBuilders.push(buildTsSrcConfig);
@@ -551,30 +562,65 @@ export async function $onEmit(context: EmitContext) {
         }
       }
     } else if (hasPackageFile) {
-      // update existing package.json file with correct dependencies
+      const updateBuilders = [];
       let modularPackageInfo = {};
+
+      // update existing package.json file with correct dependencies
       if (option.isModularLibrary) {
         modularPackageInfo = {
-          exports: getModuleExports(context, modularEmitterOptions)
+          exports: getModuleExports(context, modularEmitterOptions),
+          clientContextPaths: getRelativeContextPaths(
+            context,
+            modularEmitterOptions
+          )
         };
+        updateBuilders.push((model: RLCModel) =>
+          updatePackageFile(model, existingPackageFilePath, modularPackageInfo)
+        );
       }
+
+      // Update warp.config.yml for Azure monorepo packages
+      if (option.azureSdkForJs) {
+        updateBuilders.push((model: RLCModel) =>
+          buildWarpConfig(model, modularPackageInfo)
+        );
+      }
+
+      // If the client name changed, regenerate the README and snippets completely;
+      // otherwise update only the API reference link in-place.
+      if (hasReadmeFile) {
+        const clientNameChanged = hasClientNameChanged(
+          rlcClient,
+          existingReadmeFilePath
+        );
+        updateBuilders.push(
+          clientNameChanged
+            ? buildReadmeFile
+            : (model: RLCModel) =>
+                updateReadmeFile(model, existingReadmeFilePath)
+        );
+
+        // Regenerate snippets.spec.ts only when the client name changed
+        if (clientNameChanged && option.azureSdkForJs) {
+          for (const subClient of dpgContext.sdkPackage.clients) {
+            updateBuilders.push((model: RLCModel) =>
+              buildSnippets(
+                model,
+                getClassicalClientName(subClient),
+                option.azureSdkForJs
+              )
+            );
+          }
+        }
+      }
+
+      // update metadata relevant files
       await emitContentByBuilder(
         program,
-        (model) =>
-          updatePackageFile(model, existingPackageFilePath, modularPackageInfo),
+        updateBuilders,
         rlcClient,
         dpgContext.generationPathDetail?.metadataDir
       );
-
-      // update existing README.md file if it exists
-      if (hasReadmeFile) {
-        await emitContentByBuilder(
-          program,
-          (model) => updateReadmeFile(model, existingReadmeFilePath),
-          rlcClient,
-          dpgContext.generationPathDetail?.metadataDir
-        );
-      }
     }
     if (isAzureFlavor) {
       await emitContentByBuilder(
