@@ -8,7 +8,6 @@ import { getAutorestOptions, getSession } from "../../autorestSession";
 import { hasPollingOperations } from "../../restLevelClient/helpers/hasPollingOperations";
 import { NameType, normalizeName } from "../../utils/nameUtils";
 import { getSecurityInfoFromModel } from "../../utils/schemaHelpers";
-import { resolveWarpExports } from "@azure-tools/rlc-common";
 
 export function generatePackageJson(
   project: Project,
@@ -164,7 +163,27 @@ function regularAutorestPackage(
   }
   if (azureSdkForJs) {
     // Azure monorepo packages use warp (via dev-tool run build-package) instead of tshy
-    packageInfo.exports = resolveWarpExports({});
+    packageInfo.exports = {
+      "./package.json": "./package.json",
+      ".": {
+        browser: {
+          types: "./dist/browser/index.d.ts",
+          default: "./dist/browser/index.js"
+        },
+        "react-native": {
+          types: "./dist/react-native/index.d.ts",
+          default: "./dist/react-native/index.js"
+        },
+        import: {
+          types: "./dist/esm/index.d.ts",
+          default: "./dist/esm/index.js"
+        },
+        require: {
+          types: "./dist/commonjs/index.d.ts",
+          default: "./dist/commonjs/index.js"
+        }
+      }
+    };
     packageInfo.devDependencies["@azure/dev-tool"] = "workspace:^";
     packageInfo.devDependencies["cross-env"] = "catalog:";
     packageInfo.devDependencies["eslint"] = "catalog:";
