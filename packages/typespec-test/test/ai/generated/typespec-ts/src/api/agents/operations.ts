@@ -122,11 +122,11 @@ export function _listVectorStoreFileBatchFilesSend(
   options: AgentsListVectorStoreFileBatchFilesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/vector_stores/{vectorStoreId}/file_batches/{batchId}/files{?api%2Dversion,filter,limit,order,after,before}",
+    "/vector_stores/{vectorStoreId}/file_batches/{batchId}/files{?api-version,filter,limit,order,after,before}",
     {
       vectorStoreId: vectorStoreId,
       batchId: batchId,
-      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
+      "api-version": context.apiVersion ?? "2024-07-01-preview",
       filter: options?.filter,
       limit: options?.limit,
       order: options?.order,
@@ -174,11 +174,11 @@ export function _cancelVectorStoreFileBatchSend(
   options: AgentsCancelVectorStoreFileBatchOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/vector_stores/{vectorStoreId}/file_batches/{batchId}/cancel{?api%2Dversion}",
+    "/vector_stores/{vectorStoreId}/file_batches/{batchId}/cancel{?api-version}",
     {
       vectorStoreId: vectorStoreId,
       batchId: batchId,
-      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
+      "api-version": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -221,11 +221,11 @@ export function _getVectorStoreFileBatchSend(
   options: AgentsGetVectorStoreFileBatchOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/vector_stores/{vectorStoreId}/file_batches/{batchId}{?api%2Dversion}",
+    "/vector_stores/{vectorStoreId}/file_batches/{batchId}{?api-version}",
     {
       vectorStoreId: vectorStoreId,
       batchId: batchId,
-      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
+      "api-version": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -267,10 +267,10 @@ export function _createVectorStoreFileBatchSend(
   options: AgentsCreateVectorStoreFileBatchOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/vector_stores/{vectorStoreId}/file_batches{?api%2Dversion}",
+    "/vector_stores/{vectorStoreId}/file_batches{?api-version}",
     {
       vectorStoreId: vectorStoreId,
-      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
+      "api-version": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -324,11 +324,11 @@ export function _deleteVectorStoreFileSend(
   options: AgentsDeleteVectorStoreFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/vector_stores/{vectorStoreId}/files/{fileId}{?api%2Dversion}",
+    "/vector_stores/{vectorStoreId}/files/{fileId}{?api-version}",
     {
       vectorStoreId: vectorStoreId,
       fileId: fileId,
-      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
+      "api-version": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -374,11 +374,11 @@ export function _getVectorStoreFileSend(
   options: AgentsGetVectorStoreFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/vector_stores/{vectorStoreId}/files/{fileId}{?api%2Dversion}",
+    "/vector_stores/{vectorStoreId}/files/{fileId}{?api-version}",
     {
       vectorStoreId: vectorStoreId,
       fileId: fileId,
-      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
+      "api-version": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -420,10 +420,10 @@ export function _createVectorStoreFileSend(
   options: AgentsCreateVectorStoreFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/vector_stores/{vectorStoreId}/files{?api%2Dversion}",
+    "/vector_stores/{vectorStoreId}/files{?api-version}",
     {
       vectorStoreId: vectorStoreId,
-      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
+      "api-version": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -474,10 +474,10 @@ export function _listVectorStoreFilesSend(
   options: AgentsListVectorStoreFilesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/vector_stores/{vectorStoreId}/files{?api%2Dversion,filter,limit,order,after,before}",
+    "/vector_stores/{vectorStoreId}/files{?api-version,filter,limit,order,after,before}",
     {
       vectorStoreId: vectorStoreId,
-      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
+      "api-version": context.apiVersion ?? "2024-07-01-preview",
       filter: options?.filter,
       limit: options?.limit,
       order: options?.order,
@@ -523,10 +523,10 @@ export function _deleteVectorStoreSend(
   options: AgentsDeleteVectorStoreOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/vector_stores/{vectorStoreId}{?api%2Dversion}",
+    "/vector_stores/{vectorStoreId}{?api-version}",
     {
       vectorStoreId: vectorStoreId,
-      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
+      "api-version": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -567,10 +567,10 @@ export function _modifyVectorStoreSend(
   options: AgentsModifyVectorStoreOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/vector_stores/{vectorStoreId}{?api%2Dversion}",
+    "/vector_stores/{vectorStoreId}{?api-version}",
     {
       vectorStoreId: vectorStoreId,
-      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
+      "api-version": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -619,10 +619,10 @@ export function _getVectorStoreSend(
   options: AgentsGetVectorStoreOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/vector_stores/{vectorStoreId}{?api%2Dversion}",
+    "/vector_stores/{vectorStoreId}{?api-version}",
     {
       vectorStoreId: vectorStoreId,
-      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
+      "api-version": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -662,9 +662,9 @@ export function _createVectorStoreSend(
   options: AgentsCreateVectorStoreOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/vector_stores{?api%2Dversion}",
+    "/vector_stores{?api-version}",
     {
-      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
+      "api-version": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -720,9 +720,9 @@ export function _listVectorStoresSend(
   options: AgentsListVectorStoresOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/vector_stores{?api%2Dversion,limit,order,after,before}",
+    "/vector_stores{?api-version,limit,order,after,before}",
     {
-      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
+      "api-version": context.apiVersion ?? "2024-07-01-preview",
       limit: options?.limit,
       order: options?.order,
       after: options?.after,
@@ -766,10 +766,10 @@ export function _getFileContentSend(
   options: AgentsGetFileContentOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/files/{fileId}/content{?api%2Dversion}",
+    "/files/{fileId}/content{?api-version}",
     {
       fileId: fileId,
-      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
+      "api-version": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -810,10 +810,10 @@ export function _getFileSend(
   options: AgentsGetFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/files/{fileId}{?api%2Dversion}",
+    "/files/{fileId}{?api-version}",
     {
       fileId: fileId,
-      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
+      "api-version": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -852,10 +852,10 @@ export function _deleteFileSend(
   options: AgentsDeleteFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/files/{fileId}{?api%2Dversion}",
+    "/files/{fileId}{?api-version}",
     {
       fileId: fileId,
-      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
+      "api-version": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -900,9 +900,9 @@ export function _uploadFileSend(
   options: AgentsUploadFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/files{?api%2Dversion}",
+    "/files{?api-version}",
     {
-      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
+      "api-version": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -946,9 +946,9 @@ export function _listFilesSend(
   options: AgentsListFilesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/files{?api%2Dversion,purpose}",
+    "/files{?api-version,purpose}",
     {
-      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
+      "api-version": context.apiVersion ?? "2024-07-01-preview",
       purpose: options?.purpose,
     },
     {
@@ -990,11 +990,11 @@ export function _listRunStepsSend(
   options: AgentsListRunStepsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/threads/{threadId}/runs/{runId}/steps{?api%2Dversion,include%5B%5D,limit,order,after,before}",
+    "/threads/{threadId}/runs/{runId}/steps{?api-version,include%5B%5D,limit,order,after,before}",
     {
       threadId: threadId,
       runId: runId,
-      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
+      "api-version": context.apiVersion ?? "2024-07-01-preview",
       "include%5B%5D": !options?.include
         ? options?.include
         : options?.include.map((p: any) => {
@@ -1047,12 +1047,12 @@ export function _getRunStepSend(
   options: AgentsGetRunStepOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/threads/{threadId}/runs/{runId}/steps/{stepId}{?api%2Dversion,include%5B%5D}",
+    "/threads/{threadId}/runs/{runId}/steps/{stepId}{?api-version,include%5B%5D}",
     {
       threadId: threadId,
       runId: runId,
       stepId: stepId,
-      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
+      "api-version": context.apiVersion ?? "2024-07-01-preview",
       "include%5B%5D": !options?.include
         ? options?.include
         : options?.include.map((p: any) => {
@@ -1098,9 +1098,9 @@ export function _createThreadAndRunSend(
   options: AgentsCreateThreadAndRunOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/threads/runs{?api%2Dversion}",
+    "/threads/runs{?api-version}",
     {
-      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
+      "api-version": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1173,11 +1173,11 @@ export function _cancelRunSend(
   options: AgentsCancelRunOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/threads/{threadId}/runs/{runId}/cancel{?api%2Dversion}",
+    "/threads/{threadId}/runs/{runId}/cancel{?api-version}",
     {
       threadId: threadId,
       runId: runId,
-      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
+      "api-version": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1219,11 +1219,11 @@ export function _submitToolOutputsToRunSend(
   options: AgentsSubmitToolOutputsToRunOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/threads/{threadId}/runs/{runId}/submit_tool_outputs{?api%2Dversion}",
+    "/threads/{threadId}/runs/{runId}/submit_tool_outputs{?api-version}",
     {
       threadId: threadId,
       runId: runId,
-      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
+      "api-version": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1269,11 +1269,11 @@ export function _updateRunSend(
   options: AgentsUpdateRunOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/threads/{threadId}/runs/{runId}{?api%2Dversion}",
+    "/threads/{threadId}/runs/{runId}{?api-version}",
     {
       threadId: threadId,
       runId: runId,
-      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
+      "api-version": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1316,11 +1316,11 @@ export function _getRunSend(
   options: AgentsGetRunOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/threads/{threadId}/runs/{runId}{?api%2Dversion}",
+    "/threads/{threadId}/runs/{runId}{?api-version}",
     {
       threadId: threadId,
       runId: runId,
-      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
+      "api-version": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1360,10 +1360,10 @@ export function _listRunsSend(
   options: AgentsListRunsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/threads/{threadId}/runs{?api%2Dversion,limit,order,after,before}",
+    "/threads/{threadId}/runs{?api-version,limit,order,after,before}",
     {
       threadId: threadId,
-      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
+      "api-version": context.apiVersion ?? "2024-07-01-preview",
       limit: options?.limit,
       order: options?.order,
       after: options?.after,
@@ -1409,10 +1409,10 @@ export function _createRunSend(
   options: AgentsCreateRunOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/threads/{threadId}/runs{?api%2Dversion,include%5B%5D}",
+    "/threads/{threadId}/runs{?api-version,include%5B%5D}",
     {
       threadId: threadId,
-      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
+      "api-version": context.apiVersion ?? "2024-07-01-preview",
       "include%5B%5D": !options?.include
         ? options?.include
         : options?.include.map((p: any) => {
@@ -1487,11 +1487,11 @@ export function _updateMessageSend(
   options: AgentsUpdateMessageOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/threads/{threadId}/messages/{messageId}{?api%2Dversion}",
+    "/threads/{threadId}/messages/{messageId}{?api-version}",
     {
       threadId: threadId,
       messageId: messageId,
-      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
+      "api-version": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1536,11 +1536,11 @@ export function _getMessageSend(
   options: AgentsGetMessageOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/threads/{threadId}/messages/{messageId}{?api%2Dversion}",
+    "/threads/{threadId}/messages/{messageId}{?api-version}",
     {
       threadId: threadId,
       messageId: messageId,
-      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
+      "api-version": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1582,10 +1582,10 @@ export function _listMessagesSend(
   options: AgentsListMessagesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/threads/{threadId}/messages{?api%2Dversion,runId,limit,order,after,before}",
+    "/threads/{threadId}/messages{?api-version,runId,limit,order,after,before}",
     {
       threadId: threadId,
-      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
+      "api-version": context.apiVersion ?? "2024-07-01-preview",
       runId: options?.runId,
       limit: options?.limit,
       order: options?.order,
@@ -1633,10 +1633,10 @@ export function _createMessageSend(
   options: AgentsCreateMessageOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/threads/{threadId}/messages{?api%2Dversion}",
+    "/threads/{threadId}/messages{?api-version}",
     {
       threadId: threadId,
-      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
+      "api-version": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1688,10 +1688,10 @@ export function _deleteThreadSend(
   options: AgentsDeleteThreadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/threads/{threadId}{?api%2Dversion}",
+    "/threads/{threadId}{?api-version}",
     {
       threadId: threadId,
-      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
+      "api-version": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1732,10 +1732,10 @@ export function _updateThreadSend(
   options: AgentsUpdateThreadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/threads/{threadId}{?api%2Dversion}",
+    "/threads/{threadId}{?api-version}",
     {
       threadId: threadId,
-      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
+      "api-version": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1783,10 +1783,10 @@ export function _getThreadSend(
   options: AgentsGetThreadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/threads/{threadId}{?api%2Dversion}",
+    "/threads/{threadId}{?api-version}",
     {
       threadId: threadId,
-      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
+      "api-version": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1824,9 +1824,9 @@ export function _createThreadSend(
   options: AgentsCreateThreadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/threads{?api%2Dversion}",
+    "/threads{?api-version}",
     {
-      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
+      "api-version": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1876,10 +1876,10 @@ export function _deleteAgentSend(
   options: AgentsDeleteAgentOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/assistants/{assistantId}{?api%2Dversion}",
+    "/assistants/{assistantId}{?api-version}",
     {
       assistantId: assistantId,
-      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
+      "api-version": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1920,10 +1920,10 @@ export function _updateAgentSend(
   options: AgentsUpdateAgentOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/assistants/{assistantId}{?api%2Dversion}",
+    "/assistants/{assistantId}{?api-version}",
     {
       assistantId: assistantId,
-      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
+      "api-version": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1981,10 +1981,10 @@ export function _getAgentSend(
   options: AgentsGetAgentOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/assistants/{assistantId}{?api%2Dversion}",
+    "/assistants/{assistantId}{?api-version}",
     {
       assistantId: assistantId,
-      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
+      "api-version": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -2022,9 +2022,9 @@ export function _listAgentsSend(
   options: AgentsListAgentsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/assistants{?api%2Dversion,limit,order,after,before}",
+    "/assistants{?api-version,limit,order,after,before}",
     {
-      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
+      "api-version": context.apiVersion ?? "2024-07-01-preview",
       limit: options?.limit,
       order: options?.order,
       after: options?.after,
@@ -2068,9 +2068,9 @@ export function _createAgentSend(
   options: AgentsCreateAgentOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/assistants{?api%2Dversion}",
+    "/assistants{?api-version}",
     {
-      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
+      "api-version": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

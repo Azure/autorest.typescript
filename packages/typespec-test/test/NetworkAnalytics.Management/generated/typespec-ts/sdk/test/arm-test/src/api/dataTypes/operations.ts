@@ -47,12 +47,12 @@ export function _listByDataProductSend(
   options: DataTypesListByDataProductOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes{?api%2Dversion}",
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes{?api-version}",
     {
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       dataProductName: dataProductName,
-      "api%2Dversion": context.apiVersion ?? "2023-11-15",
+      "api-version": context.apiVersion ?? "2023-11-15",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -105,13 +105,13 @@ export function _generateStorageContainerSasTokenSend(
   options: DataTypesGenerateStorageContainerSasTokenOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}/generateStorageContainerSasToken{?api%2Dversion}",
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}/generateStorageContainerSasToken{?api-version}",
     {
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       dataProductName: dataProductName,
       dataTypeName: dataTypeName,
-      "api%2Dversion": context.apiVersion ?? "2023-11-15",
+      "api-version": context.apiVersion ?? "2023-11-15",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -170,13 +170,13 @@ export function _deleteDataSend(
   options: DataTypesDeleteDataOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}/deleteData{?api%2Dversion}",
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}/deleteData{?api-version}",
     {
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       dataProductName: dataProductName,
       dataTypeName: dataTypeName,
-      "api%2Dversion": context.apiVersion ?? "2023-11-15",
+      "api-version": context.apiVersion ?? "2023-11-15",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -230,13 +230,13 @@ export function _$deleteSend(
   options: DataTypesDeleteOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}{?api%2Dversion}",
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}{?api-version}",
     {
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       dataProductName: dataProductName,
       dataTypeName: dataTypeName,
-      "api%2Dversion": context.apiVersion ?? "2023-11-15",
+      "api-version": context.apiVersion ?? "2023-11-15",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -289,13 +289,13 @@ export function _updateSend(
   options: DataTypesUpdateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}{?api%2Dversion}",
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}{?api-version}",
     {
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       dataProductName: dataProductName,
       dataTypeName: dataTypeName,
-      "api%2Dversion": context.apiVersion ?? "2023-11-15",
+      "api-version": context.apiVersion ?? "2023-11-15",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -350,13 +350,13 @@ export function _getSend(
   options: DataTypesGetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}{?api%2Dversion}",
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}{?api-version}",
     {
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       dataProductName: dataProductName,
       dataTypeName: dataTypeName,
-      "api%2Dversion": context.apiVersion ?? "2023-11-15",
+      "api-version": context.apiVersion ?? "2023-11-15",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -403,13 +403,13 @@ export function _createSend(
   options: DataTypesCreateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}{?api%2Dversion}",
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}{?api-version}",
     {
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       dataProductName: dataProductName,
       dataTypeName: dataTypeName,
-      "api%2Dversion": context.apiVersion ?? "2023-11-15",
+      "api-version": context.apiVersion ?? "2023-11-15",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

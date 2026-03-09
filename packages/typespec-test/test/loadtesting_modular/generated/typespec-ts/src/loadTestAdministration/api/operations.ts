@@ -51,10 +51,10 @@ export function _deleteTestSend(
   options: DeleteTestOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/tests/{testId}{?api%2Dversion}",
+    "/tests/{testId}{?api-version}",
     {
       testId: testId,
-      "api%2Dversion": context.apiVersion ?? "2024-05-01-preview",
+      "api-version": context.apiVersion ?? "2024-05-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -89,11 +89,11 @@ export function _deleteTestFileSend(
   options: DeleteTestFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/tests/{testId}/files/{fileName}{?api%2Dversion}",
+    "/tests/{testId}/files/{fileName}{?api-version}",
     {
       testId: testId,
       fileName: fileName,
-      "api%2Dversion": context.apiVersion ?? "2024-05-01-preview",
+      "api-version": context.apiVersion ?? "2024-05-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -130,11 +130,11 @@ export function _uploadTestFileSend(
   options: UploadTestFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/tests/{testId}/files/{fileName}{?api%2Dversion,fileType}",
+    "/tests/{testId}/files/{fileName}{?api-version,fileType}",
     {
       testId: testId,
       fileName: fileName,
-      "api%2Dversion": context.apiVersion ?? "2024-05-01-preview",
+      "api-version": context.apiVersion ?? "2024-05-01-preview",
       fileType: options?.fileType,
     },
     {
@@ -183,9 +183,9 @@ export function _listTestsSend(
   options: ListTestsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/tests{?api%2Dversion,orderby,search,lastModifiedStartTime,lastModifiedEndTime,maxpagesize}",
+    "/tests{?api-version,orderby,search,lastModifiedStartTime,lastModifiedEndTime,maxpagesize}",
     {
-      "api%2Dversion": context.apiVersion ?? "2024-05-01-preview",
+      "api-version": context.apiVersion ?? "2024-05-01-preview",
       orderby: options?.orderby,
       search: options?.search,
       lastModifiedStartTime: !options?.lastModifiedStartTime
@@ -244,10 +244,10 @@ export function _listTestFilesSend(
   options: ListTestFilesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/tests/{testId}/files{?api%2Dversion}",
+    "/tests/{testId}/files{?api-version}",
     {
       testId: testId,
-      "api%2Dversion": context.apiVersion ?? "2024-05-01-preview",
+      "api-version": context.apiVersion ?? "2024-05-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -298,11 +298,11 @@ export function _getTestFileSend(
   options: GetTestFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/tests/{testId}/files/{fileName}{?api%2Dversion}",
+    "/tests/{testId}/files/{fileName}{?api-version}",
     {
       testId: testId,
       fileName: fileName,
-      "api%2Dversion": context.apiVersion ?? "2024-05-01-preview",
+      "api-version": context.apiVersion ?? "2024-05-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -344,10 +344,10 @@ export function _getTestSend(
   options: GetTestOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/tests/{testId}{?api%2Dversion}",
+    "/tests/{testId}{?api-version}",
     {
       testId: testId,
-      "api%2Dversion": context.apiVersion ?? "2024-05-01-preview",
+      "api-version": context.apiVersion ?? "2024-05-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -386,10 +386,10 @@ export function _getServerMetricsConfigSend(
   options: GetServerMetricsConfigOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/tests/{testId}/server-metrics-config{?api%2Dversion}",
+    "/tests/{testId}/server-metrics-config{?api-version}",
     {
       testId: testId,
-      "api%2Dversion": context.apiVersion ?? "2024-05-01-preview",
+      "api-version": context.apiVersion ?? "2024-05-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -430,10 +430,10 @@ export function _getAppComponentsSend(
   options: GetAppComponentsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/tests/{testId}/app-components{?api%2Dversion}",
+    "/tests/{testId}/app-components{?api-version}",
     {
       testId: testId,
-      "api%2Dversion": context.apiVersion ?? "2024-05-01-preview",
+      "api-version": context.apiVersion ?? "2024-05-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -475,10 +475,10 @@ export function _createOrUpdateServerMetricsConfigSend(
   options: CreateOrUpdateServerMetricsConfigOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/tests/{testId}/server-metrics-config{?api%2Dversion}",
+    "/tests/{testId}/server-metrics-config{?api-version}",
     {
       testId: testId,
-      "api%2Dversion": context.apiVersion ?? "2024-05-01-preview",
+      "api-version": context.apiVersion ?? "2024-05-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -523,10 +523,10 @@ export function _createOrUpdateAppComponentsSend(
   options: CreateOrUpdateAppComponentsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/tests/{testId}/app-components{?api%2Dversion}",
+    "/tests/{testId}/app-components{?api-version}",
     {
       testId: testId,
-      "api%2Dversion": context.apiVersion ?? "2024-05-01-preview",
+      "api-version": context.apiVersion ?? "2024-05-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -571,10 +571,10 @@ export function _createOrUpdateTestSend(
   options: CreateOrUpdateTestOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/tests/{testId}{?api%2Dversion}",
+    "/tests/{testId}{?api-version}",
     {
       testId: testId,
-      "api%2Dversion": context.apiVersion ?? "2024-05-01-preview",
+      "api-version": context.apiVersion ?? "2024-05-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

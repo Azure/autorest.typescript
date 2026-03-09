@@ -30,12 +30,12 @@ export function _createOrUpdateSend(
   options: VirtualMachinesCreateOrUpdateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}{?api%2Dversion}",
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}{?api-version}",
     {
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       vmName: vmName,
-      "api%2Dversion": "2025-04-01",
+      "api-version": "2025-04-01",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -90,12 +90,12 @@ export function _getSend(
   options: VirtualMachinesGetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}{?api%2Dversion}",
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}{?api-version}",
     {
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       vmName: vmName,
-      "api%2Dversion": "2025-04-01",
+      "api-version": "2025-04-01",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

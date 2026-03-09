@@ -67,10 +67,10 @@ export function _listTextBlocklistItemsSend(
   options: ListTextBlocklistItemsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/text/blocklists/{blocklistName}/blocklistItems{?api%2Dversion,top,skip,maxpagesize}",
+    "/text/blocklists/{blocklistName}/blocklistItems{?api-version,top,skip,maxpagesize}",
     {
       blocklistName: blocklistName,
-      "api%2Dversion": context.apiVersion ?? "2024-09-01",
+      "api-version": context.apiVersion ?? "2024-09-01",
       top: options?.top,
       skip: options?.skip,
       maxpagesize: options?.maxpagesize,
@@ -120,11 +120,11 @@ export function _getTextBlocklistItemSend(
   options: GetTextBlocklistItemOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/text/blocklists/{blocklistName}/blocklistItems/{blocklistItemId}{?api%2Dversion}",
+    "/text/blocklists/{blocklistName}/blocklistItems/{blocklistItemId}{?api-version}",
     {
       blocklistName: blocklistName,
       blocklistItemId: blocklistItemId,
-      "api%2Dversion": context.apiVersion ?? "2024-09-01",
+      "api-version": context.apiVersion ?? "2024-09-01",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -167,10 +167,10 @@ export function _removeBlocklistItemsSend(
   options: RemoveBlocklistItemsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/text/blocklists/{blocklistName}:removeBlocklistItems{?api%2Dversion}",
+    "/text/blocklists/{blocklistName}:removeBlocklistItems{?api-version}",
     {
       blocklistName: blocklistName,
-      "api%2Dversion": context.apiVersion ?? "2024-09-01",
+      "api-version": context.apiVersion ?? "2024-09-01",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -214,10 +214,10 @@ export function _addOrUpdateBlocklistItemsSend(
   options: AddOrUpdateBlocklistItemsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/text/blocklists/{blocklistName}:addOrUpdateBlocklistItems{?api%2Dversion}",
+    "/text/blocklists/{blocklistName}:addOrUpdateBlocklistItems{?api-version}",
     {
       blocklistName: blocklistName,
-      "api%2Dversion": context.apiVersion ?? "2024-09-01",
+      "api-version": context.apiVersion ?? "2024-09-01",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -260,9 +260,9 @@ export function _listTextBlocklistsSend(
   options: ListTextBlocklistsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/text/blocklists{?api%2Dversion}",
+    "/text/blocklists{?api-version}",
     {
-      "api%2Dversion": context.apiVersion ?? "2024-09-01",
+      "api-version": context.apiVersion ?? "2024-09-01",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -307,10 +307,10 @@ export function _deleteTextBlocklistSend(
   options: DeleteTextBlocklistOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/text/blocklists/{blocklistName}{?api%2Dversion}",
+    "/text/blocklists/{blocklistName}{?api-version}",
     {
       blocklistName: blocklistName,
-      "api%2Dversion": context.apiVersion ?? "2024-09-01",
+      "api-version": context.apiVersion ?? "2024-09-01",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -347,10 +347,10 @@ export function _createOrUpdateTextBlocklistSend(
   options: CreateOrUpdateTextBlocklistOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/text/blocklists/{blocklistName}{?api%2Dversion}",
+    "/text/blocklists/{blocklistName}{?api-version}",
     {
       blocklistName: blocklistName,
-      "api%2Dversion": context.apiVersion ?? "2024-09-01",
+      "api-version": context.apiVersion ?? "2024-09-01",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -394,10 +394,10 @@ export function _getTextBlocklistSend(
   options: GetTextBlocklistOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/text/blocklists/{blocklistName}{?api%2Dversion}",
+    "/text/blocklists/{blocklistName}{?api-version}",
     {
       blocklistName: blocklistName,
-      "api%2Dversion": context.apiVersion ?? "2024-09-01",
+      "api-version": context.apiVersion ?? "2024-09-01",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -438,9 +438,9 @@ export function _analyzeImageSend(
   options: AnalyzeImageOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/image:analyze{?api%2Dversion}",
+    "/image:analyze{?api-version}",
     {
-      "api%2Dversion": context.apiVersion ?? "2024-09-01",
+      "api-version": context.apiVersion ?? "2024-09-01",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -483,9 +483,9 @@ export function _detectTextProtectedMaterialSend(
   options: DetectTextProtectedMaterialOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/text:detectProtectedMaterial{?api%2Dversion}",
+    "/text:detectProtectedMaterial{?api-version}",
     {
-      "api%2Dversion": context.apiVersion ?? "2024-09-01",
+      "api-version": context.apiVersion ?? "2024-09-01",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -528,9 +528,9 @@ export function _shieldPromptSend(
   options: ShieldPromptOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/text:shieldPrompt{?api%2Dversion}",
+    "/text:shieldPrompt{?api-version}",
     {
-      "api%2Dversion": context.apiVersion ?? "2024-09-01",
+      "api-version": context.apiVersion ?? "2024-09-01",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -573,9 +573,9 @@ export function _analyzeTextSend(
   options: AnalyzeTextOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/text:analyze{?api%2Dversion}",
+    "/text:analyze{?api-version}",
     {
-      "api%2Dversion": context.apiVersion ?? "2024-09-01",
+      "api-version": context.apiVersion ?? "2024-09-01",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

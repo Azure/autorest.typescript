@@ -183,10 +183,10 @@ export function _createOrReplaceSend(
   options: SAPWidgetsCreateOrReplaceOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/widgets/widgets/createOrReplace/users/{name}{?api%2Dversion}",
+    "/widgets/widgets/createOrReplace/users/{name}{?api-version}",
     {
       name: name,
-      "api%2Dversion": context.apiVersion ?? "1.0.0",
+      "api-version": context.apiVersion ?? "1.0.0",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

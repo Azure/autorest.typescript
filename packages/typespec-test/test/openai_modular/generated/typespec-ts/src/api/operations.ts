@@ -57,10 +57,10 @@ export function _getEmbeddingsSend(
   options: GetEmbeddingsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/deployments/{deploymentId}/embeddings{?api%2Dversion}",
+    "/deployments/{deploymentId}/embeddings{?api-version}",
     {
       deploymentId: deploymentId,
-      "api%2Dversion": context.apiVersion ?? "2024-06-01",
+      "api-version": context.apiVersion ?? "2024-06-01",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -105,10 +105,10 @@ export function _generateSpeechFromTextSend(
   options: GenerateSpeechFromTextOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/deployments/{deploymentId}/audio/speech{?api%2Dversion}",
+    "/deployments/{deploymentId}/audio/speech{?api-version}",
     {
       deploymentId: deploymentId,
-      "api%2Dversion": context.apiVersion ?? "2024-06-01",
+      "api-version": context.apiVersion ?? "2024-06-01",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -154,10 +154,10 @@ export function _getImageGenerationsSend(
   options: GetImageGenerationsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/deployments/{deploymentId}/images/generations{?api%2Dversion}",
+    "/deployments/{deploymentId}/images/generations{?api-version}",
     {
       deploymentId: deploymentId,
-      "api%2Dversion": context.apiVersion ?? "2024-06-01",
+      "api-version": context.apiVersion ?? "2024-06-01",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -202,10 +202,10 @@ export function _getChatCompletionsSend(
   options: GetChatCompletionsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/deployments/{deploymentId}/chat/completions{?api%2Dversion}",
+    "/deployments/{deploymentId}/chat/completions{?api-version}",
     {
       deploymentId: deploymentId,
-      "api%2Dversion": context.apiVersion ?? "2024-06-01",
+      "api-version": context.apiVersion ?? "2024-06-01",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -254,10 +254,10 @@ export function _getCompletionsSend(
   options: GetCompletionsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/deployments/{deploymentId}/completions{?api%2Dversion}",
+    "/deployments/{deploymentId}/completions{?api-version}",
     {
       deploymentId: deploymentId,
-      "api%2Dversion": context.apiVersion ?? "2024-06-01",
+      "api-version": context.apiVersion ?? "2024-06-01",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -306,10 +306,10 @@ export function _getAudioTranslationAsResponseObjectSend(
   options: GetAudioTranslationAsResponseObjectOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/deployments/{deploymentId}/audio/translations{?api%2Dversion}",
+    "/deployments/{deploymentId}/audio/translations{?api-version}",
     {
       deploymentId: deploymentId,
-      "api%2Dversion": context.apiVersion ?? "2024-06-01",
+      "api-version": context.apiVersion ?? "2024-06-01",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -359,10 +359,10 @@ export function _getAudioTranslationAsPlainTextSend(
   options: GetAudioTranslationAsPlainTextOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/deployments/{deploymentId}/audio/translations{?api%2Dversion}",
+    "/deployments/{deploymentId}/audio/translations{?api-version}",
     {
       deploymentId: deploymentId,
-      "api%2Dversion": context.apiVersion ?? "2024-06-01",
+      "api-version": context.apiVersion ?? "2024-06-01",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -407,10 +407,10 @@ export function _getAudioTranscriptionAsResponseObjectSend(
   options: GetAudioTranscriptionAsResponseObjectOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/deployments/{deploymentId}/audio/transcriptions{?api%2Dversion}",
+    "/deployments/{deploymentId}/audio/transcriptions{?api-version}",
     {
       deploymentId: deploymentId,
-      "api%2Dversion": context.apiVersion ?? "2024-06-01",
+      "api-version": context.apiVersion ?? "2024-06-01",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -463,10 +463,10 @@ export function _getAudioTranscriptionAsPlainTextSend(
   options: GetAudioTranscriptionAsPlainTextOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/deployments/{deploymentId}/audio/transcriptions{?api%2Dversion}",
+    "/deployments/{deploymentId}/audio/transcriptions{?api-version}",
     {
       deploymentId: deploymentId,
-      "api%2Dversion": context.apiVersion ?? "2024-06-01",
+      "api-version": context.apiVersion ?? "2024-06-01",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

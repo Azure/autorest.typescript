@@ -27,10 +27,10 @@ export function _listSend(
   options: ActionGroupsListOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/actionGroups{?api%2Dversion}",
+    "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/actionGroups{?api-version}",
     {
       subscriptionId: context.subscriptionId,
-      "api%2Dversion": "2025-01-02",
+      "api-version": "2025-01-02",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -79,12 +79,12 @@ export function _getSend(
   options: ActionGroupsGetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/actionGroups/{actionGroupName}{?api%2Dversion,%24expand}",
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/actionGroups/{actionGroupName}{?api-version,%24expand}",
     {
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       actionGroupName: actionGroupName,
-      "api%2Dversion": "2025-04-01",
+      "api-version": "2025-04-01",
       "%24expand": options?.expand,
     },
     {

@@ -44,11 +44,11 @@ export function _renewCloudEventLocksSend(
   options: RenewCloudEventLocksOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:renewLock{?api%2Dversion}",
+    "/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:renewLock{?api-version}",
     {
       topicName: topicName,
       eventSubscriptionName: eventSubscriptionName,
-      "api%2Dversion": context.apiVersion ?? "2024-06-01",
+      "api-version": context.apiVersion ?? "2024-06-01",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -103,11 +103,11 @@ export function _rejectCloudEventsSend(
   options: RejectCloudEventsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:reject{?api%2Dversion}",
+    "/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:reject{?api-version}",
     {
       topicName: topicName,
       eventSubscriptionName: eventSubscriptionName,
-      "api%2Dversion": context.apiVersion ?? "2024-06-01",
+      "api-version": context.apiVersion ?? "2024-06-01",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -162,11 +162,11 @@ export function _releaseCloudEventsSend(
   options: ReleaseCloudEventsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:release{?api%2Dversion,releaseDelayInSeconds}",
+    "/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:release{?api-version,releaseDelayInSeconds}",
     {
       topicName: topicName,
       eventSubscriptionName: eventSubscriptionName,
-      "api%2Dversion": context.apiVersion ?? "2024-06-01",
+      "api-version": context.apiVersion ?? "2024-06-01",
       releaseDelayInSeconds: options?.releaseDelayInSeconds,
     },
     {
@@ -222,11 +222,11 @@ export function _acknowledgeCloudEventsSend(
   options: AcknowledgeCloudEventsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:acknowledge{?api%2Dversion}",
+    "/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:acknowledge{?api-version}",
     {
       topicName: topicName,
       eventSubscriptionName: eventSubscriptionName,
-      "api%2Dversion": context.apiVersion ?? "2024-06-01",
+      "api-version": context.apiVersion ?? "2024-06-01",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -280,11 +280,11 @@ export function _receiveCloudEventsSend(
   options: ReceiveCloudEventsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:receive{?api%2Dversion,maxEvents,maxWaitTime}",
+    "/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:receive{?api-version,maxEvents,maxWaitTime}",
     {
       topicName: topicName,
       eventSubscriptionName: eventSubscriptionName,
-      "api%2Dversion": context.apiVersion ?? "2024-06-01",
+      "api-version": context.apiVersion ?? "2024-06-01",
       maxEvents: options?.maxEvents,
       maxWaitTime: options?.maxWaitTime,
     },
@@ -329,10 +329,10 @@ export function _publishCloudEventsSend(
   options: PublishCloudEventsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/topics/{topicName}:publish{?api%2Dversion}",
+    "/topics/{topicName}:publish{?api-version}",
     {
       topicName: topicName,
-      "api%2Dversion": context.apiVersion ?? "2024-06-01",
+      "api-version": context.apiVersion ?? "2024-06-01",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -377,10 +377,10 @@ export function _publishCloudEventSend(
   options: PublishCloudEventOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/topics/{topicName}:publish{?api%2Dversion}",
+    "/topics/{topicName}:publish{?api-version}",
     {
       topicName: topicName,
-      "api%2Dversion": context.apiVersion ?? "2024-06-01",
+      "api-version": context.apiVersion ?? "2024-06-01",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

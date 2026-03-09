@@ -17,9 +17,9 @@ export function _listCollectionsSend(
   options: ConfidentialLedgerListCollectionsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/app/collections{?api%2Dversion}",
+    "/app/collections{?api-version}",
     {
-      "api%2Dversion": context.apiVersion ?? "v1",
+      "api-version": context.apiVersion ?? "v1",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

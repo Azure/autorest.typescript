@@ -27,12 +27,12 @@ export function _createOrUpdateSend(
   options: DisksCreateOrUpdateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/disks/{diskName}{?api%2Dversion}",
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/disks/{diskName}{?api-version}",
     {
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       diskName: diskName,
-      "api%2Dversion": "2025-01-02",
+      "api-version": "2025-01-02",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -87,12 +87,12 @@ export function _getSend(
   options: DisksGetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/disks/{diskName}{?api%2Dversion}",
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/disks/{diskName}{?api-version}",
     {
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       diskName: diskName,
-      "api%2Dversion": "2025-01-02",
+      "api-version": "2025-01-02",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

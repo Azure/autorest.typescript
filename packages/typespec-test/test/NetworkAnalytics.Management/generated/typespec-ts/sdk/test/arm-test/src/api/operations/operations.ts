@@ -26,9 +26,9 @@ export function _listSend(
   options: OperationsListOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/providers/Microsoft.NetworkAnalytics/operations{?api%2Dversion}",
+    "/providers/Microsoft.NetworkAnalytics/operations{?api-version}",
     {
-      "api%2Dversion": context.apiVersion ?? "2023-11-15",
+      "api-version": context.apiVersion ?? "2023-11-15",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

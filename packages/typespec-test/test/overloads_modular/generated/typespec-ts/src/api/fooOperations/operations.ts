@@ -20,9 +20,9 @@ export function _getAvatarAsJpegSend(
   options: FooOperationsGetAvatarAsJpegOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/avatar{?api%2Dversion}",
+    "/avatar{?api-version}",
     {
-      "api%2Dversion": context.apiVersion ?? "2022-08-30",
+      "api-version": context.apiVersion ?? "2022-08-30",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -62,9 +62,9 @@ export function _getAvatarAsPngSend(
   options: FooOperationsGetAvatarAsPngOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/avatar{?api%2Dversion}",
+    "/avatar{?api-version}",
     {
-      "api%2Dversion": context.apiVersion ?? "2022-08-30",
+      "api-version": context.apiVersion ?? "2022-08-30",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

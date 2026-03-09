@@ -31,10 +31,10 @@ export function _getConnectionWithSecretsSend(
   options: ConnectionsGetConnectionWithSecretsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/connections/{connectionName}/listsecrets{?api%2Dversion}",
+    "/connections/{connectionName}/listsecrets{?api-version}",
     {
       connectionName: connectionName,
-      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
+      "api-version": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -78,10 +78,10 @@ export function _getConnectionSend(
   options: ConnectionsGetConnectionOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/connections/{connectionName}{?api%2Dversion}",
+    "/connections/{connectionName}{?api-version}",
     {
       connectionName: connectionName,
-      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
+      "api-version": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -121,9 +121,9 @@ export function _listConnectionsSend(
   options: ConnectionsListConnectionsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/connections{?api%2Dversion,category,includeAll,target}",
+    "/connections{?api-version,category,includeAll,target}",
     {
-      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
+      "api-version": context.apiVersion ?? "2024-07-01-preview",
       category: options?.category,
       includeAll: options?.includeAll,
       target: options?.target,
@@ -165,9 +165,9 @@ export function _getWorkspaceSend(
   options: ConnectionsGetWorkspaceOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/{?api%2Dversion}",
+    "/{?api-version}",
     {
-      "api%2Dversion": context.apiVersion ?? "2024-07-01-preview",
+      "api-version": context.apiVersion ?? "2024-07-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

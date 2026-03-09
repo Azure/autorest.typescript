@@ -31,10 +31,10 @@ export function _listBySubscriptionSend(
   options: DataProductsCatalogsListBySubscriptionOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkAnalytics/dataProductsCatalogs{?api%2Dversion}",
+    "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkAnalytics/dataProductsCatalogs{?api-version}",
     {
       subscriptionId: context.subscriptionId,
-      "api%2Dversion": context.apiVersion ?? "2023-11-15",
+      "api-version": context.apiVersion ?? "2023-11-15",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -82,11 +82,11 @@ export function _listByResourceGroupSend(
   options: DataProductsCatalogsListByResourceGroupOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProductsCatalogs{?api%2Dversion}",
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProductsCatalogs{?api-version}",
     {
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
-      "api%2Dversion": context.apiVersion ?? "2023-11-15",
+      "api-version": context.apiVersion ?? "2023-11-15",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -135,11 +135,11 @@ export function _getSend(
   options: DataProductsCatalogsGetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProductsCatalogs/default{?api%2Dversion}",
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProductsCatalogs/default{?api-version}",
     {
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
-      "api%2Dversion": context.apiVersion ?? "2023-11-15",
+      "api-version": context.apiVersion ?? "2023-11-15",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

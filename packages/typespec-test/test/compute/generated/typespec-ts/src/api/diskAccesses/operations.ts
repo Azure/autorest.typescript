@@ -30,12 +30,12 @@ export function _createOrUpdateSend(
   options: DiskAccessesCreateOrUpdateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/diskAccesses/{diskAccessName}{?api%2Dversion}",
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/diskAccesses/{diskAccessName}{?api-version}",
     {
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       diskAccessName: diskAccessName,
-      "api%2Dversion": "2025-01-02",
+      "api-version": "2025-01-02",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -90,12 +90,12 @@ export function _getSend(
   options: DiskAccessesGetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/diskAccesses/{diskAccessName}{?api%2Dversion}",
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/diskAccesses/{diskAccessName}{?api-version}",
     {
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       diskAccessName: diskAccessName,
-      "api%2Dversion": "2025-01-02",
+      "api-version": "2025-01-02",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
