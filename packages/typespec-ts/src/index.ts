@@ -520,7 +520,7 @@ export async function $onEmit(context: EmitContext) {
       commonBuilders.push((model) =>
         buildPackageFile(model, modularPackageInfo)
       );
-      // Generate warp.config.yml for Azure monorepo ESM packages
+      // Update warp.config.yml for Azure monorepo ESM packages
       if (option.azureSdkForJs) {
         commonBuilders.push((model) =>
           buildWarpConfig(model, modularPackageInfo)
