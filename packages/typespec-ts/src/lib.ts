@@ -85,6 +85,8 @@ export interface EmitterOptions {
    * Defaults to `false`.
    */
   "enable-storage-compat"?: boolean;
+  "beta-subpath"?: boolean;
+  "beta-merge-strategy"?: "merge" | "namespace";
 }
 
 export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
@@ -375,6 +377,19 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
       nullable: true,
       description:
         "When enabled, every regular (non-LRO, non-paging) operation return type is augmented with a `_response` property containing `rawResponse` (PathUncheckedResponse), `parsedBody`, and `parsedHeaders`. Defaults to `false`."
+    },
+    "beta-subpath": {
+      type: "boolean",
+      nullable: true,
+      description:
+        "Whether to generate beta subpath exports. When enabled, preview operations are emitted under a separate `beta` subpath."
+    },
+    "beta-merge-strategy": {
+      type: "string",
+      enum: ["merge", "namespace"],
+      nullable: true,
+      description:
+        "Determines how preview operations are integrated into stable operation groups when both exist. 'merge' adds them as properties on the stable group; 'namespace' nests them under a 'beta' property."
     }
   },
   required: []

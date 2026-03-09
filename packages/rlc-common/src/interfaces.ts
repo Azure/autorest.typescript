@@ -266,6 +266,8 @@ export interface RLCOptions {
    * `_response` property containing `rawResponse`, `parsedBody`, and `parsedHeaders`.
    */
   enableStorageCompat?: boolean;
+  betaSubpath?: boolean;
+  betaMergeStrategy?: "merge" | "namespace";
 }
 
 export interface ServiceInfo {

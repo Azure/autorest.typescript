@@ -50,7 +50,8 @@ import { useContext } from "../contextManager.js";
 export function buildOperationFiles(
   dpgContext: SdkContext,
   clientMap: [string[], SdkClientType<SdkServiceOperation>],
-  emitterOptions: ModularEmitterOptions
+  emitterOptions: ModularEmitterOptions,
+  excludeGroups?: Set<string>
 ) {
   const project = useContext("outputProject");
   const [_, client] = clientMap;
@@ -60,6 +61,9 @@ export function buildOperationFiles(
   const clientType = isMultiEndpoint ? `Client.${rlcClientName}` : "Client";
   const methodMap = getMethodHierarchiesMap(dpgContext, client);
   for (const [prefixKey, operations] of methodMap) {
+    if (excludeGroups?.has(prefixKey)) {
+      continue;
+    }
     const prefixes = prefixKey.split("/");
     const operationFileName =
       prefixes.length > 0 && prefixKey !== ""

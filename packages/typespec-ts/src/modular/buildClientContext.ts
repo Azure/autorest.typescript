@@ -38,6 +38,10 @@ import { refkey } from "../framework/refkey.js";
 import { reportDiagnostic } from "../lib.js";
 import { NoTarget } from "@typespec/compiler";
 import { CloudSettingHelpers } from "./static-helpers-metadata.js";
+import {
+  getLatestStableApiVersion,
+  getLatestPreviewApiVersion
+} from "./helpers/previewDetection.js";
 
 /**
  * This function gets the path of the file containing the modular client context
@@ -208,6 +212,31 @@ export function buildClientContext(
     ? getClientParameterName(apiVersionParam)
     : undefined;
 
+  // When beta-subpath is enabled, add module-level API version management
+  const betaSubpathEnabled =
+    emitterOptions.modularOptions?.betaSubpath === true;
+  const hasPreviewVersion =
+    getLatestPreviewApiVersion(dpgContext) !== undefined;
+  const shouldAddDynamicApiVersion =
+    betaSubpathEnabled && hasPreviewVersion && apiVersionParam;
+
+  if (shouldAddDynamicApiVersion) {
+    const latestStableVersion = getLatestStableApiVersion(dpgContext);
+    if (latestStableVersion) {
+      clientContextFile.addStatements(
+        `let _defaultApiVersion = "${latestStableVersion}";`
+      );
+      clientContextFile.addFunction({
+        name: "_setDefaultApiVersion",
+        isExported: true,
+        docs: ["@internal"],
+        parameters: [{ name: "version", type: "string" }],
+        returnType: "void",
+        statements: ["_defaultApiVersion = version;"]
+      });
+    }
+  }
+
   const optionsParam = buildGetClientOptionsParam(
     factoryFunction,
     emitterOptions,
@@ -310,12 +339,51 @@ export function buildClientContext(
     })
   ];
 
-  if (allContextParams.length) {
-    factoryFunction.addStatements(
-      `return { ...clientContext, ${allContextParams.join(", ")}} as ${rlcClientName};`
+  // When beta-subpath is enabled with dynamic API version, create context with a getter
+  if (shouldAddDynamicApiVersion) {
+    // Filter out apiVersion from allContextParams
+    const nonApiVersionParams = allContextParams.filter(
+      (param) =>
+        !param.startsWith("apiVersion") && !param.includes("apiVersion:")
     );
+    const userApiVersionName = apiVersionParamName
+      ? `user${apiVersionParamName.charAt(0).toUpperCase() + apiVersionParamName.slice(1)}`
+      : "userApiVersion";
+
+    factoryFunction.addStatements(
+      `const ${userApiVersionName} = ${apiVersionParamName};`
+    );
+    if (nonApiVersionParams.length) {
+      factoryFunction.addStatements(
+        `const context = { ...clientContext, ${nonApiVersionParams.join(", ")} } as ${rlcClientName};`
+      );
+    } else {
+      factoryFunction.addStatements(
+        `const context = { ...clientContext } as ${rlcClientName};`
+      );
+    }
+    factoryFunction.addStatements(`
+  if (${userApiVersionName} !== undefined) {
+    context.${apiVersionParamName} = ${userApiVersionName};
   } else {
-    factoryFunction.addStatements(`return clientContext;`);
+    Object.defineProperty(context, "${apiVersionParamName}", {
+      get() {
+        return _defaultApiVersion;
+      },
+      configurable: true,
+      enumerable: true,
+    });
+  }
+  return context;`);
+  } else {
+    // Original behavior when beta-subpath is not enabled
+    if (allContextParams.length) {
+      factoryFunction.addStatements(
+        `return { ...clientContext, ${allContextParams.join(", ")}} as ${rlcClientName};`
+      );
+    } else {
+      factoryFunction.addStatements(`return clientContext;`);
+    }
   }
 
   clientContextFile.fixMissingImports(
