@@ -274,8 +274,6 @@ export function generateWarpConfig(project: Project) {
   }
 
   const lines: string[] = [];
-  lines.push("# warp.config.yml — build configuration");
-  lines.push("");
   lines.push("exports:");
   lines.push('  "./package.json": "./package.json"');
   lines.push('  ".": "./src/index.ts"');
