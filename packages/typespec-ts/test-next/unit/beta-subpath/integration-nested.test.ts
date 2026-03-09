@@ -284,8 +284,9 @@ describe("E7 — Nested Client Hierarchy Integration", () => {
         .getSourceFile("src/beta/augmentations.ts")!
         .getFullText();
 
-      // Parent interface (ComputeVms) should get the snapshots property
-      expect(content).toContain("ComputeVmsOperations");
+      // Namespace strategy: client gets beta property with nested tree
+      expect(content).toContain("interface TestClient");
+      expect(content).toContain("readonly beta:");
       expect(content).toContain(
         "ExperimentalComputeVmsSnapshotsOperations"
       );
@@ -343,9 +344,10 @@ describe("E7 — Nested Client Hierarchy Integration", () => {
         .getSourceFile("src/beta/augmentations.ts")!
         .getFullText();
 
-      // The parent interface for "compute/vms/snapshots" (layer=1) should be
-      // ComputeVmsOperations, not just ComputeOperations or TestClient
-      expect(content).toContain("interface ComputeVmsOperations");
+      // Namespace strategy: nested types are in the beta tree on the client
+      expect(content).toContain("interface TestClient");
+      expect(content).toContain("readonly beta:");
+      expect(content).toContain("snapshots");
     });
   });
 
@@ -398,11 +400,11 @@ describe("E7 — Nested Client Hierarchy Integration", () => {
         .getSourceFile("src/beta/index.ts")!
         .getFullText();
 
-      // Should have setter-based patching on the parent property "compute"
+      // Namespace strategy: single beta getter contains nested groups
       expect(content).toContain(
-        'Object.defineProperty(TestClient.prototype, "compute"'
+        'Object.defineProperty(TestClient.prototype, "beta"'
       );
-      expect(content).toContain("set(this: TestClient, value)");
+      expect(content).not.toContain("set(this: TestClient, value)");
       // Should import the nested operation factory
       expect(content).toContain(
         "_getComputeVmsSnapshotsOperations"
@@ -457,9 +459,9 @@ describe("E7 — Nested Client Hierarchy Integration", () => {
         .getSourceFile("src/beta/index.ts")!
         .getFullText();
 
-      // Setter should navigate nested path: value.vms → assign .snapshots
-      expect(content).toContain("value.vms");
-      expect(content).toContain(".snapshots =");
+      // Namespace strategy: nested path is in the beta object tree
+      expect(content).toContain('"beta"');
+      expect(content).toContain("_getComputeVmsSnapshotsOperations");
     });
   });
 
@@ -610,10 +612,11 @@ describe("E7 — Nested Client Hierarchy Integration", () => {
         .getSourceFile("src/beta/index.ts")!
         .getFullText();
 
-      expect(content).toContain(
-        "AIProjectClient.prototype.getMemoryStoreClient"
-      );
+      // Namespace strategy: child client method is inside beta getter
+      expect(content).toContain("getMemoryStoreClient");
       expect(content).toContain("new MemoryStoreClient");
+      expect(content).toContain('"beta"');
+      expect(content).not.toContain("AIProjectClient.prototype.getMemoryStoreClient");
     });
   });
 
@@ -688,25 +691,20 @@ describe("E7 — Nested Client Hierarchy Integration", () => {
         .getSourceFile("src/beta/index.ts")!
         .getFullText();
 
-      // Augmentation: nested group augmentation
-      expect(augContent).toContain("ComputeVmsOperations");
+      // Augmentation: single beta property on client with nested tree + child client
+      expect(augContent).toContain("interface AIProjectClient");
+      expect(augContent).toContain("readonly beta:");
       expect(augContent).toContain(
         "ExperimentalComputeVmsSnapshotsOperations"
       );
-
-      // Augmentation: child client augmentation
-      expect(augContent).toContain("interface AIProjectClient");
       expect(augContent).toContain("getAgentClient");
 
-      // Index: nested prototype patch
+      // Index: single beta getter
+      expect(indexContent).toContain('"beta"');
       expect(indexContent).toContain(
         '_getComputeVmsSnapshotsOperations'
       );
-
-      // Index: child client method
-      expect(indexContent).toContain(
-        "AIProjectClient.prototype.getAgentClient"
-      );
+      expect(indexContent).toContain("getAgentClient");
     });
   });
 });

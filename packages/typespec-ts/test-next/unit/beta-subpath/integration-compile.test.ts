@@ -405,8 +405,8 @@ describe("E8 — Compilation Smoke Test", () => {
       const definePropertyCalls = (
         code.match(/Object\.defineProperty/g) || []
       ).length;
-      // Should have at least 2: one for preview-only group, one for mixed group
-      expect(definePropertyCalls).toBeGreaterThanOrEqual(2);
+      // Namespace strategy: single "beta" property
+      expect(definePropertyCalls).toBe(1);
 
       // Each defineProperty should have enumerable: true
       const enumerableCount = (

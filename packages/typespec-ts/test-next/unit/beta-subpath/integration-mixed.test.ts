@@ -292,8 +292,9 @@ describe("E6 — Mixed Stable/Preview Package Integration", () => {
         .getSourceFile("src/beta/augmentations.ts")!
         .getFullText();
 
-      expect(content).toContain("interface MixedOpsOperations");
-      expect(content).toContain("beta:");
+      // Namespace strategy: single beta property on client interface
+      expect(content).toContain("interface TestClient");
+      expect(content).toContain("readonly beta:");
       expect(content).toContain("ExperimentalMixedOpsOperations");
     });
 
@@ -458,12 +459,12 @@ describe("E6 — Mixed Stable/Preview Package Integration", () => {
         .getSourceFile("src/beta/index.ts")!
         .getFullText();
 
-      // Preview-only group gets getter with lazy Symbol.for init
+      // Namespace strategy: single beta getter contains all groups
       expect(content).toContain(
-        'Object.defineProperty(TestClient.prototype, "previewOps"'
+        'Object.defineProperty(TestClient.prototype, "beta"'
       );
       expect(content).toContain("Symbol.for");
-      expect(content).toContain("__beta_previewOps");
+      expect(content).toContain("_getPreviewOpsOperations");
     });
 
     it("should generate Object.defineProperty with getter+setter for mixed group (namespace)", () => {
@@ -494,12 +495,12 @@ describe("E6 — Mixed Stable/Preview Package Integration", () => {
         .getSourceFile("src/beta/index.ts")!
         .getFullText();
 
-      // Mixed group gets setter that patches with .beta
+      // Namespace strategy: mixed groups are inside single beta getter, no setter
       expect(content).toContain(
-        'Object.defineProperty(TestClient.prototype, "mixedOps"'
+        'Object.defineProperty(TestClient.prototype, "beta"'
       );
-      expect(content).toContain("set(this: TestClient, value)");
-      expect(content).toContain(".beta =");
+      expect(content).toContain("_getMixedOpsOperations");
+      expect(content).not.toContain("set(this: TestClient, value)");
     });
 
     it("should use Object.assign for mixed group in merge strategy", () => {

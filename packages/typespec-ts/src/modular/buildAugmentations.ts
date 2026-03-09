@@ -33,6 +33,11 @@ interface GroupAugmentation {
   }[];
 }
 
+interface BetaTypeTreeNode {
+  operationType?: string;
+  children: Map<string, BetaTypeTreeNode>;
+}
+
 export function buildAugmentations(
   dpgContext: SdkContext,
   clientMap: [string[], SdkClientType<SdkServiceOperation>],
@@ -57,20 +62,11 @@ export function buildAugmentations(
     ...previewOnlyNestedGroups,
     ...previewInfo.mixedGroups
   ].filter((group) => group);
-  const previewChildClients =
-    previewChildClientNames?.size && clientMap[1].children
-      ? clientMap[1].children.filter(
-          (child) =>
-            previewChildClientNames.has(child.name) &&
-            (child.clientInitialization.initializedBy &
-              InitializedByFlags.Parent) !==
-              0
-        )
-      : [];
-  if (
-    previewGroupKeys.length === 0 &&
-    (!previewChildClients || previewChildClients.length === 0)
-  ) {
+  const previewChildClients = getPreviewChildClients(
+    clientMap[1],
+    previewChildClientNames
+  );
+  if (previewGroupKeys.length === 0 && previewChildClients.length === 0) {
     return;
   }
 
@@ -80,77 +76,34 @@ export function buildAugmentations(
     { overwrite: true }
   );
   const interfaceImports = new Map<string, ExperimentalInterfaceInfo>();
-  const groupAugmentations = new Map<string, GroupAugmentation>();
-
   const mergeStrategy = emitterOptions.modularOptions.betaMergeStrategy;
 
-  const previewOnlyTopLevel = Array.from(
-    previewOnlyTopLevelGroups.values()
-  ).sort();
-  for (const groupName of previewOnlyTopLevel) {
-    if (!groupName) {
-      continue;
-    }
-    const prefixes = [groupName];
-    const interfaceInfo = getExperimentalInterfaceInfo(prefixes);
-    interfaceImports.set(interfaceInfo.alias, interfaceInfo);
-    const propertyName = getTopLevelPropertyName(groupName);
-    addGroupProperty(groupAugmentations, clientName, {
-      name: propertyName,
-      type: interfaceInfo.alias,
-      docs: `@experimental Preview: ${propertyName} operations.`,
-      readonly: true
-    });
+  // Collect interface imports for all preview groups
+  for (const groupName of Array.from(previewOnlyTopLevelGroups).sort()) {
+    if (!groupName) continue;
+    const info = getExperimentalInterfaceInfo([groupName]);
+    interfaceImports.set(info.alias, info);
   }
-
-  const nestedPreviewGroups = Array.from(
-    previewOnlyNestedGroups.values()
-  ).sort();
-  for (const groupKey of nestedPreviewGroups) {
+  for (const groupKey of Array.from(previewOnlyNestedGroups).sort()) {
     const prefixes = groupKey.split("/");
-    if (prefixes.length < 2) {
-      continue;
-    }
-    const interfaceInfo = getExperimentalInterfaceInfo(prefixes);
-    interfaceImports.set(interfaceInfo.alias, interfaceInfo);
-    const parentInterfaceName = getGroupInterfaceName(
-      prefixes,
-      prefixes.length - 2
-    );
-    addGroupProperty(groupAugmentations, parentInterfaceName, {
-      name: getNestedPropertyName(prefixes[prefixes.length - 1] ?? ""),
-      type: interfaceInfo.alias,
-      docs: `@experimental Preview: ${groupKey} operations.`
-    });
+    if (prefixes.length < 2) continue;
+    const info = getExperimentalInterfaceInfo(prefixes);
+    interfaceImports.set(info.alias, info);
   }
-
-  const mixedGroups = Array.from(previewInfo.mixedGroups.values()).sort();
-  for (const groupKey of mixedGroups) {
+  for (const groupKey of Array.from(previewInfo.mixedGroups).sort()) {
     const prefixes = groupKey.split("/");
-    if (prefixes.length === 0 || !prefixes[0]) {
-      continue;
-    }
-    const interfaceInfo = getExperimentalInterfaceInfo(prefixes);
-    interfaceImports.set(interfaceInfo.alias, interfaceInfo);
-    const interfaceName = getGroupInterfaceName(prefixes);
-    if (mergeStrategy === "merge") {
-      addGroupExtension(groupAugmentations, interfaceName, interfaceInfo.alias);
-    } else {
-      addGroupProperty(groupAugmentations, interfaceName, {
-        name: "beta",
-        type: interfaceInfo.alias,
-        docs: `@experimental Preview: ${groupKey} operations.`
-      });
-    }
+    if (!prefixes[0]) continue;
+    const info = getExperimentalInterfaceInfo(prefixes);
+    interfaceImports.set(info.alias, info);
   }
 
+  // Write type-only imports grouped by module
   const importsByModule = new Map<string, ExperimentalInterfaceInfo[]>();
   for (const interfaceInfo of interfaceImports.values()) {
     const existing = importsByModule.get(interfaceInfo.moduleSpecifier) ?? [];
     existing.push(interfaceInfo);
     importsByModule.set(interfaceInfo.moduleSpecifier, existing);
   }
-
   for (const [moduleSpecifier, interfaces] of importsByModule) {
     augmentationsFile.addImportDeclaration({
       isTypeOnly: true,
@@ -162,31 +115,291 @@ export function buildAugmentations(
     });
   }
 
+  // Write augmentations based on strategy
   augmentationsFile.addStatements((writer) => {
     writer.writeLine(`declare module "../index.js" {`);
     writer.indent(() => {
-      const clientAugmentation = groupAugmentations.get(clientName);
-      if (clientAugmentation) {
-        writeInterfaceAugmentation(writer, clientName, clientAugmentation);
-      }
-      for (const [interfaceName, augmentation] of groupAugmentations) {
-        if (interfaceName === clientName) {
-          continue;
-        }
-        writeInterfaceAugmentation(writer, interfaceName, augmentation);
-      }
-      if (previewChildClients && previewChildClients.length > 0) {
-        writeChildClientAugmentations(
+      if (mergeStrategy === "merge") {
+        writeMergeAugmentations(
           writer,
           dpgContext,
           clientName,
           clientMap[1],
+          previewOnlyTopLevelGroups,
+          previewOnlyNestedGroups,
+          previewInfo,
+          interfaceImports,
+          previewChildClients
+        );
+      } else {
+        writeNamespaceAugmentations(
+          writer,
+          dpgContext,
+          clientName,
+          clientMap[1],
+          previewOnlyTopLevelGroups,
+          previewOnlyNestedGroups,
+          previewInfo,
+          interfaceImports,
           previewChildClients
         );
       }
     });
     writer.writeLine("}");
   });
+}
+
+// --- Namespace strategy: single `beta` property on client -----------
+
+function writeNamespaceAugmentations(
+  writer: CodeBlockWriter,
+  dpgContext: SdkContext,
+  clientName: string,
+  parentClient: SdkClientType<SdkServiceOperation>,
+  previewOnlyTopLevelGroups: Set<string>,
+  previewOnlyNestedGroups: Set<string>,
+  previewInfo: PreviewClassification,
+  interfaceImports: Map<string, ExperimentalInterfaceInfo>,
+  previewChildClients: SdkClientType<SdkServiceOperation>[]
+) {
+  const root = buildBetaTypeTree(
+    previewOnlyTopLevelGroups,
+    previewOnlyNestedGroups,
+    previewInfo.mixedGroups,
+    interfaceImports
+  );
+
+  writer.writeLine(`interface ${clientName} {`);
+  writer.indent(() => {
+    writer.writeLine(`/** @experimental */`);
+    writer.write(`readonly beta: `);
+    writeBetaTypeTree(
+      writer,
+      root,
+      dpgContext,
+      parentClient,
+      previewChildClients
+    );
+    writer.writeLine(`;`);
+  });
+  writer.writeLine(`}`);
+}
+
+function buildBetaTypeTree(
+  previewOnlyTopLevelGroups: Set<string>,
+  previewOnlyNestedGroups: Set<string>,
+  mixedGroups: Set<string>,
+  interfaceImports: Map<string, ExperimentalInterfaceInfo>
+): BetaTypeTreeNode {
+  const root: BetaTypeTreeNode = { children: new Map() };
+
+  for (const groupName of Array.from(previewOnlyTopLevelGroups).sort()) {
+    if (!groupName) continue;
+    const alias = `Experimental${getGroupInterfaceName([groupName])}`;
+    const info = interfaceImports.get(alias);
+    if (!info) continue;
+    const propName = getTopLevelPropertyName(groupName);
+    root.children.set(propName, {
+      operationType: info.alias,
+      children: new Map()
+    });
+  }
+
+  const allNested = [
+    ...Array.from(mixedGroups).sort(),
+    ...Array.from(previewOnlyNestedGroups).sort()
+  ];
+  for (const groupKey of allNested) {
+    const prefixes = groupKey.split("/");
+    if (!prefixes[0]) continue;
+    const alias = `Experimental${getGroupInterfaceName(prefixes)}`;
+    const info = interfaceImports.get(alias);
+    if (!info) continue;
+
+    let current = root;
+    for (let i = 0; i < prefixes.length; i++) {
+      const name =
+        i === 0
+          ? getTopLevelPropertyName(prefixes[i]!)
+          : getNestedPropertyName(prefixes[i]!);
+      if (!current.children.has(name)) {
+        current.children.set(name, { children: new Map() });
+      }
+      current = current.children.get(name)!;
+    }
+    current.operationType = info.alias;
+  }
+
+  return root;
+}
+
+function writeBetaTypeTree(
+  writer: CodeBlockWriter,
+  node: BetaTypeTreeNode,
+  dpgContext: SdkContext,
+  parentClient: SdkClientType<SdkServiceOperation>,
+  childClients: SdkClientType<SdkServiceOperation>[]
+) {
+  const hasChildren = node.children.size > 0;
+  const hasOps = !!node.operationType;
+  const hasChildMethods = childClients.length > 0;
+
+  if (hasOps && (hasChildren || hasChildMethods)) {
+    writer.write(`${node.operationType} & `);
+  }
+
+  if (hasChildren || hasChildMethods) {
+    writer.writeLine(`{`);
+    writer.indent(() => {
+      for (const [name, child] of node.children) {
+        if (child.operationType && child.children.size === 0) {
+          writer.writeLine(`readonly ${name}: ${child.operationType};`);
+        } else {
+          writer.write(`readonly ${name}: `);
+          writeBetaTypeTree(writer, child, dpgContext, parentClient, []);
+          writer.writeLine(`;`);
+        }
+      }
+      for (const childClient of childClients) {
+        writeChildClientMethod(writer, dpgContext, parentClient, childClient);
+      }
+    });
+    writer.write(`}`);
+  } else if (hasOps) {
+    writer.write(node.operationType!);
+  }
+}
+
+// --- Merge strategy: augment individual group interfaces ------------
+
+function writeMergeAugmentations(
+  writer: CodeBlockWriter,
+  dpgContext: SdkContext,
+  clientName: string,
+  parentClient: SdkClientType<SdkServiceOperation>,
+  previewOnlyTopLevelGroups: Set<string>,
+  previewOnlyNestedGroups: Set<string>,
+  previewInfo: PreviewClassification,
+  interfaceImports: Map<string, ExperimentalInterfaceInfo>,
+  previewChildClients: SdkClientType<SdkServiceOperation>[]
+) {
+  const groupAugmentations = new Map<string, GroupAugmentation>();
+
+  for (const groupName of Array.from(previewOnlyTopLevelGroups).sort()) {
+    if (!groupName) continue;
+    const alias = `Experimental${getGroupInterfaceName([groupName])}`;
+    const info = interfaceImports.get(alias);
+    if (!info) continue;
+    const propertyName = getTopLevelPropertyName(groupName);
+    addGroupProperty(groupAugmentations, clientName, {
+      name: propertyName,
+      type: info.alias,
+      docs: `@experimental Preview: ${propertyName} operations.`,
+      readonly: true
+    });
+  }
+
+  for (const groupKey of Array.from(previewOnlyNestedGroups).sort()) {
+    const prefixes = groupKey.split("/");
+    if (prefixes.length < 2) continue;
+    const alias = `Experimental${getGroupInterfaceName(prefixes)}`;
+    const info = interfaceImports.get(alias);
+    if (!info) continue;
+    const parentInterfaceName = getGroupInterfaceName(
+      prefixes,
+      prefixes.length - 2
+    );
+    addGroupProperty(groupAugmentations, parentInterfaceName, {
+      name: getNestedPropertyName(prefixes[prefixes.length - 1] ?? ""),
+      type: info.alias,
+      docs: `@experimental Preview: ${groupKey} operations.`
+    });
+  }
+
+  for (const groupKey of Array.from(previewInfo.mixedGroups).sort()) {
+    const prefixes = groupKey.split("/");
+    if (!prefixes[0]) continue;
+    const alias = `Experimental${getGroupInterfaceName(prefixes)}`;
+    const info = interfaceImports.get(alias);
+    if (!info) continue;
+    const interfaceName = getGroupInterfaceName(prefixes);
+    addGroupExtension(groupAugmentations, interfaceName, info.alias);
+  }
+
+  const clientAugmentation = groupAugmentations.get(clientName);
+  if (clientAugmentation) {
+    writeInterfaceAugmentation(writer, clientName, clientAugmentation);
+  }
+  for (const [interfaceName, augmentation] of groupAugmentations) {
+    if (interfaceName === clientName) continue;
+    writeInterfaceAugmentation(writer, interfaceName, augmentation);
+  }
+
+  if (previewChildClients.length > 0) {
+    writer.writeLine(`interface ${clientName} {`);
+    writer.indent(() => {
+      for (const childClient of previewChildClients) {
+        writeChildClientMethod(writer, dpgContext, parentClient, childClient);
+      }
+    });
+    writer.writeLine(`}`);
+  }
+}
+
+// --- Shared helpers -------------------------------------------------
+
+function writeChildClientMethod(
+  writer: CodeBlockWriter,
+  dpgContext: SdkContext,
+  parentClient: SdkClientType<SdkServiceOperation>,
+  childClient: SdkClientType<SdkServiceOperation>
+) {
+  const methodName = `get${getClassicalClientName(childClient)}`;
+  const params = getClientParametersDeclaration(childClient, dpgContext, {
+    requiredOnly: true
+  });
+  const parentParams = getClientParametersDeclaration(
+    parentClient,
+    dpgContext,
+    { requiredOnly: true }
+  );
+  const diffParams = params.filter((p) => {
+    return !parentParams.some(
+      (pp) => pp.name === p.name && pp.name !== "options"
+    );
+  });
+  writer.writeLine(
+    `/** @experimental Preview: ${getClassicalClientName(
+      childClient
+    )} client. */`
+  );
+  writer.writeLine(
+    `${methodName}(${diffParams
+      .map((param) => {
+        const optional = param.hasQuestionToken || param.initializer;
+        const type = param.type ? `: ${param.type}` : "";
+        return `${param.name}${optional ? "?" : ""}${type}`;
+      })
+      .join(", ")}): ${getClassicalClientName(childClient)};`
+  );
+}
+
+function getPreviewChildClients(
+  client: SdkClientType<SdkServiceOperation>,
+  previewChildClientNames?: Set<string>
+) {
+  if (!previewChildClientNames || previewChildClientNames.size === 0) {
+    return [];
+  }
+  return (
+    client.children?.filter(
+      (child) =>
+        previewChildClientNames.has(child.name) &&
+        (child.clientInitialization.initializedBy &
+          InitializedByFlags.Parent) !==
+          0
+    ) ?? []
+  );
 }
 
 function getExperimentalInterfaceInfo(
@@ -257,49 +470,6 @@ function writeInterfaceAugmentation(
         `${property.readonly ? "readonly " : ""}${property.name}: ${
           property.type
         };`
-      );
-    }
-  });
-  writer.writeLine("}");
-}
-
-function writeChildClientAugmentations(
-  writer: CodeBlockWriter,
-  dpgContext: SdkContext,
-  clientName: string,
-  parentClient: SdkClientType<SdkServiceOperation>,
-  childClients: SdkClientType<SdkServiceOperation>[]
-) {
-  writer.writeLine(`interface ${clientName} {`);
-  writer.indent(() => {
-    for (const childClient of childClients) {
-      const methodName = `get${getClassicalClientName(childClient)}`;
-      const params = getClientParametersDeclaration(childClient, dpgContext, {
-        requiredOnly: true
-      });
-      const parentParams = getClientParametersDeclaration(
-        parentClient,
-        dpgContext,
-        { requiredOnly: true }
-      );
-      const diffParams = params.filter((p) => {
-        return !parentParams.some(
-          (pp) => pp.name === p.name && pp.name !== "options"
-        );
-      });
-      writer.writeLine(
-        `/** @experimental Preview: ${getClassicalClientName(
-          childClient
-        )} client. */`
-      );
-      writer.writeLine(
-        `${methodName}(${diffParams
-          .map((param) => {
-            const optional = param.hasQuestionToken || param.initializer;
-            const type = param.type ? `: ${param.type}` : "";
-            return `${param.name}${optional ? "?" : ""}${type}`;
-          })
-          .join(", ")}): ${getClassicalClientName(childClient)};`
       );
     }
   });

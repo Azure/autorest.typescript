@@ -228,11 +228,11 @@ describe("Build Beta Index", () => {
       const content = file?.getFullText() ?? "";
 
       expect(content).toContain("Symbol.for");
-      expect(content).toContain("__beta_operations");
+      expect(content).toContain('"__beta"');
       expect(content).toContain("_getOperationsOperations");
     });
 
-    it("should generate setter-based patches for mixed groups with namespace strategy", () => {
+    it("should include mixed groups in single beta getter (namespace strategy)", () => {
       const dpgContext = { sdkPackage: { enums: [], metadata: { apiVersions: new Map() } } } as unknown as SdkContext;
       const client = createMockClient("TestClient");
       const clientMap: [string[], SdkClientType<SdkServiceOperation>] = [
@@ -254,8 +254,10 @@ describe("Build Beta Index", () => {
       const file = project.getSourceFile("src/beta/index.ts");
       const content = file?.getFullText() ?? "";
 
-      expect(content).toContain("set(this: TestClient, value)");
-      expect(content).toContain("beta");
+      // Namespace strategy: mixed groups go inside single beta getter
+      expect(content).toContain('"beta"');
+      expect(content).toContain("_getMixedGroupOperations");
+      expect(content).not.toContain("set(this: TestClient, value)");
     });
 
     it("should generate setter-based patches for mixed groups with merge strategy", () => {
@@ -343,8 +345,11 @@ describe("Build Beta Index", () => {
       const file = project.getSourceFile("src/beta/index.ts");
       const content = file?.getFullText() ?? "";
 
-      expect(content).toContain("ParentClient.prototype.getChildClient");
+      // Namespace strategy: child client methods are inside beta getter
+      expect(content).toContain("getChildClient");
       expect(content).toContain("new ChildClient");
+      expect(content).toContain('"beta"');
+      expect(content).not.toContain("ParentClient.prototype.getChildClient");
     });
 
     it("should export type-only declarations from classic/api/models indexes", () => {
@@ -407,9 +412,12 @@ describe("Build Beta Index", () => {
       const file = project.getSourceFile("src/beta/index.ts");
       const content = file?.getFullText() ?? "";
 
-      // Should have Object.defineProperty for each
+      // Namespace strategy: single "beta" getter containing all groups
       const definePropertyCount = (content.match(/Object\.defineProperty/g) || []).length;
-      expect(definePropertyCount).toBeGreaterThanOrEqual(3);
+      expect(definePropertyCount).toBe(1);
+      expect(content).toContain("_getOperationsOperations");
+      expect(content).toContain("_getAdminOperations");
+      expect(content).toContain("_getDiagnosticsOperations");
     });
 
     it("should not generate setter for top-level preview-only groups", () => {
@@ -472,11 +480,10 @@ describe("Build Beta Index", () => {
       const file = project.getSourceFile("src/beta/index.ts");
       const content = file?.getFullText() ?? "";
 
-      // Should generate setter for top-level that patches nested
-      expect(content).toContain("set(this: TestClient, value)");
-      expect(content).toContain("nested");
-      // Mixed group should use beta property
-      expect(content).toContain("beta");
+      // Namespace strategy: nested groups are inside single beta getter
+      expect(content).toContain('"beta"');
+      expect(content).toContain("_getMixedGroupNestedOperations");
+      expect(content).not.toContain("set(this: TestClient, value)");
     });
 
     it("should skip child clients not initialized by parent", () => {
@@ -598,8 +605,9 @@ describe("Build Beta Index", () => {
 
       // Capitalized due to mock implementation
       expect(content).toContain("./classic/ParentChildGrandchild/index.js");
-      expect(content).toContain("value.child");
-      expect(content).toContain("grandchild");
+      expect(content).toContain("_getParentChildGrandchildOperations");
+      // Namespace strategy: nested in beta object, no setter patching
+      expect(content).toContain('"beta"');
     });
 
     it("should mark properties as enumerable and configurable", () => {
