@@ -347,3 +347,124 @@ export async function removeOptionalOriginal(
   return _removeOptionalOriginalDeserialize(result);
 }
 ```
+
+# Should handle optionality change from required to optional when using @@override
+
+Tests that when @@override changes a required header/query parameter to optional, the generated code accesses
+the parameter from the options bag instead of as a positional argument.
+
+## TypeSpec
+
+```tsp
+import "@typespec/http";
+import "@azure-tools/typespec-client-generator-core";
+using TypeSpec.Http;
+using Azure.ClientGenerator.Core;
+
+@service(#{
+  title: "Override Service"
+})
+namespace Override;
+
+// Original operation with required header and query parameters
+@route("/change-optionality/{param1}")
+@get
+op changeOptionalityOriginal(
+  @path param1: string,
+  @header requiredHeader: string,
+  @query requiredQuery: string,
+): void;
+
+// Override operation changes required header and query to optional
+op changeOptionalityCustomized(
+  @path param1: string,
+  @header requiredHeader?: string,
+  @query requiredQuery?: string,
+): void;
+
+@@override(Override.changeOptionalityOriginal, Override.changeOptionalityCustomized);
+```
+
+The config would be like:
+
+```yaml
+needTCGC: true
+needAzureCore: true
+withRawContent: true
+```
+
+## Models with Options
+
+The options interface should include the now-optional parameters:
+
+```ts models:withOptions
+import { OperationOptions } from "@azure-rest/core-client";
+
+/** Optional parameters. */
+export interface ChangeOptionalityOriginalOptionalParams extends OperationOptions {
+  requiredHeader?: string;
+  requiredQuery?: string;
+}
+```
+
+## Operations
+
+```ts operations
+import { OverrideContext as Client } from "./index.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import { ChangeOptionalityOriginalOptionalParams } from "./options.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+
+export function _changeOptionalityOriginalSend(
+  context: Client,
+  param1: string,
+  options: ChangeOptionalityOriginalOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/change-optionality/{param1}{?requiredQuery}",
+    {
+      param1: param1,
+      requiredQuery: options?.requiredQuery,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context
+    .path(path)
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        ...(options?.requiredHeader !== undefined
+          ? { "required-header": options?.requiredHeader }
+          : {}),
+        ...options.requestOptions?.headers,
+      },
+    });
+}
+
+export async function _changeOptionalityOriginalDeserialize(
+  result: PathUncheckedResponse,
+): Promise<void> {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return;
+}
+
+export async function changeOptionalityOriginal(
+  context: Client,
+  param1: string,
+  options: ChangeOptionalityOriginalOptionalParams = { requestOptions: {} },
+): Promise<void> {
+  const result = await _changeOptionalityOriginalSend(context, param1, options);
+  return _changeOptionalityOriginalDeserialize(result);
+}
+```
