@@ -1,0 +1,5 @@
+steps:
+  - template: install.yml
+  - script: |
+      pnpm --filter @azure-tools/rlc-common build && pnpm --filter @autorest/typescript build
+    displayName: "Build AutoRest TypeScript dependencies"

@@ -14,8 +14,20 @@ steps:
       npm install -g pnpm
     displayName: "Install Pnpm"
   - script: |
+      pnpm config set store-dir $(Pipeline.Workspace)/.pnpm-store
+    displayName: "Configure pnpm store"
+  - task: Cache@2
+    inputs:
+      key: 'pnpm | "$(Agent.OS)" | pnpm-lock.yaml'
+      restoreKeys: |
+        pnpm | "$(Agent.OS)"
+      path: $(Pipeline.Workspace)/.pnpm-store
+    displayName: "Restore pnpm store cache"
+  - script: |
       pnpm install --no-frozen-lockfile
     displayName: "Install package dependencies"
+    env:
+      PUPPETEER_SKIP_DOWNLOAD: "true"
   - script: |
-      pnpm build
-    displayName: "Build"
+      pnpm --filter @azure-tools/rlc-common build && pnpm --filter @azure-tools/typespec-ts build
+    displayName: "Build TypeSpec emitter dependencies"

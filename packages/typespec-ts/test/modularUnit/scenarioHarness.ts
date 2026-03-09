@@ -1,5 +1,5 @@
 import { assert } from "chai";
-import { readdirSync, readFileSync, statSync, writeFileSync } from "fs";
+import { readdirSync, readFileSync, writeFileSync } from "fs";
 import path from "path";
 import {
   emitModularClientContextFromTypeSpec,
@@ -13,9 +13,10 @@ import { assertEqualContent, ExampleJson } from "../util/testUtil.js";
 import { format } from "prettier";
 import { prettierTypeScriptOptions } from "../../src/lib.js";
 import { load as loadYaml } from "js-yaml";
+import { getDirname } from "../../src/utils/dirname.js";
 
-const SCENARIOS_LOCATION = "./test/modularUnit/scenarios";
-
+const { __dirname } = getDirname(import.meta.url);
+const SCENARIOS_LOCATION = path.resolve(__dirname, "scenarios");
 const SCENARIOS_UPDATE = process.env["SCENARIOS_UPDATE"] === "true";
 
 type EmitterFunction = (
@@ -24,15 +25,7 @@ type EmitterFunction = (
   namedUnknownArgs?: Record<string, unknown>
 ) => Promise<string>;
 
-/**
- * Mapping of different snapshot types to how to get them.
- * Snapshot types can take single-word string arguments templated in curly braces {} and are otherwise regex
- *
- * TODO: trying to figure out the best syntax for this; the existing "emit" functions have a lot of positional boolean options.
- * It would be good to make it easy to specify what options you want in a clear way.
- */
 const OUTPUT_CODE_BLOCK_TYPES: Record<string, EmitterFunction> = {
-  // Snapshot of a particular interface named {name} in the models file
   "(ts|typescript) models interface {name}": async (
     tsp,
     { name },
@@ -47,7 +40,6 @@ const OUTPUT_CODE_BLOCK_TYPES: Record<string, EmitterFunction> = {
       .getFullText();
   },
 
-  // Snapshot of a particular class named {name} in the models file
   "(ts|typescript) models alias {name}": async (
     tsp,
     { name },
@@ -60,7 +52,6 @@ const OUTPUT_CODE_BLOCK_TYPES: Record<string, EmitterFunction> = {
     return result!.getTypeAlias(name ?? "No name specified!")!.getFullText();
   },
 
-  // Snapshot of a particular enum named {name} in the models file
   "(ts|typescript) models enum {name}": async (
     tsp,
     { name },
@@ -76,7 +67,6 @@ const OUTPUT_CODE_BLOCK_TYPES: Record<string, EmitterFunction> = {
     return result!.getEnum(name ?? "No name specified!")!.getFullText();
   },
 
-  // Snapshot of a particular function named {name} in the models file
   "(ts|typescript) models function {name}": async (
     tsp,
     { name },
@@ -94,7 +84,6 @@ const OUTPUT_CODE_BLOCK_TYPES: Record<string, EmitterFunction> = {
     return result.getFunctionOrThrow(name ?? "No name specified!").getText();
   },
 
-  // Snapshot of the entire models file
   "(ts|typescript) models": async (tsp, {}, namedUnknownArgs) => {
     const configs = namedUnknownArgs
       ? (namedUnknownArgs["configs"] as Record<string, string>)
@@ -108,7 +97,6 @@ const OUTPUT_CODE_BLOCK_TYPES: Record<string, EmitterFunction> = {
     return result.getFullText();
   },
 
-  // Snapshot of the top-level index file
   "(ts|typescript) root index": async (tsp, {}, namedUnknownArgs) => {
     const configs = namedUnknownArgs
       ? (namedUnknownArgs["configs"] as Record<string, string>)
@@ -122,7 +110,6 @@ const OUTPUT_CODE_BLOCK_TYPES: Record<string, EmitterFunction> = {
     return result.getFullText();
   },
 
-  // Snapshot of the options
   "(ts|typescript) models:withOptions interface {name}": async (
     tsp,
     { name },
@@ -143,7 +130,6 @@ const OUTPUT_CODE_BLOCK_TYPES: Record<string, EmitterFunction> = {
     return result.getInterfaceOrThrow(name ?? "No name specified!").getText();
   },
 
-  // Snapshot of the entire models file
   "(ts|typescript) models:withOptions": async (tsp, {}, namedUnknownArgs) => {
     const configs = namedUnknownArgs
       ? (namedUnknownArgs["configs"] as Record<string, string>)
@@ -160,8 +146,6 @@ const OUTPUT_CODE_BLOCK_TYPES: Record<string, EmitterFunction> = {
     return result.getFullText();
   },
 
-  // Snapshot of the entire operations file for when there is only one operation group
-  // If there is more than one operations group, currently we throw
   "(ts|typescript) operations": async (tsp, {}, namedUnknownArgs) => {
     const configs = namedUnknownArgs
       ? (namedUnknownArgs["configs"] as Record<string, string>)
@@ -171,8 +155,6 @@ const OUTPUT_CODE_BLOCK_TYPES: Record<string, EmitterFunction> = {
     return result![0]!.getFullText();
   },
 
-  // Snapshot of a specific function in the operations definitions
-  // Throws if more than one operations group generated
   "(ts|typescript) operations function {name}": async (
     tsp,
     { name },
@@ -193,16 +175,14 @@ const OUTPUT_CODE_BLOCK_TYPES: Record<string, EmitterFunction> = {
     const configs = namedUnknownArgs["configs"] as Record<string, string>;
     const examples = namedUnknownArgs["examples"] as ExampleJson[];
     const result = await emitSamplesFromTypeSpec(tsp, examples, configs);
-    const text = result
+    return result
       .map(
         (x) =>
           `/** This file path is ${x.getFilePath()} */\n ${x.getFullText()}`
       )
       .join("\n");
-    return text;
   },
 
-  //Snapshot of the clientContext file for a given typespec
   "(ts|typescript) clientContext": async (tsp, {}, namedUnknownArgs) => {
     const configs = namedUnknownArgs
       ? (namedUnknownArgs["configs"] as Record<string, string>)
@@ -211,32 +191,52 @@ const OUTPUT_CODE_BLOCK_TYPES: Record<string, EmitterFunction> = {
     return result!.getFullText()!;
   },
 
-  //Snapshot of the classicClient file for a given typespec
   "(ts|typescript) classicClient": async (tsp, {}, namedUnknownArgs) => {
     const configs = namedUnknownArgs
       ? (namedUnknownArgs["configs"] as Record<string, string>)
       : {};
     const result = await emitModularClientFromTypeSpec(tsp, configs);
-    return result ? result!.getFullText()! : "";
+    return result ? result.getFullText()! : "";
   }
 };
 
-describe("Scenarios", function () {
-  describeScenarios(SCENARIOS_LOCATION);
-});
+export function registerScenarioDirectoryTests(
+  scenarioDirectory: string
+): void {
+  const fullDirectory = path.resolve(SCENARIOS_LOCATION, scenarioDirectory);
+  const relativeDirectory = path.relative(SCENARIOS_LOCATION, fullDirectory);
+  const children = readdirSync(fullDirectory)
+    .filter((child) => child.endsWith(".md"))
+    .sort();
 
-function describeScenarios(location: string): void {
-  const children = readdirSync(location);
-  for (const child of children) {
-    const fullPath = path.join(location, child);
-    const stat = statSync(fullPath);
-    if (stat.isDirectory()) {
-      describeScenarios(fullPath);
-    } else {
-      describeScenarioFile(fullPath);
+  describe(relativeDirectory, function () {
+    for (const child of children) {
+      describeScenarioFile(path.join(fullDirectory, child));
     }
-  }
+  });
 }
+
+interface Scenario {
+  only: boolean;
+  heading: string;
+  skip: boolean;
+  parts: ScenarioPart[];
+}
+
+type ScenarioFile = Scenario[];
+
+interface TextScenarioPart {
+  kind: "text";
+  text: string;
+}
+
+interface CodeScenarioPart {
+  kind: "code";
+  content: string;
+  heading: string;
+}
+
+type ScenarioPart = TextScenarioPart | CodeScenarioPart;
 
 function describeScenarioFile(scenarioFile: string): void {
   describe(path.basename(scenarioFile), function () {
@@ -246,6 +246,7 @@ function describeScenarioFile(scenarioFile: string): void {
         describe.skip(scenario.heading, function () {});
         continue;
       }
+
       (scenario.only ? describe.only : describe)(scenario.heading, function () {
         const codeBlocks = scenario.parts.filter((x) => x.kind === "code");
         const tspBlocks = codeBlocks.filter(
@@ -254,13 +255,10 @@ function describeScenarioFile(scenarioFile: string): void {
         const jsonBlocks = codeBlocks.filter((x) =>
           x.heading.startsWith("json")
         );
-        const allExamples: ExampleJson[] = [];
-        for (const block of jsonBlocks) {
-          allExamples.push({
-            filename: block.heading.trim().replace(/ /g, "_"),
-            rawContent: block.content
-          });
-        }
+        const allExamples: ExampleJson[] = jsonBlocks.map((block) => ({
+          filename: block.heading.trim().replace(/ /g, "_"),
+          rawContent: block.content
+        }));
         const yamlConfigs = codeBlocks.filter((x) =>
           x.heading.startsWith("yaml")
         );
@@ -303,32 +301,29 @@ function describeScenarioFile(scenarioFile: string): void {
 
             return undefined;
           })
-          .filter((x) => x !== undefined);
+          .filter((x): x is NonNullable<typeof x> => x !== undefined);
 
         let index = 0;
         for (const testCase of testCases) {
           it(testCase.block.heading, async () => {
             const examples =
-              Object.entries(allExamples).length === testCases.length
+              allExamples.length === testCases.length
                 ? [allExamples[index++]!]
                 : allExamples;
-            const result = await testCase.fn!(examples);
+            const result = await testCase.fn(examples);
 
             if (SCENARIOS_UPDATE && !scenario.skip) {
-              // Update the content; this makes the tests pass
-              // This update also updates the `scenarios` object
               testCase.block.content = await format(
                 result,
                 prettierTypeScriptOptions
               );
-              // Also update the file in the test
               writeFileSync(scenarioFile, writeScenarios(scenarios));
             }
 
             await assertEqualContent(
               result,
               testCase.block.content,
-              (configs["ignoreWeirdLine"] as any) === false ? false : true
+              configs["ignoreWeirdLine"] === false ? false : true
             );
           });
         }
@@ -337,32 +332,8 @@ function describeScenarioFile(scenarioFile: string): void {
   });
 }
 
-type ScenarioFile = Scenario[];
-
-interface Scenario {
-  only: boolean;
-  heading: string;
-  skip: boolean;
-  parts: ScenarioPart[];
-}
-
-interface TextScenarioPart {
-  kind: "text";
-  text: string;
-}
-
-interface CodeScenarioPart {
-  kind: "code";
-  content: string;
-  heading: string;
-}
-
-type ScenarioPart = TextScenarioPart | CodeScenarioPart;
-
 function readScenarios(fileContent: string): ScenarioFile {
-  // Ignore first part of split since this is before the first h1
   const [, ...rawParts] = fileContent.split(/^# /gm);
-
   const scenarios: Scenario[] = [];
 
   for (const part of rawParts) {
@@ -380,11 +351,11 @@ function readScenarios(fileContent: string): ScenarioFile {
     const parts: ScenarioPart[] = [];
     for (const contentPart of partStrings) {
       if (inCodeBlock) {
-        const [codeBlockHeading, ...lines] = contentPart.split("\n");
+        const [codeBlockHeading, ...codeLines] = contentPart.split("\n");
         parts.push({
           kind: "code",
           heading: codeBlockHeading ?? "",
-          content: lines?.join("\n")
+          content: codeLines.join("\n")
         });
       } else {
         parts.push({
@@ -423,14 +394,10 @@ function writeScenarios(file: ScenarioFile): string {
   return output;
 }
 
-function parseYaml(yamlConfigs: string[]): Record<string, any> {
-  // This is a simple yaml parser that assumes that there are no nested objects.
-  // It splits the yaml into lines, then splits each line by the colon and
-  // creates a record from the key-value pairs.
-  // This is a very simple parser and will not work for all yaml files.
-  let record: Record<string, any> = {};
+function parseYaml(yamlConfigs: string[]): Record<string, unknown> {
+  let record: Record<string, unknown> = {};
   for (const yaml of yamlConfigs) {
-    const each = loadYaml(yaml) as Record<string, any>;
+    const each = loadYaml(yaml) as Record<string, unknown>;
     record = { ...record, ...each };
   }
   return record;

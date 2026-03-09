@@ -16,7 +16,7 @@ jobs:
       name: $[coalesce(variables['Pool'], '')]
       demands: ImageOverride -equals $(OSVmImage)
     steps:
-      - template: build.yml
+      - template: build-autorest.yml
       - script: npm run clone:specs
         workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
         displayName: "Clone Specs Repository"

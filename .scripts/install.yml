@@ -1,0 +1,23 @@
+steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: "20.x"
+    displayName: "Use Node 20"
+  - script: |
+      npm install -g pnpm
+    displayName: "Install Pnpm"
+  - script: |
+      pnpm config set store-dir $(Pipeline.Workspace)/.pnpm-store
+    displayName: "Configure pnpm store"
+  - task: Cache@2
+    inputs:
+      key: 'pnpm | "$(Agent.OS)" | pnpm-lock.yaml'
+      restoreKeys: |
+        pnpm | "$(Agent.OS)"
+      path: $(Pipeline.Workspace)/.pnpm-store
+    displayName: "Restore pnpm store cache"
+  - script: |
+      pnpm install --frozen-lockfile
+    displayName: "Install package dependencies"
+    env:
+      PUPPETEER_SKIP_DOWNLOAD: "true"

@@ -39,7 +39,7 @@ stages:
           name: ${{ parameters.LinuxPool }}
           demands: ImageOverride -equals ${{ parameters.OSVmImage }}
         steps:
-          - template: build.yml
+          - template: build-autorest.yml
           - script: |
               export MAIN_VERSION=$(node -p -e "require('./package.json').version")
               echo "##vso[task.setvariable variable=MAIN_VERSION;isOutput=true;]MAIN_VERSION"
@@ -135,7 +135,7 @@ stages:
           name: $[coalesce(variables['Pool'], '')]
           demands: ImageOverride -equals $(OSVmImage)
         steps:
-          - template: build.yml
+          - template: build-autorest.yml
           - script: npm run generate-swaggers
             workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
             displayName: "Generate HLC Test Clients"
@@ -157,7 +157,7 @@ stages:
           name: $[coalesce(variables['Pool'], '')]
           demands: ImageOverride -equals $(OSVmImage)
         steps:
-          - template: build.yml
+          - template: build-autorest.yml
           - script: npm run rlc-generate-swaggers
             workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
             displayName: "Generate RLC Test Clients"
@@ -190,7 +190,7 @@ stages:
           # Should set "demands:" to select image from azsdk-pool, but this would require creating separate
           # matrixes for the two pools.  Instead, we can use the default image from azsdk-pool for linux.
         steps:
-          - template: build.yml
+          - template: build-autorest.yml
           - task: NodeTool@0
             inputs:
               versionSpec: $(NodeTestVersion)
@@ -243,7 +243,7 @@ stages:
           name: $[coalesce(variables['Pool'], '')]
           demands: ImageOverride -equals $(OSVmImage)
         steps:
-          - template: build.yml
+          - template: build-typespec-emitter.yml
           - script: npm run smoke-test
             workingDirectory: $(Build.SourcesDirectory)/packages/typespec-test
             displayName: "Generate Code From TypeSpec"
@@ -269,7 +269,7 @@ stages:
           name: $[coalesce(variables['Pool'], '')]
           vmImage: $[coalesce(variables['OSVmImage'], '')]
         steps:
-          - template: build.yml
+          - template: build-typespec-emitter.yml
           - script: npm run smoke-test:contoso && npm run smoke-test:todo
             workingDirectory: $(Build.SourcesDirectory)/packages/typespec-test
             displayName: "Generate Contoso Code From TypeSpec"
@@ -290,7 +290,7 @@ stages:
           # Should set "demands:" to select image from azsdk-pool, but this would require creating separate
           # matrixes for the two pools.  Instead, we can use the default image from azsdk-pool for linux.
         steps:
-          - template: build.yml
+          - template: build-typespec-emitter.yml
           - script: npm run check-format
             workingDirectory: $(Build.SourcesDirectory)/packages/rlc-common
             displayName: "Check format for rlc common lib"
@@ -358,7 +358,7 @@ stages:
           # Should set "demands:" to select image from azsdk-pool, but this would require creating separate
           # matrixes for the two pools.  Instead, we can use the default image from azsdk-pool for linux.
         steps:
-          - template: build.yml
+          - template: build-typespec-emitter.yml
           - script: npm run test:azure
             workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
             displayName: "Generate Azure Test Clients from Spector"

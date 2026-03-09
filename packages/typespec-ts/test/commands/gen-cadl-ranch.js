@@ -31,7 +31,7 @@ async function generateTypeSpecs(tag = "rlc", isDebugging, pathFilter) {
     list = list.filter((tsp) => tsp.outputPath === pathFilter);
   }
 
-  const maxConcurrentWorkers = 4;
+  const maxConcurrentWorkers = parseInt(process.env.GEN_WORKERS || "4", 10);
   let activePromises = [];
   for (const tsp of list) {
     if (isDebugging === true && tsp.debug !== true) {
