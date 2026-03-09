@@ -69,11 +69,11 @@ export function _updateKeySend(
   options: UpdateKeyOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/keys/{key-name}/{key-version}{?api%2Dversion}",
+    "/keys/{key-name}/{key-version}{?api-version}",
     {
       "key-name": keyName,
       "key-version": keyVersion,
-      "api%2Dversion": context.apiVersion ?? "2022-05-15-preview",
+      "api-version": context.apiVersion ?? "2022-05-15-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

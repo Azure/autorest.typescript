@@ -88,12 +88,12 @@ export function _updateSend(
   options: UpdateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.TestArmPatch/partnerTopics/{partnerTopicName}{?api%2Dversion}",
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.TestArmPatch/partnerTopics/{partnerTopicName}{?api-version}",
     {
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       partnerTopicName: partnerTopicName,
-      "api%2Dversion": apiVersion,
+      "api-version": apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

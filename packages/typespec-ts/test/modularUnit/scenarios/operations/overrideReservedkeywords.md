@@ -78,10 +78,10 @@ export function _checkNameAvailabilitySend(
   options: CheckNameAvailabilityOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/subscriptions/{subscriptionId}/providers/Microsoft.ThisWillBeReplaced/checknameavailability{?api%2Dversion}",
+    "/subscriptions/{subscriptionId}/providers/Microsoft.ThisWillBeReplaced/checknameavailability{?api-version}",
     {
       subscriptionId: context.subscriptionId,
-      "api%2Dversion": apiVersion,
+      "api-version": apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

@@ -519,9 +519,9 @@ export function _testSend(
   options: TestOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/{?api%2Dversion}",
+    "/{?api-version}",
     {
-      "api%2Dversion": apiVersion,
+      "api-version": apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -660,9 +660,9 @@ export function _testSend(
   options: TestOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/{?api%2Dversion}",
+    "/{?api-version}",
     {
-      "api%2Dversion": apiVersion,
+      "api-version": apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -824,9 +824,9 @@ export function _testSend(
   options: TestOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/test{?api%2Dversion}",
+    "/test{?api-version}",
     {
-      "api%2Dversion": apiVersion,
+      "api-version": apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1058,13 +1058,13 @@ export function _updateFileShareSnapshotSend(
   options: UpdateFileShareSnapshotOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Contoso/fileShares/{resourceName}/fileShareSnapshots/{name}{?api%2Dversion}",
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Contoso/fileShares/{resourceName}/fileShareSnapshots/{name}{?api-version}",
     {
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       resourceName: resourceName,
       name: name,
-      "api%2Dversion": context.apiVersion ?? "2021-10-01-preview",
+      "api-version": context.apiVersion ?? "2021-10-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1124,9 +1124,9 @@ export function _listSend(
   options: ListOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/providers/Microsoft.Contoso/operations{?api%2Dversion}",
+    "/providers/Microsoft.Contoso/operations{?api-version}",
     {
-      "api%2Dversion": context.apiVersion ?? "2021-10-01-preview",
+      "api-version": context.apiVersion ?? "2021-10-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

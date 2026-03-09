@@ -174,13 +174,13 @@ export function _getSend(
   options: GetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ThisWillBeReplaced/savingsPlanOrders/{savingsPlanOrderId}/savingsPlans/{savingsPlanId}{?api%2Dversion,%24expand}",
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ThisWillBeReplaced/savingsPlanOrders/{savingsPlanOrderId}/savingsPlans/{savingsPlanId}{?api-version,%24expand}",
     {
       subscriptionId: subscriptionId,
       resourceGroupName: resourceGroupName,
       savingsPlanOrderId: savingsPlanOrderId,
       savingsPlanId: savingsPlanId,
-      "api%2Dversion": apiVersion,
+      "api-version": apiVersion,
       "%24expand": context.expand,
     },
     {
@@ -404,13 +404,13 @@ export function _getSend(
   options: GetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ThisWillBeReplaced/savingsPlanOrders/{savingsPlanOrderId}/savingsPlans/{savingsPlanId}{?api%2Dversion,%24expand}",
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ThisWillBeReplaced/savingsPlanOrders/{savingsPlanOrderId}/savingsPlans/{savingsPlanId}{?api-version,%24expand}",
     {
       subscriptionId: subscriptionId,
       resourceGroupName: resourceGroupName,
       savingsPlanOrderId: savingsPlanOrderId,
       savingsPlanId: savingsPlanId,
-      "api%2Dversion": apiVersion,
+      "api-version": apiVersion,
       "%24expand": context.expand,
     },
     {

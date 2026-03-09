@@ -73,11 +73,11 @@ export function _getWidgetOperationStatusSend(
   options: GetWidgetOperationStatusOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/widgets/{name}/operations/{operationId}{?api%2Dversion}",
+    "/widgets/{name}/operations/{operationId}{?api-version}",
     {
       name: name,
       operationId: operationId,
-      "api%2Dversion": apiVersion,
+      "api-version": apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

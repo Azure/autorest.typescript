@@ -85,7 +85,7 @@ export function _optionalSend(
   options: OptionalOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/annotation/optional{?select*,bar,api%2Dversion}",
+    "/annotation/optional{?select*,bar,api-version}",
     {
       select: !options?.select
         ? options?.select
@@ -93,7 +93,7 @@ export function _optionalSend(
             return p;
           }),
       bar: foo,
-      "api%2Dversion": apiVersion,
+      "api-version": apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

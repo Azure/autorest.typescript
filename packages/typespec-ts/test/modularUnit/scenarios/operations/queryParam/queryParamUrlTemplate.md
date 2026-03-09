@@ -31,11 +31,11 @@ export function _readSend(
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/{pathParam}{?key%2Dname,key%2Dversion}",
+    "/{pathParam}{?key-name,key-version}",
     {
       pathParam: pathParam,
-      "key%2Dname": keyName,
-      "key%2Dversion": keyVersion,
+      "key-name": keyName,
+      "key-version": keyVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

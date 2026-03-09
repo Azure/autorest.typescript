@@ -164,12 +164,12 @@ export function _backupSend(
   options: BackupOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters/{cloudHsmClusterName}/backup{?api%2Dversion}",
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters/{cloudHsmClusterName}/backup{?api-version}",
     {
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       cloudHsmClusterName: cloudHsmClusterName,
-      "api%2Dversion": context.apiVersion ?? "2021-10-01-preview",
+      "api-version": context.apiVersion ?? "2021-10-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

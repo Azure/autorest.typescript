@@ -387,12 +387,12 @@ export function _createOrUpdateSend(
   options: CreateOrUpdateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Contoso/avsSummaries/{avsSummaryName}{?api%2Dversion}",
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Contoso/avsSummaries/{avsSummaryName}{?api-version}",
     {
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       avsSummaryName: avsSummaryName,
-      "api%2Dversion": context.apiVersion ?? "2021-10-01-preview",
+      "api-version": context.apiVersion ?? "2021-10-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -445,9 +445,9 @@ export function _listSend(
   options: ListOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/providers/Microsoft.Contoso/operations{?api%2Dversion}",
+    "/providers/Microsoft.Contoso/operations{?api-version}",
     {
-      "api%2Dversion": context.apiVersion ?? "2021-10-01-preview",
+      "api-version": context.apiVersion ?? "2021-10-01-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

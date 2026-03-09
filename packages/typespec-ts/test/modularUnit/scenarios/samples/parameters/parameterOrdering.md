@@ -89,9 +89,9 @@ export function _verifySend(
   options: VerifyOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/device-location/location:verify{?api%2Dversion}",
+    "/device-location/location:verify{?api-version}",
     {
-      "api%2Dversion": context.apiVersion ?? "2022-05-15-preview",
+      "api-version": context.apiVersion ?? "2022-05-15-preview",
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
