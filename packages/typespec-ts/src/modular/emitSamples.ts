@@ -627,9 +627,15 @@ function getParameterValue(
           propRetValue =
             paramValue.length > 2 ? paramValue.slice(1, -1) : undefined;
         } else {
+          // Don't propagate enableFlatten:false to deeper levels — it's only
+          // meant to block consecutive (transition) flatten at the direct child
+          // level.  Non-flatten properties should recurse with default behavior
+          // so that independent inner flattens at deeper levels still work.
+          const childOptions =
+            options?.overrides?.enableFlatten === false ? undefined : options;
           propRetValue =
             `"${mapper.get(propName) ?? propName}": ` +
-            getParameterValue(context, propValue, options);
+            getParameterValue(context, propValue, childOptions);
         }
         if (propRetValue) values.push(propRetValue);
       }
