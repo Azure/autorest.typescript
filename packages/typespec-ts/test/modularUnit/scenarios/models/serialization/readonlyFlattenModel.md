@@ -81,3 +81,86 @@ export function _solutionPropertiesOptionalSerializer(_item: Solution): any {
   return {};
 }
 ```
+
+# Should handle flatten model with not all readonly properties correctly
+
+## TypeSpec
+
+This is tsp definition.
+
+```tsp
+
+model SolutionProperties {
+  solutionId?: string;
+  title?: string;
+  @visibility(Lifecycle.Read)
+  content?: string;
+}
+model Solution{
+  @Azure.ClientGenerator.Core.Legacy.flattenProperty
+  properties: SolutionProperties;
+  @Azure.ClientGenerator.Core.Legacy.flattenProperty
+  propertiesOptional?: SolutionProperties;
+}
+op test(@body body:Solution):void;
+
+```
+
+Enable the raw content with TCGC dependency.
+
+```yaml
+needTCGC: true
+```
+
+## Models
+
+```ts models
+import { areAllPropsUndefined } from "../static-helpers/serialization/check-prop-undefined.js";
+
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/** model interface Solution */
+export interface Solution {
+  solutionId?: string;
+  title?: string;
+  readonly content?: string;
+  solutionIdPropertiesOptionalSolutionId?: string;
+  titlePropertiesOptionalTitle?: string;
+  readonly contentPropertiesOptionalContent?: string;
+}
+
+export function solutionSerializer(item: Solution): any {
+  return {
+    properties: _solutionPropertiesSerializer(item),
+    propertiesOptional: areAllPropsUndefined(item, ["solutionId", "title"])
+      ? undefined
+      : _solutionPropertiesOptionalSerializer(item),
+  };
+}
+
+/** model interface SolutionProperties */
+export interface SolutionProperties {
+  solutionId?: string;
+  title?: string;
+  readonly content?: string;
+}
+
+export function solutionPropertiesSerializer(item: SolutionProperties): any {
+  return { solutionId: item["solutionId"], title: item["title"] };
+}
+
+export function _solutionPropertiesSerializer(item: Solution): any {
+  return { solutionId: item["solutionId"], title: item["title"] };
+}
+
+export function _solutionPropertiesOptionalSerializer(item: Solution): any {
+  return {
+    solutionId: item["solutionIdPropertiesOptionalSolutionId"],
+    title: item["titlePropertiesOptionalTitle"],
+  };
+}
+```
