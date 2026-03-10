@@ -180,7 +180,7 @@ describe("create a Employee", () => {
     assert.strictEqual(result.location, "itajgxyqozseoygnl");
     assert.strictEqual(result.properties?.age, 30);
     assert.strictEqual(result.properties?.city, "gydhnntudughbmxlkyzrskcdkotrxn");
-    assert.equal(result.properties?.profile, Buffer.from("ms", "base64url"));
+    assert.deepEqual(result.properties?.profile, Buffer.from("ms", "base64url"));
     assert.strictEqual(result.tags?.key2913, "urperxmkkhhkp");
   });
 });
