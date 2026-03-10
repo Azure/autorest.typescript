@@ -9,6 +9,10 @@ export declare interface AzureEmbeddingModel {
 export declare interface GetOptionalParams extends OperationOptions {
 }
 
+export declare type GetResponse = {
+    body: number[];
+};
+
 export declare enum KnownVersions {
     V20221201Preview = "2022-12-01-preview"
 }
@@ -19,7 +23,7 @@ export declare class ModelClient {
     constructor(options?: ModelClientOptionalParams);
     post(body: AzureEmbeddingModel, options?: PostOptionalParams): Promise<AzureEmbeddingModel>;
     put(body: number[], options?: PutOptionalParams): Promise<void>;
-    get(options?: GetOptionalParams): Promise<number[]>;
+    get(options?: GetOptionalParams): Promise<GetResponse>;
 }
 
 export declare interface ModelClientOptionalParams extends ClientOptions {

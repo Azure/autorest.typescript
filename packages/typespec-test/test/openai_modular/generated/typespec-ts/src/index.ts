@@ -145,6 +145,9 @@ export type {
   Embeddings,
   EmbeddingItem,
   EmbeddingsUsage,
+  GenerateSpeechFromTextResponse,
+  GetAudioTranslationAsPlainTextResponse,
+  GetAudioTranscriptionAsPlainTextResponse,
 } from "./models/index.js";
 export { KnownServiceApiVersions } from "./models/index.js";
 export type {

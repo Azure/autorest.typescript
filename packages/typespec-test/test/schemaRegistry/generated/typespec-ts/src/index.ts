@@ -16,6 +16,8 @@ export type {
   Schema,
   SchemaContentTypeValues,
   ContentTypeEnum,
+  SchemaOperationsGetSchemaByVersionResponse,
+  SchemaOperationsGetSchemaByIdResponse,
 } from "./models/index.js";
 export { KnownServiceApiVersions } from "./models/index.js";
 export type { SchemaRegistryClientOptionalParams } from "./api/index.js";
