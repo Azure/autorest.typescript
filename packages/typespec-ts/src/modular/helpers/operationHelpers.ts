@@ -1629,8 +1629,13 @@ function buildHeaderParameter(
     });
     return paramMap;
   }
+  // When a parameter has a clientDefaultValue, the paramMap already includes ?? default,
+  // so the default is always applied and no undefined check is needed.
+  const hasClientDefault =
+    param.clientDefaultValue !== undefined &&
+    isDefaultValueTypeMatch(param, param.clientDefaultValue);
   const conditions = [];
-  if (effectiveOptional) {
+  if (effectiveOptional && !hasClientDefault) {
     conditions.push(`${optionalParamName}?.${paramName} !== undefined`);
   }
   if (isTypeNullable(param.type) === true) {
