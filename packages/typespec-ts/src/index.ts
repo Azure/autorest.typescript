@@ -390,8 +390,7 @@ export async function $onEmit(context: EmitContext) {
 
     // Enable modular test generation when generateTest is true
     if (
-      dpgContext.rlcOptions?.generateTest &&
-      isAzurePackage({ options: rlcOptions })
+      dpgContext.rlcOptions?.generateTest === true
     ) {
       await emitTests(dpgContext);
     }
@@ -471,7 +470,7 @@ export async function $onEmit(context: EmitContext) {
       "test"
     );
     const hasTestFolder = await existsSync(existingTestFolderPath);
-    if (option.azureSdkForJs && option.generateTest === undefined) {
+    if (option.generateTest === undefined) {
       if (hasTestFolder) {
         option.generateTest = false;
       } else {
@@ -553,7 +552,7 @@ export async function $onEmit(context: EmitContext) {
       }
 
       // TODO: need support snippets generation for multi-client cases. https://github.com/Azure/autorest.typescript/issues/3048
-      if (option.generateTest && isAzureFlavor) {
+      if (option.generateTest) {
         for (const subClient of dpgContext.sdkPackage.clients) {
           commonBuilders.push((model) =>
             buildSnippets(model, subClient.name, option.azureSdkForJs)
@@ -650,7 +649,7 @@ export async function $onEmit(context: EmitContext) {
     }
 
     // Generate test relevant files
-    if (option.generateTest && isAzureFlavor && !hasTestFolder) {
+    if (option.generateTest && !hasTestFolder) {
       await emitContentByBuilder(
         program,
         [buildRecordedClientFile, buildSampleTest],
