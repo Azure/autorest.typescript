@@ -282,7 +282,7 @@ export async function provideBinderWithAzureDependencies(project: Project) {
     ...PollingHelpers,
     ...UrlTemplateHelpers,
     ...MultipartHelpers,
-    ...CreateRecorderHelpers
+    ...CreateRecorderHelpers,
     ...StorageCompatHelpers
   };
 

@@ -151,7 +151,7 @@ export async function $onEmit(context: EmitContext) {
       ...MultipartHelpers,
       ...CloudSettingHelpers,
       ...XmlHelpers,
-      ...(rlcOptions.generateTest ? CreateRecorderHelpers : {})
+      ...(rlcOptions.generateTest ? CreateRecorderHelpers : {}),
       ...(rlcOptions.enableStorageCompat ? StorageCompatHelpers : {})
     },
     {
