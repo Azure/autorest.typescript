@@ -168,6 +168,14 @@ export const CloudSettingHelpers = {
   }
 } as const;
 
+export const CreateRecorderHelpers = {
+  createRecorder: {
+    kind: "function",
+    name: "createRecorder",
+    location: "recordedClient.ts"
+  }
+} as const;
+
 export const XmlHelpers = {
   XmlSerializationOptions: {
     kind: "interface",
