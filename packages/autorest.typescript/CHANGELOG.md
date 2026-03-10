@@ -1,3 +1,8 @@
+## 6.0.61 (2026-03-09)
+
+- [Bugfix] Remove `hasWarpConfigFile` guard — always regenerate `warp.config.yml`. Please refer to [#3825](https://github.com/Azure/autorest.typescript/pull/3825)
+- [Feature] Remove tshy and add warp config generation for HLC (autorest.typescript). Please refer to [#3827](https://github.com/Azure/autorest.typescript/pull/3827)
+
 ## 6.0.60 (2026-03-06)
 
 - [Feature] Add enable-storage-compat emitter option. Please refer to [#3814](https://github.com/Azure/autorest.typescript/pull/3814)
