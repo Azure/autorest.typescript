@@ -293,7 +293,7 @@ class BinderImp implements Binder {
   }
 
   private cleanUnreferencedHelpers(sourceRoot: string, testRoot?: string) {
-    const usedHelperFiles = new Set<SourceFile>();
+    const usedHelperNames: string[] = [];
     for (const helper of this.staticHelpers.values()) {
       const sourceFile = helper[SourceFileSymbol];
       if (!sourceFile) {
@@ -305,12 +305,15 @@ class BinderImp implements Binder {
       const referencedHelper = this.references.get(refkey(helper));
 
       if (referencedHelper?.size) {
-        usedHelperFiles.add(sourceFile);
+        usedHelperNames.push(sourceFile.getBaseNameWithoutExtension());
       }
     }
 
     function isFileUnused(file: SourceFile) {
-      return !usedHelperFiles.has(file);
+      const name = file.getBaseNameWithoutExtension();
+      // If one of the used helpers' name is a prefix of this file, the file likely represents a platform-specific implementation of the helper
+      // so it should be marked as used even if the file has no direct references.
+      return !usedHelperNames.some((s) => name.startsWith(s));
     }
 
     this.project
