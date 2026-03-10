@@ -1542,7 +1542,8 @@ function buildHeaderParameter(
   optionalParamName: string = "options"
 ): string {
   const paramName = param.name;
-  if (!param.optional && isTypeNullable(param.type) === true) {
+  const effectiveOptional = getEffectiveOptional(param);
+  if (!effectiveOptional && isTypeNullable(param.type) === true) {
     reportDiagnostic(program, {
       code: "nullable-required-header",
       target: NoTarget
@@ -1550,7 +1551,7 @@ function buildHeaderParameter(
     return paramMap;
   }
   const conditions = [];
-  if (param.optional) {
+  if (effectiveOptional) {
     conditions.push(`${optionalParamName}?.${paramName} !== undefined`);
   }
   if (isTypeNullable(param.type) === true) {
@@ -1782,8 +1783,34 @@ function getContentTypeValue(
   }
 }
 
+/**
+ * Gets the effective optionality for an HTTP parameter by checking
+ * the linked method parameter via methodParameterSegments.
+ * This is needed because @@override can change a method parameter's
+ * optionality without updating the HTTP parameter's optional flag.
+ * For client-level parameters (onClient), preserve the HTTP parameter's own flag.
+ */
+function getEffectiveOptional(param: SdkHttpParameter): boolean {
+  // For client-level parameters, the HTTP parameter's optional flag is authoritative
+  if (param.onClient) {
+    return Boolean(param.optional);
+  }
+  // For method-level parameters with a direct mapping to a single method param,
+  // use the method parameter's optional flag (correctly reflects @@override changes)
+  if (
+    param.methodParameterSegments?.length === 1 &&
+    param.methodParameterSegments[0]?.length === 1
+  ) {
+    const methodParam = param.methodParameterSegments[0]![0];
+    if (methodParam) {
+      return Boolean(methodParam.optional);
+    }
+  }
+  return Boolean(param.optional);
+}
+
 function isRequired(param: SdkHttpParameter) {
-  return !param.optional;
+  return !getEffectiveOptional(param);
 }
 
 function getRequired(
@@ -1823,7 +1850,7 @@ function isConstant(param: SdkType): param is SdkConstantType {
 }
 
 function isOptional(param: SdkHttpParameter) {
-  return Boolean(param.optional);
+  return getEffectiveOptional(param);
 }
 
 function getOptional(
