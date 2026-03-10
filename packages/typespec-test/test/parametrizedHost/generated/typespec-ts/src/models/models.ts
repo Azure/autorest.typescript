@@ -29,3 +29,5 @@ export function collectionArrayDeserializer(result: Array<Collection>): any[] {
     return collectionDeserializer(item);
   });
 }
+
+export type ConfidentialLedgerListCollectionsResponse = { body: Collection[] };

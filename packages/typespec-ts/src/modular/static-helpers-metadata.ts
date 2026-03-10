@@ -59,6 +59,11 @@ export const SerializationHelpers = {
     name: "getBinaryResponse",
     location: "serialization/get-binary-response.ts"
   },
+  getBinaryResponseBody: {
+    kind: "function",
+    name: "getBinaryResponseBody",
+    location: "serialization/get-binary-response-body.ts"
+  },
   areAllPropsUndefined: {
     kind: "function",
     name: "areAllPropsUndefined",
@@ -241,5 +246,23 @@ export const XmlHelpers = {
     kind: "interface",
     name: "XmlSerializedObject",
     location: "serialization/xml-helpers.ts"
+  }
+} as const;
+
+export const StorageCompatHelpers = {
+  StorageCompatResponseInfo: {
+    kind: "interface",
+    name: "StorageCompatResponseInfo",
+    location: "storageCompatResponse.ts"
+  },
+  createStorageCompatOnResponse: {
+    kind: "function",
+    name: "createStorageCompatOnResponse",
+    location: "storageCompatResponse.ts"
+  },
+  addStorageCompatResponse: {
+    kind: "function",
+    name: "addStorageCompatResponse",
+    location: "storageCompatResponse.ts"
   }
 } as const;

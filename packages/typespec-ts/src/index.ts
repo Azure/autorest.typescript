@@ -20,6 +20,7 @@ import {
   PollingHelpers,
   SerializationHelpers,
   SimplePollerHelpers,
+  StorageCompatHelpers,
   UrlTemplateHelpers,
   XmlHelpers
 } from "./modular/static-helpers-metadata.js";
@@ -39,6 +40,7 @@ import {
   buildPollingHelper,
   buildPaginateHelper as buildRLCPaginateHelper,
   buildReadmeFile,
+  hasClientNameChanged,
   updateReadmeFile,
   buildRecordedClientFile,
   buildResponseTypes,
@@ -91,7 +93,7 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import { transformModularEmitterOptions } from "./modular/buildModularOptions.js";
 import { emitLoggerFile } from "./modular/emitLoggerFile.js";
-import { emitTypes } from "./modular/emitModels.js";
+import { emitTypes, emitNonModelResponseTypes } from "./modular/emitModels.js";
 import { existsSync } from "fs";
 import { getModuleExports } from "./modular/buildProjectFiles.js";
 import {
@@ -109,6 +111,7 @@ import { transformRLCOptions } from "./transform/transfromRLCOptions.js";
 import { emitSamples } from "./modular/emitSamples.js";
 import { emitTests } from "./modular/emitTests.js";
 import { generateCrossLanguageDefinitionFile } from "./utils/crossLanguageDef.js";
+import { getClassicalClientName } from "./modular/helpers/namingHelpers.js";
 
 export * from "./lib.js";
 
@@ -149,6 +152,7 @@ export async function $onEmit(context: EmitContext) {
       ...CloudSettingHelpers,
       ...XmlHelpers,
       ...(rlcOptions.generateTest ? CreateRecorderHelpers : {})
+      ...(rlcOptions.enableStorageCompat ? StorageCompatHelpers : {})
     },
     {
       sourcesDir: dpgContext.generationPathDetail?.modularSourcesDir,
@@ -329,6 +333,7 @@ export async function $onEmit(context: EmitContext) {
     );
 
     emitTypes(dpgContext, { sourceRoot: modularSourcesRoot });
+    emitNonModelResponseTypes(dpgContext, { sourceRoot: modularSourcesRoot });
     buildSubpathIndexFile(modularEmitterOptions, "models", undefined, {
       recursive: true
     });
@@ -459,11 +464,6 @@ export async function $onEmit(context: EmitContext) {
       "README.md"
     );
     const hasReadmeFile = await existsSync(existingReadmeFilePath);
-    const existingWarpConfigFilePath = join(
-      dpgContext.generationPathDetail?.metadataDir ?? "",
-      "warp.config.yml"
-    );
-    const hasWarpConfigFile = await existsSync(existingWarpConfigFilePath);
     const shouldGenerateMetadata =
       option.generateMetadata === true || !hasPackageFile;
     const existingTestFolderPath = join(
@@ -538,8 +538,8 @@ export async function $onEmit(context: EmitContext) {
       commonBuilders.push((model) =>
         buildPackageFile(model, modularPackageInfo)
       );
-      // Generate warp.config.yml for Azure monorepo ESM packages (only if it doesn't exist)
-      if (option.azureSdkForJs && !hasWarpConfigFile) {
+      // Generate warp.config.yml for Azure monorepo ESM packages
+      if (option.azureSdkForJs) {
         commonBuilders.push((model) =>
           buildWarpConfig(model, modularPackageInfo)
         );
@@ -580,40 +580,65 @@ export async function $onEmit(context: EmitContext) {
         }
       }
     } else if (hasPackageFile) {
-      // update existing package.json file with correct dependencies
+      const updateBuilders = [];
       let modularPackageInfo = {};
+
+      // update existing package.json file with correct dependencies
       if (option.isModularLibrary) {
         modularPackageInfo = {
-          exports: getModuleExports(context, modularEmitterOptions)
+          exports: getModuleExports(context, modularEmitterOptions),
+          clientContextPaths: getRelativeContextPaths(
+            context,
+            modularEmitterOptions
+          )
         };
+        updateBuilders.push((model: RLCModel) =>
+          updatePackageFile(model, existingPackageFilePath, modularPackageInfo)
+        );
       }
+
+      // Update warp.config.yml for Azure monorepo packages
+      if (option.azureSdkForJs) {
+        updateBuilders.push((model: RLCModel) =>
+          buildWarpConfig(model, modularPackageInfo)
+        );
+      }
+
+      // If the client name changed, regenerate the README and snippets completely;
+      // otherwise update only the API reference link in-place.
+      if (hasReadmeFile) {
+        const clientNameChanged = hasClientNameChanged(
+          rlcClient,
+          existingReadmeFilePath
+        );
+        updateBuilders.push(
+          clientNameChanged
+            ? buildReadmeFile
+            : (model: RLCModel) =>
+                updateReadmeFile(model, existingReadmeFilePath)
+        );
+
+        // Regenerate snippets.spec.ts only when the client name changed
+        if (clientNameChanged && option.azureSdkForJs) {
+          for (const subClient of dpgContext.sdkPackage.clients) {
+            updateBuilders.push((model: RLCModel) =>
+              buildSnippets(
+                model,
+                getClassicalClientName(subClient),
+                option.azureSdkForJs
+              )
+            );
+          }
+        }
+      }
+
+      // update metadata relevant files
       await emitContentByBuilder(
         program,
-        (model) =>
-          updatePackageFile(model, existingPackageFilePath, modularPackageInfo),
+        updateBuilders,
         rlcClient,
         dpgContext.generationPathDetail?.metadataDir
       );
-
-      // Generate warp.config.yml for Azure monorepo packages (only if it doesn't exist)
-      if (option.azureSdkForJs && !hasWarpConfigFile) {
-        await emitContentByBuilder(
-          program,
-          (model) => buildWarpConfig(model, modularPackageInfo),
-          rlcClient,
-          dpgContext.generationPathDetail?.metadataDir
-        );
-      }
-
-      // update existing README.md file if it exists
-      if (hasReadmeFile) {
-        await emitContentByBuilder(
-          program,
-          (model) => updateReadmeFile(model, existingReadmeFilePath),
-          rlcClient,
-          dpgContext.generationPathDetail?.metadataDir
-        );
-      }
     }
     if (isAzureFlavor) {
       await emitContentByBuilder(

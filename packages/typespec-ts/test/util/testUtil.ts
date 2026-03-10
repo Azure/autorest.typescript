@@ -28,6 +28,7 @@ import {
   PagingHelpers,
   PollingHelpers,
   SerializationHelpers,
+  StorageCompatHelpers,
   UrlTemplateHelpers,
   XmlHelpers,
   CreateRecorderHelpers
@@ -282,6 +283,7 @@ export async function provideBinderWithAzureDependencies(project: Project) {
     ...UrlTemplateHelpers,
     ...MultipartHelpers,
     ...CreateRecorderHelpers
+    ...StorageCompatHelpers
   };
 
   const staticHelperMap = await loadStaticHelpers(project, staticHelpers, {

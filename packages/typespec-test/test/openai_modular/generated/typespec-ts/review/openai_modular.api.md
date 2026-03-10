@@ -741,9 +741,20 @@ export interface FunctionName {
 export interface GenerateSpeechFromTextOptionalParams extends OperationOptions {
 }
 
+// @public (undocumented)
+export type GenerateSpeechFromTextResponse = {
+    blobBody?: Promise<Blob>;
+    readableStreamBody?: NodeJS.ReadableStream;
+};
+
 // @public
 export interface GetAudioTranscriptionAsPlainTextOptionalParams extends OperationOptions {
 }
+
+// @public (undocumented)
+export type GetAudioTranscriptionAsPlainTextResponse = {
+    body: string;
+};
 
 // @public
 export interface GetAudioTranscriptionAsResponseObjectOptionalParams extends OperationOptions {
@@ -752,6 +763,11 @@ export interface GetAudioTranscriptionAsResponseObjectOptionalParams extends Ope
 // @public
 export interface GetAudioTranslationAsPlainTextOptionalParams extends OperationOptions {
 }
+
+// @public (undocumented)
+export type GetAudioTranslationAsPlainTextResponse = {
+    body: string;
+};
 
 // @public
 export interface GetAudioTranslationAsResponseObjectOptionalParams extends OperationOptions {
@@ -957,10 +973,10 @@ export type OnYourDataVectorSearchAuthenticationType = "api_key" | "access_token
 // @public (undocumented)
 export class OpenAIClient {
     constructor(endpointParam: string, credential: KeyCredential | TokenCredential, options?: OpenAIClientOptionalParams);
-    generateSpeechFromText(deploymentId: string, body: SpeechGenerationOptions, options?: GenerateSpeechFromTextOptionalParams): Promise<Uint8Array>;
-    getAudioTranscriptionAsPlainText(deploymentId: string, body: AudioTranscriptionOptions, options?: GetAudioTranscriptionAsPlainTextOptionalParams): Promise<string>;
+    generateSpeechFromText(deploymentId: string, body: SpeechGenerationOptions, options?: GenerateSpeechFromTextOptionalParams): Promise<GenerateSpeechFromTextResponse>;
+    getAudioTranscriptionAsPlainText(deploymentId: string, body: AudioTranscriptionOptions, options?: GetAudioTranscriptionAsPlainTextOptionalParams): Promise<GetAudioTranscriptionAsPlainTextResponse>;
     getAudioTranscriptionAsResponseObject(deploymentId: string, body: AudioTranscriptionOptions, options?: GetAudioTranscriptionAsResponseObjectOptionalParams): Promise<AudioTranscription>;
-    getAudioTranslationAsPlainText(deploymentId: string, body: AudioTranslationOptions, options?: GetAudioTranslationAsPlainTextOptionalParams): Promise<string>;
+    getAudioTranslationAsPlainText(deploymentId: string, body: AudioTranslationOptions, options?: GetAudioTranslationAsPlainTextOptionalParams): Promise<GetAudioTranslationAsPlainTextResponse>;
     getAudioTranslationAsResponseObject(deploymentId: string, body: AudioTranslationOptions, options?: GetAudioTranslationAsResponseObjectOptionalParams): Promise<AudioTranslation>;
     getChatCompletions(deploymentId: string, body: ChatCompletionsOptions, options?: GetChatCompletionsOptionalParams): Promise<ChatCompletions>;
     getCompletions(deploymentId: string, body: CompletionsOptions, options?: GetCompletionsOptionalParams): Promise<Completions>;
