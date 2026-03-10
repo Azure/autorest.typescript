@@ -9,6 +9,7 @@ import {
   PagingHelpers,
   PollingHelpers,
   SerializationHelpers,
+  StorageCompatHelpers,
   UrlTemplateHelpers,
   XmlHelpers
 } from "../static-helpers-metadata.js";
@@ -98,6 +99,17 @@ import {
 } from "./clientOptionHelpers.js";
 import { isExtensibleEnum } from "../type-expressions/get-enum-expression.js";
 import { emitInlineModel } from "../type-expressions/get-model-expression.js";
+
+/**
+ * Checks whether a header should be skipped during serialization/deserialization.
+ * A header is skipped when it has the "headerCollectionPrefix" client option set,
+ * which indicates it uses a prefix-based dictionary pattern not handled by standard ser/deser.
+ */
+function shouldSkipHeaderSerialization(
+  header: SdkHttpParameter | SdkServiceResponseHeader
+): boolean {
+  return getClientOptions(header, "headerCollectionPrefix") !== undefined;
+}
 
 export function getSendPrivateFunction(
   dpgContext: SdkContext,
@@ -398,7 +410,8 @@ export function getDeserializePrivateFunction(
 
 /**
  * Generates a private function to deserialize response headers.
- * Only generated when response headers are present and include-headers-in-response is enabled.
+ * Only generated when response headers are present and include-headers-in-response
+ * or enable-storage-compat is enabled.
  */
 export function getDeserializeHeadersPrivateFunction(
   context: SdkContext,
@@ -407,9 +420,14 @@ export function getDeserializeHeadersPrivateFunction(
   const responseHeaders = getResponseHeaders(operation.operation.responses);
   const isResponseHeadersEnabled =
     context.rlcOptions?.includeHeadersInResponse === true;
+  const isStorageCompatEnabled =
+    context.rlcOptions?.enableStorageCompat === true;
 
-  // Only generate if headers exist and feature is enabled
-  if (responseHeaders.length === 0 || !isResponseHeadersEnabled) {
+  // Only generate if headers exist and a relevant feature is enabled
+  if (
+    responseHeaders.length === 0 ||
+    (!isResponseHeadersEnabled && !isStorageCompatEnabled)
+  ) {
     return undefined;
   }
 
@@ -555,6 +573,7 @@ function getExceptionResponseHeaders(
   const headerMap = new Map<string, SdkServiceResponseHeader>();
   for (const exception of exceptions ?? []) {
     for (const header of exception.headers ?? []) {
+      if (shouldSkipHeaderSerialization(header)) continue;
       const key = header.serializedName ?? header.name;
       if (!headerMap.has(key)) {
         headerMap.set(key, header);
@@ -918,6 +937,15 @@ export function getOperationFunction(
   const hasHeaderOnlyResponse = !response.type && responseHeaders.length > 0;
   const isResponseHeadersEnabled =
     context.rlcOptions?.includeHeadersInResponse === true;
+  const isStorageCompatEnabled =
+    context.rlcOptions?.enableStorageCompat === true;
+
+  // Track the raw body type separately for storage-compat (before header merging)
+  const hasResponseBody = !!response.type;
+  let bodyType = "void";
+  if (response.type) {
+    bodyType = getTypeExpression(context, response.type!);
+  }
 
   let returnType = { name: "", type: "void" };
   if (response.type) {
@@ -947,6 +975,37 @@ export function getOperationFunction(
       type: `${buildHeaderOnlyResponseType(context, responseHeaders)}`
     };
   }
+
+  // When storage-compat is enabled, wrap the return type with StorageCompatResponseInfo
+  // Use the raw body type (not the header-augmented return type) for TBody
+  let finalReturnType = returnType.type;
+  if (isStorageCompatEnabled) {
+    const storageCompatInfoRef = resolveReference(
+      StorageCompatHelpers.StorageCompatResponseInfo
+    );
+    const headersType =
+      responseHeaders.length > 0
+        ? buildHeaderOnlyResponseType(context, responseHeaders)
+        : "Record<string, unknown>";
+    if (!hasResponseBody) {
+      if (responseHeaders.length > 0) {
+        // Void with headers — headers at top level + StorageCompatResponseInfo
+        finalReturnType = `${headersType} & ${storageCompatInfoRef}<undefined, ${headersType}>`;
+      } else {
+        // Void without headers — just StorageCompatResponseInfo
+        finalReturnType = `${storageCompatInfoRef}<undefined, ${headersType}>`;
+      }
+    } else {
+      if (responseHeaders.length > 0) {
+        // Body with headers — headers + body + StorageCompatResponseInfo at top level
+        finalReturnType = `${headersType} & ${bodyType} & ${storageCompatInfoRef}<${bodyType}, ${headersType}>`;
+      } else {
+        // Body without headers — body + StorageCompatResponseInfo
+        finalReturnType = `${bodyType} & ${storageCompatInfoRef}<${bodyType}, ${headersType}>`;
+      }
+    }
+  }
+
   const { name, fixme = [] } = getOperationName(operation);
   const functionStatement = {
     kind: StructureKind.Function,
@@ -959,7 +1018,7 @@ export function getOperationFunction(
     name,
     propertyName: normalizeName(operation.name, NameType.Property),
     parameters,
-    returnType: `Promise<${returnType.type}>`
+    returnType: `Promise<${finalReturnType}>`
   };
 
   const statements: string[] = [];
@@ -969,6 +1028,29 @@ export function getOperationFunction(
   const resultVarName = generateLocallyUniqueName("result", paramNames);
 
   const parameterList = parameters.map((p) => p.name).join(", ");
+
+  // When storage-compat is enabled, set up the onResponse interceptor before sending
+  const storageCompatVarName = generateLocallyUniqueName(
+    "_storageCompat",
+    paramNames
+  );
+  if (isStorageCompatEnabled) {
+    const createOnResponseRef = resolveReference(
+      StorageCompatHelpers.createStorageCompatOnResponse
+    );
+    statements.push(
+      `const ${storageCompatVarName} = ${createOnResponseRef}(${optionalParamName}.onResponse);`
+    );
+  }
+
+  // Build the parameterList for the send call, injecting onResponse when storage-compat is enabled
+  const sendParameterList = isStorageCompatEnabled
+    ? parameterList.replace(
+        optionalParamName,
+        `{...${optionalParamName}, onResponse: ${storageCompatVarName}.onResponse}`
+      )
+    : parameterList;
+
   // Special case for binary-only bodies: use helper to call streaming methods so that Core doesn't poison the response body by
   // doing a UTF-8 decode on the raw bytes.
   if (response?.type?.kind === "bytes" && response.type.encode === "bytes") {
@@ -977,19 +1059,55 @@ export function getOperationFunction(
       paramNames
     );
     statements.push(
-      `const ${streamableMethodVarName} = _${name}Send(${parameterList});`
+      `const ${streamableMethodVarName} = _${name}Send(${sendParameterList});`
     );
     statements.push(
       `const ${resultVarName} = await ${resolveReference(SerializationHelpers.getBinaryResponse)}(${streamableMethodVarName});`
     );
   } else {
     statements.push(
-      `const ${resultVarName} = await _${name}Send(${parameterList});`
+      `const ${resultVarName} = await _${name}Send(${sendParameterList});`
     );
   }
 
   // If the response has headers and the feature flag to include headers in response is enabled, build the headers object and include it in the return value
-  if (responseHeaders.length > 0 && isResponseHeadersEnabled) {
+  if (isStorageCompatEnabled) {
+    // Storage-compat mode: wrap the return value with _response metadata using captured PipelineResponse
+    const addStorageCompatRef = resolveReference(
+      StorageCompatHelpers.addStorageCompatResponse
+    );
+    const parsedBodyVarName = generateLocallyUniqueName(
+      "parsedBody",
+      paramNames
+    );
+    const parsedHeadersVarName = generateLocallyUniqueName(
+      "parsedHeaders",
+      paramNames
+    );
+
+    // Deserialize body
+    if (!hasResponseBody) {
+      statements.push(`await _${name}Deserialize(${resultVarName});`);
+    } else {
+      statements.push(
+        `const ${parsedBodyVarName} = await _${name}Deserialize(${resultVarName});`
+      );
+    }
+
+    // Deserialize headers if present
+    if (responseHeaders.length > 0) {
+      statements.push(
+        `const ${parsedHeadersVarName} = _${name}DeserializeHeaders(${resultVarName});`
+      );
+    }
+
+    // Build the return statement using captured PipelineResponse
+    const bodyArg = !hasResponseBody ? "undefined" : parsedBodyVarName;
+    const headersArg = responseHeaders.length > 0 ? parsedHeadersVarName : "{}";
+    statements.push(
+      `return ${addStorageCompatRef}(${storageCompatVarName}.getRawResponse()!, ${bodyArg}, ${headersArg});`
+    );
+  } else if (responseHeaders.length > 0 && isResponseHeadersEnabled) {
     const headersVarName = generateLocallyUniqueName("headers", paramNames);
     statements.push(
       `const ${headersVarName} = _${name}DeserializeHeaders(result);`
@@ -1368,6 +1486,10 @@ function getHeaderAndBodyParameters(
       ) {
         continue;
       }
+      // Skip headers marked with headerCollectionPrefix client option
+      if (shouldSkipHeaderSerialization(param)) {
+        continue;
+      }
       // Check if this parameter still exists in the corresponding method params (after override)
       if (
         param.methodParameterSegments &&
@@ -1420,7 +1542,8 @@ function buildHeaderParameter(
   optionalParamName: string = "options"
 ): string {
   const paramName = param.name;
-  if (!param.optional && isTypeNullable(param.type) === true) {
+  const effectiveOptional = getEffectiveOptional(param);
+  if (!effectiveOptional && isTypeNullable(param.type) === true) {
     reportDiagnostic(program, {
       code: "nullable-required-header",
       target: NoTarget
@@ -1428,7 +1551,7 @@ function buildHeaderParameter(
     return paramMap;
   }
   const conditions = [];
-  if (param.optional) {
+  if (effectiveOptional) {
     conditions.push(`${optionalParamName}?.${paramName} !== undefined`);
   }
   if (isTypeNullable(param.type) === true) {
@@ -1660,8 +1783,34 @@ function getContentTypeValue(
   }
 }
 
+/**
+ * Gets the effective optionality for an HTTP parameter by checking
+ * the linked method parameter via methodParameterSegments.
+ * This is needed because @@override can change a method parameter's
+ * optionality without updating the HTTP parameter's optional flag.
+ * For client-level parameters (onClient), preserve the HTTP parameter's own flag.
+ */
+function getEffectiveOptional(param: SdkHttpParameter): boolean {
+  // For client-level parameters, the HTTP parameter's optional flag is authoritative
+  if (param.onClient) {
+    return Boolean(param.optional);
+  }
+  // For method-level parameters with a direct mapping to a single method param,
+  // use the method parameter's optional flag (correctly reflects @@override changes)
+  if (
+    param.methodParameterSegments?.length === 1 &&
+    param.methodParameterSegments[0]?.length === 1
+  ) {
+    const methodParam = param.methodParameterSegments[0]![0];
+    if (methodParam) {
+      return Boolean(methodParam.optional);
+    }
+  }
+  return Boolean(param.optional);
+}
+
 function isRequired(param: SdkHttpParameter) {
-  return !param.optional;
+  return !getEffectiveOptional(param);
 }
 
 function getRequired(
@@ -1701,7 +1850,7 @@ function isConstant(param: SdkType): param is SdkConstantType {
 }
 
 function isOptional(param: SdkHttpParameter) {
-  return Boolean(param.optional);
+  return getEffectiveOptional(param);
 }
 
 function getOptional(
@@ -2696,6 +2845,7 @@ export function getResponseHeaders(
   const headerMap = new Map<string, SdkServiceResponseHeader>();
   for (const response of responses ?? []) {
     for (const header of response.headers ?? []) {
+      if (shouldSkipHeaderSerialization(header)) continue;
       const key = header.serializedName ?? header.name;
       if (!headerMap.has(key)) {
         headerMap.set(key, header);
@@ -2720,7 +2870,19 @@ function buildCompositeResponseType(
 ): string {
   const allParents = getAllAncestors(modelType);
   const modelProps: (SdkModelPropertyType | SdkServiceResponseHeader)[] =
-    getAllProperties(context, modelType, allParents);
+    getAllProperties(context, modelType, allParents).filter((property) => {
+      // Skip model properties that are headers with headerCollectionPrefix
+      if (
+        property.__raw &&
+        isHeader(context.program, property.__raw) &&
+        shouldSkipHeaderSerialization(
+          property as SdkModelPropertyType & SdkServiceResponseHeader
+        )
+      ) {
+        return false;
+      }
+      return true;
+    });
 
   // Collect header property names already in the model to avoid duplicates
   const modelHeaderNames = new Set<string>();

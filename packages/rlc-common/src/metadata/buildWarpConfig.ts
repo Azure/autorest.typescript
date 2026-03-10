@@ -9,6 +9,29 @@ export interface WarpConfigOptions {
   exports?: Record<string, string>;
 }
 
+export const WarpConfigTemplate = `# warp.config.yml — build configuration
+
+exports:
+{{exports}}
+
+targets:
+  - name: browser
+    tsconfig: "../../../tsconfig.src.browser.json"
+    polyfillSuffix: "-browser"
+
+  - name: react-native
+    tsconfig: "../../../tsconfig.src.react-native.json"
+    polyfillSuffix: "-react-native"
+
+  - name: esm
+    condition: import
+    tsconfig: "../../../tsconfig.src.esm.json"
+
+  - name: commonjs
+    condition: require
+    tsconfig: "../../../tsconfig.src.cjs.json"
+`;
+
 /**
  * Builds a warp.config.yml file for Azure SDK monorepo packages.
  * Only generated when azureSdkForJs is true.
@@ -31,34 +54,14 @@ export function buildWarpConfig(
     ...exports
   };
 
-  const lines: string[] = [];
-  lines.push("# warp.config.yml — build configuration");
-  lines.push("");
-  lines.push("exports:");
-  for (const [key, value] of Object.entries(allExports)) {
-    lines.push(`  ${JSON.stringify(key)}: ${JSON.stringify(value)}`);
-  }
-  lines.push("");
-  lines.push("targets:");
-  lines.push("  - name: browser");
-  lines.push('    tsconfig: "../../../tsconfig.src.browser.json"');
-  lines.push('    polyfillSuffix: "-browser"');
-  lines.push("");
-  lines.push("  - name: react-native");
-  lines.push('    tsconfig: "../../../tsconfig.src.react-native.json"');
-  lines.push('    polyfillSuffix: "-react-native"');
-  lines.push("");
-  lines.push("  - name: esm");
-  lines.push("    condition: import");
-  lines.push('    tsconfig: "../../../tsconfig.src.esm.json"');
-  lines.push("");
-  lines.push("  - name: commonjs");
-  lines.push("    condition: require");
-  lines.push('    tsconfig: "../../../tsconfig.src.cjs.json"');
-  lines.push("");
+  const exportsContent = Object.entries(allExports)
+    .map(([key, value]) => `  ${JSON.stringify(key)}: ${JSON.stringify(value)}`)
+    .join("\n");
+
+  const content = WarpConfigTemplate.replace("{{exports}}", exportsContent);
 
   return {
     path: "warp.config.yml",
-    content: lines.join("\n")
+    content
   };
 }

@@ -563,6 +563,8 @@ export async function emitModularOperationsFromTypeSpec(
   dpgContext.rlcOptions!.isModularLibrary = true;
   dpgContext.rlcOptions!.experimentalExtensibleEnums =
     options["experimental-extensible-enums"];
+  dpgContext.rlcOptions!.enableStorageCompat =
+    options["enable-storage-compat"] === true;
   const modularEmitterOptions = transformModularEmitterOptions(dpgContext, "", {
     casing: "camel"
   });
