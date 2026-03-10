@@ -113,7 +113,7 @@ import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../static-helpers/pagingHelpers.js";
-import { toBlob } from "../static-helpers/serialization/to-blob.js";
+import { getBinaryResponseBody } from "../static-helpers/serialization/get-binary-response-body.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   ListNodeFilesOptionalParams,
@@ -412,13 +412,7 @@ export function _getNodeFileSend(
 export async function _getNodeFileDeserialize(
   result: StreamableMethod,
 ): Promise<GetNodeFileResponse> {
-  try {
-    const browserStream = await result.asBrowserStream();
-    return { blobBody: toBlob(browserStream?.body), readableStreamBody: undefined };
-  } catch {
-    const nodeStream = await result.asNodeStream();
-    return { blobBody: undefined, readableStreamBody: nodeStream?.body };
-  }
+  return getBinaryResponseBody(result, ["200"], batchErrorDeserializer);
 }
 
 /** Returns the content of the specified Compute Node file. */
@@ -830,13 +824,7 @@ export function _getNodeRemoteDesktopFileSend(
 export async function _getNodeRemoteDesktopFileDeserialize(
   result: StreamableMethod,
 ): Promise<GetNodeRemoteDesktopFileResponse> {
-  try {
-    const browserStream = await result.asBrowserStream();
-    return { blobBody: toBlob(browserStream?.body), readableStreamBody: undefined };
-  } catch {
-    const nodeStream = await result.asNodeStream();
-    return { blobBody: undefined, readableStreamBody: nodeStream?.body };
-  }
+  return getBinaryResponseBody(result, ["200"], batchErrorDeserializer);
 }
 
 /**
@@ -1669,13 +1657,7 @@ export function _getTaskFileSend(
 export async function _getTaskFileDeserialize(
   result: StreamableMethod,
 ): Promise<GetTaskFileResponse> {
-  try {
-    const browserStream = await result.asBrowserStream();
-    return { blobBody: toBlob(browserStream?.body), readableStreamBody: undefined };
-  } catch {
-    const nodeStream = await result.asNodeStream();
-    return { blobBody: undefined, readableStreamBody: nodeStream?.body };
-  }
+  return getBinaryResponseBody(result, ["200"], batchErrorDeserializer);
 }
 
 /** Returns the content of the specified Task file. */

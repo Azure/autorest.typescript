@@ -396,17 +396,19 @@ export function getDeserializePrivateFunction(
       // Handle wrap-non-model-return for non-LRO, non-paging operations
       if (shouldWrap) {
         if (isBinary) {
-          // Binary response: result is StreamableMethod passed directly from the operation function.
-          // Use asBrowserStream() for blobBody and asNodeStream() for readableStreamBody.
-          const toBlobReference = resolveReference(SerializationHelpers.toBlob);
+          const getBinaryResponseBodyReference = resolveReference(
+            SerializationHelpers.getBinaryResponseBody
+          );
+          const deserializeError = getExceptionDetails(
+            context,
+            operation
+          ).defaultDeserializer;
+          const deserializeErrorStr = deserializeError
+            ? `, ${deserializeError}`
+            : "";
           statements.push(
-            `try {
-            const browserStream = await result.asBrowserStream();
-            return { blobBody: ${toBlobReference}(browserStream?.body), readableStreamBody: undefined };
-          } catch {
-            const nodeStream = await result.asNodeStream();
-            return { blobBody: undefined, readableStreamBody: nodeStream?.body };
-          }`
+            `return ${getBinaryResponseBodyReference}(result, ${getExpectedStatuses(operation)}${deserializeErrorStr});
+`
           );
         } else {
           // Non-model response: wrap with body property
