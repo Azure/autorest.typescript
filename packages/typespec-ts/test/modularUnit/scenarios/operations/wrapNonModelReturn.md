@@ -177,7 +177,7 @@ export type GetLogsResponse = {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { GetLogsResponse } from "../models/models.js";
-import { toBlob } from "../static-helpers/serialization/to-blob.js";
+import { getBinaryResponseBody } from "../static-helpers/serialization/get-binary-response-body.js";
 import { GetLogsOptionalParams } from "./options.js";
 import { StreamableMethod, operationOptionsToRequestParameters } from "@azure-rest/core-client";
 
@@ -194,13 +194,7 @@ export function _getLogsSend(
 }
 
 export async function _getLogsDeserialize(result: StreamableMethod): Promise<GetLogsResponse> {
-  try {
-    const browserStream = await result.asBrowserStream();
-    return { blobBody: toBlob(browserStream?.body), readableStreamBody: undefined };
-  } catch {
-    const nodeStream = await result.asNodeStream();
-    return { blobBody: undefined, readableStreamBody: nodeStream?.body };
-  }
+  return getBinaryResponseBody(result, ["200"]);
 }
 
 export async function getLogs(
