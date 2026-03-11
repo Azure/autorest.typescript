@@ -19,9 +19,14 @@ export declare interface DifferentBodyGetAvatarAsJsonOptionalParams extends Oper
 export declare interface DifferentBodyGetAvatarAsPngOptionalParams extends OperationOptions {
 }
 
+export declare type DifferentBodyGetAvatarAsPngResponse = {
+    blobBody?: Promise<Blob>;
+    readableStreamBody?: NodeJS.ReadableStream;
+};
+
 export declare interface DifferentBodyOperations {
     getAvatarAsJson: (options?: DifferentBodyGetAvatarAsJsonOptionalParams) => Promise<PngImageAsJson>;
-    getAvatarAsPng: (options?: DifferentBodyGetAvatarAsPngOptionalParams) => Promise<Uint8Array>;
+    getAvatarAsPng: (options?: DifferentBodyGetAvatarAsPngOptionalParams) => Promise<DifferentBodyGetAvatarAsPngResponse>;
 }
 
 export declare interface PngImageAsJson {
@@ -31,12 +36,22 @@ export declare interface PngImageAsJson {
 export declare interface SameBodyGetAvatarAsJpegOptionalParams extends OperationOptions {
 }
 
+export declare type SameBodyGetAvatarAsJpegResponse = {
+    blobBody?: Promise<Blob>;
+    readableStreamBody?: NodeJS.ReadableStream;
+};
+
 export declare interface SameBodyGetAvatarAsPngOptionalParams extends OperationOptions {
 }
 
+export declare type SameBodyGetAvatarAsPngResponse = {
+    blobBody?: Promise<Blob>;
+    readableStreamBody?: NodeJS.ReadableStream;
+};
+
 export declare interface SameBodyOperations {
-    getAvatarAsJpeg: (options?: SameBodyGetAvatarAsJpegOptionalParams) => Promise<Uint8Array>;
-    getAvatarAsPng: (options?: SameBodyGetAvatarAsPngOptionalParams) => Promise<Uint8Array>;
+    getAvatarAsJpeg: (options?: SameBodyGetAvatarAsJpegOptionalParams) => Promise<SameBodyGetAvatarAsJpegResponse>;
+    getAvatarAsPng: (options?: SameBodyGetAvatarAsPngOptionalParams) => Promise<SameBodyGetAvatarAsPngResponse>;
 }
 
 export { }

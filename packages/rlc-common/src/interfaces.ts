@@ -262,6 +262,12 @@ export interface RLCOptions {
   ignoreNullableOnOptional?: boolean;
   isMultiService?: boolean;
   /**
+   * When set to true, non-model return types (arrays, scalars, enums, bytes with binary content type)
+   * will be wrapped in an XxxResponse type to maintain backward compatibility with HLC.
+   * This option defaults to true for Azure flavor and to false otherwise, unless explicitly set.
+   */
+  wrapNonModelReturn?: boolean;
+  /**
    * When enabled, every regular (non-LRO, non-paging) operation return type is augmented with a
    * `_response` property containing `rawResponse`, `parsedBody`, and `parsedHeaders`.
    */
