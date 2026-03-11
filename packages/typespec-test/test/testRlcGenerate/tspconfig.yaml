@@ -1,0 +1,12 @@
+emit:
+  - '@azure-tools/typespec-ts'
+options:
+  "@azure-tools/typespec-ts":
+    azure-sdk-for-js: false
+    enable-operation-group: true
+    include-shortcuts: true
+    is-modular-library: false
+    ignore-property-name-normalize: true
+    emitter-output-dir: "{project-root}/generated/typespec-ts"
+    package-details:
+      name: "@msinternal/test"
