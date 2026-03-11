@@ -8,6 +8,7 @@ import { getAutorestOptions, getSession } from "../../autorestSession";
 import { hasPollingOperations } from "../../restLevelClient/helpers/hasPollingOperations";
 import { NameType, normalizeName } from "../../utils/nameUtils";
 import { getSecurityInfoFromModel } from "../../utils/schemaHelpers";
+import { WarpConfigTemplate } from "@azure-tools/rlc-common";
 
 export function generatePackageJson(
   project: Project,
@@ -157,28 +158,38 @@ function regularAutorestPackage(
     autoPublish: true,
     browser: "./dist/browser/index.js",
     "react-native": "./dist/react-native/index.js",
-    tshy: {
-      // only JS sdk repo has tsconfig.src.build.json
-      project: azureSdkForJs ? "../../../tsconfig.src.build.json" : undefined,
-      exports: {
-        "./package.json": "./package.json",
-        ".": "./src/index.ts",
-      },
-      dialects: ["esm", "commonjs"],
-      esmDialects: ["browser", "react-native"],
-      selfLink: false,
-    }
   };
   if (azureOutputDirectory) {
     packageInfo.homepage = `https://github.com/Azure/azure-sdk-for-js/tree/main/${azureOutputDirectory}`;
   }
   if (azureSdkForJs) {
+    // Azure monorepo packages use warp (via dev-tool run build-package) instead of tshy
+    packageInfo.exports = {
+      "./package.json": "./package.json",
+      ".": {
+        browser: {
+          types: "./dist/browser/index.d.ts",
+          default: "./dist/browser/index.js"
+        },
+        "react-native": {
+          types: "./dist/react-native/index.d.ts",
+          default: "./dist/react-native/index.js"
+        },
+        import: {
+          types: "./dist/esm/index.d.ts",
+          default: "./dist/esm/index.js"
+        },
+        require: {
+          types: "./dist/commonjs/index.d.ts",
+          default: "./dist/commonjs/index.js"
+        }
+      }
+    };
     packageInfo.devDependencies["@azure/dev-tool"] = "workspace:^";
     packageInfo.devDependencies["cross-env"] = "catalog:";
     packageInfo.devDependencies["eslint"] = "catalog:";
     packageInfo.devDependencies["prettier"] = "catalog:";
     packageInfo.devDependencies["rimraf"] = "catalog:";
-    packageInfo.devDependencies["tshy"] = "catalog:";
 
     delete packageInfo.devDependencies["@microsoft/api-extractor"];
     delete packageInfo.devDependencies["mkdirp"];
@@ -192,6 +203,16 @@ function regularAutorestPackage(
     packageInfo.scripts["check-format"] = "prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore \"src/**/*.{ts,cts,mts}\" \"test/**/*.{ts,cts,mts}\" \"*.{js,cjs,mjs,json}\" ";
     packageInfo.scripts["format"] = "prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore \"src/**/*.{ts,cts,mts}\" \"test/**/*.{ts,cts,mts}\" \"*.{js,cjs,mjs,json}\" ";
   } else {
+    // Non-Azure packages use tshy for building
+    packageInfo.tshy = {
+      exports: {
+        "./package.json": "./package.json",
+        ".": "./src/index.ts"
+      },
+      dialects: ["esm", "commonjs"],
+      esmDialects: ["browser", "react-native"],
+      selfLink: false
+    };
     packageInfo.devDependencies["@rollup/plugin-commonjs"] = "^24.0.0";
     packageInfo.devDependencies["@rollup/plugin-json"] = "^6.0.0";
     packageInfo.devDependencies["@rollup/plugin-multi-entry"] = "^6.0.0";
@@ -241,4 +262,22 @@ function regularAutorestPackage(
     };
   }
   return packageInfo;
+}
+
+/**
+ * Generates a warp.config.yml file for Azure SDK monorepo packages (HLC).
+ * Only generated when azureSdkForJs is true.
+ */
+export function generateWarpConfig(project: Project) {
+  const { generateMetadata, azureSdkForJs } = getAutorestOptions();
+  if (!generateMetadata || !azureSdkForJs) {
+    return;
+  }
+
+  const exportsContent = ['  "./package.json": "./package.json"', '  ".": "./src/index.ts"'].join("\n");
+  const content = WarpConfigTemplate.replace("{{exports}}", exportsContent);
+
+  project.createSourceFile("warp.config.yml", content, {
+    overwrite: true
+  });
 }

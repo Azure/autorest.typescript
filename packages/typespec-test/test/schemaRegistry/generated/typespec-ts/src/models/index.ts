@@ -9,5 +9,7 @@ export type {
   Schema,
   SchemaContentTypeValues,
   ContentTypeEnum,
+  SchemaOperationsGetSchemaByVersionResponse,
+  SchemaOperationsGetSchemaByIdResponse,
 } from "./models.js";
 export { KnownServiceApiVersions } from "./models.js";

@@ -29,8 +29,11 @@ import {
   embeddingsOptionsSerializer,
   Embeddings,
   embeddingsDeserializer,
+  GenerateSpeechFromTextResponse,
+  GetAudioTranslationAsPlainTextResponse,
+  GetAudioTranscriptionAsPlainTextResponse,
 } from "../models/models.js";
-import { getBinaryResponse } from "../static-helpers/serialization/get-binary-response.js";
+import { getBinaryResponseBody } from "../static-helpers/serialization/get-binary-response-body.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   GetEmbeddingsOptionalParams,
@@ -125,14 +128,9 @@ export function _generateSpeechFromTextSend(
 }
 
 export async function _generateSpeechFromTextDeserialize(
-  result: PathUncheckedResponse,
-): Promise<Uint8Array> {
-  const expectedStatuses = ["200"];
-  if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
-  }
-
-  return result.body;
+  result: StreamableMethod,
+): Promise<GenerateSpeechFromTextResponse> {
+  return getBinaryResponseBody(result, ["200"]);
 }
 
 /** Generates text-to-speech audio from the input text. */
@@ -141,10 +139,9 @@ export async function generateSpeechFromText(
   deploymentId: string,
   body: SpeechGenerationOptions,
   options: GenerateSpeechFromTextOptionalParams = { requestOptions: {} },
-): Promise<Uint8Array> {
+): Promise<GenerateSpeechFromTextResponse> {
   const streamableMethod = _generateSpeechFromTextSend(context, deploymentId, body, options);
-  const result = await getBinaryResponse(streamableMethod);
-  return _generateSpeechFromTextDeserialize(result);
+  return _generateSpeechFromTextDeserialize(streamableMethod);
 }
 
 export function _getImageGenerationsSend(
@@ -380,13 +377,13 @@ export function _getAudioTranslationAsPlainTextSend(
 
 export async function _getAudioTranslationAsPlainTextDeserialize(
   result: PathUncheckedResponse,
-): Promise<string> {
+): Promise<GetAudioTranslationAsPlainTextResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return result.body;
+  return { body: result.body };
 }
 
 /** Gets English language transcribed text and associated metadata from provided spoken audio data. */
@@ -395,7 +392,7 @@ export async function getAudioTranslationAsPlainText(
   deploymentId: string,
   body: AudioTranslationOptions,
   options: GetAudioTranslationAsPlainTextOptionalParams = { requestOptions: {} },
-): Promise<string> {
+): Promise<GetAudioTranslationAsPlainTextResponse> {
   const result = await _getAudioTranslationAsPlainTextSend(context, deploymentId, body, options);
   return _getAudioTranslationAsPlainTextDeserialize(result);
 }
@@ -484,13 +481,13 @@ export function _getAudioTranscriptionAsPlainTextSend(
 
 export async function _getAudioTranscriptionAsPlainTextDeserialize(
   result: PathUncheckedResponse,
-): Promise<string> {
+): Promise<GetAudioTranscriptionAsPlainTextResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return result.body;
+  return { body: result.body };
 }
 
 /**
@@ -502,7 +499,7 @@ export async function getAudioTranscriptionAsPlainText(
   deploymentId: string,
   body: AudioTranscriptionOptions,
   options: GetAudioTranscriptionAsPlainTextOptionalParams = { requestOptions: {} },
-): Promise<string> {
+): Promise<GetAudioTranscriptionAsPlainTextResponse> {
   const result = await _getAudioTranscriptionAsPlainTextSend(context, deploymentId, body, options);
   return _getAudioTranscriptionAsPlainTextDeserialize(result);
 }

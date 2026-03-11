@@ -15,13 +15,21 @@ export declare interface MediaTypeClientOptionalParams extends ClientOptions {
 export declare interface StringBodyGetAsJsonOptionalParams extends OperationOptions {
 }
 
+export declare type StringBodyGetAsJsonResponse = {
+    body: string;
+};
+
 export declare interface StringBodyGetAsTextOptionalParams extends OperationOptions {
 }
 
+export declare type StringBodyGetAsTextResponse = {
+    body: string;
+};
+
 export declare interface StringBodyOperations {
-    getAsJson: (options?: StringBodyGetAsJsonOptionalParams) => Promise<string>;
+    getAsJson: (options?: StringBodyGetAsJsonOptionalParams) => Promise<StringBodyGetAsJsonResponse>;
     sendAsJson: (text: string, options?: StringBodySendAsJsonOptionalParams) => Promise<void>;
-    getAsText: (options?: StringBodyGetAsTextOptionalParams) => Promise<string>;
+    getAsText: (options?: StringBodyGetAsTextOptionalParams) => Promise<StringBodyGetAsTextResponse>;
     sendAsText: (text: string, options?: StringBodySendAsTextOptionalParams) => Promise<void>;
 }
 

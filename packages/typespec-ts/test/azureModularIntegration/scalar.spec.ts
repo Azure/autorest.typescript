@@ -21,7 +21,7 @@ describe("Scalar Client", () => {
         }
       }
     });
-    assert.strictEqual(result, "test");
+    assert.strictEqual(result.body, "test");
   });
 
   it("should put string value", async () => {
@@ -37,7 +37,7 @@ describe("Scalar Client", () => {
 
   it("should get boolean value", async () => {
     const result = await client.boolean.get();
-    assert.strictEqual(result, true);
+    assert.strictEqual(result.body, true);
   });
 
   it("should put boolean value", async () => {
@@ -53,7 +53,7 @@ describe("Scalar Client", () => {
         }
       }
     });
-    assert.strictEqual(result, "test");
+    assert.strictEqual(result.body, "test");
   });
 
   it("should put unknown value", async () => {
@@ -69,7 +69,7 @@ describe("Scalar Client", () => {
 
   it("should get decimal response body", async () => {
     const result = await client.decimalType.responseBody();
-    assert.strictEqual(result, 0.33333);
+    assert.strictEqual(result.body, 0.33333);
   });
 
   it("should put decimal request body", async () => {
@@ -84,7 +84,7 @@ describe("Scalar Client", () => {
 
   it("should get decimal128 response body", async () => {
     const result = await client.decimal128Type.responseBody();
-    assert.strictEqual(result, 0.33333);
+    assert.strictEqual(result.body, 0.33333);
   });
 
   it("should put decimal128 request body", async () => {
@@ -105,7 +105,7 @@ describe("Scalar Client", () => {
 
     const getResult = await client.decimalVerify.prepareVerify();
     // Convert decimals to integer representation (e.g., cents)
-    const scaledSum = getResult.reduce(
+    const scaledSum = getResult.body.reduce(
       (acc: number, val: number) => acc + Math.round(val * 100),
       0
     );
@@ -123,7 +123,7 @@ describe("Scalar Client", () => {
     const getResult = await client.decimal128Verify.prepareVerify();
 
     // Convert decimals to integer representation (e.g., cents)
-    const scaledSum = getResult.reduce(
+    const scaledSum = getResult.body.reduce(
       (acc: number, val: number) => acc + Math.round(val * 100),
       0
     );

@@ -18,7 +18,13 @@ import {
   SchemaOperationsGetSchemaByIdOptionalParams,
   SchemaOperationsListSchemaGroupsOptionalParams,
 } from "../../api/schemaOperations/options.js";
-import { SchemaGroup, SchemaVersion, SchemaContentTypeValues } from "../../models/models.js";
+import {
+  SchemaGroup,
+  SchemaVersion,
+  SchemaContentTypeValues,
+  SchemaOperationsGetSchemaByVersionResponse,
+  SchemaOperationsGetSchemaByIdResponse,
+} from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 
 /** Interface representing a SchemaOperations operations. */
@@ -45,7 +51,7 @@ export interface SchemaOperationsOperations {
     name: string,
     schemaVersion: number,
     options?: SchemaOperationsGetSchemaByVersionOptionalParams,
-  ) => Promise<Uint8Array>;
+  ) => Promise<SchemaOperationsGetSchemaByVersionResponse>;
   /** Gets the list of all versions of one schema. */
   listSchemaVersions: (
     groupName: string,
@@ -56,7 +62,7 @@ export interface SchemaOperationsOperations {
   getSchemaById: (
     id: string,
     options?: SchemaOperationsGetSchemaByIdOptionalParams,
-  ) => Promise<Uint8Array>;
+  ) => Promise<SchemaOperationsGetSchemaByIdResponse>;
   /** Gets the list of schema groups user is authorized to access. */
   listSchemaGroups: (
     options?: SchemaOperationsListSchemaGroupsOptionalParams,
