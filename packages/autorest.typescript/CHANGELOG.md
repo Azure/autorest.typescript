@@ -1,3 +1,9 @@
+## 6.0.62 (2026-03-11)
+
+- [Feature] Add `wrap-non-model-return` option to prevent breaking changes for non-model types. Please refer to [#3805](https://github.com/Azure/autorest.typescript/pull/3805)
+- [Feature] Test generation for modular SDK clients. Please refer to [#3809](https://github.com/Azure/autorest.typescript/pull/3809)
+- [Bugfix] Fix multi-level @Legacy.flattenProperty generates incorrect sample code. Please refer to [#3831](https://github.com/Azure/autorest.typescript/pull/3831)
+
 ## 6.0.61 (2026-03-09)
 
 - [Bugfix] Remove `hasWarpConfigFile` guard — always regenerate `warp.config.yml`. Please refer to [#3825](https://github.com/Azure/autorest.typescript/pull/3825)
