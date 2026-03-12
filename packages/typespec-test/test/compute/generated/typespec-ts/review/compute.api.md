@@ -78,57 +78,22 @@ export interface ComputeDiskActionGroupsProperties {
 }
 
 // @public
-export interface ComputeDiskDisk extends TrackedResource {
-    properties?: ComputeDiskDiskProperties;
-}
-
-// @public
-export interface ComputeDiskDiskAccess extends TrackedResource {
-    properties?: ComputeDiskDiskAccessProperties;
-}
-
-// @public
-export interface ComputeDiskDiskAccessProperties {
-    readonly privateEndpointConnections?: PrivateEndpointConnection[];
-    readonly provisioningState?: string;
-    readonly timeCreated?: Date;
-}
-
-// @public
-export interface ComputeDiskDiskProperties {
-    // (undocumented)
-    readonly provisioningState?: ResourceProvisioningState;
-}
-
-// @public
-export interface ComputeRestorePointCollection extends TrackedResource {
-    properties?: ComputeRestorePointCollectionProperties;
-}
-
-// @public
-export interface ComputeRestorePointCollectionProperties {
-    instantAccess?: boolean;
-    readonly provisioningState?: string;
-}
-
-// @public
-export interface ComputeVirtualMachine extends TrackedResource {
-    properties?: ComputeVirtualMachineProperties;
-}
-
-// @public
-export interface ComputeVirtualMachineProperties {
-    // (undocumented)
-    readonly provisioningState?: ResourceProvisioningState;
-}
-
-// @public
 export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
     continuationToken?: string;
 };
 
 // @public
 export type CreatedByType = string;
+
+// @public
+export interface Disk extends TrackedResource {
+    properties?: DiskProperties;
+}
+
+// @public
+export interface DiskAccess extends TrackedResource {
+    properties?: DiskAccessProperties;
+}
 
 // @public
 export interface DiskAccessesCreateOrUpdateOptionalParams extends OperationOptions {
@@ -141,8 +106,21 @@ export interface DiskAccessesGetOptionalParams extends OperationOptions {
 
 // @public
 export interface DiskAccessesOperations {
-    createOrUpdate: (resourceGroupName: string, diskAccessName: string, resource: ComputeDiskDiskAccess, options?: DiskAccessesCreateOrUpdateOptionalParams) => PollerLike<OperationState<ComputeDiskDiskAccess>, ComputeDiskDiskAccess>;
-    get: (resourceGroupName: string, diskAccessName: string, options?: DiskAccessesGetOptionalParams) => Promise<ComputeDiskDiskAccess>;
+    createOrUpdate: (resourceGroupName: string, diskAccessName: string, resource: DiskAccess, options?: DiskAccessesCreateOrUpdateOptionalParams) => PollerLike<OperationState<DiskAccess>, DiskAccess>;
+    get: (resourceGroupName: string, diskAccessName: string, options?: DiskAccessesGetOptionalParams) => Promise<DiskAccess>;
+}
+
+// @public
+export interface DiskAccessProperties {
+    readonly privateEndpointConnections?: PrivateEndpointConnection[];
+    readonly provisioningState?: string;
+    readonly timeCreated?: Date;
+}
+
+// @public
+export interface DiskProperties {
+    // (undocumented)
+    readonly provisioningState?: ResourceProvisioningState;
 }
 
 // @public
@@ -156,8 +134,8 @@ export interface DisksGetOptionalParams extends OperationOptions {
 
 // @public
 export interface DisksOperations {
-    createOrUpdate: (resourceGroupName: string, diskName: string, resource: ComputeDiskDisk, options?: DisksCreateOrUpdateOptionalParams) => PollerLike<OperationState<ComputeDiskDisk>, ComputeDiskDisk>;
-    get: (resourceGroupName: string, diskName: string, options?: DisksGetOptionalParams) => Promise<ComputeDiskDisk>;
+    createOrUpdate: (resourceGroupName: string, diskName: string, resource: Disk, options?: DisksCreateOrUpdateOptionalParams) => PollerLike<OperationState<Disk>, Disk>;
+    get: (resourceGroupName: string, diskName: string, options?: DisksGetOptionalParams) => Promise<Disk>;
 }
 
 // @public
@@ -264,6 +242,17 @@ export interface Resource {
 export type ResourceProvisioningState = string;
 
 // @public
+export interface RestorePointCollection extends TrackedResource {
+    properties?: RestorePointCollectionProperties;
+}
+
+// @public
+export interface RestorePointCollectionProperties {
+    instantAccess?: boolean;
+    readonly provisioningState?: string;
+}
+
+// @public
 export interface RestorePointCollectionsCreateOrUpdateOptionalParams extends OperationOptions {
 }
 
@@ -273,8 +262,8 @@ export interface RestorePointCollectionsGetOptionalParams extends OperationOptio
 
 // @public
 export interface RestorePointCollectionsOperations {
-    createOrUpdate: (resourceGroupName: string, restorePointCollectionName: string, resource: ComputeRestorePointCollection, options?: RestorePointCollectionsCreateOrUpdateOptionalParams) => Promise<ComputeRestorePointCollection>;
-    get: (resourceGroupName: string, restorePointCollectionName: string, options?: RestorePointCollectionsGetOptionalParams) => Promise<ComputeRestorePointCollection>;
+    createOrUpdate: (resourceGroupName: string, restorePointCollectionName: string, resource: RestorePointCollection, options?: RestorePointCollectionsCreateOrUpdateOptionalParams) => Promise<RestorePointCollection>;
+    get: (resourceGroupName: string, restorePointCollectionName: string, options?: RestorePointCollectionsGetOptionalParams) => Promise<RestorePointCollection>;
 }
 
 // @public
@@ -304,6 +293,17 @@ export interface TrackedResource extends Resource {
 }
 
 // @public
+export interface VirtualMachine extends TrackedResource {
+    properties?: VirtualMachineProperties;
+}
+
+// @public
+export interface VirtualMachineProperties {
+    // (undocumented)
+    readonly provisioningState?: ResourceProvisioningState;
+}
+
+// @public
 export interface VirtualMachinesCreateOrUpdateOptionalParams extends OperationOptions {
     updateIntervalInMs?: number;
 }
@@ -314,8 +314,8 @@ export interface VirtualMachinesGetOptionalParams extends OperationOptions {
 
 // @public
 export interface VirtualMachinesOperations {
-    createOrUpdate: (resourceGroupName: string, vmName: string, resource: ComputeVirtualMachine, options?: VirtualMachinesCreateOrUpdateOptionalParams) => PollerLike<OperationState<ComputeVirtualMachine>, ComputeVirtualMachine>;
-    get: (resourceGroupName: string, vmName: string, options?: VirtualMachinesGetOptionalParams) => Promise<ComputeVirtualMachine>;
+    createOrUpdate: (resourceGroupName: string, vmName: string, resource: VirtualMachine, options?: VirtualMachinesCreateOrUpdateOptionalParams) => PollerLike<OperationState<VirtualMachine>, VirtualMachine>;
+    get: (resourceGroupName: string, vmName: string, options?: VirtualMachinesGetOptionalParams) => Promise<VirtualMachine>;
 }
 
 // (No @packageDocumentation comment for this package)
