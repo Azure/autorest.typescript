@@ -497,7 +497,11 @@ export async function $onEmit(context: EmitContext) {
       if (isAzureFlavor) {
         commonBuilders.push(buildEsLintConfig);
       }
-      if (emitterOptions["generate-test"] === true && option.azureSdkForJs === true) {
+      if (
+        emitterOptions["generate-test"] === true &&
+        option.azureSdkForJs === true &&
+        emitterOptions["generate-metadata"] === true
+      ) {
         await emitTests(dpgContext);
       }
       let modularPackageInfo = {};
