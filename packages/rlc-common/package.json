@@ -1,6 +1,6 @@
 {
   "name": "@azure-tools/rlc-common",
-  "version": "0.50.3",
+  "version": "0.50.4",
   "description": "",
   "type": "module",
   "main": "dist/index.js",
