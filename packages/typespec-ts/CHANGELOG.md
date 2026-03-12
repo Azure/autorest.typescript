@@ -1,3 +1,7 @@
+## 0.50.4 (2026-03-11)
+
+- Improve test generation for modular SDK clients.
+
 ## 0.50.3 (2026-03-11)
 
 - [Feature] Add `wrap-non-model-return` option to prevent breaking changes for non-model types. Please refer to [#3805](https://github.com/Azure/autorest.typescript/pull/3805)

@@ -389,7 +389,7 @@ export async function $onEmit(context: EmitContext) {
     }
 
     // Enable modular test generation when generateTest is true
-    if (dpgContext.rlcOptions?.generateTest === true) {
+    if (emitterOptions["generate-test"] === true) {
       await emitTests(dpgContext);
     }
 
