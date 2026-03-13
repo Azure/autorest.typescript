@@ -720,6 +720,8 @@ export async function emitSamplesFromTypeSpec(
     },
     ...configs
   });
+  dpgContext.rlcOptions!.ignoreNullableOnOptional =
+    configs["ignore-nullable-on-optional"] ?? true;
   const modularEmitterOptions = transformModularEmitterOptions(dpgContext, "", {
     casing: "camel"
   });
