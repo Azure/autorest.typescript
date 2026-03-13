@@ -17,10 +17,14 @@ export declare interface FixedClientOptionalParams extends ClientOptions {
 export declare interface StringGetKnownValueOptionalParams extends OperationOptions {
 }
 
+export declare type StringGetKnownValueResponse = {
+    body: DaysOfWeekEnum;
+};
+
 export declare interface StringOperations {
     putUnknownValue: (body: DaysOfWeekEnum, options?: StringPutUnknownValueOptionalParams) => Promise<void>;
     putKnownValue: (body: DaysOfWeekEnum, options?: StringPutKnownValueOptionalParams) => Promise<void>;
-    getKnownValue: (options?: StringGetKnownValueOptionalParams) => Promise<DaysOfWeekEnum>;
+    getKnownValue: (options?: StringGetKnownValueOptionalParams) => Promise<StringGetKnownValueResponse>;
 }
 
 export declare interface StringPutKnownValueOptionalParams extends OperationOptions {

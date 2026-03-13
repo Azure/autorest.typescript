@@ -19,9 +19,14 @@ export interface Collection {
 export interface ConfidentialLedgerListCollectionsOptionalParams extends OperationOptions {
 }
 
+// @public (undocumented)
+export type ConfidentialLedgerListCollectionsResponse = {
+    body: Collection[];
+};
+
 // @public
 export interface ConfidentialLedgerOperations {
-    listCollections: (options?: ConfidentialLedgerListCollectionsOptionalParams) => Promise<Collection[]>;
+    listCollections: (options?: ConfidentialLedgerListCollectionsOptionalParams) => Promise<ConfidentialLedgerListCollectionsResponse>;
 }
 
 // @public

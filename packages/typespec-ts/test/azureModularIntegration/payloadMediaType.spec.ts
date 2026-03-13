@@ -15,7 +15,7 @@ describe("MediaType Client", () => {
     const result = await client.stringBody.getAsText({
       requestOptions: { headers: { accept: "text/plain" } }
     });
-    assert.strictEqual(result, "{cat}");
+    assert.strictEqual(result.body, "{cat}");
   });
 
   it("should sendAsText", async () => {
@@ -26,7 +26,7 @@ describe("MediaType Client", () => {
   it("should getAsJson", async () => {
     const result = await client.stringBody.getAsJson();
     console.log(result);
-    assert.strictEqual(result, "foo");
+    assert.strictEqual(result.body, "foo");
   });
 
   it("should sendAsJson", async () => {
