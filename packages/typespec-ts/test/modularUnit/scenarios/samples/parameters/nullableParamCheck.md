@@ -158,3 +158,71 @@ async function main(): Promise<void> {
 
 main().catch(console.error);
 ```
+
+---
+
+# Should convert null query and header parameter values to type-safe defaults when ignore-nullable-on-optional is true
+
+When `ignore-nullable-on-optional` is true (default for Azure), null example values for nullable
+query and header parameters should be converted to type-safe defaults to avoid TypeScript
+compilation errors in generated samples.
+
+## TypeSpec
+
+```tsp
+@doc("show example demo")
+op read(
+  @query nullableQueryArray?: string[] | null,
+  @query nullableQueryString?: string | null,
+  @header nullableHeader?: string | null,
+): { @body body: {} };
+```
+
+## Example
+
+```json
+{
+  "title": "read",
+  "operationId": "read",
+  "parameters": {
+    "nullableQueryArray": null,
+    "nullableQueryString": null,
+    "nullable-header": null
+  },
+  "responses": {
+    "200": {}
+  }
+}
+```
+
+## Samples
+
+Generate samples with type-safe defaults for null query and header parameter values:
+
+```ts samples
+/** This file path is /samples-dev/readSample.ts */
+import { TestingClient } from "@azure/internal-test";
+
+/**
+ * This sample demonstrates how to show example demo
+ *
+ * @summary show example demo
+ * x-ms-original-file: 2021-10-01-preview/json.json
+ */
+async function read(): Promise<void> {
+  const endpoint = process.env.TESTING_ENDPOINT || "";
+  const client = new TestingClient(endpoint);
+  const result = await client.read({
+    nullableQueryArray: [],
+    nullableQueryString: undefined,
+    nullableHeader: undefined,
+  });
+  console.log(result);
+}
+
+async function main(): Promise<void> {
+  await read();
+}
+
+main().catch(console.error);
+```
