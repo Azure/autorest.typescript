@@ -626,6 +626,18 @@ function getParameterValue(
         if (property && isReadOnly(property as SdkModelPropertyType)) {
           continue;
         }
+        // When ignore-nullable-on-optional is true, null values for non-array/non-object types
+        // should be omitted entirely (matching autorest behavior) since the TypeScript type
+        // won't include | null, causing compile errors if null is emitted.
+        if (
+          (context.rlcOptions?.ignoreNullableOnOptional ?? false) &&
+          propValue.kind === "null" &&
+          propValue.type.type.kind !== "array" &&
+          propValue.type.type.kind !== "model" &&
+          propValue.type.type.kind !== "dict"
+        ) {
+          continue;
+        }
         let propRetValue;
 
         if (
