@@ -478,7 +478,9 @@ export async function $onEmit(context: EmitContext) {
       }
     }
 
-    if (shouldGenerateMetadata) {
+    if (option.generateMetadata === false) {
+      // Explicit opt-out: skip all metadata generation and updates
+    } else if (shouldGenerateMetadata) {
       const commonBuilders = [
         buildRollupConfig,
         buildApiExtractorConfig,
