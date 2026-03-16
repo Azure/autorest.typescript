@@ -645,7 +645,7 @@ export async function $onEmit(context: EmitContext) {
         dpgContext.generationPathDetail?.metadataDir
       );
     }
-    if (isAzureFlavor && option.generateMetadata !== false) {
+    if (isAzureFlavor) {
       await emitContentByBuilder(
         program,
         buildMetadataJson,
