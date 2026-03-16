@@ -577,11 +577,30 @@ function getParameterValue(
     }
     case "boolean":
     case "number":
-    case "null":
     case "unknown":
     case "union":
       retValue = `${JSON.stringify(value.value)}`;
       break;
+    case "null": {
+      const ignoreNullableOnOptional =
+        context.rlcOptions?.ignoreNullableOnOptional ?? false;
+      if (ignoreNullableOnOptional) {
+        // When ignore-nullable-on-optional is true, the TypeScript type won't include
+        // | null for optional properties, so we convert null to a type-appropriate default
+        // to avoid type errors in the generated sample code.
+        const innerTypeKind = value.type.type.kind;
+        if (innerTypeKind === "array") {
+          retValue = "[]";
+        } else if (innerTypeKind === "model" || innerTypeKind === "dict") {
+          retValue = "{}";
+        } else {
+          retValue = "undefined";
+        }
+      } else {
+        retValue = `${JSON.stringify(value.value)}`;
+      }
+      break;
+    }
     case "dict":
     case "model": {
       const mapper = buildPropertyNameMapper(
