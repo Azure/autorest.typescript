@@ -618,7 +618,11 @@ export async function $onEmit(context: EmitContext) {
         );
 
         // Regenerate snippets.spec.ts only when the client name changed
-        if (clientNameChanged && option.azureSdkForJs) {
+        if (
+          clientNameChanged &&
+          option.azureSdkForJs &&
+          option.generateTest !== false
+        ) {
           for (const subClient of dpgContext.sdkPackage.clients) {
             updateBuilders.push((model: RLCModel) =>
               buildSnippets(
@@ -639,7 +643,7 @@ export async function $onEmit(context: EmitContext) {
         dpgContext.generationPathDetail?.metadataDir
       );
     }
-    if (isAzureFlavor) {
+    if (isAzureFlavor && option.generateMetadata !== false) {
       await emitContentByBuilder(
         program,
         buildMetadataJson,
