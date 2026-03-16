@@ -586,7 +586,7 @@ function getParameterValue(
         context.rlcOptions?.ignoreNullableOnOptional ?? false;
       if (ignoreNullableOnOptional) {
         // When ignore-nullable-on-optional is true, the TypeScript type won't include
-        // | null for optional properties, so we convert null to an empty default
+        // | null for optional properties, so we convert null to a type-appropriate default
         // to avoid type errors in the generated sample code.
         const innerTypeKind = value.type.type.kind;
         if (innerTypeKind === "array") {
@@ -594,7 +594,7 @@ function getParameterValue(
         } else if (innerTypeKind === "model" || innerTypeKind === "dict") {
           retValue = "{}";
         } else {
-          retValue = `${JSON.stringify(value.value)}`;
+          retValue = "undefined";
         }
       } else {
         retValue = `${JSON.stringify(value.value)}`;
@@ -624,18 +624,6 @@ function getParameterValue(
         }
         // Skip readonly properties as they cannot be set by users
         if (property && isReadOnly(property as SdkModelPropertyType)) {
-          continue;
-        }
-        // When ignore-nullable-on-optional is true, null values for non-array/non-object types
-        // should be omitted entirely (matching autorest behavior) since the TypeScript type
-        // won't include | null, causing compile errors if null is emitted.
-        if (
-          (context.rlcOptions?.ignoreNullableOnOptional ?? false) &&
-          propValue.kind === "null" &&
-          propValue.type.type.kind !== "array" &&
-          propValue.type.type.kind !== "model" &&
-          propValue.type.type.kind !== "dict"
-        ) {
           continue;
         }
         let propRetValue;

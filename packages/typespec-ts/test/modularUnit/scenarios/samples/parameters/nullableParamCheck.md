@@ -63,6 +63,7 @@ async function read(): Promise<void> {
     nullableArray: [],
     nullableModel: {},
     nullableDict: {},
+    nullableString: undefined,
   });
   console.log(result);
 }
