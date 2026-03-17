@@ -48,7 +48,7 @@ importers:
         specifier: ^2.9.1
         version: 2.10.1
       '@azure-tools/rlc-common':
-        specifier: workspace:^0.50.4
+        specifier: workspace:^0.51.0
         version: link:../rlc-common
       '@azure/core-auth':
         specifier: ^1.6.0
@@ -299,7 +299,7 @@ importers:
         specifier: ^0.66.2
         version: 0.66.2(c36db6f856ad7d13df9e20f60d629647)
       '@azure-tools/typespec-ts':
-        specifier: workspace:^0.50.4
+        specifier: workspace:^0.51.0
         version: link:../typespec-ts
       '@typespec/compiler':
         specifier: ^1.10.0
@@ -336,7 +336,7 @@ importers:
   packages/typespec-ts:
     dependencies:
       '@azure-tools/rlc-common':
-        specifier: workspace:^0.50.4
+        specifier: workspace:^0.51.0
         version: link:../rlc-common
       '@typespec/xml':
         specifier: ^0.80.0
@@ -5603,7 +5603,7 @@ snapshots:
       dotenv: 16.6.1
       fs-extra: 11.3.2
       handlebars: 4.7.8
-      lodash: 4.17.21
+      lodash: 4.17.23
       prettier: 3.8.1
       source-map-support: 0.5.21
       ts-morph: 23.0.0
