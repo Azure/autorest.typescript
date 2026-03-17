@@ -19,7 +19,7 @@ describe("Client Structure Renamed-Operation Rest Client", () => {
   });
 
   it("should call operation two correctly", async () => {
-    const result = await client.group.renamedTwo();
+    const result = await client.renamedTwo();
     assert.strictEqual(result, undefined);
   });
 
@@ -29,7 +29,7 @@ describe("Client Structure Renamed-Operation Rest Client", () => {
   });
 
   it("should call operation four correctly", async () => {
-    const result = await client.group.renamedFour();
+    const result = await client.renamedFour();
     assert.strictEqual(result, undefined);
   });
 
@@ -39,7 +39,7 @@ describe("Client Structure Renamed-Operation Rest Client", () => {
   });
 
   it("should call operation six correctly", async () => {
-    const result = await client.group.renamedSix();
+    const result = await client.renamedSix();
     assert.strictEqual(result, undefined);
   });
 });
