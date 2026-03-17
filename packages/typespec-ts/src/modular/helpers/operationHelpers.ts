@@ -85,7 +85,6 @@ import {
   SdkLroPagingServiceMethod,
   SdkLroServiceMethod,
   SdkMethod,
-  SdkMethodParameter,
   SdkModelPropertyType,
   SdkModelType,
   SdkPagingServiceMethod,
@@ -1590,14 +1589,7 @@ function getHeaderAndBodyParameters(
 
   if (parametersImplementation.header.length) {
     paramStr = `${paramStr}\nheaders: {${parametersImplementation.header
-      .map((i) =>
-        buildHeaderParameter(
-          dpgContext.program,
-          i.paramMap,
-          i.param,
-          optionalParamName
-        )
-      )
+      .map((i) => buildHeaderParameter(dpgContext.program, i.paramMap, i.param))
       .join(",\n")}, ...${optionalParamName}.requestOptions?.headers },`;
   }
   if (
@@ -1617,10 +1609,8 @@ function getHeaderAndBodyParameters(
 function buildHeaderParameter(
   program: Program,
   paramMap: string,
-  param: SdkHttpParameter,
-  optionalParamName: string = "options"
+  param: SdkHttpParameter
 ): string {
-  const paramName = param.name;
   const effectiveOptional = getEffectiveOptional(param);
   if (!effectiveOptional && isTypeNullable(param.type) === true) {
     reportDiagnostic(program, {
@@ -1629,12 +1619,17 @@ function buildHeaderParameter(
     });
     return paramMap;
   }
+
+  // paramMap is in the format '"key": valueExpr', extract the value expression
+  // to use as the condition accessor instead of recomputing it.
+  const valueExpr = paramMap.substring(paramMap.indexOf(": ") + 2);
+
   const conditions = [];
   if (effectiveOptional) {
-    conditions.push(`${optionalParamName}?.${paramName} !== undefined`);
+    conditions.push(`${valueExpr} !== undefined`);
   }
   if (isTypeNullable(param.type) === true) {
-    conditions.push(`${optionalParamName}?.${paramName} !== null`);
+    conditions.push(`${valueExpr} !== null`);
   }
   return conditions.length > 0
     ? `...(${conditions.join(" && ")} ? {${paramMap}} : {})`
@@ -1795,13 +1790,21 @@ export function getParameterMap(
     );
   }
 
+  const methodParamExpr = getMethodParamExpr(param);
+
   // if the parameter or property is optional, we don't need to handle the default value
   if (isOptional(param)) {
-    return getOptional(context, param, optionalParamName, serializedName);
+    return getOptional(
+      context,
+      param,
+      optionalParamName,
+      serializedName,
+      methodParamExpr
+    );
   }
 
   if (isRequired(param)) {
-    return getRequired(context, param, serializedName);
+    return getRequired(context, param, serializedName, methodParamExpr);
   }
 
   reportDiagnostic(context.program, {
@@ -1895,9 +1898,12 @@ function isRequired(param: SdkHttpParameter) {
 function getRequired(
   context: SdkContext,
   param: SdkHttpParameter,
-  serializedName: string
+  serializedName: string,
+  methodParamExpr?: string
 ) {
-  const clientValue = `${param.onClient ? "context." : ""}${param.name}`;
+  const clientValue = param.onClient
+    ? `context.${param.name}`
+    : (methodParamExpr ?? param.name);
   if (param.type.kind === "model") {
     const propertiesStr = getRequestModelMapping(
       context,
@@ -1936,9 +1942,22 @@ function getOptional(
   context: SdkContext,
   param: SdkHttpParameter,
   optionalParamName: string,
-  serializedName: string
+  serializedName: string,
+  methodParamExpr?: string
 ) {
-  const paramName = `${param.onClient ? "context." : `${optionalParamName}?.`}${param.name}`;
+  let paramName: string;
+  if (param.onClient) {
+    paramName = `context.${param.name}`;
+  } else if (methodParamExpr) {
+    const methodParam = param.methodParameterSegments[0]?.[0];
+    if (methodParam?.optional) {
+      paramName = `${optionalParamName}?.${methodParamExpr}`;
+    } else {
+      paramName = methodParamExpr;
+    }
+  } else {
+    paramName = `${optionalParamName}?.${param.name}`;
+  }
 
   // Apply client default value if present and type matches
   const defaultSuffix =
@@ -2010,7 +2029,7 @@ function getPathParameters(
       const methodParam = param.methodParameterSegments[0]?.[0];
       if (methodParam) {
         pathParams.push(
-          `"${param.serializedName}": ${getPathParamExpr(methodParam, getDefaultValue(param) as string, optionalParamName)}`
+          `"${param.serializedName}": ${getPathParamExpr(param, getDefaultValue(param) as string, optionalParamName)}`
         );
       }
     }
@@ -2075,19 +2094,53 @@ function escapeUriTemplateParamName(name: string) {
   });
 }
 
+/** Builds a property accessor expression from the param's methodParameterSegments. */
+function getMethodParamExpr(param: SdkHttpParameter): string | undefined {
+  const segments = param.methodParameterSegments;
+  if (segments.length === 0) {
+    return undefined;
+  }
+  const path = segments[0];
+  if (!path || path.length < 1) {
+    return undefined;
+  }
+
+  const parts: string[] = [];
+  for (let i = 0; i < path.length; i++) {
+    const segment = path[i]!;
+    if (i === 0) {
+      parts.push(segment.name);
+    } else {
+      const needsOptionalChain = path[i - 1]!.optional;
+      parts.push(`${needsOptionalChain ? "?." : "."}${segment.name}`);
+    }
+  }
+  return parts.join("");
+}
+
 function getPathParamExpr(
-  param: SdkMethodParameter | SdkModelPropertyType,
+  param: SdkHttpParameter,
   defaultValue?: string,
   optionalParamName: string = "options"
 ) {
   if (isConstant(param.type)) {
     return getConstantValue(param.type);
   }
-  const paramName = param.onClient
-    ? `context.${param.name}`
-    : param.optional
-      ? `${optionalParamName}["${param.name}"]`
-      : param.name;
+  const methodParamExpr = getMethodParamExpr(param);
+  let paramName: string;
+  if (param.onClient) {
+    paramName = `context.${param.name}`;
+  } else if (methodParamExpr) {
+    // Only prefix with optionalParamName when the method param itself is optional.
+    const methodParam = param.methodParameterSegments[0]?.[0];
+    if (param.optional && methodParam?.optional) {
+      paramName = `${optionalParamName}?.${methodParamExpr}`;
+    } else {
+      paramName = methodParamExpr;
+    }
+  } else {
+    paramName = param.name;
+  }
   return defaultValue
     ? typeof defaultValue === "string"
       ? `${paramName} ?? "${defaultValue}"`

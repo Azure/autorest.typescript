@@ -22,6 +22,10 @@ export interface _TodoPage {
   pageSize: number;
   /** The total number of items */
   totalSize: number;
+  /** The limit to the number of items */
+  limit?: number;
+  /** The offset to start paginating at */
+  offset?: number;
   /** A link to the previous page, if it exists */
   prevLink?: string;
   /** A link to the next page, if it exists */

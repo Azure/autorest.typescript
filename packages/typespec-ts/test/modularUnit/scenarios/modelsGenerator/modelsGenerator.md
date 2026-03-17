@@ -2469,7 +2469,9 @@ export function bSerializer(item: B): any {
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface A */
-export interface A extends B {}
+export interface A extends B {
+  name: string;
+}
 ```
 
 ## Model function aSerializer
