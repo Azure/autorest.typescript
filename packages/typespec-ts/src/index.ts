@@ -478,9 +478,7 @@ export async function $onEmit(context: EmitContext) {
       }
     }
 
-    if (option.generateMetadata === false) {
-      // Explicit opt-out: skip all metadata generation and updates
-    } else if (shouldGenerateMetadata) {
+    if (shouldGenerateMetadata) {
       const commonBuilders = [
         buildRollupConfig,
         buildApiExtractorConfig,
@@ -620,11 +618,7 @@ export async function $onEmit(context: EmitContext) {
         );
 
         // Regenerate snippets.spec.ts only when the client name changed
-        if (
-          clientNameChanged &&
-          option.azureSdkForJs &&
-          option.generateTest !== false
-        ) {
+        if (clientNameChanged && option.azureSdkForJs) {
           for (const subClient of dpgContext.sdkPackage.clients) {
             updateBuilders.push((model: RLCModel) =>
               buildSnippets(
