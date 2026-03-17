@@ -30,16 +30,7 @@ export function getRLCClients(
 
   // For one client in Modular: Return the client from listClients with multi-service support
   if (modular && clients.length === 1) {
-    return clients.map((client) => {
-      const services = client.services;
-      return {
-        ...client,
-        services: services,
-        crossLanguageDefinitionId: `${getNamespaceFullName(
-          services[0]!
-        )}.${client.name}`
-      };
-    });
+    return clients;
   } else {
     // For RLC and multiple clients in Modular:
     // Flatten all services and return one client per service
@@ -58,6 +49,8 @@ export function getRLCClients(
           service: service,
           type: service,
           services: [service],
+          subClients: [],
+          clientPath: clientName,
           arm: Boolean(dpgContext.arm),
           crossLanguageDefinitionId: `${getNamespaceFullName(
             service
@@ -77,6 +70,8 @@ export function getRLCClients(
       service: service,
       type: service,
       services: [service],
+      subClients: [],
+      clientPath: clientName,
       arm: Boolean(dpgContext.arm),
       crossLanguageDefinitionId: `${getNamespaceFullName(
         service
