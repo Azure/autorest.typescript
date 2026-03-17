@@ -1,3 +1,9 @@
+## 0.51.0 (2026-03-17)
+
+- [Bugfix] Fix detectModelConflicts false positive for API version enums in multi-service scenarios. Please refer to [#3842](https://github.com/Azure/autorest.typescript/pull/3842)
+- [Bugfix] Convert null example values to type-safe defaults for array/object/scalar types when ignore-nullable-on-optional is true. Please refer to [#3844](https://github.com/Azure/autorest.typescript/pull/3844)
+- [Feature] Update TypeSpec version to latest stable. Please refer to [#3846](https://github.com/Azure/autorest.typescript/pull/3846)
+
 ## 0.50.4 (2026-03-12)
 
 - Improve test generation for modular SDK clients.
