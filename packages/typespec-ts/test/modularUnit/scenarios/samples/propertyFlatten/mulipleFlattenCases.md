@@ -153,3 +153,110 @@ async function main(): Promise<void> {
 
 main().catch(console.error);
 ```
+
+# Independent multi-level flatten should work for sample input
+
+When two flatten decorators are at different levels connected through a non-flatten property
+(not consecutive/transition), the sample generator should apply both flattens independently.
+
+## TypeSpec
+
+This is tsp definition.
+
+```tsp
+model InnerContent {
+  state?: string;
+  scrubbingRules?: string;
+}
+
+model MiddleSettings {
+  @Azure.ClientGenerator.Core.Legacy.flattenProperty
+  innerContent?: InnerContent;
+}
+
+model OuterProperties {
+  settings?: MiddleSettings;
+  description?: string;
+}
+
+@doc("This is a simple model.")
+model BodyParameter {
+  name: string;
+
+  @Azure.ClientGenerator.Core.Legacy.flattenProperty
+  properties: OuterProperties;
+}
+
+@doc("show example demo")
+op read(@body body?: BodyParameter): void;
+
+```
+
+Enable the raw content with TCGC dependency.
+
+```yaml
+needArmTemplate: true
+withVersionedApiVersion: true
+needTCGC: true
+```
+
+## Example
+
+Raw json files.
+
+```json
+{
+  "title": "read",
+  "operationId": "read",
+  "parameters": {
+    "body": {
+      "name": "test",
+      "properties": {
+        "settings": {
+          "innerContent": {
+            "state": "Enabled",
+            "scrubbingRules": "rule1"
+          }
+        },
+        "description": "a description"
+      }
+    }
+  },
+  "responses": {
+    "200": {}
+  }
+}
+```
+
+## Samples
+
+Generate sample with both flatten levels applied:
+
+```ts samples
+/** This file path is /samples-dev/readSample.ts */
+import { TestingClient } from "@azure/internal-test";
+
+/**
+ * This sample demonstrates how to show example demo
+ *
+ * @summary show example demo
+ * x-ms-original-file: 2021-10-01-preview/json.json
+ */
+async function read(): Promise<void> {
+  const endpoint = process.env.TESTING_ENDPOINT || "";
+  const client = new TestingClient(endpoint);
+  await client.read({
+    body: {
+      name: "test",
+      settings: { state: "Enabled", scrubbingRules: "rule1" },
+      description: "a description",
+    },
+  });
+}
+
+async function main(): Promise<void> {
+  await read();
+}
+
+main().catch(console.error);
+```

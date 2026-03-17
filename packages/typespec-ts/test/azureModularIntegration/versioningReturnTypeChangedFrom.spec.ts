@@ -16,6 +16,6 @@ describe("VersioningReturnTypeChangedFrom Rest Client", () => {
         headers: { "content-type": "text/plain" }
       }
     });
-    assert.strictEqual(result, "test");
+    assert.strictEqual(result.body, "test");
   });
 });

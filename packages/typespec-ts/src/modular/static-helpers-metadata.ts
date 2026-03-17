@@ -59,6 +59,11 @@ export const SerializationHelpers = {
     name: "getBinaryResponse",
     location: "serialization/get-binary-response.ts"
   },
+  getBinaryResponseBody: {
+    kind: "function",
+    name: "getBinaryResponseBody",
+    location: "serialization/get-binary-response-body.ts"
+  },
   areAllPropsUndefined: {
     kind: "function",
     name: "areAllPropsUndefined",
@@ -160,6 +165,14 @@ export const CloudSettingHelpers = {
     kind: "function",
     name: "getArmEndpoint",
     location: "cloudSettingHelpers.ts"
+  }
+} as const;
+
+export const CreateRecorderHelpers = {
+  createRecorder: {
+    kind: "function",
+    name: "createRecorder",
+    location: "recordedClient.ts"
   }
 } as const;
 

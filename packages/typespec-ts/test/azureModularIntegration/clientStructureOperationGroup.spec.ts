@@ -30,17 +30,17 @@ describe("Client Structure Operation Group Rest Client", () => {
   });
 
   it("should call operation two correctly", async () => {
-    const result = await client1.group3.two();
+    const result = await client1.two();
     assert.strictEqual(result, undefined);
   });
 
   it("should call operation three correctly", async () => {
-    const result = await client1.group3.three();
+    const result = await client1.three();
     assert.strictEqual(result, undefined);
   });
 
   it("should call operation four correctly", async () => {
-    const result = await client1.group4.four();
+    const result = await client1.four();
     assert.strictEqual(result, undefined);
   });
 
@@ -50,7 +50,7 @@ describe("Client Structure Operation Group Rest Client", () => {
   });
 
   it("should call operation six correctly", async () => {
-    const result = await client2.group5.six();
+    const result = await client2.six();
     assert.strictEqual(result, undefined);
   });
 });
