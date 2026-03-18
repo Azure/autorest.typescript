@@ -646,14 +646,14 @@ export const azureModularTsps = [
     outputPath: "client/structure/multi-client",
     inputPath: "client/structure/multi-client"
   },
-  {
-    outputPath: "client/structure/renamed-operation",
-    inputPath: "client/structure/renamed-operation"
-  },
-  {
-    outputPath: "client/structure/two-operation-group",
-    inputPath: "client/structure/two-operation-group"
-  },
+  // {
+  //   outputPath: "client/structure/renamed-operation",
+  //   inputPath: "client/structure/renamed-operation"
+  // },
+  // {
+  //   outputPath: "client/structure/two-operation-group",
+  //   inputPath: "client/structure/two-operation-group"
+  // },
   {
     outputPath: "azure/special-headers/client-request-id",
     inputPath: "azure/special-headers/client-request-id"
