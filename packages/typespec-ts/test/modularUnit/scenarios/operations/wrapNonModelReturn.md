@@ -415,3 +415,104 @@ export async function getModel(
   return _getModelDeserialize(result);
 }
 ```
+
+# wrap-non-model-return binary wrap generates error.details deserialization
+
+When a binary response operation has an error model, the deserializer should generate
+full `error.details` deserialization via `getBinaryStream` + status check + error enrichment.
+
+## TypeSpec
+
+```yaml
+wrap-non-model-return: true
+```
+
+```tsp
+@error
+model ApiError {
+  code: string;
+  message: string;
+}
+
+@route("/logs")
+@get
+op getLogs(): {
+  @header contentType: "application/octet-stream";
+  @body body: bytes;
+} | ApiError;
+```
+
+## Operations
+
+```ts operations function _getLogsDeserialize
+export async function _getLogsDeserialize(
+  _streamableResult: StreamableMethod,
+): Promise<GetLogsResponse> {
+  const result = await getBinaryStream(_streamableResult);
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    const error = createRestError(result);
+    error.details = apiErrorDeserializer(result.body);
+
+    throw error;
+  }
+
+  return { blobBody: result.blobBody, readableStreamBody: result.readableStreamBody };
+}
+```
+
+# wrap-non-model-return binary wrap generates error.details with exception headers
+
+When a binary response operation has an error model with `@header` properties and
+`include-headers-in-response: true`, the deserializer should generate exception headers
+deserialization alongside the error.details enrichment.
+
+## TypeSpec
+
+```yaml
+wrap-non-model-return: true
+include-headers-in-response: true
+```
+
+```tsp
+@error
+model StorageError {
+  code: string;
+  message: string;
+  @header("x-ms-error-code") errorCode: string;
+}
+
+@route("/blobs")
+@get
+op getBlob(): {
+  @header contentType: "application/octet-stream";
+  @body body: bytes;
+} | StorageError;
+```
+
+## Operations
+
+```ts operations function _getBlobDeserializeExceptionHeaders
+export function _getBlobDeserializeExceptionHeaders(result: PathUncheckedResponse): {
+  errorCode: string;
+} {
+  return { errorCode: result.headers["x-ms-error-code"] };
+}
+```
+
+```ts operations function _getBlobDeserialize
+export async function _getBlobDeserialize(
+  _streamableResult: StreamableMethod,
+): Promise<GetBlobResponse> {
+  const result = await getBinaryStream(_streamableResult);
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    const error = createRestError(result);
+    error.details = storageErrorDeserializer(result.body);
+    error.details = { ...(error.details as any), ..._getBlobDeserializeExceptionHeaders(result) };
+    throw error;
+  }
+
+  return { blobBody: result.blobBody, readableStreamBody: result.readableStreamBody };
+}
+```
