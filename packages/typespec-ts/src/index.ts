@@ -475,6 +475,9 @@ export async function $onEmit(context: EmitContext) {
     if (option.isModularLibrary) {
       for (const subClient of dpgContext.sdkPackage.clients) {
         rlcClient.libraryName = subClient.name;
+        if (rlcClient.options&& rlcClient.options.serviceInfo && option.serviceInfo?.title !== subClient.name) {
+          rlcClient.options.serviceInfo.title = subClient.name;
+        }
       }
     }
 
