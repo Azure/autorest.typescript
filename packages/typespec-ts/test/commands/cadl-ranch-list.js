@@ -871,10 +871,11 @@ export const azureModularTsps = [
     outputPath: "azure/core/page",
     inputPath: "azure/core/page"
   },
-  {
-    outputPath: "client/structure/client-operation-group",
-    inputPath: "client/structure/client-operation-group"
-  },
+  // disable it as need upgrade tcgc to support it.
+  // {
+  //   outputPath: "client/structure/client-operation-group",
+  //   inputPath: "client/structure/client-operation-group"
+  // },
   {
     outputPath: "encode/numeric",
     inputPath: "encode/numeric"
