@@ -64,6 +64,11 @@ export const SerializationHelpers = {
     name: "getBinaryResponseBody",
     location: "serialization/get-binary-response-body.ts"
   },
+  getBinaryStream: {
+    kind: "function",
+    name: "getBinaryStream",
+    location: "serialization/get-binary-stream.ts"
+  },
   areAllPropsUndefined: {
     kind: "function",
     name: "areAllPropsUndefined",

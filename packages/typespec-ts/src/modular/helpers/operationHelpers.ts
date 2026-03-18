@@ -191,14 +191,16 @@ export function getDeserializePrivateFunction(
 
   // Check if we need to wrap the non-model return type
   const { shouldWrap, isBinary } = checkWrapNonModelReturn(context, operation);
-  // For binary wrap, the deserializer receives a StreamableMethod directly
-  const resultParamType =
-    shouldWrap && isBinary
-      ? resolveReference(dependencies.StreamableMethod)
-      : PathUncheckedResponseReference;
+  // For binary wrap, the deserializer receives a StreamableMethod which is
+  // resolved to an HttpResponse via getBinaryStream before error handling.
+  const isBinaryWrap = shouldWrap && isBinary;
+  const resultParamName = isBinaryWrap ? "_streamableResult" : "result";
+  const resultParamType = isBinaryWrap
+    ? resolveReference(dependencies.StreamableMethod)
+    : PathUncheckedResponseReference;
   const parameters: OptionalKind<ParameterDeclarationStructure>[] = [
     {
-      name: "result",
+      name: resultParamName,
       type: resultParamType
     }
   ];
@@ -247,17 +249,24 @@ export function getDeserializePrivateFunction(
   const createRestErrorReference = resolveReference(
     dependencies.createRestError
   );
-  // For binary wrap, parameter is StreamableMethod - skip status check
-  if (!(shouldWrap && isBinary)) {
-    statements.push(
-      `const expectedStatuses = ${getExpectedStatuses(operation)};`
+  // For binary wrap, resolve the StreamableMethod into an HttpResponse via getBinaryStream
+  // so that status/header checking works the same as for all other operations.
+  if (isBinaryWrap) {
+    const getBinaryStreamReference = resolveReference(
+      SerializationHelpers.getBinaryStream
     );
     statements.push(
-      `if(!expectedStatuses.includes(result.status)){`,
-      `${getExceptionThrowStatement(context, operation)}`,
-      "}"
+      `const result = await ${getBinaryStreamReference}(${resultParamName});`
     );
   }
+  statements.push(
+    `const expectedStatuses = ${getExpectedStatuses(operation)};`
+  );
+  statements.push(
+    `if(!expectedStatuses.includes(result.status)){`,
+    `${getExceptionThrowStatement(context, operation)}`,
+    "}"
+  );
   const deserializedType =
     isLroOnly || isLroAndPaging
       ? operation?.lroMetadata?.finalResponse?.result
@@ -396,19 +405,11 @@ export function getDeserializePrivateFunction(
       // Handle wrap-non-model-return for non-LRO, non-paging operations
       if (shouldWrap) {
         if (isBinary) {
-          const getBinaryResponseBodyReference = resolveReference(
-            SerializationHelpers.getBinaryResponseBody
-          );
-          const deserializeError = getExceptionDetails(
-            context,
-            operation
-          ).defaultDeserializer;
-          const deserializeErrorStr = deserializeError
-            ? `, ${deserializeError}`
-            : "";
+          // Binary wrap: getBinaryStream already resolved the stream,
+          // status check and error.details handling ran above.
+          // Return the platform-specific stream properties.
           statements.push(
-            `return ${getBinaryResponseBodyReference}(result, ${getExpectedStatuses(operation)}${deserializeErrorStr});
-`
+            `return { blobBody: result.blobBody, readableStreamBody: result.readableStreamBody };`
           );
         } else {
           // Non-model response: wrap with body property
@@ -1092,7 +1093,9 @@ export function getOperationFunction(
 
   const parameterList = parameters.map((p) => p.name).join(", ");
   // For binary wrap, pass the StreamableMethod directly to the deserializer.
-  // The deserializer uses asBrowserStream()/asNodeStream() to build the wrapper.
+  // The deserializer calls getBinaryStream() to resolve it into an HttpResponse,
+  // then performs full status check and error.details handling before returning
+  // the platform-specific stream properties.
   if (wrapReturn && wrapReturnIsBinary) {
     const streamableMethodVarName = generateLocallyUniqueName(
       "streamableMethod",
