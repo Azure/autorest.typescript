@@ -913,7 +913,8 @@ function getOperationSignatureParameters(
         !(
           p.isGeneratedName &&
           (p.name === "contentType" || p.name === "accept")
-        ) // skip tcgc generated contentType and accept header parameter
+        ) && // skip tcgc generated contentType and accept header parameter
+        getClientOptions(p, "headerCollectionPrefix") === undefined // skip headers with collection prefix
     )
     .map((p) => {
       return {
