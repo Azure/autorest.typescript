@@ -177,3 +177,83 @@ export async function getItem(
   return _getItemDeserialize(result);
 }
 ```
+
+# Storage compat void body with headers and error enrichment
+
+When `enable-storage-compat: true` and `include-headers-in-response: true` are set,
+an operation returning no body but with response headers and an error model should:
+1. Generate the error enrichment (`error.details`) in the deserializer
+2. Generate exception headers deserialization
+3. Include `parsedHeaders` in the storage-compat operation return
+
+## TypeSpec
+
+```yaml
+enable-storage-compat: true
+include-headers-in-response: true
+```
+
+```tsp
+@error
+model StorageError {
+  code: string;
+  message: string;
+  @header("x-ms-error-code") errorCode: string;
+}
+
+op setTags(@path id: string): {
+  @header("x-ms-request-id")
+  requestId?: string;
+
+  @header("x-ms-version")
+  version: string;
+
+  @statusCode _: 204;
+} | StorageError;
+```
+
+## Operations
+
+```ts operations function _setTagsDeserializeExceptionHeaders
+export function _setTagsDeserializeExceptionHeaders(result: PathUncheckedResponse): {
+  errorCode: string;
+} {
+  return { errorCode: result.headers["x-ms-error-code"] };
+}
+```
+
+```ts operations function _setTagsDeserialize
+export async function _setTagsDeserialize(result: PathUncheckedResponse): Promise<void> {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
+    const error = createRestError(result);
+    error.details = storageErrorDeserializer(result.body);
+    error.details = { ...(error.details as any), ..._setTagsDeserializeExceptionHeaders(result) };
+    throw error;
+  }
+
+  return;
+}
+```
+
+```ts operations function setTags
+export async function setTags(
+  context: Client,
+  id: string,
+  options: SetTagsOptionalParams = { requestOptions: {} },
+): Promise<
+  { requestId?: string; version: string } & StorageCompatResponseInfo<
+    undefined,
+    { requestId?: string; version: string }
+  >
+> {
+  const _storageCompat = createStorageCompatOnResponse(options.onResponse);
+  const result = await _setTagsSend(context, id, {
+    ...options,
+    onResponse: _storageCompat.onResponse,
+  });
+  await _setTagsDeserialize(result);
+  const parsedHeaders = _setTagsDeserializeHeaders(result);
+  return addStorageCompatResponse(_storageCompat.getRawResponse()!, undefined, parsedHeaders);
+}
+```
