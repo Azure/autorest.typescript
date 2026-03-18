@@ -113,7 +113,7 @@ import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../static-helpers/pagingHelpers.js";
-import { getBinaryResponseBody } from "../static-helpers/serialization/get-binary-response-body.js";
+import { getBinaryStream } from "../static-helpers/serialization/get-binary-stream.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   ListNodeFilesOptionalParams,
@@ -410,9 +410,18 @@ export function _getNodeFileSend(
 }
 
 export async function _getNodeFileDeserialize(
-  result: StreamableMethod,
+  _streamableResult: StreamableMethod,
 ): Promise<GetNodeFileResponse> {
-  return getBinaryResponseBody(result, ["200"], batchErrorDeserializer);
+  const result = await getBinaryStream(_streamableResult);
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+
+    throw error;
+  }
+
+  return { blobBody: result.blobBody, readableStreamBody: result.readableStreamBody };
 }
 
 /** Returns the content of the specified Compute Node file. */
@@ -822,9 +831,18 @@ export function _getNodeRemoteDesktopFileSend(
 }
 
 export async function _getNodeRemoteDesktopFileDeserialize(
-  result: StreamableMethod,
+  _streamableResult: StreamableMethod,
 ): Promise<GetNodeRemoteDesktopFileResponse> {
-  return getBinaryResponseBody(result, ["200"], batchErrorDeserializer);
+  const result = await getBinaryStream(_streamableResult);
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+
+    throw error;
+  }
+
+  return { blobBody: result.blobBody, readableStreamBody: result.readableStreamBody };
 }
 
 /**
@@ -1655,9 +1673,18 @@ export function _getTaskFileSend(
 }
 
 export async function _getTaskFileDeserialize(
-  result: StreamableMethod,
+  _streamableResult: StreamableMethod,
 ): Promise<GetTaskFileResponse> {
-  return getBinaryResponseBody(result, ["200"], batchErrorDeserializer);
+  const result = await getBinaryStream(_streamableResult);
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+
+    throw error;
+  }
+
+  return { blobBody: result.blobBody, readableStreamBody: result.readableStreamBody };
 }
 
 /** Returns the content of the specified Task file. */

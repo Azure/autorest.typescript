@@ -33,7 +33,7 @@ import {
   GetAudioTranslationAsPlainTextResponse,
   GetAudioTranscriptionAsPlainTextResponse,
 } from "../models/models.js";
-import { getBinaryResponseBody } from "../static-helpers/serialization/get-binary-response-body.js";
+import { getBinaryStream } from "../static-helpers/serialization/get-binary-stream.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   GetEmbeddingsOptionalParams,
@@ -128,9 +128,15 @@ export function _generateSpeechFromTextSend(
 }
 
 export async function _generateSpeechFromTextDeserialize(
-  result: StreamableMethod,
+  _streamableResult: StreamableMethod,
 ): Promise<GenerateSpeechFromTextResponse> {
-  return getBinaryResponseBody(result, ["200"]);
+  const result = await getBinaryStream(_streamableResult);
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return { blobBody: result.blobBody, readableStreamBody: result.readableStreamBody };
 }
 
 /** Generates text-to-speech audio from the input text. */
