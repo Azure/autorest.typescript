@@ -266,9 +266,9 @@ export async function get(
 }
 ```
 
-# wrap-non-model-return wraps array-of-models response with body property
+# wrap-non-model-return returns array-of-models response directly
 
-Array-of-models responses are wrapped just like primitive arrays (matching HLC behavior).
+Array-of-models responses are returned as `T[]` directly (no `body` wrapper) to match HLC behavior and avoid breaking changes during TSP migration.
 
 ## TypeSpec
 
@@ -291,7 +291,7 @@ wrap-non-model-return: true
 ## Models
 
 ```ts models alias ListResponse
-export type ListResponse = { body: Resource[] };
+export type ListResponse = (Resource)[];
 ```
 
 ## Operations
@@ -325,11 +325,9 @@ export async function _listDeserialize(result: PathUncheckedResponse): Promise<L
     throw createRestError(result);
   }
 
-  return {
-    body: result.body.map((p: any) => {
-      return resourceDeserializer(p);
-    }),
-  };
+  return result.body.map((p: any) => {
+    return resourceDeserializer(p);
+  });
 }
 
 export async function list(

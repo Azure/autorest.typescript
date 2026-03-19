@@ -190,7 +190,10 @@ export function getDeserializePrivateFunction(
   );
 
   // Check if we need to wrap the non-model return type
-  const { shouldWrap, isBinary } = checkWrapNonModelReturn(context, operation);
+  const { shouldWrap, isBinary, isModelArray } = checkWrapNonModelReturn(
+    context,
+    operation
+  );
   // For binary wrap, the deserializer receives a StreamableMethod directly
   const resultParamType =
     shouldWrap && isBinary
@@ -410,6 +413,17 @@ export function getDeserializePrivateFunction(
             `return ${getBinaryResponseBodyReference}(result, ${getExpectedStatuses(operation)}${deserializeErrorStr});
 `
           );
+        } else if (isModelArray) {
+          // Array-of-models response: return the deserialized array directly (no body wrapper)
+          // to match HLC behavior and avoid breaking changes during TSP migration
+          const bodyValue = deserializeResponseValue(
+            context,
+            deserializedType,
+            "result.body",
+            true,
+            getEncodeForType(deserializedType)
+          );
+          statements.push(`return ${bodyValue};`);
         } else {
           // Non-model response: wrap with body property
           // Generate the appropriate deserialization for the body value
@@ -3052,13 +3066,16 @@ export function getOperationResponseTypeName(
 
 /**
  * Determines whether wrapping the non-model return type is needed for an operation.
- * Returns an object with `shouldWrap` (whether to wrap) and `isBinary` (whether it's a binary response).
+ * Returns an object with:
+ * - `shouldWrap`: whether to create a named response type alias
+ * - `isBinary`: whether it's a binary response
+ * - `isModelArray`: whether it's an array-of-models response (returned directly without `body` wrapper, matching HLC behavior)
  */
 export function checkWrapNonModelReturn(
   context: SdkContext,
   operation: ServiceOperation
-): { shouldWrap: boolean; isBinary: boolean } {
-  const noWrap = { shouldWrap: false, isBinary: false };
+): { shouldWrap: boolean; isBinary: boolean; isModelArray: boolean } {
+  const noWrap = { shouldWrap: false, isBinary: false, isModelArray: false };
 
   // Only for non-LRO, non-paging normal operations
   if (
@@ -3084,12 +3101,18 @@ export function checkWrapNonModelReturn(
 
   // Check if it's a binary (bytes with binary content type) response
   if (type.__raw && isBinaryPayload(context, type.__raw, contentTypes)) {
-    return { shouldWrap: true, isBinary: true };
+    return { shouldWrap: true, isBinary: true, isModelArray: false };
+  }
+
+  // Check if it's an array-of-models response (e.g. Resource[])
+  // These are returned directly as T[] to match HLC behavior and avoid breaking changes during TSP migration
+  if (type.kind === "array" && type.valueType.kind === "model") {
+    return { shouldWrap: true, isBinary: false, isModelArray: true };
   }
 
   // Check if it's a non-model, non-record type (array, scalar, enum, etc.)
   if (type.kind !== "model" && type.kind !== "dict") {
-    return { shouldWrap: true, isBinary: false };
+    return { shouldWrap: true, isBinary: false, isModelArray: false };
   }
 
   return noWrap;
@@ -3098,12 +3121,14 @@ export function checkWrapNonModelReturn(
 /**
  * Builds a TypeAliasDeclarationStructure for the non-model response wrapper type.
  * - For binary responses: { blobBody?: Promise<Blob>; readableStreamBody?: NodeJS.ReadableStream }
+ * - For array-of-models responses: <ElementType>[] (returned directly to match HLC behavior)
  * - For other non-model responses: { body: <type> }
  */
 export function buildNonModelResponseTypeDeclaration(
   context: SdkContext,
   method: [string[], ServiceOperation],
-  isBinary: boolean
+  isBinary: boolean,
+  isModelArray: boolean
 ): TypeAliasDeclarationStructure {
   const typeName = getOperationResponseTypeName(method);
   const operation = method[1];
@@ -3126,6 +3151,11 @@ export function buildNonModelResponseTypeDeclaration(
        */
       readableStreamBody?: NodeJS.ReadableStream;
   }`;
+  } else if (isModelArray) {
+    // Array-of-models responses are returned as T[] directly (no body wrapper) to match HLC behavior
+    // and avoid breaking changes during TSP migration
+    const returnType = getTypeExpression(context, operation.response.type!);
+    typeBody = returnType;
   } else {
     const returnType = getTypeExpression(context, operation.response.type!);
     typeBody = `{ body: ${returnType} }`;
