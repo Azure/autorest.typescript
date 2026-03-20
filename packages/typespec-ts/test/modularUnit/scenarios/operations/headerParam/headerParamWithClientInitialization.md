@@ -1,4 +1,4 @@
-# Optional header parameter with clientInitialization
+# only:Optional header parameter with clientInitialization
 
 This scenario tests the generation of TypeScript code for an Azure Resource Manager resource read operation with header parameters, specifically the `$expand` parameter for the SavingsPlanModel.
 
@@ -125,21 +125,23 @@ export interface BillingBenefitsClientOptionalParams extends ClientOptions {
 
 export function createBillingBenefits(
   endpointParam: string,
-  options: BillingBenefitsClientOptionalParams = {},
+  options: BillingBenefitsClientOptionalParams = {}
 ): BillingBenefitsContext {
   const endpointUrl = options.endpoint ?? String(endpointParam);
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
-  const userAgentPrefix = prefixFromOptions ? `${prefixFromOptions} azsdk-js-api` : `azsdk-js-api`;
+  const userAgentPrefix = prefixFromOptions
+    ? `${prefixFromOptions} azsdk-js-api`
+    : `azsdk-js-api`;
   const { apiVersion: _, ...updatedOptions } = {
     ...options,
     userAgentOptions: { userAgentPrefix },
-    loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
+    loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info }
   };
   const clientContext = getClient(endpointUrl, undefined, updatedOptions);
 
   if (options.apiVersion) {
     logger.warning(
-      "This client does not support client api-version, please change it at the operation level",
+      "This client does not support client api-version, please change it at the operation level"
     );
   }
   return { ...clientContext, expand: options.expand } as BillingBenefitsContext;
@@ -153,7 +155,7 @@ import { BillingBenefitsContext as Client } from "./index.js";
 import {
   SavingsPlanModel,
   savingsPlanModelDeserializer,
-  errorResponseDeserializer,
+  errorResponseDeserializer
 } from "../models/models.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import { GetOptionalParams } from "./options.js";
@@ -161,7 +163,7 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters,
+  operationOptionsToRequestParameters
 } from "@azure-rest/core-client";
 
 export function _getSend(
@@ -171,7 +173,7 @@ export function _getSend(
   resourceGroupName: string,
   savingsPlanOrderId: string,
   savingsPlanId: string,
-  options: GetOptionalParams = { requestOptions: {} },
+  options: GetOptionalParams = { requestOptions: {} }
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ThisWillBeReplaced/savingsPlanOrders/{savingsPlanOrderId}/savingsPlans/{savingsPlanId}{?api%2Dversion}",
@@ -180,25 +182,25 @@ export function _getSend(
       resourceGroupName: resourceGroupName,
       savingsPlanOrderId: savingsPlanOrderId,
       savingsPlanId: savingsPlanId,
-      "api%2Dversion": apiVersion,
+      "api%2Dversion": apiVersion
     },
     {
-      allowReserved: options?.requestOptions?.skipUrlEncoding,
-    },
+      allowReserved: options?.requestOptions?.skipUrlEncoding
+    }
   );
-  return context
-    .path(path)
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      headers: {
-        ...(options?.expand !== undefined ? { $expand: context.expand } : {}),
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
-    });
+  return context.path(path).get({
+    ...operationOptionsToRequestParameters(options),
+    headers: {
+      ...(options?.expand !== undefined ? { $expand: context.expand } : {}),
+      accept: "application/json",
+      ...options.requestOptions?.headers
+    }
+  });
 }
 
-export async function _getDeserialize(result: PathUncheckedResponse): Promise<SavingsPlanModel> {
+export async function _getDeserialize(
+  result: PathUncheckedResponse
+): Promise<SavingsPlanModel> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -218,7 +220,7 @@ export async function get(
   resourceGroupName: string,
   savingsPlanOrderId: string,
   savingsPlanId: string,
-  options: GetOptionalParams = { requestOptions: {} },
+  options: GetOptionalParams = { requestOptions: {} }
 ): Promise<SavingsPlanModel> {
   const result = await _getSend(
     context,
@@ -227,7 +229,7 @@ export async function get(
     resourceGroupName,
     savingsPlanOrderId,
     savingsPlanId,
-    options,
+    options
   );
   return _getDeserialize(result);
 }
@@ -358,21 +360,23 @@ export interface BillingBenefitsClientOptionalParams extends ClientOptions {}
 export function createBillingBenefits(
   endpointParam: string,
   expand: string,
-  options: BillingBenefitsClientOptionalParams = {},
+  options: BillingBenefitsClientOptionalParams = {}
 ): BillingBenefitsContext {
   const endpointUrl = options.endpoint ?? String(endpointParam);
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
-  const userAgentPrefix = prefixFromOptions ? `${prefixFromOptions} azsdk-js-api` : `azsdk-js-api`;
+  const userAgentPrefix = prefixFromOptions
+    ? `${prefixFromOptions} azsdk-js-api`
+    : `azsdk-js-api`;
   const { apiVersion: _, ...updatedOptions } = {
     ...options,
     userAgentOptions: { userAgentPrefix },
-    loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
+    loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info }
   };
   const clientContext = getClient(endpointUrl, undefined, updatedOptions);
 
   if (options.apiVersion) {
     logger.warning(
-      "This client does not support client api-version, please change it at the operation level",
+      "This client does not support client api-version, please change it at the operation level"
     );
   }
   return { ...clientContext, expand } as BillingBenefitsContext;
@@ -386,7 +390,7 @@ import { BillingBenefitsContext as Client } from "./index.js";
 import {
   SavingsPlanModel,
   savingsPlanModelDeserializer,
-  errorResponseDeserializer,
+  errorResponseDeserializer
 } from "../models/models.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import { GetOptionalParams } from "./options.js";
@@ -394,7 +398,7 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters,
+  operationOptionsToRequestParameters
 } from "@azure-rest/core-client";
 
 export function _getSend(
@@ -404,7 +408,7 @@ export function _getSend(
   resourceGroupName: string,
   savingsPlanOrderId: string,
   savingsPlanId: string,
-  options: GetOptionalParams = { requestOptions: {} },
+  options: GetOptionalParams = { requestOptions: {} }
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ThisWillBeReplaced/savingsPlanOrders/{savingsPlanOrderId}/savingsPlans/{savingsPlanId}{?api%2Dversion}",
@@ -413,25 +417,25 @@ export function _getSend(
       resourceGroupName: resourceGroupName,
       savingsPlanOrderId: savingsPlanOrderId,
       savingsPlanId: savingsPlanId,
-      "api%2Dversion": apiVersion,
+      "api%2Dversion": apiVersion
     },
     {
-      allowReserved: options?.requestOptions?.skipUrlEncoding,
-    },
+      allowReserved: options?.requestOptions?.skipUrlEncoding
+    }
   );
-  return context
-    .path(path)
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      headers: {
-        ...(options?.expand !== undefined ? { $expand: context.expand } : {}),
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
-    });
+  return context.path(path).get({
+    ...operationOptionsToRequestParameters(options),
+    headers: {
+      ...(options?.expand !== undefined ? { $expand: context.expand } : {}),
+      accept: "application/json",
+      ...options.requestOptions?.headers
+    }
+  });
 }
 
-export async function _getDeserialize(result: PathUncheckedResponse): Promise<SavingsPlanModel> {
+export async function _getDeserialize(
+  result: PathUncheckedResponse
+): Promise<SavingsPlanModel> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -451,7 +455,7 @@ export async function get(
   resourceGroupName: string,
   savingsPlanOrderId: string,
   savingsPlanId: string,
-  options: GetOptionalParams = { requestOptions: {} },
+  options: GetOptionalParams = { requestOptions: {} }
 ): Promise<SavingsPlanModel> {
   const result = await _getSend(
     context,
@@ -460,7 +464,7 @@ export async function get(
     resourceGroupName,
     savingsPlanOrderId,
     savingsPlanId,
-    options,
+    options
   );
   return _getDeserialize(result);
 }
