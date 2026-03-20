@@ -646,6 +646,7 @@ export const azureModularTsps = [
     outputPath: "client/structure/multi-client",
     inputPath: "client/structure/multi-client"
   },
+  // disable it as need upgrade tcgc to support it https://github.com/Azure/typespec-azure/pull/3997.
   // {
   //   outputPath: "client/structure/renamed-operation",
   //   inputPath: "client/structure/renamed-operation"
@@ -871,7 +872,7 @@ export const azureModularTsps = [
     outputPath: "azure/core/page",
     inputPath: "azure/core/page"
   },
-  // disable it as need upgrade tcgc to support it.
+  // disable it as need upgrade tcgc to support it https://github.com/Azure/typespec-azure/pull/3997.
   // {
   //   outputPath: "client/structure/client-operation-group",
   //   inputPath: "client/structure/client-operation-group"

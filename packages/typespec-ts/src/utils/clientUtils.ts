@@ -31,7 +31,7 @@ export function getRLCClients(
   // For one client in Modular: Return the client from listClients with multi-service support
   if (modular && clients.length === 1) {
     return clients.map((client) => {
-    const services = client.services;
+      const services = client.services;
       return {
         ...client,
         services: services,
