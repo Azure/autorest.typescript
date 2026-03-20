@@ -190,10 +190,8 @@ export function getDeserializePrivateFunction(
   );
 
   // Check if we need to wrap the non-model return type
-  const { shouldWrap, isBinary, isModelArray } = checkWrapNonModelReturn(
-    context,
-    operation
-  );
+  const { shouldWrap, isBinary, isModelArray, isUnknown } =
+    checkWrapNonModelReturn(context, operation);
   // For binary wrap, the deserializer receives a StreamableMethod directly
   const resultParamType =
     shouldWrap && isBinary
@@ -424,6 +422,10 @@ export function getDeserializePrivateFunction(
             getEncodeForType(deserializedType)
           );
           statements.push(`return ${bodyValue};`);
+        } else if (isUnknown) {
+          // Unknown response: return result.body directly as Record<string, unknown>
+          // to match HLC behavior
+          statements.push(`return result.body;`);
         } else {
           // Non-model response: wrap with body property
           // Generate the appropriate deserialization for the body value
@@ -3070,12 +3072,23 @@ export function getOperationResponseTypeName(
  * - `shouldWrap`: whether to create a named response type alias
  * - `isBinary`: whether it's a binary response
  * - `isModelArray`: whether it's an array-of-models response (returned directly without `body` wrapper, matching HLC behavior)
+ * - `isUnknown`: whether it's an unknown response type (returned as Record<string, unknown>, matching HLC behavior)
  */
 export function checkWrapNonModelReturn(
   context: SdkContext,
   operation: ServiceOperation
-): { shouldWrap: boolean; isBinary: boolean; isModelArray: boolean } {
-  const noWrap = { shouldWrap: false, isBinary: false, isModelArray: false };
+): {
+  shouldWrap: boolean;
+  isBinary: boolean;
+  isModelArray: boolean;
+  isUnknown: boolean;
+} {
+  const noWrap = {
+    shouldWrap: false,
+    isBinary: false,
+    isModelArray: false,
+    isUnknown: false
+  };
 
   // Only for non-LRO, non-paging normal operations
   if (
@@ -3101,18 +3114,44 @@ export function checkWrapNonModelReturn(
 
   // Check if it's a binary (bytes with binary content type) response
   if (type.__raw && isBinaryPayload(context, type.__raw, contentTypes)) {
-    return { shouldWrap: true, isBinary: true, isModelArray: false };
+    return {
+      shouldWrap: true,
+      isBinary: true,
+      isModelArray: false,
+      isUnknown: false
+    };
   }
 
   // Check if it's an array-of-models response (e.g. Resource[])
   // These are returned directly as T[] to match HLC behavior and avoid breaking changes during TSP migration
   if (type.kind === "array" && type.valueType.kind === "model") {
-    return { shouldWrap: true, isBinary: false, isModelArray: true };
+    return {
+      shouldWrap: true,
+      isBinary: false,
+      isModelArray: true,
+      isUnknown: false
+    };
+  }
+
+  // Check if it's an unknown type (free-form object)
+  // These are returned as Record<string, unknown> directly to match HLC behavior
+  if (type.kind === "unknown") {
+    return {
+      shouldWrap: true,
+      isBinary: false,
+      isModelArray: false,
+      isUnknown: true
+    };
   }
 
   // Check if it's a non-model, non-record type (array, scalar, enum, etc.)
   if (type.kind !== "model" && type.kind !== "dict") {
-    return { shouldWrap: true, isBinary: false, isModelArray: false };
+    return {
+      shouldWrap: true,
+      isBinary: false,
+      isModelArray: false,
+      isUnknown: false
+    };
   }
 
   return noWrap;
@@ -3122,13 +3161,15 @@ export function checkWrapNonModelReturn(
  * Builds a TypeAliasDeclarationStructure for the non-model response wrapper type.
  * - For binary responses: { blobBody?: Promise<Blob>; readableStreamBody?: NodeJS.ReadableStream }
  * - For array-of-models responses: <ElementType>[] (returned directly to match HLC behavior)
+ * - For unknown responses: Record<string, unknown> (to match HLC behavior)
  * - For other non-model responses: { body: <type> }
  */
 export function buildNonModelResponseTypeDeclaration(
   context: SdkContext,
   method: [string[], ServiceOperation],
   isBinary: boolean,
-  isModelArray: boolean
+  isModelArray: boolean,
+  isUnknown: boolean
 ): TypeAliasDeclarationStructure {
   const typeName = getOperationResponseTypeName(method);
   const operation = method[1];
@@ -3156,6 +3197,9 @@ export function buildNonModelResponseTypeDeclaration(
     // and avoid breaking changes during TSP migration
     const returnType = getTypeExpression(context, operation.response.type!);
     typeBody = returnType;
+  } else if (isUnknown) {
+    // Unknown responses are returned as Record<string, unknown> to match HLC behavior
+    typeBody = "Record<string, unknown>";
   } else {
     const returnType = getTypeExpression(context, operation.response.type!);
     typeBody = `{ body: ${returnType} }`;

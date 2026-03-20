@@ -190,10 +190,8 @@ export function emitNonModelResponseTypes(
     for (const [prefixKey, operations] of methodHierarchies) {
       const prefixes = prefixKey.split("/");
       for (const op of operations) {
-        const { shouldWrap, isBinary, isModelArray } = checkWrapNonModelReturn(
-          context,
-          op
-        );
+        const { shouldWrap, isBinary, isModelArray, isUnknown } =
+          checkWrapNonModelReturn(context, op);
         if (!shouldWrap) {
           continue;
         }
@@ -205,7 +203,8 @@ export function emitNonModelResponseTypes(
           context,
           method,
           isBinary,
-          isModelArray
+          isModelArray,
+          isUnknown
         );
         addDeclaration(modelsFile, typeAlias, refkey(op, "response"));
       }

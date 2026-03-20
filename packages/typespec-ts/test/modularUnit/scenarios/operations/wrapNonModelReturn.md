@@ -339,6 +339,73 @@ export async function list(
 }
 ```
 
+# wrap-non-model-return returns unknown response as Record<string, unknown>
+
+Unknown response types are returned as `Record<string, unknown>` directly (no `body` wrapper) to match HLC behavior.
+
+## TypeSpec
+
+```tsp
+@route("/metadata")
+@get
+op getMetadata(): unknown;
+```
+
+```yaml
+wrap-non-model-return: true
+```
+
+## Models
+
+```ts models alias GetMetadataResponse
+export type GetMetadataResponse = Record<string, unknown>;
+```
+
+## Operations
+
+```ts operations
+import { TestingContext as Client } from "./index.js";
+import { GetMetadataResponse } from "../models/models.js";
+import { GetMetadataOptionalParams } from "./options.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+
+export function _getMetadataSend(
+  context: Client,
+  options: GetMetadataOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/metadata")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
+    });
+}
+
+export async function _getMetadataDeserialize(
+  result: PathUncheckedResponse,
+): Promise<GetMetadataResponse> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return result.body;
+}
+
+export async function getMetadata(
+  context: Client,
+  options: GetMetadataOptionalParams = { requestOptions: {} },
+): Promise<GetMetadataResponse> {
+  const result = await _getMetadataSend(context, options);
+  return _getMetadataDeserialize(result);
+}
+```
+
 # wrap-non-model-return does not wrap model response types
 
 Model types (interfaces) are always returned directly even when wrap-non-model-return is true.
