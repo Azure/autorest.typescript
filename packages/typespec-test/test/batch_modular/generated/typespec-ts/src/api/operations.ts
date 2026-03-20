@@ -410,9 +410,8 @@ export function _getNodeFileSend(
 }
 
 export async function _getNodeFileDeserialize(
-  _streamableResult: StreamableMethod,
+  result: PathUncheckedResponse & GetNodeFileResponse,
 ): Promise<GetNodeFileResponse> {
-  const result = await getBinaryStream(_streamableResult);
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -433,7 +432,8 @@ export async function getNodeFile(
   options: GetNodeFileOptionalParams = { requestOptions: {} },
 ): Promise<GetNodeFileResponse> {
   const streamableMethod = _getNodeFileSend(context, poolId, nodeId, filePath, options);
-  return _getNodeFileDeserialize(streamableMethod);
+  const result = await getBinaryStream(streamableMethod);
+  return _getNodeFileDeserialize(result);
 }
 
 export function _deleteNodeFileSend(
@@ -831,9 +831,8 @@ export function _getNodeRemoteDesktopFileSend(
 }
 
 export async function _getNodeRemoteDesktopFileDeserialize(
-  _streamableResult: StreamableMethod,
+  result: PathUncheckedResponse & GetNodeRemoteDesktopFileResponse,
 ): Promise<GetNodeRemoteDesktopFileResponse> {
-  const result = await getBinaryStream(_streamableResult);
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -858,7 +857,8 @@ export async function getNodeRemoteDesktopFile(
   options: GetNodeRemoteDesktopFileOptionalParams = { requestOptions: {} },
 ): Promise<GetNodeRemoteDesktopFileResponse> {
   const streamableMethod = _getNodeRemoteDesktopFileSend(context, poolId, nodeId, options);
-  return _getNodeRemoteDesktopFileDeserialize(streamableMethod);
+  const result = await getBinaryStream(streamableMethod);
+  return _getNodeRemoteDesktopFileDeserialize(result);
 }
 
 export function _getNodeRemoteLoginSettingsSend(
@@ -1673,9 +1673,8 @@ export function _getTaskFileSend(
 }
 
 export async function _getTaskFileDeserialize(
-  _streamableResult: StreamableMethod,
+  result: PathUncheckedResponse & GetTaskFileResponse,
 ): Promise<GetTaskFileResponse> {
-  const result = await getBinaryStream(_streamableResult);
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -1696,7 +1695,8 @@ export async function getTaskFile(
   options: GetTaskFileOptionalParams = { requestOptions: {} },
 ): Promise<GetTaskFileResponse> {
   const streamableMethod = _getTaskFileSend(context, jobId, taskId, filePath, options);
-  return _getTaskFileDeserialize(streamableMethod);
+  const result = await getBinaryStream(streamableMethod);
+  return _getTaskFileDeserialize(result);
 }
 
 export function _deleteTaskFileSend(

@@ -128,9 +128,8 @@ export function _generateSpeechFromTextSend(
 }
 
 export async function _generateSpeechFromTextDeserialize(
-  _streamableResult: StreamableMethod,
+  result: PathUncheckedResponse & GenerateSpeechFromTextResponse,
 ): Promise<GenerateSpeechFromTextResponse> {
-  const result = await getBinaryStream(_streamableResult);
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -147,7 +146,8 @@ export async function generateSpeechFromText(
   options: GenerateSpeechFromTextOptionalParams = { requestOptions: {} },
 ): Promise<GenerateSpeechFromTextResponse> {
   const streamableMethod = _generateSpeechFromTextSend(context, deploymentId, body, options);
-  return _generateSpeechFromTextDeserialize(streamableMethod);
+  const result = await getBinaryStream(streamableMethod);
+  return _generateSpeechFromTextDeserialize(result);
 }
 
 export function _getImageGenerationsSend(
