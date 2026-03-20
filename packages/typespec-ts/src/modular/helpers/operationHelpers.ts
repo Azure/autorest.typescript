@@ -191,19 +191,9 @@ export function getDeserializePrivateFunction(
 
   // Check if we need to wrap the non-model return type
   const { shouldWrap, isBinary } = checkWrapNonModelReturn(context, operation);
-  // For binary wrap, the deserializer receives a StreamableMethod which is
-  // resolved to an HttpResponse via getBinaryStream before error handling.
+  // For binary wrap, the deserializer receives PathUncheckedResponse & { blobBody, readableStreamBody }
+  // which is returned by getBinaryStream.
   const isBinaryWrap = shouldWrap && isBinary;
-  const resultParamName = isBinaryWrap ? "_streamableResult" : "result";
-  const resultParamType = isBinaryWrap
-    ? resolveReference(dependencies.StreamableMethod)
-    : PathUncheckedResponseReference;
-  const parameters: OptionalKind<ParameterDeclarationStructure>[] = [
-    {
-      name: resultParamName,
-      type: resultParamType
-    }
-  ];
   const isLroOnly = isLroOnlyOperation(operation);
   const isLroAndPaging = isLroAndPagingOperation(operation);
   const isPagingOnly = isPagingOnlyOperation(operation);
@@ -238,6 +228,16 @@ export function getDeserializePrivateFunction(
     returnType = { name: "", type: "void" };
   }
 
+  const resultParamName = "result";
+  const resultParamType = isBinaryWrap
+    ? `${PathUncheckedResponseReference} & ${returnType.type}`
+    : PathUncheckedResponseReference;
+  const parameters: OptionalKind<ParameterDeclarationStructure>[] = [
+    {
+      name: resultParamName,
+      type: resultParamType
+    }
+  ];
   const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
     isAsync: true,
     isExported: true,
@@ -249,16 +249,6 @@ export function getDeserializePrivateFunction(
   const createRestErrorReference = resolveReference(
     dependencies.createRestError
   );
-  // For binary wrap, resolve the StreamableMethod into an HttpResponse via getBinaryStream
-  // so that status/header checking works the same as for all other operations.
-  if (isBinaryWrap) {
-    const getBinaryStreamReference = resolveReference(
-      SerializationHelpers.getBinaryStream
-    );
-    statements.push(
-      `const result = await ${getBinaryStreamReference}(${resultParamName});`
-    );
-  }
   statements.push(
     `const expectedStatuses = ${getExpectedStatuses(operation)};`
   );
@@ -1012,6 +1002,7 @@ export function getOperationFunction(
       name: getOperationResponseTypeName(method),
       type: resolveReference(refkey(operation, "response"))
     };
+    bodyType = returnType.name;
   } else if (response.type) {
     const type = response.type;
 
@@ -1096,7 +1087,7 @@ export function getOperationFunction(
   // The deserializer calls getBinaryStream() to resolve it into an HttpResponse,
   // then performs full status check and error.details handling before returning
   // the platform-specific stream properties.
-  if (wrapReturn && wrapReturnIsBinary) {
+  if (wrapReturn && wrapReturnIsBinary && !isStorageCompatEnabled) {
     const streamableMethodVarName = generateLocallyUniqueName(
       "streamableMethod",
       paramNames
@@ -1104,7 +1095,14 @@ export function getOperationFunction(
     statements.push(
       `const ${streamableMethodVarName} = _${name}Send(${parameterList});`
     );
-    statements.push(`return _${name}Deserialize(${streamableMethodVarName});`);
+    const getBinaryStreamReference = resolveReference(
+      SerializationHelpers.getBinaryStream
+    );
+    statements.push(
+      `const ${resultVarName} = await ${getBinaryStreamReference}(${streamableMethodVarName});`
+    );
+
+    statements.push(`return _${name}Deserialize(${resultVarName});`);
     return {
       ...functionStatement,
       statements
@@ -1144,7 +1142,7 @@ export function getOperationFunction(
       `const ${streamableMethodVarName} = _${name}Send(${sendParameterList});`
     );
     statements.push(
-      `const ${resultVarName} = await ${resolveReference(SerializationHelpers.getBinaryResponse)}(${streamableMethodVarName});`
+      `const ${resultVarName} = await ${resolveReference(isStorageCompatEnabled ? SerializationHelpers.getBinaryStream : SerializationHelpers.getBinaryResponse)}(${streamableMethodVarName});`
     );
   } else {
     statements.push(

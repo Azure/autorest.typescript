@@ -181,6 +181,7 @@ import { getBinaryStream } from "../static-helpers/serialization/get-binary-stre
 import { GetLogsOptionalParams } from "./options.js";
 import {
   StreamableMethod,
+  PathUncheckedResponse,
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
@@ -198,9 +199,8 @@ export function _getLogsSend(
 }
 
 export async function _getLogsDeserialize(
-  _streamableResult: StreamableMethod,
+  result: PathUncheckedResponse & GetLogsResponse,
 ): Promise<GetLogsResponse> {
-  const result = await getBinaryStream(_streamableResult);
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -214,7 +214,8 @@ export async function getLogs(
   options: GetLogsOptionalParams = { requestOptions: {} },
 ): Promise<GetLogsResponse> {
   const streamableMethod = _getLogsSend(context, options);
-  return _getLogsDeserialize(streamableMethod);
+  const result = await getBinaryStream(streamableMethod);
+  return _getLogsDeserialize(result);
 }
 ```
 
@@ -419,7 +420,7 @@ export async function getModel(
 # wrap-non-model-return binary wrap generates error.details deserialization
 
 When a binary response operation has an error model, the deserializer should generate
-full `error.details` deserialization via `getBinaryStream` + status check + error enrichment.
+full `error.details` deserialization via status check + error enrichment.
 
 ## TypeSpec
 
@@ -446,9 +447,8 @@ op getLogs(): {
 
 ```ts operations function _getLogsDeserialize
 export async function _getLogsDeserialize(
-  _streamableResult: StreamableMethod,
+result: PathUncheckedResponse & GetLogsResponse,
 ): Promise<GetLogsResponse> {
-  const result = await getBinaryStream(_streamableResult);
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -502,9 +502,8 @@ export function _getBlobDeserializeExceptionHeaders(result: PathUncheckedRespons
 
 ```ts operations function _getBlobDeserialize
 export async function _getBlobDeserialize(
-  _streamableResult: StreamableMethod,
+  result: PathUncheckedResponse & GetBlobResponse,
 ): Promise<GetBlobResponse> {
-  const result = await getBinaryStream(_streamableResult);
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
