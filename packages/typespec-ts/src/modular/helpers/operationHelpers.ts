@@ -1002,7 +1002,7 @@ export function getOperationFunction(
       name: getOperationResponseTypeName(method),
       type: resolveReference(refkey(operation, "response"))
     };
-    bodyType = returnType.name;
+    bodyType = returnType.type;
   } else if (response.type) {
     const type = response.type;
 
