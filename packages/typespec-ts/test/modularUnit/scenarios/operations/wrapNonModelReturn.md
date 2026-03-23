@@ -291,7 +291,7 @@ wrap-non-model-return: true
 ## Models
 
 ```ts models alias ListResponse
-export type ListResponse = (Resource)[];
+export type ListResponse = Resource[];
 ```
 
 ## Operations

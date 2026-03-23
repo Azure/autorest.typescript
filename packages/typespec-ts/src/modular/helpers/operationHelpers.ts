@@ -3195,8 +3195,9 @@ export function buildNonModelResponseTypeDeclaration(
   } else if (isModelArray) {
     // Array-of-models responses are returned as T[] directly (no body wrapper) to match HLC behavior
     // and avoid breaking changes during TSP migration
-    const returnType = getTypeExpression(context, operation.response.type!);
-    typeBody = returnType;
+    const arrayType = operation.response.type! as { valueType: any };
+    const elementType = getTypeExpression(context, arrayType.valueType);
+    typeBody = `${elementType}[]`;
   } else if (isUnknown) {
     // Unknown responses are returned as Record<string, unknown> to match HLC behavior
     typeBody = "Record<string, unknown>";
