@@ -44,11 +44,9 @@ export async function _listCollectionsDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    body: result.body.map((p: any) => {
-      return collectionDeserializer(p);
-    }),
-  };
+  return result.body.map((p: any) => {
+    return collectionDeserializer(p);
+  });
 }
 
 /** Collection ids are user-created collections of ledger entries */

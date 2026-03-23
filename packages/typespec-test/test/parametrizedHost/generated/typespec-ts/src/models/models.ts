@@ -30,4 +30,4 @@ export function collectionArrayDeserializer(result: Array<Collection>): any[] {
   });
 }
 
-export type ConfidentialLedgerListCollectionsResponse = { body: Collection[] };
+export type ConfidentialLedgerListCollectionsResponse = Collection[];

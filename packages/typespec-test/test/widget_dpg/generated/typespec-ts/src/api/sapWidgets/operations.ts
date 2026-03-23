@@ -479,11 +479,9 @@ export async function _sapListWidgetsDeserialize(
     throw error;
   }
 
-  return {
-    body: result.body.map((p: any) => {
-      return widgetDeserializer(p);
-    }),
-  };
+  return result.body.map((p: any) => {
+    return widgetDeserializer(p);
+  });
 }
 
 /**

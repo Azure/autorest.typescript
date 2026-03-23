@@ -20,9 +20,7 @@ export interface ConfidentialLedgerListCollectionsOptionalParams extends Operati
 }
 
 // @public (undocumented)
-export type ConfidentialLedgerListCollectionsResponse = {
-    body: Collection[];
-};
+export type ConfidentialLedgerListCollectionsResponse = Collection[];
 
 // @public
 export interface ConfidentialLedgerOperations {

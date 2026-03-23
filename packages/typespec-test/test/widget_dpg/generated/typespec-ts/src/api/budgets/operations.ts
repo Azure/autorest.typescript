@@ -89,11 +89,9 @@ export async function _getBudgetsDeserialize(
     throw error;
   }
 
-  return {
-    body: result.body.map((p: any) => {
-      return widgetDeserializer(p);
-    }),
-  };
+  return result.body.map((p: any) => {
+    return widgetDeserializer(p);
+  });
 }
 
 export async function getBudgets(

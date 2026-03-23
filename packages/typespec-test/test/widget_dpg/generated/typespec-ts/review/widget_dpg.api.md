@@ -33,9 +33,7 @@ export interface BudgetsGetBudgetsOptionalParams extends OperationOptions {
 }
 
 // @public (undocumented)
-export type BudgetsGetBudgetsResponse = {
-    body: Widget[];
-};
+export type BudgetsGetBudgetsResponse = Widget[];
 
 // @public
 export interface BudgetsOperations {
@@ -160,9 +158,7 @@ export interface SAPWidgetsSAPListWidgetsOptionalParams extends OperationOptions
 }
 
 // @public (undocumented)
-export type SAPWidgetsSAPListWidgetsResponse = {
-    body: Widget[];
-};
+export type SAPWidgetsSAPListWidgetsResponse = Widget[];
 
 // @public
 export interface SAPWidgetsUpdateWidgetOptionalParams extends OperationOptions {

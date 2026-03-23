@@ -119,6 +119,6 @@ export enum KnownVersions {
   _100 = "1.0.0",
 }
 
-export type BudgetsGetBudgetsResponse = { body: Widget[] };
+export type BudgetsGetBudgetsResponse = Widget[];
 
-export type SAPWidgetsSAPListWidgetsResponse = { body: Widget[] };
+export type SAPWidgetsSAPListWidgetsResponse = Widget[];
