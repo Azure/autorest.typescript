@@ -58,6 +58,8 @@ export function getRLCClients(
           service: service,
           type: service,
           services: [service],
+          subClients: [],
+          clientPath: clientName,
           arm: Boolean(dpgContext.arm),
           crossLanguageDefinitionId: `${getNamespaceFullName(
             service
@@ -77,6 +79,8 @@ export function getRLCClients(
       service: service,
       type: service,
       services: [service],
+      subClients: [],
+      clientPath: clientName,
       arm: Boolean(dpgContext.arm),
       crossLanguageDefinitionId: `${getNamespaceFullName(
         service
