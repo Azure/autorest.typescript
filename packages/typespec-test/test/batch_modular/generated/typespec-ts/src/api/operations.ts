@@ -113,7 +113,7 @@ import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../static-helpers/pagingHelpers.js";
-import { getBinaryResponseBody } from "../static-helpers/serialization/get-binary-response-body.js";
+import { getBinaryStreamResponse } from "../static-helpers/serialization/get-binary-stream-response.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   ListNodeFilesOptionalParams,
@@ -410,9 +410,17 @@ export function _getNodeFileSend(
 }
 
 export async function _getNodeFileDeserialize(
-  result: StreamableMethod,
+  result: PathUncheckedResponse & GetNodeFileResponse,
 ): Promise<GetNodeFileResponse> {
-  return getBinaryResponseBody(result, ["200"], batchErrorDeserializer);
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+
+    throw error;
+  }
+
+  return { blobBody: result.blobBody, readableStreamBody: result.readableStreamBody };
 }
 
 /** Returns the content of the specified Compute Node file. */
@@ -424,7 +432,8 @@ export async function getNodeFile(
   options: GetNodeFileOptionalParams = { requestOptions: {} },
 ): Promise<GetNodeFileResponse> {
   const streamableMethod = _getNodeFileSend(context, poolId, nodeId, filePath, options);
-  return _getNodeFileDeserialize(streamableMethod);
+  const result = await getBinaryStreamResponse(streamableMethod);
+  return _getNodeFileDeserialize(result);
 }
 
 export function _deleteNodeFileSend(
@@ -822,9 +831,17 @@ export function _getNodeRemoteDesktopFileSend(
 }
 
 export async function _getNodeRemoteDesktopFileDeserialize(
-  result: StreamableMethod,
+  result: PathUncheckedResponse & GetNodeRemoteDesktopFileResponse,
 ): Promise<GetNodeRemoteDesktopFileResponse> {
-  return getBinaryResponseBody(result, ["200"], batchErrorDeserializer);
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+
+    throw error;
+  }
+
+  return { blobBody: result.blobBody, readableStreamBody: result.readableStreamBody };
 }
 
 /**
@@ -840,7 +857,8 @@ export async function getNodeRemoteDesktopFile(
   options: GetNodeRemoteDesktopFileOptionalParams = { requestOptions: {} },
 ): Promise<GetNodeRemoteDesktopFileResponse> {
   const streamableMethod = _getNodeRemoteDesktopFileSend(context, poolId, nodeId, options);
-  return _getNodeRemoteDesktopFileDeserialize(streamableMethod);
+  const result = await getBinaryStreamResponse(streamableMethod);
+  return _getNodeRemoteDesktopFileDeserialize(result);
 }
 
 export function _getNodeRemoteLoginSettingsSend(
@@ -1655,9 +1673,17 @@ export function _getTaskFileSend(
 }
 
 export async function _getTaskFileDeserialize(
-  result: StreamableMethod,
+  result: PathUncheckedResponse & GetTaskFileResponse,
 ): Promise<GetTaskFileResponse> {
-  return getBinaryResponseBody(result, ["200"], batchErrorDeserializer);
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+
+    throw error;
+  }
+
+  return { blobBody: result.blobBody, readableStreamBody: result.readableStreamBody };
 }
 
 /** Returns the content of the specified Task file. */
@@ -1669,7 +1695,8 @@ export async function getTaskFile(
   options: GetTaskFileOptionalParams = { requestOptions: {} },
 ): Promise<GetTaskFileResponse> {
   const streamableMethod = _getTaskFileSend(context, jobId, taskId, filePath, options);
-  return _getTaskFileDeserialize(streamableMethod);
+  const result = await getBinaryStreamResponse(streamableMethod);
+  return _getTaskFileDeserialize(result);
 }
 
 export function _deleteTaskFileSend(
