@@ -13,7 +13,6 @@ test.json
 .tmp
 **/.tmp
 **/coverage
-**/spec-coverage.json
 .tgz
 **/*.tgz
 **/.rush
