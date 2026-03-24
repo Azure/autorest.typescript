@@ -464,7 +464,7 @@ describe("Diagnostic Reporting Tests", () => {
       }
     });
 
-    after(() => {
+    afterAll(() => {
       // Test that validates our understanding of function routing
       console.log("Advanced deserializer tests completed");
     });
@@ -505,7 +505,7 @@ describe("Diagnostic Reporting Tests", () => {
       }
     });
 
-    after(() => {
+    afterAll(() => {
       // Test that validates our understanding of function routing
       console.log("Advanced serializer tests completed");
     });

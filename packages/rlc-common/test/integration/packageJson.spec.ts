@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import "mocha";
+
 
 import { TestModelConfig, createMockModel } from "./mockHelper.js";
 import {
