@@ -1,6 +1,3 @@
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
-
 import { HttpResponse, StreamableMethod } from "@azure-rest/core-client";
 
 /**
@@ -9,7 +6,9 @@ import { HttpResponse, StreamableMethod } from "@azure-rest/core-client";
  * Error handling is left to the caller so that generated deserializers can apply
  * operation-specific error deserialization (per-status-code details, exception headers, etc.).
  */
-export async function getBinaryStream(streamableMethod: StreamableMethod): Promise<
+export async function getBinaryStreamResponse(
+  streamableMethod: StreamableMethod
+): Promise<
   HttpResponse & {
     blobBody?: Promise<Blob>;
     readableStreamBody?: NodeJS.ReadableStream;
@@ -19,6 +18,6 @@ export async function getBinaryStream(streamableMethod: StreamableMethod): Promi
   return {
     ...response,
     blobBody: undefined,
-    readableStreamBody: response.body,
+    readableStreamBody: response.body
   };
 }

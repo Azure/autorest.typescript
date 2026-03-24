@@ -177,7 +177,7 @@ export type GetLogsResponse = {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { GetLogsResponse } from "../models/models.js";
-import { getBinaryStream } from "../static-helpers/serialization/get-binary-stream.js";
+import { getBinaryStreamResponse } from "../static-helpers/serialization/get-binary-stream-response.js";
 import { GetLogsOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -214,7 +214,7 @@ export async function getLogs(
   options: GetLogsOptionalParams = { requestOptions: {} },
 ): Promise<GetLogsResponse> {
   const streamableMethod = _getLogsSend(context, options);
-  const result = await getBinaryStream(streamableMethod);
+  const result = await getBinaryStreamResponse(streamableMethod);
   return _getLogsDeserialize(result);
 }
 ```

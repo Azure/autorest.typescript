@@ -113,7 +113,7 @@ import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../static-helpers/pagingHelpers.js";
-import { getBinaryStream } from "../static-helpers/serialization/get-binary-stream.js";
+import { getBinaryStreamResponse } from "../static-helpers/serialization/get-binary-stream-response.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   ListNodeFilesOptionalParams,
@@ -432,7 +432,7 @@ export async function getNodeFile(
   options: GetNodeFileOptionalParams = { requestOptions: {} },
 ): Promise<GetNodeFileResponse> {
   const streamableMethod = _getNodeFileSend(context, poolId, nodeId, filePath, options);
-  const result = await getBinaryStream(streamableMethod);
+  const result = await getBinaryStreamResponse(streamableMethod);
   return _getNodeFileDeserialize(result);
 }
 
@@ -857,7 +857,7 @@ export async function getNodeRemoteDesktopFile(
   options: GetNodeRemoteDesktopFileOptionalParams = { requestOptions: {} },
 ): Promise<GetNodeRemoteDesktopFileResponse> {
   const streamableMethod = _getNodeRemoteDesktopFileSend(context, poolId, nodeId, options);
-  const result = await getBinaryStream(streamableMethod);
+  const result = await getBinaryStreamResponse(streamableMethod);
   return _getNodeRemoteDesktopFileDeserialize(result);
 }
 
@@ -1695,7 +1695,7 @@ export async function getTaskFile(
   options: GetTaskFileOptionalParams = { requestOptions: {} },
 ): Promise<GetTaskFileResponse> {
   const streamableMethod = _getTaskFileSend(context, jobId, taskId, filePath, options);
-  const result = await getBinaryStream(streamableMethod);
+  const result = await getBinaryStreamResponse(streamableMethod);
   return _getTaskFileDeserialize(result);
 }
 

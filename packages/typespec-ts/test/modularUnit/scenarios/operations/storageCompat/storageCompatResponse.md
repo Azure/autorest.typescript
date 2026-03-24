@@ -344,7 +344,7 @@ export async function download(
     ...options,
     onResponse: _storageCompat.onResponse,
   });
-  const result = await getBinaryStream(streamableMethod);
+  const result = await getBinaryStreamResponse(streamableMethod);
   const parsedBody = await _downloadDeserialize(result);
   const parsedHeaders = _downloadDeserializeHeaders(result);
   return addStorageCompatResponse(_storageCompat.getRawResponse()!, parsedBody, parsedHeaders);

@@ -33,7 +33,7 @@ import {
   GetAudioTranslationAsPlainTextResponse,
   GetAudioTranscriptionAsPlainTextResponse,
 } from "../models/models.js";
-import { getBinaryStream } from "../static-helpers/serialization/get-binary-stream.js";
+import { getBinaryStreamResponse } from "../static-helpers/serialization/get-binary-stream-response.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   GetEmbeddingsOptionalParams,
@@ -146,7 +146,7 @@ export async function generateSpeechFromText(
   options: GenerateSpeechFromTextOptionalParams = { requestOptions: {} },
 ): Promise<GenerateSpeechFromTextResponse> {
   const streamableMethod = _generateSpeechFromTextSend(context, deploymentId, body, options);
-  const result = await getBinaryStream(streamableMethod);
+  const result = await getBinaryStreamResponse(streamableMethod);
   return _generateSpeechFromTextDeserialize(result);
 }
 

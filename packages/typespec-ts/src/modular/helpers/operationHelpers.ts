@@ -192,7 +192,7 @@ export function getDeserializePrivateFunction(
   // Check if we need to wrap the non-model return type
   const { shouldWrap, isBinary } = checkWrapNonModelReturn(context, operation);
   // For binary wrap, the deserializer receives PathUncheckedResponse & { blobBody, readableStreamBody }
-  // which is returned by getBinaryStream.
+  // which is returned by getBinaryStreamResponse.
   const isBinaryWrap = shouldWrap && isBinary;
   const isLroOnly = isLroOnlyOperation(operation);
   const isLroAndPaging = isLroAndPagingOperation(operation);
@@ -1084,32 +1084,6 @@ export function getOperationFunction(
   const resultVarName = generateLocallyUniqueName("result", paramNames);
 
   const parameterList = parameters.map((p) => p.name).join(", ");
-  // For binary wrap, pass the StreamableMethod directly to the deserializer.
-  // The deserializer calls getBinaryStream() to resolve it into an HttpResponse,
-  // then performs full status check and error.details handling before returning
-  // the platform-specific stream properties.
-  if (wrapReturn && wrapReturnIsBinary && !isStorageCompatEnabled) {
-    const streamableMethodVarName = generateLocallyUniqueName(
-      "streamableMethod",
-      paramNames
-    );
-    statements.push(
-      `const ${streamableMethodVarName} = _${name}Send(${parameterList});`
-    );
-    const getBinaryStreamReference = resolveReference(
-      SerializationHelpers.getBinaryStream
-    );
-    statements.push(
-      `const ${resultVarName} = await ${getBinaryStreamReference}(${streamableMethodVarName});`
-    );
-
-    statements.push(`return _${name}Deserialize(${resultVarName});`);
-    return {
-      ...functionStatement,
-      statements
-    } as FunctionDeclarationStructure & { propertyName?: string };
-  }
-
   // When storage-compat is enabled, set up the onResponse interceptor before sending
   const storageCompatVarName = generateLocallyUniqueName(
     "_storageCompat",
@@ -1134,6 +1108,8 @@ export function getOperationFunction(
 
   // Special case for binary-only bodies: use helper to call streaming methods so that Core doesn't poison the response body by
   // doing a UTF-8 decode on the raw bytes.
+  // For binary wrap, use getBinaryStreamResponse which preserves blobBody/readableStreamBody properties.
+  // For non-wrapped binary, use getBinaryResponse which buffers the body into Uint8Array.
   if (response?.type?.kind === "bytes" && response.type.encode === "bytes") {
     const streamableMethodVarName = generateLocallyUniqueName(
       "streamableMethod",
@@ -1142,8 +1118,12 @@ export function getOperationFunction(
     statements.push(
       `const ${streamableMethodVarName} = _${name}Send(${sendParameterList});`
     );
+    const binaryHelper =
+      wrapReturn && wrapReturnIsBinary
+        ? SerializationHelpers.getBinaryStreamResponse
+        : SerializationHelpers.getBinaryResponse;
     statements.push(
-      `const ${resultVarName} = await ${resolveReference(isStorageCompatEnabled ? SerializationHelpers.getBinaryStream : SerializationHelpers.getBinaryResponse)}(${streamableMethodVarName});`
+      `const ${resultVarName} = await ${resolveReference(binaryHelper)}(${streamableMethodVarName});`
     );
   } else {
     statements.push(
