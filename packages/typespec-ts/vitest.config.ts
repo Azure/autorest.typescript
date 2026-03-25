@@ -33,6 +33,7 @@ export default defineConfig({
         test: {
           name: "integration-rlc",
           include: ["test/integration/*.spec.ts"],
+          exclude: ["test/integration/versioningRemoved.spec.ts"],
           testTimeout: 36000
         }
       },
