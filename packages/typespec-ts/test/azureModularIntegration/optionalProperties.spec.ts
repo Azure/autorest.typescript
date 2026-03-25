@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import { assert } from "chai";
 import { OptionalClient } from "./generated/type/property/optionality/src/index.js";
 import { stringToUint8Array } from "@azure/core-util";

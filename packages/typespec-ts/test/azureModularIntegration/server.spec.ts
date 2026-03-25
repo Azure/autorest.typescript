@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import { assert } from "chai";
 import { SingleClient } from "./generated/server/path/single/src/index.js";
 import { MultipleClient } from "./generated/server/path/multiple/src/index.js";

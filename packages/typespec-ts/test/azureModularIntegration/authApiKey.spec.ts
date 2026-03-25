@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import { ApiKeyClient } from "./generated/authentication/api-key/src/index.js";
 import { assert } from "chai";
 

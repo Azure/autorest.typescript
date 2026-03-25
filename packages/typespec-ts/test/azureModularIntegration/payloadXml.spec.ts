@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import { XmlClient } from "./generated/payload/xml/src/index.js";
 import { assert } from "chai";
 

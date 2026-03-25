@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import { assert } from "chai";
 import { DictionaryClient } from "./generated/type/dictionary/src/index.js";
 

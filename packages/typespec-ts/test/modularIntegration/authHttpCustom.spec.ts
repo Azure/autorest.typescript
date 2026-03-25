@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import { CustomClient } from "./generated/authentication/http/custom/src/index.js";
 import { assert } from "chai";
 

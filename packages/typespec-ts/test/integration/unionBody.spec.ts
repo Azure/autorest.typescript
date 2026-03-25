@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import UnionBodyClientFactory, {
   UnionBodyClient
 } from "./generated/union-body/src/index.js";

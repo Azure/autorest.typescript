@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import FlattenPropertyClientFactory, {
   FlattenPropertyClient
 } from "./generated/azure/client-generator-core/flatten-property/src/index.js";

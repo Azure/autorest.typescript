@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import { assert } from "chai";
 import { JsonClient } from "./generated/serialization/encoded-name/json/src/index.js";
 describe("NameAndEncodedName Client", () => {

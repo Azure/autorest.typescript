@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import { assert } from "chai";
 import { ArrayClient } from "./generated/type/array/src/index.js";
 

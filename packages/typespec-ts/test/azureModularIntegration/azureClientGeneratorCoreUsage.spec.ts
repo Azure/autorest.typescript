@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import { assert } from "chai";
 import { UsageClient } from "./generated/azure/client-generator-core/usage/src/index.js";
 describe("Azure ClientGeneratorCore Usage Client", () => {

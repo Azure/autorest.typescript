@@ -6,15 +6,13 @@ export default defineConfig({
       {
         test: {
           name: "test-next",
-          include: ["test-next/**/*.test.ts"],
-          globals: true
+          include: ["test-next/**/*.test.ts"]
         }
       },
       {
         test: {
           name: "unit-rlc",
           include: ["test/unit/**/*.spec.ts"],
-          globals: true,
           testTimeout: 36000
         }
       },
@@ -22,7 +20,6 @@ export default defineConfig({
         test: {
           name: "unit-modular",
           include: ["test/modularUnit/**/*.spec.ts"],
-          globals: true,
           testTimeout: 0,
           pool: "forks",
           poolOptions: {
@@ -36,7 +33,6 @@ export default defineConfig({
         test: {
           name: "integration-rlc",
           include: ["test/integration/*.spec.ts"],
-          globals: true,
           testTimeout: 36000
         }
       },
@@ -44,7 +40,6 @@ export default defineConfig({
         test: {
           name: "integration-azure-rlc",
           include: ["test/azureIntegration/*.spec.ts"],
-          globals: true,
           testTimeout: 36000
         }
       },
@@ -52,7 +47,6 @@ export default defineConfig({
         test: {
           name: "integration-modular",
           include: ["test/modularIntegration/*.spec.ts"],
-          globals: true,
           testTimeout: 36000
         }
       },
@@ -60,7 +54,6 @@ export default defineConfig({
         test: {
           name: "integration-azure-modular",
           include: ["test/azureModularIntegration/*.spec.ts"],
-          globals: true,
           testTimeout: 36000
         }
       }

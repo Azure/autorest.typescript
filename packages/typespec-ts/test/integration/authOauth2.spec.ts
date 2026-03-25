@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import Outh2ClientFactory, {
   AuthOauth2Client
 } from "./generated/authentication/oauth2/src/index.js";

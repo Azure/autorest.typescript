@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import { assert } from "chai";
 import { ConditionalRequestClient } from "./generated/special-headers/conditional-request/src/index.js";
 

@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import VersioningReturnTypeChangedFromClientFactory, {
   VersioningReturnTypeChangedFromClient
 } from "./generated/versioning/returnTypeChangedFrom/src/index.js";

@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import TypeModelUsageClientFactory, {
   UsageClient
 } from "./generated/type/model/usage/src/index.js";

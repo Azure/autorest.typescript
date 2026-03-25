@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import { PageableClient, Pet } from "./generated/payload/pageable/src/index.js";
 import { assert } from "chai";
 

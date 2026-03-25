@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import { assert } from "chai";
 import { BodyOptionalityClient } from "./generated/parameters/body-optionality/src/index.js";
 describe("Body Optionality Client", () => {

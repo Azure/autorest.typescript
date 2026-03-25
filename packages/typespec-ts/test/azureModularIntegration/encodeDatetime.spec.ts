@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import { assert } from "chai";
 import { DatetimeClient } from "./generated/encode/datetime/src/index.js";
 describe("EncodeDatetimeClient Rest Client", () => {

@@ -1,3 +1,5 @@
+import { describe, it } from "vitest";
+
 import { emitModularModelsFromTypeSpec } from "../util/emitUtil.js";
 
 import { assert } from "chai";

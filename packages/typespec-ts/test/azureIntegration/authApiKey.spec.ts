@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import ApiKeyClientFactory, {
   AuthApiKeyClient
 } from "./generated/authentication/api-key/src/index.js";

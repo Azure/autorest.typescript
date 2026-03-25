@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import { assert } from "chai";
 import { ScalarClient } from "./generated/type/scalar/src/index.js";
 describe("Scalar Client", () => {

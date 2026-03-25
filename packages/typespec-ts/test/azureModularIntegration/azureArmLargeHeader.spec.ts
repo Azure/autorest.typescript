@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import { LargeHeaderClient } from "./generated/azure/resource-manager/large-header/src/index.js";
 import { assert } from "chai";
 

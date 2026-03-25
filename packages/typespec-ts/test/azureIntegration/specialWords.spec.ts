@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import SpecialWordsClientFactory, {
   SpecialWordsClient
 } from "./generated/special-words/src/index.js";

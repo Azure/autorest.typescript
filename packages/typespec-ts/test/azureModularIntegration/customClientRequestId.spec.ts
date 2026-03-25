@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import { PipelinePolicy } from "@azure/core-rest-pipeline";
 import { XmsClientRequestIdClient } from "./generated/azure/special-headers/client-request-id/src/index.js";
 import { assert } from "chai";

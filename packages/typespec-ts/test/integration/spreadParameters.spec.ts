@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import ParametersSpreadClientFactory, {
   SpreadClient
 } from "./generated/parameters/spread/src/index.js";

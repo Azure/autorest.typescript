@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import VersioningAddedClientFactory, {
   VersioningAddedClient
 } from "./generated/versioning/added/src/index.js";

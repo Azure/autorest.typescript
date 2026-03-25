@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import { EmptyClient } from "./generated/type/model/empty/src/index.js";
 import { assert } from "chai";
 

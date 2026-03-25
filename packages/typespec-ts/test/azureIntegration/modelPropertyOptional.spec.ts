@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import TypePropertyOptionalClientFactory, {
   OptionalClient
 } from "./generated/type/property/optionality/src/index.js";

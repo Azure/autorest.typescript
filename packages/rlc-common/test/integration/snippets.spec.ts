@@ -3,6 +3,8 @@
 
 
 
+import { describe, it } from "vitest";
+
 import { createMockModel } from "./mockHelper.js";
 import { buildSnippets } from "../../src/test/buildSnippets.js"
 import { expect } from "chai";

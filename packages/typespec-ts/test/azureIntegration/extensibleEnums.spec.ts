@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import TypeEnumExtensibleClientFactory, {
   ExtensibleClient
 } from "./generated/type/enum/extensible/src/index.js";

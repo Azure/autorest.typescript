@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import VersioningRenamedFromClientFactory, {
   VersioningRenamedFromClient
 } from "./generated/versioning/renamedFrom/src/index.js";

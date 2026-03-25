@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import { assert } from "chai";
 import { AlternateTypeClient } from "./generated/azure/client-generator-core/alternate-type/src/index.js";
 

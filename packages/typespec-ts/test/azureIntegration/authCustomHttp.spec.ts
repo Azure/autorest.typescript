@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import AuthHttpCustomClientFactory, {
   AuthHttpCustomClient
 } from "./generated/authentication/http/custom/src/index.js";

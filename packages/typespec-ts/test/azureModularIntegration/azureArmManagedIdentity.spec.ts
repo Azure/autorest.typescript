@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import { assert } from "chai";
 import { CommonPropertiesClient } from "./generated/azure/resource-manager/common-properties/src/index.js";
 describe("Azure Arm Resources Rest Client", () => {

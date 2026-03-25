@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import BasicClientFactory, {
   BasicClient
 } from "./generated/azure/example/basic/src/index.js";

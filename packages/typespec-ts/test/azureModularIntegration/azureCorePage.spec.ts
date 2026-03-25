@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import { PageClient, User } from "./generated/azure/core/page/src/index.js";
 import { assert } from "chai";
 

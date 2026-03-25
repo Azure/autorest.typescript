@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import ArrayItemTypesClientFactory, {
   ArrayItemTypesClient
 } from "./generated/type/array/src/index.js";

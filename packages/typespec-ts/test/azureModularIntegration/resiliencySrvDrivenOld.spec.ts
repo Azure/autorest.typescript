@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import { ResiliencyServiceDrivenClient } from "./generated/resiliency/srv-driven-old/src/index.js";
 import { assert } from "chai";
 describe("Service Driven old Client v1", () => {

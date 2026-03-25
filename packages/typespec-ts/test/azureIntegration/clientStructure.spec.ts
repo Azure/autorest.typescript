@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import { Client } from "@azure-rest/core-client";
 import ServiceDefaultClientFactory, {
   ServiceClient as ServiceDefaultClient

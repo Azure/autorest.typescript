@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import { assert } from "chai";
 import { UnionClient } from "./generated/type/union/src/index.js";
 describe("Type Union Client", () => {

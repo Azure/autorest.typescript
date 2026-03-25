@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import { assert } from "chai";
 import { NotDefinedClient } from "./generated/server/endpoint/not-defined/src/index.js";
 describe("NotDefined Server Endpoint Client", () => {

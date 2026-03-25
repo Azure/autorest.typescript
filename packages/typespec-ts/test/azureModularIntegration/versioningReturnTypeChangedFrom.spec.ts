@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import { assert } from "chai";
 import { ReturnTypeChangedFromClient } from "./generated/versioning/returnTypeChangedFrom/src/index.js";
 

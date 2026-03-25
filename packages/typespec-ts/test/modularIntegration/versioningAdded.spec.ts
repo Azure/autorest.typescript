@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import { assert } from "chai";
 import { AddedClient } from "./generated/versioning/added/src/index.js";
 

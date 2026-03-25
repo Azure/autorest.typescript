@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import { RpcClient } from "./generated/azure/core/lro/rpc/src/index.js";
 import { assert } from "chai";
 

@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import { ModelClient } from "./generated/azure/core/model/src/index.js";
 import { assert } from "chai";
 

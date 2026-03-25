@@ -1,3 +1,5 @@
+import { describe, it } from "vitest";
+
 import { ObjectSchema } from "@azure-tools/rlc-common";
 import { emitSchemasFromTypeSpec } from "../../util/emitUtil.js";
 import { assert } from "chai";

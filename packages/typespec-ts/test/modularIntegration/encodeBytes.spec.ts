@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import { assert } from "chai";
 import { BytesClient } from "./generated/encode/bytes/src/index.js";
 import { stringToUint8Array, uint8ArrayToString } from "@azure/core-util";
@@ -148,10 +150,14 @@ describe("EncodeBytesClient Modular Client", () => {
       assert.isUndefined(result);
     });
 
-    it(`should post bytes with custom content type`, async () => {
-      const result = await client.requestBody.customContentType(pngFile);
-      assert.isUndefined(result);
-    }).timeout(10000);
+    it(
+      `should post bytes with custom content type`,
+      { timeout: 10000 },
+      async () => {
+        const result = await client.requestBody.customContentType(pngFile);
+        assert.isUndefined(result);
+      }
+    );
 
     it(`should post bytes with custom content type`, async () => {
       const result = await client.requestBody.octetStream(pngFile);

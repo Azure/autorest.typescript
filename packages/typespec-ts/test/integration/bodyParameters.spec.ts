@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import BodyOptionalityClientFactory, {
   BodyOptionalityClient
 } from "./generated/parameters/body-optionality/src/index.js";

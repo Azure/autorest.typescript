@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import { ServiceClient } from "./generated/client/structure/default/src/index.js";
 import { assert } from "chai";
 describe("Client Structure Default Rest Client", () => {

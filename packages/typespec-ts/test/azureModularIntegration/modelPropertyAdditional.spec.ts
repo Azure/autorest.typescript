@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import { assert } from "chai";
 import { AdditionalPropertiesClient } from "./generated/type/property/additional-properties/src/index.js";
 

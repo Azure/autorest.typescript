@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import { assert } from "chai";
 import { PreviewVersionClient } from "./generated/azure/versioning/previewVersion/src/index.js";
 

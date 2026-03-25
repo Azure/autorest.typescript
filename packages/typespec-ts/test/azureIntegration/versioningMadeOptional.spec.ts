@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import VersioningMadeOptionalClientFactory, {
   VersioningMadeOptionalClient
 } from "./generated/versioning/madeOptional/src/index.js";

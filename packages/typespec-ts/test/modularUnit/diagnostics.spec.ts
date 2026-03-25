@@ -1,3 +1,5 @@
+import { describe, it } from "vitest";
+
 import { ok } from "assert";
 
 describe("Diagnostic reporting tests", () => {

@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import RecursiveClientFactory, {
   Extension,
   RecursiveClient

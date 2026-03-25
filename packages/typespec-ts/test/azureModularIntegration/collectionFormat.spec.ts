@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import { CollectionFormatClient } from "./generated/parameters/collection-format/src/index.js";
 import { assert } from "chai";
 
