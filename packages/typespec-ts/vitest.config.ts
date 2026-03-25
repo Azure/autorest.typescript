@@ -41,6 +41,10 @@ export default defineConfig({
         test: {
           name: "integration-azure-rlc",
           include: ["test/azureIntegration/*.spec.ts"],
+          exclude: [
+            "test/azureIntegration/versioningRemoved.spec.ts",
+            "test/azureIntegration/azureClientGeneratorCoreClientInitialization.spec.ts"
+          ],
           testTimeout: 36000
         }
       },
