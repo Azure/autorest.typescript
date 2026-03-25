@@ -177,9 +177,14 @@ export type GetLogsResponse = {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { GetLogsResponse } from "../models/models.js";
-import { getBinaryResponseBody } from "../static-helpers/serialization/get-binary-response-body.js";
+import { getBinaryStreamResponse } from "../static-helpers/serialization/get-binary-stream-response.js";
 import { GetLogsOptionalParams } from "./options.js";
-import { StreamableMethod, operationOptionsToRequestParameters } from "@azure-rest/core-client";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
 
 export function _getLogsSend(
   context: Client,
@@ -193,8 +198,15 @@ export function _getLogsSend(
     });
 }
 
-export async function _getLogsDeserialize(result: StreamableMethod): Promise<GetLogsResponse> {
-  return getBinaryResponseBody(result, ["200"]);
+export async function _getLogsDeserialize(
+  result: PathUncheckedResponse & GetLogsResponse,
+): Promise<GetLogsResponse> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return { blobBody: result.blobBody, readableStreamBody: result.readableStreamBody };
 }
 
 export async function getLogs(
@@ -202,7 +214,8 @@ export async function getLogs(
   options: GetLogsOptionalParams = { requestOptions: {} },
 ): Promise<GetLogsResponse> {
   const streamableMethod = _getLogsSend(context, options);
-  return _getLogsDeserialize(streamableMethod);
+  const result = await getBinaryStreamResponse(streamableMethod);
+  return _getLogsDeserialize(result);
 }
 ```
 
@@ -466,5 +479,104 @@ export async function getModel(
 ): Promise<MyModel> {
   const result = await _getModelSend(context, options);
   return _getModelDeserialize(result);
+}
+```
+
+# wrap-non-model-return binary wrap generates error.details deserialization
+
+When a binary response operation has an error model, the deserializer should generate
+full `error.details` deserialization via status check + error enrichment.
+
+## TypeSpec
+
+```yaml
+wrap-non-model-return: true
+```
+
+```tsp
+@error
+model ApiError {
+  code: string;
+  message: string;
+}
+
+@route("/logs")
+@get
+op getLogs(): {
+  @header contentType: "application/octet-stream";
+  @body body: bytes;
+} | ApiError;
+```
+
+## Operations
+
+```ts operations function _getLogsDeserialize
+export async function _getLogsDeserialize(
+result: PathUncheckedResponse & GetLogsResponse,
+): Promise<GetLogsResponse> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    const error = createRestError(result);
+    error.details = apiErrorDeserializer(result.body);
+
+    throw error;
+  }
+
+  return { blobBody: result.blobBody, readableStreamBody: result.readableStreamBody };
+}
+```
+
+# wrap-non-model-return binary wrap generates error.details with exception headers
+
+When a binary response operation has an error model with `@header` properties and
+`include-headers-in-response: true`, the deserializer should generate exception headers
+deserialization alongside the error.details enrichment.
+
+## TypeSpec
+
+```yaml
+wrap-non-model-return: true
+include-headers-in-response: true
+```
+
+```tsp
+@error
+model StorageError {
+  code: string;
+  message: string;
+  @header("x-ms-error-code") errorCode: string;
+}
+
+@route("/blobs")
+@get
+op getBlob(): {
+  @header contentType: "application/octet-stream";
+  @body body: bytes;
+} | StorageError;
+```
+
+## Operations
+
+```ts operations function _getBlobDeserializeExceptionHeaders
+export function _getBlobDeserializeExceptionHeaders(result: PathUncheckedResponse): {
+  errorCode: string;
+} {
+  return { errorCode: result.headers["x-ms-error-code"] };
+}
+```
+
+```ts operations function _getBlobDeserialize
+export async function _getBlobDeserialize(
+  result: PathUncheckedResponse & GetBlobResponse,
+): Promise<GetBlobResponse> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    const error = createRestError(result);
+    error.details = storageErrorDeserializer(result.body);
+    error.details = { ...(error.details as any), ..._getBlobDeserializeExceptionHeaders(result) };
+    throw error;
+  }
+
+  return { blobBody: result.blobBody, readableStreamBody: result.readableStreamBody };
 }
 ```

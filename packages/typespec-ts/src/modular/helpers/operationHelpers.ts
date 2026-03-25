@@ -192,17 +192,9 @@ export function getDeserializePrivateFunction(
   // Check if we need to wrap the non-model return type
   const { shouldWrap, isBinary, isModelArray, isUnknown } =
     checkWrapNonModelReturn(context, operation);
-  // For binary wrap, the deserializer receives a StreamableMethod directly
-  const resultParamType =
-    shouldWrap && isBinary
-      ? resolveReference(dependencies.StreamableMethod)
-      : PathUncheckedResponseReference;
-  const parameters: OptionalKind<ParameterDeclarationStructure>[] = [
-    {
-      name: "result",
-      type: resultParamType
-    }
-  ];
+  // For binary wrap, the deserializer receives PathUncheckedResponse & { blobBody, readableStreamBody }
+  // which is returned by getBinaryStreamResponse.
+  const isBinaryWrap = shouldWrap && isBinary;
   const isLroOnly = isLroOnlyOperation(operation);
   const isLroAndPaging = isLroAndPagingOperation(operation);
   const isPagingOnly = isPagingOnlyOperation(operation);
@@ -237,6 +229,16 @@ export function getDeserializePrivateFunction(
     returnType = { name: "", type: "void" };
   }
 
+  const resultParamName = "result";
+  const resultParamType = isBinaryWrap
+    ? `${PathUncheckedResponseReference} & ${returnType.type}`
+    : PathUncheckedResponseReference;
+  const parameters: OptionalKind<ParameterDeclarationStructure>[] = [
+    {
+      name: resultParamName,
+      type: resultParamType
+    }
+  ];
   const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
     isAsync: true,
     isExported: true,
@@ -248,17 +250,14 @@ export function getDeserializePrivateFunction(
   const createRestErrorReference = resolveReference(
     dependencies.createRestError
   );
-  // For binary wrap, parameter is StreamableMethod - skip status check
-  if (!(shouldWrap && isBinary)) {
-    statements.push(
-      `const expectedStatuses = ${getExpectedStatuses(operation)};`
-    );
-    statements.push(
-      `if(!expectedStatuses.includes(result.status)){`,
-      `${getExceptionThrowStatement(context, operation)}`,
-      "}"
-    );
-  }
+  statements.push(
+    `const expectedStatuses = ${getExpectedStatuses(operation)};`
+  );
+  statements.push(
+    `if(!expectedStatuses.includes(result.status)){`,
+    `${getExceptionThrowStatement(context, operation)}`,
+    "}"
+  );
   const deserializedType =
     isLroOnly || isLroAndPaging
       ? operation?.lroMetadata?.finalResponse?.result
@@ -397,19 +396,11 @@ export function getDeserializePrivateFunction(
       // Handle wrap-non-model-return for non-LRO, non-paging operations
       if (shouldWrap) {
         if (isBinary) {
-          const getBinaryResponseBodyReference = resolveReference(
-            SerializationHelpers.getBinaryResponseBody
-          );
-          const deserializeError = getExceptionDetails(
-            context,
-            operation
-          ).defaultDeserializer;
-          const deserializeErrorStr = deserializeError
-            ? `, ${deserializeError}`
-            : "";
+          // Binary wrap: getBinaryStream already resolved the stream,
+          // status check and error.details handling ran above.
+          // Return the platform-specific stream properties.
           statements.push(
-            `return ${getBinaryResponseBodyReference}(result, ${getExpectedStatuses(operation)}${deserializeErrorStr});
-`
+            `return { blobBody: result.blobBody, readableStreamBody: result.readableStreamBody };`
           );
         } else if (isModelArray) {
           // Array-of-models response: return the deserialized array directly (no body wrapper)
@@ -1028,6 +1019,7 @@ export function getOperationFunction(
       name: getOperationResponseTypeName(method),
       type: resolveReference(refkey(operation, "response"))
     };
+    bodyType = returnType.type;
   } else if (response.type) {
     const type = response.type;
 
@@ -1108,23 +1100,6 @@ export function getOperationFunction(
   const resultVarName = generateLocallyUniqueName("result", paramNames);
 
   const parameterList = parameters.map((p) => p.name).join(", ");
-  // For binary wrap, pass the StreamableMethod directly to the deserializer.
-  // The deserializer uses asBrowserStream()/asNodeStream() to build the wrapper.
-  if (wrapReturn && wrapReturnIsBinary) {
-    const streamableMethodVarName = generateLocallyUniqueName(
-      "streamableMethod",
-      paramNames
-    );
-    statements.push(
-      `const ${streamableMethodVarName} = _${name}Send(${parameterList});`
-    );
-    statements.push(`return _${name}Deserialize(${streamableMethodVarName});`);
-    return {
-      ...functionStatement,
-      statements
-    } as FunctionDeclarationStructure & { propertyName?: string };
-  }
-
   // When storage-compat is enabled, set up the onResponse interceptor before sending
   const storageCompatVarName = generateLocallyUniqueName(
     "_storageCompat",
@@ -1149,6 +1124,8 @@ export function getOperationFunction(
 
   // Special case for binary-only bodies: use helper to call streaming methods so that Core doesn't poison the response body by
   // doing a UTF-8 decode on the raw bytes.
+  // For binary wrap, use getBinaryStreamResponse which preserves blobBody/readableStreamBody properties.
+  // For non-wrapped binary, use getBinaryResponse which buffers the body into Uint8Array.
   if (response?.type?.kind === "bytes" && response.type.encode === "bytes") {
     const streamableMethodVarName = generateLocallyUniqueName(
       "streamableMethod",
@@ -1157,8 +1134,12 @@ export function getOperationFunction(
     statements.push(
       `const ${streamableMethodVarName} = _${name}Send(${sendParameterList});`
     );
+    const binaryHelper =
+      wrapReturn && wrapReturnIsBinary
+        ? SerializationHelpers.getBinaryStreamResponse
+        : SerializationHelpers.getBinaryResponse;
     statements.push(
-      `const ${resultVarName} = await ${resolveReference(SerializationHelpers.getBinaryResponse)}(${streamableMethodVarName});`
+      `const ${resultVarName} = await ${resolveReference(binaryHelper)}(${streamableMethodVarName});`
     );
   } else {
     statements.push(
