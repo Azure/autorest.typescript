@@ -1,6 +1,5 @@
-import { describe, it, beforeEach } from "vitest";
+import { describe, it, beforeEach, assert } from "vitest";
 
-import { assert } from "chai";
 import { DurationClient } from "./generated/azure/encode/duration/src/index.js";
 
 describe("Azure Encode Duration Client", () => {

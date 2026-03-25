@@ -1,6 +1,5 @@
-import { describe, it, beforeEach } from "vitest";
+import { describe, it, beforeEach, assert } from "vitest";
 
-import { assert } from "chai";
 import { FlattenPropertyClient } from "./generated/azure/client-generator-core/flatten-property/src/index.js";
 describe("Property Flatten Client", () => {
   let client: FlattenPropertyClient;

@@ -2,12 +2,10 @@
 // Licensed under the MIT License.
 
 
-
-import { describe, it } from "vitest";
+import { describe, it, expect } from "vitest";
 
 import { createMockModel } from "./mockHelper.js";
 import { buildSnippets } from "../../src/test/buildSnippets.js"
-import { expect } from "chai";
 
 describe("Snippets file generation", () => {
     describe("Should generate snippets for modular", () => {

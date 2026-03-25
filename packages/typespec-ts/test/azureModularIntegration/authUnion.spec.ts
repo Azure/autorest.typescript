@@ -1,4 +1,4 @@
-import { describe, it } from "vitest";
+import { describe, it, assert } from "vitest";
 
 import {
   bearerTokenAuthenticationPolicyName,
@@ -11,7 +11,6 @@ import {
   validToken
 } from "./generated/authentication/union/src/api/index.js";
 import { UnionClient } from "./generated/authentication/union/src/index.js";
-import { assert } from "chai";
 import { customBearerTokenAuthenticationPolicy } from "../util/customBearerTokenTestingPolicy.js";
 
 describe("UnionContext in API Layer", () => {

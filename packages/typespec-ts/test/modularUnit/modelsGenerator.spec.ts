@@ -1,11 +1,10 @@
-import { describe, it } from "vitest";
+import { describe, it, assert } from "vitest";
 
 import { assertEqualContent } from "../util/testUtil.js";
 import {
   emitModularModelsFromTypeSpec,
   emitModularOperationsFromTypeSpec
 } from "../util/emitUtil.js";
-import { assert } from "chai";
 
 describe("inheritance & polymorphism", () => {
   /**

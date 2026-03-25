@@ -1,6 +1,5 @@
-import { describe, it, beforeEach } from "vitest";
+import { describe, it, beforeEach, assert } from "vitest";
 
-import { assert } from "chai";
 import AzureEncodeDurationClientFactory, {
   DurationClient
 } from "./generated/azure/encode/duration/src/index.js";

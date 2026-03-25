@@ -1,6 +1,5 @@
-import { describe, it, beforeEach } from "vitest";
+import { describe, it, beforeEach, assert } from "vitest";
 
-import { assert } from "chai";
 import QueryClientFactory, {
   QueryClient
 } from "./generated/azure/client-generator-core/api-version/query/src/index.js";

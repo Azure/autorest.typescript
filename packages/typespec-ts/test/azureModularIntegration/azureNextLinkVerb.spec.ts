@@ -1,10 +1,9 @@
-import { describe, it, beforeEach } from "vitest";
+import { describe, it, beforeEach, assert } from "vitest";
 
 import {
   NextLinkVerbClient,
   Test
 } from "./generated/azure/client-generator-core/next-link-verb/src/index.js";
-import { assert } from "chai";
 
 describe("NextLinkVerbClient", () => {
   let client: NextLinkVerbClient;

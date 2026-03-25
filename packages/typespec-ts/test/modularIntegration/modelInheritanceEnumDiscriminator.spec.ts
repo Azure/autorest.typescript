@@ -1,11 +1,10 @@
-import { describe, it, beforeEach } from "vitest";
+import { describe, it, beforeEach, assert } from "vitest";
 
 import {
   EnumDiscriminatorClient,
   Snake,
   Golden
 } from "./generated/type/model/inheritance/enum-discriminator/src/index.js";
-import { assert } from "chai";
 
 describe("EnumDiscriminatorClient Rest Client", () => {
   let client: EnumDiscriminatorClient;

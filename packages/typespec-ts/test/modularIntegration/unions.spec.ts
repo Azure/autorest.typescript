@@ -1,6 +1,5 @@
-import { describe, it, beforeEach } from "vitest";
+import { describe, it, beforeEach, assert } from "vitest";
 
-import { assert } from "chai";
 import { UnionClient } from "./generated/type/union/src/index.js";
 describe("Type Union Client", () => {
   let client: UnionClient;

@@ -1,4 +1,4 @@
-import { describe, it } from "vitest";
+import { describe, it, assert } from "vitest";
 
 import {
   RLCModel,
@@ -6,7 +6,6 @@ import {
   generateParameterTypeValue
 } from "@azure-tools/rlc-common";
 import { emitSchemasFromTypeSpec } from "../../util/emitUtil.js";
-import { assert } from "chai";
 
 describe("Integration test for mocking sample", () => {
   describe("request body", () => {

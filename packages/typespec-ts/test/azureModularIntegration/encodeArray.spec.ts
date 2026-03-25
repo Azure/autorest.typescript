@@ -1,6 +1,5 @@
-import { describe, it, beforeEach } from "vitest";
+import { describe, it, beforeEach, assert } from "vitest";
 
-import { assert } from "chai";
 import { ArrayClient } from "./generated/encode/array/src/index.js";
 
 describe("EncodeArrayClient Rest Client", () => {

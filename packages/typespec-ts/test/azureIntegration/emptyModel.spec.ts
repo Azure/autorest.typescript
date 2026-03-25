@@ -1,6 +1,5 @@
-import { describe, it, beforeEach } from "vitest";
+import { describe, it, beforeEach, assert } from "vitest";
 
-import { assert } from "chai";
 import TypeModelEmptyClientFactory, {
   EmptyClient
 } from "./generated/type/model/empty/src/index.js";

@@ -1,6 +1,5 @@
-import { describe, it, beforeEach } from "vitest";
+import { describe, it, beforeEach, assert } from "vitest";
 
-import { assert } from "chai";
 import { NumericClient } from "./generated/encode/numeric/src/index.js";
 describe("EncodeNumericClient Rest Client", () => {
   let client: NumericClient;

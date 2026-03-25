@@ -1,9 +1,8 @@
-import { describe, it, beforeEach } from "vitest";
+import { describe, it, beforeEach, assert } from "vitest";
 
 import ApiKeyClientFactory, {
   AuthApiKeyClient
 } from "./generated/authentication/api-key/src/index.js";
-import { assert } from "chai";
 describe("AuthApiKeyClient Rest Client", () => {
   let validKeyClient: AuthApiKeyClient;
   let invalidKeyClient: AuthApiKeyClient;

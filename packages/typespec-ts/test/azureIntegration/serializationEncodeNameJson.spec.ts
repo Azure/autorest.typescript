@@ -1,6 +1,5 @@
-import { describe, it, beforeEach } from "vitest";
+import { describe, it, beforeEach, assert } from "vitest";
 
-import { assert } from "chai";
 import SerializationEncodedNameJsonClientFactory, {
   SerializationEncodedNameJsonClient
 } from "./generated/serialization/encoded-name/json/src/index.js";

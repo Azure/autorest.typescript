@@ -1,8 +1,6 @@
-import { describe, it } from "vitest";
+import { describe, it, assert } from "vitest";
 
 import { emitModularModelsFromTypeSpec } from "../util/emitUtil.js";
-
-import { assert } from "chai";
 
 describe("array encoding model property", () => {
   it("array encoding on array of non-string types should report diagnostic", async () => {

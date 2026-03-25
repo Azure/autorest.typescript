@@ -1,6 +1,5 @@
-import { describe, it, beforeEach } from "vitest";
+import { describe, it, beforeEach, assert } from "vitest";
 
-import { assert } from "chai";
 import { NamingClient } from "./generated/client/naming/src/index.js";
 describe("NameAndEncodedName Client", () => {
   let client: NamingClient;

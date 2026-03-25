@@ -1,8 +1,6 @@
-import { describe, it } from "vitest";
+import { describe, it, assert } from "vitest";
 
 import { emitModularModelsFromTypeSpec } from "../util/emitUtil.js";
-
-import { assert } from "chai";
 
 describe("Flatten Property model", () => {
   it("Flatten transitions are not supported so consecutive transitions will be ignored", async () => {

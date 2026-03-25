@@ -1,8 +1,7 @@
-import { describe, it, beforeEach } from "vitest";
+import { describe, it, beforeEach, assert } from "vitest";
 
 import { PipelinePolicy } from "@azure/core-rest-pipeline";
 import { XmsClientRequestIdClient } from "./generated/azure/special-headers/client-request-id/src/index.js";
-import { assert } from "chai";
 describe("XmsRequestIdClient Classical Client", () => {
   let client: XmsClientRequestIdClient;
 

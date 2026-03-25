@@ -1,6 +1,5 @@
-import { describe, it, beforeEach } from "vitest";
+import { describe, it, beforeEach, assert } from "vitest";
 
-import { assert } from "chai";
 import { MethodSubscriptionIdClient } from "./generated/azure/resource-manager/method-subscription-id/src/index.js";
 
 describe("Azure Arm Method Subscription Id Modular Client", () => {

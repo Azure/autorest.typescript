@@ -1,7 +1,6 @@
-import { describe, it, beforeEach } from "vitest";
+import { describe, it, beforeEach, assert } from "vitest";
 
 import { SpreadClient } from "./generated/parameters/spread/src/index.js";
-import { assert } from "chai";
 describe("SpreadClient Client", () => {
   let client: SpreadClient;
 

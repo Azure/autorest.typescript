@@ -1,4 +1,4 @@
-import { describe, it, beforeEach } from "vitest";
+import { describe, it, beforeEach, assert } from "vitest";
 
 import {
   GoblinShark,
@@ -6,7 +6,6 @@ import {
   Salmon,
   Shark
 } from "./generated/type/model/inheritance/nested-discriminator/src/index.js";
-import { assert } from "chai";
 
 describe("NestedDiscriminatorClient Rest Client", () => {
   let client: NestedDiscriminatorClient;

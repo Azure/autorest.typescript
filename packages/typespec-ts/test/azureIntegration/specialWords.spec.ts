@@ -1,9 +1,8 @@
-import { describe, it, beforeEach } from "vitest";
+import { describe, it, beforeEach, assert } from "vitest";
 
 import SpecialWordsClientFactory, {
   SpecialWordsClient
 } from "./generated/special-words/src/index.js";
-import { assert } from "chai";
 
 describe("SpecialWordsClient Rest Client", () => {
   let client: SpecialWordsClient;

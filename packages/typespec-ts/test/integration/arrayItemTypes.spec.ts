@@ -1,9 +1,8 @@
-import { describe, it, beforeEach } from "vitest";
+import { describe, it, beforeEach, assert } from "vitest";
 
 import ArrayItemTypesClientFactory, {
   ArrayItemTypesClient
 } from "./generated/type/array/src/index.js";
-import { assert } from "chai";
 import { matrix } from "../util/matrix.js";
 
 interface TypeDetail {

@@ -1,7 +1,6 @@
-import { describe, it, beforeEach } from "vitest";
+import { describe, it, beforeEach, assert } from "vitest";
 
 import { BasicClient, User } from "./generated/azure/core/basic/src/index.js";
-import { assert } from "chai";
 
 describe("BasicClient Classical Client", () => {
   let client: BasicClient;

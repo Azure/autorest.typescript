@@ -1,6 +1,5 @@
-import { describe, it } from "vitest";
+import { describe, it, expect } from "vitest";
 
-import { expect } from "chai";
 import { buildVitestConfig } from "../../src/metadata/buildVitestConfig.js";
 
 import { createMockModel } from "./mockHelper.js";

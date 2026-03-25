@@ -1,6 +1,5 @@
-import { describe, it, beforeEach } from "vitest";
+import { describe, it, beforeEach, assert } from "vitest";
 
-import { assert } from "chai";
 import { DictionaryClient } from "./generated/type/dictionary/src/index.js";
 
 describe("DictionaryClient Modular Client", () => {

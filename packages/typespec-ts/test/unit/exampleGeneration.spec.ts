@@ -1,6 +1,5 @@
-import { describe, it } from "vitest";
+import { describe, it, assert } from "vitest";
 
-import { assert } from "chai";
 import { generateAssertionsForValue } from "../../src/modular/helpers/exampleValueHelpers.js";
 
 describe("exampleGeneration", () => {

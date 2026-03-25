@@ -1,6 +1,5 @@
-import { describe, it, beforeEach } from "vitest";
+import { describe, it, beforeEach, assert } from "vitest";
 
-import { assert } from "chai";
 import { AddedClient } from "./generated/versioning/added/src/index.js";
 
 describe("VersioningAdded Rest Client", () => {

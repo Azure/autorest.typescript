@@ -1,8 +1,6 @@
-import { describe, it } from "vitest";
+import { describe, it, assert } from "vitest";
 
 import { emitModularModelsFromTypeSpec } from "../util/emitUtil.js";
-
-import { assert } from "chai";
 
 describe("model type", () => {
   describe("number | numeric literal | nullable", () => {

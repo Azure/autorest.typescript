@@ -1,7 +1,6 @@
-import { describe, it, beforeEach } from "vitest";
+import { describe, it, beforeEach, assert } from "vitest";
 
 import { ServiceClient } from "./generated/client/structure/default/src/index.js";
-import { assert } from "chai";
 describe("Client Structure Default Rest Client", () => {
   let client: ServiceClient;
 

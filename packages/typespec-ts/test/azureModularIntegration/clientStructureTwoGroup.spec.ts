@@ -1,6 +1,6 @@
+import { assert } from "vitest";
 // import { TwoOperationGroupClient } from "./generated/client/structure/two-operation-group/src/index.js";
-// import { assert } from "chai";
-// describe("Client Structure Two-Operation-Group Rest Client", () => {
+// // describe("Client Structure Two-Operation-Group Rest Client", () => {
 //   let client: TwoOperationGroupClient;
 
 //   beforeEach(() => {

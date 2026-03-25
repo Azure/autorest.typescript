@@ -1,9 +1,8 @@
-import { describe, it, beforeEach } from "vitest";
+import { describe, it, beforeEach, assert } from "vitest";
 
 import TypePropertyOptionalClientFactory, {
   OptionalClient
 } from "./generated/type/property/optionality/src/index.js";
-import { assert } from "chai";
 
 describe("ModelsPropertyOptional Rest Client", () => {
   let client: OptionalClient;

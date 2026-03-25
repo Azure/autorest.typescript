@@ -1,7 +1,6 @@
-import { describe, it, beforeEach } from "vitest";
+import { describe, it, beforeEach, assert } from "vitest";
 
 import { TraitsClient } from "./generated/azure/core/traits/src/index.js";
-import { assert } from "chai";
 
 describe("Traits Client", () => {
   let client: TraitsClient;

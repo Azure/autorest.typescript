@@ -1,6 +1,4 @@
-import { describe, it } from "vitest";
-
-import { expect } from "chai";
+import { describe, it, expect } from "vitest";
 
 import { NameType, normalizeName } from "../../src/helpers/nameUtils.js";
 

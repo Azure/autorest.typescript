@@ -1,6 +1,5 @@
-import { describe, it, beforeEach } from "vitest";
+import { describe, it, beforeEach, assert } from "vitest";
 
-import { assert } from "chai";
 import { RenamedFromClient } from "./generated/versioning/renamedFrom/src/index.js";
 
 describe("VersioningRenamedFrom Rest Client", () => {

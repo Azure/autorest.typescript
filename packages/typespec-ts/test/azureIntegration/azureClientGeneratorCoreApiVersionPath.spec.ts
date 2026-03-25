@@ -1,6 +1,5 @@
-import { describe, it, beforeEach } from "vitest";
+import { describe, it, beforeEach, assert } from "vitest";
 
-import { assert } from "chai";
 import PathClientFactory, {
   PathClient
 } from "./generated/azure/client-generator-core/api-version/path/src/index.js";

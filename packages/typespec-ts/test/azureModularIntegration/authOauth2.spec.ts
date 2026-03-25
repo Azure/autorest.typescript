@@ -1,4 +1,4 @@
-import { describe, it, beforeEach } from "vitest";
+import { describe, it, beforeEach, assert } from "vitest";
 
 import {
   bearerTokenAuthenticationPolicyName,
@@ -10,7 +10,6 @@ import {
   OAuth2Context,
   valid
 } from "./generated/authentication/oauth2/src/api/index.js";
-import { assert } from "chai";
 import { customBearerTokenAuthenticationPolicy } from "../util/customBearerTokenTestingPolicy.js";
 
 describe("OAuth2Context in API Layer", () => {

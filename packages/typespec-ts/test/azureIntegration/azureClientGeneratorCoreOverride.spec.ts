@@ -1,6 +1,5 @@
-import { describe, it, beforeEach } from "vitest";
+import { describe, it, beforeEach, assert } from "vitest";
 
-import { assert } from "chai";
 import OverrideClientFactory, {
   OverrideClient
 } from "./generated/azure/client-generator-core/override/src/index.js";

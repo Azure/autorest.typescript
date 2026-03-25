@@ -1,7 +1,6 @@
-import { describe, it, beforeEach } from "vitest";
+import { describe, it, beforeEach, assert } from "vitest";
 
 import { CustomClient } from "./generated/authentication/http/custom/src/index.js";
-import { assert } from "chai";
 
 describe("CustomClient Classical Client", () => {
   let validKeyClient: CustomClient;

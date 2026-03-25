@@ -1,9 +1,8 @@
-import { describe, it, beforeEach } from "vitest";
+import { describe, it, beforeEach, assert } from "vitest";
 
 import VersioningMadeOptionalClientFactory, {
   VersioningMadeOptionalClient
 } from "./generated/versioning/madeOptional/src/index.js";
-import { assert } from "chai";
 describe("VersioningMadeOptional Rest Client", () => {
   let client: VersioningMadeOptionalClient;
 

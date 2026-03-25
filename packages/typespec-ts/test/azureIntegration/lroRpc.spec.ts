@@ -1,11 +1,10 @@
-import { describe, it, beforeEach } from "vitest";
+import { describe, it, beforeEach, assert } from "vitest";
 
 import SpecsAzureCoreLroStandardClientFactory, {
   RpcClient,
   getLongRunningPoller,
   isUnexpected
 } from "./generated/azure/core/lro/rpc/src/index.js";
-import { assert } from "chai";
 describe("RpcClient Rest Client", () => {
   let client: RpcClient;
 

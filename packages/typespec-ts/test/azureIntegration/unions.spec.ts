@@ -1,11 +1,10 @@
-import { describe, it, beforeEach } from "vitest";
+import { describe, it, beforeEach, assert } from "vitest";
 
 import UnionsClientFactory, {
   CatOutput,
   DogOutput,
   UnionsClient
 } from "./generated/type/union/src/index.js";
-import { assert } from "chai";
 describe("UnionsClient Rest Client", () => {
   let client: UnionsClient;
 

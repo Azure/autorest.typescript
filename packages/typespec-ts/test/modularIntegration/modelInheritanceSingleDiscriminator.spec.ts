@@ -1,11 +1,10 @@
-import { describe, it, beforeEach } from "vitest";
+import { describe, it, beforeEach, assert } from "vitest";
 
 import {
   Eagle,
   SingleDiscriminatorClient,
   Sparrow
 } from "./generated/type/model/inheritance/single-discriminator/src/index.js";
-import { assert } from "chai";
 
 describe("SingleDiscriminatorClient Rest Client", () => {
   let client: SingleDiscriminatorClient;

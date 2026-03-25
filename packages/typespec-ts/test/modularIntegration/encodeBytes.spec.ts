@@ -1,6 +1,5 @@
-import { describe, it, beforeEach } from "vitest";
+import { describe, it, beforeEach, assert } from "vitest";
 
-import { assert } from "chai";
 import { BytesClient } from "./generated/encode/bytes/src/index.js";
 import { stringToUint8Array, uint8ArrayToString } from "@azure/core-util";
 import { readFileSync } from "fs";

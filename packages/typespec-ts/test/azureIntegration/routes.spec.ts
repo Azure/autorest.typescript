@@ -1,9 +1,8 @@
-import { describe, it, beforeEach } from "vitest";
+import { describe, it, beforeEach, assert } from "vitest";
 
 import RoutesClientFactory, {
   RoutesClient
 } from "./generated/routes/src/index.js";
-import { assert } from "chai";
 describe("RoutesClient Rest Client", () => {
   let client: RoutesClient;
 

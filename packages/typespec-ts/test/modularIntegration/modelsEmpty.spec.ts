@@ -1,7 +1,6 @@
-import { describe, it, beforeEach } from "vitest";
+import { describe, it, beforeEach, assert } from "vitest";
 
 import { EmptyClient } from "./generated/type/model/empty/src/index.js";
-import { assert } from "chai";
 
 const body = {};
 describe("Empty Client", () => {

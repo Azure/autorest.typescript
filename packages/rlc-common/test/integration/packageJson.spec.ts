@@ -2,16 +2,13 @@
 // Licensed under the MIT License.
 
 
-
-import { describe, it } from "vitest";
+import { describe, it, expect } from "vitest";
 
 import { TestModelConfig, createMockModel } from "./mockHelper.js";
 import {
   buildPackageFile,
   updatePackageFile
 } from "../../src/metadata/buildPackageFile.js";
-
-import { expect } from "chai";
 
 describe("Package file generation", () => {
   describe("Flavor agnostic config", () => {

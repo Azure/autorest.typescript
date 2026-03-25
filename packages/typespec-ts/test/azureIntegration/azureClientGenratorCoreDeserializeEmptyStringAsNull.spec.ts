@@ -1,6 +1,5 @@
-import { describe, it, beforeEach } from "vitest";
+import { describe, it, beforeEach, assert } from "vitest";
 
-import { assert } from "chai";
 import DeserializeEmptyStringAsNullClientFactory, {
   DeserializeEmptyStringAsNullClient
 } from "./generated/azure/client-generator-core/deserialize-empty-string-as-null/src/index.js";

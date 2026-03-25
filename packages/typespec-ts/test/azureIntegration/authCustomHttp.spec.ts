@@ -1,9 +1,8 @@
-import { describe, it, beforeEach } from "vitest";
+import { describe, it, beforeEach, assert } from "vitest";
 
 import AuthHttpCustomClientFactory, {
   AuthHttpCustomClient
 } from "./generated/authentication/http/custom/src/index.js";
-import { assert } from "chai";
 describe("AuthHttpCustomClient Rest Client", () => {
   let validKeyClient: AuthHttpCustomClient;
   let invalidKeyClient: AuthHttpCustomClient;

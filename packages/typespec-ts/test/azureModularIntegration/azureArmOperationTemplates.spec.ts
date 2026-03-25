@@ -1,7 +1,6 @@
-import { describe, it, beforeEach } from "vitest";
+import { describe, it, beforeEach, assert } from "vitest";
 
 import { OperationTemplatesClient } from "./generated/azure/resource-manager/operation-templates/src/index.js";
-import { assert } from "chai";
 
 describe("Azure ARM Operation Templates", () => {
   let client: OperationTemplatesClient;

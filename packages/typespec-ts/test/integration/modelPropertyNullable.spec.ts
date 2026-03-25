@@ -1,6 +1,5 @@
-import { describe, it, beforeEach } from "vitest";
+import { describe, it, beforeEach, assert } from "vitest";
 
-import { assert } from "chai";
 import TypePropertyNullableClientFactory, {
   NullableClient
 } from "./generated/type/property/nullable/src/index.js";

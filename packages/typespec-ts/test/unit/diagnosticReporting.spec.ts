@@ -1,6 +1,5 @@
-import { describe, it, beforeEach, afterAll } from "vitest";
+import { describe, it, beforeEach, afterAll, assert } from "vitest";
 
-import { assert } from "chai";
 import { NoTarget } from "@typespec/compiler";
 import { buildModelDeserializer } from "../../src/modular/serialization/buildDeserializerFunction.js";
 import { buildModelSerializer } from "../../src/modular/serialization/buildSerializerFunction.js";

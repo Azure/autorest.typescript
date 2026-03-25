@@ -1,7 +1,6 @@
-import { describe, it, beforeEach } from "vitest";
+import { describe, it, beforeEach, assert } from "vitest";
 
 import { LargeHeaderClient } from "./generated/azure/resource-manager/large-header/src/index.js";
-import { assert } from "chai";
 
 describe("Azure ARM Large Header Client", () => {
   let client: LargeHeaderClient;

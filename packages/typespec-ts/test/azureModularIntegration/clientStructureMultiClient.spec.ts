@@ -1,10 +1,9 @@
-import { describe, it, beforeEach } from "vitest";
+import { describe, it, beforeEach, assert } from "vitest";
 
 import {
   ClientAClient,
   ClientBClient
 } from "./generated/client/structure/multi-client/src/index.js";
-import { assert } from "chai";
 describe("Client Structure Multi-Client Rest Client", () => {
   let clientA: ClientAClient;
   let clientB: ClientBClient;
