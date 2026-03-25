@@ -1548,7 +1548,7 @@ function getHeaderAndBodyParameters(
 
   const parametersImplementation: Record<
     "header" | "body",
-    { paramMap: string; param: SdkHttpParameter }[]
+    { paramMap: string; param: SdkHttpParameter; paramAccessor?: string }[]
   > = {
     header: [],
     body: []
@@ -1573,9 +1573,11 @@ function getHeaderAndBodyParameters(
         param.methodParameterSegments &&
         param.methodParameterSegments.length > 0
       ) {
+        const paramAccessor = getParamAccessor(param, optionalParamName);
         parametersImplementation[param.kind].push({
-          paramMap: getParameterMap(dpgContext, param, optionalParamName),
-          param
+          paramMap: getParameterMap(dpgContext, param, paramAccessor),
+          param,
+          paramAccessor
         });
       }
     }
@@ -1589,7 +1591,7 @@ function getHeaderAndBodyParameters(
 
   if (parametersImplementation.header.length) {
     paramStr = `${paramStr}\nheaders: {${parametersImplementation.header
-      .map((i) => buildHeaderParameter(dpgContext.program, i.paramMap, i.param))
+      .map((i) => buildHeaderParameter(dpgContext.program, i.paramMap, i.param, i.paramAccessor!))
       .join(",\n")}, ...${optionalParamName}.requestOptions?.headers },`;
   }
   if (
@@ -1609,7 +1611,8 @@ function getHeaderAndBodyParameters(
 function buildHeaderParameter(
   program: Program,
   paramMap: string,
-  param: SdkHttpParameter
+  param: SdkHttpParameter,
+  paramAccessor: string
 ): string {
   const effectiveOptional = getEffectiveOptional(param);
   if (!effectiveOptional && isTypeNullable(param.type) === true) {
@@ -1620,16 +1623,12 @@ function buildHeaderParameter(
     return paramMap;
   }
 
-  // paramMap is in the format '"key": valueExpr', extract the value expression
-  // to use as the condition accessor instead of recomputing it.
-  const valueExpr = paramMap.substring(paramMap.indexOf(": ") + 2);
-
   const conditions = [];
   if (effectiveOptional) {
-    conditions.push(`${valueExpr} !== undefined`);
+    conditions.push(`${paramAccessor} !== undefined`);
   }
   if (isTypeNullable(param.type) === true) {
-    conditions.push(`${valueExpr} !== null`);
+    conditions.push(`${paramAccessor} !== null`);
   }
   return conditions.length > 0
     ? `...(${conditions.join(" && ")} ? {${paramMap}} : {})`
@@ -1760,7 +1759,7 @@ function getEncodingFormat(type: { format?: string }) {
 export function getParameterMap(
   context: SdkContext,
   param: SdkHttpParameter,
-  optionalParamName: string = "options"
+  paramAccessor: string
 ): string {
   // Use lowercase for header names since HTTP headers are case-insensitive
   const serializedName =
@@ -1785,26 +1784,23 @@ export function getParameterMap(
     return getCollectionFormatForParam(
       context,
       param,
-      optionalParamName,
+      paramAccessor,
       serializedName
     );
   }
-
-  const methodParamExpr = getMethodParamExpr(param);
 
   // if the parameter or property is optional, we don't need to handle the default value
   if (isOptional(param)) {
     return getOptional(
       context,
       param,
-      optionalParamName,
       serializedName,
-      methodParamExpr
+      paramAccessor
     );
   }
 
   if (isRequired(param)) {
-    return getRequired(context, param, serializedName, methodParamExpr);
+    return getRequired(context, param, serializedName, paramAccessor);
   }
 
   reportDiagnostic(context.program, {
@@ -1823,14 +1819,14 @@ export function getParameterMap(
 function getCollectionFormatForParam(
   context: SdkContext,
   param: SdkHttpParameter,
-  optionalParamName: string = "options",
+  paramAccessor: string,
   serializedName: string
 ) {
   const format = (param as any).collectionFormat;
   return `"${serializedName}": ${serializeRequestValue(
     context,
     param.type,
-    param.optional ? `${optionalParamName}?.${param.name}` : param.name,
+    paramAccessor,
     !param.optional,
     format,
     serializedName,
@@ -1899,23 +1895,20 @@ function getRequired(
   context: SdkContext,
   param: SdkHttpParameter,
   serializedName: string,
-  methodParamExpr?: string
+  paramAccessor: string
 ) {
-  const clientValue = param.onClient
-    ? `context.${param.name}`
-    : (methodParamExpr ?? param.name);
   if (param.type.kind === "model") {
     const propertiesStr = getRequestModelMapping(
       context,
       { ...param.type, optional: param.optional },
-      clientValue
+      paramAccessor
     );
     return `"${serializedName}": { ${propertiesStr.join(",")} }`;
   }
   return `"${serializedName}": ${serializeRequestValue(
     context,
     param.type,
-    clientValue,
+    paramAccessor,
     true,
     getEncodeForType(param.type),
     serializedName,
@@ -1941,24 +1934,9 @@ function isOptional(param: SdkHttpParameter) {
 function getOptional(
   context: SdkContext,
   param: SdkHttpParameter,
-  optionalParamName: string,
   serializedName: string,
-  methodParamExpr?: string
+  paramAccessor: string
 ) {
-  let paramName: string;
-  if (param.onClient) {
-    paramName = `context.${param.name}`;
-  } else if (methodParamExpr) {
-    const methodParam = param.methodParameterSegments[0]?.[0];
-    if (methodParam?.optional) {
-      paramName = `${optionalParamName}?.${methodParamExpr}`;
-    } else {
-      paramName = methodParamExpr;
-    }
-  } else {
-    paramName = `${optionalParamName}?.${param.name}`;
-  }
-
   // Apply client default value if present and type matches
   const defaultSuffix =
     param.clientDefaultValue !== undefined &&
@@ -1970,7 +1948,7 @@ function getOptional(
     const propertiesStr = getRequestModelMapping(
       context,
       { ...param.type, optional: param.optional },
-      paramName + "?."
+      paramAccessor + "?."
     );
     const serializeContent = `{${propertiesStr.join(",")}}`;
     return `"${serializedName}": ${serializeContent}`;
@@ -1978,7 +1956,7 @@ function getOptional(
   const serializedValue = serializeRequestValue(
     context,
     param.type,
-    paramName,
+    paramAccessor,
     false,
     getEncodeForType(param.type),
     serializedName,
@@ -2065,13 +2043,14 @@ function getQueryParameters(
         param.methodParameterSegments &&
         param.methodParameterSegments.length > 0
       ) {
+        const paramAccessor = getParamAccessor(param);
         parametersImplementation[param.kind].push({
           paramMap: getParameterMap(dpgContext, {
             ...param,
             // TODO: remember to remove this hack once compiler gives us a name
             // https://github.com/microsoft/typespec/issues/6743
             serializedName: getUriTemplateQueryParamName(param.serializedName)
-          }),
+          }, paramAccessor),
           param
         });
       }
@@ -2094,8 +2073,36 @@ function escapeUriTemplateParamName(name: string) {
   });
 }
 
-/** Builds a property accessor expression from the param's methodParameterSegments. */
-function getMethodParamExpr(param: SdkHttpParameter): string | undefined {
+/**
+ * Returns the parameter expression matching the operation signature for an HTTP parameter.
+ * 1. Client-level parameter (`param.onClient`): returns `context.<paramName>`.
+ * 2. Method-level parameter with `methodParameterSegments`: returns the expression
+ *    built from those segments (e.g. `options?.ocpDate`, `body.nested`).
+ * 3. Fallback: returns the parameter name directly, with optional chaining if optional.
+ */
+function getParamAccessor(
+  param: SdkHttpParameter,
+  optionalParamName: string = "options"
+): string {
+  if (param.onClient) {
+    return `context.${param.name}`;
+  }
+  const methodParamExpr = getMethodParamExpr(param);
+  if (methodParamExpr) {
+    return methodParamExpr;
+  }
+  if (getEffectiveOptional(param)) {
+    return `${optionalParamName}?.${param.name}`;
+  }
+  return param.name;
+}
+
+/**
+ * Builds a property accessor expression from the param's `methodParameterSegments`.
+ * Each segment represents a level of property access (e.g. `options?.nested.value`).
+ * Returns `undefined` when no segments are available, so the caller can fall back.
+ */
+function getMethodParamExpr(param: SdkHttpParameter, optionalParamName: string = "options"): string | undefined {
   const segments = param.methodParameterSegments;
   if (segments.length === 0) {
     return undefined;
@@ -2109,6 +2116,10 @@ function getMethodParamExpr(param: SdkHttpParameter): string | undefined {
   for (let i = 0; i < path.length; i++) {
     const segment = path[i]!;
     if (i === 0) {
+      if (segment.optional) {
+        // If the first segment is optional, we need to start with the optionalParamName
+        parts.push(`${optionalParamName}?.`);
+      }
       parts.push(segment.name);
     } else {
       const needsOptionalChain = path[i - 1]!.optional;
@@ -2126,21 +2137,9 @@ function getPathParamExpr(
   if (isConstant(param.type)) {
     return getConstantValue(param.type);
   }
-  const methodParamExpr = getMethodParamExpr(param);
-  let paramName: string;
-  if (param.onClient) {
-    paramName = `context.${param.name}`;
-  } else if (methodParamExpr) {
-    // Only prefix with optionalParamName when the method param itself is optional.
-    const methodParam = param.methodParameterSegments[0]?.[0];
-    if (param.optional && methodParam?.optional) {
-      paramName = `${optionalParamName}?.${methodParamExpr}`;
-    } else {
-      paramName = methodParamExpr;
-    }
-  } else {
-    paramName = param.name;
-  }
+
+  const paramName = getParamAccessor(param, optionalParamName);
+
   return defaultValue
     ? typeof defaultValue === "string"
       ? `${paramName} ?? "${defaultValue}"`

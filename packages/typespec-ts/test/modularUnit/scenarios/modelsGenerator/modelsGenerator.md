@@ -2414,6 +2414,7 @@ op read(@bodyRoot body: A): void;
 export interface A {
   prop1: string;
   prop2: string;
+  name: string;
 }
 ```
 

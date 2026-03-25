@@ -477,8 +477,6 @@ export interface _PagedEvaluation {
   value: Evaluation[];
   /** The link to the next page of items */
   nextLink?: string;
-  /** An opaque, globally-unique, client-generated string identifier for the request. */
-  clientRequestId?: string;
 }
 
 export function _pagedEvaluationDeserializer(item: any): _PagedEvaluation {
@@ -725,8 +723,6 @@ export interface _PagedEvaluationSchedule {
   value: EvaluationSchedule[];
   /** The link to the next page of items */
   nextLink?: string;
-  /** An opaque, globally-unique, client-generated string identifier for the request. */
-  clientRequestId?: string;
 }
 
 export function _pagedEvaluationScheduleDeserializer(item: any): _PagedEvaluationSchedule {

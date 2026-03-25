@@ -1,14 +1,15 @@
-# Should extract header from bodyRoot model containing header metadata
+# Should extract header and query from bodyRoot model containing header and query metadata
 
-Tests that when a @bodyRoot model contains @header properties, the model interface keeps
-the header property, the serializer filters it out, and the operation extracts the header
-from the body parameter.
+Tests that when a @bodyRoot model contains @header and @query properties, the model interface
+keeps the header and query properties, the serializer filters them out, and the operation
+extracts the header and query from the body parameter.
 
 ## TypeSpec
 
 ```tsp
 model RequestBody {
   @header foo: string;
+  @query bar: string;
   name: string;
   age: int32;
 }
@@ -29,6 +30,7 @@ op bodyRootWithHeader(@bodyRoot body: RequestBody): void;
 /** model interface RequestBody */
 export interface RequestBody {
   foo: string;
+  bar: string;
   name: string;
   age: number;
 }
@@ -43,6 +45,7 @@ export function requestBodySerializer(item: RequestBody): any {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { RequestBody, requestBodySerializer } from "../models/models.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import { BodyRootWithHeaderOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -56,8 +59,17 @@ export function _bodyRootWithHeaderSend(
   body: RequestBody,
   options: BodyRootWithHeaderOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/bodyRoot-header{?bar}",
+    {
+      bar: body.bar,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/bodyRoot-header")
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
@@ -181,16 +193,17 @@ export async function createResource(
 }
 ```
 
-# Should extract optional header from bodyRoot model containing optional header metadata
+# Should extract optional header and query from bodyRoot model containing optional header and query metadata
 
-Tests that when a @bodyRoot model contains optional @header properties, the operation
-correctly handles the optional header extraction with conditional checks.
+Tests that when a @bodyRoot model contains optional @header and @query properties, the operation
+correctly handles the optional header and query extraction with conditional checks.
 
 ## TypeSpec
 
 ```tsp
 model OptionalHeaderBody {
   @header foo?: string;
+  @query bar?: string;
   name: string;
   age: int32;
 }
@@ -211,6 +224,7 @@ op bodyRootWithOptionalHeader(@bodyRoot body: OptionalHeaderBody): void;
 /** model interface OptionalHeaderBody */
 export interface OptionalHeaderBody {
   foo?: string;
+  bar?: string;
   name: string;
   age: number;
 }
@@ -225,6 +239,7 @@ export function optionalHeaderBodySerializer(item: OptionalHeaderBody): any {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { OptionalHeaderBody, optionalHeaderBodySerializer } from "../models/models.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import { BodyRootWithOptionalHeaderOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -238,8 +253,17 @@ export function _bodyRootWithOptionalHeaderSend(
   body: OptionalHeaderBody,
   options: BodyRootWithOptionalHeaderOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/bodyRoot-optional-header{?bar}",
+    {
+      bar: body.bar,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/bodyRoot-optional-header")
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
@@ -365,6 +389,109 @@ export async function createOptionalPathResource(
   options: CreateOptionalPathResourceOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _createOptionalPathResourceSend(context, body, options);
+  return _createOptionalPathResourceDeserialize(result);
+}
+```
+
+# Should extract header and query from optional body model containing header and query metadata
+
+Tests that when an optional body model contains @header and @query properties, the operation
+correctly handles the header and query extraction from the body parameter.
+
+## TypeSpec
+
+```tsp
+model OptionalBodyWithHeader {
+  @header foo?: string;
+  @query bar?: string;
+  name: string;
+  value: int32;
+}
+@route("/optional-body")
+@post
+op createOptionalPathResource(body?: OptionalBodyWithHeader): void;
+```
+
+## Models
+
+```ts models
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/** model interface OptionalBodyWithHeader */
+export interface OptionalBodyWithHeader {
+  foo?: string;
+  bar?: string;
+  name: string;
+  value: number;
+}
+
+export function optionalBodyWithHeaderSerializer(item: OptionalBodyWithHeader): any {
+  return { name: item["name"], value: item["value"] };
+}
+```
+
+## Operations
+
+```ts operations
+import { TestingContext as Client } from "./index.js";
+import { optionalBodyWithHeaderSerializer } from "../models/models.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import { CreateOptionalPathResourceOptionalParams } from "./options.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+
+export function _createOptionalPathResourceSend(
+  context: Client,
+  options: CreateOptionalPathResourceOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/optional-body{?bar}",
+    {
+      bar: options?.body?.bar,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context
+    .path(path)
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      headers: {
+        ...(options?.body?.foo !== undefined ? { foo: options?.body?.foo } : {}),
+        ...options.requestOptions?.headers,
+      },
+      body: {
+        body: !options?.body ? options?.body : optionalBodyWithHeaderSerializer(options?.body),
+      },
+    });
+}
+
+export async function _createOptionalPathResourceDeserialize(
+  result: PathUncheckedResponse,
+): Promise<void> {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return;
+}
+
+export async function createOptionalPathResource(
+  context: Client,
+  options: CreateOptionalPathResourceOptionalParams = { requestOptions: {} },
+): Promise<void> {
+  const result = await _createOptionalPathResourceSend(context, options);
   return _createOptionalPathResourceDeserialize(result);
 }
 ```
