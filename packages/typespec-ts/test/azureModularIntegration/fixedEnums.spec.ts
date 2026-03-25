@@ -12,7 +12,7 @@ describe("FixedEnums Rest Client", () => {
 
   it("should get known value", async () => {
     const result = await client.string.getKnownValue();
-    assert.strictEqual(result, "Monday");
+    assert.strictEqual(result.body, "Monday");
   });
 
   it("should put known value", async () => {

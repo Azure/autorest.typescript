@@ -24,7 +24,12 @@ import {
   SAPWidgetsListWidgetsPagesOptionalParams,
   SAPWidgetsSAPListWidgetsOptionalParams,
 } from "../../api/sapWidgets/options.js";
-import { Widget, SAPUser, AnalyzeResult } from "../../models/models.js";
+import {
+  Widget,
+  SAPUser,
+  AnalyzeResult,
+  SAPWidgetsSAPListWidgetsResponse,
+} from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 
@@ -83,7 +88,7 @@ export interface SAPWidgetsOperations {
     csvArrayHeader: Uint8Array[],
     utcDateHeader: Date,
     options?: SAPWidgetsSAPListWidgetsOptionalParams,
-  ) => Promise<Widget[]>;
+  ) => Promise<SAPWidgetsSAPListWidgetsResponse>;
 }
 
 function _getSAPWidgets(context: SAPWidgetServiceContext) {

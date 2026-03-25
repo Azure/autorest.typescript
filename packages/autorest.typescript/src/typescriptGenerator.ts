@@ -13,7 +13,7 @@ import { generateClient } from "./generators/clientFileGenerator";
 import { generateModels } from "./generators/modelsGenerator";
 import { generateMappers } from "./generators/mappersGenerator";
 import { generateIndexFile } from "./generators/indexGenerator";
-import { generatePackageJson } from "./generators/static/packageFileGenerator";
+import { generatePackageJson, generateWarpConfig } from "./generators/static/packageFileGenerator";
 import { generateApiExtractorConfig } from "./generators/static/apiExtractorConfig";
 import { generateLicenseFile } from "./generators/static/licenseFileGenerator";
 import { generateReadmeFile } from "./generators/static/readmeFileGenerator";
@@ -87,6 +87,9 @@ export async function generateTypeScriptLibrary(
   }
   // Skip metadata generation if `generate-metadata` is explicitly false
   generatePackageJson(project, clientDetails);
+  if (azureSdkForJs && generateMetadata) {
+    generateWarpConfig(project);
+  }
   generateLicenseFile(project);
   generateReadmeFile(codeModel, project, clientDetails);
   if (generateTest) {

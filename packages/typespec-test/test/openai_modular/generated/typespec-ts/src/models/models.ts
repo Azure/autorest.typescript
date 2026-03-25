@@ -3640,3 +3640,24 @@ export enum KnownServiceApiVersions {
   /** 2024-06-01 */
   V20240601 = "2024-06-01",
 }
+
+export type GenerateSpeechFromTextResponse = {
+  /**
+   * BROWSER ONLY
+   *
+   * The response body as a browser Blob.
+   * Always `undefined` in node.js.
+   */
+  blobBody?: Promise<Blob>;
+  /**
+   * NODEJS ONLY
+   *
+   * The response body as a node.js Readable stream.
+   * Always `undefined` in the browser.
+   */
+  readableStreamBody?: NodeJS.ReadableStream;
+};
+
+export type GetAudioTranslationAsPlainTextResponse = { body: string };
+
+export type GetAudioTranscriptionAsPlainTextResponse = { body: string };

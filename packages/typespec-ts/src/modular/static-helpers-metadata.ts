@@ -59,6 +59,11 @@ export const SerializationHelpers = {
     name: "getBinaryResponse",
     location: "serialization/get-binary-response.ts"
   },
+  getBinaryStreamResponse: {
+    kind: "function",
+    name: "getBinaryStreamResponse",
+    location: "serialization/get-binary-stream-response.ts"
+  },
   areAllPropsUndefined: {
     kind: "function",
     name: "areAllPropsUndefined",
@@ -163,6 +168,14 @@ export const CloudSettingHelpers = {
   }
 } as const;
 
+export const CreateRecorderHelpers = {
+  createRecorder: {
+    kind: "function",
+    name: "createRecorder",
+    location: "recordedClient.ts"
+  }
+} as const;
+
 export const XmlHelpers = {
   XmlSerializationOptions: {
     kind: "interface",
@@ -233,5 +246,23 @@ export const XmlHelpers = {
     kind: "interface",
     name: "XmlSerializedObject",
     location: "serialization/xml-helpers.ts"
+  }
+} as const;
+
+export const StorageCompatHelpers = {
+  StorageCompatResponseInfo: {
+    kind: "interface",
+    name: "StorageCompatResponseInfo",
+    location: "storageCompatResponse.ts"
+  },
+  createStorageCompatOnResponse: {
+    kind: "function",
+    name: "createStorageCompatOnResponse",
+    location: "storageCompatResponse.ts"
+  },
+  addStorageCompatResponse: {
+    kind: "function",
+    name: "addStorageCompatResponse",
+    location: "storageCompatResponse.ts"
   }
 } as const;

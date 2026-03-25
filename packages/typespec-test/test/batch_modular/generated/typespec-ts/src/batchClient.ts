@@ -195,6 +195,9 @@ import {
   UploadBatchServiceLogsOptions,
   UploadBatchServiceLogsResult,
   NodeVMExtension,
+  GetNodeFileResponse,
+  GetNodeRemoteDesktopFileResponse,
+  GetTaskFileResponse,
 } from "./models/models.js";
 import { PagedAsyncIterableIterator } from "./static-helpers/pagingHelpers.js";
 import { TokenCredential } from "@azure/core-auth";
@@ -249,7 +252,7 @@ export class BatchClient {
     nodeId: string,
     filePath: string,
     options: GetNodeFileOptionalParams = { requestOptions: {} },
-  ): Promise<Uint8Array> {
+  ): Promise<GetNodeFileResponse> {
     return getNodeFile(this._client, poolId, nodeId, filePath, options);
   }
 
@@ -315,7 +318,7 @@ export class BatchClient {
     poolId: string,
     nodeId: string,
     options: GetNodeRemoteDesktopFileOptionalParams = { requestOptions: {} },
-  ): Promise<Uint8Array> {
+  ): Promise<GetNodeRemoteDesktopFileResponse> {
     return getNodeRemoteDesktopFile(this._client, poolId, nodeId, options);
   }
 
@@ -456,7 +459,7 @@ export class BatchClient {
     taskId: string,
     filePath: string,
     options: GetTaskFileOptionalParams = { requestOptions: {} },
-  ): Promise<Uint8Array> {
+  ): Promise<GetTaskFileResponse> {
     return getTaskFile(this._client, jobId, taskId, filePath, options);
   }
 

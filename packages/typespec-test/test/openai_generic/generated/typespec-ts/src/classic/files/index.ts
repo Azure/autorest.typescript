@@ -15,11 +15,15 @@ import {
   OpenAIFile,
   CreateFileRequest,
   DeleteFileResponse,
+  FilesDownloadResponse,
 } from "../../models/models.js";
 
 /** Interface representing a Files operations. */
 export interface FilesOperations {
-  download: (fileId: string, options?: FilesDownloadOptionalParams) => Promise<string>;
+  download: (
+    fileId: string,
+    options?: FilesDownloadOptionalParams,
+  ) => Promise<FilesDownloadResponse>;
   /**
    *  @fixme delete is a reserved word that cannot be used as an operation name.
    *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")

@@ -12,12 +12,12 @@ describe("ExtensibleEnums Rest Client", () => {
 
   it("should get known value", async () => {
     const result = await client.string.getKnownValue();
-    assert.strictEqual(result, "Monday");
+    assert.strictEqual(result.body, "Monday");
   });
 
   it("should get unknown value", async () => {
     const result = await client.string.getUnknownValue();
-    assert.strictEqual(result, "Weekend");
+    assert.strictEqual(result.body, "Weekend");
   });
 
   it("should put known value", async () => {

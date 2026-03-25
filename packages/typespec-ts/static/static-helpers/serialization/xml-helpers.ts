@@ -108,7 +108,7 @@ const defaultParserOptions = {
   trimValues: false, // Preserve whitespace in text content
   isArray: (
     _name: string,
-    _jpath: string,
+    _jpath: string | unknown,
     isLeafNode: boolean,
     isAttribute: boolean
   ) => {

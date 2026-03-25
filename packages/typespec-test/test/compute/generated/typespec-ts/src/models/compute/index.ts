@@ -2,10 +2,10 @@
 // Licensed under the MIT License.
 
 export type {
-  ComputeVirtualMachine,
-  ComputeVirtualMachineProperties,
-  ComputeRestorePointCollection,
-  ComputeRestorePointCollectionProperties,
+  VirtualMachine,
+  VirtualMachineProperties,
+  RestorePointCollection,
+  RestorePointCollectionProperties,
   ComputeActionGroup,
   ComputeActionGroupsProperties,
 } from "./models.js";

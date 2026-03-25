@@ -2,11 +2,7 @@
 // Licensed under the MIT License.
 
 import { ComputeContext as Client } from "../index.js";
-import {
-  ComputeDiskDisk,
-  computeDiskDiskSerializer,
-  computeDiskDiskDeserializer,
-} from "../../models/computeDisk/models.js";
+import { Disk, diskSerializer, diskDeserializer } from "../../models/computeDisk/models.js";
 import { errorResponseDeserializer } from "../../models/models.js";
 import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
@@ -23,7 +19,7 @@ export function _createOrUpdateSend(
   context: Client,
   resourceGroupName: string,
   diskName: string,
-  resource: ComputeDiskDisk,
+  resource: Disk,
   options: DisksCreateOrUpdateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
@@ -44,13 +40,11 @@ export function _createOrUpdateSend(
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
       headers: { accept: "application/json", ...options.requestOptions?.headers },
-      body: computeDiskDiskSerializer(resource),
+      body: diskSerializer(resource),
     });
 }
 
-export async function _createOrUpdateDeserialize(
-  result: PathUncheckedResponse,
-): Promise<ComputeDiskDisk> {
+export async function _createOrUpdateDeserialize(result: PathUncheckedResponse): Promise<Disk> {
   const expectedStatuses = ["200", "201", "202"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -59,7 +53,7 @@ export async function _createOrUpdateDeserialize(
     throw error;
   }
 
-  return computeDiskDiskDeserializer(result.body);
+  return diskDeserializer(result.body);
 }
 
 /** Creates or updates a disk. */
@@ -67,9 +61,9 @@ export function createOrUpdate(
   context: Client,
   resourceGroupName: string,
   diskName: string,
-  resource: ComputeDiskDisk,
+  resource: Disk,
   options: DisksCreateOrUpdateOptionalParams = { requestOptions: {} },
-): PollerLike<OperationState<ComputeDiskDisk>, ComputeDiskDisk> {
+): PollerLike<OperationState<Disk>, Disk> {
   return getLongRunningPoller(context, _createOrUpdateDeserialize, ["200", "201", "202"], {
     updateIntervalInMs: options?.updateIntervalInMs,
     abortSignal: options?.abortSignal,
@@ -77,7 +71,7 @@ export function createOrUpdate(
       _createOrUpdateSend(context, resourceGroupName, diskName, resource, options),
     resourceLocationConfig: "azure-async-operation",
     apiVersion: "2025-01-02",
-  }) as PollerLike<OperationState<ComputeDiskDisk>, ComputeDiskDisk>;
+  }) as PollerLike<OperationState<Disk>, Disk>;
 }
 
 export function _getSend(
@@ -106,7 +100,7 @@ export function _getSend(
     });
 }
 
-export async function _getDeserialize(result: PathUncheckedResponse): Promise<ComputeDiskDisk> {
+export async function _getDeserialize(result: PathUncheckedResponse): Promise<Disk> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -115,7 +109,7 @@ export async function _getDeserialize(result: PathUncheckedResponse): Promise<Co
     throw error;
   }
 
-  return computeDiskDiskDeserializer(result.body);
+  return diskDeserializer(result.body);
 }
 
 /** Gets information about a disk. */
@@ -124,7 +118,7 @@ export async function get(
   resourceGroupName: string,
   diskName: string,
   options: DisksGetOptionalParams = { requestOptions: {} },
-): Promise<ComputeDiskDisk> {
+): Promise<Disk> {
   const result = await _getSend(context, resourceGroupName, diskName, options);
   return _getDeserialize(result);
 }
