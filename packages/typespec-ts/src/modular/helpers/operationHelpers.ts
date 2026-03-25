@@ -1530,7 +1530,7 @@ function getHeaderAndBodyParameters(
 
   const parametersImplementation: Record<
     "header" | "body",
-    { paramMap: string; param: SdkHttpParameter; paramAccessor?: string }[]
+    { paramMap: string; param: SdkHttpParameter; paramAccessor: string }[]
   > = {
     header: [],
     body: []
@@ -1573,7 +1573,14 @@ function getHeaderAndBodyParameters(
 
   if (parametersImplementation.header.length) {
     paramStr = `${paramStr}\nheaders: {${parametersImplementation.header
-      .map((i) => buildHeaderParameter(dpgContext.program, i.paramMap, i.param, i.paramAccessor!))
+      .map((i) =>
+        buildHeaderParameter(
+          dpgContext.program,
+          i.paramMap,
+          i.param,
+          i.paramAccessor
+        )
+      )
       .join(",\n")}, ...${optionalParamName}.requestOptions?.headers },`;
   }
   if (
@@ -1773,12 +1780,7 @@ export function getParameterMap(
 
   // if the parameter or property is optional, we don't need to handle the default value
   if (isOptional(param)) {
-    return getOptional(
-      context,
-      param,
-      serializedName,
-      paramAccessor
-    );
+    return getOptional(context, param, serializedName, paramAccessor);
   }
 
   if (isRequired(param)) {
@@ -2027,12 +2029,16 @@ function getQueryParameters(
       ) {
         const paramAccessor = getParamAccessor(param);
         parametersImplementation[param.kind].push({
-          paramMap: getParameterMap(dpgContext, {
-            ...param,
-            // TODO: remember to remove this hack once compiler gives us a name
-            // https://github.com/microsoft/typespec/issues/6743
-            serializedName: getUriTemplateQueryParamName(param.serializedName)
-          }, paramAccessor),
+          paramMap: getParameterMap(
+            dpgContext,
+            {
+              ...param,
+              // TODO: remember to remove this hack once compiler gives us a name
+              // https://github.com/microsoft/typespec/issues/6743
+              serializedName: getUriTemplateQueryParamName(param.serializedName)
+            },
+            paramAccessor
+          ),
           param
         });
       }
@@ -2084,7 +2090,10 @@ function getParamAccessor(
  * Each segment represents a level of property access (e.g. `options?.nested.value`).
  * Returns `undefined` when no segments are available, so the caller can fall back.
  */
-function getMethodParamExpr(param: SdkHttpParameter, optionalParamName: string = "options"): string | undefined {
+function getMethodParamExpr(
+  param: SdkHttpParameter,
+  optionalParamName: string = "options"
+): string | undefined {
   const segments = param.methodParameterSegments;
   if (segments.length === 0) {
     return undefined;
