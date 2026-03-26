@@ -279,9 +279,9 @@ export async function get(
 }
 ```
 
-# wrap-non-model-return returns array-of-models response directly
+# wrap-non-model-return does not wrap array-of-models response
 
-Array-of-models responses are returned as `T[]` directly (no `body` wrapper) to match HLC behavior and avoid breaking changes during TSP migration.
+Array-of-models responses (Composite kind) are not wrapped — they are returned as `Resource[]` directly (matching HLC behavior where PropertyKind.Composite means no body wrapper).
 
 ## TypeSpec
 
@@ -301,17 +301,11 @@ op list(): Resource[];
 wrap-non-model-return: true
 ```
 
-## Models
-
-```ts models alias ListResponse
-export type ListResponse = Resource[];
-```
-
 ## Operations
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { resourceDeserializer, ListResponse } from "../models/models.js";
+import { Resource, resourceArrayDeserializer } from "../models/models.js";
 import { ListOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -332,90 +326,21 @@ export function _listSend(
     });
 }
 
-export async function _listDeserialize(result: PathUncheckedResponse): Promise<ListResponse> {
+export async function _listDeserialize(result: PathUncheckedResponse): Promise<Resource[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return result.body.map((p: any) => {
-    return resourceDeserializer(p);
-  });
+  return resourceArrayDeserializer(result.body);
 }
 
 export async function list(
   context: Client,
   options: ListOptionalParams = { requestOptions: {} },
-): Promise<ListResponse> {
+): Promise<Resource[]> {
   const result = await _listSend(context, options);
   return _listDeserialize(result);
-}
-```
-
-# wrap-non-model-return returns unknown response as Record<string, unknown>
-
-Unknown response types are returned as `Record<string, unknown>` directly (no `body` wrapper) to match HLC behavior.
-
-## TypeSpec
-
-```tsp
-@route("/metadata")
-@get
-op getMetadata(): unknown;
-```
-
-```yaml
-wrap-non-model-return: true
-```
-
-## Models
-
-```ts models alias GetMetadataResponse
-export type GetMetadataResponse = Record<string, unknown>;
-```
-
-## Operations
-
-```ts operations
-import { TestingContext as Client } from "./index.js";
-import { GetMetadataResponse } from "../models/models.js";
-import { GetMetadataOptionalParams } from "./options.js";
-import {
-  StreamableMethod,
-  PathUncheckedResponse,
-  createRestError,
-  operationOptionsToRequestParameters,
-} from "@azure-rest/core-client";
-
-export function _getMetadataSend(
-  context: Client,
-  options: GetMetadataOptionalParams = { requestOptions: {} },
-): StreamableMethod {
-  return context
-    .path("/metadata")
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json", ...options.requestOptions?.headers },
-    });
-}
-
-export async function _getMetadataDeserialize(
-  result: PathUncheckedResponse,
-): Promise<GetMetadataResponse> {
-  const expectedStatuses = ["200"];
-  if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
-  }
-
-  return result.body;
-}
-
-export async function getMetadata(
-  context: Client,
-  options: GetMetadataOptionalParams = { requestOptions: {} },
-): Promise<GetMetadataResponse> {
-  const result = await _getMetadataSend(context, options);
-  return _getMetadataDeserialize(result);
 }
 ```
 
@@ -512,7 +437,7 @@ op getLogs(): {
 
 ```ts operations function _getLogsDeserialize
 export async function _getLogsDeserialize(
-result: PathUncheckedResponse & GetLogsResponse,
+  result: PathUncheckedResponse & GetLogsResponse,
 ): Promise<GetLogsResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {

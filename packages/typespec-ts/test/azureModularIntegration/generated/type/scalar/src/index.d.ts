@@ -119,7 +119,9 @@ export declare interface StringPutOptionalParams extends OperationOptions {
 export declare interface UnknownGetOptionalParams extends OperationOptions {
 }
 
-export declare type UnknownGetResponse = Record<string, unknown>;
+export declare type UnknownGetResponse = {
+    body: any;
+};
 
 export declare interface UnknownOperations {
     put: (body: any, options?: UnknownPutOptionalParams) => Promise<void>;

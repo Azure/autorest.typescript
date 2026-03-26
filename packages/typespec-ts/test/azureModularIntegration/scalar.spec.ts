@@ -53,7 +53,7 @@ describe("Scalar Client", () => {
         }
       }
     });
-    assert.strictEqual<unknown>(result, "test");
+    assert.strictEqual(result.body, "test");
   });
 
   it("should put unknown value", async () => {

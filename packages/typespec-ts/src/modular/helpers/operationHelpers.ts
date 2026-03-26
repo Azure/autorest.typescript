@@ -190,8 +190,7 @@ export function getDeserializePrivateFunction(
   );
 
   // Check if we need to wrap the non-model return type
-  const { shouldWrap, isBinary, isModelArray, isUnknown } =
-    checkWrapNonModelReturn(context, operation);
+  const { shouldWrap, isBinary } = checkWrapNonModelReturn(context, operation);
   // For binary wrap, the deserializer receives PathUncheckedResponse & { blobBody, readableStreamBody }
   // which is returned by getBinaryStreamResponse.
   const isBinaryWrap = shouldWrap && isBinary;
@@ -402,21 +401,6 @@ export function getDeserializePrivateFunction(
           statements.push(
             `return { blobBody: result.blobBody, readableStreamBody: result.readableStreamBody };`
           );
-        } else if (isModelArray) {
-          // Array-of-models response: return the deserialized array directly (no body wrapper)
-          // to match HLC behavior and avoid breaking changes during TSP migration
-          const bodyValue = deserializeResponseValue(
-            context,
-            deserializedType,
-            "result.body",
-            true,
-            getEncodeForType(deserializedType)
-          );
-          statements.push(`return ${bodyValue};`);
-        } else if (isUnknown) {
-          // Unknown response: return result.body directly as Record<string, unknown>
-          // to match HLC behavior
-          statements.push(`return result.body;`);
         } else {
           // Non-model response: wrap with body property
           // Generate the appropriate deserialization for the body value
@@ -3049,27 +3033,13 @@ export function getOperationResponseTypeName(
 
 /**
  * Determines whether wrapping the non-model return type is needed for an operation.
- * Returns an object with:
- * - `shouldWrap`: whether to create a named response type alias
- * - `isBinary`: whether it's a binary response
- * - `isModelArray`: whether it's an array-of-models response (returned directly without `body` wrapper, matching HLC behavior)
- * - `isUnknown`: whether it's an unknown response type (returned as Record<string, unknown>, matching HLC behavior)
+ * Returns an object with `shouldWrap` (whether to wrap) and `isBinary` (whether it's a binary response).
  */
 export function checkWrapNonModelReturn(
   context: SdkContext,
   operation: ServiceOperation
-): {
-  shouldWrap: boolean;
-  isBinary: boolean;
-  isModelArray: boolean;
-  isUnknown: boolean;
-} {
-  const noWrap = {
-    shouldWrap: false,
-    isBinary: false,
-    isModelArray: false,
-    isUnknown: false
-  };
+): { shouldWrap: boolean; isBinary: boolean } {
+  const noWrap = { shouldWrap: false, isBinary: false };
 
   // Only for non-LRO, non-paging normal operations
   if (
@@ -3095,44 +3065,18 @@ export function checkWrapNonModelReturn(
 
   // Check if it's a binary (bytes with binary content type) response
   if (type.__raw && isBinaryPayload(context, type.__raw, contentTypes)) {
-    return {
-      shouldWrap: true,
-      isBinary: true,
-      isModelArray: false,
-      isUnknown: false
-    };
+    return { shouldWrap: true, isBinary: true };
   }
 
-  // Check if it's an array-of-models response (e.g. Resource[])
-  // These are returned directly as T[] to match HLC behavior and avoid breaking changes during TSP migration
+  // Don't wrap array-of-models responses (e.g. Resource[]) — they are returned directly
+  // to match HLC behavior (PropertyKind.Composite) and avoid breaking changes during TSP migration
   if (type.kind === "array" && type.valueType.kind === "model") {
-    return {
-      shouldWrap: true,
-      isBinary: false,
-      isModelArray: true,
-      isUnknown: false
-    };
-  }
-
-  // Check if it's an unknown type (free-form object)
-  // These are returned as Record<string, unknown> directly to match HLC behavior
-  if (type.kind === "unknown") {
-    return {
-      shouldWrap: true,
-      isBinary: false,
-      isModelArray: false,
-      isUnknown: true
-    };
+    return noWrap;
   }
 
   // Check if it's a non-model, non-record type (array, scalar, enum, etc.)
   if (type.kind !== "model" && type.kind !== "dict") {
-    return {
-      shouldWrap: true,
-      isBinary: false,
-      isModelArray: false,
-      isUnknown: false
-    };
+    return { shouldWrap: true, isBinary: false };
   }
 
   return noWrap;
@@ -3141,16 +3085,12 @@ export function checkWrapNonModelReturn(
 /**
  * Builds a TypeAliasDeclarationStructure for the non-model response wrapper type.
  * - For binary responses: { blobBody?: Promise<Blob>; readableStreamBody?: NodeJS.ReadableStream }
- * - For array-of-models responses: <ElementType>[] (returned directly to match HLC behavior)
- * - For unknown responses: Record<string, unknown> (to match HLC behavior)
  * - For other non-model responses: { body: <type> }
  */
 export function buildNonModelResponseTypeDeclaration(
   context: SdkContext,
   method: [string[], ServiceOperation],
-  isBinary: boolean,
-  isModelArray: boolean,
-  isUnknown: boolean
+  isBinary: boolean
 ): TypeAliasDeclarationStructure {
   const typeName = getOperationResponseTypeName(method);
   const operation = method[1];
@@ -3173,15 +3113,6 @@ export function buildNonModelResponseTypeDeclaration(
        */
       readableStreamBody?: NodeJS.ReadableStream;
   }`;
-  } else if (isModelArray) {
-    // Array-of-models responses are returned as T[] directly (no body wrapper) to match HLC behavior
-    // and avoid breaking changes during TSP migration
-    const arrayType = operation.response.type! as { valueType: any };
-    const elementType = getTypeExpression(context, arrayType.valueType);
-    typeBody = `${elementType}[]`;
-  } else if (isUnknown) {
-    // Unknown responses are returned as Record<string, unknown> to match HLC behavior
-    typeBody = "Record<string, unknown>";
   } else {
     const returnType = getTypeExpression(context, operation.response.type!);
     typeBody = `{ body: ${returnType} }`;
