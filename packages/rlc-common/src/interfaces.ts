@@ -272,6 +272,12 @@ export interface RLCOptions {
    * `_response` property containing `rawResponse`, `parsedBody`, and `parsedHeaders`.
    */
   enableStorageCompat?: boolean;
+  /**
+   * When set to true, TypeSpec `unknown` type will be translated to `Record<string, unknown>`
+   * instead of `any` in the generated Modular SDK. This is useful when migrating from HLC
+   * where `unknown` in swagger mapped to `Record<string, unknown>`.
+   */
+  treatUnknownAsRecord?: boolean;
 }
 
 export interface ServiceInfo {
