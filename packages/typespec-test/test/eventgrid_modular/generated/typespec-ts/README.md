@@ -1,6 +1,6 @@
-# Azure.Messaging.EventGrid client library for JavaScript
+# EventGrid client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in Node.js and in browsers) for Azure.Messaging.EventGrid client.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for EventGrid client.
 
 Azure Messaging EventGrid Client
 
@@ -20,7 +20,7 @@ See our [support policy](https://github.com/Azure/azure-sdk-for-js/blob/main/SUP
 
 ### Install the `@msinternal/eventgrid` package
 
-Install the Azure.Messaging.EventGrid client library for JavaScript with `npm`:
+Install the EventGrid client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/eventgrid
@@ -35,5 +35,5 @@ To use this client library in the browser, first you need to use a bundler. For 
 
 ### EventGridClient
 
-`EventGridClient` is the primary interface for developers using the Azure.Messaging.EventGrid client library. Explore the methods on this client object to understand the different features of the Azure.Messaging.EventGrid service that you can access.
+`EventGridClient` is the primary interface for developers using the EventGrid client library. Explore the methods on this client object to understand the different features of the EventGrid service that you can access.
 

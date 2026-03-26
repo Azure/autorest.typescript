@@ -59,10 +59,10 @@ export const SerializationHelpers = {
     name: "getBinaryResponse",
     location: "serialization/get-binary-response.ts"
   },
-  getBinaryResponseBody: {
+  getBinaryStreamResponse: {
     kind: "function",
-    name: "getBinaryResponseBody",
-    location: "serialization/get-binary-response-body.ts"
+    name: "getBinaryStreamResponse",
+    location: "serialization/get-binary-stream-response.ts"
   },
   areAllPropsUndefined: {
     kind: "function",

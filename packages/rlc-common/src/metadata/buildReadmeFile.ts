@@ -497,7 +497,9 @@ function getServiceName(model: RLCModel) {
     model?.options?.packageDetails?.scopeName === "azure" ||
     model?.options?.packageDetails?.scopeName === "azure-rest";
   const libraryName = model.libraryName;
-  const serviceTitle = model.options?.serviceInfo?.title ?? model.libraryName;
+  const serviceTitle = model.options?.isModularLibrary
+    ? model.libraryName
+    : (model.options?.serviceInfo?.title ?? model.libraryName);
   const batch = model?.options?.batch,
     packageDetails = model?.options?.packageDetails;
   let simpleServiceName =

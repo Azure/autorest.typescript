@@ -33,7 +33,7 @@ import {
   GetAudioTranslationAsPlainTextResponse,
   GetAudioTranscriptionAsPlainTextResponse,
 } from "../models/models.js";
-import { getBinaryResponseBody } from "../static-helpers/serialization/get-binary-response-body.js";
+import { getBinaryStreamResponse } from "../static-helpers/serialization/get-binary-stream-response.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   GetEmbeddingsOptionalParams,
@@ -128,9 +128,14 @@ export function _generateSpeechFromTextSend(
 }
 
 export async function _generateSpeechFromTextDeserialize(
-  result: StreamableMethod,
+  result: PathUncheckedResponse & GenerateSpeechFromTextResponse,
 ): Promise<GenerateSpeechFromTextResponse> {
-  return getBinaryResponseBody(result, ["200"]);
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return { blobBody: result.blobBody, readableStreamBody: result.readableStreamBody };
 }
 
 /** Generates text-to-speech audio from the input text. */
@@ -141,7 +146,8 @@ export async function generateSpeechFromText(
   options: GenerateSpeechFromTextOptionalParams = { requestOptions: {} },
 ): Promise<GenerateSpeechFromTextResponse> {
   const streamableMethod = _generateSpeechFromTextSend(context, deploymentId, body, options);
-  return _generateSpeechFromTextDeserialize(streamableMethod);
+  const result = await getBinaryStreamResponse(streamableMethod);
+  return _generateSpeechFromTextDeserialize(result);
 }
 
 export function _getImageGenerationsSend(
