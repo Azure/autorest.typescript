@@ -93,6 +93,7 @@ function extractRLCOptions(
   const compatibilityQueryMultiFormat =
     emitterOptions["compatibility-query-multi-format"];
   const enableStorageCompat = emitterOptions["enable-storage-compat"] === true;
+  const unknownAsAny = getUnknownAsAny(emitterOptions);
   const typespecTitleMap = emitterOptions["typespec-title-map"];
   const hasSubscriptionId = getSubscriptionId(dpgContext);
   const ignoreNullableOnOptional = getIgnoreNullableOnOptional(
@@ -138,7 +139,8 @@ function extractRLCOptions(
     ignoreNullableOnOptional,
     wrapNonModelReturn,
     isMultiService,
-    enableStorageCompat
+    enableStorageCompat,
+    unknownAsAny
   };
 }
 
@@ -515,4 +517,12 @@ export function getSubscriptionId(dpgContext: SdkContext) {
     }
   }
   return false;
+}
+
+function getUnknownAsAny(emitterOptions: EmitterOptions): boolean {
+  if (emitterOptions["unknown-as-any"] !== undefined) {
+    return Boolean(emitterOptions["unknown-as-any"]);
+  }
+  // Default to true: emit `any` for TypeSpec `unknown` (current behavior)
+  return true;
 }

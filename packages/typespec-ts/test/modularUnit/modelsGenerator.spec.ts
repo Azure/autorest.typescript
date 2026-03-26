@@ -98,3 +98,117 @@ describe("inheritance & polymorphism", () => {
     );
   });
 });
+
+describe("unknown-as-any option", () => {
+  it("should emit 'any' for unknown type by default", async () => {
+    const tspContent = `
+    model TestModel {
+      prop: unknown;
+    }
+    op read(@body body: TestModel): TestModel;
+    `;
+    const modelFile = await emitModularModelsFromTypeSpec(tspContent);
+    assert.ok(modelFile);
+    await assertEqualContent(
+      modelFile?.getFullText()!,
+      `
+      /**
+       * This file contains only generated model types and their (de)serializers.
+       * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+       */
+      /* eslint-disable @typescript-eslint/naming-convention */
+      /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+      /** model interface TestModel */
+      export interface TestModel {
+        prop: any;
+      }
+      
+      export function testModelSerializer(item: TestModel): any {
+        return { prop: item["prop"] };
+      }
+      
+      export function testModelDeserializer(item: any): TestModel {
+        return {
+          prop: item["prop"],
+        };
+      }
+      `
+    );
+  });
+
+  it("should emit 'Record<string, unknown>' for unknown type when unknown-as-any is false", async () => {
+    const tspContent = `
+    model TestModel {
+      prop: unknown;
+    }
+    op read(@body body: TestModel): TestModel;
+    `;
+    const modelFile = await emitModularModelsFromTypeSpec(tspContent, {
+      "unknown-as-any": false
+    });
+    assert.ok(modelFile);
+    await assertEqualContent(
+      modelFile?.getFullText()!,
+      `
+      /**
+       * This file contains only generated model types and their (de)serializers.
+       * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+       */
+      /* eslint-disable @typescript-eslint/naming-convention */
+      /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+      /** model interface TestModel */
+      export interface TestModel {
+        prop: Record<string, unknown>;
+      }
+      
+      export function testModelSerializer(item: TestModel): any {
+        return { prop: item["prop"] };
+      }
+      
+      export function testModelDeserializer(item: any): TestModel {
+        return {
+          prop: item["prop"],
+        };
+      }
+      `
+    );
+  });
+
+  it("should emit 'any' for unknown type when unknown-as-any is explicitly true", async () => {
+    const tspContent = `
+    model TestModel {
+      prop: unknown;
+    }
+    op read(@body body: TestModel): TestModel;
+    `;
+    const modelFile = await emitModularModelsFromTypeSpec(tspContent, {
+      "unknown-as-any": true
+    });
+    assert.ok(modelFile);
+    await assertEqualContent(
+      modelFile?.getFullText()!,
+      `
+      /**
+       * This file contains only generated model types and their (de)serializers.
+       * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+       */
+      /* eslint-disable @typescript-eslint/naming-convention */
+      /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+      /** model interface TestModel */
+      export interface TestModel {
+        prop: any;
+      }
+      
+      export function testModelSerializer(item: TestModel): any {
+        return { prop: item["prop"] };
+      }
+      
+      export function testModelDeserializer(item: any): TestModel {
+        return {
+          prop: item["prop"],
+        };
+      }
+      `
+    );
+  });
+});

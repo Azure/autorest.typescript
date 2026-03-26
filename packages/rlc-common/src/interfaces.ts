@@ -272,6 +272,13 @@ export interface RLCOptions {
    * `_response` property containing `rawResponse`, `parsedBody`, and `parsedHeaders`.
    */
   enableStorageCompat?: boolean;
+  /**
+   * When set to false, the TypeSpec `unknown` type will be emitted as `Record<string, unknown>`
+   * instead of `any`. This preserves the HLC-compatible interface for migration scenarios where
+   * TypeSpec `unknown` represents an arbitrary JSON object (formerly `Record<string, unknown>` in HLC).
+   * Defaults to `true` (emit `any`).
+   */
+  unknownAsAny?: boolean;
 }
 
 export interface ServiceInfo {

@@ -92,6 +92,12 @@ export interface EmitterOptions {
    * Defaults to `false`.
    */
   "enable-storage-compat"?: boolean;
+  /**
+   * When set to false, the TypeSpec `unknown` type will be emitted as `Record<string, unknown>`
+   * instead of `any` in Modular generation. This preserves the HLC-compatible interface for
+   * migration scenarios. Defaults to `true` (emit `any`).
+   */
+  "unknown-as-any"?: boolean;
 }
 
 export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
@@ -388,6 +394,12 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
       nullable: true,
       description:
         "When enabled, every regular (non-LRO, non-paging) operation return type is augmented with a `_response` property containing `rawResponse` (PathUncheckedResponse), `parsedBody`, and `parsedHeaders`. Defaults to `false`."
+    },
+    "unknown-as-any": {
+      type: "boolean",
+      nullable: true,
+      description:
+        "When set to false, the TypeSpec `unknown` type will be emitted as `Record<string, unknown>` instead of `any` in Modular generation. This preserves the HLC-compatible interface for migration scenarios. Defaults to `true` (emit `any`)."
     }
   },
   required: []

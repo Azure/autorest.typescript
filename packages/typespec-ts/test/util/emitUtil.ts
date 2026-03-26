@@ -431,6 +431,9 @@ export async function emitModularModelsFromTypeSpec(
     dpgContext.rlcOptions!.wrapNonModelReturn =
       options["wrap-non-model-return"] === true;
   }
+  if (options["unknown-as-any"] !== undefined) {
+    dpgContext.rlcOptions!.unknownAsAny = options["unknown-as-any"] === true;
+  }
   const modularEmitterOptions = transformModularEmitterOptions(dpgContext, "", {
     casing: "camel"
   });
