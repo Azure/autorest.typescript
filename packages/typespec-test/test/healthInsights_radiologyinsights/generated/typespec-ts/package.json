@@ -1,7 +1,7 @@
 {
   "name": "@azure-rest/health-insights-radiologyinsights",
   "version": "1.0.0-beta.1",
-  "description": "A generated SDK for RadiologyInsightsClient.",
+  "description": "A generated SDK for AzureHealthInsightsClient.",
   "engines": {
     "node": ">=20.0.0"
   },
@@ -12,6 +12,7 @@
       "./package.json": "./package.json",
       ".": "./src/index.ts",
       "./api": "./src/api/index.ts",
+      "./api/radiologyInsights": "./src/api/radiologyInsights/index.ts",
       "./models": "./src/models/index.ts",
       "./models/fhir/r4": "./src/models/fhir/r4/index.ts"
     },
@@ -108,6 +109,24 @@
       "require": {
         "types": "./dist/commonjs/api/index.d.ts",
         "default": "./dist/commonjs/api/index.js"
+      }
+    },
+    "./api/radiologyInsights": {
+      "browser": {
+        "types": "./dist/browser/api/radiologyInsights/index.d.ts",
+        "default": "./dist/browser/api/radiologyInsights/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/api/radiologyInsights/index.d.ts",
+        "default": "./dist/react-native/api/radiologyInsights/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/api/radiologyInsights/index.d.ts",
+        "default": "./dist/esm/api/radiologyInsights/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/api/radiologyInsights/index.d.ts",
+        "default": "./dist/commonjs/api/radiologyInsights/index.js"
       }
     },
     "./models": {

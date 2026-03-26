@@ -737,6 +737,48 @@ export enum KnownTestKind {
  */
 export type TestKind = string;
 
+/** Paged collection of Test items */
+export interface _PagedTest {
+  /** The Test items on this page */
+  value: Test[];
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
+export function _pagedTestDeserializer(item: any): _PagedTest {
+  return {
+    value: testArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
+}
+
+export function testArraySerializer(result: Array<Test>): any[] {
+  return result.map((item) => {
+    return testSerializer(item);
+  });
+}
+
+export function testArrayDeserializer(result: Array<Test>): any[] {
+  return result.map((item) => {
+    return testDeserializer(item);
+  });
+}
+
+/** Paged collection of TestFileInfo items */
+export interface _PagedTestFileInfo {
+  /** The TestFileInfo items on this page */
+  value: TestFileInfo[];
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
+export function _pagedTestFileInfoDeserializer(item: any): _PagedTestFileInfo {
+  return {
+    value: testFileInfoArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
+}
+
 /** Test app components */
 export interface TestAppComponents {
   /**
@@ -941,48 +983,6 @@ export function resourceMetricDeserializer(item: any): ResourceMetric {
     unit: item["unit"],
     resourceType: item["resourceType"],
   };
-}
-
-/** Paged collection of TestFileInfo items */
-export interface _PagedTestFileInfo {
-  /** The TestFileInfo items on this page */
-  value: TestFileInfo[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-export function _pagedTestFileInfoDeserializer(item: any): _PagedTestFileInfo {
-  return {
-    value: testFileInfoArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
-  };
-}
-
-/** Paged collection of Test items */
-export interface _PagedTest {
-  /** The Test items on this page */
-  value: Test[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-export function _pagedTestDeserializer(item: any): _PagedTest {
-  return {
-    value: testArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
-  };
-}
-
-export function testArraySerializer(result: Array<Test>): any[] {
-  return result.map((item) => {
-    return testSerializer(item);
-  });
-}
-
-export function testArrayDeserializer(result: Array<Test>): any[] {
-  return result.map((item) => {
-    return testDeserializer(item);
-  });
 }
 
 /** Load test run model */
@@ -1486,105 +1486,63 @@ export enum KnownRequestDataLevel {
  */
 export type RequestDataLevel = string;
 
-/** Test run app component */
-export interface TestRunAppComponents {
-  /**
-   * Azure resource collection { resource id (fully qualified resource Id e.g
-   * subscriptions/{subId}/resourceGroups/{rg}/providers/Microsoft.LoadTestService/loadtests/{resName})
-   * : resource object }
-   */
-  components: Record<string, AppComponent>;
-  /** Test run identifier */
-  readonly testRunId?: string;
-  /** The creation datetime(RFC 3339 literal format). */
-  readonly createdDateTime?: Date;
-  /** The user that created. */
-  readonly createdBy?: string;
-  /** The last Modified datetime(RFC 3339 literal format). */
-  readonly lastModifiedDateTime?: Date;
-  /** The user that last modified. */
-  readonly lastModifiedBy?: string;
-}
-
-export function testRunAppComponentsSerializer(item: TestRunAppComponents): any {
-  return { components: appComponentRecordSerializer(item["components"]) };
-}
-
-export function testRunAppComponentsDeserializer(item: any): TestRunAppComponents {
-  return {
-    components: appComponentRecordDeserializer(item["components"]),
-    testRunId: item["testRunId"],
-    createdDateTime: !item["createdDateTime"]
-      ? item["createdDateTime"]
-      : new Date(item["createdDateTime"]),
-    createdBy: item["createdBy"],
-    lastModifiedDateTime: !item["lastModifiedDateTime"]
-      ? item["lastModifiedDateTime"]
-      : new Date(item["lastModifiedDateTime"]),
-    lastModifiedBy: item["lastModifiedBy"],
-  };
-}
-
-/** Test run server metrics configuration */
-export interface TestRunServerMetricConfig {
-  /** Test run identifier */
-  readonly testRunId?: string;
-  /**
-   * Azure resource metrics collection {metric id : metrics object} (Refer :
-   * https://docs.microsoft.com/en-us/rest/api/monitor/metric-definitions/list#metricdefinition
-   * for metric id).
-   */
-  metrics?: Record<string, ResourceMetric>;
-  /** The creation datetime(RFC 3339 literal format). */
-  readonly createdDateTime?: Date;
-  /** The user that created. */
-  readonly createdBy?: string;
-  /** The last Modified datetime(RFC 3339 literal format). */
-  readonly lastModifiedDateTime?: Date;
-  /** The user that last modified. */
-  readonly lastModifiedBy?: string;
-}
-
-export function testRunServerMetricConfigSerializer(item: TestRunServerMetricConfig): any {
-  return {
-    metrics: !item["metrics"] ? item["metrics"] : resourceMetricRecordSerializer(item["metrics"]),
-  };
-}
-
-export function testRunServerMetricConfigDeserializer(item: any): TestRunServerMetricConfig {
-  return {
-    testRunId: item["testRunId"],
-    metrics: !item["metrics"] ? item["metrics"] : resourceMetricRecordDeserializer(item["metrics"]),
-    createdDateTime: !item["createdDateTime"]
-      ? item["createdDateTime"]
-      : new Date(item["createdDateTime"]),
-    createdBy: item["createdBy"],
-    lastModifiedDateTime: !item["lastModifiedDateTime"]
-      ? item["lastModifiedDateTime"]
-      : new Date(item["lastModifiedDateTime"]),
-    lastModifiedBy: item["lastModifiedBy"],
-  };
-}
-
-/** Metrics dimension values. */
-export interface DimensionValueList {
-  /** The dimension name */
-  readonly name?: string;
-  /** The dimension value */
-  value?: string[];
-  /** Link for the next set of values in case of paginated results, if applicable. */
+/** Paged collection of TestRun items */
+export interface _PagedTestRun {
+  /** The TestRun items on this page */
+  value: TestRun[];
+  /** The link to the next page of items */
   nextLink?: string;
 }
 
-export function dimensionValueListDeserializer(item: any): DimensionValueList {
+export function _pagedTestRunDeserializer(item: any): _PagedTestRun {
   return {
-    name: item["name"],
-    value: !item["value"]
-      ? item["value"]
-      : item["value"].map((p: any) => {
-          return p;
-        }),
+    value: testRunArrayDeserializer(item["value"]),
     nextLink: item["nextLink"],
+  };
+}
+
+export function testRunArraySerializer(result: Array<TestRun>): any[] {
+  return result.map((item) => {
+    return testRunSerializer(item);
+  });
+}
+
+export function testRunArrayDeserializer(result: Array<TestRun>): any[] {
+  return result.map((item) => {
+    return testRunDeserializer(item);
+  });
+}
+
+/** Represents collection of metric namespaces. */
+export interface MetricNamespaceCollection {
+  /** The values for the metric namespaces. */
+  value: MetricNamespace[];
+}
+
+export function metricNamespaceCollectionDeserializer(item: any): MetricNamespaceCollection {
+  return {
+    value: metricNamespaceArrayDeserializer(item["value"]),
+  };
+}
+
+export function metricNamespaceArrayDeserializer(result: Array<MetricNamespace>): any[] {
+  return result.map((item) => {
+    return metricNamespaceDeserializer(item);
+  });
+}
+
+/** Metric namespace class specifies the metadata for a metric namespace. */
+export interface MetricNamespace {
+  /** The namespace description. */
+  description?: string;
+  /** The metric namespace name. */
+  name?: string;
+}
+
+export function metricNamespaceDeserializer(item: any): MetricNamespace {
+  return {
+    description: item["description"],
+    name: item["name"],
   };
 }
 
@@ -1806,39 +1764,6 @@ export enum KnownTimeGrain {
  */
 export type TimeGrain = string;
 
-/** Represents collection of metric namespaces. */
-export interface MetricNamespaceCollection {
-  /** The values for the metric namespaces. */
-  value: MetricNamespace[];
-}
-
-export function metricNamespaceCollectionDeserializer(item: any): MetricNamespaceCollection {
-  return {
-    value: metricNamespaceArrayDeserializer(item["value"]),
-  };
-}
-
-export function metricNamespaceArrayDeserializer(result: Array<MetricNamespace>): any[] {
-  return result.map((item) => {
-    return metricNamespaceDeserializer(item);
-  });
-}
-
-/** Metric namespace class specifies the metadata for a metric namespace. */
-export interface MetricNamespace {
-  /** The namespace description. */
-  description?: string;
-  /** The metric namespace name. */
-  name?: string;
-}
-
-export function metricNamespaceDeserializer(item: any): MetricNamespace {
-  return {
-    description: item["description"],
-    name: item["name"],
-  };
-}
-
 /** Filters to fetch the set of metric. */
 export interface MetricRequestPayload {
   /**
@@ -1961,31 +1886,106 @@ export function dimensionValueDeserializer(item: any): DimensionValue {
   };
 }
 
-/** Paged collection of TestRun items */
-export interface _PagedTestRun {
-  /** The TestRun items on this page */
-  value: TestRun[];
-  /** The link to the next page of items */
+/** Metrics dimension values. */
+export interface DimensionValueList {
+  /** The dimension name */
+  readonly name?: string;
+  /** The dimension value */
+  value?: string[];
+  /** Link for the next set of values in case of paginated results, if applicable. */
   nextLink?: string;
 }
 
-export function _pagedTestRunDeserializer(item: any): _PagedTestRun {
+export function dimensionValueListDeserializer(item: any): DimensionValueList {
   return {
-    value: testRunArrayDeserializer(item["value"]),
+    name: item["name"],
+    value: !item["value"]
+      ? item["value"]
+      : item["value"].map((p: any) => {
+          return p;
+        }),
     nextLink: item["nextLink"],
   };
 }
 
-export function testRunArraySerializer(result: Array<TestRun>): any[] {
-  return result.map((item) => {
-    return testRunSerializer(item);
-  });
+/** Test run app component */
+export interface TestRunAppComponents {
+  /**
+   * Azure resource collection { resource id (fully qualified resource Id e.g
+   * subscriptions/{subId}/resourceGroups/{rg}/providers/Microsoft.LoadTestService/loadtests/{resName})
+   * : resource object }
+   */
+  components: Record<string, AppComponent>;
+  /** Test run identifier */
+  readonly testRunId?: string;
+  /** The creation datetime(RFC 3339 literal format). */
+  readonly createdDateTime?: Date;
+  /** The user that created. */
+  readonly createdBy?: string;
+  /** The last Modified datetime(RFC 3339 literal format). */
+  readonly lastModifiedDateTime?: Date;
+  /** The user that last modified. */
+  readonly lastModifiedBy?: string;
 }
 
-export function testRunArrayDeserializer(result: Array<TestRun>): any[] {
-  return result.map((item) => {
-    return testRunDeserializer(item);
-  });
+export function testRunAppComponentsSerializer(item: TestRunAppComponents): any {
+  return { components: appComponentRecordSerializer(item["components"]) };
+}
+
+export function testRunAppComponentsDeserializer(item: any): TestRunAppComponents {
+  return {
+    components: appComponentRecordDeserializer(item["components"]),
+    testRunId: item["testRunId"],
+    createdDateTime: !item["createdDateTime"]
+      ? item["createdDateTime"]
+      : new Date(item["createdDateTime"]),
+    createdBy: item["createdBy"],
+    lastModifiedDateTime: !item["lastModifiedDateTime"]
+      ? item["lastModifiedDateTime"]
+      : new Date(item["lastModifiedDateTime"]),
+    lastModifiedBy: item["lastModifiedBy"],
+  };
+}
+
+/** Test run server metrics configuration */
+export interface TestRunServerMetricConfig {
+  /** Test run identifier */
+  readonly testRunId?: string;
+  /**
+   * Azure resource metrics collection {metric id : metrics object} (Refer :
+   * https://docs.microsoft.com/en-us/rest/api/monitor/metric-definitions/list#metricdefinition
+   * for metric id).
+   */
+  metrics?: Record<string, ResourceMetric>;
+  /** The creation datetime(RFC 3339 literal format). */
+  readonly createdDateTime?: Date;
+  /** The user that created. */
+  readonly createdBy?: string;
+  /** The last Modified datetime(RFC 3339 literal format). */
+  readonly lastModifiedDateTime?: Date;
+  /** The user that last modified. */
+  readonly lastModifiedBy?: string;
+}
+
+export function testRunServerMetricConfigSerializer(item: TestRunServerMetricConfig): any {
+  return {
+    metrics: !item["metrics"] ? item["metrics"] : resourceMetricRecordSerializer(item["metrics"]),
+  };
+}
+
+export function testRunServerMetricConfigDeserializer(item: any): TestRunServerMetricConfig {
+  return {
+    testRunId: item["testRunId"],
+    metrics: !item["metrics"] ? item["metrics"] : resourceMetricRecordDeserializer(item["metrics"]),
+    createdDateTime: !item["createdDateTime"]
+      ? item["createdDateTime"]
+      : new Date(item["createdDateTime"]),
+    createdBy: item["createdBy"],
+    lastModifiedDateTime: !item["lastModifiedDateTime"]
+      ? item["lastModifiedDateTime"]
+      : new Date(item["lastModifiedDateTime"]),
+    lastModifiedBy: item["lastModifiedBy"],
+  };
 }
 
 /** The Test Profile Model. A Test Profile resource enables you to set up a test profile which contains various configurations for a supported resource type and a load test to execute on that resource. */

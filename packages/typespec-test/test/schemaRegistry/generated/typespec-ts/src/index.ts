@@ -10,12 +10,8 @@ import {
 export { SchemaRegistryClient } from "./schemaRegistryClient.js";
 export type {
   SchemaGroup,
-  SchemaVersion,
-  SchemaProperties,
-  SchemaFormat,
-  Schema,
+  Version,
   SchemaContentTypeValues,
-  ContentTypeEnum,
   SchemaOperationsGetSchemaByVersionResponse,
   SchemaOperationsGetSchemaByIdResponse,
 } from "./models/index.js";

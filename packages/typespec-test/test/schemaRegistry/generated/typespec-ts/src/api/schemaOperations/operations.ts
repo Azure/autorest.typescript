@@ -8,7 +8,7 @@ import {
   SchemaGroup,
   _PagedVersion,
   _pagedVersionDeserializer,
-  SchemaVersion,
+  Version,
   SchemaContentTypeValues,
   SchemaOperationsGetSchemaByVersionResponse,
   SchemaOperationsGetSchemaByIdResponse,
@@ -232,7 +232,7 @@ export function listSchemaVersions(
   groupName: string,
   name: string,
   options: SchemaOperationsListSchemaVersionsOptionalParams = { requestOptions: {} },
-): PagedAsyncIterableIterator<SchemaVersion> {
+): PagedAsyncIterableIterator<Version> {
   return buildPagedAsyncIterator(
     context,
     () => _listSchemaVersionsSend(context, groupName, name, options),

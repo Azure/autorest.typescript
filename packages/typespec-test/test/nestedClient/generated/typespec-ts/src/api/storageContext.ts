@@ -4,16 +4,13 @@
 import { logger } from "../logger.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 
-export interface StorageContext extends Client {
-  accountName: string;
-}
+export interface StorageContext extends Client {}
 
 /** Optional parameters for the client. */
 export interface StorageClientOptionalParams extends ClientOptions {}
 
 export function createStorage(
   endpointParam: string,
-  accountName: string,
   options: StorageClientOptionalParams = {},
 ): StorageContext {
   const endpointUrl = options.endpoint ?? String(endpointParam);
@@ -34,5 +31,5 @@ export function createStorage(
       "This client does not support client api-version, please change it at the operation level",
     );
   }
-  return { ...clientContext, accountName } as StorageContext;
+  return clientContext;
 }

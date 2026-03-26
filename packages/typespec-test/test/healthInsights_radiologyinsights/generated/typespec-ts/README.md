@@ -1,6 +1,6 @@
-# Azure RadiologyInsights client library for JavaScript
+# AzureHealthInsights client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in Node.js and in browsers) for Azure RadiologyInsights client.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for AzureHealthInsights client.
 
 Azure AI Health Insights provides an API that serves insight models, specific for Health & Life Sciences, that perform analysis and provide inferences to be used by a human.
 
@@ -24,16 +24,16 @@ See our [support policy](https://github.com/Azure/azure-sdk-for-js/blob/main/SUP
 
 ### Install the `@azure-rest/health-insights-radiologyinsights` package
 
-Install the Azure RadiologyInsights client library for JavaScript with `npm`:
+Install the AzureHealthInsights client library for JavaScript with `npm`:
 
 ```bash
 npm install @azure-rest/health-insights-radiologyinsights
 ```
 
-### Create and authenticate a `RadiologyInsightsClient`
+### Create and authenticate a `AzureHealthInsightsClient`
 
-To create a client object to access the Azure RadiologyInsights API, you will need the `endpoint` of your Azure RadiologyInsights resource and a `credential`. The Azure RadiologyInsights client can use Azure Active Directory credentials to authenticate.
-You can find the endpoint for your Azure RadiologyInsights resource in the [Azure Portal][azure_portal].
+To create a client object to access the AzureHealthInsights API, you will need the `endpoint` of your AzureHealthInsights resource and a `credential`. The AzureHealthInsights client can use Azure Active Directory credentials to authenticate.
+You can find the endpoint for your AzureHealthInsights resource in the [Azure Portal][azure_portal].
 
 You can authenticate with Azure Active Directory using a credential from the [@azure/identity][azure_identity] library or [an existing AAD Token](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/identity/identity/samples/AzureIdentityExamples.md#authenticating-with-a-pre-fetched-access-token).
 
@@ -43,30 +43,30 @@ To use the [DefaultAzureCredential][defaultazurecredential] provider shown below
 npm install @azure/identity
 ```
 
-You will also need to **register a new AAD application and grant access to Azure RadiologyInsights** by assigning the suitable role to your service principal (note: roles such as `"Owner"` will not grant the necessary permissions).
+You will also need to **register a new AAD application and grant access to AzureHealthInsights** by assigning the suitable role to your service principal (note: roles such as `"Owner"` will not grant the necessary permissions).
 
 For more information about how to create an Azure AD Application check out [this guide](https://learn.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal).
 
 Using Node.js and Node-like environments, you can use the `DefaultAzureCredential` class to authenticate the client.
 
 ```ts 
-import { RadiologyInsightsClient } from "@azure-rest/health-insights-radiologyinsights";
+import { AzureHealthInsightsClient } from "@azure-rest/health-insights-radiologyinsights";
 import { DefaultAzureCredential } from "@azure/identity";
 
-const client = new RadiologyInsightsClient("<endpoint>", new DefaultAzureCredential());
+const client = new AzureHealthInsightsClient("<endpoint>", new DefaultAzureCredential());
 ```
 
 For browser environments, use the `InteractiveBrowserCredential` from the `@azure/identity` package to authenticate.
 
 ```ts 
 import { InteractiveBrowserCredential } from "@azure/identity";
-import { RadiologyInsightsClient } from "@azure-rest/health-insights-radiologyinsights";
+import { AzureHealthInsightsClient } from "@azure-rest/health-insights-radiologyinsights";
 
 const credential = new InteractiveBrowserCredential({
   tenantId: "<YOUR_TENANT_ID>",
   clientId: "<YOUR_CLIENT_ID>"
  });
-const client = new RadiologyInsightsClient("<endpoint>", credential);
+const client = new AzureHealthInsightsClient("<endpoint>", credential);
 ```
 
 
@@ -75,9 +75,9 @@ To use this client library in the browser, first you need to use a bundler. For 
 
 ## Key concepts
 
-### RadiologyInsightsClient
+### AzureHealthInsightsClient
 
-`RadiologyInsightsClient` is the primary interface for developers using the Azure RadiologyInsights client library. Explore the methods on this client object to understand the different features of the Azure RadiologyInsights service that you can access.
+`AzureHealthInsightsClient` is the primary interface for developers using the AzureHealthInsights client library. Explore the methods on this client object to understand the different features of the AzureHealthInsights service that you can access.
 
 ## Troubleshooting
 

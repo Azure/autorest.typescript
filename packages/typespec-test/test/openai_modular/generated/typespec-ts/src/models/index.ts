@@ -2,6 +2,9 @@
 // Licensed under the MIT License.
 
 export type {
+  SpeechGenerationOptions,
+  SpeechVoice,
+  SpeechGenerationResponseFormat,
   AudioTranscriptionOptions,
   AudioTranscriptionFormat,
   AudioTranscriptionTimestampGranularity,
@@ -134,16 +137,13 @@ export type {
   ImageGenerationData,
   ImageGenerationContentFilterResults,
   ImageGenerationPromptFilterResults,
-  SpeechGenerationOptions,
-  SpeechVoice,
-  SpeechGenerationResponseFormat,
   EmbeddingsOptions,
   EmbeddingEncodingFormat,
   Embeddings,
   EmbeddingItem,
   EmbeddingsUsage,
-  GenerateSpeechFromTextResponse,
   GetAudioTranslationAsPlainTextResponse,
   GetAudioTranscriptionAsPlainTextResponse,
+  GenerateSpeechFromTextResponse,
 } from "./models.js";
 export { KnownServiceApiVersions } from "./models.js";

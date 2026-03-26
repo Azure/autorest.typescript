@@ -10,6 +10,35 @@ import { ErrorModel } from "@azure-rest/core-client";
  */
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/** A representation of the request options that control the behavior of a text-to-speech operation. */
+export interface SpeechGenerationOptions {
+  /** The text to generate audio for. The maximum length is 4096 characters. */
+  input: string;
+  /** The voice to use for text-to-speech. */
+  voice: SpeechVoice;
+  /** The audio output format for the spoken text. By default, the MP3 format will be used. */
+  responseFormat?: SpeechGenerationResponseFormat;
+  /** The speed of speech for generated audio. Values are valid in the range from 0.25 to 4.0, with 1.0 the default and higher values corresponding to faster speech. */
+  speed?: number;
+  /** The model to use for this text-to-speech request. */
+  model?: string;
+}
+
+export function speechGenerationOptionsSerializer(item: SpeechGenerationOptions): any {
+  return {
+    input: item["input"],
+    voice: item["voice"],
+    response_format: item["responseFormat"],
+    speed: item["speed"],
+    model: item["model"],
+  };
+}
+
+/** The available voices for text-to-speech. */
+export type SpeechVoice = "alloy" | "echo" | "fable" | "onyx" | "nova" | "shimmer";
+/** The supported audio output formats for text-to-speech. */
+export type SpeechGenerationResponseFormat = "mp3" | "opus" | "aac" | "flac" | "wav" | "pcm";
+
 /** The configuration information for an audio transcription request. */
 export interface AudioTranscriptionOptions {
   /**
@@ -3295,19 +3324,6 @@ export function imageGenerationOptionsSerializer(item: ImageGenerationOptions): 
   };
 }
 
-export function imageGenerationOptionsDeserializer(item: any): ImageGenerationOptions {
-  return {
-    model: item["model"],
-    prompt: item["prompt"],
-    n: item["n"],
-    size: item["size"],
-    responseFormat: item["response_format"],
-    quality: item["quality"],
-    style: item["style"],
-    user: item["user"],
-  };
-}
-
 /** The desired size of generated images. */
 export type ImageSize = "256x256" | "512x512" | "1024x1024" | "1792x1024" | "1024x1792";
 /** The format in which the generated images are returned. */
@@ -3491,35 +3507,6 @@ export function imageGenerationPromptFilterResultsDeserializer(
   };
 }
 
-/** A representation of the request options that control the behavior of a text-to-speech operation. */
-export interface SpeechGenerationOptions {
-  /** The text to generate audio for. The maximum length is 4096 characters. */
-  input: string;
-  /** The voice to use for text-to-speech. */
-  voice: SpeechVoice;
-  /** The audio output format for the spoken text. By default, the MP3 format will be used. */
-  responseFormat?: SpeechGenerationResponseFormat;
-  /** The speed of speech for generated audio. Values are valid in the range from 0.25 to 4.0, with 1.0 the default and higher values corresponding to faster speech. */
-  speed?: number;
-  /** The model to use for this text-to-speech request. */
-  model?: string;
-}
-
-export function speechGenerationOptionsSerializer(item: SpeechGenerationOptions): any {
-  return {
-    input: item["input"],
-    voice: item["voice"],
-    response_format: item["responseFormat"],
-    speed: item["speed"],
-    model: item["model"],
-  };
-}
-
-/** The available voices for text-to-speech. */
-export type SpeechVoice = "alloy" | "echo" | "fable" | "onyx" | "nova" | "shimmer";
-/** The supported audio output formats for text-to-speech. */
-export type SpeechGenerationResponseFormat = "mp3" | "opus" | "aac" | "flac" | "wav" | "pcm";
-
 /**
  * The configuration information for an embeddings request.
  * Embeddings measure the relatedness of text strings and are commonly used for search, clustering,
@@ -3641,6 +3628,10 @@ export enum KnownServiceApiVersions {
   V20240601 = "2024-06-01",
 }
 
+export type GetAudioTranslationAsPlainTextResponse = { body: string };
+
+export type GetAudioTranscriptionAsPlainTextResponse = { body: string };
+
 export type GenerateSpeechFromTextResponse = {
   /**
    * BROWSER ONLY
@@ -3657,7 +3648,3 @@ export type GenerateSpeechFromTextResponse = {
    */
   readableStreamBody?: NodeJS.ReadableStream;
 };
-
-export type GetAudioTranslationAsPlainTextResponse = { body: string };
-
-export type GetAudioTranscriptionAsPlainTextResponse = { body: string };

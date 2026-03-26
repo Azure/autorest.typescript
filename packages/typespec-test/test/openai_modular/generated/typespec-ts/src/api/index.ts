@@ -5,7 +5,6 @@ export type { OpenAIContext, OpenAIClientOptionalParams } from "./openAIContext.
 export { createOpenAI } from "./openAIContext.js";
 export {
   getEmbeddings,
-  generateSpeechFromText,
   getImageGenerations,
   getChatCompletions,
   getCompletions,
@@ -13,10 +12,10 @@ export {
   getAudioTranslationAsPlainText,
   getAudioTranscriptionAsResponseObject,
   getAudioTranscriptionAsPlainText,
+  generateSpeechFromText,
 } from "./operations.js";
 export type {
   GetEmbeddingsOptionalParams,
-  GenerateSpeechFromTextOptionalParams,
   GetImageGenerationsOptionalParams,
   GetChatCompletionsOptionalParams,
   GetCompletionsOptionalParams,
@@ -24,4 +23,5 @@ export type {
   GetAudioTranslationAsPlainTextOptionalParams,
   GetAudioTranscriptionAsResponseObjectOptionalParams,
   GetAudioTranscriptionAsPlainTextOptionalParams,
+  GenerateSpeechFromTextOptionalParams,
 } from "./options.js";

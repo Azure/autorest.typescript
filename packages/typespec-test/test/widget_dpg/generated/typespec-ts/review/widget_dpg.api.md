@@ -52,7 +52,7 @@ export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
 
 // @public
 export enum KnownVersions {
-    _100 = "1.0.0"
+    Versions100 = "1.0.0"
 }
 
 // @public

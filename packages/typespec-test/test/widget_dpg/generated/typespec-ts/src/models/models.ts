@@ -116,7 +116,7 @@ export function nonReferencedModelDeserializer(item: any): NonReferencedModel {
 /** The Contoso Widget Manager service version. */
 export enum KnownVersions {
   /** Version 2022-08-31 */
-  _100 = "1.0.0",
+  Versions100 = "1.0.0",
 }
 
 export type BudgetsGetBudgetsResponse = { body: Widget[] };

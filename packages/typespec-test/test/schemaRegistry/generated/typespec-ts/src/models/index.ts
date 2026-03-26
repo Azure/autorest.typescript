@@ -3,12 +3,8 @@
 
 export type {
   SchemaGroup,
-  SchemaVersion,
-  SchemaProperties,
-  SchemaFormat,
-  Schema,
+  Version,
   SchemaContentTypeValues,
-  ContentTypeEnum,
   SchemaOperationsGetSchemaByVersionResponse,
   SchemaOperationsGetSchemaByIdResponse,
 } from "./models.js";

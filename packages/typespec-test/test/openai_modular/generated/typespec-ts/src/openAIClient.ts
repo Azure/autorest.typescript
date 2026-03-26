@@ -4,7 +4,6 @@
 import { OpenAIContext, OpenAIClientOptionalParams, createOpenAI } from "./api/index.js";
 import {
   getEmbeddings,
-  generateSpeechFromText,
   getImageGenerations,
   getChatCompletions,
   getCompletions,
@@ -12,10 +11,10 @@ import {
   getAudioTranslationAsPlainText,
   getAudioTranscriptionAsResponseObject,
   getAudioTranscriptionAsPlainText,
+  generateSpeechFromText,
 } from "./api/operations.js";
 import {
   GetEmbeddingsOptionalParams,
-  GenerateSpeechFromTextOptionalParams,
   GetImageGenerationsOptionalParams,
   GetChatCompletionsOptionalParams,
   GetCompletionsOptionalParams,
@@ -23,8 +22,10 @@ import {
   GetAudioTranslationAsPlainTextOptionalParams,
   GetAudioTranscriptionAsResponseObjectOptionalParams,
   GetAudioTranscriptionAsPlainTextOptionalParams,
+  GenerateSpeechFromTextOptionalParams,
 } from "./api/options.js";
 import {
+  SpeechGenerationOptions,
   AudioTranscriptionOptions,
   AudioTranscription,
   AudioTranslationOptions,
@@ -35,12 +36,11 @@ import {
   ChatCompletions,
   ImageGenerationOptions,
   ImageGenerations,
-  SpeechGenerationOptions,
   EmbeddingsOptions,
   Embeddings,
-  GenerateSpeechFromTextResponse,
   GetAudioTranslationAsPlainTextResponse,
   GetAudioTranscriptionAsPlainTextResponse,
+  GenerateSpeechFromTextResponse,
 } from "./models/models.js";
 import { KeyCredential, TokenCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
@@ -52,6 +52,7 @@ export class OpenAIClient {
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
 
+  /** Azure OpenAI APIs for completions and search */
   constructor(
     endpointParam: string,
     credential: KeyCredential | TokenCredential,
@@ -75,15 +76,6 @@ export class OpenAIClient {
     options: GetEmbeddingsOptionalParams = { requestOptions: {} },
   ): Promise<Embeddings> {
     return getEmbeddings(this._client, deploymentId, body, options);
-  }
-
-  /** Generates text-to-speech audio from the input text. */
-  generateSpeechFromText(
-    deploymentId: string,
-    body: SpeechGenerationOptions,
-    options: GenerateSpeechFromTextOptionalParams = { requestOptions: {} },
-  ): Promise<GenerateSpeechFromTextResponse> {
-    return generateSpeechFromText(this._client, deploymentId, body, options);
   }
 
   /** Creates an image given a prompt. */
@@ -161,5 +153,14 @@ export class OpenAIClient {
     options: GetAudioTranscriptionAsPlainTextOptionalParams = { requestOptions: {} },
   ): Promise<GetAudioTranscriptionAsPlainTextResponse> {
     return getAudioTranscriptionAsPlainText(this._client, deploymentId, body, options);
+  }
+
+  /** Generates text-to-speech audio from the input text. */
+  generateSpeechFromText(
+    deploymentId: string,
+    body: SpeechGenerationOptions,
+    options: GenerateSpeechFromTextOptionalParams = { requestOptions: {} },
+  ): Promise<GenerateSpeechFromTextResponse> {
+    return generateSpeechFromText(this._client, deploymentId, body, options);
   }
 }

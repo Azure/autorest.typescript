@@ -3,6 +3,8 @@
 
 import { OpenAIContext as Client } from "./index.js";
 import {
+  SpeechGenerationOptions,
+  speechGenerationOptionsSerializer,
   AudioTranscriptionOptions,
   audioTranscriptionOptionsSerializer,
   AudioTranscription,
@@ -23,21 +25,18 @@ import {
   imageGenerationOptionsSerializer,
   ImageGenerations,
   imageGenerationsDeserializer,
-  SpeechGenerationOptions,
-  speechGenerationOptionsSerializer,
   EmbeddingsOptions,
   embeddingsOptionsSerializer,
   Embeddings,
   embeddingsDeserializer,
-  GenerateSpeechFromTextResponse,
   GetAudioTranslationAsPlainTextResponse,
   GetAudioTranscriptionAsPlainTextResponse,
+  GenerateSpeechFromTextResponse,
 } from "../models/models.js";
 import { getBinaryStreamResponse } from "../static-helpers/serialization/get-binary-stream-response.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   GetEmbeddingsOptionalParams,
-  GenerateSpeechFromTextOptionalParams,
   GetImageGenerationsOptionalParams,
   GetChatCompletionsOptionalParams,
   GetCompletionsOptionalParams,
@@ -45,6 +44,7 @@ import {
   GetAudioTranslationAsPlainTextOptionalParams,
   GetAudioTranscriptionAsResponseObjectOptionalParams,
   GetAudioTranscriptionAsPlainTextOptionalParams,
+  GenerateSpeechFromTextOptionalParams,
 } from "./options.js";
 import {
   StreamableMethod,
@@ -99,55 +99,6 @@ export async function getEmbeddings(
 ): Promise<Embeddings> {
   const result = await _getEmbeddingsSend(context, deploymentId, body, options);
   return _getEmbeddingsDeserialize(result);
-}
-
-export function _generateSpeechFromTextSend(
-  context: Client,
-  deploymentId: string,
-  body: SpeechGenerationOptions,
-  options: GenerateSpeechFromTextOptionalParams = { requestOptions: {} },
-): StreamableMethod {
-  const path = expandUrlTemplate(
-    "/deployments/{deploymentId}/audio/speech{?api%2Dversion}",
-    {
-      deploymentId: deploymentId,
-      "api%2Dversion": context.apiVersion ?? "2024-06-01",
-    },
-    {
-      allowReserved: options?.requestOptions?.skipUrlEncoding,
-    },
-  );
-  return context
-    .path(path)
-    .post({
-      ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
-      headers: { accept: "application/octet-stream", ...options.requestOptions?.headers },
-      body: speechGenerationOptionsSerializer(body),
-    });
-}
-
-export async function _generateSpeechFromTextDeserialize(
-  result: PathUncheckedResponse & GenerateSpeechFromTextResponse,
-): Promise<GenerateSpeechFromTextResponse> {
-  const expectedStatuses = ["200"];
-  if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
-  }
-
-  return { blobBody: result.blobBody, readableStreamBody: result.readableStreamBody };
-}
-
-/** Generates text-to-speech audio from the input text. */
-export async function generateSpeechFromText(
-  context: Client,
-  deploymentId: string,
-  body: SpeechGenerationOptions,
-  options: GenerateSpeechFromTextOptionalParams = { requestOptions: {} },
-): Promise<GenerateSpeechFromTextResponse> {
-  const streamableMethod = _generateSpeechFromTextSend(context, deploymentId, body, options);
-  const result = await getBinaryStreamResponse(streamableMethod);
-  return _generateSpeechFromTextDeserialize(result);
 }
 
 export function _getImageGenerationsSend(
@@ -508,4 +459,53 @@ export async function getAudioTranscriptionAsPlainText(
 ): Promise<GetAudioTranscriptionAsPlainTextResponse> {
   const result = await _getAudioTranscriptionAsPlainTextSend(context, deploymentId, body, options);
   return _getAudioTranscriptionAsPlainTextDeserialize(result);
+}
+
+export function _generateSpeechFromTextSend(
+  context: Client,
+  deploymentId: string,
+  body: SpeechGenerationOptions,
+  options: GenerateSpeechFromTextOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/deployments/{deploymentId}/audio/speech{?api%2Dversion}",
+    {
+      deploymentId: deploymentId,
+      "api%2Dversion": context.apiVersion ?? "2024-06-01",
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context
+    .path(path)
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      headers: { accept: "application/octet-stream", ...options.requestOptions?.headers },
+      body: speechGenerationOptionsSerializer(body),
+    });
+}
+
+export async function _generateSpeechFromTextDeserialize(
+  result: PathUncheckedResponse & GenerateSpeechFromTextResponse,
+): Promise<GenerateSpeechFromTextResponse> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return { blobBody: result.blobBody, readableStreamBody: result.readableStreamBody };
+}
+
+/** Generates text-to-speech audio from the input text. */
+export async function generateSpeechFromText(
+  context: Client,
+  deploymentId: string,
+  body: SpeechGenerationOptions,
+  options: GenerateSpeechFromTextOptionalParams = { requestOptions: {} },
+): Promise<GenerateSpeechFromTextResponse> {
+  const streamableMethod = _generateSpeechFromTextSend(context, deploymentId, body, options);
+  const result = await getBinaryStreamResponse(streamableMethod);
+  return _generateSpeechFromTextDeserialize(result);
 }

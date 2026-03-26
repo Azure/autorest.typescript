@@ -2,20 +2,21 @@
 // Licensed under the MIT License.
 
 import {
-  resourceArraySerializer,
-  Resource,
   CodeableConcept,
   codeableConceptSerializer,
   codeableConceptDeserializer,
-  extensionArraySerializer,
-  extensionArrayDeserializer,
-  Period,
-  periodDeserializer,
-  Extendible,
   codeableConceptArrayDeserializer,
   Observation,
   observationDeserializer,
+  Period,
+  periodDeserializer,
+  Extendible,
+  extensionArraySerializer,
+  extensionArrayDeserializer,
+  resourceArraySerializer,
+  Resource,
 } from "./fhir/r4/models.js";
+import { ErrorModel } from "@azure-rest/core-client";
 
 /**
  * This file contains only generated model types and their (de)serializers.
@@ -23,369 +24,46 @@ import {
  */
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-/** A patient record, including their clinical information and data. */
-export interface PatientRecord {
-  /** A given identifier for the patient. Has to be unique across all patients in a single request. */
-  id: string;
-  /** Patient structured information, including demographics and known structured clinical information. */
-  info?: PatientInfo;
-  /** Patient encounters/visits. */
-  encounters?: Encounter[];
-  /** Patient unstructured clinical data, given as documents. */
-  patientDocuments?: PatientDocument[];
+/** The response for the Radiology Insights request. */
+export interface RadiologyInsightsResult {
+  /** The unique ID of the operation. */
+  readonly id: string;
+  /** The status of the operation */
+  readonly status: JobStatus;
+  /** The date and time when the processing job was created. */
+  readonly createdDateTime?: Date;
+  /** The date and time when the processing job is set to expire. */
+  readonly expirationDateTime?: Date;
+  /** The date and time when the processing job was last updated. */
+  readonly lastUpdateDateTime?: Date;
+  /** Error object that describes the error when status is "Failed". */
+  error?: ErrorModel;
+  /** The result of the operation. */
+  result?: RadiologyInsightsInferenceResult;
 }
 
-export function patientRecordSerializer(item: PatientRecord): any {
+export function radiologyInsightsResultDeserializer(item: any): RadiologyInsightsResult {
   return {
     id: item["id"],
-    info: !item["info"] ? item["info"] : patientInfoSerializer(item["info"]),
-    encounters: !item["encounters"]
-      ? item["encounters"]
-      : encounterArraySerializer(item["encounters"]),
-    patientDocuments: !item["patientDocuments"]
-      ? item["patientDocuments"]
-      : patientDocumentArraySerializer(item["patientDocuments"]),
-  };
-}
-
-/** Patient structured information, including demographics and known structured clinical information. */
-export interface PatientInfo {
-  /** The patient's sex. */
-  sex?: PatientInfoSex;
-  /** The patient's date of birth. */
-  birthDate?: Date;
-  /** Known clinical information for the patient, structured. */
-  clinicalInfo?: Resource[];
-}
-
-export function patientInfoSerializer(item: PatientInfo): any {
-  return {
-    sex: item["sex"],
-    birthDate: !item["birthDate"]
-      ? item["birthDate"]
-      : item["birthDate"].toISOString().split("T")[0],
-    clinicalInfo: !item["clinicalInfo"]
-      ? item["clinicalInfo"]
-      : resourceArraySerializer(item["clinicalInfo"]),
-  };
-}
-
-/** The patient's sex. */
-export type PatientInfoSex = "female" | "male" | "unspecified";
-
-export function encounterArraySerializer(result: Array<Encounter>): any[] {
-  return result.map((item) => {
-    return encounterSerializer(item);
-  });
-}
-
-/** visit/encounter information */
-export interface Encounter {
-  /** The id of the visit. */
-  id: string;
-  /**
-   * Time period of the visit.
-   * In case of admission, use timePeriod.start to indicate the admission time and timePeriod.end to indicate the discharge time.
-   */
-  period?: TimePeriod;
-  /** The class of the encounter. */
-  class?: EncounterClass;
-}
-
-export function encounterSerializer(item: Encounter): any {
-  return {
-    id: item["id"],
-    period: !item["period"] ? item["period"] : timePeriodSerializer(item["period"]),
-    class: item["class"],
-  };
-}
-
-/** A duration of time during which an event is happening */
-export interface TimePeriod {
-  /** Starting time with inclusive boundary */
-  start?: Date;
-  /** End time with inclusive boundary, if not ongoing */
-  end?: Date;
-}
-
-export function timePeriodSerializer(item: TimePeriod): any {
-  return {
-    start: !item["start"] ? item["start"] : item["start"].toISOString(),
-    end: !item["end"] ? item["end"] : item["end"].toISOString(),
-  };
-}
-
-/** Known values codes that can be used to indicate the class of encounter (TODO://Based on FHIR value set--http://....). */
-export type EncounterClass =
-  | "inpatient"
-  | "ambulatory"
-  | "observation"
-  | "emergency"
-  | "virtual"
-  | "healthHome";
-
-export function patientDocumentArraySerializer(result: Array<PatientDocument>): any[] {
-  return result.map((item) => {
-    return patientDocumentSerializer(item);
-  });
-}
-
-/** A clinical document related to a patient. Document here is in the wide sense - not just a text document (note). */
-export interface PatientDocument {
-  /** The type of the patient document, such as 'note' (text document) or 'fhirBundle' (FHIR JSON document). */
-  type: DocumentType;
-  /** The type of the clinical document. */
-  clinicalType?: ClinicalDocumentType;
-  /** A given identifier for the document. Has to be unique across all documents for a single patient. */
-  id: string;
-  /** A 2 letter ISO 639-1 representation of the language of the document. */
-  language?: string;
-  /** The date and time when the document was created. */
-  createdDateTime?: Date;
-  /** Document author(s) */
-  authors?: DocumentAuthor[];
-  /** specialty type the document */
-  specialtyType?: SpecialtyType;
-  /** Administrative metadata for the document. */
-  administrativeMetadata?: DocumentAdministrativeMetadata;
-  /** The content of the patient document. */
-  content: DocumentContent;
-}
-
-export function patientDocumentSerializer(item: PatientDocument): any {
-  return {
-    type: item["type"],
-    clinicalType: item["clinicalType"],
-    id: item["id"],
-    language: item["language"],
+    status: item["status"],
     createdDateTime: !item["createdDateTime"]
       ? item["createdDateTime"]
-      : item["createdDateTime"].toISOString(),
-    authors: !item["authors"] ? item["authors"] : documentAuthorArraySerializer(item["authors"]),
-    specialtyType: item["specialtyType"],
-    administrativeMetadata: !item["administrativeMetadata"]
-      ? item["administrativeMetadata"]
-      : documentAdministrativeMetadataSerializer(item["administrativeMetadata"]),
-    content: documentContentSerializer(item["content"]),
+      : new Date(item["createdDateTime"]),
+    expirationDateTime: !item["expirationDateTime"]
+      ? item["expirationDateTime"]
+      : new Date(item["expirationDateTime"]),
+    lastUpdateDateTime: !item["lastUpdateDateTime"]
+      ? item["lastUpdateDateTime"]
+      : new Date(item["lastUpdateDateTime"]),
+    error: !item["error"] ? item["error"] : item["error"],
+    result: !item["result"]
+      ? item["result"]
+      : radiologyInsightsInferenceResultDeserializer(item["result"]),
   };
 }
 
-/** The type of the patient document, such as 'note' (text document) or 'fhirBundle' (FHIR JSON document). */
-export type DocumentType = "note" | "fhirBundle" | "dicom" | "genomicSequencing";
-/** The type of the clinical document. */
-export type ClinicalDocumentType =
-  | "consultation"
-  | "dischargeSummary"
-  | "historyAndPhysical"
-  | "radiologyReport"
-  | "procedure"
-  | "progress"
-  | "laboratory"
-  | "pathologyReport";
-
-export function documentAuthorArraySerializer(result: Array<DocumentAuthor>): any[] {
-  return result.map((item) => {
-    return documentAuthorSerializer(item);
-  });
-}
-
-/** Document author */
-export interface DocumentAuthor {
-  /** author id */
-  id?: string;
-  /** Text representation of the full name */
-  fullName?: string;
-}
-
-export function documentAuthorSerializer(item: DocumentAuthor): any {
-  return { id: item["id"], fullName: item["fullName"] };
-}
-
-/** Known values codes that can be used to indicate the type of the Specialty. */
-export type SpecialtyType = "pathology" | "radiology";
-
-/** Document administrative metadata */
-export interface DocumentAdministrativeMetadata {
-  /** List of procedure information associated with the document. */
-  orderedProcedures?: OrderedProcedure[];
-  /** Reference to the encounter associated with the document. */
-  encounterId?: string;
-}
-
-export function documentAdministrativeMetadataSerializer(
-  item: DocumentAdministrativeMetadata,
-): any {
-  return {
-    orderedProcedures: !item["orderedProcedures"]
-      ? item["orderedProcedures"]
-      : orderedProcedureArraySerializer(item["orderedProcedures"]),
-    encounterId: item["encounterId"],
-  };
-}
-
-export function orderedProcedureArraySerializer(result: Array<OrderedProcedure>): any[] {
-  return result.map((item) => {
-    return orderedProcedureSerializer(item);
-  });
-}
-
-export function orderedProcedureArrayDeserializer(result: Array<OrderedProcedure>): any[] {
-  return result.map((item) => {
-    return orderedProcedureDeserializer(item);
-  });
-}
-
-/** Procedure information */
-export interface OrderedProcedure extends Extendible {
-  /** Procedure code */
-  code?: CodeableConcept;
-  /** Procedure description */
-  description?: string;
-}
-
-export function orderedProcedureSerializer(item: OrderedProcedure): any {
-  return {
-    extension: !item["extension"] ? item["extension"] : extensionArraySerializer(item["extension"]),
-    code: !item["code"] ? item["code"] : codeableConceptSerializer(item["code"]),
-    description: item["description"],
-  };
-}
-
-export function orderedProcedureDeserializer(item: any): OrderedProcedure {
-  return {
-    extension: !item["extension"]
-      ? item["extension"]
-      : extensionArrayDeserializer(item["extension"]),
-    code: !item["code"] ? item["code"] : codeableConceptDeserializer(item["code"]),
-    description: item["description"],
-  };
-}
-
-/** The content of the patient document. */
-export interface DocumentContent {
-  /**
-   * The type of the content's source.
-   * In case the source type is 'inline', the content is given as a string (for instance, text).
-   * In case the source type is 'reference', the content is given as a URI.
-   */
-  sourceType: DocumentContentSourceType;
-  /** The content of the document, given either inline (as a string) or as a reference (URI). */
-  value: string;
-}
-
-export function documentContentSerializer(item: DocumentContent): any {
-  return { sourceType: item["sourceType"], value: item["value"] };
-}
-
-/**
- * The type of the content's source.
- * In case the source type is 'inline', the content is given as a string (for instance, text).
- * In case the source type is 'reference', the content is given as a URI.
- */
-export type DocumentContentSourceType = "inline" | "reference";
-
-/** Configuration affecting the Radiology Insights model's inference. */
-export interface RadiologyInsightsModelConfiguration {
-  /** An indication whether the model should produce verbose output. */
-  verbose?: boolean;
-  /** An indication whether the model's output should include evidence for the inferences. */
-  includeEvidence?: boolean;
-  /**
-   * A list of inference types to be inferred for the current request.
-   * This could be used if only part of the Radiology Insights inferences are required.
-   * If this list is omitted or empty, the model will return all the inference types.
-   */
-  inferenceTypes?: RadiologyInsightsInferenceType[];
-  /** The options for the Radiology Insights Inferences */
-  inferenceOptions?: RadiologyInsightsInferenceOptions;
-  /** Local for the model to use. If not specified, the model will use the default locale */
-  locale?: string;
-}
-
-export function radiologyInsightsModelConfigurationSerializer(
-  item: RadiologyInsightsModelConfiguration,
-): any {
-  return {
-    verbose: item["verbose"],
-    includeEvidence: item["includeEvidence"],
-    inferenceTypes: !item["inferenceTypes"]
-      ? item["inferenceTypes"]
-      : item["inferenceTypes"].map((p: any) => {
-          return p;
-        }),
-    inferenceOptions: !item["inferenceOptions"]
-      ? item["inferenceOptions"]
-      : radiologyInsightsInferenceOptionsSerializer(item["inferenceOptions"]),
-    locale: item["locale"],
-  };
-}
-
-/** A Radiology Insights inference types. */
-export type RadiologyInsightsInferenceType =
-  | "ageMismatch"
-  | "lateralityDiscrepancy"
-  | "sexMismatch"
-  | "completeOrderDiscrepancy"
-  | "limitedOrderDiscrepancy"
-  | "finding"
-  | "criticalResult"
-  | "followupRecommendation"
-  | "followupCommunication"
-  | "radiologyProcedure";
-
-/** The options for the Radiology Insights Inferences */
-export interface RadiologyInsightsInferenceOptions {
-  /** Followup Recommendation Options */
-  followupRecommendation?: FollowupRecommendationOptions;
-  /** Finding Options */
-  finding?: FindingOptions;
-}
-
-export function radiologyInsightsInferenceOptionsSerializer(
-  item: RadiologyInsightsInferenceOptions,
-): any {
-  return {
-    followupRecommendation: !item["followupRecommendation"]
-      ? item["followupRecommendation"]
-      : followupRecommendationOptionsSerializer(item["followupRecommendation"]),
-    finding: !item["finding"] ? item["finding"] : findingOptionsSerializer(item["finding"]),
-  };
-}
-
-/** Followup Recommendation Options */
-export interface FollowupRecommendationOptions {
-  /** Include/Exclude followup recommendations with no specific radiologic modality, default is false. */
-  includeRecommendationsWithNoSpecifiedModality?: boolean;
-  /** Include/Exclude followup recommendations in references to a guideline or article, default is false. */
-  includeRecommendationsInReferences?: boolean;
-  /** Provide a single focused sentence as evidence for the recommendation, default is false. */
-  provideFocusedSentenceEvidence?: boolean;
-}
-
-export function followupRecommendationOptionsSerializer(item: FollowupRecommendationOptions): any {
-  return {
-    includeRecommendationsWithNoSpecifiedModality:
-      item["includeRecommendationsWithNoSpecifiedModality"],
-    includeRecommendationsInReferences: item["includeRecommendationsInReferences"],
-    provideFocusedSentenceEvidence: item["provideFocusedSentenceEvidence"],
-  };
-}
-
-/** Finding Options */
-export interface FindingOptions {
-  /** Provide a single focused sentence as evidence for the finding, default is false. */
-  provideFocusedSentenceEvidence?: boolean;
-}
-
-export function findingOptionsSerializer(item: FindingOptions): any {
-  return { provideFocusedSentenceEvidence: item["provideFocusedSentenceEvidence"] };
-}
-
-export function patientRecordArraySerializer(result: Array<PatientRecord>): any[] {
-  return result.map((item) => {
-    return patientRecordSerializer(item);
-  });
-}
+/** The status of the processing job. */
+export type JobStatus = "notStarted" | "running" | "succeeded" | "failed" | "canceled";
 
 /** The inference results for the Radiology Insights request. */
 export interface RadiologyInsightsInferenceResult {
@@ -519,6 +197,19 @@ export function radiologyInsightsInferenceUnionDeserializer(
       return radiologyInsightsInferenceDeserializer(item);
   }
 }
+
+/** A Radiology Insights inference types. */
+export type RadiologyInsightsInferenceType =
+  | "ageMismatch"
+  | "lateralityDiscrepancy"
+  | "sexMismatch"
+  | "completeOrderDiscrepancy"
+  | "limitedOrderDiscrepancy"
+  | "finding"
+  | "criticalResult"
+  | "followupRecommendation"
+  | "followupCommunication"
+  | "radiologyProcedure";
 
 /**
  * Age mismatch returns when there is a conflict between an age that mentioned in the clinical note and the age of the patient.
@@ -792,6 +483,32 @@ export function radiologyCodeWithTypesDeserializer(item: any): RadiologyCodeWith
   };
 }
 
+/** Procedure information */
+export interface OrderedProcedure extends Extendible {
+  /** Procedure code */
+  code?: CodeableConcept;
+  /** Procedure description */
+  description?: string;
+}
+
+export function orderedProcedureSerializer(item: OrderedProcedure): any {
+  return {
+    extension: !item["extension"] ? item["extension"] : extensionArraySerializer(item["extension"]),
+    code: !item["code"] ? item["code"] : codeableConceptSerializer(item["code"]),
+    description: item["description"],
+  };
+}
+
+export function orderedProcedureDeserializer(item: any): OrderedProcedure {
+  return {
+    extension: !item["extension"]
+      ? item["extension"]
+      : extensionArrayDeserializer(item["extension"]),
+    code: !item["code"] ? item["code"] : codeableConceptDeserializer(item["code"]),
+    description: item["description"],
+  };
+}
+
 /** Recommendation Inference */
 export interface FollowupRecommendationInference extends RadiologyInsightsInference {
   /** The type of the inference. */
@@ -1001,6 +718,332 @@ export type MedicalProfessionalType =
   | "nurse"
   | "midwife"
   | "physicianAssistant";
+
+/** A patient record, including their clinical information and data. */
+export interface PatientRecord {
+  /** A given identifier for the patient. Has to be unique across all patients in a single request. */
+  id: string;
+  /** Patient structured information, including demographics and known structured clinical information. */
+  info?: PatientInfo;
+  /** Patient encounters/visits. */
+  encounters?: Encounter[];
+  /** Patient unstructured clinical data, given as documents. */
+  patientDocuments?: PatientDocument[];
+}
+
+export function patientRecordSerializer(item: PatientRecord): any {
+  return {
+    id: item["id"],
+    info: !item["info"] ? item["info"] : patientInfoSerializer(item["info"]),
+    encounters: !item["encounters"]
+      ? item["encounters"]
+      : encounterArraySerializer(item["encounters"]),
+    patientDocuments: !item["patientDocuments"]
+      ? item["patientDocuments"]
+      : patientDocumentArraySerializer(item["patientDocuments"]),
+  };
+}
+
+/** Patient structured information, including demographics and known structured clinical information. */
+export interface PatientInfo {
+  /** The patient's sex. */
+  sex?: PatientInfoSex;
+  /** The patient's date of birth. */
+  birthDate?: Date;
+  /** Known clinical information for the patient, structured. */
+  clinicalInfo?: Resource[];
+}
+
+export function patientInfoSerializer(item: PatientInfo): any {
+  return {
+    sex: item["sex"],
+    birthDate: !item["birthDate"]
+      ? item["birthDate"]
+      : item["birthDate"].toISOString().split("T")[0],
+    clinicalInfo: !item["clinicalInfo"]
+      ? item["clinicalInfo"]
+      : resourceArraySerializer(item["clinicalInfo"]),
+  };
+}
+
+/** The patient's sex. */
+export type PatientInfoSex = "female" | "male" | "unspecified";
+
+export function encounterArraySerializer(result: Array<Encounter>): any[] {
+  return result.map((item) => {
+    return encounterSerializer(item);
+  });
+}
+
+/** visit/encounter information */
+export interface Encounter {
+  /** The id of the visit. */
+  id: string;
+  /**
+   * Time period of the visit.
+   * In case of admission, use timePeriod.start to indicate the admission time and timePeriod.end to indicate the discharge time.
+   */
+  period?: TimePeriod;
+  /** The class of the encounter. */
+  class?: EncounterClass;
+}
+
+export function encounterSerializer(item: Encounter): any {
+  return {
+    id: item["id"],
+    period: !item["period"] ? item["period"] : timePeriodSerializer(item["period"]),
+    class: item["class"],
+  };
+}
+
+/** A duration of time during which an event is happening */
+export interface TimePeriod {
+  /** Starting time with inclusive boundary */
+  start?: Date;
+  /** End time with inclusive boundary, if not ongoing */
+  end?: Date;
+}
+
+export function timePeriodSerializer(item: TimePeriod): any {
+  return {
+    start: !item["start"] ? item["start"] : item["start"].toISOString(),
+    end: !item["end"] ? item["end"] : item["end"].toISOString(),
+  };
+}
+
+/** Known values codes that can be used to indicate the class of encounter (TODO://Based on FHIR value set--http://....). */
+export type EncounterClass =
+  | "inpatient"
+  | "ambulatory"
+  | "observation"
+  | "emergency"
+  | "virtual"
+  | "healthHome";
+
+export function patientDocumentArraySerializer(result: Array<PatientDocument>): any[] {
+  return result.map((item) => {
+    return patientDocumentSerializer(item);
+  });
+}
+
+/** A clinical document related to a patient. Document here is in the wide sense - not just a text document (note). */
+export interface PatientDocument {
+  /** The type of the patient document, such as 'note' (text document) or 'fhirBundle' (FHIR JSON document). */
+  type: DocumentType;
+  /** The type of the clinical document. */
+  clinicalType?: ClinicalDocumentType;
+  /** A given identifier for the document. Has to be unique across all documents for a single patient. */
+  id: string;
+  /** A 2 letter ISO 639-1 representation of the language of the document. */
+  language?: string;
+  /** The date and time when the document was created. */
+  createdDateTime?: Date;
+  /** Document author(s) */
+  authors?: DocumentAuthor[];
+  /** specialty type the document */
+  specialtyType?: SpecialtyType;
+  /** Administrative metadata for the document. */
+  administrativeMetadata?: DocumentAdministrativeMetadata;
+  /** The content of the patient document. */
+  content: DocumentContent;
+}
+
+export function patientDocumentSerializer(item: PatientDocument): any {
+  return {
+    type: item["type"],
+    clinicalType: item["clinicalType"],
+    id: item["id"],
+    language: item["language"],
+    createdDateTime: !item["createdDateTime"]
+      ? item["createdDateTime"]
+      : item["createdDateTime"].toISOString(),
+    authors: !item["authors"] ? item["authors"] : documentAuthorArraySerializer(item["authors"]),
+    specialtyType: item["specialtyType"],
+    administrativeMetadata: !item["administrativeMetadata"]
+      ? item["administrativeMetadata"]
+      : documentAdministrativeMetadataSerializer(item["administrativeMetadata"]),
+    content: documentContentSerializer(item["content"]),
+  };
+}
+
+/** The type of the patient document, such as 'note' (text document) or 'fhirBundle' (FHIR JSON document). */
+export type DocumentType = "note" | "fhirBundle" | "dicom" | "genomicSequencing";
+/** The type of the clinical document. */
+export type ClinicalDocumentType =
+  | "consultation"
+  | "dischargeSummary"
+  | "historyAndPhysical"
+  | "radiologyReport"
+  | "procedure"
+  | "progress"
+  | "laboratory"
+  | "pathologyReport";
+
+export function documentAuthorArraySerializer(result: Array<DocumentAuthor>): any[] {
+  return result.map((item) => {
+    return documentAuthorSerializer(item);
+  });
+}
+
+/** Document author */
+export interface DocumentAuthor {
+  /** author id */
+  id?: string;
+  /** Text representation of the full name */
+  fullName?: string;
+}
+
+export function documentAuthorSerializer(item: DocumentAuthor): any {
+  return { id: item["id"], fullName: item["fullName"] };
+}
+
+/** Known values codes that can be used to indicate the type of the Specialty. */
+export type SpecialtyType = "pathology" | "radiology";
+
+/** Document administrative metadata */
+export interface DocumentAdministrativeMetadata {
+  /** List of procedure information associated with the document. */
+  orderedProcedures?: OrderedProcedure[];
+  /** Reference to the encounter associated with the document. */
+  encounterId?: string;
+}
+
+export function documentAdministrativeMetadataSerializer(
+  item: DocumentAdministrativeMetadata,
+): any {
+  return {
+    orderedProcedures: !item["orderedProcedures"]
+      ? item["orderedProcedures"]
+      : orderedProcedureArraySerializer(item["orderedProcedures"]),
+    encounterId: item["encounterId"],
+  };
+}
+
+export function orderedProcedureArraySerializer(result: Array<OrderedProcedure>): any[] {
+  return result.map((item) => {
+    return orderedProcedureSerializer(item);
+  });
+}
+
+export function orderedProcedureArrayDeserializer(result: Array<OrderedProcedure>): any[] {
+  return result.map((item) => {
+    return orderedProcedureDeserializer(item);
+  });
+}
+
+/** The content of the patient document. */
+export interface DocumentContent {
+  /**
+   * The type of the content's source.
+   * In case the source type is 'inline', the content is given as a string (for instance, text).
+   * In case the source type is 'reference', the content is given as a URI.
+   */
+  sourceType: DocumentContentSourceType;
+  /** The content of the document, given either inline (as a string) or as a reference (URI). */
+  value: string;
+}
+
+export function documentContentSerializer(item: DocumentContent): any {
+  return { sourceType: item["sourceType"], value: item["value"] };
+}
+
+/**
+ * The type of the content's source.
+ * In case the source type is 'inline', the content is given as a string (for instance, text).
+ * In case the source type is 'reference', the content is given as a URI.
+ */
+export type DocumentContentSourceType = "inline" | "reference";
+
+/** Configuration affecting the Radiology Insights model's inference. */
+export interface RadiologyInsightsModelConfiguration {
+  /** An indication whether the model should produce verbose output. */
+  verbose?: boolean;
+  /** An indication whether the model's output should include evidence for the inferences. */
+  includeEvidence?: boolean;
+  /**
+   * A list of inference types to be inferred for the current request.
+   * This could be used if only part of the Radiology Insights inferences are required.
+   * If this list is omitted or empty, the model will return all the inference types.
+   */
+  inferenceTypes?: RadiologyInsightsInferenceType[];
+  /** The options for the Radiology Insights Inferences */
+  inferenceOptions?: RadiologyInsightsInferenceOptions;
+  /** Local for the model to use. If not specified, the model will use the default locale */
+  locale?: string;
+}
+
+export function radiologyInsightsModelConfigurationSerializer(
+  item: RadiologyInsightsModelConfiguration,
+): any {
+  return {
+    verbose: item["verbose"],
+    includeEvidence: item["includeEvidence"],
+    inferenceTypes: !item["inferenceTypes"]
+      ? item["inferenceTypes"]
+      : item["inferenceTypes"].map((p: any) => {
+          return p;
+        }),
+    inferenceOptions: !item["inferenceOptions"]
+      ? item["inferenceOptions"]
+      : radiologyInsightsInferenceOptionsSerializer(item["inferenceOptions"]),
+    locale: item["locale"],
+  };
+}
+
+/** The options for the Radiology Insights Inferences */
+export interface RadiologyInsightsInferenceOptions {
+  /** Followup Recommendation Options */
+  followupRecommendation?: FollowupRecommendationOptions;
+  /** Finding Options */
+  finding?: FindingOptions;
+}
+
+export function radiologyInsightsInferenceOptionsSerializer(
+  item: RadiologyInsightsInferenceOptions,
+): any {
+  return {
+    followupRecommendation: !item["followupRecommendation"]
+      ? item["followupRecommendation"]
+      : followupRecommendationOptionsSerializer(item["followupRecommendation"]),
+    finding: !item["finding"] ? item["finding"] : findingOptionsSerializer(item["finding"]),
+  };
+}
+
+/** Followup Recommendation Options */
+export interface FollowupRecommendationOptions {
+  /** Include/Exclude followup recommendations with no specific radiologic modality, default is false. */
+  includeRecommendationsWithNoSpecifiedModality?: boolean;
+  /** Include/Exclude followup recommendations in references to a guideline or article, default is false. */
+  includeRecommendationsInReferences?: boolean;
+  /** Provide a single focused sentence as evidence for the recommendation, default is false. */
+  provideFocusedSentenceEvidence?: boolean;
+}
+
+export function followupRecommendationOptionsSerializer(item: FollowupRecommendationOptions): any {
+  return {
+    includeRecommendationsWithNoSpecifiedModality:
+      item["includeRecommendationsWithNoSpecifiedModality"],
+    includeRecommendationsInReferences: item["includeRecommendationsInReferences"],
+    provideFocusedSentenceEvidence: item["provideFocusedSentenceEvidence"],
+  };
+}
+
+/** Finding Options */
+export interface FindingOptions {
+  /** Provide a single focused sentence as evidence for the finding, default is false. */
+  provideFocusedSentenceEvidence?: boolean;
+}
+
+export function findingOptionsSerializer(item: FindingOptions): any {
+  return { provideFocusedSentenceEvidence: item["provideFocusedSentenceEvidence"] };
+}
+
+export function patientRecordArraySerializer(result: Array<PatientRecord>): any[] {
+  return result.map((item) => {
+    return patientRecordSerializer(item);
+  });
+}
+
 /** Repeatability Result header options */
 export type RepeatabilityResult = "accepted" | "rejected";
 

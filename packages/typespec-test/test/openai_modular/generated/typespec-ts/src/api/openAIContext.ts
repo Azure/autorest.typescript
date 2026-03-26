@@ -6,6 +6,7 @@ import { KnownServiceApiVersions } from "../models/models.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 import { KeyCredential, TokenCredential } from "@azure/core-auth";
 
+/** Azure OpenAI APIs for completions and search */
 export interface OpenAIContext extends Client {
   /** The API version to use for this operation. */
   /** Known values of {@link KnownServiceApiVersions} that the service accepts. */
@@ -19,6 +20,7 @@ export interface OpenAIClientOptionalParams extends ClientOptions {
   apiVersion?: string;
 }
 
+/** Azure OpenAI APIs for completions and search */
 export function createOpenAI(
   endpointParam: string,
   credential: KeyCredential | TokenCredential,

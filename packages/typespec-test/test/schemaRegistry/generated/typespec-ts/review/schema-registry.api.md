@@ -10,9 +10,6 @@ import { Pipeline } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
 
 // @public
-export type ContentTypeEnum = "application/octet-stream" | "application/json; serialization=Avro" | "application/json; serialization=json" | "text/vnd.ms.protobuf";
-
-// @public
 export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
     continuationToken?: string;
 };
@@ -37,16 +34,7 @@ export interface PageSettings {
 }
 
 // @public
-export interface Schema {
-    definition: string;
-    properties: SchemaProperties;
-}
-
-// @public
 export type SchemaContentTypeValues = "application/json; serialization=Avro" | "application/json; serialization=json" | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf";
-
-// @public
-export type SchemaFormat = "Avro" | "Json" | "Custom" | "Protobuf";
 
 // @public
 export interface SchemaGroup {
@@ -89,21 +77,12 @@ export interface SchemaOperationsOperations {
     getSchemaByVersion: (groupName: string, name: string, schemaVersion: number, options?: SchemaOperationsGetSchemaByVersionOptionalParams) => Promise<SchemaOperationsGetSchemaByVersionResponse>;
     getSchemaIdByContent: (groupName: string, name: string, contentType: SchemaContentTypeValues, schemaContent: Uint8Array, options?: SchemaOperationsGetSchemaIdByContentOptionalParams) => Promise<void>;
     listSchemaGroups: (options?: SchemaOperationsListSchemaGroupsOptionalParams) => PagedAsyncIterableIterator<SchemaGroup>;
-    listSchemaVersions: (groupName: string, name: string, options?: SchemaOperationsListSchemaVersionsOptionalParams) => PagedAsyncIterableIterator<SchemaVersion>;
+    listSchemaVersions: (groupName: string, name: string, options?: SchemaOperationsListSchemaVersionsOptionalParams) => PagedAsyncIterableIterator<Version>;
     registerSchema: (groupName: string, name: string, content: Uint8Array, contentType: SchemaContentTypeValues, options?: SchemaOperationsRegisterSchemaOptionalParams) => Promise<void>;
 }
 
 // @public
 export interface SchemaOperationsRegisterSchemaOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface SchemaProperties {
-    format: SchemaFormat;
-    groupName: string;
-    id: string;
-    name: string;
-    version: number;
 }
 
 // @public (undocumented)
@@ -119,7 +98,7 @@ export interface SchemaRegistryClientOptionalParams extends ClientOptions {
 }
 
 // @public
-export interface SchemaVersion {
+export interface Version {
     readonly schemaVersion: number;
 }
 
