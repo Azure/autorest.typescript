@@ -118,7 +118,3 @@ export enum KnownVersions {
   /** Version 2022-08-31 */
   _100 = "1.0.0",
 }
-
-export type BudgetsGetBudgetsResponse = Widget[];
-
-export type SAPWidgetsSAPListWidgetsResponse = Widget[];

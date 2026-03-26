@@ -8,12 +8,12 @@ import {
   widgetErrorDeserializer,
   _ListWidgetsPagesResults,
   _listWidgetsPagesResultsDeserializer,
+  widgetArrayDeserializer,
   SAPUser,
   sapUserSerializer,
   sapUserDeserializer,
   AnalyzeResult,
   analyzeResultDeserializer,
-  SAPWidgetsSAPListWidgetsResponse,
 } from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
@@ -468,9 +468,7 @@ export function _sapListWidgetsSend(
   });
 }
 
-export async function _sapListWidgetsDeserialize(
-  result: PathUncheckedResponse,
-): Promise<SAPWidgetsSAPListWidgetsResponse> {
+export async function _sapListWidgetsDeserialize(result: PathUncheckedResponse): Promise<Widget[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -479,9 +477,7 @@ export async function _sapListWidgetsDeserialize(
     throw error;
   }
 
-  return result.body.map((p: any) => {
-    return widgetDeserializer(p);
-  });
+  return widgetArrayDeserializer(result.body);
 }
 
 /**
@@ -497,7 +493,7 @@ export async function sapListWidgets(
   csvArrayHeader: Uint8Array[],
   utcDateHeader: Date,
   options: SAPWidgetsSAPListWidgetsOptionalParams = { requestOptions: {} },
-): Promise<SAPWidgetsSAPListWidgetsResponse> {
+): Promise<Widget[]> {
   const result = await _sapListWidgetsSend(
     context,
     requiredHeader,

@@ -2,10 +2,7 @@
 // Licensed under the MIT License.
 
 import { ParametrizedHostContext as Client } from "../index.js";
-import {
-  collectionDeserializer,
-  ConfidentialLedgerListCollectionsResponse,
-} from "../../models/models.js";
+import { Collection, collectionArrayDeserializer } from "../../models/models.js";
 import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import { ConfidentialLedgerListCollectionsOptionalParams } from "./options.js";
 import {
@@ -38,22 +35,20 @@ export function _listCollectionsSend(
 
 export async function _listCollectionsDeserialize(
   result: PathUncheckedResponse,
-): Promise<ConfidentialLedgerListCollectionsResponse> {
+): Promise<Collection[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return result.body.map((p: any) => {
-    return collectionDeserializer(p);
-  });
+  return collectionArrayDeserializer(result.body);
 }
 
 /** Collection ids are user-created collections of ledger entries */
 export async function listCollections(
   context: Client,
   options: ConfidentialLedgerListCollectionsOptionalParams = { requestOptions: {} },
-): Promise<ConfidentialLedgerListCollectionsResponse> {
+): Promise<Collection[]> {
   const result = await _listCollectionsSend(context, options);
   return _listCollectionsDeserialize(result);
 }
