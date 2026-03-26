@@ -602,7 +602,12 @@ export function buildEnumTypes(
     name: `Known${normalizeModelName(context, type)}`,
     isExported: true,
     members: type.values.map((value) =>
-      emitEnumMember(context, value, reportMemberNameDiagnostic)
+      emitEnumMember(
+        context,
+        value,
+        normalizeName(type.name, NameType.Interface, true),
+        reportMemberNameDiagnostic
+      )
     )
   };
 
@@ -653,24 +658,31 @@ function getExtensibleEnumDescription(
 function emitEnumMember(
   context: SdkContext,
   member: SdkEnumValueType,
+  enumTypeName?: string,
   reportMemberNameDiagnostic = false // if reportMemberNameDiagnostic is true, it will report diagnostic for enum member name
 ): EnumMemberStructure {
-  const normalizedMemberName = context.rlcOptions?.ignoreEnumMemberNameNormalize
+  let normalizedMemberName = context.rlcOptions?.ignoreEnumMemberNameNormalize
     ? fixLeadingNumber(member.name, NameType.EnumMemberName) // need to fix the leading number also for enum member
     : normalizeName(member.name, NameType.EnumMemberName, true);
   if (
-    reportMemberNameDiagnostic &&
     normalizedMemberName.toLowerCase().startsWith("_") &&
     !member.name.toLowerCase().startsWith("_")
   ) {
-    reportDiagnostic(context.program, {
-      code: "prefix-adding-in-enum-member",
-      format: {
-        memberName: member.name,
-        normalizedName: normalizedMemberName
-      },
-      target: NoTarget
-    });
+    // Replace _ prefix with enum type name for more descriptive and valid identifier names
+    if (enumTypeName) {
+      normalizedMemberName = enumTypeName + normalizedMemberName.slice(1);
+    }
+    if (reportMemberNameDiagnostic) {
+      reportDiagnostic(context.program, {
+        code: "prefix-adding-in-enum-member",
+        format: {
+          memberName: member.name,
+          normalizedName: normalizedMemberName,
+          enumTypeName: enumTypeName ?? "_"
+        },
+        target: NoTarget
+      });
+    }
   }
   const memberStructure: EnumMemberStructure = {
     kind: StructureKind.EnumMember,
