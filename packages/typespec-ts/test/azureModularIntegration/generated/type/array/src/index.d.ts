@@ -123,13 +123,9 @@ export declare interface Int64ValuePutOptionalParams extends OperationOptions {
 export declare interface ModelValueGetOptionalParams extends OperationOptions {
 }
 
-export declare type ModelValueGetResponse = {
-    body: InnerModel[];
-};
-
 export declare interface ModelValueOperations {
     put: (body: InnerModel[], options?: ModelValuePutOptionalParams) => Promise<void>;
-    get: (options?: ModelValueGetOptionalParams) => Promise<ModelValueGetResponse>;
+    get: (options?: ModelValueGetOptionalParams) => Promise<InnerModel[]>;
 }
 
 export declare interface ModelValuePutOptionalParams extends OperationOptions {
