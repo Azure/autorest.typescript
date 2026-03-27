@@ -3063,23 +3063,41 @@ export function checkWrapNonModelReturn(
   const type = response.type;
   const contentTypes = operation.operation.responses[0]?.contentTypes ?? [];
 
-  // Check if it's a binary (bytes with binary content type) response
+  // Determine whether to wrap based on the HLC PropertyKind mapping.
+  // HLC wraps with `body` only when the type is PropertyKind.Primitive or PropertyKind.Enum
+  // (i.e. NOT PropertyKind.Composite or PropertyKind.Dictionary).
+  // For array types, HLC uses the item's kind, not the array itself.
+  //
+  // Case: bytes with binary content type → binary wrap (isBinary=true)
+  //   HLC: bytes → binary payload → separate binary handling
   if (type.__raw && isBinaryPayload(context, type.__raw, contentTypes)) {
     return { shouldWrap: true, isBinary: true };
   }
 
-  // Don't wrap array-of-models responses (e.g. Resource[]) — they are returned directly
-  // to match HLC behavior (PropertyKind.Composite) and avoid breaking changes during TSP migration
+  // Case: model array (e.g. Foo[]) → no wrap
+  //   HLC: model array → PropertyKind.Composite (item kind = model) → no body wrapper
+  //   Modular: array with valueType.kind === "model"
   if (type.kind === "array" && type.valueType.kind === "model") {
     return noWrap;
   }
 
-  // Check if it's a non-model, non-record type (array, scalar, enum, etc.)
-  if (type.kind !== "model" && type.kind !== "dict") {
-    return { shouldWrap: true, isBinary: false };
+  // Case: any object / Record (e.g. Record<string, unknown>) → no wrap
+  //   HLC: SchemaType.AnyObject → PropertyKind.Dictionary → no body wrapper
+  //   Modular: kind === "dict"
+  // Case: model → no wrap
+  //   HLC: model → PropertyKind.Composite → no body wrapper
+  //   Modular: kind === "model"
+  if (type.kind === "dict" || type.kind === "model") {
+    return noWrap;
   }
 
-  return noWrap;
+  // Remaining cases → wrap with `body`:
+  //   - string   → HLC PropertyKind.Primitive → modular `string`
+  //   - boolean  → HLC PropertyKind.Primitive → modular `boolean`
+  //   - string[] → HLC PropertyKind.Primitive (array keeps item kind) → modular `string[]`
+  //   - any      → HLC PropertyKind.Primitive → modular `unknown` or `any`
+  //   - enum     → HLC PropertyKind.Enum → modular `KnownXxx | string`
+  return { shouldWrap: true, isBinary: false };
 }
 
 /**
