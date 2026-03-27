@@ -83,6 +83,7 @@ import {
   SdkHttpOperation,
   SdkHttpParameter,
   SdkLroPagingServiceMethod,
+  SdkMethodParameter,
   SdkLroServiceMethod,
   SdkMethod,
   SdkModelPropertyType,
@@ -97,6 +98,7 @@ import {
   getHeaderClientOptions,
   getRestErrorCodeHeader
 } from "./clientOptionHelpers.js";
+import { getClientParameterName } from "./clientHelpers.js";
 import { isExtensibleEnum } from "../type-expressions/get-enum-expression.js";
 import { emitInlineModel } from "../type-expressions/get-model-expression.js";
 
@@ -2072,12 +2074,15 @@ function getParamAccessor(
   param: SdkHttpParameter,
   optionalParamName: string = "options"
 ): string {
-  if (param.onClient) {
-    return `context.${param.name}`;
-  }
-  const methodParamExpr = getMethodParamExpr(param);
+  const methodParamExpr = getMethodParamExpr(param, optionalParamName);
+  const clientPrefix = "context.";
   if (methodParamExpr) {
-    return methodParamExpr;
+    return param.onClient
+      ? `${clientPrefix}${methodParamExpr}`
+      : methodParamExpr;
+  }
+  if (param.onClient) {
+    return `${clientPrefix}${getClientParameterName(param)}`;
   }
   if (getEffectiveOptional(param)) {
     return `${optionalParamName}?.${param.name}`;
@@ -2107,11 +2112,15 @@ function getMethodParamExpr(
   for (let i = 0; i < path.length; i++) {
     const segment = path[i]!;
     if (i === 0) {
-      if (segment.optional) {
-        // If the first segment is optional, we need to start with the optionalParamName
+      // Normalize names for client-level segments to match the context interface property names
+      const segmentName = segment.onClient
+        ? getClientParameterName(segment as SdkMethodParameter)
+        : segment.name;
+      if (segment.optional && !segment.onClient) {
+        // If the first segment is optional and not on the client, we need to start with the optionalParamName
         parts.push(`${optionalParamName}?.`);
       }
-      parts.push(segment.name);
+      parts.push(segmentName);
     } else {
       const needsOptionalChain = path[i - 1]!.optional;
       parts.push(`${needsOptionalChain ? "?." : "."}${segment.name}`);

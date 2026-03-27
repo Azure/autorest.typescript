@@ -447,7 +447,7 @@ op getLogs(): {
 
 ```ts operations function _getLogsDeserialize
 export async function _getLogsDeserialize(
-result: PathUncheckedResponse & GetLogsResponse,
+  result: PathUncheckedResponse & GetLogsResponse,
 ): Promise<GetLogsResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {

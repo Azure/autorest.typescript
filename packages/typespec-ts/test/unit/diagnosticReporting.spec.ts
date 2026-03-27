@@ -321,7 +321,11 @@ describe("Diagnostic Reporting Tests", () => {
         configurable: true
       });
 
-      const result = getParameterMap(localMockContext, unsupportedParam, unsupportedParam.name);
+      const result = getParameterMap(
+        localMockContext,
+        unsupportedParam,
+        unsupportedParam.name
+      );
 
       console.log(capturedDiagnostic.code);
       console.log(capturedDiagnostic.message);
