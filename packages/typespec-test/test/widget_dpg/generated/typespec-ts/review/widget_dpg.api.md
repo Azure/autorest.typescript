@@ -32,17 +32,12 @@ export interface BudgetsCreateOrReplaceOptionalParams extends OperationOptions {
 export interface BudgetsGetBudgetsOptionalParams extends OperationOptions {
 }
 
-// @public (undocumented)
-export type BudgetsGetBudgetsResponse = {
-    body: Widget[];
-};
-
 // @public
 export interface BudgetsOperations {
     continue: (options?: BudgetsContinueOptionalParams) => Promise<void>;
     createOrReplace: (name: string, resource: SAPUser, options?: BudgetsCreateOrReplaceOptionalParams) => PollerLike<OperationState<SAPUser>, SAPUser>;
     // (undocumented)
-    getBudgets: (name: string, options?: BudgetsGetBudgetsOptionalParams) => Promise<BudgetsGetBudgetsResponse>;
+    getBudgets: (name: string, options?: BudgetsGetBudgetsOptionalParams) => Promise<Widget[]>;
 }
 
 // @public
@@ -139,7 +134,7 @@ export interface SAPWidgetsOperations {
     listWidgetsPages: (page: number, pageSize: number, options?: SAPWidgetsListWidgetsPagesOptionalParams) => PagedAsyncIterableIterator<Widget>;
     // (undocumented)
     queryWidgetsPages: (page: number, pageSize: number, options?: SAPWidgetsQueryWidgetsPagesOptionalParams) => PagedAsyncIterableIterator<Widget>;
-    sapListWidgets: (requiredHeader: string, bytesHeader: Uint8Array, value: Uint8Array, csvArrayHeader: Uint8Array[], utcDateHeader: Date, options?: SAPWidgetsSAPListWidgetsOptionalParams) => Promise<SAPWidgetsSAPListWidgetsResponse>;
+    sapListWidgets: (requiredHeader: string, bytesHeader: Uint8Array, value: Uint8Array, csvArrayHeader: Uint8Array[], utcDateHeader: Date, options?: SAPWidgetsSAPListWidgetsOptionalParams) => Promise<Widget[]>;
     updateWidget: (id: string, options?: SAPWidgetsUpdateWidgetOptionalParams) => Promise<Widget>;
 }
 
@@ -158,11 +153,6 @@ export interface SAPWidgetsSAPListWidgetsOptionalParams extends OperationOptions
     // (undocumented)
     optionalHeader?: string;
 }
-
-// @public (undocumented)
-export type SAPWidgetsSAPListWidgetsResponse = {
-    body: Widget[];
-};
 
 // @public
 export interface SAPWidgetsUpdateWidgetOptionalParams extends OperationOptions {
