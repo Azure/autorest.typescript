@@ -34,20 +34,20 @@ export {
   KnownPrivateEndpointConnectionProvisioningState,
 } from "./models/index.js";
 export type {
-  ComputeVirtualMachine,
-  ComputeVirtualMachineProperties,
-  ComputeRestorePointCollection,
-  ComputeRestorePointCollectionProperties,
+  VirtualMachine,
+  VirtualMachineProperties,
+  RestorePointCollection,
+  RestorePointCollectionProperties,
   ComputeActionGroup,
   ComputeActionGroupsProperties,
 } from "./models/compute/index.js";
 export type {
   ComputeDiskActionGroup,
   ComputeDiskActionGroupsProperties,
-  ComputeDiskDisk,
-  ComputeDiskDiskProperties,
-  ComputeDiskDiskAccess,
-  ComputeDiskDiskAccessProperties,
+  Disk,
+  DiskProperties,
+  DiskAccess,
+  DiskAccessProperties,
 } from "./models/computeDisk/index.js";
 export type { ComputeClientOptionalParams } from "./api/index.js";
 export type {

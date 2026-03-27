@@ -6,75 +6,61 @@ describe("NameAndEncodedName Client", () => {
   beforeEach(() => {
     client = new NamingClient({
       endpoint: "http://localhost:3002",
-      allowInsecureConnection: true,
-      retryOptions: {
-        maxRetries: 0
-      }
+      allowInsecureConnection: true
     });
   });
 
   it("should work with property client", async () => {
-    const result = await client.client({ clientName: true });
-    assert.isUndefined(result);
+    await client.property.client({ clientName: true });
   });
 
   it("should work with property language", async () => {
-    const result = await client.language({ tsName: true });
-    assert.isUndefined(result);
+    await client.property.language({ tsName: true });
   });
 
   it("should work with property compatibleWithEncodedName", async () => {
-    const result = await client.compatibleWithEncodedName({
+    await client.property.compatibleWithEncodedName({
       clientName: true
     });
-    assert.isUndefined(result);
   });
 
   it("should work with operation", async () => {
-    const result = await client.clientName();
-    assert.isUndefined(result);
+    await client.clientName();
   });
 
   it("should work with parameter", async () => {
-    const result = await client.parameter("true");
-    assert.isUndefined(result);
+    await client.parameter("true");
   });
 
   it("should work with header request", async () => {
-    const result = await client.request("true");
-    assert.isUndefined(result);
+    await client.header.request("true");
   });
 
   it("should work with header response", async () => {
-    const result = await client.response({
+    await client.header.response({
       onResponse: function (res) {
         assert.strictEqual(res.headers.get("default-name"), "true");
       }
     });
-    assert.isUndefined(result);
   });
 
   it("should work with model client", async () => {
-    const result = await client.modelClient.client({ defaultName: true });
-    assert.isUndefined(result);
+    await client.modelClient.client({ defaultName: true });
   });
 
   it("should work with model language", async () => {
-    const result = await client.modelClient.language({ defaultName: true });
-    assert.isUndefined(result);
+    await client.modelClient.language({ defaultName: true });
   });
 
   it("should work union enum name", async () => {
-    const result = await client.unionEnum.unionEnumName("value1", {
+    await client.unionEnum.unionEnumName("value1", {
       requestOptions: { headers: { "content-type": "text/plain" } }
     });
-    assert.isUndefined(result);
   });
 
   it("should work with union enum member name", async () => {
-    const result = await client.unionEnum.unionEnumMemberName("value1", {
+    await client.unionEnum.unionEnumMemberName("value1", {
       requestOptions: { headers: { "content-type": "text/plain" } }
     });
-    assert.isUndefined(result);
   });
 });

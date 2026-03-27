@@ -10,22 +10,22 @@ import { ResourceProvisioningState, TrackedResource, systemDataDeserializer } fr
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** Describes a Virtual Machine. */
-export interface ComputeVirtualMachine extends TrackedResource {
+export interface VirtualMachine extends TrackedResource {
   /** The resource-specific properties for this resource. */
-  properties?: ComputeVirtualMachineProperties;
+  properties?: VirtualMachineProperties;
 }
 
-export function computeVirtualMachineSerializer(item: ComputeVirtualMachine): any {
+export function virtualMachineSerializer(item: VirtualMachine): any {
   return {
     tags: item["tags"],
     location: item["location"],
     properties: !item["properties"]
       ? item["properties"]
-      : computeVirtualMachinePropertiesSerializer(item["properties"]),
+      : virtualMachinePropertiesSerializer(item["properties"]),
   };
 }
 
-export function computeVirtualMachineDeserializer(item: any): ComputeVirtualMachine {
+export function virtualMachineDeserializer(item: any): VirtualMachine {
   return {
     tags: !item["tags"]
       ? item["tags"]
@@ -39,48 +39,42 @@ export function computeVirtualMachineDeserializer(item: any): ComputeVirtualMach
       : systemDataDeserializer(item["systemData"]),
     properties: !item["properties"]
       ? item["properties"]
-      : computeVirtualMachinePropertiesDeserializer(item["properties"]),
+      : virtualMachinePropertiesDeserializer(item["properties"]),
   };
 }
 
-/** model interface ComputeVirtualMachineProperties */
-export interface ComputeVirtualMachineProperties {
+/** model interface VirtualMachineProperties */
+export interface VirtualMachineProperties {
   readonly provisioningState?: ResourceProvisioningState;
 }
 
-export function computeVirtualMachinePropertiesSerializer(
-  item: ComputeVirtualMachineProperties,
-): any {
+export function virtualMachinePropertiesSerializer(item: VirtualMachineProperties): any {
   return item;
 }
 
-export function computeVirtualMachinePropertiesDeserializer(
-  item: any,
-): ComputeVirtualMachineProperties {
+export function virtualMachinePropertiesDeserializer(item: any): VirtualMachineProperties {
   return {
     provisioningState: item["provisioningState"],
   };
 }
 
 /** Create or update Restore Point collection parameters. */
-export interface ComputeRestorePointCollection extends TrackedResource {
+export interface RestorePointCollection extends TrackedResource {
   /** The resource-specific properties for this resource. */
-  properties?: ComputeRestorePointCollectionProperties;
+  properties?: RestorePointCollectionProperties;
 }
 
-export function computeRestorePointCollectionSerializer(item: ComputeRestorePointCollection): any {
+export function restorePointCollectionSerializer(item: RestorePointCollection): any {
   return {
     tags: item["tags"],
     location: item["location"],
     properties: !item["properties"]
       ? item["properties"]
-      : computeRestorePointCollectionPropertiesSerializer(item["properties"]),
+      : restorePointCollectionPropertiesSerializer(item["properties"]),
   };
 }
 
-export function computeRestorePointCollectionDeserializer(
-  item: any,
-): ComputeRestorePointCollection {
+export function restorePointCollectionDeserializer(item: any): RestorePointCollection {
   return {
     tags: !item["tags"]
       ? item["tags"]
@@ -94,27 +88,27 @@ export function computeRestorePointCollectionDeserializer(
       : systemDataDeserializer(item["systemData"]),
     properties: !item["properties"]
       ? item["properties"]
-      : computeRestorePointCollectionPropertiesDeserializer(item["properties"]),
+      : restorePointCollectionPropertiesDeserializer(item["properties"]),
   };
 }
 
 /** The restore point collection properties. */
-export interface ComputeRestorePointCollectionProperties {
+export interface RestorePointCollectionProperties {
   /** The provisioning state of the restore point collection. */
   readonly provisioningState?: string;
   /** This property determines whether instant access snapshot is enabled for restore points created under this restore point collection for Premium SSD v2 or Ultra disk. Instant access snapshot for Premium SSD v2 or Ultra disk is instantaneously available for restoring disk with fast restore performance. */
   instantAccess?: boolean;
 }
 
-export function computeRestorePointCollectionPropertiesSerializer(
-  item: ComputeRestorePointCollectionProperties,
+export function restorePointCollectionPropertiesSerializer(
+  item: RestorePointCollectionProperties,
 ): any {
   return { instantAccess: item["instantAccess"] };
 }
 
-export function computeRestorePointCollectionPropertiesDeserializer(
+export function restorePointCollectionPropertiesDeserializer(
   item: any,
-): ComputeRestorePointCollectionProperties {
+): RestorePointCollectionProperties {
   return {
     provisioningState: item["provisioningState"],
     instantAccess: item["instantAccess"],

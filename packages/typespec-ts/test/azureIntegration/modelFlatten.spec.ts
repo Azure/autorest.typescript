@@ -50,4 +50,37 @@ describe("Flatten Property Rest Client", () => {
     assert.strictEqual(result.body.properties.properties.description, "foo");
     assert.strictEqual(result.body.properties.properties.age, 1);
   });
+
+  it("should update and receive model with unknown flatten property", async () => {
+    const result = await client
+      .path("/azure/client-generator-core/flatten-property/flattenUnknownModel")
+      .put({
+        body: {
+          name: "foo"
+        }
+      });
+    assert.strictEqual(result.status, "200");
+    assert.strictEqual(result.body.name, "test");
+    assert.deepEqual(result.body.properties, {
+      key1: "value1",
+      key2: "value2"
+    });
+  });
+
+  it("should update and receive model with all readonly flatten properties", async () => {
+    const result = await client
+      .path(
+        "/azure/client-generator-core/flatten-property/flattenReadOnlyModel"
+      )
+      .put({
+        body: {
+          name: "foo"
+        }
+      });
+    assert.strictEqual(result.status, "200");
+    assert.strictEqual(result.body.name, "foo");
+    assert.strictEqual(result.body.properties?.solutionId, "solution1");
+    assert.strictEqual(result.body.properties?.title, "Solution Title");
+    assert.strictEqual(result.body.properties?.content, "Solution Content");
+  });
 });

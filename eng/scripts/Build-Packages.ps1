@@ -56,7 +56,7 @@ PackPackage "$root/packages/autorest.typescript"
 PackPackage "$root/packages/typespec-ts"
 
 if ($PublishInternal) {
-  $feedUrl = "https://pkgs.dev.azure.com/azure-sdk/public/_packaging/azure-sdk-for-js-test-autorest/npm/registry"
+  $feedUrl = "https://pkgs.dev.azure.com/azure-sdk/public/_packaging/azure-sdk-for-js/npm/registry"
 
   $overrides = @{
     "@autorest/typescript"     = "$feedUrl/@autorest/typescript/-/typescript-$($packageMatrix['generator']).tgz"

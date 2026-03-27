@@ -2054,3 +2054,5 @@ export function fineTuningJobEventDeserializer(item: any): FineTuningJobEvent {
     message: item["message"],
   };
 }
+
+export type FilesDownloadResponse = { body: string };

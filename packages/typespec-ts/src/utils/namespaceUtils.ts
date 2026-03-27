@@ -1,4 +1,7 @@
-import { getAllModels } from "@azure-tools/typespec-client-generator-core";
+import {
+  getAllModels,
+  UsageFlags
+} from "@azure-tools/typespec-client-generator-core";
 import {
   isGlobalNamespace,
   isService,
@@ -73,7 +76,7 @@ export function detectModelConflicts(dpgContext: SdkContext) {
   const reported = new Set<string>();
   let hasConflict = false;
   for (const model of allModels) {
-    if (model.name === "") {
+    if (model.name === "" || model.usage === UsageFlags.ApiVersionEnum) {
       continue;
     }
     if (nameSet.has(model.name) && !reported.has(model.name)) {

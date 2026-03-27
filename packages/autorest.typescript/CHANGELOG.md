@@ -1,3 +1,33 @@
+## 6.0.64 (2026-03-17)
+
+- [Bugfix] Fix detectModelConflicts false positive for API version enums in multi-service scenarios. Please refer to [#3842](https://github.com/Azure/autorest.typescript/pull/3842)
+- [Bugfix] Convert null example values to type-safe defaults for array/object/scalar types when ignore-nullable-on-optional is true. Please refer to [#3844](https://github.com/Azure/autorest.typescript/pull/3844)
+- [Feature] Update TypeSpec version to latest stable. Please refer to [#3846](https://github.com/Azure/autorest.typescript/pull/3846)
+
+## 6.0.63 (2026-03-12)
+
+- Improve test generation for modular SDK clients.
+
+## 6.0.62 (2026-03-11)
+
+- [Feature] Add `wrap-non-model-return` option to prevent breaking changes for non-model types. Please refer to [#3805](https://github.com/Azure/autorest.typescript/pull/3805)
+- [Feature] Test generation for modular SDK clients. Please refer to [#3809](https://github.com/Azure/autorest.typescript/pull/3809)
+- [Bugfix] Fix multi-level @Legacy.flattenProperty generates incorrect sample code. Please refer to [#3831](https://github.com/Azure/autorest.typescript/pull/3831)
+
+## 6.0.61 (2026-03-09)
+
+- [Bugfix] Remove `hasWarpConfigFile` guard — always regenerate `warp.config.yml`. Please refer to [#3825](https://github.com/Azure/autorest.typescript/pull/3825)
+- [Feature] Remove tshy and add warp config generation for HLC (autorest.typescript). Please refer to [#3827](https://github.com/Azure/autorest.typescript/pull/3827)
+
+## 6.0.60 (2026-03-06)
+
+- [Feature] Add enable-storage-compat emitter option. Please refer to [#3814](https://github.com/Azure/autorest.typescript/pull/3814)
+- [Feature] Implement Spector integration tests for encode/array. Please refer to [#3803](https://github.com/Azure/autorest.typescript/pull/3803)
+- [Feature] Emit warp config instead of tshy for Azure monorepo packages. Please refer to [#3802](https://github.com/Azure/autorest.typescript/pull/3802)
+- [Feature] Add missing special-words model properties test coverage. Please refer to [#3796](https://github.com/Azure/autorest.typescript/pull/3796)
+- [Feature] Emit `apiVersions` map in metadata.json to support multi-service packages. Please refer to [#3784](https://github.com/Azure/autorest.typescript/pull/3784)
+- [Bugfix] Re-generation, the metadata files should be update. Please refer to [#3764](https://github.com/Azure/autorest.typescript/pull/3764)
+
 ## 6.0.59 (2026-02-28)
 
 - [Bugfix] Fix LRO paging should generate `beginListXXXAndWait` operation for `compatibility-lro: true`. Please refer to [#3712](https://github.com/Azure/autorest.typescript/pull/3712)

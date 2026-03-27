@@ -75,6 +75,19 @@ export declare interface Exec {
     name: string;
 }
 
+export declare type ExtensibleString = "and" | "as" | "assert" | "async" | "await" | "break" | "class" | "constructor" | "continue" | "def" | "del" | "elif" | "else" | "except" | "exec" | "finally" | "for" | "from" | "global" | "if" | "import" | "in" | "is" | "lambda" | "not" | "or" | "pass" | "raise" | "return" | "try" | "while" | "with" | "yield";
+
+export declare interface ExtensibleStringsOperations {
+    putExtensibleStringValue: (body: ExtensibleString, options?: ExtensibleStringsPutExtensibleStringValueOptionalParams) => Promise<ExtensibleStringsPutExtensibleStringValueResponse>;
+}
+
+export declare interface ExtensibleStringsPutExtensibleStringValueOptionalParams extends OperationOptions {
+}
+
+export declare type ExtensibleStringsPutExtensibleStringValueResponse = {
+    body: ExtensibleString;
+};
+
 export declare interface Finally {
     name: string;
 }
@@ -569,6 +582,7 @@ export declare class SpecialWordsClient {
     constructor(options?: SpecialWordsClientOptionalParams);
     readonly parameters: ParametersOperations;
     readonly operations: OperationsOperations;
+    readonly extensibleStrings: ExtensibleStringsOperations;
     readonly modelProperties: ModelPropertiesOperations;
     readonly models: ModelsOperations;
 }

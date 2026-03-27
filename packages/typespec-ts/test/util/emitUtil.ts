@@ -11,7 +11,11 @@ import {
   buildSchemaTypes,
   initInternalImports
 } from "@azure-tools/rlc-common";
-import { emitTypes } from "../../src/modular/emitModels.js";
+import {
+  emitTypes,
+  emitNonModelResponseTypes,
+  getModelsPath
+} from "../../src/modular/emitModels.js";
 import { buildApiOptions } from "../../src/modular/emitModelsOptions.js";
 import {
   compileTypeSpecFor,
@@ -38,6 +42,7 @@ import { transformToParameterTypes } from "../../src/transform/transformParamete
 import { transformToResponseTypes } from "../../src/transform/transformResponses.js";
 import { useBinder } from "../../src/framework/hooks/binder.js";
 import { emitSamples } from "../../src/modular/emitSamples.js";
+import { emitTests } from "../../src/modular/emitTests.js";
 import { renameClientName } from "../../src/index.js";
 import { buildRootIndex } from "../../src/modular/buildRootIndex.js";
 import { useContext } from "../../src/contextManager.js";
@@ -422,6 +427,10 @@ export async function emitModularModelsFromTypeSpec(
     options["experimental-extensible-enums"];
   dpgContext.rlcOptions!.ignoreNullableOnOptional =
     options["ignore-nullable-on-optional"] ?? true;
+  if (options["wrap-non-model-return"] !== undefined) {
+    dpgContext.rlcOptions!.wrapNonModelReturn =
+      options["wrap-non-model-return"] === true;
+  }
   const modularEmitterOptions = transformModularEmitterOptions(dpgContext, "", {
     casing: "camel"
   });
@@ -438,8 +447,18 @@ export async function emitModularModelsFromTypeSpec(
       modelFile[0]!.fixUnusedIdentifiers();
     }
   } else {
-    modelFile = emitTypes(dpgContext, { sourceRoot: "" });
+    const emittedFiles = emitTypes(dpgContext, { sourceRoot: "" });
+    emitNonModelResponseTypes(dpgContext, { sourceRoot: "" });
     binder.resolveAllReferences("/");
+    // After emitNonModelResponseTypes, the models file may have been updated or created
+    const project = useContext("outputProject");
+    const modelsFile = project.getSourceFile(getModelsPath(""));
+    if (modelsFile) {
+      modelsFile.fixUnusedIdentifiers();
+      modelFile = modelsFile;
+    } else {
+      modelFile = emittedFiles[0];
+    }
   }
   if (mustEmptyDiagnostic && dpgContext.program.diagnostics.length > 0) {
     throw dpgContext.program.diagnostics;
@@ -563,6 +582,12 @@ export async function emitModularOperationsFromTypeSpec(
   dpgContext.rlcOptions!.isModularLibrary = true;
   dpgContext.rlcOptions!.experimentalExtensibleEnums =
     options["experimental-extensible-enums"];
+  if (options["wrap-non-model-return"] !== undefined) {
+    dpgContext.rlcOptions!.wrapNonModelReturn =
+      options["wrap-non-model-return"] === true;
+  }
+  dpgContext.rlcOptions!.enableStorageCompat =
+    options["enable-storage-compat"] === true;
   const modularEmitterOptions = transformModularEmitterOptions(dpgContext, "", {
     casing: "camel"
   });
@@ -572,6 +597,7 @@ export async function emitModularOperationsFromTypeSpec(
     dpgContext.sdkPackage.clients[0]
   ) {
     emitTypes(dpgContext, { sourceRoot: "" });
+    emitNonModelResponseTypes(dpgContext, { sourceRoot: "" });
     const clientMap = Array.from(getClientHierarchyMap(dpgContext));
     const res = buildOperationFiles(
       dpgContext,
@@ -694,6 +720,8 @@ export async function emitSamplesFromTypeSpec(
     },
     ...configs
   });
+  dpgContext.rlcOptions!.ignoreNullableOnOptional =
+    configs["ignore-nullable-on-optional"] ?? true;
   const modularEmitterOptions = transformModularEmitterOptions(dpgContext, "", {
     casing: "camel"
   });
@@ -701,6 +729,33 @@ export async function emitSamplesFromTypeSpec(
     await renameClientName(subClient, modularEmitterOptions);
   }
   const files = await emitSamples(dpgContext);
+  useBinder().resolveAllReferences("/");
+  return files;
+}
+
+export async function emitTestsFromTypeSpec(
+  tspContent: string,
+  examples: ExampleJson[],
+  configs: Record<string, any> = {}
+) {
+  const context = await compileTypeSpecFor(tspContent, examples);
+  configs["typespecTitleMap"] = configs["typespec-title-map"];
+  configs["hierarchyClient"] = configs["hierarchy-client"];
+  configs["enableOperationGroup"] = configs["enable-operation-group"];
+  const dpgContext = await createDpgContextTestHelper(context.program, false, {
+    "examples-directory": `./examples`,
+    packageDetails: {
+      name: "@azure/internal-test"
+    },
+    ...configs
+  });
+  const modularEmitterOptions = transformModularEmitterOptions(dpgContext, "", {
+    casing: "camel"
+  });
+  for (const subClient of dpgContext.sdkPackage.clients) {
+    await renameClientName(subClient, modularEmitterOptions);
+  }
+  const files = await emitTests(dpgContext);
   useBinder().resolveAllReferences("/");
   return files;
 }
