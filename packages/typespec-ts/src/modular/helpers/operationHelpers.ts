@@ -3074,6 +3074,11 @@ export function checkWrapNonModelReturn(
     return noWrap;
   }
 
+  // To do by default unknown would be translated as any so shouldWrap would be false.
+  // if (type.kind === "unknown") {
+  //   return noWrap;
+  // }
+
   // Check if it's a non-model, non-record type (array, scalar, enum, etc.)
   if (type.kind !== "model" && type.kind !== "dict") {
     return { shouldWrap: true, isBinary: false };

@@ -505,3 +505,347 @@ export async function _getBlobDeserialize(
   return { blobBody: result.blobBody, readableStreamBody: result.readableStreamBody };
 }
 ```
+
+# wrap-non-model-return wraps (string, boolean, string[], enum, any, model array,any object) response with body property
+
+## TypeSpec
+
+```tsp
+model Test {
+  name: string;
+}
+union EnumTest  {
+  one: "one",
+  two: "two",
+  others: string
+}
+
+interface testResponse {
+  @route("/string")
+  @get
+  getString():string;
+
+  @route("/boolean")
+  @get
+  getBoolean():boolean;
+  
+  @route("/stringArray")
+  @get
+  getStringArray():string[];
+
+  @route("/any")
+  @get
+  getAny():unknown;
+
+  @route("/enum")
+  @get
+  getEnum(@body body:EnumTest):EnumTest;
+
+  @route("/modelArray")
+  @get
+  getModelArray():Test[];
+  
+  @route("/anyObject")
+  @get
+  getAnyObject():unknown;
+
+}
+```
+
+```yaml
+wrap-non-model-return: true
+```
+
+## Models
+
+```ts models
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/** model interface Test */
+export interface Test {
+  name: string;
+}
+
+export function testDeserializer(item: any): Test {
+  return {
+    name: item["name"],
+  };
+}
+
+/** Type of EnumTest */
+export type EnumTest = "one" | "two";
+/** Alias for _ */
+export type _ = "one" | "two" | string;
+
+export function testArrayDeserializer(result: Array<Test>): any[] {
+  return result.map((item) => {
+    return testDeserializer(item);
+  });
+}
+
+export type GetAnyObjectResponse = { body: any };
+
+export type GetEnumResponse = { body: "one" | "two" | string };
+
+export type GetAnyResponse = { body: any };
+
+export type GetStringArrayResponse = { body: string[] };
+
+export type GetBooleanResponse = { body: boolean };
+
+export type GetStringResponse = { body: string };
+```
+
+## Operations
+
+```ts operations
+import { TestingContext as Client } from "./index.js";
+import {
+  Test,
+  EnumTest,
+  testArrayDeserializer,
+  GetAnyObjectResponse,
+  GetEnumResponse,
+  GetAnyResponse,
+  GetStringArrayResponse,
+  GetBooleanResponse,
+  GetStringResponse,
+} from "../models/models.js";
+import {
+  GetAnyObjectOptionalParams,
+  GetModelArrayOptionalParams,
+  GetEnumOptionalParams,
+  GetAnyOptionalParams,
+  GetStringArrayOptionalParams,
+  GetBooleanOptionalParams,
+  GetStringOptionalParams,
+} from "./options.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+
+export function _getAnyObjectSend(
+  context: Client,
+  options: GetAnyObjectOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/anyObject")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
+    });
+}
+
+export async function _getAnyObjectDeserialize(
+  result: PathUncheckedResponse,
+): Promise<GetAnyObjectResponse> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return { body: result.body };
+}
+
+export async function getAnyObject(
+  context: Client,
+  options: GetAnyObjectOptionalParams = { requestOptions: {} },
+): Promise<GetAnyObjectResponse> {
+  const result = await _getAnyObjectSend(context, options);
+  return _getAnyObjectDeserialize(result);
+}
+
+export function _getModelArraySend(
+  context: Client,
+  options: GetModelArrayOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/modelArray")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
+    });
+}
+
+export async function _getModelArrayDeserialize(result: PathUncheckedResponse): Promise<Test[]> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return testArrayDeserializer(result.body);
+}
+
+export async function getModelArray(
+  context: Client,
+  options: GetModelArrayOptionalParams = { requestOptions: {} },
+): Promise<Test[]> {
+  const result = await _getModelArraySend(context, options);
+  return _getModelArrayDeserialize(result);
+}
+
+export function _getEnumSend(
+  context: Client,
+  body: EnumTest,
+  options: GetEnumOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/enum")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "text/plain",
+      body: body,
+    });
+}
+
+export async function _getEnumDeserialize(result: PathUncheckedResponse): Promise<GetEnumResponse> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return { body: result.body };
+}
+
+export async function getEnum(
+  context: Client,
+  body: EnumTest,
+  options: GetEnumOptionalParams = { requestOptions: {} },
+): Promise<GetEnumResponse> {
+  const result = await _getEnumSend(context, body, options);
+  return _getEnumDeserialize(result);
+}
+
+export function _getAnySend(
+  context: Client,
+  options: GetAnyOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/any")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
+    });
+}
+
+export async function _getAnyDeserialize(result: PathUncheckedResponse): Promise<GetAnyResponse> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return { body: result.body };
+}
+
+export async function getAny(
+  context: Client,
+  options: GetAnyOptionalParams = { requestOptions: {} },
+): Promise<GetAnyResponse> {
+  const result = await _getAnySend(context, options);
+  return _getAnyDeserialize(result);
+}
+
+export function _getStringArraySend(
+  context: Client,
+  options: GetStringArrayOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/stringArray")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
+    });
+}
+
+export async function _getStringArrayDeserialize(
+  result: PathUncheckedResponse,
+): Promise<GetStringArrayResponse> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return {
+    body: result.body.map((p: any) => {
+      return p;
+    }),
+  };
+}
+
+export async function getStringArray(
+  context: Client,
+  options: GetStringArrayOptionalParams = { requestOptions: {} },
+): Promise<GetStringArrayResponse> {
+  const result = await _getStringArraySend(context, options);
+  return _getStringArrayDeserialize(result);
+}
+
+export function _getBooleanSend(
+  context: Client,
+  options: GetBooleanOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/boolean")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: { accept: "text/plain", ...options.requestOptions?.headers },
+    });
+}
+
+export async function _getBooleanDeserialize(
+  result: PathUncheckedResponse,
+): Promise<GetBooleanResponse> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return { body: result.body };
+}
+
+export async function getBoolean(
+  context: Client,
+  options: GetBooleanOptionalParams = { requestOptions: {} },
+): Promise<GetBooleanResponse> {
+  const result = await _getBooleanSend(context, options);
+  return _getBooleanDeserialize(result);
+}
+
+export function _getStringSend(
+  context: Client,
+  options: GetStringOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/string")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: { accept: "text/plain", ...options.requestOptions?.headers },
+    });
+}
+
+export async function _getStringDeserialize(
+  result: PathUncheckedResponse,
+): Promise<GetStringResponse> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return { body: result.body };
+}
+
+export async function getString(
+  context: Client,
+  options: GetStringOptionalParams = { requestOptions: {} },
+): Promise<GetStringResponse> {
+  const result = await _getStringSend(context, options);
+  return _getStringDeserialize(result);
+}
+```
