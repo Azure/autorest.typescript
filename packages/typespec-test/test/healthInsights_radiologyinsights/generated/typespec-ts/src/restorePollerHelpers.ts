@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { AzureHealthInsightsClient } from "./azureHealthInsightsClient.js";
-import { _createJobDeserialize } from "./api/radiologyInsights/operations.js";
+import { RadiologyInsightsClient } from "./radiologyInsightsClient.js";
+import { _inferRadiologyInsightsDeserialize } from "./api/operations.js";
 import { getLongRunningPoller } from "./static-helpers/pollingHelpers.js";
 import { OperationOptions, PathUncheckedResponse } from "@azure-rest/core-client";
 import { AbortSignalLike } from "@azure/abort-controller";
@@ -33,7 +33,7 @@ export interface RestorePollerOptions<
  * needs to be constructed after the original one is not in scope.
  */
 export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(
-  client: AzureHealthInsightsClient,
+  client: RadiologyInsightsClient,
   serializedState: string,
   sourceOperation: (...args: any[]) => PollerLike<OperationState<TResult>, TResult>,
   options?: RestorePollerOptions<TResult>,
@@ -79,7 +79,7 @@ interface DeserializationHelper {
 
 const deserializeMap: Record<string, DeserializationHelper> = {
   "POST /radiology-insights/jobs": {
-    deserializer: _createJobDeserialize,
+    deserializer: _inferRadiologyInsightsDeserialize,
     expectedStatuses: ["202", "200", "201"],
   },
 };

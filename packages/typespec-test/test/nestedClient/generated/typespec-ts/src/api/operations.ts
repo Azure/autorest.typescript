@@ -13,13 +13,12 @@ import {
 
 export function _downloadSend(
   context: Client,
-  accountName: string,
   options: DownloadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/account/{accountName}",
     {
-      accountName: accountName,
+      accountName: context.accountName,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -39,9 +38,8 @@ export async function _downloadDeserialize(result: PathUncheckedResponse): Promi
 
 export async function download(
   context: Client,
-  accountName: string,
   options: DownloadOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _downloadSend(context, accountName, options);
+  const result = await _downloadSend(context, options);
   return _downloadDeserialize(result);
 }

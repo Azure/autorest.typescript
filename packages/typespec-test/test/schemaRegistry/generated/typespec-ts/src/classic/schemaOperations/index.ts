@@ -20,7 +20,7 @@ import {
 } from "../../api/schemaOperations/options.js";
 import {
   SchemaGroup,
-  Version,
+  SchemaVersion,
   SchemaContentTypeValues,
   SchemaOperationsGetSchemaByVersionResponse,
   SchemaOperationsGetSchemaByIdResponse,
@@ -57,7 +57,7 @@ export interface SchemaOperationsOperations {
     groupName: string,
     name: string,
     options?: SchemaOperationsListSchemaVersionsOptionalParams,
-  ) => PagedAsyncIterableIterator<Version>;
+  ) => PagedAsyncIterableIterator<SchemaVersion>;
   /** Gets a registered schema by its unique ID.  Azure Schema Registry guarantees that ID is unique within a namespace. Operation response type is based on serialization of schema requested. */
   getSchemaById: (
     id: string,

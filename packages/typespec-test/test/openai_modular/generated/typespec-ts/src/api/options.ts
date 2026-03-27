@@ -7,6 +7,9 @@ import { OperationOptions } from "@azure-rest/core-client";
 export interface GetEmbeddingsOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
+export interface GenerateSpeechFromTextOptionalParams extends OperationOptions {}
+
+/** Optional parameters. */
 export interface GetImageGenerationsOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
@@ -26,6 +29,3 @@ export interface GetAudioTranscriptionAsResponseObjectOptionalParams extends Ope
 
 /** Optional parameters. */
 export interface GetAudioTranscriptionAsPlainTextOptionalParams extends OperationOptions {}
-
-/** Optional parameters. */
-export interface GenerateSpeechFromTextOptionalParams extends OperationOptions {}

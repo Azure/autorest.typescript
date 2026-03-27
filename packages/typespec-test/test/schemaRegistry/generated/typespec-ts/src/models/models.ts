@@ -43,33 +43,92 @@ export function schemaGroupDeserializer(item: any): SchemaGroup {
 /** Paged collection of Version items */
 export interface _PagedVersion {
   /** The Version items on this page */
-  value: Version[];
+  value: SchemaVersion[];
   /** The link to the next page of items */
   nextLink?: string;
 }
 
 export function _pagedVersionDeserializer(item: any): _PagedVersion {
   return {
-    value: versionArrayDeserializer(item["value"]),
+    value: schemaVersionArrayDeserializer(item["value"]),
     nextLink: item["nextLink"],
   };
 }
 
-export function versionArrayDeserializer(result: Array<Version>): any[] {
+export function schemaVersionArrayDeserializer(result: Array<SchemaVersion>): any[] {
   return result.map((item) => {
-    return versionDeserializer(item);
+    return schemaVersionDeserializer(item);
   });
 }
 
 /** Schema versions resource. */
-export interface Version {
+export interface SchemaVersion {
   /** Version number of specific schema. */
   readonly schemaVersion: number;
 }
 
-export function versionDeserializer(item: any): Version {
+export function schemaVersionDeserializer(item: any): SchemaVersion {
   return {
     schemaVersion: item["schemaVersion"],
+  };
+}
+
+/** Meta properties of a schema. */
+export interface SchemaProperties {
+  /** References a specific schema in the registry namespace. */
+  id: string;
+  /** Format for the schema being stored. */
+  format: SchemaFormat;
+  /** Schema group under which schema is stored. */
+  groupName: string;
+  /** Name of schema. */
+  name: string;
+  /** Version of schema. */
+  version: number;
+}
+
+export function schemaPropertiesSerializer(item: SchemaProperties): any {
+  return {
+    id: item["id"],
+    format: item["format"],
+    groupName: item["groupName"],
+    name: item["name"],
+    version: item["version"],
+  };
+}
+
+export function schemaPropertiesDeserializer(item: any): SchemaProperties {
+  return {
+    id: item["id"],
+    format: item["format"],
+    groupName: item["groupName"],
+    name: item["name"],
+    version: item["version"],
+  };
+}
+
+/** Represents the format of the schema to be stored by the Schema Registry service. */
+export type SchemaFormat = "Avro" | "Json" | "Custom" | "Protobuf";
+
+/** The schema content of a schema, along with id and meta properties. */
+export interface Schema {
+  /** The content of the schema. */
+  definition: string;
+  /** The properties of the schema. */
+  properties: SchemaProperties;
+}
+
+export function schemaSerializer(item: Schema): any {
+  return {
+    definition: item["definition"],
+    properties: schemaPropertiesSerializer(item["properties"]),
+  };
+}
+
+export function schemaDeserializer(item: any): Schema {
+  return {
+    definition: item["definition"],
+    properties: schemaPropertiesDeserializer(item["properties"]),
   };
 }
 
@@ -89,6 +148,13 @@ export enum KnownServiceApiVersions {
   /** Azure Schema Registry 2023-07-01 Version. This is the default version. */
   V20230701 = "2023-07-01",
 }
+
+/** The content type for the schema. */
+export type ContentTypeEnum =
+  | "application/octet-stream"
+  | "application/json; serialization=Avro"
+  | "application/json; serialization=json"
+  | "text/vnd.ms.protobuf";
 
 export type SchemaOperationsGetSchemaByVersionResponse = { body: Uint8Array };
 

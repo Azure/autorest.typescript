@@ -6,7 +6,6 @@
 
 import { AbortSignalLike } from '@azure/abort-controller';
 import { ClientOptions } from '@azure-rest/core-client';
-import { ErrorModel } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
 import { OperationOptions } from '@azure-rest/core-client';
 import { OperationState } from '@azure/core-lro';
@@ -24,18 +23,6 @@ export interface Annotation extends Element {
     authorString?: string;
     text: string;
     time?: string;
-}
-
-// @public (undocumented)
-export class AzureHealthInsightsClient {
-    constructor(endpointParam: string, credential: KeyCredential, options?: AzureHealthInsightsClientOptionalParams);
-    readonly pipeline: Pipeline;
-    readonly radiologyInsights: RadiologyInsightsOperations;
-}
-
-// @public
-export interface AzureHealthInsightsClientOptionalParams extends ClientOptions {
-    apiVersion?: string;
 }
 
 // @public
@@ -222,7 +209,12 @@ export interface ImagingProcedureRecommendation extends ProcedureRecommendation 
 }
 
 // @public
-export type JobStatus = "notStarted" | "running" | "succeeded" | "failed" | "canceled";
+export interface InferRadiologyInsightsOptionalParams extends OperationOptions {
+    configuration?: RadiologyInsightsModelConfiguration;
+    repeatabilityFirstSent?: Date;
+    repeatabilityRequestId?: string;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export enum KnownApiVersion {
@@ -400,16 +392,16 @@ export interface RadiologyCodeWithTypes {
     types: CodeableConcept[];
 }
 
-// @public
-export interface RadiologyInsightsCreateJobOptionalParams extends OperationOptions {
-    configuration?: RadiologyInsightsModelConfiguration;
-    repeatabilityFirstSent?: Date;
-    repeatabilityRequestId?: string;
-    updateIntervalInMs?: number;
+// @public (undocumented)
+export class RadiologyInsightsClient {
+    constructor(endpointParam: string, credential: KeyCredential, options?: RadiologyInsightsClientOptionalParams);
+    inferRadiologyInsights(patients: PatientRecord[], options?: InferRadiologyInsightsOptionalParams): PollerLike<OperationState<RadiologyInsightsInferenceResult>, RadiologyInsightsInferenceResult>;
+    readonly pipeline: Pipeline;
 }
 
 // @public
-export interface RadiologyInsightsGetJobOptionalParams extends OperationOptions {
+export interface RadiologyInsightsClientOptionalParams extends ClientOptions {
+    apiVersion?: string;
 }
 
 // @public
@@ -445,26 +437,9 @@ export interface RadiologyInsightsModelConfiguration {
 }
 
 // @public
-export interface RadiologyInsightsOperations {
-    createJob: (patients: PatientRecord[], options?: RadiologyInsightsCreateJobOptionalParams) => PollerLike<OperationState<RadiologyInsightsInferenceResult>, RadiologyInsightsInferenceResult>;
-    getJob: (id: string, options?: RadiologyInsightsGetJobOptionalParams) => Promise<RadiologyInsightsResult>;
-}
-
-// @public
 export interface RadiologyInsightsPatientResult {
     inferences: RadiologyInsightsInferenceUnion[];
     patientId: string;
-}
-
-// @public
-export interface RadiologyInsightsResult {
-    readonly createdDateTime?: Date;
-    error?: ErrorModel;
-    readonly expirationDateTime?: Date;
-    readonly id: string;
-    readonly lastUpdateDateTime?: Date;
-    result?: RadiologyInsightsInferenceResult;
-    readonly status: JobStatus;
 }
 
 // @public
@@ -519,7 +494,7 @@ export interface Resource {
 }
 
 // @public
-export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(client: AzureHealthInsightsClient, serializedState: string, sourceOperation: (...args: any[]) => PollerLike<OperationState<TResult>, TResult>, options?: RestorePollerOptions<TResult>): PollerLike<OperationState<TResult>, TResult>;
+export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(client: RadiologyInsightsClient, serializedState: string, sourceOperation: (...args: any[]) => PollerLike<OperationState<TResult>, TResult>, options?: RestorePollerOptions<TResult>): PollerLike<OperationState<TResult>, TResult>;
 
 // @public (undocumented)
 export interface RestorePollerOptions<TResult, TResponse extends PathUncheckedResponse = PathUncheckedResponse> extends OperationOptions {

@@ -5,9 +5,6 @@ import { FileContents } from "./static-helpers/multipartHelpers.js";
 
 export { OpenAIClient } from "./openAIClient.js";
 export type {
-  SpeechGenerationOptions,
-  SpeechVoice,
-  SpeechGenerationResponseFormat,
   AudioTranscriptionOptions,
   AudioTranscriptionFormat,
   AudioTranscriptionTimestampGranularity,
@@ -140,19 +137,23 @@ export type {
   ImageGenerationData,
   ImageGenerationContentFilterResults,
   ImageGenerationPromptFilterResults,
+  SpeechGenerationOptions,
+  SpeechVoice,
+  SpeechGenerationResponseFormat,
   EmbeddingsOptions,
   EmbeddingEncodingFormat,
   Embeddings,
   EmbeddingItem,
   EmbeddingsUsage,
+  GenerateSpeechFromTextResponse,
   GetAudioTranslationAsPlainTextResponse,
   GetAudioTranscriptionAsPlainTextResponse,
-  GenerateSpeechFromTextResponse,
 } from "./models/index.js";
 export { KnownServiceApiVersions } from "./models/index.js";
 export type {
   OpenAIClientOptionalParams,
   GetEmbeddingsOptionalParams,
+  GenerateSpeechFromTextOptionalParams,
   GetImageGenerationsOptionalParams,
   GetChatCompletionsOptionalParams,
   GetCompletionsOptionalParams,
@@ -160,6 +161,5 @@ export type {
   GetAudioTranslationAsPlainTextOptionalParams,
   GetAudioTranscriptionAsResponseObjectOptionalParams,
   GetAudioTranscriptionAsPlainTextOptionalParams,
-  GenerateSpeechFromTextOptionalParams,
 } from "./api/index.js";
 export type { FileContents };

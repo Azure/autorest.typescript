@@ -9,34 +9,111 @@ import { serializeRecord } from "../../../static-helpers/serialization/serialize
  */
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-/**
- * Concept - reference to a terminology or just text
- * Based on [FHIR CodeableConcept](https://www.hl7.org/fhir/R4/datatypes.html#CodeableConcept)
- */
-export interface CodeableConcept extends Element {
-  /** Code defined by a terminology system */
-  coding?: Coding[];
-  /** Plain text representation of the concept */
-  text?: string;
+export function resourceArraySerializer(result: Array<Resource>): any[] {
+  return result.map((item) => {
+    return resourceSerializer(item);
+  });
 }
 
-export function codeableConceptSerializer(item: CodeableConcept): any {
+export function resourceArrayDeserializer(result: Array<Resource>): any[] {
+  return result.map((item) => {
+    return resourceDeserializer(item);
+  });
+}
+
+/**
+ * Resource is the ancestor of DomainResource from which most resources are derived. Bundle, Parameters, and Binary extend Resource directly.
+ * Based on [FHIR Resource](https://www.hl7.org/fhir/r4/resource.html
+ */
+export interface Resource {
+  /** The type of resource */
+  resourceType: string;
+  /** Resource Id */
+  id?: string;
+  /** Metadata about the resource */
+  meta?: Meta;
+  /** A set of rules under which this content was created */
+  implicitRules?: string;
+  /** Language of the resource content */
+  language?: string;
+  /** Additional properties */
+  additionalProperties?: Record<string, any>;
+}
+
+export function resourceSerializer(item: Resource): any {
   return {
+    ...serializeRecord(item.additionalProperties ?? {}),
+    resourceType: item["resourceType"],
     id: item["id"],
-    extension: !item["extension"] ? item["extension"] : extensionArraySerializer(item["extension"]),
-    coding: !item["coding"] ? item["coding"] : codingArraySerializer(item["coding"]),
-    text: item["text"],
+    meta: !item["meta"] ? item["meta"] : metaSerializer(item["meta"]),
+    implicitRules: item["implicitRules"],
+    language: item["language"],
   };
 }
 
-export function codeableConceptDeserializer(item: any): CodeableConcept {
+export function resourceDeserializer(item: any): Resource {
   return {
+    additionalProperties: serializeRecord(item, [
+      "resourceType",
+      "id",
+      "meta",
+      "implicitRules",
+      "language",
+    ]),
+    resourceType: item["resourceType"],
     id: item["id"],
-    extension: !item["extension"]
-      ? item["extension"]
-      : extensionArrayDeserializer(item["extension"]),
-    coding: !item["coding"] ? item["coding"] : codingArrayDeserializer(item["coding"]),
-    text: item["text"],
+    meta: !item["meta"] ? item["meta"] : metaDeserializer(item["meta"]),
+    implicitRules: item["implicitRules"],
+    language: item["language"],
+  };
+}
+
+/**
+ * Metadata about a resource
+ * Based on [FHIR Meta](https://www.hl7.org/fhir/R4/resource.html#Meta)
+ */
+export interface Meta {
+  /** The version specific identifier, as it appears in the version portion of the URL. This value changes when the resource is created, updated, or deleted. */
+  versionId?: string;
+  /** When the resource last changed - e.g. when the version changed. */
+  lastUpdated?: string;
+  /** A uri that identifies the source system of the resource. This provides a minimal amount of Provenance information that can be used to track or differentiate the source of information in the resource. The source may identify another FHIR server, document, message, database, etc. */
+  source?: string;
+  /** A list of profiles (references to [StructureDefinition](https://www.hl7.org/fhir/structuredefinition.html) resources) that this resource claims to conform to. The URL is a reference to [StructureDefinition.url](https://www.hl7.org/fhir/structuredefinition-definitions.html#StructureDefinition.url). */
+  profile?: string[];
+  /** Security labels applied to this resource. These tags connect specific resources to the overall security policy and infrastructure. */
+  security?: Coding[];
+  /** Tags applied to this resource. Tags are intended to be used to identify and relate resources to process and workflow, and applications are not required to consider the tags when interpreting the meaning of a resource. */
+  tag?: Coding[];
+}
+
+export function metaSerializer(item: Meta): any {
+  return {
+    versionId: item["versionId"],
+    lastUpdated: item["lastUpdated"],
+    source: item["source"],
+    profile: !item["profile"]
+      ? item["profile"]
+      : item["profile"].map((p: any) => {
+          return p;
+        }),
+    security: !item["security"] ? item["security"] : codingArraySerializer(item["security"]),
+    tag: !item["tag"] ? item["tag"] : codingArraySerializer(item["tag"]),
+  };
+}
+
+export function metaDeserializer(item: any): Meta {
+  return {
+    versionId: item["versionId"],
+    lastUpdated: item["lastUpdated"],
+    source: item["source"],
+    profile: !item["profile"]
+      ? item["profile"]
+      : item["profile"].map((p: any) => {
+          return p;
+        }),
+    security: !item["security"] ? item["security"] : codingArrayDeserializer(item["security"]),
+    tag: !item["tag"] ? item["tag"] : codingArrayDeserializer(item["tag"]),
   };
 }
 
@@ -88,6 +165,468 @@ export function codingDeserializer(item: any): Coding {
     version: item["version"],
     code: item["code"],
     display: item["display"],
+  };
+}
+
+/**
+ * Concept - reference to a terminology or just text
+ * Based on [FHIR CodeableConcept](https://www.hl7.org/fhir/R4/datatypes.html#CodeableConcept)
+ */
+export interface CodeableConcept extends Element {
+  /** Code defined by a terminology system */
+  coding?: Coding[];
+  /** Plain text representation of the concept */
+  text?: string;
+}
+
+export function codeableConceptSerializer(item: CodeableConcept): any {
+  return {
+    id: item["id"],
+    extension: !item["extension"] ? item["extension"] : extensionArraySerializer(item["extension"]),
+    coding: !item["coding"] ? item["coding"] : codingArraySerializer(item["coding"]),
+    text: item["text"],
+  };
+}
+
+export function codeableConceptDeserializer(item: any): CodeableConcept {
+  return {
+    id: item["id"],
+    extension: !item["extension"]
+      ? item["extension"]
+      : extensionArrayDeserializer(item["extension"]),
+    coding: !item["coding"] ? item["coding"] : codingArrayDeserializer(item["coding"]),
+    text: item["text"],
+  };
+}
+
+/**
+ * The base definition for all elements contained inside a resource.
+ * Based on [FHIR Element](https://www.hl7.org/fhir/R4/element.html)
+ */
+export interface Element {
+  /** Unique id for inter-element referencing */
+  id?: string;
+  /** Additional Content defined by implementations */
+  extension?: Extension[];
+}
+
+export function elementSerializer(item: Element): any {
+  return {
+    id: item["id"],
+    extension: !item["extension"] ? item["extension"] : extensionArraySerializer(item["extension"]),
+  };
+}
+
+export function elementDeserializer(item: any): Element {
+  return {
+    id: item["id"],
+    extension: !item["extension"]
+      ? item["extension"]
+      : extensionArrayDeserializer(item["extension"]),
+  };
+}
+
+export function extensionArraySerializer(result: Array<Extension>): any[] {
+  return result.map((item) => {
+    return extensionSerializer(item);
+  });
+}
+
+export function extensionArrayDeserializer(result: Array<Extension>): any[] {
+  return result.map((item) => {
+    return extensionDeserializer(item);
+  });
+}
+
+/**
+ * Base for all elements
+ * Based on [FHIR Element](https://www.hl7.org/fhir/datatypes.html#Element)
+ */
+export interface Extension extends Element {
+  /** Source of the definition for the extension code - a logical name or a URL. */
+  url: string;
+  /** Value as Quantity */
+  valueQuantity?: Quantity;
+  /** Value as CodeableConcept */
+  valueCodeableConcept?: CodeableConcept;
+  /** Value as string */
+  valueString?: string;
+  /** Value as boolean */
+  valueBoolean?: boolean;
+  /** Value as integer */
+  valueInteger?: number;
+  /** Value as Range. */
+  valueRange?: Range;
+  /** Value as Ratio. */
+  valueRatio?: Ratio;
+  /** Value as SampledData. */
+  valueSampledData?: SampledData;
+  /** Value as time (hh:mm:ss) */
+  valueTime?: string;
+  /** Value as dateTime. */
+  valueDateTime?: string;
+  /** Value as Period. */
+  valuePeriod?: Period;
+  /** Value as reference. */
+  valueReference?: Reference;
+}
+
+export function extensionSerializer(item: Extension): any {
+  return {
+    id: item["id"],
+    extension: !item["extension"] ? item["extension"] : extensionArraySerializer(item["extension"]),
+    url: item["url"],
+    valueQuantity: !item["valueQuantity"]
+      ? item["valueQuantity"]
+      : quantitySerializer(item["valueQuantity"]),
+    valueCodeableConcept: !item["valueCodeableConcept"]
+      ? item["valueCodeableConcept"]
+      : codeableConceptSerializer(item["valueCodeableConcept"]),
+    valueString: item["valueString"],
+    valueBoolean: item["valueBoolean"],
+    valueInteger: item["valueInteger"],
+    valueRange: !item["valueRange"] ? item["valueRange"] : rangeSerializer(item["valueRange"]),
+    valueRatio: !item["valueRatio"] ? item["valueRatio"] : ratioSerializer(item["valueRatio"]),
+    valueSampledData: !item["valueSampledData"]
+      ? item["valueSampledData"]
+      : sampledDataSerializer(item["valueSampledData"]),
+    valueTime: item["valueTime"],
+    valueDateTime: item["valueDateTime"],
+    valuePeriod: !item["valuePeriod"] ? item["valuePeriod"] : periodSerializer(item["valuePeriod"]),
+    valueReference: !item["valueReference"]
+      ? item["valueReference"]
+      : referenceSerializer(item["valueReference"]),
+  };
+}
+
+export function extensionDeserializer(item: any): Extension {
+  return {
+    id: item["id"],
+    extension: !item["extension"]
+      ? item["extension"]
+      : extensionArrayDeserializer(item["extension"]),
+    url: item["url"],
+    valueQuantity: !item["valueQuantity"]
+      ? item["valueQuantity"]
+      : quantityDeserializer(item["valueQuantity"]),
+    valueCodeableConcept: !item["valueCodeableConcept"]
+      ? item["valueCodeableConcept"]
+      : codeableConceptDeserializer(item["valueCodeableConcept"]),
+    valueString: item["valueString"],
+    valueBoolean: item["valueBoolean"],
+    valueInteger: item["valueInteger"],
+    valueRange: !item["valueRange"] ? item["valueRange"] : rangeDeserializer(item["valueRange"]),
+    valueRatio: !item["valueRatio"] ? item["valueRatio"] : ratioDeserializer(item["valueRatio"]),
+    valueSampledData: !item["valueSampledData"]
+      ? item["valueSampledData"]
+      : sampledDataDeserializer(item["valueSampledData"]),
+    valueTime: item["valueTime"],
+    valueDateTime: item["valueDateTime"],
+    valuePeriod: !item["valuePeriod"]
+      ? item["valuePeriod"]
+      : periodDeserializer(item["valuePeriod"]),
+    valueReference: !item["valueReference"]
+      ? item["valueReference"]
+      : referenceDeserializer(item["valueReference"]),
+  };
+}
+
+/**
+ * A measured or measurable amount
+ * Based on [FHIR Quantity](https://www.hl7.org/fhir/R4/datatypes.html#Quantity)
+ */
+export interface Quantity extends Element {
+  /** Numerical value (with implicit precision) */
+  value?: number;
+  /** < | <= | >= | > - how to understand the value */
+  comparator?: string;
+  /** Unit representation */
+  unit?: string;
+  /** System that defines coded unit form */
+  system?: string;
+  /** Coded form of the unit */
+  code?: string;
+}
+
+export function quantitySerializer(item: Quantity): any {
+  return {
+    id: item["id"],
+    extension: !item["extension"] ? item["extension"] : extensionArraySerializer(item["extension"]),
+    value: item["value"],
+    comparator: item["comparator"],
+    unit: item["unit"],
+    system: item["system"],
+    code: item["code"],
+  };
+}
+
+export function quantityDeserializer(item: any): Quantity {
+  return {
+    id: item["id"],
+    extension: !item["extension"]
+      ? item["extension"]
+      : extensionArrayDeserializer(item["extension"]),
+    value: item["value"],
+    comparator: item["comparator"],
+    unit: item["unit"],
+    system: item["system"],
+    code: item["code"],
+  };
+}
+
+/**
+ * A set of ordered Quantities defined by a low and high limit
+ * Based on [FHIR Range](https://www.hl7.org/fhir/R4/datatypes.html#Range)
+ */
+export interface Range extends Element {
+  /** Low limit */
+  low?: Quantity;
+  /** High limit */
+  high?: Quantity;
+}
+
+export function rangeSerializer(item: Range): any {
+  return {
+    id: item["id"],
+    extension: !item["extension"] ? item["extension"] : extensionArraySerializer(item["extension"]),
+    low: !item["low"] ? item["low"] : quantitySerializer(item["low"]),
+    high: !item["high"] ? item["high"] : quantitySerializer(item["high"]),
+  };
+}
+
+export function rangeDeserializer(item: any): Range {
+  return {
+    id: item["id"],
+    extension: !item["extension"]
+      ? item["extension"]
+      : extensionArrayDeserializer(item["extension"]),
+    low: !item["low"] ? item["low"] : quantityDeserializer(item["low"]),
+    high: !item["high"] ? item["high"] : quantityDeserializer(item["high"]),
+  };
+}
+
+/**
+ * A ratio of two Quantity values - a numerator and a denominator
+ * Based on [FHIR Ratio](https://www.hl7.org/fhir/R4/datatypes.html#Ratio)
+ */
+export interface Ratio extends Element {
+  /** Numerator value */
+  numerator?: Quantity;
+  /** Denominator value */
+  denominator?: Quantity;
+}
+
+export function ratioSerializer(item: Ratio): any {
+  return {
+    id: item["id"],
+    extension: !item["extension"] ? item["extension"] : extensionArraySerializer(item["extension"]),
+    numerator: !item["numerator"] ? item["numerator"] : quantitySerializer(item["numerator"]),
+    denominator: !item["denominator"]
+      ? item["denominator"]
+      : quantitySerializer(item["denominator"]),
+  };
+}
+
+export function ratioDeserializer(item: any): Ratio {
+  return {
+    id: item["id"],
+    extension: !item["extension"]
+      ? item["extension"]
+      : extensionArrayDeserializer(item["extension"]),
+    numerator: !item["numerator"] ? item["numerator"] : quantityDeserializer(item["numerator"]),
+    denominator: !item["denominator"]
+      ? item["denominator"]
+      : quantityDeserializer(item["denominator"]),
+  };
+}
+
+/**
+ * A series of measurements taken by a device
+ * Based on [FHIR SampledData](https://www.hl7.org/fhir/R4/datatypes.html#SampledData)
+ */
+export interface SampledData extends Element {
+  /** Zero value and units */
+  origin: Quantity;
+  /** Number of milliseconds between samples */
+  period: number;
+  /** Multiply data by this before adding to origin */
+  factor?: number;
+  /** Lower limit of detection */
+  lowerLimit?: number;
+  /** Upper limit of detection */
+  upperLimit?: number;
+  /** Number of sample points at each time point */
+  dimensions: number;
+  /** Decimal values with spaces, or "E" | "U" | "L" */
+  data?: string;
+}
+
+export function sampledDataSerializer(item: SampledData): any {
+  return {
+    id: item["id"],
+    extension: !item["extension"] ? item["extension"] : extensionArraySerializer(item["extension"]),
+    origin: quantitySerializer(item["origin"]),
+    period: item["period"],
+    factor: item["factor"],
+    lowerLimit: item["lowerLimit"],
+    upperLimit: item["upperLimit"],
+    dimensions: item["dimensions"],
+    data: item["data"],
+  };
+}
+
+export function sampledDataDeserializer(item: any): SampledData {
+  return {
+    id: item["id"],
+    extension: !item["extension"]
+      ? item["extension"]
+      : extensionArrayDeserializer(item["extension"]),
+    origin: quantityDeserializer(item["origin"]),
+    period: item["period"],
+    factor: item["factor"],
+    lowerLimit: item["lowerLimit"],
+    upperLimit: item["upperLimit"],
+    dimensions: item["dimensions"],
+    data: item["data"],
+  };
+}
+
+/**
+ * A time period defined by a start and end date and optionally time
+ * Based on [FHIR Period](https://www.hl7.org/fhir/R4/datatypes.html#Period)
+ */
+export interface Period extends Element {
+  /** Starting time with inclusive boundary */
+  start?: string;
+  /** End time with inclusive boundary, if not ongoing */
+  end?: string;
+}
+
+export function periodSerializer(item: Period): any {
+  return {
+    id: item["id"],
+    extension: !item["extension"] ? item["extension"] : extensionArraySerializer(item["extension"]),
+    start: item["start"],
+    end: item["end"],
+  };
+}
+
+export function periodDeserializer(item: any): Period {
+  return {
+    id: item["id"],
+    extension: !item["extension"]
+      ? item["extension"]
+      : extensionArrayDeserializer(item["extension"]),
+    start: item["start"],
+    end: item["end"],
+  };
+}
+
+/**
+ * A reference from one resource to another
+ * Based on [FHIR Reference](https://www.hl7.org/fhir/R4/references.html)
+ */
+export interface Reference extends Element {
+  /** Literal reference, Relative, internal or absolute URL */
+  reference?: string;
+  /** Type the reference refers to (e.g. "Patient") */
+  type?: string;
+  /** Logical reference, when literal reference is not known */
+  identifier?: Identifier;
+  /** Text alternative for the resource */
+  display?: string;
+}
+
+export function referenceSerializer(item: Reference): any {
+  return {
+    id: item["id"],
+    extension: !item["extension"] ? item["extension"] : extensionArraySerializer(item["extension"]),
+    reference: item["reference"],
+    type: item["type"],
+    identifier: !item["identifier"] ? item["identifier"] : identifierSerializer(item["identifier"]),
+    display: item["display"],
+  };
+}
+
+export function referenceDeserializer(item: any): Reference {
+  return {
+    id: item["id"],
+    extension: !item["extension"]
+      ? item["extension"]
+      : extensionArrayDeserializer(item["extension"]),
+    reference: item["reference"],
+    type: item["type"],
+    identifier: !item["identifier"]
+      ? item["identifier"]
+      : identifierDeserializer(item["identifier"]),
+    display: item["display"],
+  };
+}
+
+/**
+ * An identifier intended for computation
+ * Based on [FHIR Identifier](https://www.hl7.org/fhir/R4/identifier.html)
+ */
+export interface Identifier extends Element {
+  /** usual | official | temp | secondary | old (If known) */
+  use?: string;
+  /** Description of identifier */
+  type?: CodeableConcept;
+  /** The namespace for the identifier value */
+  system?: string;
+  /** The value that is unique */
+  value?: string;
+  /** Time period when id is/was valid for use */
+  period?: Period;
+  /** Organization that issued id (may be just text) */
+  assigner?: Reference;
+}
+
+export function identifierSerializer(item: Identifier): any {
+  return {
+    id: item["id"],
+    extension: !item["extension"] ? item["extension"] : extensionArraySerializer(item["extension"]),
+    use: item["use"],
+    type: !item["type"] ? item["type"] : codeableConceptSerializer(item["type"]),
+    system: item["system"],
+    value: item["value"],
+    period: !item["period"] ? item["period"] : periodSerializer(item["period"]),
+    assigner: !item["assigner"] ? item["assigner"] : referenceSerializer(item["assigner"]),
+  };
+}
+
+export function identifierDeserializer(item: any): Identifier {
+  return {
+    id: item["id"],
+    extension: !item["extension"]
+      ? item["extension"]
+      : extensionArrayDeserializer(item["extension"]),
+    use: item["use"],
+    type: !item["type"] ? item["type"] : codeableConceptDeserializer(item["type"]),
+    system: item["system"],
+    value: item["value"],
+    period: !item["period"] ? item["period"] : periodDeserializer(item["period"]),
+    assigner: !item["assigner"] ? item["assigner"] : referenceDeserializer(item["assigner"]),
+  };
+}
+
+/** FHIR extendible element */
+export interface Extendible {
+  /** Additional Content defined by implementations */
+  extension?: Extension[];
+}
+
+export function extendibleSerializer(item: Extendible): any {
+  return {
+    extension: !item["extension"] ? item["extension"] : extensionArraySerializer(item["extension"]),
+  };
+}
+
+export function extendibleDeserializer(item: any): Extendible {
+  return {
+    extension: !item["extension"]
+      ? item["extension"]
+      : extensionArrayDeserializer(item["extension"]),
   };
 }
 
@@ -302,125 +841,6 @@ export function identifierArrayDeserializer(result: Array<Identifier>): any[] {
 }
 
 /**
- * An identifier intended for computation
- * Based on [FHIR Identifier](https://www.hl7.org/fhir/R4/identifier.html)
- */
-export interface Identifier extends Element {
-  /** usual | official | temp | secondary | old (If known) */
-  use?: string;
-  /** Description of identifier */
-  type?: CodeableConcept;
-  /** The namespace for the identifier value */
-  system?: string;
-  /** The value that is unique */
-  value?: string;
-  /** Time period when id is/was valid for use */
-  period?: Period;
-  /** Organization that issued id (may be just text) */
-  assigner?: Reference;
-}
-
-export function identifierSerializer(item: Identifier): any {
-  return {
-    id: item["id"],
-    extension: !item["extension"] ? item["extension"] : extensionArraySerializer(item["extension"]),
-    use: item["use"],
-    type: !item["type"] ? item["type"] : codeableConceptSerializer(item["type"]),
-    system: item["system"],
-    value: item["value"],
-    period: !item["period"] ? item["period"] : periodSerializer(item["period"]),
-    assigner: !item["assigner"] ? item["assigner"] : referenceSerializer(item["assigner"]),
-  };
-}
-
-export function identifierDeserializer(item: any): Identifier {
-  return {
-    id: item["id"],
-    extension: !item["extension"]
-      ? item["extension"]
-      : extensionArrayDeserializer(item["extension"]),
-    use: item["use"],
-    type: !item["type"] ? item["type"] : codeableConceptDeserializer(item["type"]),
-    system: item["system"],
-    value: item["value"],
-    period: !item["period"] ? item["period"] : periodDeserializer(item["period"]),
-    assigner: !item["assigner"] ? item["assigner"] : referenceDeserializer(item["assigner"]),
-  };
-}
-
-/**
- * A time period defined by a start and end date and optionally time
- * Based on [FHIR Period](https://www.hl7.org/fhir/R4/datatypes.html#Period)
- */
-export interface Period extends Element {
-  /** Starting time with inclusive boundary */
-  start?: string;
-  /** End time with inclusive boundary, if not ongoing */
-  end?: string;
-}
-
-export function periodSerializer(item: Period): any {
-  return {
-    id: item["id"],
-    extension: !item["extension"] ? item["extension"] : extensionArraySerializer(item["extension"]),
-    start: item["start"],
-    end: item["end"],
-  };
-}
-
-export function periodDeserializer(item: any): Period {
-  return {
-    id: item["id"],
-    extension: !item["extension"]
-      ? item["extension"]
-      : extensionArrayDeserializer(item["extension"]),
-    start: item["start"],
-    end: item["end"],
-  };
-}
-
-/**
- * A reference from one resource to another
- * Based on [FHIR Reference](https://www.hl7.org/fhir/R4/references.html)
- */
-export interface Reference extends Element {
-  /** Literal reference, Relative, internal or absolute URL */
-  reference?: string;
-  /** Type the reference refers to (e.g. "Patient") */
-  type?: string;
-  /** Logical reference, when literal reference is not known */
-  identifier?: Identifier;
-  /** Text alternative for the resource */
-  display?: string;
-}
-
-export function referenceSerializer(item: Reference): any {
-  return {
-    id: item["id"],
-    extension: !item["extension"] ? item["extension"] : extensionArraySerializer(item["extension"]),
-    reference: item["reference"],
-    type: item["type"],
-    identifier: !item["identifier"] ? item["identifier"] : identifierSerializer(item["identifier"]),
-    display: item["display"],
-  };
-}
-
-export function referenceDeserializer(item: any): Reference {
-  return {
-    id: item["id"],
-    extension: !item["extension"]
-      ? item["extension"]
-      : extensionArrayDeserializer(item["extension"]),
-    reference: item["reference"],
-    type: item["type"],
-    identifier: !item["identifier"]
-      ? item["identifier"]
-      : identifierDeserializer(item["identifier"]),
-    display: item["display"],
-  };
-}
-
-/**
  * Observation Status
  * Based on [FHIR ObservationStatus](https://www.hl7.org/fhir/R4/valueset-observation-status.html)
  */
@@ -433,166 +853,6 @@ export type ObservationStatusCodeType =
   | "cancelled"
   | "entered-in-error"
   | "unknown";
-
-/**
- * A measured or measurable amount
- * Based on [FHIR Quantity](https://www.hl7.org/fhir/R4/datatypes.html#Quantity)
- */
-export interface Quantity extends Element {
-  /** Numerical value (with implicit precision) */
-  value?: number;
-  /** < | <= | >= | > - how to understand the value */
-  comparator?: string;
-  /** Unit representation */
-  unit?: string;
-  /** System that defines coded unit form */
-  system?: string;
-  /** Coded form of the unit */
-  code?: string;
-}
-
-export function quantitySerializer(item: Quantity): any {
-  return {
-    id: item["id"],
-    extension: !item["extension"] ? item["extension"] : extensionArraySerializer(item["extension"]),
-    value: item["value"],
-    comparator: item["comparator"],
-    unit: item["unit"],
-    system: item["system"],
-    code: item["code"],
-  };
-}
-
-export function quantityDeserializer(item: any): Quantity {
-  return {
-    id: item["id"],
-    extension: !item["extension"]
-      ? item["extension"]
-      : extensionArrayDeserializer(item["extension"]),
-    value: item["value"],
-    comparator: item["comparator"],
-    unit: item["unit"],
-    system: item["system"],
-    code: item["code"],
-  };
-}
-
-/**
- * A set of ordered Quantities defined by a low and high limit
- * Based on [FHIR Range](https://www.hl7.org/fhir/R4/datatypes.html#Range)
- */
-export interface Range extends Element {
-  /** Low limit */
-  low?: Quantity;
-  /** High limit */
-  high?: Quantity;
-}
-
-export function rangeSerializer(item: Range): any {
-  return {
-    id: item["id"],
-    extension: !item["extension"] ? item["extension"] : extensionArraySerializer(item["extension"]),
-    low: !item["low"] ? item["low"] : quantitySerializer(item["low"]),
-    high: !item["high"] ? item["high"] : quantitySerializer(item["high"]),
-  };
-}
-
-export function rangeDeserializer(item: any): Range {
-  return {
-    id: item["id"],
-    extension: !item["extension"]
-      ? item["extension"]
-      : extensionArrayDeserializer(item["extension"]),
-    low: !item["low"] ? item["low"] : quantityDeserializer(item["low"]),
-    high: !item["high"] ? item["high"] : quantityDeserializer(item["high"]),
-  };
-}
-
-/**
- * A ratio of two Quantity values - a numerator and a denominator
- * Based on [FHIR Ratio](https://www.hl7.org/fhir/R4/datatypes.html#Ratio)
- */
-export interface Ratio extends Element {
-  /** Numerator value */
-  numerator?: Quantity;
-  /** Denominator value */
-  denominator?: Quantity;
-}
-
-export function ratioSerializer(item: Ratio): any {
-  return {
-    id: item["id"],
-    extension: !item["extension"] ? item["extension"] : extensionArraySerializer(item["extension"]),
-    numerator: !item["numerator"] ? item["numerator"] : quantitySerializer(item["numerator"]),
-    denominator: !item["denominator"]
-      ? item["denominator"]
-      : quantitySerializer(item["denominator"]),
-  };
-}
-
-export function ratioDeserializer(item: any): Ratio {
-  return {
-    id: item["id"],
-    extension: !item["extension"]
-      ? item["extension"]
-      : extensionArrayDeserializer(item["extension"]),
-    numerator: !item["numerator"] ? item["numerator"] : quantityDeserializer(item["numerator"]),
-    denominator: !item["denominator"]
-      ? item["denominator"]
-      : quantityDeserializer(item["denominator"]),
-  };
-}
-
-/**
- * A series of measurements taken by a device
- * Based on [FHIR SampledData](https://www.hl7.org/fhir/R4/datatypes.html#SampledData)
- */
-export interface SampledData extends Element {
-  /** Zero value and units */
-  origin: Quantity;
-  /** Number of milliseconds between samples */
-  period: number;
-  /** Multiply data by this before adding to origin */
-  factor?: number;
-  /** Lower limit of detection */
-  lowerLimit?: number;
-  /** Upper limit of detection */
-  upperLimit?: number;
-  /** Number of sample points at each time point */
-  dimensions: number;
-  /** Decimal values with spaces, or "E" | "U" | "L" */
-  data?: string;
-}
-
-export function sampledDataSerializer(item: SampledData): any {
-  return {
-    id: item["id"],
-    extension: !item["extension"] ? item["extension"] : extensionArraySerializer(item["extension"]),
-    origin: quantitySerializer(item["origin"]),
-    period: item["period"],
-    factor: item["factor"],
-    lowerLimit: item["lowerLimit"],
-    upperLimit: item["upperLimit"],
-    dimensions: item["dimensions"],
-    data: item["data"],
-  };
-}
-
-export function sampledDataDeserializer(item: any): SampledData {
-  return {
-    id: item["id"],
-    extension: !item["extension"]
-      ? item["extension"]
-      : extensionArrayDeserializer(item["extension"]),
-    origin: quantityDeserializer(item["origin"]),
-    period: item["period"],
-    factor: item["factor"],
-    lowerLimit: item["lowerLimit"],
-    upperLimit: item["upperLimit"],
-    dimensions: item["dimensions"],
-    data: item["data"],
-  };
-}
 
 export function annotationArrayDeserializer(result: Array<Annotation>): any[] {
   return result.map((item) => {
@@ -763,158 +1023,6 @@ export function observationComponentDeserializer(item: any): ObservationComponen
   };
 }
 
-/** FHIR extendible element */
-export interface Extendible {
-  /** Additional Content defined by implementations */
-  extension?: Extension[];
-}
-
-export function extendibleSerializer(item: Extendible): any {
-  return {
-    extension: !item["extension"] ? item["extension"] : extensionArraySerializer(item["extension"]),
-  };
-}
-
-export function extendibleDeserializer(item: any): Extendible {
-  return {
-    extension: !item["extension"]
-      ? item["extension"]
-      : extensionArrayDeserializer(item["extension"]),
-  };
-}
-
-export function extensionArraySerializer(result: Array<Extension>): any[] {
-  return result.map((item) => {
-    return extensionSerializer(item);
-  });
-}
-
-export function extensionArrayDeserializer(result: Array<Extension>): any[] {
-  return result.map((item) => {
-    return extensionDeserializer(item);
-  });
-}
-
-/**
- * Base for all elements
- * Based on [FHIR Element](https://www.hl7.org/fhir/datatypes.html#Element)
- */
-export interface Extension extends Element {
-  /** Source of the definition for the extension code - a logical name or a URL. */
-  url: string;
-  /** Value as Quantity */
-  valueQuantity?: Quantity;
-  /** Value as CodeableConcept */
-  valueCodeableConcept?: CodeableConcept;
-  /** Value as string */
-  valueString?: string;
-  /** Value as boolean */
-  valueBoolean?: boolean;
-  /** Value as integer */
-  valueInteger?: number;
-  /** Value as Range. */
-  valueRange?: Range;
-  /** Value as Ratio. */
-  valueRatio?: Ratio;
-  /** Value as SampledData. */
-  valueSampledData?: SampledData;
-  /** Value as time (hh:mm:ss) */
-  valueTime?: string;
-  /** Value as dateTime. */
-  valueDateTime?: string;
-  /** Value as Period. */
-  valuePeriod?: Period;
-  /** Value as reference. */
-  valueReference?: Reference;
-}
-
-export function extensionSerializer(item: Extension): any {
-  return {
-    id: item["id"],
-    extension: !item["extension"] ? item["extension"] : extensionArraySerializer(item["extension"]),
-    url: item["url"],
-    valueQuantity: !item["valueQuantity"]
-      ? item["valueQuantity"]
-      : quantitySerializer(item["valueQuantity"]),
-    valueCodeableConcept: !item["valueCodeableConcept"]
-      ? item["valueCodeableConcept"]
-      : codeableConceptSerializer(item["valueCodeableConcept"]),
-    valueString: item["valueString"],
-    valueBoolean: item["valueBoolean"],
-    valueInteger: item["valueInteger"],
-    valueRange: !item["valueRange"] ? item["valueRange"] : rangeSerializer(item["valueRange"]),
-    valueRatio: !item["valueRatio"] ? item["valueRatio"] : ratioSerializer(item["valueRatio"]),
-    valueSampledData: !item["valueSampledData"]
-      ? item["valueSampledData"]
-      : sampledDataSerializer(item["valueSampledData"]),
-    valueTime: item["valueTime"],
-    valueDateTime: item["valueDateTime"],
-    valuePeriod: !item["valuePeriod"] ? item["valuePeriod"] : periodSerializer(item["valuePeriod"]),
-    valueReference: !item["valueReference"]
-      ? item["valueReference"]
-      : referenceSerializer(item["valueReference"]),
-  };
-}
-
-export function extensionDeserializer(item: any): Extension {
-  return {
-    id: item["id"],
-    extension: !item["extension"]
-      ? item["extension"]
-      : extensionArrayDeserializer(item["extension"]),
-    url: item["url"],
-    valueQuantity: !item["valueQuantity"]
-      ? item["valueQuantity"]
-      : quantityDeserializer(item["valueQuantity"]),
-    valueCodeableConcept: !item["valueCodeableConcept"]
-      ? item["valueCodeableConcept"]
-      : codeableConceptDeserializer(item["valueCodeableConcept"]),
-    valueString: item["valueString"],
-    valueBoolean: item["valueBoolean"],
-    valueInteger: item["valueInteger"],
-    valueRange: !item["valueRange"] ? item["valueRange"] : rangeDeserializer(item["valueRange"]),
-    valueRatio: !item["valueRatio"] ? item["valueRatio"] : ratioDeserializer(item["valueRatio"]),
-    valueSampledData: !item["valueSampledData"]
-      ? item["valueSampledData"]
-      : sampledDataDeserializer(item["valueSampledData"]),
-    valueTime: item["valueTime"],
-    valueDateTime: item["valueDateTime"],
-    valuePeriod: !item["valuePeriod"]
-      ? item["valuePeriod"]
-      : periodDeserializer(item["valuePeriod"]),
-    valueReference: !item["valueReference"]
-      ? item["valueReference"]
-      : referenceDeserializer(item["valueReference"]),
-  };
-}
-
-/**
- * The base definition for all elements contained inside a resource.
- * Based on [FHIR Element](https://www.hl7.org/fhir/R4/element.html)
- */
-export interface Element {
-  /** Unique id for inter-element referencing */
-  id?: string;
-  /** Additional Content defined by implementations */
-  extension?: Extension[];
-}
-
-export function elementSerializer(item: Element): any {
-  return {
-    id: item["id"],
-    extension: !item["extension"] ? item["extension"] : extensionArraySerializer(item["extension"]),
-  };
-}
-
-export function elementDeserializer(item: any): Element {
-  return {
-    id: item["id"],
-    extension: !item["extension"]
-      ? item["extension"]
-      : extensionArrayDeserializer(item["extension"]),
-  };
-}
-
 /**
  * A resource with narrative, extensions, and contained resources
  * Based on [FHIR DomainResource](https://www.hl7.org/fhir/domainresource.html)
@@ -996,113 +1104,5 @@ export function narrativeDeserializer(item: any): Narrative {
       : extensionArrayDeserializer(item["extension"]),
     status: item["status"],
     div: item["div"],
-  };
-}
-
-export function resourceArraySerializer(result: Array<Resource>): any[] {
-  return result.map((item) => {
-    return resourceSerializer(item);
-  });
-}
-
-export function resourceArrayDeserializer(result: Array<Resource>): any[] {
-  return result.map((item) => {
-    return resourceDeserializer(item);
-  });
-}
-
-/**
- * Resource is the ancestor of DomainResource from which most resources are derived. Bundle, Parameters, and Binary extend Resource directly.
- * Based on [FHIR Resource](https://www.hl7.org/fhir/r4/resource.html
- */
-export interface Resource {
-  /** The type of resource */
-  resourceType: string;
-  /** Resource Id */
-  id?: string;
-  /** Metadata about the resource */
-  meta?: Meta;
-  /** A set of rules under which this content was created */
-  implicitRules?: string;
-  /** Language of the resource content */
-  language?: string;
-  /** Additional properties */
-  additionalProperties?: Record<string, any>;
-}
-
-export function resourceSerializer(item: Resource): any {
-  return {
-    ...serializeRecord(item.additionalProperties ?? {}),
-    resourceType: item["resourceType"],
-    id: item["id"],
-    meta: !item["meta"] ? item["meta"] : metaSerializer(item["meta"]),
-    implicitRules: item["implicitRules"],
-    language: item["language"],
-  };
-}
-
-export function resourceDeserializer(item: any): Resource {
-  return {
-    additionalProperties: serializeRecord(item, [
-      "resourceType",
-      "id",
-      "meta",
-      "implicitRules",
-      "language",
-    ]),
-    resourceType: item["resourceType"],
-    id: item["id"],
-    meta: !item["meta"] ? item["meta"] : metaDeserializer(item["meta"]),
-    implicitRules: item["implicitRules"],
-    language: item["language"],
-  };
-}
-
-/**
- * Metadata about a resource
- * Based on [FHIR Meta](https://www.hl7.org/fhir/R4/resource.html#Meta)
- */
-export interface Meta {
-  /** The version specific identifier, as it appears in the version portion of the URL. This value changes when the resource is created, updated, or deleted. */
-  versionId?: string;
-  /** When the resource last changed - e.g. when the version changed. */
-  lastUpdated?: string;
-  /** A uri that identifies the source system of the resource. This provides a minimal amount of Provenance information that can be used to track or differentiate the source of information in the resource. The source may identify another FHIR server, document, message, database, etc. */
-  source?: string;
-  /** A list of profiles (references to [StructureDefinition](https://www.hl7.org/fhir/structuredefinition.html) resources) that this resource claims to conform to. The URL is a reference to [StructureDefinition.url](https://www.hl7.org/fhir/structuredefinition-definitions.html#StructureDefinition.url). */
-  profile?: string[];
-  /** Security labels applied to this resource. These tags connect specific resources to the overall security policy and infrastructure. */
-  security?: Coding[];
-  /** Tags applied to this resource. Tags are intended to be used to identify and relate resources to process and workflow, and applications are not required to consider the tags when interpreting the meaning of a resource. */
-  tag?: Coding[];
-}
-
-export function metaSerializer(item: Meta): any {
-  return {
-    versionId: item["versionId"],
-    lastUpdated: item["lastUpdated"],
-    source: item["source"],
-    profile: !item["profile"]
-      ? item["profile"]
-      : item["profile"].map((p: any) => {
-          return p;
-        }),
-    security: !item["security"] ? item["security"] : codingArraySerializer(item["security"]),
-    tag: !item["tag"] ? item["tag"] : codingArraySerializer(item["tag"]),
-  };
-}
-
-export function metaDeserializer(item: any): Meta {
-  return {
-    versionId: item["versionId"],
-    lastUpdated: item["lastUpdated"],
-    source: item["source"],
-    profile: !item["profile"]
-      ? item["profile"]
-      : item["profile"].map((p: any) => {
-          return p;
-        }),
-    security: !item["security"] ? item["security"] : codingArrayDeserializer(item["security"]),
-    tag: !item["tag"] ? item["tag"] : codingArrayDeserializer(item["tag"]),
   };
 }

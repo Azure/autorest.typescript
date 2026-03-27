@@ -7,7 +7,7 @@ import {
   PagedAsyncIterableIterator,
 } from "./static-helpers/pagingHelpers.js";
 
-export { LoadTestServiceClient } from "./loadTestServiceClient.js";
+export { LoadTestAdministrationClient } from "./loadTestAdministration/loadTestAdministrationClient.js";
 export type {
   Test,
   PassFailCriteria,
@@ -44,8 +44,9 @@ export type {
   PFTestResult,
   Status,
   RequestDataLevel,
-  MetricNamespaceCollection,
-  MetricNamespace,
+  TestRunAppComponents,
+  TestRunServerMetricConfig,
+  DimensionValueList,
   MetricDefinitionCollection,
   MetricDefinition,
   NameAndDesc,
@@ -53,14 +54,13 @@ export type {
   MetricUnit,
   MetricAvailability,
   TimeGrain,
+  MetricNamespaceCollection,
+  MetricNamespace,
   MetricRequestPayload,
   DimensionFilter,
   TimeSeriesElement,
   MetricValue,
   DimensionValue,
-  DimensionValueList,
-  TestRunAppComponents,
-  TestRunServerMetricConfig,
   TestProfile,
   TargetResourceConfigurations,
   TargetResourceConfigurationsUnion,
@@ -94,54 +94,54 @@ export {
   KnownRecommendationCategory,
   KnownAPIVersions,
 } from "./models/index.js";
-export type { LoadTestServiceClientOptionalParams } from "./api/index.js";
 export type {
-  LoadTestAdministrationGetServerMetricsConfigOptionalParams,
-  LoadTestAdministrationCreateOrUpdateServerMetricsConfigOptionalParams,
-  LoadTestAdministrationGetAppComponentsOptionalParams,
-  LoadTestAdministrationCreateOrUpdateAppComponentsOptionalParams,
-  LoadTestAdministrationListTestFilesOptionalParams,
-  LoadTestAdministrationDeleteTestFileOptionalParams,
-  LoadTestAdministrationGetTestFileOptionalParams,
-  LoadTestAdministrationUploadTestFileOptionalParams,
-  LoadTestAdministrationListTestsOptionalParams,
-  LoadTestAdministrationGetTestOptionalParams,
-  LoadTestAdministrationDeleteTestOptionalParams,
-  LoadTestAdministrationCreateOrUpdateTestOptionalParams,
-} from "./api/loadTestAdministration/index.js";
-export type {
-  LoadTestRunGetServerMetricsConfigOptionalParams,
-  LoadTestRunCreateOrUpdateServerMetricsConfigOptionalParams,
-  LoadTestRunGetAppComponentsOptionalParams,
-  LoadTestRunCreateOrUpdateAppComponentsOptionalParams,
-  LoadTestRunListMetricDimensionValuesOptionalParams,
-  LoadTestRunListMetricsOptionalParams,
-  LoadTestRunListMetricDefinitionsOptionalParams,
-  LoadTestRunListMetricNamespacesOptionalParams,
-  LoadTestRunStopOptionalParams,
-  LoadTestRunGetTestRunFileOptionalParams,
-  LoadTestRunListTestRunsOptionalParams,
-  LoadTestRunDeleteTestRunOptionalParams,
-  LoadTestRunCreateOrUpdateTestRunOptionalParams,
-  LoadTestRunGetTestRunOptionalParams,
-} from "./api/loadTestRun/index.js";
-export type {
-  TestProfileAdministrationListTestProfilesOptionalParams,
-  TestProfileAdministrationGetTestProfileOptionalParams,
-  TestProfileAdministrationDeleteTestProfileOptionalParams,
-  TestProfileAdministrationCreateOrUpdateTestProfileOptionalParams,
-} from "./api/testProfileAdministration/index.js";
-export type {
-  TestProfileRunAdministrationListTestProfileRunsOptionalParams,
-  TestProfileRunAdministrationStopOptionalParams,
-  TestProfileRunAdministrationDeleteTestProfileRunOptionalParams,
-  TestProfileRunAdministrationCreateOrUpdateTestProfileRunOptionalParams,
-  TestProfileRunAdministrationGetTestProfileRunOptionalParams,
-} from "./api/testProfileRunAdministration/index.js";
-export type {
-  LoadTestAdministrationOperations,
-  LoadTestRunOperations,
-  TestProfileAdministrationOperations,
-  TestProfileRunAdministrationOperations,
-} from "./classic/index.js";
+  LoadTestAdministrationClientOptionalParams,
+  DeleteTestOptionalParams,
+  DeleteTestFileOptionalParams,
+  UploadTestFileOptionalParams,
+  ListTestsOptionalParams,
+  ListTestFilesOptionalParams,
+  GetTestFileOptionalParams,
+  GetTestOptionalParams,
+  GetServerMetricsConfigOptionalParams,
+  GetAppComponentsOptionalParams,
+  CreateOrUpdateServerMetricsConfigOptionalParams,
+  CreateOrUpdateAppComponentsOptionalParams,
+  CreateOrUpdateTestOptionalParams,
+} from "./loadTestAdministration/api/index.js";
 export type { PageSettings, ContinuablePage, PagedAsyncIterableIterator };
+export { LoadTestRunClient } from "./loadTestRun/loadTestRunClient.js";
+export type {
+  LoadTestRunClientOptionalParams,
+  StopTestRunOptionalParams,
+  ListTestRunsOptionalParams,
+  ListMetricsOptionalParams,
+  ListMetricNamespacesOptionalParams,
+  ListMetricDefinitionsOptionalParams,
+  ListMetricDimensionValuesOptionalParams,
+  GetTestRunFileOptionalParams,
+  GetTestRunOptionalParams,
+  GetServerMetricsConfigOptionalParams as LoadTestRunClientGetServerMetricsConfigOptionalParams,
+  GetAppComponentsOptionalParams as LoadTestRunClientGetAppComponentsOptionalParams,
+  DeleteTestRunOptionalParams,
+  CreateOrUpdateServerMetricsConfigOptionalParams as LoadTestRunClientCreateOrUpdateServerMetricsConfigOptionalParams,
+  CreateOrUpdateAppComponentsOptionalParams as LoadTestRunClientCreateOrUpdateAppComponentsOptionalParams,
+  CreateOrUpdateTestRunOptionalParams,
+} from "./loadTestRun/api/index.js";
+export { TestProfileAdministrationClient } from "./testProfileAdministration/testProfileAdministrationClient.js";
+export type {
+  ListTestProfilesOptionalParams,
+  GetTestProfileOptionalParams,
+  DeleteTestProfileOptionalParams,
+  CreateOrUpdateTestProfileOptionalParams,
+  TestProfileAdministrationClientOptionalParams,
+} from "./testProfileAdministration/api/index.js";
+export { TestProfileRunClient } from "./testProfileRun/testProfileRunClient.js";
+export type {
+  StopTestProfileRunOptionalParams,
+  ListTestProfileRunsOptionalParams,
+  GetTestProfileRunOptionalParams,
+  DeleteTestProfileRunOptionalParams,
+  CreateOrUpdateTestProfileRunOptionalParams,
+  TestProfileRunClientOptionalParams,
+} from "./testProfileRun/api/index.js";
