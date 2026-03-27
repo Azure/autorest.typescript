@@ -57,7 +57,11 @@ describe("operationHelpers", () => {
       });
 
       // Call the function
-      const result = getParameterMap(mockContext, unsupportedParam, unsupportedParam.name);
+      const result = getParameterMap(
+        mockContext,
+        unsupportedParam,
+        unsupportedParam.name
+      );
 
       console.log(capturedDiagnostic.code);
       console.log(capturedDiagnostic.message);
