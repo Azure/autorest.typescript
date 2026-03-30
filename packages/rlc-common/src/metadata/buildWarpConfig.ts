@@ -30,6 +30,7 @@ targets:
   - name: commonjs
     condition: require
     tsconfig: "../../../tsconfig.src.cjs.json"
+    moduleType: commonjs
 `;
 
 /**
