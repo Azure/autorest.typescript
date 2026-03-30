@@ -1,3 +1,15 @@
+## 6.0.65 (2026-03-30)
+
+- [Feature] Bump TypeSpec dependencies to latest stable. Please refer to [#3870](https://github.com/Azure/autorest.typescript/pull/3870)
+- [Feature] Add `treat-unknown-as-record` feature flag to map TypeSpec `unknown` to `Record<string, unknown>` in Modular SDK. Please refer to [#3869](https://github.com/Azure/autorest.typescript/pull/3869)
+- [Bugfix] Fix enum member names: use enum type name as prefix instead of `_` for leading-digit identifiers. Please refer to [#3868](https://github.com/Azure/autorest.typescript/pull/3868)
+- [Bugfix] Fix model array responses return directly (no body wrapper) when `wrap-non-model-return` is enabled. Please refer to [#3856](https://github.com/Azure/autorest.typescript/pull/3856)
+- [Bugfix] Restore full error.details handling for binary wrap-non-model-return deserializers. Please refer to [#3852](https://github.com/Azure/autorest.typescript/pull/3852)
+- [Feature] Report TCGC diagnostics and consolidate diagnostics tests. Please refer to [#3810](https://github.com/Azure/autorest.typescript/pull/3810)
+- [Bugfix] Hotfix for modular readme generation. Please refer to [#3854](https://github.com/Azure/autorest.typescript/pull/3854)
+- [Bugfix] Fix optional query/header parameters with constant values being hardcoded. Please refer to [#3812](https://github.com/Azure/autorest.typescript/pull/3812)
+- [Bugfix] Exclude required headerCollectionPrefix params from operation signature. Please refer to [#3845](https://github.com/Azure/autorest.typescript/pull/3845)
+
 ## 6.0.64 (2026-03-17)
 
 - [Bugfix] Fix detectModelConflicts false positive for API version enums in multi-service scenarios. Please refer to [#3842](https://github.com/Azure/autorest.typescript/pull/3842)
