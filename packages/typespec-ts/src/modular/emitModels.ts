@@ -602,12 +602,7 @@ export function buildEnumTypes(
     name: `Known${normalizeModelName(context, type)}`,
     isExported: true,
     members: type.values.map((value) =>
-      emitEnumMember(
-        context,
-        value,
-        normalizeName(type.name, NameType.Interface, true),
-        reportMemberNameDiagnostic
-      )
+      emitEnumMember(context, value, reportMemberNameDiagnostic)
     )
   };
 
@@ -658,9 +653,13 @@ function getExtensibleEnumDescription(
 function emitEnumMember(
   context: SdkContext,
   member: SdkEnumValueType,
-  enumTypeName?: string,
   reportMemberNameDiagnostic = false // if reportMemberNameDiagnostic is true, it will report diagnostic for enum member name
 ): EnumMemberStructure {
+  const enumTypeName = normalizeName(
+    member.enumType.name,
+    NameType.Interface,
+    true
+  );
   let normalizedMemberName = context.rlcOptions?.ignoreEnumMemberNameNormalize
     ? fixLeadingNumber(member.name, NameType.EnumMemberName) // need to fix the leading number also for enum member
     : normalizeName(member.name, NameType.EnumMemberName, true);
@@ -668,8 +667,7 @@ function emitEnumMember(
   // replace the _ prefix with the enum type name for a more descriptive identifier
   if (
     normalizedMemberName.toLowerCase().startsWith("_") &&
-    !member.name.toLowerCase().startsWith("_") &&
-    enumTypeName
+    !member.name.toLowerCase().startsWith("_")
   ) {
     normalizedMemberName = enumTypeName + normalizedMemberName.slice(1);
     if (reportMemberNameDiagnostic) {
