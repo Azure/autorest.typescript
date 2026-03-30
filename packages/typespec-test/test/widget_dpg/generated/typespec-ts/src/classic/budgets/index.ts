@@ -8,7 +8,7 @@ import {
   BudgetsGetBudgetsOptionalParams,
   BudgetsCreateOrReplaceOptionalParams,
 } from "../../api/budgets/options.js";
-import { SAPUser, BudgetsGetBudgetsResponse } from "../../models/models.js";
+import { Widget, SAPUser } from "../../models/models.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 
 /** Interface representing a Budgets operations. */
@@ -19,10 +19,7 @@ export interface BudgetsOperations {
    *         to the operation to override the generated name.
    */
   continue: (options?: BudgetsContinueOptionalParams) => Promise<void>;
-  getBudgets: (
-    name: string,
-    options?: BudgetsGetBudgetsOptionalParams,
-  ) => Promise<BudgetsGetBudgetsResponse>;
+  getBudgets: (name: string, options?: BudgetsGetBudgetsOptionalParams) => Promise<Widget[]>;
   /** Long-running resource create or replace operation template. */
   createOrReplace: (
     name: string,

@@ -16,8 +16,6 @@ export type {
   SAPUser,
   AnalyzeResult,
   NonReferencedModel,
-  BudgetsGetBudgetsResponse,
-  SAPWidgetsSAPListWidgetsResponse,
 } from "./models/index.js";
 export { KnownVersions } from "./models/index.js";
 export type { SAPWidgetServiceClientOptionalParams } from "./api/index.js";

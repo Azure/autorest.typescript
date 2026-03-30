@@ -40,7 +40,9 @@ export function getTypeExpression(
     case "enum":
       return getEnumExpression(context, type);
     case "unknown":
-      return "any";
+      return context.rlcOptions?.treatUnknownAsRecord
+        ? "Record<string, unknown>"
+        : "any";
     case "boolean":
       return "boolean";
     case "decimal":
