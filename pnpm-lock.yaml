@@ -317,9 +317,6 @@ importers:
         specifier: ^3.1.0
         version: 3.7.4
     devDependencies:
-      '@types/mocha':
-        specifier: ^5.2.7
-        version: 5.2.7
       ts-node:
         specifier: ^8.5.2
         version: 8.10.2(typescript@5.8.3)
