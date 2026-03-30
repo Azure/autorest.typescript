@@ -133,11 +133,11 @@ export enum KnownExtensibleString {
   /** 090 */
   ExtensibleString090 = "090",
   /** 10 */
-  ExtensibleString10 = "10",
+  ExtensibleString10_1 = "10",
   /** 20 */
   ExtensibleString20 = "20",
   /** 1.0 */
-  ExtensibleString10 = "1.0",
+  ExtensibleString10_2 = "1.0",
   /** -2.0 */
   "Item-1.0" = "-2.0",
 }

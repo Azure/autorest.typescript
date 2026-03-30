@@ -597,13 +597,14 @@ export function buildEnumTypes(
   type: SdkEnumType,
   reportMemberNameDiagnostic = false // if reportMemberNameDiagnostic is true, it will report diagnostic for enum member name
 ): [TypeAliasDeclarationStructure, EnumDeclarationStructure] {
+  const rawMembers = type.values.map((value) =>
+    emitEnumMember(context, value, reportMemberNameDiagnostic)
+  );
   const enumDeclaration: EnumDeclarationStructure = {
     kind: StructureKind.Enum,
     name: `Known${normalizeModelName(context, type)}`,
     isExported: true,
-    members: type.values.map((value) =>
-      emitEnumMember(context, value, reportMemberNameDiagnostic)
-    )
+    members: deduplicateEnumMemberNames(rawMembers)
   };
 
   const enumAsUnion: TypeAliasDeclarationStructure = {
@@ -648,6 +649,32 @@ function getExtensibleEnumDescription(
     `### Known values supported by the service`,
     valueDescriptions
   ].join(" \n");
+}
+
+/**
+ * Deduplicates enum member names by appending a numeric suffix (_1, _2, ...)
+ * to all members that share the same normalized name.
+ * This handles cases where different values (e.g. "10" and "1.0") normalize
+ * to the same identifier.
+ */
+function deduplicateEnumMemberNames(
+  members: EnumMemberStructure[]
+): EnumMemberStructure[] {
+  const nameCount = new Map<string, number>();
+  for (const member of members) {
+    const name = member.name as string;
+    nameCount.set(name, (nameCount.get(name) ?? 0) + 1);
+  }
+  const nameCurrentIndex = new Map<string, number>();
+  return members.map((member) => {
+    const name = member.name as string;
+    if ((nameCount.get(name) ?? 0) > 1) {
+      const index = (nameCurrentIndex.get(name) ?? 0) + 1;
+      nameCurrentIndex.set(name, index);
+      return { ...member, name: `${name}_${index}` };
+    }
+    return member;
+  });
 }
 
 function emitEnumMember(
