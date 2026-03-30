@@ -6,6 +6,10 @@ export declare type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
     continuationToken?: string;
 };
 
+export declare interface Filter {
+    filter: string;
+}
+
 export declare class PageableClient {
     private _client;
     readonly pipeline: Pipeline;
@@ -43,6 +47,13 @@ export declare interface PageSizeOperations {
 export declare interface Pet {
     id: string;
     name: string;
+}
+
+export declare interface ServerDrivenPaginationAlternateInitialVerbOperations {
+    post: (body: Filter, options?: ServerDrivenPaginationAlternateInitialVerbPostOptionalParams) => PagedAsyncIterableIterator<Pet>;
+}
+
+export declare interface ServerDrivenPaginationAlternateInitialVerbPostOptionalParams extends OperationOptions {
 }
 
 export declare interface ServerDrivenPaginationContinuationTokenOperations {
@@ -104,6 +115,7 @@ export declare interface ServerDrivenPaginationOperations {
     linkString: (options?: ServerDrivenPaginationLinkStringOptionalParams) => PagedAsyncIterableIterator<Pet>;
     link: (options?: ServerDrivenPaginationLinkOptionalParams) => PagedAsyncIterableIterator<Pet>;
     continuationToken: ServerDrivenPaginationContinuationTokenOperations;
+    alternateInitialVerb: ServerDrivenPaginationAlternateInitialVerbOperations;
 }
 
 export declare interface XmlPaginationListWithContinuationOptionalParams extends OperationOptions {

@@ -9,6 +9,10 @@ import type { StreamableMethod } from '@typespec/ts-http-runtime';
 declare function createClient(options?: PageableClientOptions): PageableClient;
 export default createClient;
 
+export declare interface Filter {
+    filter: string;
+}
+
 export declare type PageableClient = Client & {
     path: Routes;
 };
@@ -63,6 +67,7 @@ export declare interface Routes {
     (path: "/payload/pageable/pagesize/list"): PageSizeListWithPageSize;
     (path: "/payload/pageable/xml/list-with-continuation"): XmlPaginationListWithContinuation;
     (path: "/payload/pageable/xml/list-with-next-link"): XmlPaginationListWithNextLink;
+    (path: "/payload/pageable/server-driven-pagination/link/initial-post"): ServerDrivenPaginationAlternateInitialVerbPost;
     (path: "/payload/pageable/server-driven-pagination/continuationtoken/request-query-response-body"): ServerDrivenPaginationContinuationTokenRequestQueryResponseBody;
     (path: "/payload/pageable/server-driven-pagination/continuationtoken/request-header-response-body"): ServerDrivenPaginationContinuationTokenRequestHeaderResponseBody;
     (path: "/payload/pageable/server-driven-pagination/continuationtoken/request-query-response-header"): ServerDrivenPaginationContinuationTokenRequestQueryResponseHeader;
@@ -70,6 +75,24 @@ export declare interface Routes {
     (path: "/payload/pageable/server-driven-pagination/continuationtoken/request-query-nested-response-body"): ServerDrivenPaginationContinuationTokenRequestQueryNestedResponseBody;
     (path: "/payload/pageable/server-driven-pagination/continuationtoken/request-header-nested-response-body"): ServerDrivenPaginationContinuationTokenRequestHeaderNestedResponseBody;
 }
+
+export declare interface ServerDrivenPaginationAlternateInitialVerbPost {
+    post(options: ServerDrivenPaginationAlternateInitialVerbPostParameters): StreamableMethod<ServerDrivenPaginationAlternateInitialVerbPost200Response>;
+}
+
+export declare interface ServerDrivenPaginationAlternateInitialVerbPost200Response extends HttpResponse {
+    status: "200";
+    body: {
+        pets: Array<PetOutput>;
+        next?: string;
+    };
+}
+
+export declare interface ServerDrivenPaginationAlternateInitialVerbPostBodyParam {
+    body: Filter;
+}
+
+export declare type ServerDrivenPaginationAlternateInitialVerbPostParameters = ServerDrivenPaginationAlternateInitialVerbPostBodyParam & RequestParameters;
 
 export declare interface ServerDrivenPaginationContinuationTokenRequestHeaderNestedResponseBody {
     get(options?: ServerDrivenPaginationContinuationTokenRequestHeaderNestedResponseBodyParameters): StreamableMethod<ServerDrivenPaginationContinuationTokenRequestHeaderNestedResponseBody200Response>;
