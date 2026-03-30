@@ -586,7 +586,7 @@ const libDef = {
     "prefix-adding-in-enum-member": {
       severity: "warning",
       messages: {
-        default: paramMessage`Enum member name ${"memberName"} is normalized to ${"normalizedName"} with "_" prefix.`
+        default: paramMessage`Enum member name ${"memberName"} is not a valid TypeScript identifier. It has been renamed to ${"normalizedName"} using the enum type name ${"enumTypeName"} as prefix.`
       }
     },
     "default-value-object": {

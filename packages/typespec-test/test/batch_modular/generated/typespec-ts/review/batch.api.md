@@ -1413,7 +1413,7 @@ export interface JobStatistics {
 
 // @public
 export enum KnownVersions {
-    _20230501170 = "2023-05-01.17.0"
+    Versions20230501170 = "2023-05-01.17.0"
 }
 
 // @public

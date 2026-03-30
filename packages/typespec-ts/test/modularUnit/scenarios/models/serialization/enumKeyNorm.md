@@ -65,6 +65,7 @@ model Foo {
 }
 op post(@body body: Foo): void;
 @@clientName(ExtensibleString.`-2.0`, "$DO_NOT_NORMALIZE$Item-1.0");
+@@clientName(ExtensibleString.`20`, "$DO_NOT_NORMALIZE$_20");
 @@clientName(ExtensibleString.`YES_OR_NO2`, "Yes_Or_No2");
 @@clientName(Versions.`2024-07-01`, "StableVersion");
 ```
@@ -131,13 +132,13 @@ export enum KnownExtensibleString {
   /** _10Pascal */
   _10Pascal = "_10Pascal",
   /** 090 */
-  _090 = "090",
+  ExtensibleString090 = "090",
   /** 10 */
-  _10 = "10",
+  ExtensibleString10_1 = "10",
   /** 20 */
   _20 = "20",
   /** 1.0 */
-  _10 = "1.0",
+  ExtensibleString10_2 = "1.0",
   /** -2.0 */
   "Item-1.0" = "-2.0",
 }
@@ -150,11 +151,11 @@ export enum KnownExtensibleNumber {
   /** 1 */
   One = 1,
   /** 2 */
-  _2 = 2,
+  ExtensibleNumber2 = 2,
   /** -2.1 */
-  _21 = -2.1,
+  ExtensibleNumber21 = -2.1,
   /** 3 */
-  _3 = 3,
+  ExtensibleNumber3 = 3,
 }
 
 /** Type of ExtensibleNumber */
@@ -167,6 +168,6 @@ export enum KnownVersions {
   /** 2024-07-01 */
   StableVersion = "2024-07-01",
   /** 2024-08-01-preview */
-  _20240801Preview = "2024-08-01-preview",
+  Versions20240801Preview = "2024-08-01-preview",
 }
 ```
