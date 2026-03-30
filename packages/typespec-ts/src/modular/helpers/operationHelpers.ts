@@ -3091,6 +3091,13 @@ export function checkWrapNonModelReturn(
     return noWrap;
   }
 
+  // Case: unknown with treatUnknownAsRecord enabled → no wrap
+  //   When treatUnknownAsRecord is enabled, `unknown` is treated as Record<string, unknown>
+  //   which maps to HLC PropertyKind.Dictionary → no body wrapper
+  if (type.kind === "unknown" && context.rlcOptions?.treatUnknownAsRecord) {
+    return noWrap;
+  }
+
   // Remaining cases → wrap with `body`:
   //   - string   → HLC PropertyKind.Primitive → modular `string`
   //   - boolean  → HLC PropertyKind.Primitive → modular `boolean`

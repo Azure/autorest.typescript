@@ -92,6 +92,13 @@ export interface EmitterOptions {
    * Defaults to `false`.
    */
   "enable-storage-compat"?: boolean;
+  /**
+   * When set to true, TypeSpec `unknown` type will be translated to `Record<string, unknown>`
+   * instead of `any` in the generated Modular SDK. This is useful when migrating from HLC
+   * where `unknown` in swagger mapped to `Record<string, unknown>` in the SDK.
+   * (Modular SDK only) Defaults to `false`.
+   */
+  "treat-unknown-as-record"?: boolean;
 }
 
 export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
@@ -388,6 +395,12 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
       nullable: true,
       description:
         "When enabled, every regular (non-LRO, non-paging) operation return type is augmented with a `_response` property containing `rawResponse` (PathUncheckedResponse), `parsedBody`, and `parsedHeaders`. Defaults to `false`."
+    },
+    "treat-unknown-as-record": {
+      type: "boolean",
+      nullable: true,
+      description:
+        "When set to true, TypeSpec `unknown` type will be translated to `Record<string, unknown>` instead of `any` in the generated Modular SDK. This is useful when migrating from HLC where `unknown` in swagger mapped to `Record<string, unknown>`. (Modular SDK only) Defaults to `false`."
     }
   },
   required: []
