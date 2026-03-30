@@ -114,7 +114,7 @@ describe("Array Item-Types Client", () => {
           result = (await client.unknownValue.get()).body;
           break;
         case "model":
-          result = (await client.modelValue.get()).body;
+          result = await client.modelValue.get();
           break;
         case "nullable-float":
           result = (await client.nullableFloatValue.get()).body;
