@@ -1,5 +1,6 @@
 ## 6.0.65 (2026-03-30)
 
+- [Feature] Bump TypeSpec dependencies to latest stable. Please refer to [#3870](https://github.com/Azure/autorest.typescript/pull/3870)
 - [Feature] Add `treat-unknown-as-record` feature flag to map TypeSpec `unknown` to `Record<string, unknown>` in Modular SDK. Please refer to [#3869](https://github.com/Azure/autorest.typescript/pull/3869)
 - [Bugfix] Fix model array responses return directly (no body wrapper) when `wrap-non-model-return` is enabled. Please refer to [#3856](https://github.com/Azure/autorest.typescript/pull/3856)
 - [Bugfix] Restore full error.details handling for binary wrap-non-model-return deserializers. Please refer to [#3852](https://github.com/Azure/autorest.typescript/pull/3852)
