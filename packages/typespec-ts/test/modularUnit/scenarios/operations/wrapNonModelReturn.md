@@ -506,8 +506,9 @@ export async function _getBlobDeserialize(
 }
 ```
 
-# wrap-non-model-return wraps (string, boolean, string[], enum, any, model array,any object) response with body property
+# skip: wrap-non-model-return wraps (string, boolean, string[], enum, any, model array,any object) response with body property
 
+Skip as need upgrade tcgc to next version https://github.com/Azure/typespec-azure/pull/4108/changes
 ## TypeSpec
 
 ```tsp
