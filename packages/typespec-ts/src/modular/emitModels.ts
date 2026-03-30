@@ -682,6 +682,7 @@ function emitEnumMember(
   member: SdkEnumValueType,
   reportMemberNameDiagnostic = false // if reportMemberNameDiagnostic is true, it will report diagnostic for enum member name
 ): EnumMemberStructure {
+  const shouldNormalizeName = !member.name.startsWith("$DO_NOT_NORMALIZE$");
   const enumTypeName = normalizeName(
     member.enumType.name,
     NameType.Interface,
@@ -693,6 +694,7 @@ function emitEnumMember(
   // If the member name starts with _ due to a leading digit (not because the original has _),
   // replace the _ prefix with the enum type name for a more descriptive identifier
   if (
+    shouldNormalizeName &&
     normalizedMemberName.toLowerCase().startsWith("_") &&
     !member.name.toLowerCase().startsWith("_")
   ) {

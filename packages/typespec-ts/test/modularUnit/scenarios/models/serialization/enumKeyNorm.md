@@ -65,6 +65,7 @@ model Foo {
 }
 op post(@body body: Foo): void;
 @@clientName(ExtensibleString.`-2.0`, "$DO_NOT_NORMALIZE$Item-1.0");
+@@clientName(ExtensibleString.`20`, "$DO_NOT_NORMALIZE$_20");
 @@clientName(ExtensibleString.`YES_OR_NO2`, "Yes_Or_No2");
 @@clientName(Versions.`2024-07-01`, "StableVersion");
 ```
@@ -135,7 +136,7 @@ export enum KnownExtensibleString {
   /** 10 */
   ExtensibleString10_1 = "10",
   /** 20 */
-  ExtensibleString20 = "20",
+  _20 = "20",
   /** 1.0 */
   ExtensibleString10_2 = "1.0",
   /** -2.0 */
