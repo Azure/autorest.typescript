@@ -53,7 +53,7 @@ import { PagedAsyncIterableIterator } from "./static-helpers/pagingHelpers.js";
 import { KeyCredential, TokenCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
-export { ContentSafetyClientOptionalParams } from "./api/contentSafetyContext.js";
+export type { ContentSafetyClientOptionalParams } from "./api/contentSafetyContext.js";
 
 export class ContentSafetyClient {
   private _client: ContentSafetyContext;

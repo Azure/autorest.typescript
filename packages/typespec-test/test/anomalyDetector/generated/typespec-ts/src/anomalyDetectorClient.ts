@@ -14,7 +14,7 @@ import { UnivariateOperations, _getUnivariateOperations } from "./classic/univar
 import { KeyCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
-export { AnomalyDetectorClientOptionalParams } from "./api/anomalyDetectorContext.js";
+export type { AnomalyDetectorClientOptionalParams } from "./api/anomalyDetectorContext.js";
 
 export class AnomalyDetectorClient {
   private _client: AnomalyDetectorContext;

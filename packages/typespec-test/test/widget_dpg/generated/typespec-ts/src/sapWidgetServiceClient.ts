@@ -11,7 +11,7 @@ import { SAPWidgetsOperations, _getSAPWidgetsOperations } from "./classic/sapWid
 import { KeyCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
-export { SAPWidgetServiceClientOptionalParams } from "./api/sapWidgetServiceContext.js";
+export type { SAPWidgetServiceClientOptionalParams } from "./api/sapWidgetServiceContext.js";
 
 export class SAPWidgetServiceClient {
   private _client: SAPWidgetServiceContext;

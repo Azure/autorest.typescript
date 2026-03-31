@@ -23,7 +23,7 @@ import {
 import { TokenCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
-export { TestProfileAdministrationClientOptionalParams } from "./api/testProfileAdministrationContext.js";
+export type { TestProfileAdministrationClientOptionalParams } from "./api/testProfileAdministrationContext.js";
 
 export class TestProfileAdministrationClient {
   private _client: TestProfileAdministrationContext;

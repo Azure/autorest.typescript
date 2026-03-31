@@ -25,7 +25,7 @@ import {
 import { TokenCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
-export { TestProfileRunClientOptionalParams } from "./api/testProfileRunContext.js";
+export type { TestProfileRunClientOptionalParams } from "./api/testProfileRunContext.js";
 
 export class TestProfileRunClient {
   private _client: TestProfileRunContext;

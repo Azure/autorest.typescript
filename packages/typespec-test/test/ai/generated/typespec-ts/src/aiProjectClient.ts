@@ -9,7 +9,7 @@ import { TelemetryOperations, _getTelemetryOperations } from "./classic/telemetr
 import { TokenCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
-export { AIProjectClientOptionalParams } from "./api/aiProjectContext.js";
+export type { AIProjectClientOptionalParams } from "./api/aiProjectContext.js";
 
 export class AIProjectClient {
   private _client: AIProjectContext;

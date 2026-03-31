@@ -39,7 +39,7 @@ import {
 import { TokenCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
-export { LoadTestAdministrationClientOptionalParams } from "./api/loadTestAdministrationContext.js";
+export type { LoadTestAdministrationClientOptionalParams } from "./api/loadTestAdministrationContext.js";
 
 export class LoadTestAdministrationClient {
   private _client: LoadTestAdministrationContext;
