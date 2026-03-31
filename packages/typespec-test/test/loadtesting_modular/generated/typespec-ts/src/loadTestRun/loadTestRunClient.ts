@@ -52,7 +52,7 @@ import {
 import { TokenCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
-export { LoadTestRunClientOptionalParams } from "./api/loadTestRunContext.js";
+export type { LoadTestRunClientOptionalParams } from "./api/loadTestRunContext.js";
 
 export class LoadTestRunClient {
   private _client: LoadTestRunContext;

@@ -32,7 +32,7 @@ import {
 import { KeyCredential, TokenCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
-export { EventGridClientOptionalParams } from "./api/eventGridContext.js";
+export type { EventGridClientOptionalParams } from "./api/eventGridContext.js";
 
 export class EventGridClient {
   private _client: EventGridContext;
