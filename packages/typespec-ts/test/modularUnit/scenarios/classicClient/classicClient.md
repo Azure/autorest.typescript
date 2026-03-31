@@ -44,7 +44,7 @@ import { foo } from "./api/operations.js";
 import { FooOptionalParams } from "./api/options.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
-export { TestServiceClientOptionalParams } from "./api/testServiceContext.js";
+export type { TestServiceClientOptionalParams } from "./api/testServiceContext.js";
 
 export class TestServiceClient {
   private _client: TestServiceContext;

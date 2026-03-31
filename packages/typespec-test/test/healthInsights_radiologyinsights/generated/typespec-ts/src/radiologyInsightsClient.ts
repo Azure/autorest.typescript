@@ -13,7 +13,7 @@ import { KeyCredential } from "@azure/core-auth";
 import { PollerLike, OperationState } from "@azure/core-lro";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
-export { RadiologyInsightsClientOptionalParams } from "./api/radiologyInsightsContext.js";
+export type { RadiologyInsightsClientOptionalParams } from "./api/radiologyInsightsContext.js";
 
 export class RadiologyInsightsClient {
   private _client: RadiologyInsightsContext;

@@ -61,7 +61,7 @@ import { CreateOrUpdateOptionalParams } from "./api/options.js";
 import { TokenCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
-export { MachineLearningServicesClientOptionalParams } from "./api/machineLearningServicesContext.js";
+export type { MachineLearningServicesClientOptionalParams } from "./api/machineLearningServicesContext.js";
 
 export class MachineLearningServicesClient {
   private _client: MachineLearningServicesContext;
