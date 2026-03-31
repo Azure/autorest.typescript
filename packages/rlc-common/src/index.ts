@@ -30,6 +30,7 @@ export * from "./metadata/buildTsConfig.js";
 export * from "./metadata/buildWarpConfig.js";
 export * from "./metadata/buildESLintConfig.js";
 export * from "./metadata/buildLicenseFile.js";
+export * from "./metadata/buildChangelogFile.js";
 export * from "./metadata/buildVitestConfig.js";
 export * from "./metadata/buildSampleEnvFile.js";
 export * from "./buildSerializeHelper.js";
