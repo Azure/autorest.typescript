@@ -1238,7 +1238,7 @@ function getLroOnlyOperationFunction(
     : returnType.type;
   const effectiveReturnTypeName = shouldWrap
     ? getOperationResponseTypeName(method as [string[], ServiceOperation])
-    : (returnType.name ?? returnType.type);
+    : returnType.type;
 
   const functionStatement = {
     kind: StructureKind.Function,
