@@ -63,7 +63,7 @@ export default defineConfig({
             "test/azureModularIntegration/clientStructureOperationGroup.spec.ts",
             "test/azureModularIntegration/clientStructureRenamed.spec.ts",
             "test/azureModularIntegration/clientStructureTwoGroup.spec.ts",
-            "test/azureModularIntegration/azureModularIntegration/payloadMultipart.spec.ts"
+            "test/azureModularIntegration/payloadMultipart.spec.ts"
           ],
           testTimeout: 36000
         }
