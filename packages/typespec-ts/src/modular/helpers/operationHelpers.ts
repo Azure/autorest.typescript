@@ -205,7 +205,15 @@ export function getDeserializePrivateFunction(
   let returnType;
 
   if (isLroOnly || isLroAndPaging) {
-    returnType = buildLroReturnType(context, operation);
+    if (isLroOnly && shouldWrap) {
+      // For LRO-only operations with non-model final result, wrap in a response type alias
+      returnType = {
+        name: getOperationResponseTypeName(method),
+        type: resolveReference(refkey(operation, "response"))
+      };
+    } else {
+      returnType = buildLroReturnType(context, operation);
+    }
   } else if (isPagingOnly && restResponse?.type) {
     // For paging operations, use the full response model (e.g., _OperationListResult)
     // instead of just the array element type
@@ -392,7 +400,7 @@ export function getDeserializePrivateFunction(
           skipDiscriminatedUnionSuffix: false
         }
       );
-      // Handle wrap-non-model-return for non-LRO, non-paging operations
+      // Handle wrap-non-model-return for non-LRO, non-paging and LRO-only operations
       if (shouldWrap) {
         if (isBinary) {
           // Binary wrap: getBinaryStream already resolved the stream,
@@ -403,11 +411,12 @@ export function getDeserializePrivateFunction(
           );
         } else {
           // Non-model response: wrap with body property
-          // Generate the appropriate deserialization for the body value
+          // Generate the appropriate deserialization for the body value.
+          // For LRO operations, deserializedRoot may include the sub-path (e.g. result.body.someProperty).
           const bodyValue = deserializeResponseValue(
             context,
             deserializedType,
-            "result.body",
+            deserializedRoot,
             true,
             getEncodeForType(deserializedType)
           );
@@ -1217,6 +1226,20 @@ function getLroOnlyOperationFunction(
   const operationStateReference = resolveReference(
     AzurePollingDependencies.OperationState
   );
+
+  // When wrap-non-model-return is enabled and the LRO final result is a non-model type,
+  // use the wrapper response type (e.g. GetIkeSasResponse) instead of the raw type (e.g. string).
+  const { shouldWrap } = checkWrapNonModelReturn(
+    context,
+    operation as ServiceOperation
+  );
+  const effectiveReturnTypeStr = shouldWrap
+    ? (resolveReference(refkey(operation, "response")) as string)
+    : returnType.type;
+  const effectiveReturnTypeName = shouldWrap
+    ? getOperationResponseTypeName(method as [string[], ServiceOperation])
+    : (returnType.name ?? returnType.type);
+
   const functionStatement = {
     kind: StructureKind.Function,
     docs: [
@@ -1228,9 +1251,9 @@ function getLroOnlyOperationFunction(
     name,
     propertyName: normalizeName(operation.name, NameType.Property),
     isLro: true,
-    lroFinalReturnType: returnType.type,
+    lroFinalReturnType: effectiveReturnTypeName,
     parameters,
-    returnType: `${pollerLikeReference}<${operationStateReference}<${returnType.type}>, ${returnType.type}>`
+    returnType: `${pollerLikeReference}<${operationStateReference}<${effectiveReturnTypeStr}>, ${effectiveReturnTypeStr}>`
   };
 
   const getLongRunningPollerReference = resolveReference(
@@ -1266,9 +1289,7 @@ function getLroOnlyOperationFunction(
       .join(", ")}),
     ${resourceLocationConfig}
     ${apiVersion ? `apiVersion: ${apiVersion}` : ""}
-  }) as ${pollerLikeReference}<${operationStateReference}<${
-    returnType.type
-  }>, ${returnType.type}>;
+  }) as ${pollerLikeReference}<${operationStateReference}<${effectiveReturnTypeStr}>, ${effectiveReturnTypeStr}>;
   `);
 
   return {
@@ -3041,18 +3062,44 @@ export function checkWrapNonModelReturn(
 ): { shouldWrap: boolean; isBinary: boolean } {
   const noWrap = { shouldWrap: false, isBinary: false };
 
-  // Only for non-LRO, non-paging normal operations
-  if (
-    isLroOnlyOperation(operation) ||
-    isLroAndPagingOperation(operation) ||
-    isPagingOnlyOperation(operation)
-  ) {
+  // LRO+paging and paging-only operations are not wrapped
+  if (isLroAndPagingOperation(operation) || isPagingOnlyOperation(operation)) {
     return noWrap;
   }
 
   // Only if the feature flag is enabled
   if (!context.rlcOptions?.wrapNonModelReturn) {
     return noWrap;
+  }
+
+  // For LRO-only operations, check the final result type from LRO metadata
+  if (isLroOnlyOperation(operation)) {
+    const metadata = operation.lroMetadata;
+    if (!metadata?.finalResponse?.result) {
+      return noWrap; // void LRO - no wrap needed
+    }
+    const lroResultType = metadata.finalResponse.result;
+
+    // Case: model array (e.g. Foo[]) → no wrap
+    if (
+      lroResultType.kind === "array" &&
+      lroResultType.valueType.kind === "model"
+    ) {
+      return noWrap;
+    }
+    // Case: model → no wrap
+    if (lroResultType.kind === "model") {
+      return noWrap;
+    }
+    // Case: unknown with treatUnknownAsRecord → no wrap
+    if (
+      lroResultType.kind === "unknown" &&
+      context.rlcOptions?.treatUnknownAsRecord
+    ) {
+      return noWrap;
+    }
+    // Remaining cases (string, number, boolean, enum, etc.) → wrap with body
+    return { shouldWrap: true, isBinary: false };
   }
 
   const response = operation.response;
