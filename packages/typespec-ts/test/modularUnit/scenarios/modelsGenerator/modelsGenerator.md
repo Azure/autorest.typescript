@@ -2509,8 +2509,8 @@ export interface A {
   readonly exactVersion?: string;
 }
 
-export function aSerializer(item: A): any {
-  return item;
+export function aSerializer(_item: A): any {
+  return {};
 }
 ```
 

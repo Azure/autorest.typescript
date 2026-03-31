@@ -535,8 +535,8 @@ op read(@path pathParam: string, @query queryParam: string, @body body: {}): OkR
 /** model interface _ReadRequest */
 export interface _ReadRequest {}
 
-export function _readRequestSerializer(item: _ReadRequest): any {
-  return item;
+export function _readRequestSerializer(_item: _ReadRequest): any {
+  return {};
 }
 ```
 

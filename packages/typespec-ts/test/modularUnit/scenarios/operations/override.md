@@ -161,8 +161,8 @@ export interface GroupParametersOptions {
   param2: string;
 }
 
-export function groupParametersOptionsSerializer(item: GroupParametersOptions): any {
-  return item;
+export function groupParametersOptionsSerializer(_item: GroupParametersOptions): any {
+  return {};
 }
 ```
 

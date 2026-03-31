@@ -48,8 +48,8 @@ export interface VirtualMachineProperties {
   readonly provisioningState?: ResourceProvisioningState;
 }
 
-export function virtualMachinePropertiesSerializer(item: VirtualMachineProperties): any {
-  return item;
+export function virtualMachinePropertiesSerializer(_item: VirtualMachineProperties): any {
+  return {};
 }
 
 export function virtualMachinePropertiesDeserializer(item: any): VirtualMachineProperties {
