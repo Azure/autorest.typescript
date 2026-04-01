@@ -1,7 +1,8 @@
+import { describe, it, beforeEach, assert } from "vitest";
+
 import BodyOptionalityClientFactory, {
   BodyOptionalityClient
 } from "./generated/parameters/body-optionality/src/index.js";
-import { assert } from "chai";
 describe("BodyOptionalityClient Rest Client", () => {
   let client: BodyOptionalityClient;
 

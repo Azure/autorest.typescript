@@ -1,4 +1,5 @@
-import { assert } from "chai";
+import { describe, it, beforeEach, assert } from "vitest";
+
 import { NumericClient } from "./generated/encode/numeric/src/index.js";
 describe("EncodeNumericClient Rest Client", () => {
   let client: NumericClient;

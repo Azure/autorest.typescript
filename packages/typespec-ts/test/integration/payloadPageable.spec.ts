@@ -1,4 +1,5 @@
-import { assert } from "chai";
+import { describe, it, beforeEach, assert } from "vitest";
+
 import PageableClientFactory, {
   PageableClient
 } from "./generated/payload/pageable/src/index.js";

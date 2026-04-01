@@ -1,5 +1,6 @@
+import { describe, it, beforeEach, assert } from "vitest";
+
 import { CollectionFormatClient } from "./generated/parameters/collection-format/src/index.js";
-import { assert } from "chai";
 
 describe("CollectionFormatClient Classical Client", () => {
   let client: CollectionFormatClient;

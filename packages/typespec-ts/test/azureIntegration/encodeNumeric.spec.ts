@@ -1,4 +1,5 @@
-import { assert } from "chai";
+import { describe, it, beforeEach, assert } from "vitest";
+
 import EncodeNumericClientFactory, {
   NumericClient
 } from "./generated/encode/numeric/src/index.js";

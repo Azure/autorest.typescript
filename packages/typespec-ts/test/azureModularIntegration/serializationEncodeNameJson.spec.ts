@@ -1,4 +1,5 @@
-import { assert } from "chai";
+import { describe, it, beforeEach, assert } from "vitest";
+
 import { JsonClient } from "./generated/serialization/encoded-name/json/src/index.js";
 describe("NameAndEncodedName Client", () => {
   let client: JsonClient;

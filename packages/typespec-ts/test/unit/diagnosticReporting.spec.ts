@@ -1,4 +1,5 @@
-import { assert } from "chai";
+import { describe, it, beforeEach, afterAll, assert } from "vitest";
+
 import { NoTarget } from "@typespec/compiler";
 import { buildModelDeserializer } from "../../src/modular/serialization/buildDeserializerFunction.js";
 import { buildModelSerializer } from "../../src/modular/serialization/buildSerializerFunction.js";
@@ -464,7 +465,7 @@ describe("Diagnostic Reporting Tests", () => {
       }
     });
 
-    after(() => {
+    afterAll(() => {
       // Test that validates our understanding of function routing
       console.log("Advanced deserializer tests completed");
     });
@@ -505,7 +506,7 @@ describe("Diagnostic Reporting Tests", () => {
       }
     });
 
-    after(() => {
+    afterAll(() => {
       // Test that validates our understanding of function routing
       console.log("Advanced serializer tests completed");
     });

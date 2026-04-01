@@ -1,4 +1,5 @@
-import { assert } from "chai";
+import { describe, it, beforeEach, assert } from "vitest";
+
 import AzureCoreScalarClientFactory, {
   AzureCoreScalarClient
 } from "./generated/azure/core/scalar/src/index.js";
