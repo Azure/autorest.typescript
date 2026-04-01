@@ -205,7 +205,15 @@ export function getDeserializePrivateFunction(
   let returnType;
 
   if (isLroOnly || isLroAndPaging) {
-    returnType = buildLroReturnType(context, operation);
+    if (isLroOnly && shouldWrap) {
+      // For LRO-only operations with non-model final result, wrap in a response type alias
+      returnType = {
+        name: getOperationResponseTypeName(method),
+        type: resolveReference(refkey(operation, "response"))
+      };
+    } else {
+      returnType = buildLroReturnType(context, operation);
+    }
   } else if (isPagingOnly && restResponse?.type) {
     // For paging operations, use the full response model (e.g., _OperationListResult)
     // instead of just the array element type
@@ -392,7 +400,7 @@ export function getDeserializePrivateFunction(
           skipDiscriminatedUnionSuffix: false
         }
       );
-      // Handle wrap-non-model-return for non-LRO, non-paging operations
+      // Handle wrap-non-model-return for non-LRO, non-paging and LRO-only operations
       if (shouldWrap) {
         if (isBinary) {
           // Binary wrap: getBinaryStream already resolved the stream,
@@ -403,11 +411,12 @@ export function getDeserializePrivateFunction(
           );
         } else {
           // Non-model response: wrap with body property
-          // Generate the appropriate deserialization for the body value
+          // Generate the appropriate deserialization for the body value.
+          // For LRO operations, deserializedRoot may include the sub-path (e.g. result.body.someProperty).
           const bodyValue = deserializeResponseValue(
             context,
             deserializedType,
-            "result.body",
+            deserializedRoot,
             true,
             getEncodeForType(deserializedType)
           );
@@ -1217,6 +1226,20 @@ function getLroOnlyOperationFunction(
   const operationStateReference = resolveReference(
     AzurePollingDependencies.OperationState
   );
+
+  // When wrap-non-model-return is enabled and the LRO final result is a non-model type,
+  // use the wrapper response type (e.g. GetIkeSasResponse) instead of the raw type (e.g. string).
+  const { shouldWrap } = checkWrapNonModelReturn(
+    context,
+    operation as ServiceOperation
+  );
+  const effectiveReturnTypeStr = shouldWrap
+    ? (resolveReference(refkey(operation, "response")) as string)
+    : returnType.type;
+  const effectiveReturnTypeName = shouldWrap
+    ? getOperationResponseTypeName(method as [string[], ServiceOperation])
+    : returnType.type;
+
   const functionStatement = {
     kind: StructureKind.Function,
     docs: [
@@ -1228,9 +1251,9 @@ function getLroOnlyOperationFunction(
     name,
     propertyName: normalizeName(operation.name, NameType.Property),
     isLro: true,
-    lroFinalReturnType: returnType.type,
+    lroFinalReturnType: effectiveReturnTypeName,
     parameters,
-    returnType: `${pollerLikeReference}<${operationStateReference}<${returnType.type}>, ${returnType.type}>`
+    returnType: `${pollerLikeReference}<${operationStateReference}<${effectiveReturnTypeStr}>, ${effectiveReturnTypeStr}>`
   };
 
   const getLongRunningPollerReference = resolveReference(
@@ -1266,9 +1289,7 @@ function getLroOnlyOperationFunction(
       .join(", ")}),
     ${resourceLocationConfig}
     ${apiVersion ? `apiVersion: ${apiVersion}` : ""}
-  }) as ${pollerLikeReference}<${operationStateReference}<${
-    returnType.type
-  }>, ${returnType.type}>;
+  }) as ${pollerLikeReference}<${operationStateReference}<${effectiveReturnTypeStr}>, ${effectiveReturnTypeStr}>;
   `);
 
   return {
@@ -3032,6 +3053,32 @@ export function getOperationResponseTypeName(
 }
 
 /**
+ * Returns true when a type should be wrapped with a `body` property.
+ * Wrapping is needed for primitive/enum types; composite (model, dict, model-array)
+ * and unknown-as-record types map to the HLC PropertyKind.Composite / Dictionary
+ * patterns which do NOT get a body wrapper.
+ *
+ * Covered cases (no wrap):
+ *   - model array  (e.g. Foo[])          → HLC PropertyKind.Composite
+ *   - model                               → HLC PropertyKind.Composite
+ *   - dict / Record<string, unknown>      → HLC PropertyKind.Dictionary
+ *   - unknown with treatUnknownAsRecord   → treated as Dict
+ *
+ * Covered cases (wrap):
+ *   - string, boolean, number             → HLC PropertyKind.Primitive
+ *   - string[]                            → HLC PropertyKind.Primitive (item kind)
+ *   - enum / KnownXxx | string            → HLC PropertyKind.Enum
+ *   - any / unknown (no treatAsRecord)    → HLC PropertyKind.Primitive
+ */
+function isWrappableType(context: SdkContext, type: SdkType): boolean {
+  if (type.kind === "array" && type.valueType.kind === "model") return false;
+  if (type.kind === "dict" || type.kind === "model") return false;
+  if (type.kind === "unknown" && context.rlcOptions?.treatUnknownAsRecord)
+    return false;
+  return true;
+}
+
+/**
  * Determines whether wrapping the non-model return type is needed for an operation.
  * Returns an object with `shouldWrap` (whether to wrap) and `isBinary` (whether it's a binary response).
  */
@@ -3041,12 +3088,8 @@ export function checkWrapNonModelReturn(
 ): { shouldWrap: boolean; isBinary: boolean } {
   const noWrap = { shouldWrap: false, isBinary: false };
 
-  // Only for non-LRO, non-paging normal operations
-  if (
-    isLroOnlyOperation(operation) ||
-    isLroAndPagingOperation(operation) ||
-    isPagingOnlyOperation(operation)
-  ) {
+  // LRO+paging and paging-only operations are not wrapped
+  if (isLroAndPagingOperation(operation) || isPagingOnlyOperation(operation)) {
     return noWrap;
   }
 
@@ -3055,56 +3098,32 @@ export function checkWrapNonModelReturn(
     return noWrap;
   }
 
-  const response = operation.response;
-  if (!response.type) {
+  // For LRO-only operations, check the final result type from LRO metadata
+  if (isLroOnlyOperation(operation)) {
+    const lroResultType = operation.lroMetadata?.finalResponse?.result;
+    if (!lroResultType) {
+      return noWrap; // void LRO - no wrap needed
+    }
+    return {
+      shouldWrap: isWrappableType(context, lroResultType),
+      isBinary: false
+    };
+  }
+
+  const { type } = operation.response;
+  if (!type) {
     return noWrap; // void return type - no wrap needed
   }
 
-  const type = response.type;
   const contentTypes = operation.operation.responses[0]?.contentTypes ?? [];
 
-  // Determine whether to wrap based on the HLC PropertyKind mapping.
-  // HLC wraps with `body` only when the type is PropertyKind.Primitive or PropertyKind.Enum
-  // (i.e. NOT PropertyKind.Composite or PropertyKind.Dictionary).
-  // For array types, HLC uses the item's kind, not the array itself.
-  //
-  // Case: bytes with binary content type → binary wrap (isBinary=true)
+  // bytes with binary content type → binary wrap (isBinary=true)
   //   HLC: bytes → binary payload → separate binary handling
   if (type.__raw && isBinaryPayload(context, type.__raw, contentTypes)) {
     return { shouldWrap: true, isBinary: true };
   }
 
-  // Case: model array (e.g. Foo[]) → no wrap
-  //   HLC: model array → PropertyKind.Composite (item kind = model) → no body wrapper
-  //   Modular: array with valueType.kind === "model"
-  if (type.kind === "array" && type.valueType.kind === "model") {
-    return noWrap;
-  }
-
-  // Case: any object / Record (e.g. Record<string, unknown>) → no wrap
-  //   HLC: SchemaType.AnyObject → PropertyKind.Dictionary → no body wrapper
-  //   Modular: kind === "dict"
-  // Case: model → no wrap
-  //   HLC: model → PropertyKind.Composite → no body wrapper
-  //   Modular: kind === "model"
-  if (type.kind === "dict" || type.kind === "model") {
-    return noWrap;
-  }
-
-  // Case: unknown with treatUnknownAsRecord enabled → no wrap
-  //   When treatUnknownAsRecord is enabled, `unknown` is treated as Record<string, unknown>
-  //   which maps to HLC PropertyKind.Dictionary → no body wrapper
-  if (type.kind === "unknown" && context.rlcOptions?.treatUnknownAsRecord) {
-    return noWrap;
-  }
-
-  // Remaining cases → wrap with `body`:
-  //   - string   → HLC PropertyKind.Primitive → modular `string`
-  //   - boolean  → HLC PropertyKind.Primitive → modular `boolean`
-  //   - string[] → HLC PropertyKind.Primitive (array keeps item kind) → modular `string[]`
-  //   - any      → HLC PropertyKind.Primitive → modular `unknown` or `any`
-  //   - enum     → HLC PropertyKind.Enum → modular `KnownXxx | string`
-  return { shouldWrap: true, isBinary: false };
+  return { shouldWrap: isWrappableType(context, type), isBinary: false };
 }
 
 /**
