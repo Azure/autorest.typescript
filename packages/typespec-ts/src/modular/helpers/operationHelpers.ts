@@ -3104,7 +3104,10 @@ export function checkWrapNonModelReturn(
     if (!lroResultType) {
       return noWrap; // void LRO - no wrap needed
     }
-    return { shouldWrap: isWrappableType(context, lroResultType), isBinary: false };
+    return {
+      shouldWrap: isWrappableType(context, lroResultType),
+      isBinary: false
+    };
   }
 
   const { type } = operation.response;
