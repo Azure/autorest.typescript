@@ -1,5 +1,6 @@
+import { describe, it, beforeEach, assert } from "vitest";
+
 import { ModelClient } from "./generated/azure/core/model/src/index.js";
-import { assert } from "chai";
 
 describe("Traits Client", () => {
   let client: ModelClient;

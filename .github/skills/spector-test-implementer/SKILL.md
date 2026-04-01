@@ -114,7 +114,7 @@ npm run start-test-server:azure-modular
 Wait for `Started server on 3002` to appear, then in a separate terminal run the specific test file:
 
 ```bash
-cross-env TS_NODE_PROJECT=tsconfig.integration.json mocha -r ts-node/register --experimental-specifier-resolution=node --timeout 36000 ./test/azureModularIntegration/<specFileName>.spec.ts
+npx vitest run --project integration-azure-modular ./test/azureModularIntegration/<specFileName>.spec.ts
 ```
 
 After the test completes, stop the server:

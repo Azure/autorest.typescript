@@ -1,8 +1,9 @@
+import { describe, it, beforeEach, assert } from "vitest";
+
 import {
   Extension,
   RecursiveClient
 } from "./generated/type/model/inheritance/recursive/src/index.js";
-import { assert } from "chai";
 
 const body: Extension = {
   level: 0,

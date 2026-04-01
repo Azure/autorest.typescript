@@ -1,4 +1,5 @@
-import { assert } from "chai";
+import { describe, it, beforeEach, assert } from "vitest";
+
 import { MoveMethodParameterToClient } from "./generated/azure/client-generator-core/client-location/move-method-parameter-to-client/src/index.js";
 import { MoveToExistingSubClient } from "./generated/azure/client-generator-core/client-location/move-to-existing-sub-client/src/index.js";
 import { MoveToNewSubClient } from "./generated/azure/client-generator-core/client-location/move-to-new-sub-client/src/index.js";

@@ -1,5 +1,5 @@
-import { describe, it } from "mocha";
-import { assert } from "chai";
+import { describe, it, assert } from "vitest";
+
 import { ok } from "assert";
 import { Diagnostic } from "@typespec/compiler";
 import {

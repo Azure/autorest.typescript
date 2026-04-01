@@ -1,8 +1,9 @@
+import { describe, it, beforeEach, assert } from "vitest";
+
 import {
   PageableClient,
   User
 } from "./generated/azure/payload/pageable/src/index.js";
-import { assert } from "chai";
 
 describe("Azure PageableClient Classical Client", () => {
   let client: PageableClient;
