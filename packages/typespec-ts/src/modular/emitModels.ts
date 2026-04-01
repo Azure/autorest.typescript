@@ -912,18 +912,16 @@ export function normalizeModelName(
 }
 
 /**
- * Checks if a model extends an ARM resource base type (TrackedResource, ProxyResource, etc.)
- * by walking the ancestor chain and checking for Azure.ResourceManager types.
+ * Checks if a model descends from the ARM common-types Resource base type
+ * (TrackedResource, ProxyResource, etc.) by walking the ancestor chain.
  */
 function isArmResourceModel(type: SdkModelType): boolean {
   const ancestors = getAllAncestors(type);
   return ancestors.some(
     (ancestor) =>
       ancestor.kind === "model" &&
-      ((ancestor.crossLanguageDefinitionId ?? "").startsWith(
-        "Azure.ResourceManager"
-      ) ||
-        (ancestor.namespace ?? "").startsWith("Azure.ResourceManager"))
+      ancestor.crossLanguageDefinitionId ===
+        "Azure.ResourceManager.CommonTypes.Resource"
   );
 }
 
