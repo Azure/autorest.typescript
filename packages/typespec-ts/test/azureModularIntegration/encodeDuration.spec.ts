@@ -1,4 +1,5 @@
-import { assert } from "chai";
+import { describe, it, beforeEach, assert } from "vitest";
+
 import { DurationClient } from "./generated/encode/duration/src/index.js";
 describe("EncodeDurationClient Rest Client", () => {
   let client: DurationClient;

@@ -1,7 +1,8 @@
+import { describe, it, beforeEach, assert } from "vitest";
+
 import TypeModelUsageClientFactory, {
   UsageClient
 } from "./generated/type/model/usage/src/index.js";
-import { assert } from "chai";
 describe("ModelsUsageClient Rest Client", () => {
   let client: UsageClient;
   const body = {

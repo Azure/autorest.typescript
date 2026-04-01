@@ -1,7 +1,8 @@
+import { describe, it, beforeEach, assert } from "vitest";
+
 import UnionBodyClientFactory, {
   UnionBodyClient
 } from "./generated/union-body/src/index.js";
-import { assert } from "chai";
 describe("UnionBodyClient Rest Client", () => {
   let client: UnionBodyClient;
 

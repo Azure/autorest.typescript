@@ -61,7 +61,7 @@ Create this file at `test/azureModularIntegration/generated/<path>/.gitignore` t
 ## Test File Template
 
 ```typescript
-import { assert } from "chai";
+import { assert, describe, it, beforeEach } from "vitest";
 import { ClientName } from "./generated/<path>/src/index.js";
 
 describe("DescriptiveName", () => {
@@ -88,7 +88,8 @@ describe("DescriptiveName", () => {
 
 - Endpoint is always `http://localhost:3002` with `allowInsecureConnection: true`
 - Import client from `./generated/<path>/src/index.js` (use the exact client name from the generated `index.ts`)
-- Use `chai` assertions: `assert.strictEqual()`, `assert.deepEqual()`, `assert.isUndefined()`
+- Import `assert`, `describe`, `it`, `beforeEach` from `vitest`
+- Use `vitest` assertions: `assert.strictEqual()`, `assert.deepEqual()`, `assert.isUndefined()`
 - For error tests: wrap in try-catch with `assert.fail()` in the try block
 - For paginated results: use `for await (const item of client.listOp()) { items.push(item); }`
 - Some clients require credentials or positional params -- check the generated client's constructor signature

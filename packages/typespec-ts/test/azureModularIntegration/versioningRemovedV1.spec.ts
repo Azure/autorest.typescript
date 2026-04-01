@@ -1,4 +1,5 @@
-import { assert } from "chai";
+import { describe, it, beforeEach, assert } from "vitest";
+
 import { RemovedClient } from "./generated/versioning/removed/v1/src/index.js";
 
 describe("VersioningRemoved Rest Client", () => {

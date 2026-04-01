@@ -1,3 +1,5 @@
+import { describe, it, beforeEach, assert } from "vitest";
+
 import { Client } from "@azure-rest/core-client";
 import ServiceDefaultClientFactory, {
   ServiceClient as ServiceDefaultClient
@@ -14,7 +16,6 @@ import ServiceTwoOpGroupClientFactory, {
 import ServiceOperationGroupClientFactory, {
   ServiceClient as ServiceOperationGroupClient
 } from "./generated/client/structure/client-operation-group/src/index.js";
-import { assert } from "chai";
 describe("ClientStructureClient Rest Client", () => {
   let client0: ServiceDefaultClient;
   let client1: ServiceMultiClient;

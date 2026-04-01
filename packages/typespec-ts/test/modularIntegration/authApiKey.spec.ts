@@ -1,5 +1,6 @@
+import { describe, it, beforeEach, assert } from "vitest";
+
 import { ApiKeyClient } from "./generated/authentication/api-key/src/index.js";
-import { assert } from "chai";
 
 describe("ApiKeyClient Classical Client", () => {
   let validKeyClient: ApiKeyClient;

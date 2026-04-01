@@ -1,4 +1,5 @@
-import { assert } from "chai";
+import { describe, it, beforeEach, assert } from "vitest";
+
 import AzureArmModelsCommonTypesManagedIdentityClientFactory, {
   AzureArmModelsCommonTypesManagedIdentityClient
 } from "./generated/azure/resource-manager/common-properties/src/index.js";

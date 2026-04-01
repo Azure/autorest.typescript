@@ -1,7 +1,8 @@
+import { describe, it, beforeEach, assert } from "vitest";
+
 import FlattenPropertyClientFactory, {
   FlattenPropertyClient
 } from "./generated/azure/client-generator-core/flatten-property/src/index.js";
-import { assert } from "chai";
 describe("Flatten Property Rest Client", () => {
   let client: FlattenPropertyClient;
 

@@ -1,4 +1,5 @@
-import { assert } from "chai";
+import { describe, it, beforeEach, assert } from "vitest";
+
 import { DeserializeEmptyStringAsNullClient } from "./generated/azure/client-generator-core/deserialize-empty-string-as-null/src/index.js";
 describe("Azure ClientGeneratorCore Usage Client", () => {
   let client: DeserializeEmptyStringAsNullClient;
