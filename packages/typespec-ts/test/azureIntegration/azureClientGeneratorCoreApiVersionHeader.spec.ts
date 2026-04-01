@@ -1,4 +1,5 @@
-import { assert } from "chai";
+import { describe, it, beforeEach, assert } from "vitest";
+
 import HeaderClientFactory, {
   HeaderClient
 } from "./generated/azure/client-generator-core/api-version/header/src/index.js";

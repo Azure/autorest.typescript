@@ -1,4 +1,5 @@
-import { assert } from "chai";
+import { describe, it, assert } from "vitest";
+
 import { readdirSync, readFileSync, statSync, writeFileSync } from "fs";
 import path from "path";
 import {

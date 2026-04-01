@@ -1,8 +1,8 @@
+import { assert } from "vitest";
 // import VersioningRemovedClientFactory, {
 //   VersioningRemovedClient
 // } from "./generated/versioning/removed/src/index.js";
-// import { assert } from "chai";
-// describe("VersioningRemoved Rest Client", () => {
+// // describe("VersioningRemoved Rest Client", () => {
 //   let client: VersioningRemovedClient;
 
 //   beforeEach(() => {

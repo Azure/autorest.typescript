@@ -1,5 +1,6 @@
+import { describe, it, beforeEach, assert } from "vitest";
+
 import { UsageClient } from "./generated/type/model/usage/src/index.js";
-import { assert } from "chai";
 import {
   UsageContext,
   createUsage,

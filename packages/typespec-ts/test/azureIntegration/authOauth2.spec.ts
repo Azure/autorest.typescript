@@ -1,7 +1,8 @@
+import { describe, it, beforeEach, assert } from "vitest";
+
 import Outh2ClientFactory, {
   AuthOauth2Client
 } from "./generated/authentication/oauth2/src/index.js";
-import { assert } from "chai";
 import {
   bearerTokenAuthenticationPolicyName,
   PipelinePolicy

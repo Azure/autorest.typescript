@@ -1,4 +1,5 @@
-import { assert } from "chai";
+import { describe, it, assert } from "vitest";
+
 import { emitPageHelperFromTypeSpec } from "../util/emitUtil.js";
 
 describe("Page helper", () => {

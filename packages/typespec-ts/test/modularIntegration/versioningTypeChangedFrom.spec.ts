@@ -1,4 +1,5 @@
-import { assert } from "chai";
+import { describe, it, beforeEach, assert } from "vitest";
+
 import { TypeChangedFromClient } from "./generated/versioning/typeChangedFrom/src/index.js";
 
 describe("VersioningTypeChangedFrom Rest Client", () => {

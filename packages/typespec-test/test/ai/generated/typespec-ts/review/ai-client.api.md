@@ -784,7 +784,7 @@ export type InternalConnectionPropertiesUnion = InternalConnectionPropertiesApiK
 
 // @public
 export enum KnownVersions {
-    _20240701Preview = "2024-07-01-preview"
+    Versions20240701Preview = "2024-07-01-preview"
 }
 
 // @public

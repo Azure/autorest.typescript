@@ -1,4 +1,5 @@
-import { assert } from "chai";
+import { describe, it, beforeEach, assert } from "vitest";
+
 import { uint8ArrayToString } from "@azure/core-util";
 import { ContentNegotiationClient } from "./generated/payload/content-negotiation/src/index.js";
 

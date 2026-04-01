@@ -3,12 +3,12 @@
 
 import { SAPWidgetServiceContext as Client } from "../index.js";
 import {
-  widgetDeserializer,
+  Widget,
   widgetErrorDeserializer,
+  widgetArrayDeserializer,
   SAPUser,
   sapUserSerializer,
   sapUserDeserializer,
-  BudgetsGetBudgetsResponse,
 } from "../../models/models.js";
 import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
@@ -78,9 +78,7 @@ export function _getBudgetsSend(
     });
 }
 
-export async function _getBudgetsDeserialize(
-  result: PathUncheckedResponse,
-): Promise<BudgetsGetBudgetsResponse> {
+export async function _getBudgetsDeserialize(result: PathUncheckedResponse): Promise<Widget[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -89,18 +87,14 @@ export async function _getBudgetsDeserialize(
     throw error;
   }
 
-  return {
-    body: result.body.map((p: any) => {
-      return widgetDeserializer(p);
-    }),
-  };
+  return widgetArrayDeserializer(result.body);
 }
 
 export async function getBudgets(
   context: Client,
   name: string,
   options: BudgetsGetBudgetsOptionalParams = { requestOptions: {} },
-): Promise<BudgetsGetBudgetsResponse> {
+): Promise<Widget[]> {
   const result = await _getBudgetsSend(context, name, options);
   return _getBudgetsDeserialize(result);
 }

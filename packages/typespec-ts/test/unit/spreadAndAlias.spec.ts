@@ -1,4 +1,5 @@
-import { assert } from "chai";
+import { describe, it, assert } from "vitest";
+
 import { emitParameterFromTypeSpec } from "../util/emitUtil.js";
 import { assertEqualContent } from "../util/testUtil.js";
 

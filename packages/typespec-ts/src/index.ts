@@ -124,6 +124,12 @@ export async function $onEmit(context: EmitContext) {
   const program: Program = context.program;
   const emitterOptions: EmitterOptions = context.options;
   const dpgContext = await createContextWithDefaultOptions(context);
+
+  // Report any diagnostics from TCGC
+  if (dpgContext.diagnostics?.length > 0) {
+    program.reportDiagnostics(dpgContext.diagnostics);
+  }
+
   // Enrich the dpg context with path detail and common options
   await enrichDpgContext();
   const rlcOptions = dpgContext.rlcOptions ?? {};

@@ -1,7 +1,8 @@
+import { describe, it, beforeEach, assert } from "vitest";
+
 import VersioningAddedClientFactory, {
   VersioningAddedClient
 } from "./generated/versioning/added/src/index.js";
-import { assert } from "chai";
 describe("VersioningAdded Rest Client", () => {
   let client: VersioningAddedClient;
 

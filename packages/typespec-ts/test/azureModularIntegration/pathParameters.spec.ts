@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import { PathClient } from "./generated/parameters/path/src/index.js";
 describe("PathClient Client", () => {
   let client: PathClient;

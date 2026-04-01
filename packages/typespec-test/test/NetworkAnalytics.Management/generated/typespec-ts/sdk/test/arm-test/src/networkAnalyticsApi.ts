@@ -19,7 +19,7 @@ import { OperationsOperations, _getOperationsOperations } from "./classic/operat
 import { TokenCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
-export { NetworkAnalyticsApiOptionalParams } from "./api/networkAnalyticsApiContext.js";
+export type { NetworkAnalyticsApiOptionalParams } from "./api/networkAnalyticsApiContext.js";
 
 export class NetworkAnalyticsApi {
   private _client: NetworkAnalyticsApiContext;

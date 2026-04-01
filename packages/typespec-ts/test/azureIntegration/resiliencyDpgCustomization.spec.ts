@@ -1,4 +1,5 @@
-import { assert } from "chai";
+import { describe, it, beforeEach, assert } from "vitest";
+
 import ServiceDrivenOldClientFactory, {
   ServiceDrivenOldClient
 } from "./generated/resiliency/srv-driven-old/src/index.js";

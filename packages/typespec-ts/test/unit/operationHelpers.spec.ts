@@ -1,4 +1,5 @@
-import { assert } from "chai";
+import { describe, it, beforeEach, assert } from "vitest";
+
 import { getParameterMap } from "../../src/modular/helpers/operationHelpers.js";
 import { SdkContext } from "../../src/utils/interfaces.js";
 

@@ -595,7 +595,7 @@ import { test } from "./api/operations.js";
 import { TestOptionalParams } from "./api/options.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
-export { TestingClientOptionalParams } from "./api/testingContext.js";
+export type { TestingClientOptionalParams } from "./api/testingContext.js";
 
 export class TestingClient {
   private _client: TestingContext;
@@ -736,7 +736,7 @@ import { test } from "./api/operations.js";
 import { TestOptionalParams } from "./api/options.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
-export { TestingClientOptionalParams } from "./api/testingContext.js";
+export type { TestingClientOptionalParams } from "./api/testingContext.js";
 
 export class TestingClient {
   private _client: TestingContext;
@@ -900,7 +900,7 @@ import { test1, test } from "./api/operations.js";
 import { Test1OptionalParams, TestOptionalParams } from "./api/options.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
-export { TestingClientOptionalParams } from "./api/testingContext.js";
+export type { TestingClientOptionalParams } from "./api/testingContext.js";
 
 export class TestingClient {
   private _client: TestingContext;

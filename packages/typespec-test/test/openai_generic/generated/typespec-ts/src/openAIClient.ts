@@ -16,7 +16,7 @@ import { ModerationsOperations, _getModerationsOperations } from "./classic/mode
 import { KeyCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
-export { OpenAIClientOptionalParams } from "./api/openAIContext.js";
+export type { OpenAIClientOptionalParams } from "./api/openAIContext.js";
 
 export class OpenAIClient {
   private _client: OpenAIContext;
