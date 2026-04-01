@@ -314,8 +314,8 @@ export function dataProductVersionDeserializer(item: any): DataProductVersion {
 /** The resource model definition for a Azure Resource Manager proxy resource. It will not have tags and a location */
 export interface ProxyResource extends Resource {}
 
-export function proxyResourceSerializer(item: ProxyResource): any {
-  return item;
+export function proxyResourceSerializer(_item: ProxyResource): any {
+  return {};
 }
 
 export function proxyResourceDeserializer(item: any): ProxyResource {
@@ -341,8 +341,8 @@ export interface Resource {
   readonly systemData?: SystemData;
 }
 
-export function resourceSerializer(item: Resource): any {
-  return item;
+export function resourceSerializer(_item: Resource): any {
+  return {};
 }
 
 export function resourceDeserializer(item: any): Resource {
@@ -572,8 +572,8 @@ export function dataTypeUpdatePropertiesSerializer(item: DataTypeUpdatePropertie
 /** model interface _DeleteDataRequest */
 export interface _DeleteDataRequest {}
 
-export function _deleteDataRequestSerializer(item: _DeleteDataRequest): any {
-  return item;
+export function _deleteDataRequestSerializer(_item: _DeleteDataRequest): any {
+  return {};
 }
 
 /** The details for container sas creation. */
@@ -1139,8 +1139,8 @@ export interface UserAssignedIdentity {
   readonly clientId?: string;
 }
 
-export function userAssignedIdentitySerializer(item: UserAssignedIdentity): any {
-  return item;
+export function userAssignedIdentitySerializer(_item: UserAssignedIdentity): any {
+  return {};
 }
 
 export function userAssignedIdentityDeserializer(item: any): UserAssignedIdentity {
@@ -1369,8 +1369,8 @@ export function roleAssignmentDetailDeserializer(item: any): RoleAssignmentDetai
 /** model interface _ListRolesAssignmentsRequest */
 export interface _ListRolesAssignmentsRequest {}
 
-export function _listRolesAssignmentsRequestSerializer(item: _ListRolesAssignmentsRequest): any {
-  return item;
+export function _listRolesAssignmentsRequestSerializer(_item: _ListRolesAssignmentsRequest): any {
+  return {};
 }
 
 /** list role assignments. */
