@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import { PathClient } from "./generated/azure/client-generator-core/api-version/path/src/index.js";
 
 describe("Azure Client Generator Core - API Version Path (Modular)", () => {

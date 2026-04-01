@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import { OverrideClient } from "./generated/azure/client-generator-core/override/src/index.js";
 
 describe("Azure ClientGeneratorCore Override Client", () => {

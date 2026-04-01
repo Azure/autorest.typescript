@@ -1,4 +1,5 @@
-import { assert } from "chai";
+import { describe, it, beforeEach, assert } from "vitest";
+
 import UsageClientFactory, {
   UsageClient
 } from "./generated/azure/client-generator-core/usage/src/index.js";

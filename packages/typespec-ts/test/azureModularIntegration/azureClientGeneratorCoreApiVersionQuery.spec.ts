@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import { QueryClient } from "./generated/azure/client-generator-core/api-version/query/src/index.js";
 
 describe("Azure Client Generator Core - API Version Query (Modular)", () => {

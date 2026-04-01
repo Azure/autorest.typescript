@@ -1,5 +1,6 @@
+import { describe, it, beforeEach, assert } from "vitest";
+
 import { XmlClient } from "./generated/payload/xml/src/index.js";
-import { assert } from "chai";
 
 describe("Payload XML Client", () => {
   let client: XmlClient;

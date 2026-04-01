@@ -1,4 +1,5 @@
-import { assert } from "chai";
+import { describe, it, beforeEach, assert } from "vitest";
+
 import AccessClientFactory, {
   AccessClient
 } from "./generated/azure/client-generator-core/access/src/index.js";

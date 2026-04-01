@@ -1,5 +1,6 @@
+import { describe, it, beforeEach, assert } from "vitest";
+
 import { RoutesClient } from "./generated/routes/src/index.js";
-import { assert } from "chai";
 describe("Routes Client", () => {
   let client: RoutesClient;
 

@@ -19,8 +19,7 @@
     "prettier": "^3.1.0"
   },
   "devDependencies": {
-    "ts-node": "^8.5.2",
-    "@types/mocha": "^5.2.7"
+    "ts-node": "^8.5.2"
   },
   "scripts": {
     "smoke-test": "node --max-old-space-size=4096 ./eng/smoke-test.js",

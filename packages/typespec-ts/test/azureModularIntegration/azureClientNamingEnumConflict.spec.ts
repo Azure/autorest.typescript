@@ -1,4 +1,5 @@
-import { assert } from "chai";
+import { describe, it, beforeEach, assert } from "vitest";
+
 import { EnumConflictClient } from "./generated/client/naming-enum-conflict/src/index.js";
 
 describe("ClientNamingEnumConflict Modular Client", () => {

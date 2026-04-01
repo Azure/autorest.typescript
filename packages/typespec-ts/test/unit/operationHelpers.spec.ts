@@ -1,4 +1,5 @@
-import { assert } from "chai";
+import { describe, it, beforeEach, assert } from "vitest";
+
 import { getParameterMap } from "../../src/modular/helpers/operationHelpers.js";
 import { SdkContext } from "../../src/utils/interfaces.js";
 
@@ -57,7 +58,11 @@ describe("operationHelpers", () => {
       });
 
       // Call the function
-      const result = getParameterMap(mockContext, unsupportedParam);
+      const result = getParameterMap(
+        mockContext,
+        unsupportedParam,
+        unsupportedParam.name
+      );
 
       console.log(capturedDiagnostic.code);
       console.log(capturedDiagnostic.message);

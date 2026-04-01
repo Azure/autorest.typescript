@@ -99,7 +99,7 @@ export async function getSecretOriginal(
 }
 ```
 
-# skip: Should handle parameter grouping when using @@override
+# Should handle parameter grouping when using @@override
 
 Tests that parameters are correctly grouped into options model when using @@override directive.
 
@@ -149,16 +149,20 @@ withRawContent: true
 ## Models
 
 ```ts models
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface GroupParametersOptions */
 export interface GroupParametersOptions {
   param1: string;
   param2: string;
 }
 
-export function groupParametersOptionsSerializer(
-  item: GroupParametersOptions,
-): any {
-  return { param1: item["param1"], param2: item["param2"] };
+export function groupParametersOptionsSerializer(_item: GroupParametersOptions): any {
+  return {};
 }
 ```
 
@@ -202,14 +206,10 @@ export function _groupOriginalSend(
       allowReserved: optionalParams?.requestOptions?.skipUrlEncoding,
     },
   );
-  return context
-    .path(path)
-    .get({ ...operationOptionsToRequestParameters(optionalParams) });
+  return context.path(path).get({ ...operationOptionsToRequestParameters(optionalParams) });
 }
 
-export async function _groupOriginalDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _groupOriginalDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);

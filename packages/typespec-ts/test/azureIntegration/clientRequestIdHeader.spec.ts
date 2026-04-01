@@ -1,4 +1,5 @@
-import { assert } from "chai";
+import { describe, it, beforeEach, assert } from "vitest";
+
 import XmsClientRequestIdClientFactory, {
   XmsClientRequestIdClient
 } from "./generated/azure/special-headers/client-request-id/src/index.js";

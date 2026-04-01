@@ -1,4 +1,5 @@
-import { assert } from "chai";
+import { describe, it, assert } from "vitest";
+
 import { getRLCClientsFromTypeSpec } from "../util/emitUtil.js";
 
 describe("client utils get rlc clients", () => {

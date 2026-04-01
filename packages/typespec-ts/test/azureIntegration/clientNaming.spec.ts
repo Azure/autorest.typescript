@@ -1,4 +1,5 @@
-import { assert } from "chai";
+import { describe, it, beforeEach, assert } from "vitest";
+
 import NamingClientFactory, {
   NamingClient
 } from "./generated/client/naming/src/index.js";

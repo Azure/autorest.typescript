@@ -1,7 +1,8 @@
+import { describe, it, beforeEach, assert } from "vitest";
+
 import VersioningReturnTypeChangedFromClientFactory, {
   VersioningReturnTypeChangedFromClient
 } from "./generated/versioning/returnTypeChangedFrom/src/index.js";
-import { assert } from "chai";
 describe("VersioningReturnTypeChangedFrom Rest Client", () => {
   let client: VersioningReturnTypeChangedFromClient;
 

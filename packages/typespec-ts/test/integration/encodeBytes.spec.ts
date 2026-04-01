@@ -1,4 +1,5 @@
-import { assert } from "chai";
+import { describe, it, beforeEach, assert } from "vitest";
+
 import EncodeBytesClientFactory, {
   BytesClient
 } from "./generated/encode/bytes/src/index.js";
@@ -173,15 +174,19 @@ describe("EncodeDatetimeClient Rest Client", () => {
       assert.strictEqual(result.status, "204");
     });
 
-    it(`should post bytes with custom content type`, async () => {
-      const result = await client
-        .path(`/encode/bytes/body/request/custom-content-type`)
-        .post({
-          contentType: "image/png",
-          body: pngFile
-        });
-      assert.strictEqual(result.status, "204");
-    }).timeout(10000);
+    it(
+      `should post bytes with custom content type`,
+      { timeout: 10000 },
+      async () => {
+        const result = await client
+          .path(`/encode/bytes/body/request/custom-content-type`)
+          .post({
+            contentType: "image/png",
+            body: pngFile
+          });
+        assert.strictEqual(result.status, "204");
+      }
+    );
 
     it(`should post bytes with custom content type`, async () => {
       const result = await client

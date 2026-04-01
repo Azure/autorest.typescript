@@ -1,5 +1,5 @@
-import { expect } from "chai";
-import "mocha";
+import { describe, it, expect } from "vitest";
+
 import { NameType, normalizeName } from "../../src/helpers/nameUtils.js";
 
 describe("#normalizeName", () => {

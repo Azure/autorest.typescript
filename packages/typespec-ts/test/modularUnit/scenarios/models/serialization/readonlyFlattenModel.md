@@ -69,8 +69,8 @@ export interface SolutionProperties {
   readonly content?: string;
 }
 
-export function solutionPropertiesSerializer(item: SolutionProperties): any {
-  return item;
+export function solutionPropertiesSerializer(_item: SolutionProperties): any {
+  return {};
 }
 
 export function _solutionPropertiesSerializer(_item: Solution): any {

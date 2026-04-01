@@ -1,4 +1,5 @@
-import { assert } from "chai";
+import { describe, it, beforeEach, assert } from "vitest";
+
 import OverloadTestFactory, {
   OveralodClient
 } from "./generated/overload/src/index.js";

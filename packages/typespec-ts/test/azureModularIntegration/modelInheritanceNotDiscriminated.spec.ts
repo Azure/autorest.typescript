@@ -1,8 +1,9 @@
+import { describe, it, beforeEach, assert } from "vitest";
+
 import {
   NotDiscriminatedClient,
   Siamese
 } from "./generated/type/model/inheritance/not-discriminated/src/index.js";
-import { assert } from "chai";
 
 describe("NotDiscriminatedClient Rest Client", () => {
   let client: NotDiscriminatedClient;
