@@ -3053,6 +3053,32 @@ export function getOperationResponseTypeName(
 }
 
 /**
+ * Returns true when a type should be wrapped with a `body` property.
+ * Wrapping is needed for primitive/enum types; composite (model, dict, model-array)
+ * and unknown-as-record types map to the HLC PropertyKind.Composite / Dictionary
+ * patterns which do NOT get a body wrapper.
+ *
+ * Covered cases (no wrap):
+ *   - model array  (e.g. Foo[])          → HLC PropertyKind.Composite
+ *   - model                               → HLC PropertyKind.Composite
+ *   - dict / Record<string, unknown>      → HLC PropertyKind.Dictionary
+ *   - unknown with treatUnknownAsRecord   → treated as Dict
+ *
+ * Covered cases (wrap):
+ *   - string, boolean, number             → HLC PropertyKind.Primitive
+ *   - string[]                            → HLC PropertyKind.Primitive (item kind)
+ *   - enum / KnownXxx | string            → HLC PropertyKind.Enum
+ *   - any / unknown (no treatAsRecord)    → HLC PropertyKind.Primitive
+ */
+function isWrappableType(context: SdkContext, type: SdkType): boolean {
+  if (type.kind === "array" && type.valueType.kind === "model") return false;
+  if (type.kind === "dict" || type.kind === "model") return false;
+  if (type.kind === "unknown" && context.rlcOptions?.treatUnknownAsRecord)
+    return false;
+  return true;
+}
+
+/**
  * Determines whether wrapping the non-model return type is needed for an operation.
  * Returns an object with `shouldWrap` (whether to wrap) and `isBinary` (whether it's a binary response).
  */
@@ -3074,84 +3100,27 @@ export function checkWrapNonModelReturn(
 
   // For LRO-only operations, check the final result type from LRO metadata
   if (isLroOnlyOperation(operation)) {
-    const metadata = operation.lroMetadata;
-    if (!metadata?.finalResponse?.result) {
+    const lroResultType = operation.lroMetadata?.finalResponse?.result;
+    if (!lroResultType) {
       return noWrap; // void LRO - no wrap needed
     }
-    const lroResultType = metadata.finalResponse.result;
-
-    // Case: model array (e.g. Foo[]) → no wrap
-    if (
-      lroResultType.kind === "array" &&
-      lroResultType.valueType.kind === "model"
-    ) {
-      return noWrap;
-    }
-    // Case: model → no wrap
-    if (lroResultType.kind === "model") {
-      return noWrap;
-    }
-    // Case: unknown with treatUnknownAsRecord → no wrap
-    if (
-      lroResultType.kind === "unknown" &&
-      context.rlcOptions?.treatUnknownAsRecord
-    ) {
-      return noWrap;
-    }
-    // Remaining cases (string, number, boolean, enum, etc.) → wrap with body
-    return { shouldWrap: true, isBinary: false };
+    return { shouldWrap: isWrappableType(context, lroResultType), isBinary: false };
   }
 
-  const response = operation.response;
-  if (!response.type) {
+  const { type } = operation.response;
+  if (!type) {
     return noWrap; // void return type - no wrap needed
   }
 
-  const type = response.type;
   const contentTypes = operation.operation.responses[0]?.contentTypes ?? [];
 
-  // Determine whether to wrap based on the HLC PropertyKind mapping.
-  // HLC wraps with `body` only when the type is PropertyKind.Primitive or PropertyKind.Enum
-  // (i.e. NOT PropertyKind.Composite or PropertyKind.Dictionary).
-  // For array types, HLC uses the item's kind, not the array itself.
-  //
-  // Case: bytes with binary content type → binary wrap (isBinary=true)
+  // bytes with binary content type → binary wrap (isBinary=true)
   //   HLC: bytes → binary payload → separate binary handling
   if (type.__raw && isBinaryPayload(context, type.__raw, contentTypes)) {
     return { shouldWrap: true, isBinary: true };
   }
 
-  // Case: model array (e.g. Foo[]) → no wrap
-  //   HLC: model array → PropertyKind.Composite (item kind = model) → no body wrapper
-  //   Modular: array with valueType.kind === "model"
-  if (type.kind === "array" && type.valueType.kind === "model") {
-    return noWrap;
-  }
-
-  // Case: any object / Record (e.g. Record<string, unknown>) → no wrap
-  //   HLC: SchemaType.AnyObject → PropertyKind.Dictionary → no body wrapper
-  //   Modular: kind === "dict"
-  // Case: model → no wrap
-  //   HLC: model → PropertyKind.Composite → no body wrapper
-  //   Modular: kind === "model"
-  if (type.kind === "dict" || type.kind === "model") {
-    return noWrap;
-  }
-
-  // Case: unknown with treatUnknownAsRecord enabled → no wrap
-  //   When treatUnknownAsRecord is enabled, `unknown` is treated as Record<string, unknown>
-  //   which maps to HLC PropertyKind.Dictionary → no body wrapper
-  if (type.kind === "unknown" && context.rlcOptions?.treatUnknownAsRecord) {
-    return noWrap;
-  }
-
-  // Remaining cases → wrap with `body`:
-  //   - string   → HLC PropertyKind.Primitive → modular `string`
-  //   - boolean  → HLC PropertyKind.Primitive → modular `boolean`
-  //   - string[] → HLC PropertyKind.Primitive (array keeps item kind) → modular `string[]`
-  //   - any      → HLC PropertyKind.Primitive → modular `unknown` or `any`
-  //   - enum     → HLC PropertyKind.Enum → modular `KnownXxx | string`
-  return { shouldWrap: true, isBinary: false };
+  return { shouldWrap: isWrappableType(context, type), isBinary: false };
 }
 
 /**
