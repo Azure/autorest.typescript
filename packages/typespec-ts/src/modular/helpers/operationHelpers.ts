@@ -3195,7 +3195,8 @@ export function checkWrapNonModelReturn(
     // Special case: HEAD operation with void response → wrap as boolean { body: boolean }
     // This matches HLC behavior where HEAD operations with no response body
     // return { body: boolean } indicating if the resource exists (2xx = true, 4xx = false).
-    if (isHeadOperation(operation)) {
+    // Requires `head-as-boolean: true` to be explicitly set in the emitter options.
+    if (isHeadOperation(operation) && context.rlcOptions?.headAsBoolean) {
       return { shouldWrap: true, isBinary: false };
     }
     return noWrap; // void return type - no wrap needed

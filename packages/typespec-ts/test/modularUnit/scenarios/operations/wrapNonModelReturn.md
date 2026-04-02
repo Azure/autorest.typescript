@@ -958,7 +958,7 @@ export function getIkeSas(
 
 # wrap-non-model-return wraps HEAD void response as boolean body property
 
-When `wrap-non-model-return` is enabled and the operation is a HEAD request with no response body,
+When both `wrap-non-model-return` and `head-as-boolean` are enabled and the operation is a HEAD request with no response body,
 the response is wrapped as `{ body: boolean }` to indicate resource existence (true = exists, false = not found).
 This matches HLC behavior for HEAD operations.
 
@@ -976,6 +976,7 @@ op checkExistence(@path resourceGroupName: string): {
 
 ```yaml
 wrap-non-model-return: true
+head-as-boolean: true
 ```
 
 ## Models
@@ -1034,7 +1035,7 @@ export async function checkExistence(
 
 # wrap-non-model-return wraps HEAD void-only response as boolean body property
 
-When `wrap-non-model-return` is enabled and the operation is a HEAD request returning only void (success only),
+When both `wrap-non-model-return` and `head-as-boolean` are enabled and the operation is a HEAD request returning only void (success only),
 the response is wrapped as `{ body: boolean }`.
 
 ## TypeSpec
@@ -1047,6 +1048,7 @@ op headResource(@path resourceName: string): void;
 
 ```yaml
 wrap-non-model-return: true
+head-as-boolean: true
 ```
 
 ## Models
