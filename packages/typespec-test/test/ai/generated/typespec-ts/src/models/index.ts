@@ -1,0 +1,36 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
+export type {
+  GetWorkspaceResponse,
+  WorkspaceProperties,
+  ListConnectionsResponse,
+  GetConnectionResponse,
+  InternalConnectionProperties,
+  InternalConnectionPropertiesUnion,
+  AuthenticationType,
+  ConnectionType,
+  InternalConnectionPropertiesApiKeyAuth,
+  CredentialsApiKeyAuth,
+  InternalConnectionPropertiesAADAuth,
+  InternalConnectionPropertiesSASAuth,
+  CredentialsSASAuth,
+  GetAppInsightsResponse,
+  AppInsightsProperties,
+  Evaluation,
+  InputData,
+  InputDataUnion,
+  ApplicationInsightsConfiguration,
+  Dataset,
+  SystemData,
+  EvaluatorConfiguration,
+  EvaluationSchedule,
+  Trigger,
+  TriggerUnion,
+  RecurrenceTrigger,
+  Frequency,
+  RecurrenceSchedule,
+  WeekDays,
+  CronTrigger,
+} from "./models.js";
+export { KnownVersions } from "./models.js";
