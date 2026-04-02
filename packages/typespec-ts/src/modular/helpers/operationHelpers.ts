@@ -452,6 +452,13 @@ export function getDeserializePrivateFunction(
     }
   } else if (returnType.type === "void") {
     statements.push("return;");
+  } else if (
+    shouldWrap &&
+    !deserializedType &&
+    operation.operation.verb.toLowerCase() === "head"
+  ) {
+    // HEAD as boolean: return { body: true } for 2xx responses, { body: false } for non-2xx (e.g., 404)
+    statements.push(`return { body: result.status.startsWith("2") };`);
   } else {
     statements.push("return;");
   }
@@ -3182,6 +3189,12 @@ export function checkWrapNonModelReturn(
 
   const { type } = operation.response;
   if (!type) {
+    // Special case: HEAD operation with void response → wrap as boolean { body: boolean }
+    // This matches HLC behavior where HEAD operations with no response body
+    // return { body: boolean } indicating if the resource exists (2xx = true, 4xx = false).
+    if (operation.operation.verb.toLowerCase() === "head") {
+      return { shouldWrap: true, isBinary: false };
+    }
     return noWrap; // void return type - no wrap needed
   }
 
@@ -3227,6 +3240,13 @@ export function buildNonModelResponseTypeDeclaration(
        */
       readableStreamBody?: NodeJS.ReadableStream;
   }`;
+  } else if (
+    !operation.response.type &&
+    operation.operation.verb.toLowerCase() === "head"
+  ) {
+    // HEAD as boolean: the body property is a boolean indicating if the resource exists.
+    // true = resource exists (2xx response), false = resource not found (e.g., 404)
+    typeBody = `{ body: boolean }`;
   } else {
     const returnType = getTypeExpression(context, operation.response.type!);
     typeBody = `{ body: ${returnType} }`;
