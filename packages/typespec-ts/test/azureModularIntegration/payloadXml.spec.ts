@@ -141,7 +141,8 @@ describe("Payload XML Client", () => {
     const expected = { tags: ["fiction", "classic"] };
 
     it("should get model with wrapped primitive custom item names", async () => {
-      const result = await client.modelWithWrappedPrimitiveCustomItemNamesValue.get();
+      const result =
+        await client.modelWithWrappedPrimitiveCustomItemNamesValue.get();
       assert.deepEqual(result, expected);
     });
 
@@ -215,7 +216,8 @@ describe("Payload XML Client", () => {
     };
 
     it("should get model with renamed unwrapped model array", async () => {
-      const result = await client.modelWithRenamedUnwrappedModelArrayValue.get();
+      const result =
+        await client.modelWithRenamedUnwrappedModelArrayValue.get();
       assert.deepEqual(result, expected);
     });
 
@@ -230,7 +232,8 @@ describe("Payload XML Client", () => {
     };
 
     it("should get model with renamed wrapped and item model array", async () => {
-      const result = await client.modelWithRenamedWrappedAndItemModelArrayValue.get();
+      const result =
+        await client.modelWithRenamedWrappedAndItemModelArrayValue.get();
       assert.deepEqual(result, expected);
     });
 
