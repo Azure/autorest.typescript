@@ -8,7 +8,7 @@ import { getAutorestOptions, getSession } from "../../autorestSession";
 import { hasPollingOperations } from "../../restLevelClient/helpers/hasPollingOperations";
 import { NameType, normalizeName } from "../../utils/nameUtils";
 import { getSecurityInfoFromModel } from "../../utils/schemaHelpers";
-import { WarpConfigTemplate } from "@azure-tools/rlc-common";
+
 
 export function generatePackageJson(
   project: Project,
@@ -266,6 +266,7 @@ function regularAutorestPackage(
 
 /**
  * Generates a warp.config.yml file for Azure SDK monorepo packages (HLC).
+ * Uses extends to inherit from the shared base config.
  * Only generated when azureSdkForJs is true.
  */
 export function generateWarpConfig(project: Project) {
@@ -274,8 +275,8 @@ export function generateWarpConfig(project: Project) {
     return;
   }
 
-  const exportsContent = ['  "./package.json": "./package.json"', '  ".": "./src/index.ts"'].join("\n");
-  const content = WarpConfigTemplate.replace("{{exports}}", exportsContent);
+  // HLC packages have no custom exports beyond what the base config provides.
+  const content = "extends: ../../../warp.base.config.yml\n";
 
   project.createSourceFile("warp.config.yml", content, {
     overwrite: true
