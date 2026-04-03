@@ -125,14 +125,63 @@ npm run stop-test-server -- -p 3002
 
 **Note:** Do not use `npm run generate-and-run:azure-modular` for validation -- it regenerates all clients and runs all tests (~30+ minutes), and unrelated flaky tests may cause false failures. Only run the specific test file you created.
 
-### Step 7: Report Results
+### Step 7: Format Code
+
+After creating or modifying any files, **always** run the formatter from the repo root:
+
+```bash
+cd <repo-root>
+pnpm format
+```
+
+This must be done before committing. Skipping this step will cause CI formatting checks to fail.
+
+### Step 8: Report Results
 
 After running tests, report to the user:
 
 - Which paths were processed
 - Which scenarios were newly implemented (and in which `.spec.ts` file)
 - Which scenarios already existed and were skipped
-- **Which scenarios failed.** For each failure, compare the expected values in your test against `mockapi.ts` to confirm your test implementation is correct (e.g., correct method calls, correct request bodies, correct expected response values). If your test has a bug, fix it and re-run. If the test correctly matches `mockapi.ts` but still fails due to mismatched expected vs actual results, it's likely an emitter bug or unsupported feature. In that case, keep the test code -- do not delete failing tests -- and tell the user which specific scenarios failed so they can investigate the emitter.
+- **Which scenarios failed.** For each failure, compare the expected values in your test against `mockapi.ts` to confirm your test implementation is correct (e.g., correct method calls, correct request bodies, correct expected response values). If your test has a bug, fix it and re-run. If the test correctly matches `mockapi.ts` but still fails due to mismatched expected vs actual results, it's likely an emitter bug or unsupported feature. In that case, report the failure to the user — see "Handling Emitter Bugs" below.
+
+## Handling Emitter Bugs and Failed Generation
+
+When tests fail due to emitter limitations rather than test bugs, follow these rules:
+
+### Generation Failures
+
+If `gen-cadl-ranch.js` produces **no output** for a path (the `generated/<path>/src/` directory is empty or missing):
+
+1. **Remove** the entry from `cadl-ranch-list.js` — leaving it causes downstream errors
+2. **Do not** create a `.spec.ts` file for that path
+3. Report the path as "generation not supported" in the PR description
+
+### Test Failures Due to Emitter Bugs
+
+If a test correctly matches `mockapi.ts` expectations but fails because the generated client code is buggy (e.g., undefined variables, incorrect serialization, missing operations):
+
+1. **Remove** only the failing test cases from the `.spec.ts` file — do not keep known-broken tests
+2. **Keep** any passing test cases in the same file
+3. Document each removed scenario in the PR description with the specific emitter bug observed
+
+### Common Emitter Limitations
+
+Known patterns where the emitter may produce broken code:
+
+| Pattern | Symptom | Example |
+| --- | --- | --- |
+| Streaming send operations | `body: body` where `body` is undefined (unresolved placeholder type) | `streaming/jsonl` send |
+| XML continuation pagination | Continuation tokens not followed, returns partial page results | `payload/pageable` listWithContinuation |
+| Discriminated unions | Client generation fails entirely, no output produced | `type/union/discriminated` |
+
+### PR Description Requirements
+
+Always keep the PR description updated with an implementation status report including:
+
+- ✅ **Implemented scenarios** — paths and test counts
+- ❌ **Non-implemented scenarios** — with specific emitter bug descriptions
+- 🧹 **Cleanup actions** — removed entries, formatting fixes, etc.
 
 ## Expected Output Files
 
@@ -161,3 +210,6 @@ Do **not** commit these files:
 | Connection refused   | Ensure test server is running on port 3002                      |
 | Constructor mismatch | Read the generated client's `index.ts` for the actual signature |
 | Assertion mismatch   | Re-read `mockapi.ts` for exact expected values                  |
+| Formatting CI fails  | Run `pnpm format` at repo root before committing                |
+| Generation produces no output | Remove path from `cadl-ranch-list.js`; emitter doesn't support it |
+| Test passes locally but body is undefined | Check generated code for placeholder types like `__PLACEHOLDER_*__` — emitter bug |

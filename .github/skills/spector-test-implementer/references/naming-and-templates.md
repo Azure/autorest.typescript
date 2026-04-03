@@ -93,3 +93,60 @@ describe("DescriptiveName", () => {
 - For error tests: wrap in try-catch with `assert.fail()` in the try block
 - For paginated results: use `for await (const item of client.listOp()) { items.push(item); }`
 - Some clients require credentials or positional params -- check the generated client's constructor signature
+
+## Streaming Test Patterns
+
+For streaming responses (e.g., JSONL), read the response body as raw bytes:
+
+```typescript
+it("should receive jsonl stream", async () => {
+  const result = await client.basic.receive();
+  assert.ok(result.body);
+  const text = new TextDecoder().decode(result.body);
+  assert.strictEqual(text, '{"desc": "one"}\n{"desc": "two"}');
+});
+```
+
+## Break-the-Glass (Raw HTTP) Test Pattern
+
+Some scenarios require calling endpoints that the generated client doesn't expose (e.g., testing service version compatibility). Use raw HTTP via `@azure/core-rest-pipeline`:
+
+```typescript
+import {
+  createDefaultHttpClient,
+  createPipelineRequest
+} from "@azure/core-rest-pipeline";
+
+it("should call new operation via raw HTTP", async () => {
+  const httpClient = createDefaultHttpClient();
+  const request = createPipelineRequest({
+    url: "http://localhost:3002/some/path",
+    method: "DELETE",
+    allowInsecureConnection: true
+  });
+  const response = await httpClient.sendRequest(request);
+  assert.strictEqual(response.status, 204);
+});
+```
+
+## Multi-Client Test Pattern
+
+When a service defines multiple clients (e.g., `service/multi-service`), import and instantiate each client separately:
+
+```typescript
+import { ServiceAClient, ServiceBClient } from "./generated/<path>/src/index.js";
+
+describe("Multi Service", () => {
+  it("should call ServiceA", async () => {
+    const clientA = new ServiceAClient({ endpoint: "http://localhost:3002", allowInsecureConnection: true });
+    const result = await clientA.foo.test();
+    assert.isUndefined(result);
+  });
+
+  it("should call ServiceB", async () => {
+    const clientB = new ServiceBClient({ endpoint: "http://localhost:3002", allowInsecureConnection: true });
+    const result = await clientB.bar.test();
+    assert.isUndefined(result);
+  });
+});
+```
