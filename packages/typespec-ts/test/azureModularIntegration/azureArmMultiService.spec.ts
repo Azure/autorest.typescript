@@ -57,4 +57,3 @@ describe("Azure ARM Multi Service", () => {
     assert.strictEqual(result.properties?.provisioningState, "Succeeded");
   });
 });
-

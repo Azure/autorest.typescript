@@ -23,6 +23,7 @@ describe("Streaming Jsonl Client", () => {
 
   it("should send jsonl stream", async () => {
     const data = new TextEncoder().encode('{"desc": "one"}\n{"desc": "two"}\n{"desc": "three"}');
+    // Using `as any` as a workaround for emitter bug: stream type is unresolved (__PLACEHOLDER_o53__)
     const result = await client.basic.send(data as any);
     assert.isUndefined(result);
   });

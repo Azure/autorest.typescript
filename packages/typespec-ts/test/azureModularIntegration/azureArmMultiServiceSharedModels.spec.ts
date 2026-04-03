@@ -70,4 +70,3 @@ describe("Azure ARM Multi Service Shared Models", () => {
     assert.strictEqual(result.properties?.provisioningState, "Succeeded");
   });
 });
-
