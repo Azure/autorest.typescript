@@ -112,6 +112,15 @@ describe("Azure ARM Operation Templates", () => {
 
       // No assertion needed as successful completion without error indicates success
     });
+
+    it("should export array with LRO", async () => {
+      const result = await client.lro.exportArray({ format: "csv" });
+
+      assert.isArray(result);
+      assert.strictEqual(result.length, 2);
+      assert.strictEqual(result[0]?.content, "order1,product1,1");
+      assert.strictEqual(result[1]?.content, "order2,product2,2");
+    });
   });
 
   describe("LRO + Paging Operations", () => {
