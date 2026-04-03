@@ -9,8 +9,8 @@ describe("Azure ClientGeneratorCore ClientDefaultValue", () => {
       endpoint: "http://localhost:3002",
       allowInsecureConnection: true,
       retryOptions: {
-        maxRetries: 0,
-      },
+        maxRetries: 0
+      }
     });
   });
 
@@ -20,7 +20,7 @@ describe("Azure ClientGeneratorCore ClientDefaultValue", () => {
       name: "test",
       timeout: 30,
       tier: "standard",
-      retry: true,
+      retry: true
     });
   });
 
@@ -30,14 +30,17 @@ describe("Azure ClientGeneratorCore ClientDefaultValue", () => {
   });
 
   it("should get path parameter", async () => {
-    const result = await client.getPathParameter("default-segment1", "segment2");
+    const result = await client.getPathParameter(
+      "default-segment1",
+      "segment2"
+    );
     assert.isUndefined(result);
   });
 
   it("should get header parameter", async () => {
     const result = await client.getHeaderParameter({
       accept: "application/json;odata.metadata=none",
-      customHeader: "default-value",
+      customHeader: "default-value"
     });
     assert.isUndefined(result);
   });

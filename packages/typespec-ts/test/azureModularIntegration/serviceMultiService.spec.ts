@@ -9,8 +9,8 @@ describe("Service Multi Service", () => {
       endpoint: "http://localhost:3002",
       allowInsecureConnection: true,
       retryOptions: {
-        maxRetries: 0,
-      },
+        maxRetries: 0
+      }
     });
   });
 

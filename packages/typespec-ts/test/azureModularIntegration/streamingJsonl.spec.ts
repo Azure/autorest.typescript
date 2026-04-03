@@ -9,8 +9,8 @@ describe("Streaming Jsonl Client", () => {
       endpoint: "http://localhost:3002",
       allowInsecureConnection: true,
       retryOptions: {
-        maxRetries: 0,
-      },
+        maxRetries: 0
+      }
     });
   });
 
@@ -18,11 +18,16 @@ describe("Streaming Jsonl Client", () => {
     const result = await client.basic.receive();
     assert.ok(result.body);
     const text = new TextDecoder().decode(result.body);
-    assert.strictEqual(text, '{"desc": "one"}\n{"desc": "two"}\n{"desc": "three"}');
+    assert.strictEqual(
+      text,
+      '{"desc": "one"}\n{"desc": "two"}\n{"desc": "three"}'
+    );
   });
 
   it("should send jsonl stream", async () => {
-    const data = new TextEncoder().encode('{"desc": "one"}\n{"desc": "two"}\n{"desc": "three"}');
+    const data = new TextEncoder().encode(
+      '{"desc": "one"}\n{"desc": "two"}\n{"desc": "three"}'
+    );
     // Using `as any` as a workaround for emitter bug: stream type is unresolved (__PLACEHOLDER_o53__)
     const result = await client.basic.send(data as any);
     assert.isUndefined(result);

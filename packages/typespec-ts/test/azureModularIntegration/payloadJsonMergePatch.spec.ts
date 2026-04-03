@@ -10,37 +10,37 @@ describe("Payload JsonMergePatch Client", () => {
     map: {
       key: {
         name: "InnerMadge",
-        description: "innerDesc",
-      },
+        description: "innerDesc"
+      }
     },
     array: [
       {
         name: "InnerMadge",
-        description: "innerDesc",
-      },
+        description: "innerDesc"
+      }
     ],
     intValue: 1,
     floatValue: 1.25,
     innerModel: {
       name: "InnerMadge",
-      description: "innerDesc",
+      description: "innerDesc"
     },
-    intArray: [1, 2, 3],
+    intArray: [1, 2, 3]
   };
 
   const expectedUpdateBody = {
     description: null,
     map: {
       key: {
-        description: null,
+        description: null
       },
-      key2: null,
+      key2: null
     },
     array: null,
     intValue: null,
     floatValue: null,
     innerModel: null,
-    intArray: null,
+    intArray: null
   };
 
   beforeEach(() => {
@@ -48,8 +48,8 @@ describe("Payload JsonMergePatch Client", () => {
       endpoint: "http://localhost:3002",
       allowInsecureConnection: true,
       retryOptions: {
-        maxRetries: 0,
-      },
+        maxRetries: 0
+      }
     });
   });
 
@@ -65,7 +65,9 @@ describe("Payload JsonMergePatch Client", () => {
   });
 
   it("should update optional resource", async () => {
-    const result = await client.updateOptionalResource({ body: expectedUpdateBody });
+    const result = await client.updateOptionalResource({
+      body: expectedUpdateBody
+    });
     assert.strictEqual(result.name, "Madge");
     assert.strictEqual(result.map?.["key"]?.name, "InnerMadge");
   });

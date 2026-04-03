@@ -17,8 +17,8 @@ describe("Type Union Discriminated Client", () => {
       endpoint: "http://localhost:3002",
       allowInsecureConnection: true,
       retryOptions: {
-        maxRetries: 0,
-      },
+        maxRetries: 0
+      }
     });
   });
 
@@ -38,7 +38,8 @@ describe("Type Union Discriminated Client", () => {
   });
 
   it("should put Envelope_Object_CustomProperties", async () => {
-    const result = await client.envelope.object.customProperties.put(customNamesCatBody);
+    const result =
+      await client.envelope.object.customProperties.put(customNamesCatBody);
     assert.deepEqual(result.body, customNamesCatBody);
   });
 
@@ -58,7 +59,8 @@ describe("Type Union Discriminated Client", () => {
   });
 
   it("should put NoEnvelope_CustomDiscriminator", async () => {
-    const result = await client.noEnvelope.customDiscriminator.put(inlineCustomCatBody);
+    const result =
+      await client.noEnvelope.customDiscriminator.put(inlineCustomCatBody);
     assert.deepEqual(result.body, inlineCustomCatBody);
   });
 });

@@ -13,11 +13,14 @@ describe("Azure ARM Multi Service", () => {
       endpoint: "http://localhost:3002",
       allowInsecureConnection: true,
       retryOptions: {
-        maxRetries: 0,
+        maxRetries: 0
       },
       credential: {
-        getToken: async () => ({ token: "fake-token", expiresOnTimestamp: 99999999999 }),
-      },
+        getToken: async () => ({
+          token: "fake-token",
+          expiresOnTimestamp: 99999999999
+        })
+      }
     });
   });
 
@@ -30,10 +33,14 @@ describe("Azure ARM Multi Service", () => {
   });
 
   it("should create or update virtual machine", async () => {
-    const result = await client.virtualMachines.createOrUpdate(RESOURCE_GROUP, "vm1", {
-      location: LOCATION,
-      properties: {},
-    });
+    const result = await client.virtualMachines.createOrUpdate(
+      RESOURCE_GROUP,
+      "vm1",
+      {
+        location: LOCATION,
+        properties: {}
+      }
+    );
     assert.strictEqual(result.name, "vm1");
     assert.strictEqual(result.location, LOCATION);
     assert.strictEqual(result.properties?.provisioningState, "Succeeded");
@@ -50,7 +57,7 @@ describe("Azure ARM Multi Service", () => {
   it("should create or update disk", async () => {
     const result = await client.disks.createOrUpdate(RESOURCE_GROUP, "disk1", {
       location: LOCATION,
-      properties: {},
+      properties: {}
     });
     assert.strictEqual(result.name, "disk1");
     assert.strictEqual(result.location, LOCATION);
