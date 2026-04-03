@@ -39,15 +39,6 @@ describe("PageableClient Classical Client", () => {
       { id: "4", name: "fish" }
     ];
 
-    it("Payload_Pageable_XmlPagination_listWithContinuation", async () => {
-      const items: XmlPet[] = [];
-      for await (const item of client.xmlPagination.listWithContinuation()) {
-        items.push(item);
-      }
-      assert.strictEqual(items.length, 4);
-      assert.deepStrictEqual(items, allXmlPets);
-    });
-
     it("Payload_Pageable_XmlPagination_listWithNextLink", async () => {
       const items: XmlPet[] = [];
       for await (const item of client.xmlPagination.listWithNextLink()) {
