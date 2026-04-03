@@ -1035,10 +1035,6 @@ export const azureModularTsps = [
   {
     outputPath: "streaming/jsonl",
     inputPath: "streaming/jsonl"
-  },
-  {
-    outputPath: "type/union/discriminated",
-    inputPath: "type/union/discriminated"
   }
 ];
 
