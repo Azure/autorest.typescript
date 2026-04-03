@@ -107,46 +107,4 @@ it("should receive jsonl stream", async () => {
 });
 ```
 
-## Break-the-Glass (Raw HTTP) Test Pattern
-
-Some scenarios require calling endpoints that the generated client doesn't expose (e.g., testing service version compatibility). Use raw HTTP via `@azure/core-rest-pipeline`:
-
-```typescript
-import {
-  createDefaultHttpClient,
-  createPipelineRequest
-} from "@azure/core-rest-pipeline";
-
-it("should call new operation via raw HTTP", async () => {
-  const httpClient = createDefaultHttpClient();
-  const request = createPipelineRequest({
-    url: "http://localhost:3002/some/path",
-    method: "DELETE",
-    allowInsecureConnection: true
-  });
-  const response = await httpClient.sendRequest(request);
-  assert.strictEqual(response.status, 204);
-});
-```
-
-## Multi-Client Test Pattern
-
-When a service defines multiple clients (e.g., `service/multi-service`), import and instantiate each client separately:
-
-```typescript
-import { ServiceAClient, ServiceBClient } from "./generated/<path>/src/index.js";
-
-describe("Multi Service", () => {
-  it("should call ServiceA", async () => {
-    const clientA = new ServiceAClient({ endpoint: "http://localhost:3002", allowInsecureConnection: true });
-    const result = await clientA.foo.test();
-    assert.isUndefined(result);
-  });
-
-  it("should call ServiceB", async () => {
-    const clientB = new ServiceBClient({ endpoint: "http://localhost:3002", allowInsecureConnection: true });
-    const result = await clientB.bar.test();
-    assert.isUndefined(result);
-  });
-});
 ```
