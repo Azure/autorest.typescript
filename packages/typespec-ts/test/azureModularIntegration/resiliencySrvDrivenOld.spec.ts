@@ -55,3 +55,26 @@ describe("Service Driven old Client v2", () => {
     assert.isUndefined(result);
   });
 });
+
+describe("Service Driven break the glass", () => {
+  it("should break the glass (v1 client calling v2 service operation)", async () => {
+    const { createPipelineRequest } = await import("@azure/core-rest-pipeline");
+    const { ResiliencyServiceDrivenClient } = await import(
+      "./generated/resiliency/srv-driven-old/src/index.js"
+    );
+    const oldClient = new ResiliencyServiceDrivenClient(
+      "http://localhost:3002",
+      "v2",
+      {
+        allowInsecureConnection: true,
+        apiVersion: "v2",
+      }
+    );
+    const request = createPipelineRequest({
+      url: "http://localhost:3002/resiliency/service-driven/client:v1/service:v2/api-version:v2/add-operation",
+      method: "DELETE",
+    });
+    const response = await oldClient.pipeline.sendRequest(request);
+    assert.strictEqual(response.status, 204);
+  });
+});

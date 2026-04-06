@@ -1,6 +1,10 @@
 import { describe, it, beforeEach, assert } from "vitest";
 
-import { PageableClient, Pet } from "./generated/payload/pageable/src/index.js";
+import {
+  PageableClient,
+  Pet,
+  XmlPet
+} from "./generated/payload/pageable/src/index.js";
 
 describe("PageableClient Classical Client", () => {
   let client: PageableClient;
@@ -25,5 +29,34 @@ describe("PageableClient Classical Client", () => {
     }
     assert.strictEqual(items.length, 4);
     assert.deepStrictEqual<Pet[]>(items, pets);
+  });
+
+  describe("XmlPagination", () => {
+    const expectedPets: XmlPet[] = [
+      { id: "1", name: "dog" },
+      { id: "2", name: "cat" },
+      { id: "3", name: "bird" },
+      { id: "4", name: "fish" }
+    ];
+
+    it("should list with continuation token", async () => {
+      const iter = client.xmlPagination.listWithContinuation();
+      const items: Array<XmlPet> = [];
+      for await (const pet of iter) {
+        items.push(pet);
+      }
+      assert.strictEqual(items.length, 4);
+      assert.deepStrictEqual(items, expectedPets);
+    });
+
+    it("should list with next link", async () => {
+      const iter = client.xmlPagination.listWithNextLink();
+      const items: Array<XmlPet> = [];
+      for await (const pet of iter) {
+        items.push(pet);
+      }
+      assert.strictEqual(items.length, 4);
+      assert.deepStrictEqual(items, expectedPets);
+    });
   });
 });

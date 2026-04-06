@@ -80,4 +80,16 @@ describe("Page Client", () => {
       .next();
     assert.strictEqual(result.value.name, "User1");
   });
+
+  it("should list core page withRelativeNextLink", async () => {
+    const items: User[] = [];
+    for await (const item of client.withRelativeNextLink()) {
+      items.push(item);
+    }
+    assert.strictEqual(items.length, 2);
+    assert.strictEqual(items[0]?.id, 1);
+    assert.strictEqual(items[0]?.name, "User1");
+    assert.strictEqual(items[1]?.id, 2);
+    assert.strictEqual(items[1]?.name, "User2");
+  });
 });
