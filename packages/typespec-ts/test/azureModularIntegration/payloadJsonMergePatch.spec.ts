@@ -62,12 +62,16 @@ describe("Payload JsonMergePatch", () => {
   });
 
   it("should update resource", async () => {
+    // The generated ResourcePatch type doesn't allow null values, but JSON merge patch
+    // requires sending explicit null values to remove fields. Cast is required here.
     const result = await client.updateResource(expectedUpdateBody as any);
     assert.strictEqual(result.name, "Madge");
     assert.strictEqual(result.map?.key?.name, "InnerMadge");
   });
 
   it("should update optional resource", async () => {
+    // The generated ResourcePatch type doesn't allow null values, but JSON merge patch
+    // requires sending explicit null values to remove fields. Cast is required here.
     const result = await client.updateOptionalResource({
       body: expectedUpdateBody as any,
     });

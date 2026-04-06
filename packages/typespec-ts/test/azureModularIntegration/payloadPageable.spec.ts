@@ -40,8 +40,9 @@ describe("PageableClient Classical Client", () => {
     ];
 
     it("should list with continuation token", async () => {
-      // Note: XML continuation token pagination only returns the first page due to emitter limitation
-      // (continuation token not being passed in subsequent requests)
+      // Note: XML continuation token pagination only returns the first page
+      // because the emitter doesn't generate continuation token forwarding.
+      // TODO: Track in https://github.com/Azure/autorest.typescript/issues
       const iter = client.xmlPagination.listWithContinuation();
       const items: Array<XmlPet> = [];
       for await (const pet of iter) {
