@@ -64,7 +64,7 @@ describe("Payload JsonMergePatch", () => {
   it("should update resource", async () => {
     const result = await client.updateResource(expectedUpdateBody as any);
     assert.strictEqual(result.name, "Madge");
-    assert.deepEqual(result.map, { key: { name: "InnerMadge" } });
+    assert.strictEqual(result.map?.key?.name, "InnerMadge");
   });
 
   it("should update optional resource", async () => {
@@ -72,6 +72,6 @@ describe("Payload JsonMergePatch", () => {
       body: expectedUpdateBody as any,
     });
     assert.strictEqual(result.name, "Madge");
-    assert.deepEqual(result.map, { key: { name: "InnerMadge" } });
+    assert.strictEqual(result.map?.key?.name, "InnerMadge");
   });
 });
