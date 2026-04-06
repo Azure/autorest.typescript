@@ -1,5 +1,16 @@
 import { assert, describe, it, beforeEach } from "vitest";
-import { JsonMergePatchClient } from "./generated/payload/json-merge-patch/src/index.js";
+import { JsonMergePatchClient, ResourcePatch, InnerModel } from "./generated/payload/json-merge-patch/src/index.js";
+
+/** ResourcePatch with nullable fields for JSON merge patch semantics */
+type NullableResourcePatch = {
+  description?: string | null;
+  map?: Record<string, (InnerModel & { description?: string | null }) | null> | null;
+  array?: InnerModel[] | null;
+  intValue?: number | null;
+  floatValue?: number | null;
+  innerModel?: InnerModel | null;
+  intArray?: number[] | null;
+};
 
 describe("Payload JsonMergePatch", () => {
   let client: JsonMergePatchClient;
@@ -28,7 +39,7 @@ describe("Payload JsonMergePatch", () => {
     intArray: [1, 2, 3],
   };
 
-  const expectedUpdateBody = {
+  const expectedUpdateBody: NullableResourcePatch = {
     description: null,
     map: {
       key: {
@@ -62,18 +73,14 @@ describe("Payload JsonMergePatch", () => {
   });
 
   it("should update resource", async () => {
-    // The generated ResourcePatch type doesn't allow null values, but JSON merge patch
-    // requires sending explicit null values to remove fields. Cast is required here.
-    const result = await client.updateResource(expectedUpdateBody as any);
+    const result = await client.updateResource(expectedUpdateBody as ResourcePatch);
     assert.strictEqual(result.name, "Madge");
     assert.strictEqual(result.map?.key?.name, "InnerMadge");
   });
 
   it("should update optional resource", async () => {
-    // The generated ResourcePatch type doesn't allow null values, but JSON merge patch
-    // requires sending explicit null values to remove fields. Cast is required here.
     const result = await client.updateOptionalResource({
-      body: expectedUpdateBody as any,
+      body: expectedUpdateBody as ResourcePatch,
     });
     assert.strictEqual(result.name, "Madge");
     assert.strictEqual(result.map?.key?.name, "InnerMadge");
