@@ -543,7 +543,7 @@ export async function $onEmit(context: EmitContext) {
       commonBuilders.push((model) =>
         buildPackageFile(model, modularPackageInfo)
       );
-      // Generate warp.config.yml for Azure monorepo ESM packages
+      // Generate warp.config.yml (extends-based for Azure monorepo, inline for others)
       if (option.azureSdkForJs) {
         commonBuilders.push((model) =>
           buildWarpConfig(model, modularPackageInfo)
@@ -602,7 +602,7 @@ export async function $onEmit(context: EmitContext) {
         );
       }
 
-      // Update warp.config.yml for Azure monorepo packages
+      // Update warp.config.yml (extends-based for Azure monorepo, inline for others)
       if (option.azureSdkForJs) {
         updateBuilders.push((model: RLCModel) =>
           buildWarpConfig(model, modularPackageInfo)
