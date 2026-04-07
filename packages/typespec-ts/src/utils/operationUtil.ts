@@ -826,7 +826,9 @@ function resolveParameterNameConflict(
     undefined,
     p.oriName
   );
-  p.oriName = p.name;
+  if (!p.oriName) {
+    p.oriName = p.name;
+  }
   if (paramName === operationOrGroup.name) {
     p.name = `${paramName}Parameter`;
   } else {
