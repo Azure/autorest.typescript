@@ -169,11 +169,11 @@ If a test correctly matches `mockapi.ts` expectations but fails because the gene
 
 Known patterns where the emitter may produce broken code:
 
-| Pattern | Symptom | Example |
-| --- | --- | --- |
-| Streaming send operations | `body: body` where `body` is undefined (unresolved placeholder type) | `streaming/jsonl` send |
-| XML continuation pagination | Continuation tokens not followed, returns partial page results | `payload/pageable` listWithContinuation |
-| Discriminated unions | Client generation fails entirely, no output produced | `type/union/discriminated` |
+| Pattern                     | Symptom                                                              | Example                                 |
+| --------------------------- | -------------------------------------------------------------------- | --------------------------------------- |
+| Streaming send operations   | `body: body` where `body` is undefined (unresolved placeholder type) | `streaming/jsonl` send                  |
+| XML continuation pagination | Continuation tokens not followed, returns partial page results       | `payload/pageable` listWithContinuation |
+| Discriminated unions        | Client generation fails entirely, no output produced                 | `type/union/discriminated`              |
 
 ### PR Description Requirements
 
@@ -203,12 +203,12 @@ Do **not** commit these files:
 
 ## Troubleshooting
 
-| Problem              | Fix                                                             |
-| -------------------- | --------------------------------------------------------------- |
-| Import fails         | Check the exact client name in `generated/<path>/src/index.ts`  |
-| Connection refused   | Ensure test server is running on port 3002                      |
-| Constructor mismatch | Read the generated client's `index.ts` for the actual signature |
-| Assertion mismatch   | Re-read `mockapi.ts` for exact expected values                  |
-| Formatting CI fails  | Run `pnpm format` at repo root before committing                |
-| Generation produces no output | Remove path from `cadl-ranch-list.js`; emitter doesn't support it |
+| Problem                                   | Fix                                                                               |
+| ----------------------------------------- | --------------------------------------------------------------------------------- |
+| Import fails                              | Check the exact client name in `generated/<path>/src/index.ts`                    |
+| Connection refused                        | Ensure test server is running on port 3002                                        |
+| Constructor mismatch                      | Read the generated client's `index.ts` for the actual signature                   |
+| Assertion mismatch                        | Re-read `mockapi.ts` for exact expected values                                    |
+| Formatting CI fails                       | Run `pnpm format` at repo root before committing                                  |
+| Generation produces no output             | Remove path from `cadl-ranch-list.js`; emitter doesn't support it                 |
 | Test passes locally but body is undefined | Check generated code for placeholder types like `__PLACEHOLDER_*__` — emitter bug |

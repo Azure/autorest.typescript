@@ -4,16 +4,16 @@
 
 Convert the test case path to camelCase for the file name:
 
-| Path | File Name |
-| --- | --- |
-| `encode/numeric` | `encodeNumeric.spec.ts` |
-| `payload/xml` | `payloadXml.spec.ts` |
-| `authentication/api-key` | `authApiKey.spec.ts` |
-| `azure/core/basic` | `azureCore.spec.ts` |
-| `azure/core/model` | `azureCoreModel.spec.ts` |
-| `azure/resource-manager/resources` | `azureArmResources.spec.ts` |
-| `azure/resource-manager/non-resource` | `azureArmNonResource.spec.ts` |
-| `azure/client-generator-core/access` | `azureClientGeneratorCoreAccess.spec.ts` |
+| Path                                             | File Name                                          |
+| ------------------------------------------------ | -------------------------------------------------- |
+| `encode/numeric`                                 | `encodeNumeric.spec.ts`                            |
+| `payload/xml`                                    | `payloadXml.spec.ts`                               |
+| `authentication/api-key`                         | `authApiKey.spec.ts`                               |
+| `azure/core/basic`                               | `azureCore.spec.ts`                                |
+| `azure/core/model`                               | `azureCoreModel.spec.ts`                           |
+| `azure/resource-manager/resources`               | `azureArmResources.spec.ts`                        |
+| `azure/resource-manager/non-resource`            | `azureArmNonResource.spec.ts`                      |
+| `azure/client-generator-core/access`             | `azureClientGeneratorCoreAccess.spec.ts`           |
 | `azure/client-generator-core/api-version/header` | `azureClientGeneratorCoreApiVersionHeader.spec.ts` |
 
 **Key rules:**
@@ -93,16 +93,3 @@ describe("DescriptiveName", () => {
 - For error tests: wrap in try-catch with `assert.fail()` in the try block
 - For paginated results: use `for await (const item of client.listOp()) { items.push(item); }`
 - Some clients require credentials or positional params -- check the generated client's constructor signature
-
-## Streaming Test Patterns
-
-For streaming responses (e.g., JSONL), read the response body as raw bytes:
-
-```typescript
-it("should receive jsonl stream", async () => {
-  const result = await client.basic.receive();
-  assert.ok(result.body);
-  const text = new TextDecoder().decode(result.body);
-  assert.strictEqual(text, '{"desc": "one"}\n{"desc": "two"}');
-});
-```
