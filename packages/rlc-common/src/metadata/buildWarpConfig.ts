@@ -2,20 +2,19 @@
 // Licensed under the MIT License.
 
 import { RLCModel } from "../interfaces.js";
-import { isAzureMonorepoPackage } from "../helpers/packageUtil.js";
 
 export interface WarpConfigOptions {
   /** Source-level exports, e.g. { ".": "./src/index.ts", "./models": "./src/models/index.ts" } */
   exports?: Record<string, string>;
 }
 
-/** Exports already provided by warp.base.config.yml in the azure-sdk-for-js monorepo root. */
+/** Default exports included in every warp config. */
 const BASE_EXPORTS: Record<string, string> = {
   "./package.json": "./package.json",
   ".": "./src/index.ts"
 };
 
-/** Full inline template for standalone (non-monorepo) packages. */
+/** Full inline warp config template with polyfillSuffix on browser/react-native targets. */
 export const WarpConfigTemplate = `# warp.config.yml — build configuration
 
 exports:
@@ -41,11 +40,13 @@ targets:
 `;
 
 /**
- * Builds a warp.config.yml file.
+ * Builds a self-contained warp.config.yml file.
  *
- * - Azure monorepo packages get an `extends`-based config that inherits
- *   shared targets and base exports from `warp.base.config.yml`.
- * - Non-Azure packages get a full inline config with all targets.
+ * Always emits a full inline config with all exports and targets.
+ * We intentionally do NOT use `extends: warp.base.config.yml` because
+ * warp replaces targets entirely (no per-name merge), so we'd have to
+ * redefine every target anyway to include polyfillSuffix. A standalone
+ * config is simpler and avoids a hidden dependency on the base file.
  */
 export function buildWarpConfig(
   model: RLCModel,
@@ -55,76 +56,6 @@ export function buildWarpConfig(
     return;
   }
 
-  if (isAzureMonorepoPackage(model)) {
-    return buildExtendsConfig(exports);
-  }
-
-  return buildInlineConfig(exports);
-}
-
-/**
- * Generates an extends-based warp config for Azure SDK monorepo packages.
- * Emits custom exports beyond what the base config provides, and always
- * includes full target definitions with polyfillSuffix for browser/react-native
- * so that any polyfill files (e.g. `*-browser.mts`) are properly substituted.
- *
- * Note: warp's `extends` merges exports (shallow), but targets from the child
- * REPLACE the base entirely when present. Therefore we must specify all four
- * targets here (not just the ones needing polyfillSuffix).
- */
-function buildExtendsConfig(exports?: Record<string, string>): {
-  path: string;
-  content: string;
-} {
-  const customExports = exports
-    ? Object.fromEntries(
-        Object.entries(exports).filter(
-          ([key, value]) =>
-            !(key in BASE_EXPORTS && BASE_EXPORTS[key] === value)
-        )
-      )
-    : undefined;
-
-  let content = "extends: ../../../warp.base.config.yml\n";
-
-  if (customExports && Object.keys(customExports).length > 0) {
-    const exportsYaml = Object.entries(customExports)
-      .map(
-        ([key, value]) => `  ${JSON.stringify(key)}: ${JSON.stringify(value)}`
-      )
-      .join("\n");
-    content += `exports:\n${exportsYaml}\n`;
-  }
-
-  // The base config does not include polyfillSuffix on targets. Since warp
-  // replaces targets entirely (no per-name merge), we must redefine all four
-  // targets with their tsconfig paths to add polyfillSuffix for browser and
-  // react-native. Without this, warp won't substitute browser polyfill files
-  // (e.g. get-binary-response-browser.mts) and browser builds would include
-  // Node.js-specific code that crashes at runtime.
-  content += `targets:\n`;
-  content += `  - name: browser\n`;
-  content += `    tsconfig: "../../../tsconfig.src.browser.json"\n`;
-  content += `    polyfillSuffix: "-browser"\n`;
-  content += `  - name: react-native\n`;
-  content += `    tsconfig: "../../../tsconfig.src.react-native.json"\n`;
-  content += `    polyfillSuffix: "-react-native"\n`;
-  content += `  - name: esm\n`;
-  content += `    condition: import\n`;
-  content += `    tsconfig: "../../../tsconfig.src.esm.json"\n`;
-  content += `  - name: commonjs\n`;
-  content += `    condition: require\n`;
-  content += `    tsconfig: "../../../tsconfig.src.cjs.json"\n`;
-  content += `    moduleType: commonjs\n`;
-
-  return { path: "warp.config.yml", content };
-}
-
-/** Generates a full inline warp config for non-monorepo packages. */
-function buildInlineConfig(exports?: Record<string, string>): {
-  path: string;
-  content: string;
-} {
   const allExports: Record<string, string> = {
     ...BASE_EXPORTS,
     ...exports
