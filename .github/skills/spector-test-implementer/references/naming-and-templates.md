@@ -4,16 +4,16 @@
 
 Convert the test case path to camelCase for the file name:
 
-| Path | File Name |
-| --- | --- |
-| `encode/numeric` | `encodeNumeric.spec.ts` |
-| `payload/xml` | `payloadXml.spec.ts` |
-| `authentication/api-key` | `authApiKey.spec.ts` |
-| `azure/core/basic` | `azureCore.spec.ts` |
-| `azure/core/model` | `azureCoreModel.spec.ts` |
-| `azure/resource-manager/resources` | `azureArmResources.spec.ts` |
-| `azure/resource-manager/non-resource` | `azureArmNonResource.spec.ts` |
-| `azure/client-generator-core/access` | `azureClientGeneratorCoreAccess.spec.ts` |
+| Path                                             | File Name                                          |
+| ------------------------------------------------ | -------------------------------------------------- |
+| `encode/numeric`                                 | `encodeNumeric.spec.ts`                            |
+| `payload/xml`                                    | `payloadXml.spec.ts`                               |
+| `authentication/api-key`                         | `authApiKey.spec.ts`                               |
+| `azure/core/basic`                               | `azureCore.spec.ts`                                |
+| `azure/core/model`                               | `azureCoreModel.spec.ts`                           |
+| `azure/resource-manager/resources`               | `azureArmResources.spec.ts`                        |
+| `azure/resource-manager/non-resource`            | `azureArmNonResource.spec.ts`                      |
+| `azure/client-generator-core/access`             | `azureClientGeneratorCoreAccess.spec.ts`           |
 | `azure/client-generator-core/api-version/header` | `azureClientGeneratorCoreApiVersionHeader.spec.ts` |
 
 **Key rules:**
