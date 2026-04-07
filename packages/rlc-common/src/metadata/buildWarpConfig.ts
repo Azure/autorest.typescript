@@ -64,7 +64,9 @@ export function buildWarpConfig(
 
 /**
  * Generates an extends-based warp config for Azure SDK monorepo packages.
- * Only emits custom exports beyond what the base config provides.
+ * Emits custom exports beyond what the base config provides, and always
+ * includes polyfillSuffix overrides for browser/react-native targets so
+ * that any polyfill files (e.g. `*-browser.mts`) are properly substituted.
  */
 function buildExtendsConfig(exports?: Record<string, string>): {
   path: string;
@@ -89,6 +91,16 @@ function buildExtendsConfig(exports?: Record<string, string>): {
       .join("\n");
     content += `exports:\n${exportsYaml}\n`;
   }
+
+  // The base config does not include polyfillSuffix on targets, so we must
+  // add target overrides here. Without this, warp won't substitute browser
+  // polyfill files (e.g. get-binary-response-browser.mts) and browser builds
+  // would include Node.js-specific code that crashes at runtime.
+  content += `targets:\n`;
+  content += `  - name: browser\n`;
+  content += `    polyfillSuffix: "-browser"\n`;
+  content += `  - name: react-native\n`;
+  content += `    polyfillSuffix: "-react-native"\n`;
 
   return { path: "warp.config.yml", content };
 }
