@@ -670,6 +670,14 @@ export type ServiceOperation = SdkServiceMethod<SdkHttpOperation> & {
   oriName?: string;
 };
 
+export type ServiceParameter = (
+  | SdkMethodParameter
+  | SdkHttpParameter
+  | SdkBodyParameter
+) & {
+  oriName?: string;
+};
+
 export function getMethodHierarchiesMap(
   context: SdkContext,
   client: SdkClientType<SdkServiceOperation>
@@ -804,22 +812,18 @@ export function isTenantLevelOperation(
 
 function resolveParameterNameConflict(
   operationOrGroup: SdkServiceMethod<SdkHttpOperation>,
-  p: SdkMethodParameter | SdkHttpParameter | SdkBodyParameter
-): SdkMethodParameter | SdkHttpParameter | SdkBodyParameter {
-  const param = p as typeof p & { oriName?: string };
+  p: ServiceParameter
+): ServiceParameter {
   // When the name starts with $DO_NOT_NORMALIZE$, record the original name so that
   // subsequent calls (e.g. emitNonModelResponseTypes then buildApiOptions both call
   // getMethodHierarchiesMap on the same TCGC object) always normalize from the
   // original, not from the already-mutated value.
-  if (p.name.startsWith("$DO_NOT_NORMALIZE$")) {
-    param.oriName = p.name;
-  }
-  const nameToNormalize = param.oriName ?? p.name;
-  const paramName = normalizeName(nameToNormalize, NameType.Parameter, true);
+  const paramName = normalizeName(p.name, NameType.Parameter, true, undefined, undefined, p.oriName);
   if (paramName === operationOrGroup.name) {
     p.name = `${paramName}Parameter`;
   } else {
     p.name = paramName;
   }
+  p.oriName = p.name;
   return p;
 }
