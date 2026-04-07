@@ -93,3 +93,16 @@ describe("DescriptiveName", () => {
 - For error tests: wrap in try-catch with `assert.fail()` in the try block
 - For paginated results: use `for await (const item of client.listOp()) { items.push(item); }`
 - Some clients require credentials or positional params -- check the generated client's constructor signature
+
+## Streaming Test Patterns
+
+For streaming responses (e.g., JSONL), read the response body as raw bytes:
+
+```typescript
+it("should receive jsonl stream", async () => {
+  const result = await client.basic.receive();
+  assert.ok(result.body);
+  const text = new TextDecoder().decode(result.body);
+  assert.strictEqual(text, '{"desc": "one"}\n{"desc": "two"}');
+});
+```
