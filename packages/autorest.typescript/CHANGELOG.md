@@ -1,3 +1,10 @@
+## 6.0.66 (2026-04-03)
+
+- [Feature] Support metadata parameters in body models and use methodParameterSegments for accessor paths. Please refer to [#3848](https://github.com/Azure/autorest.typescript/pull/3848)
+- [Feature] Migrate test runner from mocha to vitest v4. Please refer to [#3865](https://github.com/Azure/autorest.typescript/pull/3865)
+- [Feature] Export client options params as type in *Client.ts. Please refer to [#3873](https://github.com/Azure/autorest.typescript/pull/3873)
+- [Bugfix] Fix: wrap LRO non-model response types when wrapNonModelReturn is enabled. Please refer to [#3876](https://github.com/Azure/autorest.typescript/pull/3876)
+
 ## 6.0.65 (2026-03-30)
 
 - [Feature] Bump TypeSpec dependencies to latest stable. Please refer to [#3870](https://github.com/Azure/autorest.typescript/pull/3870)
