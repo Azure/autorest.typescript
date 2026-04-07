@@ -187,8 +187,8 @@ export function normalizeName(
     casingOverride = optionsOrShouldGuard?.casingOverride;
     numberPrefixOverride = optionsOrShouldGuard?.numberPrefixOverride;
   }
-  if (oriName ?? name.startsWith("$DO_NOT_NORMALIZE$")) {
-    return oriName ?? name.replace("$DO_NOT_NORMALIZE$", "");
+  if ((oriName ?? name).startsWith("$DO_NOT_NORMALIZE$")) {
+    return (oriName ?? name).replace("$DO_NOT_NORMALIZE$", "");
   }
   const casingConvention = casingOverride ?? getCasingConvention(nameType);
   const parts = deconstruct(name);

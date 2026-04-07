@@ -826,11 +826,11 @@ function resolveParameterNameConflict(
     undefined,
     p.oriName
   );
+  p.oriName = p.name;
   if (paramName === operationOrGroup.name) {
     p.name = `${paramName}Parameter`;
   } else {
     p.name = paramName;
   }
-  p.oriName = p.name;
   return p;
 }
