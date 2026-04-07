@@ -26,6 +26,13 @@ describe("warp.config.yml generation", () => {
       // at runtime in browsers.
       expect(result!.content).toContain('polyfillSuffix: "-browser"');
       expect(result!.content).toContain('polyfillSuffix: "-react-native"');
+      // Warp's extends replaces targets entirely (no per-name merge), so all
+      // four targets must be present with their tsconfig paths.
+      expect(result!.content).toContain("name: browser");
+      expect(result!.content).toContain("name: react-native");
+      expect(result!.content).toContain("name: esm");
+      expect(result!.content).toContain("name: commonjs");
+      expect(result!.content).toContain("tsconfig:");
     });
 
     it("should include polyfillSuffix even with custom exports", () => {
@@ -45,6 +52,12 @@ describe("warp.config.yml generation", () => {
       expect(result!.content).toContain("extends:");
       expect(result!.content).toContain('polyfillSuffix: "-browser"');
       expect(result!.content).toContain('polyfillSuffix: "-react-native"');
+      // Custom exports should be present but base exports filtered out
+      expect(result!.content).toContain("./models");
+      // All four targets must still be present (warp replaces, not merges)
+      expect(result!.content).toContain("name: browser");
+      expect(result!.content).toContain("name: commonjs");
+      expect(result!.content).toContain("moduleType: commonjs");
     });
 
     it("should not return config for non-esm module kind", () => {

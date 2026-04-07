@@ -65,8 +65,12 @@ export function buildWarpConfig(
 /**
  * Generates an extends-based warp config for Azure SDK monorepo packages.
  * Emits custom exports beyond what the base config provides, and always
- * includes polyfillSuffix overrides for browser/react-native targets so
- * that any polyfill files (e.g. `*-browser.mts`) are properly substituted.
+ * includes full target definitions with polyfillSuffix for browser/react-native
+ * so that any polyfill files (e.g. `*-browser.mts`) are properly substituted.
+ *
+ * Note: warp's `extends` merges exports (shallow), but targets from the child
+ * REPLACE the base entirely when present. Therefore we must specify all four
+ * targets here (not just the ones needing polyfillSuffix).
  */
 function buildExtendsConfig(exports?: Record<string, string>): {
   path: string;
@@ -92,15 +96,26 @@ function buildExtendsConfig(exports?: Record<string, string>): {
     content += `exports:\n${exportsYaml}\n`;
   }
 
-  // The base config does not include polyfillSuffix on targets, so we must
-  // add target overrides here. Without this, warp won't substitute browser
-  // polyfill files (e.g. get-binary-response-browser.mts) and browser builds
-  // would include Node.js-specific code that crashes at runtime.
+  // The base config does not include polyfillSuffix on targets. Since warp
+  // replaces targets entirely (no per-name merge), we must redefine all four
+  // targets with their tsconfig paths to add polyfillSuffix for browser and
+  // react-native. Without this, warp won't substitute browser polyfill files
+  // (e.g. get-binary-response-browser.mts) and browser builds would include
+  // Node.js-specific code that crashes at runtime.
   content += `targets:\n`;
   content += `  - name: browser\n`;
+  content += `    tsconfig: "../../../tsconfig.src.browser.json"\n`;
   content += `    polyfillSuffix: "-browser"\n`;
   content += `  - name: react-native\n`;
+  content += `    tsconfig: "../../../tsconfig.src.react-native.json"\n`;
   content += `    polyfillSuffix: "-react-native"\n`;
+  content += `  - name: esm\n`;
+  content += `    condition: import\n`;
+  content += `    tsconfig: "../../../tsconfig.src.esm.json"\n`;
+  content += `  - name: commonjs\n`;
+  content += `    condition: require\n`;
+  content += `    tsconfig: "../../../tsconfig.src.cjs.json"\n`;
+  content += `    moduleType: commonjs\n`;
 
   return { path: "warp.config.yml", content };
 }
