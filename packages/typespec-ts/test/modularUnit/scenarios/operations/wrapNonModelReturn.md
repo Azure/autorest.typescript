@@ -915,7 +915,9 @@ export type GetIkeSasResponse = { body: string };
 ## Operations
 
 ```ts operations function _getIkeSasDeserialize
-export async function _getIkeSasDeserialize(result: PathUncheckedResponse): Promise<GetIkeSasResponse> {
+export async function _getIkeSasDeserialize(
+  result: PathUncheckedResponse,
+): Promise<GetIkeSasResponse> {
   const expectedStatuses = ["202", "200", "201"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -935,24 +937,14 @@ export function getIkeSas(
   vpnSiteLinkConnectionName: string,
   options: GetIkeSasOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<GetIkeSasResponse>, GetIkeSasResponse> {
-  return getLongRunningPoller(
-    context,
-    _getIkeSasDeserialize,
-    ["202", "200", "201"],
-    {
-      updateIntervalInMs: options?.updateIntervalInMs,
-      abortSignal: options?.abortSignal,
-      getInitialResponse: () =>
-        _getIkeSasSend(
-          context,
-          resourceGroupName,
-          vpnSiteLinkConnectionName,
-          options,
-        ),
-      resourceLocationConfig: "location",
-      apiVersion: context.apiVersion ?? "2024-01-01",
-    },
-  ) as PollerLike<OperationState<GetIkeSasResponse>, GetIkeSasResponse>;
+  return getLongRunningPoller(context, _getIkeSasDeserialize, ["202", "200", "201"], {
+    updateIntervalInMs: options?.updateIntervalInMs,
+    abortSignal: options?.abortSignal,
+    getInitialResponse: () =>
+      _getIkeSasSend(context, resourceGroupName, vpnSiteLinkConnectionName, options),
+    resourceLocationConfig: "location",
+    apiVersion: context.apiVersion ?? "2024-01-01",
+  }) as PollerLike<OperationState<GetIkeSasResponse>, GetIkeSasResponse>;
 }
 ```
 
@@ -1006,8 +998,12 @@ export function _checkExistenceSend(
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/resource-groups/{resourceGroupName}",
-    { resourceGroupName: resourceGroupName },
-    { allowReserved: options?.requestOptions?.skipUrlEncoding },
+    {
+      resourceGroupName: resourceGroupName,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
   );
   return context.path(path).head({ ...operationOptionsToRequestParameters(options) });
 }
@@ -1078,8 +1074,12 @@ export function _headResourceSend(
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/resources/{resourceName}",
-    { resourceName: resourceName },
-    { allowReserved: options?.requestOptions?.skipUrlEncoding },
+    {
+      resourceName: resourceName,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
   );
   return context.path(path).head({ ...operationOptionsToRequestParameters(options) });
 }
@@ -1100,6 +1100,198 @@ export async function headResource(
   resourceName: string,
   options: HeadResourceOptionalParams = { requestOptions: {} },
 ): Promise<HeadResourceResponse> {
+  const result = await _headResourceSend(context, resourceName, options);
+  return _headResourceDeserialize(result);
+}
+```
+
+# Non wrap HEAD void-only response as void body property
+
+## TypeSpec
+
+```tsp
+@route("/resources/{resourceName}")
+@head
+op headResource(@path resourceName: string): void;
+```
+
+```yaml
+wrap-non-model-return: false
+head-as-boolean: true
+```
+
+## Operations
+
+```ts operations
+import { TestingContext as Client } from "./index.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import { HeadResourceOptionalParams } from "./options.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+
+export function _headResourceSend(
+  context: Client,
+  resourceName: string,
+  options: HeadResourceOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/resources/{resourceName}",
+    {
+      resourceName: resourceName,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context.path(path).head({ ...operationOptionsToRequestParameters(options) });
+}
+
+export async function _headResourceDeserialize(result: PathUncheckedResponse): Promise<void> {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return;
+}
+
+export async function headResource(
+  context: Client,
+  resourceName: string,
+  options: HeadResourceOptionalParams = { requestOptions: {} },
+): Promise<void> {
+  const result = await _headResourceSend(context, resourceName, options);
+  return _headResourceDeserialize(result);
+}
+```
+
+# HEAD void-only response as void body property
+
+## TypeSpec
+
+```tsp
+@route("/resources/{resourceName}")
+@head
+op headResource(@path resourceName: string): void;
+```
+
+```yaml
+wrap-non-model-return: false
+head-as-boolean: false
+```
+
+## Operations
+
+```ts operations
+import { TestingContext as Client } from "./index.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import { HeadResourceOptionalParams } from "./options.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+
+export function _headResourceSend(
+  context: Client,
+  resourceName: string,
+  options: HeadResourceOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/resources/{resourceName}",
+    {
+      resourceName: resourceName,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context.path(path).head({ ...operationOptionsToRequestParameters(options) });
+}
+
+export async function _headResourceDeserialize(result: PathUncheckedResponse): Promise<void> {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return;
+}
+
+export async function headResource(
+  context: Client,
+  resourceName: string,
+  options: HeadResourceOptionalParams = { requestOptions: {} },
+): Promise<void> {
+  const result = await _headResourceSend(context, resourceName, options);
+  return _headResourceDeserialize(result);
+}
+```
+
+# Wrap-non-model-return wraps HEAD void-only response as void body property
+
+## TypeSpec
+
+```tsp
+@route("/resources/{resourceName}")
+@head
+op headResource(@path resourceName: string): void;
+```
+
+```yaml
+wrap-non-model-return: true
+head-as-boolean: false
+```
+
+## Operations
+
+```ts operations
+import { TestingContext as Client } from "./index.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import { HeadResourceOptionalParams } from "./options.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+
+export function _headResourceSend(
+  context: Client,
+  resourceName: string,
+  options: HeadResourceOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/resources/{resourceName}",
+    {
+      resourceName: resourceName,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context.path(path).head({ ...operationOptionsToRequestParameters(options) });
+}
+
+export async function _headResourceDeserialize(result: PathUncheckedResponse): Promise<void> {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return;
+}
+
+export async function headResource(
+  context: Client,
+  resourceName: string,
+  options: HeadResourceOptionalParams = { requestOptions: {} },
+): Promise<void> {
   const result = await _headResourceSend(context, resourceName, options);
   return _headResourceDeserialize(result);
 }
