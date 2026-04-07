@@ -32,4 +32,3 @@ vitest.config.ts.timestamp*
 .turbo/
 packages/typespec-ts/submodules
 .gitmodules
-.copilot/
