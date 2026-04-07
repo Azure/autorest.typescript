@@ -20,8 +20,7 @@ describe("Azure ClientGeneratorCore Override Client", () => {
     await client.reorderParameters.reorder("param1", "param2");
   });
 
-  // skip this test case due to issue https://github.com/Azure/autorest.typescript/issues/3540
-  it.skip("should group parameters correctly", async () => {
+  it("should group parameters correctly", async () => {
     // Test parameter grouping with @override decorator
     // Verifies that parameters are grouped correctly into GroupParametersOptions
     // Expected query parameters: param1="param1", param2="param2"

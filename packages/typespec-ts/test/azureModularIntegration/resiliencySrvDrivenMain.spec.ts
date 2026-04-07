@@ -69,4 +69,13 @@ describe("Service Driven new Client v2", () => {
     const result = await client.addOperation();
     assert.isUndefined(result);
   });
+
+  it("should breakTheGlass - old client v1 calling v2 operation", async () => {
+    // The breakTheGlass scenario tests that a v1 client can call a v2 service operation
+    // by making a direct HTTP request to the v2 endpoint using client:v1 path segment
+    const url =
+      "http://localhost:3002/resiliency/service-driven/client:v1/service:v2/api-version:v2/add-operation";
+    const response = await fetch(url, { method: "DELETE" });
+    assert.strictEqual(response.status, 204);
+  });
 });

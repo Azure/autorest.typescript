@@ -194,7 +194,7 @@ describe("Azure Arm Resources Rest Client", () => {
       }
     });
     // skipping this test as https://github.com/Azure/autorest.typescript/issues/2965
-    it.skip("should handle user-defined error for bad request (400)", async () => {
+    it("should handle user-defined error for bad request (400)", async () => {
       try {
         await client.createForUserDefinedError(
           RESOURCE_GROUP_EXPECTED,
@@ -202,18 +202,17 @@ describe("Azure Arm Resources Rest Client", () => {
           {
             location: "eastus",
             properties: {
-              username: "00",
-              provisioningState: ""
+              username: "00"
             }
           }
         );
         assert.fail("Should have thrown an error for bad request");
       } catch (error: any) {
-        // Azure Modular clients use createRestError which creates errors with statusCode property
         assert.strictEqual(error.statusCode, 400);
-        assert.strictEqual(error.code, "BadRequest");
+        assert.isObject(error.details);
+        assert.strictEqual(error.details.error.code, "BadRequest");
         assert.strictEqual(
-          error.message,
+          error.details.error.message,
           "Username should not contain only numbers."
         );
       }
