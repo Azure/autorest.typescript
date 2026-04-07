@@ -818,7 +818,14 @@ function resolveParameterNameConflict(
   // subsequent calls (e.g. emitNonModelResponseTypes then buildApiOptions both call
   // getMethodHierarchiesMap on the same TCGC object) always normalize from the
   // original, not from the already-mutated value.
-  const paramName = normalizeName(p.name, NameType.Parameter, true, undefined, undefined, p.oriName);
+  const paramName = normalizeName(
+    p.name,
+    NameType.Parameter,
+    true,
+    undefined,
+    undefined,
+    p.oriName
+  );
   if (paramName === operationOrGroup.name) {
     p.name = `${paramName}Parameter`;
   } else {
