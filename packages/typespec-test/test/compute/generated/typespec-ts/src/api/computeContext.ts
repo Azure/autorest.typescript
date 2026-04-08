@@ -7,10 +7,7 @@ import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 import { TokenCredential } from "@azure/core-auth";
 
 /** Compute Client */
-export interface ComputeContext extends Client {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-}
+export interface ComputeContext extends Client {}
 
 /** Optional parameters for the client. */
 export interface ComputeClientOptionalParams extends ClientOptions {
@@ -21,7 +18,6 @@ export interface ComputeClientOptionalParams extends ClientOptions {
 /** Compute Client */
 export function createCompute(
   credential: TokenCredential,
-  subscriptionId: string,
   options: ComputeClientOptionalParams = {},
 ): ComputeContext {
   const endpointUrl =
@@ -44,5 +40,5 @@ export function createCompute(
       "This client does not support client api-version, please change it at the operation level",
     );
   }
-  return { ...clientContext, subscriptionId } as ComputeContext;
+  return clientContext;
 }

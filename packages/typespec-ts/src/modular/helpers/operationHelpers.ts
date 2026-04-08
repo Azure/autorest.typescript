@@ -233,6 +233,14 @@ export function getDeserializePrivateFunction(
       name: (response as any).name ?? "",
       type: getTypeExpression(context, response.type)
     };
+  } else if (
+    !response.type &&
+    isHeadOperation(operation) &&
+    context.rlcOptions?.headAsBoolean
+  ) {
+    // HEAD operation with head-as-boolean but wrap-non-model-return disabled:
+    // return plain boolean instead of wrapped { body: boolean }
+    returnType = { name: "", type: "boolean" };
   } else {
     returnType = { name: "", type: "void" };
   }
@@ -452,6 +460,18 @@ export function getDeserializePrivateFunction(
     }
   } else if (returnType.type === "void") {
     statements.push("return;");
+  } else if (
+    !deserializedType &&
+    isHeadOperation(operation) &&
+    context.rlcOptions?.headAsBoolean
+  ) {
+    if (shouldWrap) {
+      // Case 1: wrap-non-model-return + head-as-boolean → return { body: boolean }
+      statements.push(`return { body: result.status.startsWith("2") };`);
+    } else {
+      // Case 2: head-as-boolean only (no wrap) → return plain boolean
+      statements.push(`return result.status.startsWith("2");`);
+    }
   } else {
     statements.push("return;");
   }
@@ -1040,6 +1060,14 @@ export function getOperationFunction(
       name: "",
       type: `${buildHeaderOnlyResponseType(context, responseHeaders)}`
     };
+  } else if (
+    !response.type &&
+    isHeadOperation(operation) &&
+    context.rlcOptions?.headAsBoolean
+  ) {
+    // HEAD operation with head-as-boolean but wrap-non-model-return disabled:
+    // return plain boolean instead of wrapped { body: boolean }
+    returnType = { name: "", type: "boolean" };
   }
 
   // When storage-compat is enabled, wrap the return type with StorageCompatResponseInfo
@@ -3149,6 +3177,13 @@ function isWrappableType(context: SdkContext, type: SdkType): boolean {
 }
 
 /**
+ * Returns true if the operation uses the HTTP HEAD method.
+ */
+function isHeadOperation(operation: ServiceOperation): boolean {
+  return operation.operation.verb.toLowerCase() === "head";
+}
+
+/**
  * Determines whether wrapping the non-model return type is needed for an operation.
  * Returns an object with `shouldWrap` (whether to wrap) and `isBinary` (whether it's a binary response).
  */
@@ -3182,6 +3217,13 @@ export function checkWrapNonModelReturn(
 
   const { type } = operation.response;
   if (!type) {
+    // Special case: HEAD operation with void response → wrap as boolean { body: boolean }
+    // This matches HLC behavior where HEAD operations with no response body
+    // return { body: boolean } indicating if the resource exists (2xx = true, 4xx = false).
+    // Requires `head-as-boolean: true` to be explicitly set in the emitter options.
+    if (isHeadOperation(operation) && context.rlcOptions?.headAsBoolean) {
+      return { shouldWrap: true, isBinary: false };
+    }
     return noWrap; // void return type - no wrap needed
   }
 
@@ -3227,6 +3269,10 @@ export function buildNonModelResponseTypeDeclaration(
        */
       readableStreamBody?: NodeJS.ReadableStream;
   }`;
+  } else if (!operation.response.type && isHeadOperation(operation)) {
+    // HEAD as boolean: the body property is a boolean indicating if the resource exists.
+    // true = resource exists (2xx response), false = resource not found (e.g., 404)
+    typeBody = `{ body: boolean }`;
   } else {
     const returnType = getTypeExpression(context, operation.response.type!);
     typeBody = `{ body: ${returnType} }`;

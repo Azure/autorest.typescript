@@ -11,10 +11,7 @@
     "exports": {
       "./package.json": "./package.json",
       ".": "./src/index.ts",
-      "./api": "./src/api/index.ts",
-      "./models": "./src/models/index.ts",
-      "./models/compute": "./src/models/compute/index.ts",
-      "./models/computeDisk": "./src/models/computeDisk/index.ts"
+      "./api": "./src/api/index.ts"
     },
     "dialects": [
       "esm",
@@ -109,60 +106,6 @@
       "require": {
         "types": "./dist/commonjs/api/index.d.ts",
         "default": "./dist/commonjs/api/index.js"
-      }
-    },
-    "./models": {
-      "browser": {
-        "types": "./dist/browser/models/index.d.ts",
-        "default": "./dist/browser/models/index.js"
-      },
-      "react-native": {
-        "types": "./dist/react-native/models/index.d.ts",
-        "default": "./dist/react-native/models/index.js"
-      },
-      "import": {
-        "types": "./dist/esm/models/index.d.ts",
-        "default": "./dist/esm/models/index.js"
-      },
-      "require": {
-        "types": "./dist/commonjs/models/index.d.ts",
-        "default": "./dist/commonjs/models/index.js"
-      }
-    },
-    "./models/compute": {
-      "browser": {
-        "types": "./dist/browser/models/compute/index.d.ts",
-        "default": "./dist/browser/models/compute/index.js"
-      },
-      "react-native": {
-        "types": "./dist/react-native/models/compute/index.d.ts",
-        "default": "./dist/react-native/models/compute/index.js"
-      },
-      "import": {
-        "types": "./dist/esm/models/compute/index.d.ts",
-        "default": "./dist/esm/models/compute/index.js"
-      },
-      "require": {
-        "types": "./dist/commonjs/models/compute/index.d.ts",
-        "default": "./dist/commonjs/models/compute/index.js"
-      }
-    },
-    "./models/computeDisk": {
-      "browser": {
-        "types": "./dist/browser/models/computeDisk/index.d.ts",
-        "default": "./dist/browser/models/computeDisk/index.js"
-      },
-      "react-native": {
-        "types": "./dist/react-native/models/computeDisk/index.d.ts",
-        "default": "./dist/react-native/models/computeDisk/index.js"
-      },
-      "import": {
-        "types": "./dist/esm/models/computeDisk/index.d.ts",
-        "default": "./dist/esm/models/computeDisk/index.js"
-      },
-      "require": {
-        "types": "./dist/commonjs/models/computeDisk/index.d.ts",
-        "default": "./dist/commonjs/models/computeDisk/index.js"
       }
     }
   },

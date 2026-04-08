@@ -95,6 +95,7 @@ function extractRLCOptions(
   const enableStorageCompat = emitterOptions["enable-storage-compat"] === true;
   const treatUnknownAsRecord =
     emitterOptions["treat-unknown-as-record"] === true;
+  const headAsBoolean = emitterOptions["head-as-boolean"] === true;
   const typespecTitleMap = emitterOptions["typespec-title-map"];
   const hasSubscriptionId = getSubscriptionId(dpgContext);
   const ignoreNullableOnOptional = getIgnoreNullableOnOptional(
@@ -141,7 +142,8 @@ function extractRLCOptions(
     wrapNonModelReturn,
     isMultiService,
     enableStorageCompat,
-    treatUnknownAsRecord
+    treatUnknownAsRecord,
+    headAsBoolean
   };
 }
 
