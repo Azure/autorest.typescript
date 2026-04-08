@@ -506,7 +506,7 @@ export async function _getBlobDeserialize(
 }
 ```
 
-# skip: wrap-non-model-return wraps (string, boolean, string[], enum, any, model array,any object) response with body property
+# wrap-non-model-return wraps (string, boolean, string[], enum, any, model array,any object) response with body property
 
 Skip as need upgrade tcgc to next version https://github.com/Azure/typespec-azure/pull/4108/changes
 ## TypeSpec
@@ -579,8 +579,6 @@ export function testDeserializer(item: any): Test {
 
 /** Type of EnumTest */
 export type EnumTest = "one" | "two";
-/** Alias for _ */
-export type _ = "one" | "two" | string;
 
 export function testArrayDeserializer(result: Array<Test>): any[] {
   return result.map((item) => {
@@ -590,7 +588,7 @@ export function testArrayDeserializer(result: Array<Test>): any[] {
 
 export type GetAnyObjectResponse = { body: any };
 
-export type GetEnumResponse = { body: "one" | "two" | string };
+export type GetEnumResponse = { body: "one" | "two" };
 
 export type GetAnyResponse = { body: any };
 

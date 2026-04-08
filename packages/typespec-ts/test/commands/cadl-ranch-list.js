@@ -646,15 +646,14 @@ export const azureModularTsps = [
     outputPath: "client/structure/multi-client",
     inputPath: "client/structure/multi-client"
   },
-  // disable it as need upgrade tcgc to support it https://github.com/Azure/typespec-azure/pull/3997.
-  // {
-  //   outputPath: "client/structure/renamed-operation",
-  //   inputPath: "client/structure/renamed-operation"
-  // },
-  // {
-  //   outputPath: "client/structure/two-operation-group",
-  //   inputPath: "client/structure/two-operation-group"
-  // },
+  {
+    outputPath: "client/structure/renamed-operation",
+    inputPath: "client/structure/renamed-operation"
+  },
+  {
+    outputPath: "client/structure/two-operation-group",
+    inputPath: "client/structure/two-operation-group"
+  },
   {
     outputPath: "azure/special-headers/client-request-id",
     inputPath: "azure/special-headers/client-request-id"
@@ -872,11 +871,10 @@ export const azureModularTsps = [
     outputPath: "azure/core/page",
     inputPath: "azure/core/page"
   },
-  // disable it as need upgrade tcgc to support it https://github.com/Azure/typespec-azure/pull/3997.
-  // {
-  //   outputPath: "client/structure/client-operation-group",
-  //   inputPath: "client/structure/client-operation-group"
-  // },
+  {
+    outputPath: "client/structure/client-operation-group",
+    inputPath: "client/structure/client-operation-group"
+  },
   {
     outputPath: "encode/numeric",
     inputPath: "encode/numeric"
