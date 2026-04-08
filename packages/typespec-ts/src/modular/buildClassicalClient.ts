@@ -72,6 +72,7 @@ export function buildClassicalClient(
   );
 
   clientFile.addExportDeclaration({
+    isTypeOnly: true,
     namedExports: [`${classicalClientName}OptionalParams`],
     moduleSpecifier: `./api/${normalizeName(
       modularClientName,

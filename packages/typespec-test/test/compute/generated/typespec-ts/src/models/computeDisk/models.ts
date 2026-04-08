@@ -61,22 +61,22 @@ export function computeDiskActionGroupsPropertiesDeserializer(
 }
 
 /** Disk resource. */
-export interface ComputeDiskDisk extends TrackedResource {
+export interface Disk extends TrackedResource {
   /** The resource-specific properties for this resource. */
-  properties?: ComputeDiskDiskProperties;
+  properties?: DiskProperties;
 }
 
-export function computeDiskDiskSerializer(item: ComputeDiskDisk): any {
+export function diskSerializer(item: Disk): any {
   return {
     tags: item["tags"],
     location: item["location"],
     properties: !item["properties"]
       ? item["properties"]
-      : computeDiskDiskPropertiesSerializer(item["properties"]),
+      : diskPropertiesSerializer(item["properties"]),
   };
 }
 
-export function computeDiskDiskDeserializer(item: any): ComputeDiskDisk {
+export function diskDeserializer(item: any): Disk {
   return {
     tags: !item["tags"]
       ? item["tags"]
@@ -90,42 +90,42 @@ export function computeDiskDiskDeserializer(item: any): ComputeDiskDisk {
       : systemDataDeserializer(item["systemData"]),
     properties: !item["properties"]
       ? item["properties"]
-      : computeDiskDiskPropertiesDeserializer(item["properties"]),
+      : diskPropertiesDeserializer(item["properties"]),
   };
 }
 
 /** Disk resource properties. */
-export interface ComputeDiskDiskProperties {
+export interface DiskProperties {
   readonly provisioningState?: ResourceProvisioningState;
 }
 
-export function computeDiskDiskPropertiesSerializer(item: ComputeDiskDiskProperties): any {
-  return item;
+export function diskPropertiesSerializer(_item: DiskProperties): any {
+  return {};
 }
 
-export function computeDiskDiskPropertiesDeserializer(item: any): ComputeDiskDiskProperties {
+export function diskPropertiesDeserializer(item: any): DiskProperties {
   return {
     provisioningState: item["provisioningState"],
   };
 }
 
 /** Concrete tracked resource types can be created by aliasing this type using a specific property type. */
-export interface ComputeDiskDiskAccess extends TrackedResource {
+export interface DiskAccess extends TrackedResource {
   /** The resource-specific properties for this resource. */
-  properties?: ComputeDiskDiskAccessProperties;
+  properties?: DiskAccessProperties;
 }
 
-export function computeDiskDiskAccessSerializer(item: ComputeDiskDiskAccess): any {
+export function diskAccessSerializer(item: DiskAccess): any {
   return {
     tags: item["tags"],
     location: item["location"],
     properties: !item["properties"]
       ? item["properties"]
-      : computeDiskDiskAccessPropertiesSerializer(item["properties"]),
+      : diskAccessPropertiesSerializer(item["properties"]),
   };
 }
 
-export function computeDiskDiskAccessDeserializer(item: any): ComputeDiskDiskAccess {
+export function diskAccessDeserializer(item: any): DiskAccess {
   return {
     tags: !item["tags"]
       ? item["tags"]
@@ -139,12 +139,12 @@ export function computeDiskDiskAccessDeserializer(item: any): ComputeDiskDiskAcc
       : systemDataDeserializer(item["systemData"]),
     properties: !item["properties"]
       ? item["properties"]
-      : computeDiskDiskAccessPropertiesDeserializer(item["properties"]),
+      : diskAccessPropertiesDeserializer(item["properties"]),
   };
 }
 
-/** model interface ComputeDiskDiskAccessProperties */
-export interface ComputeDiskDiskAccessProperties {
+/** model interface DiskAccessProperties */
+export interface DiskAccessProperties {
   /** A readonly collection of private endpoint connections created on the disk. Currently only one endpoint connection is supported. */
   readonly privateEndpointConnections?: PrivateEndpointConnection[];
   /** The disk access resource provisioning state. */
@@ -153,15 +153,11 @@ export interface ComputeDiskDiskAccessProperties {
   readonly timeCreated?: Date;
 }
 
-export function computeDiskDiskAccessPropertiesSerializer(
-  item: ComputeDiskDiskAccessProperties,
-): any {
-  return item;
+export function diskAccessPropertiesSerializer(_item: DiskAccessProperties): any {
+  return {};
 }
 
-export function computeDiskDiskAccessPropertiesDeserializer(
-  item: any,
-): ComputeDiskDiskAccessProperties {
+export function diskAccessPropertiesDeserializer(item: any): DiskAccessProperties {
   return {
     privateEndpointConnections: !item["privateEndpointConnections"]
       ? item["privateEndpointConnections"]

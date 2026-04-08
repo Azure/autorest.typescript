@@ -1,3 +1,38 @@
+## 0.52.0 (2026-04-03)
+
+- [Feature] Support metadata parameters in body models and use methodParameterSegments for accessor paths. Please refer to [#3848](https://github.com/Azure/autorest.typescript/pull/3848)
+- [Feature] Migrate test runner from mocha to vitest v4. Please refer to [#3865](https://github.com/Azure/autorest.typescript/pull/3865)
+- [Feature] Export client options params as type in *Client.ts. Please refer to [#3873](https://github.com/Azure/autorest.typescript/pull/3873)
+- [Bugfix] Fix: wrap LRO non-model response types when wrapNonModelReturn is enabled. Please refer to [#3876](https://github.com/Azure/autorest.typescript/pull/3876)
+
+## 0.51.1 (2026-03-30)
+
+- [Feature] Bump TypeSpec dependencies to latest stable. Please refer to [#3870](https://github.com/Azure/autorest.typescript/pull/3870)
+- [Feature] Add `treat-unknown-as-record` feature flag to map TypeSpec `unknown` to `Record<string, unknown>` in Modular SDK. Please refer to [#3869](https://github.com/Azure/autorest.typescript/pull/3869)
+- [Bugfix] Fix enum member names: use enum type name as prefix instead of `_` for leading-digit identifiers. Please refer to [#3868](https://github.com/Azure/autorest.typescript/pull/3868)
+- [Bugfix] Fix model array responses return directly (no body wrapper) when `wrap-non-model-return` is enabled. Please refer to [#3856](https://github.com/Azure/autorest.typescript/pull/3856)
+- [Bugfix] Restore full error.details handling for binary wrap-non-model-return deserializers. Please refer to [#3852](https://github.com/Azure/autorest.typescript/pull/3852)
+- [Feature] Report TCGC diagnostics and consolidate diagnostics tests. Please refer to [#3810](https://github.com/Azure/autorest.typescript/pull/3810)
+- [Bugfix] Hotfix for modular readme generation. Please refer to [#3854](https://github.com/Azure/autorest.typescript/pull/3854)
+- [Bugfix] Fix optional query/header parameters with constant values being hardcoded. Please refer to [#3812](https://github.com/Azure/autorest.typescript/pull/3812)
+- [Bugfix] Exclude required headerCollectionPrefix params from operation signature. Please refer to [#3845](https://github.com/Azure/autorest.typescript/pull/3845)
+
+## 0.51.0 (2026-03-17)
+
+- [Bugfix] Fix detectModelConflicts false positive for API version enums in multi-service scenarios. Please refer to [#3842](https://github.com/Azure/autorest.typescript/pull/3842)
+- [Bugfix] Convert null example values to type-safe defaults for array/object/scalar types when ignore-nullable-on-optional is true. Please refer to [#3844](https://github.com/Azure/autorest.typescript/pull/3844)
+- [Feature] Update TypeSpec version to latest stable. Please refer to [#3846](https://github.com/Azure/autorest.typescript/pull/3846)
+
+## 0.50.4 (2026-03-12)
+
+- Improve test generation for modular SDK clients.
+
+## 0.50.3 (2026-03-11)
+
+- [Feature] Add `wrap-non-model-return` option to prevent breaking changes for non-model types. Please refer to [#3805](https://github.com/Azure/autorest.typescript/pull/3805)
+- [Feature] Test generation for modular SDK clients. Please refer to [#3809](https://github.com/Azure/autorest.typescript/pull/3809)
+- [Bugfix] Fix multi-level @Legacy.flattenProperty generates incorrect sample code. Please refer to [#3831](https://github.com/Azure/autorest.typescript/pull/3831)
+
 ## 0.50.2 (2026-03-09)
 
 - [Bugfix] Remove `hasWarpConfigFile` guard — always regenerate `warp.config.yml`. Please refer to [#3825](https://github.com/Azure/autorest.typescript/pull/3825)

@@ -1,4 +1,5 @@
-import { assert } from "chai";
+import { describe, it, beforeEach, assert } from "vitest";
+
 import { ClientDefaultValueClient } from "./generated/azure/client-generator-core/client-default-value/src/index.js";
 
 describe("Azure ClientGeneratorCore ClientDefaultValue Client", () => {

@@ -13,7 +13,7 @@ import {
 import { TokenCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
-export { SchemaRegistryClientOptionalParams } from "./api/schemaRegistryContext.js";
+export type { SchemaRegistryClientOptionalParams } from "./api/schemaRegistryContext.js";
 
 export class SchemaRegistryClient {
   private _client: SchemaRegistryContext;

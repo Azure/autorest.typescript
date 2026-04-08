@@ -1,4 +1,5 @@
-import { assert } from "chai";
+import { describe, it, beforeEach, assert } from "vitest";
+
 import ScalarClientFactory, {
   ScalarClient
 } from "./generated/type/scalar/src/index.js";

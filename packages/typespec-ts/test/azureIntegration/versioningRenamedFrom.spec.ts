@@ -1,7 +1,8 @@
+import { describe, it, beforeEach, assert } from "vitest";
+
 import VersioningRenamedFromClientFactory, {
   VersioningRenamedFromClient
 } from "./generated/versioning/renamedFrom/src/index.js";
-import { assert } from "chai";
 describe("VersioningRenamedFrom Rest Client", () => {
   let client: VersioningRenamedFromClient;
 

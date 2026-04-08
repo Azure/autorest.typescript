@@ -177,9 +177,14 @@ export type GetLogsResponse = {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { GetLogsResponse } from "../models/models.js";
-import { getBinaryResponseBody } from "../static-helpers/serialization/get-binary-response-body.js";
+import { getBinaryStreamResponse } from "../static-helpers/serialization/get-binary-stream-response.js";
 import { GetLogsOptionalParams } from "./options.js";
-import { StreamableMethod, operationOptionsToRequestParameters } from "@azure-rest/core-client";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
 
 export function _getLogsSend(
   context: Client,
@@ -193,8 +198,15 @@ export function _getLogsSend(
     });
 }
 
-export async function _getLogsDeserialize(result: StreamableMethod): Promise<GetLogsResponse> {
-  return getBinaryResponseBody(result, ["200"]);
+export async function _getLogsDeserialize(
+  result: PathUncheckedResponse & GetLogsResponse,
+): Promise<GetLogsResponse> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return { blobBody: result.blobBody, readableStreamBody: result.readableStreamBody };
 }
 
 export async function getLogs(
@@ -202,7 +214,8 @@ export async function getLogs(
   options: GetLogsOptionalParams = { requestOptions: {} },
 ): Promise<GetLogsResponse> {
   const streamableMethod = _getLogsSend(context, options);
-  return _getLogsDeserialize(streamableMethod);
+  const result = await getBinaryStreamResponse(streamableMethod);
+  return _getLogsDeserialize(result);
 }
 ```
 
@@ -266,9 +279,9 @@ export async function get(
 }
 ```
 
-# wrap-non-model-return wraps array-of-models response with body property
+# wrap-non-model-return does not wrap array-of-models response
 
-Array-of-models responses are wrapped just like primitive arrays (matching HLC behavior).
+Array-of-models responses (Composite kind) are not wrapped — they are returned as `Resource[]` directly (matching HLC behavior where PropertyKind.Composite means no body wrapper).
 
 ## TypeSpec
 
@@ -288,17 +301,11 @@ op list(): Resource[];
 wrap-non-model-return: true
 ```
 
-## Models
-
-```ts models alias ListResponse
-export type ListResponse = { body: Resource[] };
-```
-
 ## Operations
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { resourceDeserializer, ListResponse } from "../models/models.js";
+import { Resource, resourceArrayDeserializer } from "../models/models.js";
 import { ListOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -319,23 +326,19 @@ export function _listSend(
     });
 }
 
-export async function _listDeserialize(result: PathUncheckedResponse): Promise<ListResponse> {
+export async function _listDeserialize(result: PathUncheckedResponse): Promise<Resource[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return {
-    body: result.body.map((p: any) => {
-      return resourceDeserializer(p);
-    }),
-  };
+  return resourceArrayDeserializer(result.body);
 }
 
 export async function list(
   context: Client,
   options: ListOptionalParams = { requestOptions: {} },
-): Promise<ListResponse> {
+): Promise<Resource[]> {
   const result = await _listSend(context, options);
   return _listDeserialize(result);
 }
@@ -401,5 +404,554 @@ export async function getModel(
 ): Promise<MyModel> {
   const result = await _getModelSend(context, options);
   return _getModelDeserialize(result);
+}
+```
+
+# wrap-non-model-return binary wrap generates error.details deserialization
+
+When a binary response operation has an error model, the deserializer should generate
+full `error.details` deserialization via status check + error enrichment.
+
+## TypeSpec
+
+```yaml
+wrap-non-model-return: true
+```
+
+```tsp
+@error
+model ApiError {
+  code: string;
+  message: string;
+}
+
+@route("/logs")
+@get
+op getLogs(): {
+  @header contentType: "application/octet-stream";
+  @body body: bytes;
+} | ApiError;
+```
+
+## Operations
+
+```ts operations function _getLogsDeserialize
+export async function _getLogsDeserialize(
+  result: PathUncheckedResponse & GetLogsResponse,
+): Promise<GetLogsResponse> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    const error = createRestError(result);
+    error.details = apiErrorDeserializer(result.body);
+
+    throw error;
+  }
+
+  return { blobBody: result.blobBody, readableStreamBody: result.readableStreamBody };
+}
+```
+
+# wrap-non-model-return binary wrap generates error.details with exception headers
+
+When a binary response operation has an error model with `@header` properties and
+`include-headers-in-response: true`, the deserializer should generate exception headers
+deserialization alongside the error.details enrichment.
+
+## TypeSpec
+
+```yaml
+wrap-non-model-return: true
+include-headers-in-response: true
+```
+
+```tsp
+@error
+model StorageError {
+  code: string;
+  message: string;
+  @header("x-ms-error-code") errorCode: string;
+}
+
+@route("/blobs")
+@get
+op getBlob(): {
+  @header contentType: "application/octet-stream";
+  @body body: bytes;
+} | StorageError;
+```
+
+## Operations
+
+```ts operations function _getBlobDeserializeExceptionHeaders
+export function _getBlobDeserializeExceptionHeaders(result: PathUncheckedResponse): {
+  errorCode: string;
+} {
+  return { errorCode: result.headers["x-ms-error-code"] };
+}
+```
+
+```ts operations function _getBlobDeserialize
+export async function _getBlobDeserialize(
+  result: PathUncheckedResponse & GetBlobResponse,
+): Promise<GetBlobResponse> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    const error = createRestError(result);
+    error.details = storageErrorDeserializer(result.body);
+    error.details = { ...(error.details as any), ..._getBlobDeserializeExceptionHeaders(result) };
+    throw error;
+  }
+
+  return { blobBody: result.blobBody, readableStreamBody: result.readableStreamBody };
+}
+```
+
+# skip: wrap-non-model-return wraps (string, boolean, string[], enum, any, model array,any object) response with body property
+
+Skip as need upgrade tcgc to next version https://github.com/Azure/typespec-azure/pull/4108/changes
+## TypeSpec
+
+```tsp
+model Test {
+  name: string;
+}
+union EnumTest  {
+  one: "one",
+  two: "two",
+  others: string
+}
+
+interface testResponse {
+  @route("/string")
+  @get
+  getString():string;
+
+  @route("/boolean")
+  @get
+  getBoolean():boolean;
+  
+  @route("/stringArray")
+  @get
+  getStringArray():string[];
+
+  @route("/any")
+  @get
+  getAny():unknown;
+
+  @route("/enum")
+  @get
+  getEnum(@body body:EnumTest):EnumTest;
+
+  @route("/modelArray")
+  @get
+  getModelArray():Test[];
+  
+  @route("/anyObject")
+  @get
+  getAnyObject():unknown;
+
+}
+```
+
+```yaml
+wrap-non-model-return: true
+```
+
+## Models
+
+```ts models
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/** model interface Test */
+export interface Test {
+  name: string;
+}
+
+export function testDeserializer(item: any): Test {
+  return {
+    name: item["name"],
+  };
+}
+
+/** Type of EnumTest */
+export type EnumTest = "one" | "two";
+/** Alias for _ */
+export type _ = "one" | "two" | string;
+
+export function testArrayDeserializer(result: Array<Test>): any[] {
+  return result.map((item) => {
+    return testDeserializer(item);
+  });
+}
+
+export type GetAnyObjectResponse = { body: any };
+
+export type GetEnumResponse = { body: "one" | "two" | string };
+
+export type GetAnyResponse = { body: any };
+
+export type GetStringArrayResponse = { body: string[] };
+
+export type GetBooleanResponse = { body: boolean };
+
+export type GetStringResponse = { body: string };
+```
+
+## Operations
+
+```ts operations
+import { TestingContext as Client } from "./index.js";
+import {
+  Test,
+  EnumTest,
+  testArrayDeserializer,
+  GetAnyObjectResponse,
+  GetEnumResponse,
+  GetAnyResponse,
+  GetStringArrayResponse,
+  GetBooleanResponse,
+  GetStringResponse,
+} from "../models/models.js";
+import {
+  GetAnyObjectOptionalParams,
+  GetModelArrayOptionalParams,
+  GetEnumOptionalParams,
+  GetAnyOptionalParams,
+  GetStringArrayOptionalParams,
+  GetBooleanOptionalParams,
+  GetStringOptionalParams,
+} from "./options.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+
+export function _getAnyObjectSend(
+  context: Client,
+  options: GetAnyObjectOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/anyObject")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
+    });
+}
+
+export async function _getAnyObjectDeserialize(
+  result: PathUncheckedResponse,
+): Promise<GetAnyObjectResponse> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return { body: result.body };
+}
+
+export async function getAnyObject(
+  context: Client,
+  options: GetAnyObjectOptionalParams = { requestOptions: {} },
+): Promise<GetAnyObjectResponse> {
+  const result = await _getAnyObjectSend(context, options);
+  return _getAnyObjectDeserialize(result);
+}
+
+export function _getModelArraySend(
+  context: Client,
+  options: GetModelArrayOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/modelArray")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
+    });
+}
+
+export async function _getModelArrayDeserialize(result: PathUncheckedResponse): Promise<Test[]> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return testArrayDeserializer(result.body);
+}
+
+export async function getModelArray(
+  context: Client,
+  options: GetModelArrayOptionalParams = { requestOptions: {} },
+): Promise<Test[]> {
+  const result = await _getModelArraySend(context, options);
+  return _getModelArrayDeserialize(result);
+}
+
+export function _getEnumSend(
+  context: Client,
+  body: EnumTest,
+  options: GetEnumOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/enum")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "text/plain",
+      body: body,
+    });
+}
+
+export async function _getEnumDeserialize(result: PathUncheckedResponse): Promise<GetEnumResponse> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return { body: result.body };
+}
+
+export async function getEnum(
+  context: Client,
+  body: EnumTest,
+  options: GetEnumOptionalParams = { requestOptions: {} },
+): Promise<GetEnumResponse> {
+  const result = await _getEnumSend(context, body, options);
+  return _getEnumDeserialize(result);
+}
+
+export function _getAnySend(
+  context: Client,
+  options: GetAnyOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/any")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
+    });
+}
+
+export async function _getAnyDeserialize(result: PathUncheckedResponse): Promise<GetAnyResponse> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return { body: result.body };
+}
+
+export async function getAny(
+  context: Client,
+  options: GetAnyOptionalParams = { requestOptions: {} },
+): Promise<GetAnyResponse> {
+  const result = await _getAnySend(context, options);
+  return _getAnyDeserialize(result);
+}
+
+export function _getStringArraySend(
+  context: Client,
+  options: GetStringArrayOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/stringArray")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
+    });
+}
+
+export async function _getStringArrayDeserialize(
+  result: PathUncheckedResponse,
+): Promise<GetStringArrayResponse> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return {
+    body: result.body.map((p: any) => {
+      return p;
+    }),
+  };
+}
+
+export async function getStringArray(
+  context: Client,
+  options: GetStringArrayOptionalParams = { requestOptions: {} },
+): Promise<GetStringArrayResponse> {
+  const result = await _getStringArraySend(context, options);
+  return _getStringArrayDeserialize(result);
+}
+
+export function _getBooleanSend(
+  context: Client,
+  options: GetBooleanOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/boolean")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: { accept: "text/plain", ...options.requestOptions?.headers },
+    });
+}
+
+export async function _getBooleanDeserialize(
+  result: PathUncheckedResponse,
+): Promise<GetBooleanResponse> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return { body: result.body };
+}
+
+export async function getBoolean(
+  context: Client,
+  options: GetBooleanOptionalParams = { requestOptions: {} },
+): Promise<GetBooleanResponse> {
+  const result = await _getBooleanSend(context, options);
+  return _getBooleanDeserialize(result);
+}
+
+export function _getStringSend(
+  context: Client,
+  options: GetStringOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/string")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: { accept: "text/plain", ...options.requestOptions?.headers },
+    });
+}
+
+export async function _getStringDeserialize(
+  result: PathUncheckedResponse,
+): Promise<GetStringResponse> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return { body: result.body };
+}
+
+export async function getString(
+  context: Client,
+  options: GetStringOptionalParams = { requestOptions: {} },
+): Promise<GetStringResponse> {
+  const result = await _getStringSend(context, options);
+  return _getStringDeserialize(result);
+}
+```
+
+# wrap-non-model-return wraps LRO string response with body property
+
+When `wrap-non-model-return` is enabled, LRO operations with non-model final result types
+(e.g., string) should also be wrapped in a response type alias for HLC compatibility.
+
+## TypeSpec
+
+```tsp
+import "@typespec/http";
+import "@typespec/rest";
+import "@typespec/versioning";
+import "@azure-tools/typespec-azure-core";
+import "@azure-tools/typespec-azure-resource-manager";
+using TypeSpec.Http;
+using TypeSpec.Rest;
+using TypeSpec.Versioning;
+using Azure.Core;
+using Azure.ResourceManager;
+
+@armProviderNamespace
+@service
+@versioned(Versions)
+@armCommonTypesVersion(Azure.ResourceManager.CommonTypes.Versions.v5)
+namespace Microsoft.Test;
+
+enum Versions {
+    v2024_01_01: "2024-01-01",
+}
+
+scalar IkeSasDocument extends string;
+
+model VpnSiteLinkConnection is TrackedResource<{}> {
+    @key("vpnSiteLinkConnectionName")
+    @path
+    @segment("vpnSiteLinkConnections")
+    name: string;
+}
+
+@armResourceOperations
+interface VpnSiteLinkConnections {
+    getIkeSas is ArmResourceActionAsync<
+        VpnSiteLinkConnection,
+        void,
+        { @body body: IkeSasDocument; },
+        LroHeaders = ArmLroLocationHeader<FinalResult = IkeSasDocument> &
+            Azure.Core.Foundations.RetryAfterHeader
+    >;
+}
+```
+
+```yaml
+wrap-non-model-return: true
+withRawContent: true
+```
+
+## Models
+
+```ts models alias GetIkeSasResponse
+export type GetIkeSasResponse = { body: string };
+```
+
+## Operations
+
+```ts operations function _getIkeSasDeserialize
+export async function _getIkeSasDeserialize(result: PathUncheckedResponse): Promise<GetIkeSasResponse> {
+  const expectedStatuses = ["202", "200", "201"];
+  if (!expectedStatuses.includes(result.status)) {
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+
+    throw error;
+  }
+
+  return { body: result.body };
+}
+```
+
+```ts operations function getIkeSas
+export function getIkeSas(
+  context: Client,
+  resourceGroupName: string,
+  vpnSiteLinkConnectionName: string,
+  options: GetIkeSasOptionalParams = { requestOptions: {} },
+): PollerLike<OperationState<GetIkeSasResponse>, GetIkeSasResponse> {
+  return getLongRunningPoller(
+    context,
+    _getIkeSasDeserialize,
+    ["202", "200", "201"],
+    {
+      updateIntervalInMs: options?.updateIntervalInMs,
+      abortSignal: options?.abortSignal,
+      getInitialResponse: () =>
+        _getIkeSasSend(
+          context,
+          resourceGroupName,
+          vpnSiteLinkConnectionName,
+          options,
+        ),
+      resourceLocationConfig: "location",
+      apiVersion: context.apiVersion ?? "2024-01-01",
+    },
+  ) as PollerLike<OperationState<GetIkeSasResponse>, GetIkeSasResponse>;
 }
 ```

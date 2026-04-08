@@ -99,8 +99,8 @@ export function templatedBaseDeserializer(item: any): TemplatedBase {
 /** model interface Base */
 export interface Base {}
 
-export function baseSerializer(item: Base): any {
-  return item;
+export function baseSerializer(_item: Base): any {
+  return {};
 }
 
 export function baseDeserializer(item: any): Base {

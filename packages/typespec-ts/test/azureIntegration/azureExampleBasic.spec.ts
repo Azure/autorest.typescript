@@ -1,7 +1,8 @@
+import { describe, it, beforeEach, assert } from "vitest";
+
 import BasicClientFactory, {
   BasicClient
 } from "./generated/azure/example/basic/src/index.js";
-import { assert } from "chai";
 describe("Azure Example Basic Rest Client", () => {
   let client: BasicClient;
 

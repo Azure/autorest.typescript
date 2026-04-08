@@ -14,7 +14,7 @@ import { ModelsOperations, _getModelsOperations } from "./classic/models/index.j
 import { ModerationsOperations, _getModerationsOperations } from "./classic/moderations/index.js";
 import { Pipeline, KeyCredential } from "@typespec/ts-http-runtime";
 
-export { OpenAIClientOptionalParams } from "./api/openAIContext.js";
+export type { OpenAIClientOptionalParams } from "./api/openAIContext.js";
 
 export class OpenAIClient {
   private _client: OpenAIContext;

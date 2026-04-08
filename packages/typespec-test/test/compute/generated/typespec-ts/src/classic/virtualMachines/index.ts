@@ -7,7 +7,7 @@ import {
   VirtualMachinesCreateOrUpdateOptionalParams,
   VirtualMachinesGetOptionalParams,
 } from "../../api/virtualMachines/options.js";
-import { ComputeVirtualMachine } from "../../models/compute/models.js";
+import { VirtualMachine } from "../../models/compute/models.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 
 /** Interface representing a VirtualMachines operations. */
@@ -16,15 +16,15 @@ export interface VirtualMachinesOperations {
   createOrUpdate: (
     resourceGroupName: string,
     vmName: string,
-    resource: ComputeVirtualMachine,
+    resource: VirtualMachine,
     options?: VirtualMachinesCreateOrUpdateOptionalParams,
-  ) => PollerLike<OperationState<ComputeVirtualMachine>, ComputeVirtualMachine>;
+  ) => PollerLike<OperationState<VirtualMachine>, VirtualMachine>;
   /** Retrieves information about the model view or the instance view of a virtual machine. */
   get: (
     resourceGroupName: string,
     vmName: string,
     options?: VirtualMachinesGetOptionalParams,
-  ) => Promise<ComputeVirtualMachine>;
+  ) => Promise<VirtualMachine>;
 }
 
 function _getVirtualMachines(context: ComputeContext) {
@@ -32,7 +32,7 @@ function _getVirtualMachines(context: ComputeContext) {
     createOrUpdate: (
       resourceGroupName: string,
       vmName: string,
-      resource: ComputeVirtualMachine,
+      resource: VirtualMachine,
       options?: VirtualMachinesCreateOrUpdateOptionalParams,
     ) => createOrUpdate(context, resourceGroupName, vmName, resource, options),
     get: (resourceGroupName: string, vmName: string, options?: VirtualMachinesGetOptionalParams) =>

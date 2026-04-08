@@ -3,9 +3,9 @@
 
 import { ComputeContext as Client } from "../index.js";
 import {
-  ComputeDiskDiskAccess,
-  computeDiskDiskAccessSerializer,
-  computeDiskDiskAccessDeserializer,
+  DiskAccess,
+  diskAccessSerializer,
+  diskAccessDeserializer,
 } from "../../models/computeDisk/models.js";
 import { errorResponseDeserializer } from "../../models/models.js";
 import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
@@ -26,7 +26,7 @@ export function _createOrUpdateSend(
   context: Client,
   resourceGroupName: string,
   diskAccessName: string,
-  resource: ComputeDiskDiskAccess,
+  resource: DiskAccess,
   options: DiskAccessesCreateOrUpdateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
@@ -47,13 +47,13 @@ export function _createOrUpdateSend(
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
       headers: { accept: "application/json", ...options.requestOptions?.headers },
-      body: computeDiskDiskAccessSerializer(resource),
+      body: diskAccessSerializer(resource),
     });
 }
 
 export async function _createOrUpdateDeserialize(
   result: PathUncheckedResponse,
-): Promise<ComputeDiskDiskAccess> {
+): Promise<DiskAccess> {
   const expectedStatuses = ["200", "202", "201"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -62,7 +62,7 @@ export async function _createOrUpdateDeserialize(
     throw error;
   }
 
-  return computeDiskDiskAccessDeserializer(result.body);
+  return diskAccessDeserializer(result.body);
 }
 
 /** Creates or updates a disk access resource */
@@ -70,9 +70,9 @@ export function createOrUpdate(
   context: Client,
   resourceGroupName: string,
   diskAccessName: string,
-  resource: ComputeDiskDiskAccess,
+  resource: DiskAccess,
   options: DiskAccessesCreateOrUpdateOptionalParams = { requestOptions: {} },
-): PollerLike<OperationState<ComputeDiskDiskAccess>, ComputeDiskDiskAccess> {
+): PollerLike<OperationState<DiskAccess>, DiskAccess> {
   return getLongRunningPoller(context, _createOrUpdateDeserialize, ["200", "202", "201"], {
     updateIntervalInMs: options?.updateIntervalInMs,
     abortSignal: options?.abortSignal,
@@ -80,7 +80,7 @@ export function createOrUpdate(
       _createOrUpdateSend(context, resourceGroupName, diskAccessName, resource, options),
     resourceLocationConfig: "location",
     apiVersion: "2025-01-02",
-  }) as PollerLike<OperationState<ComputeDiskDiskAccess>, ComputeDiskDiskAccess>;
+  }) as PollerLike<OperationState<DiskAccess>, DiskAccess>;
 }
 
 export function _getSend(
@@ -109,9 +109,7 @@ export function _getSend(
     });
 }
 
-export async function _getDeserialize(
-  result: PathUncheckedResponse,
-): Promise<ComputeDiskDiskAccess> {
+export async function _getDeserialize(result: PathUncheckedResponse): Promise<DiskAccess> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -120,7 +118,7 @@ export async function _getDeserialize(
     throw error;
   }
 
-  return computeDiskDiskAccessDeserializer(result.body);
+  return diskAccessDeserializer(result.body);
 }
 
 /** Gets information about a disk access resource. */
@@ -129,7 +127,7 @@ export async function get(
   resourceGroupName: string,
   diskAccessName: string,
   options: DiskAccessesGetOptionalParams = { requestOptions: {} },
-): Promise<ComputeDiskDiskAccess> {
+): Promise<DiskAccess> {
   const result = await _getSend(context, resourceGroupName, diskAccessName, options);
   return _getDeserialize(result);
 }

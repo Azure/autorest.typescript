@@ -1,5 +1,6 @@
+import { describe, it, beforeEach, assert } from "vitest";
+
 import { AzureExampleClient } from "./generated/azure/example/basic/src/index.js";
-import { assert } from "chai";
 describe("AzureExampleClient Client", () => {
   let client: AzureExampleClient;
 

@@ -64,7 +64,7 @@ export function _postSend(
   const path = expandUrlTemplate(
     "{/PATH_PARAM}{?QUERY_PARAM}",
     {
-      PATH_PARAM: options["pathParam"],
+      PATH_PARAM: options?.pathParam,
       QUERY_PARAM: options?.queryParam,
     },
     {

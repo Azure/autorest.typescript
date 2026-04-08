@@ -22,7 +22,7 @@ import {
 import { TokenCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
-export { ComputeClientOptionalParams } from "./api/computeContext.js";
+export type { ComputeClientOptionalParams } from "./api/computeContext.js";
 
 export class ComputeClient {
   private _client: ComputeContext;

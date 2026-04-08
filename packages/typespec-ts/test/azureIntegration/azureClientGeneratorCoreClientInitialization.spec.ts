@@ -1,5 +1,5 @@
-// import { assert } from "chai";
-// import ServiceClientFactory, {
+import { assert } from "vitest";
+// // import ServiceClientFactory, {
 //   ServiceClient
 // } from "./generated/azure/client-generator-core/client-initialization/src/index.js";
 

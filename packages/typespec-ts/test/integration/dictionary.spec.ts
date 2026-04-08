@@ -1,4 +1,5 @@
-import { assert } from "chai";
+import { describe, it, beforeEach, assert } from "vitest";
+
 import { matrix } from "../util/matrix.js";
 import DictClientFactory, {
   DictClient

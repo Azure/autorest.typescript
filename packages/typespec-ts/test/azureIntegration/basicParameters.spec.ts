@@ -1,7 +1,8 @@
+import { describe, it, beforeEach, assert } from "vitest";
+
 import ParametersBasicClientFactory, {
   BasicClient
 } from "./generated/parameters/basic/src/index.js";
-import { assert } from "chai";
 describe("Basic Rest Client", () => {
   let client: BasicClient;
 

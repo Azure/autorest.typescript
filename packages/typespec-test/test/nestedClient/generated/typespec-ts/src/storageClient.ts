@@ -7,7 +7,7 @@ import { download } from "./api/operations.js";
 import { DownloadOptionalParams } from "./api/options.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
-export { StorageClientOptionalParams } from "./api/storageContext.js";
+export type { StorageClientOptionalParams } from "./api/storageContext.js";
 
 export class StorageClient {
   private _client: StorageContext;
