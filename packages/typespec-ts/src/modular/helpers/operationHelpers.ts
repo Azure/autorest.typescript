@@ -233,6 +233,14 @@ export function getDeserializePrivateFunction(
       name: (response as any).name ?? "",
       type: getTypeExpression(context, response.type)
     };
+  } else if (
+    !response.type &&
+    isHeadOperation(operation) &&
+    context.rlcOptions?.headAsBoolean
+  ) {
+    // HEAD operation with head-as-boolean but wrap-non-model-return disabled:
+    // return plain boolean instead of wrapped { body: boolean }
+    returnType = { name: "", type: "boolean" };
   } else {
     returnType = { name: "", type: "void" };
   }
@@ -452,9 +460,14 @@ export function getDeserializePrivateFunction(
     }
   } else if (returnType.type === "void") {
     statements.push("return;");
-  } else if (shouldWrap && !deserializedType && isHeadOperation(operation)) {
-    // HEAD as boolean: return { body: true } for 2xx responses, { body: false } for non-2xx (e.g., 404)
-    statements.push(`return { body: result.status.startsWith("2") };`);
+  } else if (!deserializedType && isHeadOperation(operation) && context.rlcOptions?.headAsBoolean) {
+    if (shouldWrap) {
+      // Case 1: wrap-non-model-return + head-as-boolean → return { body: boolean }
+      statements.push(`return { body: result.status.startsWith("2") };`);
+    } else {
+      // Case 2: head-as-boolean only (no wrap) → return plain boolean
+      statements.push(`return result.status.startsWith("2");`);
+    }
   } else {
     statements.push("return;");
   }
@@ -1043,6 +1056,14 @@ export function getOperationFunction(
       name: "",
       type: `${buildHeaderOnlyResponseType(context, responseHeaders)}`
     };
+  } else if (
+    !response.type &&
+    isHeadOperation(operation) &&
+    context.rlcOptions?.headAsBoolean
+  ) {
+    // HEAD operation with head-as-boolean but wrap-non-model-return disabled:
+    // return plain boolean instead of wrapped { body: boolean }
+    returnType = { name: "", type: "boolean" };
   }
 
   // When storage-compat is enabled, wrap the return type with StorageCompatResponseInfo

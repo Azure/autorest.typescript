@@ -1105,7 +1105,10 @@ export async function headResource(
 }
 ```
 
-# Non wrap HEAD void-only response as void body property
+# Non wrap HEAD void-only response as boolean (no body wrap)
+
+When `head-as-boolean` is true but `wrap-non-model-return` is false, the HEAD operation
+returns a plain `boolean` (not wrapped in `{ body: boolean }`).
 
 ## TypeSpec
 
@@ -1150,20 +1153,20 @@ export function _headResourceSend(
   return context.path(path).head({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _headResourceDeserialize(result: PathUncheckedResponse): Promise<void> {
+export async function _headResourceDeserialize(result: PathUncheckedResponse): Promise<boolean> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return;
+  return result.status.startsWith("2");
 }
 
 export async function headResource(
   context: Client,
   resourceName: string,
   options: HeadResourceOptionalParams = { requestOptions: {} },
-): Promise<void> {
+): Promise<boolean> {
   const result = await _headResourceSend(context, resourceName, options);
   return _headResourceDeserialize(result);
 }
