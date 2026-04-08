@@ -1,4 +1,5 @@
-import { assert } from "chai";
+import { describe, it, beforeEach, assert } from "vitest";
+
 import SharedRouteTestClientFactory, {
   SharedRouteClient
 } from "./generated/shared-route/src/index.js";

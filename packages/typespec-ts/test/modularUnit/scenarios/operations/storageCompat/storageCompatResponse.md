@@ -303,9 +303,7 @@ op download(
 ## Operations
 
 ```ts operations function _downloadDeserializeExceptionHeaders
-export function _downloadDeserializeExceptionHeaders(
-  result: PathUncheckedResponse
-): {
+export function _downloadDeserializeExceptionHeaders(result: PathUncheckedResponse): {
   errorCode: string;
 } {
   return { errorCode: result.headers["x-ms-error-code"] };
@@ -333,11 +331,8 @@ export async function download(
   context: Client,
   options: DownloadOptionalParams = { requestOptions: {} },
 ): Promise<
-  { clientRequestId?: string; } & DownloadResponse &
-    StorageCompatResponseInfo<
-      DownloadResponse,
-      { clientRequestId?: string; }
-    >
+  { clientRequestId?: string } & DownloadResponse &
+    StorageCompatResponseInfo<DownloadResponse, { clientRequestId?: string }>
 > {
   const _storageCompat = createStorageCompatOnResponse(options.onResponse);
   const streamableMethod = _downloadSend(context, {
@@ -349,5 +344,4 @@ export async function download(
   const parsedHeaders = _downloadDeserializeHeaders(result);
   return addStorageCompatResponse(_storageCompat.getRawResponse()!, parsedBody, parsedHeaders);
 }
-
 ```

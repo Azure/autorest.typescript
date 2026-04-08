@@ -1,6 +1,7 @@
+import { describe, it, assert } from "vitest";
+
 import { ObjectSchema } from "@azure-tools/rlc-common";
 import { emitSchemasFromTypeSpec } from "../../util/emitUtil.js";
-import { assert } from "chai";
 
 describe("#transformSchemas", () => {
   async function verifyFirstProperty(tspType: string) {

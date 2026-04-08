@@ -4,16 +4,16 @@
 
 Convert the test case path to camelCase for the file name:
 
-| Path | File Name |
-| --- | --- |
-| `encode/numeric` | `encodeNumeric.spec.ts` |
-| `payload/xml` | `payloadXml.spec.ts` |
-| `authentication/api-key` | `authApiKey.spec.ts` |
-| `azure/core/basic` | `azureCore.spec.ts` |
-| `azure/core/model` | `azureCoreModel.spec.ts` |
-| `azure/resource-manager/resources` | `azureArmResources.spec.ts` |
-| `azure/resource-manager/non-resource` | `azureArmNonResource.spec.ts` |
-| `azure/client-generator-core/access` | `azureClientGeneratorCoreAccess.spec.ts` |
+| Path                                             | File Name                                          |
+| ------------------------------------------------ | -------------------------------------------------- |
+| `encode/numeric`                                 | `encodeNumeric.spec.ts`                            |
+| `payload/xml`                                    | `payloadXml.spec.ts`                               |
+| `authentication/api-key`                         | `authApiKey.spec.ts`                               |
+| `azure/core/basic`                               | `azureCore.spec.ts`                                |
+| `azure/core/model`                               | `azureCoreModel.spec.ts`                           |
+| `azure/resource-manager/resources`               | `azureArmResources.spec.ts`                        |
+| `azure/resource-manager/non-resource`            | `azureArmNonResource.spec.ts`                      |
+| `azure/client-generator-core/access`             | `azureClientGeneratorCoreAccess.spec.ts`           |
 | `azure/client-generator-core/api-version/header` | `azureClientGeneratorCoreApiVersionHeader.spec.ts` |
 
 **Key rules:**
@@ -61,7 +61,7 @@ Create this file at `test/azureModularIntegration/generated/<path>/.gitignore` t
 ## Test File Template
 
 ```typescript
-import { assert } from "chai";
+import { assert, describe, it, beforeEach } from "vitest";
 import { ClientName } from "./generated/<path>/src/index.js";
 
 describe("DescriptiveName", () => {
@@ -88,7 +88,8 @@ describe("DescriptiveName", () => {
 
 - Endpoint is always `http://localhost:3002` with `allowInsecureConnection: true`
 - Import client from `./generated/<path>/src/index.js` (use the exact client name from the generated `index.ts`)
-- Use `chai` assertions: `assert.strictEqual()`, `assert.deepEqual()`, `assert.isUndefined()`
+- Import `assert`, `describe`, `it`, `beforeEach` from `vitest`
+- Use `vitest` assertions: `assert.strictEqual()`, `assert.deepEqual()`, `assert.isUndefined()`
 - For error tests: wrap in try-catch with `assert.fail()` in the try block
 - For paginated results: use `for await (const item of client.listOp()) { items.push(item); }`
 - Some clients require credentials or positional params -- check the generated client's constructor signature

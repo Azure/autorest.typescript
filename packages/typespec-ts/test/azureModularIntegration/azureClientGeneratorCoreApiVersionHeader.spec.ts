@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import { HeaderClient } from "./generated/azure/client-generator-core/api-version/header/src/index.js";
 
 describe("Azure Client Generator Core - API Version Header (Modular)", () => {

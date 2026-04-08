@@ -1,4 +1,5 @@
-import { assert } from "chai";
+import { describe, it, beforeEach, assert } from "vitest";
+
 import EncodeDurationClientFactory, {
   DurationClient
 } from "./generated/encode/duration/src/index.js";

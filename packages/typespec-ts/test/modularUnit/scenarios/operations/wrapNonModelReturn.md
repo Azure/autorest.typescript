@@ -850,3 +850,108 @@ export async function getString(
   return _getStringDeserialize(result);
 }
 ```
+
+# wrap-non-model-return wraps LRO string response with body property
+
+When `wrap-non-model-return` is enabled, LRO operations with non-model final result types
+(e.g., string) should also be wrapped in a response type alias for HLC compatibility.
+
+## TypeSpec
+
+```tsp
+import "@typespec/http";
+import "@typespec/rest";
+import "@typespec/versioning";
+import "@azure-tools/typespec-azure-core";
+import "@azure-tools/typespec-azure-resource-manager";
+using TypeSpec.Http;
+using TypeSpec.Rest;
+using TypeSpec.Versioning;
+using Azure.Core;
+using Azure.ResourceManager;
+
+@armProviderNamespace
+@service
+@versioned(Versions)
+@armCommonTypesVersion(Azure.ResourceManager.CommonTypes.Versions.v5)
+namespace Microsoft.Test;
+
+enum Versions {
+    v2024_01_01: "2024-01-01",
+}
+
+scalar IkeSasDocument extends string;
+
+model VpnSiteLinkConnection is TrackedResource<{}> {
+    @key("vpnSiteLinkConnectionName")
+    @path
+    @segment("vpnSiteLinkConnections")
+    name: string;
+}
+
+@armResourceOperations
+interface VpnSiteLinkConnections {
+    getIkeSas is ArmResourceActionAsync<
+        VpnSiteLinkConnection,
+        void,
+        { @body body: IkeSasDocument; },
+        LroHeaders = ArmLroLocationHeader<FinalResult = IkeSasDocument> &
+            Azure.Core.Foundations.RetryAfterHeader
+    >;
+}
+```
+
+```yaml
+wrap-non-model-return: true
+withRawContent: true
+```
+
+## Models
+
+```ts models alias GetIkeSasResponse
+export type GetIkeSasResponse = { body: string };
+```
+
+## Operations
+
+```ts operations function _getIkeSasDeserialize
+export async function _getIkeSasDeserialize(result: PathUncheckedResponse): Promise<GetIkeSasResponse> {
+  const expectedStatuses = ["202", "200", "201"];
+  if (!expectedStatuses.includes(result.status)) {
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+
+    throw error;
+  }
+
+  return { body: result.body };
+}
+```
+
+```ts operations function getIkeSas
+export function getIkeSas(
+  context: Client,
+  resourceGroupName: string,
+  vpnSiteLinkConnectionName: string,
+  options: GetIkeSasOptionalParams = { requestOptions: {} },
+): PollerLike<OperationState<GetIkeSasResponse>, GetIkeSasResponse> {
+  return getLongRunningPoller(
+    context,
+    _getIkeSasDeserialize,
+    ["202", "200", "201"],
+    {
+      updateIntervalInMs: options?.updateIntervalInMs,
+      abortSignal: options?.abortSignal,
+      getInitialResponse: () =>
+        _getIkeSasSend(
+          context,
+          resourceGroupName,
+          vpnSiteLinkConnectionName,
+          options,
+        ),
+      resourceLocationConfig: "location",
+      apiVersion: context.apiVersion ?? "2024-01-01",
+    },
+  ) as PollerLike<OperationState<GetIkeSasResponse>, GetIkeSasResponse>;
+}
+```

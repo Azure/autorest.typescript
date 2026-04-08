@@ -1,4 +1,5 @@
-import { assert } from "chai";
+import { describe, it, beforeEach, assert } from "vitest";
+
 import { FixedClient } from "./generated/type/enum/fixed/src/index.js";
 describe("FixedEnums Rest Client", () => {
   let client: FixedClient;

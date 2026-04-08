@@ -1,4 +1,5 @@
-import { assert } from "chai";
+import { describe, it, beforeEach, assert } from "vitest";
+
 import { ArrayClient } from "./generated/type/array/src/index.js";
 
 interface TypeDetail {

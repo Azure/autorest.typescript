@@ -83,9 +83,9 @@ import {
   SdkHttpOperation,
   SdkHttpParameter,
   SdkLroPagingServiceMethod,
+  SdkMethodParameter,
   SdkLroServiceMethod,
   SdkMethod,
-  SdkMethodParameter,
   SdkModelPropertyType,
   SdkModelType,
   SdkPagingServiceMethod,
@@ -98,6 +98,7 @@ import {
   getHeaderClientOptions,
   getRestErrorCodeHeader
 } from "./clientOptionHelpers.js";
+import { getClientParameterName } from "./clientHelpers.js";
 import { isExtensibleEnum } from "../type-expressions/get-enum-expression.js";
 import { emitInlineModel } from "../type-expressions/get-model-expression.js";
 
@@ -205,7 +206,15 @@ export function getDeserializePrivateFunction(
   let returnType;
 
   if (isLroOnly || isLroAndPaging) {
-    returnType = buildLroReturnType(context, operation);
+    if (isLroOnly && shouldWrap) {
+      // For LRO-only operations with non-model final result, wrap in a response type alias
+      returnType = {
+        name: getOperationResponseTypeName(method),
+        type: resolveReference(refkey(operation, "response"))
+      };
+    } else {
+      returnType = buildLroReturnType(context, operation);
+    }
   } else if (isPagingOnly && restResponse?.type) {
     // For paging operations, use the full response model (e.g., _OperationListResult)
     // instead of just the array element type
@@ -392,7 +401,7 @@ export function getDeserializePrivateFunction(
           skipDiscriminatedUnionSuffix: false
         }
       );
-      // Handle wrap-non-model-return for non-LRO, non-paging operations
+      // Handle wrap-non-model-return for non-LRO, non-paging and LRO-only operations
       if (shouldWrap) {
         if (isBinary) {
           // Binary wrap: getBinaryStream already resolved the stream,
@@ -403,11 +412,12 @@ export function getDeserializePrivateFunction(
           );
         } else {
           // Non-model response: wrap with body property
-          // Generate the appropriate deserialization for the body value
+          // Generate the appropriate deserialization for the body value.
+          // For LRO operations, deserializedRoot may include the sub-path (e.g. result.body.someProperty).
           const bodyValue = deserializeResponseValue(
             context,
             deserializedType,
-            "result.body",
+            deserializedRoot,
             true,
             getEncodeForType(deserializedType)
           );
@@ -1217,6 +1227,20 @@ function getLroOnlyOperationFunction(
   const operationStateReference = resolveReference(
     AzurePollingDependencies.OperationState
   );
+
+  // When wrap-non-model-return is enabled and the LRO final result is a non-model type,
+  // use the wrapper response type (e.g. GetIkeSasResponse) instead of the raw type (e.g. string).
+  const { shouldWrap } = checkWrapNonModelReturn(
+    context,
+    operation as ServiceOperation
+  );
+  const effectiveReturnTypeStr = shouldWrap
+    ? (resolveReference(refkey(operation, "response")) as string)
+    : returnType.type;
+  const effectiveReturnTypeName = shouldWrap
+    ? getOperationResponseTypeName(method as [string[], ServiceOperation])
+    : returnType.type;
+
   const functionStatement = {
     kind: StructureKind.Function,
     docs: [
@@ -1228,9 +1252,9 @@ function getLroOnlyOperationFunction(
     name,
     propertyName: normalizeName(operation.name, NameType.Property),
     isLro: true,
-    lroFinalReturnType: returnType.type,
+    lroFinalReturnType: effectiveReturnTypeName,
     parameters,
-    returnType: `${pollerLikeReference}<${operationStateReference}<${returnType.type}>, ${returnType.type}>`
+    returnType: `${pollerLikeReference}<${operationStateReference}<${effectiveReturnTypeStr}>, ${effectiveReturnTypeStr}>`
   };
 
   const getLongRunningPollerReference = resolveReference(
@@ -1266,9 +1290,7 @@ function getLroOnlyOperationFunction(
       .join(", ")}),
     ${resourceLocationConfig}
     ${apiVersion ? `apiVersion: ${apiVersion}` : ""}
-  }) as ${pollerLikeReference}<${operationStateReference}<${
-    returnType.type
-  }>, ${returnType.type}>;
+  }) as ${pollerLikeReference}<${operationStateReference}<${effectiveReturnTypeStr}>, ${effectiveReturnTypeStr}>;
   `);
 
   return {
@@ -1531,7 +1553,7 @@ function getHeaderAndBodyParameters(
 
   const parametersImplementation: Record<
     "header" | "body",
-    { paramMap: string; param: SdkHttpParameter }[]
+    { paramMap: string; param: SdkHttpParameter; paramAccessor: string }[]
   > = {
     header: [],
     body: []
@@ -1556,9 +1578,11 @@ function getHeaderAndBodyParameters(
         param.methodParameterSegments &&
         param.methodParameterSegments.length > 0
       ) {
+        const paramAccessor = getParamAccessor(param, optionalParamName);
         parametersImplementation[param.kind].push({
-          paramMap: getParameterMap(dpgContext, param, optionalParamName),
-          param
+          paramMap: getParameterMap(dpgContext, param, paramAccessor),
+          param,
+          paramAccessor
         });
       }
     }
@@ -1577,7 +1601,7 @@ function getHeaderAndBodyParameters(
           dpgContext.program,
           i.paramMap,
           i.param,
-          optionalParamName
+          i.paramAccessor
         )
       )
       .join(",\n")}, ...${optionalParamName}.requestOptions?.headers },`;
@@ -1600,9 +1624,8 @@ function buildHeaderParameter(
   program: Program,
   paramMap: string,
   param: SdkHttpParameter,
-  optionalParamName: string = "options"
+  paramAccessor: string
 ): string {
-  const paramName = param.name;
   const effectiveOptional = getEffectiveOptional(param);
   if (!effectiveOptional && isTypeNullable(param.type) === true) {
     reportDiagnostic(program, {
@@ -1611,12 +1634,13 @@ function buildHeaderParameter(
     });
     return paramMap;
   }
+
   const conditions = [];
   if (effectiveOptional) {
-    conditions.push(`${optionalParamName}?.${paramName} !== undefined`);
+    conditions.push(`${paramAccessor} !== undefined`);
   }
   if (isTypeNullable(param.type) === true) {
-    conditions.push(`${optionalParamName}?.${paramName} !== null`);
+    conditions.push(`${paramAccessor} !== null`);
   }
   return conditions.length > 0
     ? `...(${conditions.join(" && ")} ? {${paramMap}} : {})`
@@ -1747,7 +1771,7 @@ function getEncodingFormat(type: { format?: string }) {
 export function getParameterMap(
   context: SdkContext,
   param: SdkHttpParameter,
-  optionalParamName: string = "options"
+  paramAccessor: string
 ): string {
   // Use lowercase for header names since HTTP headers are case-insensitive
   const serializedName =
@@ -1772,18 +1796,18 @@ export function getParameterMap(
     return getCollectionFormatForParam(
       context,
       param,
-      optionalParamName,
+      paramAccessor,
       serializedName
     );
   }
 
   // if the parameter or property is optional, we don't need to handle the default value
   if (isOptional(param)) {
-    return getOptional(context, param, optionalParamName, serializedName);
+    return getOptional(context, param, serializedName, paramAccessor);
   }
 
   if (isRequired(param)) {
-    return getRequired(context, param, serializedName);
+    return getRequired(context, param, serializedName, paramAccessor);
   }
 
   reportDiagnostic(context.program, {
@@ -1802,14 +1826,14 @@ export function getParameterMap(
 function getCollectionFormatForParam(
   context: SdkContext,
   param: SdkHttpParameter,
-  optionalParamName: string = "options",
+  paramAccessor: string,
   serializedName: string
 ) {
   const format = (param as any).collectionFormat;
   return `"${serializedName}": ${serializeRequestValue(
     context,
     param.type,
-    param.optional ? `${optionalParamName}?.${param.name}` : param.name,
+    paramAccessor,
     !param.optional,
     format,
     serializedName,
@@ -1877,21 +1901,21 @@ function isRequired(param: SdkHttpParameter) {
 function getRequired(
   context: SdkContext,
   param: SdkHttpParameter,
-  serializedName: string
+  serializedName: string,
+  paramAccessor: string
 ) {
-  const clientValue = `${param.onClient ? "context." : ""}${param.name}`;
   if (param.type.kind === "model") {
     const propertiesStr = getRequestModelMapping(
       context,
       { ...param.type, optional: param.optional },
-      clientValue
+      paramAccessor
     );
     return `"${serializedName}": { ${propertiesStr.join(",")} }`;
   }
   return `"${serializedName}": ${serializeRequestValue(
     context,
     param.type,
-    clientValue,
+    paramAccessor,
     true,
     getEncodeForType(param.type),
     serializedName,
@@ -1917,11 +1941,9 @@ function isOptional(param: SdkHttpParameter) {
 function getOptional(
   context: SdkContext,
   param: SdkHttpParameter,
-  optionalParamName: string,
-  serializedName: string
+  serializedName: string,
+  paramAccessor: string
 ) {
-  const paramName = `${param.onClient ? "context." : `${optionalParamName}?.`}${param.name}`;
-
   // Apply client default value if present and type matches
   const defaultSuffix =
     param.clientDefaultValue !== undefined &&
@@ -1933,7 +1955,7 @@ function getOptional(
     const propertiesStr = getRequestModelMapping(
       context,
       { ...param.type, optional: param.optional },
-      paramName + "?."
+      paramAccessor + "?."
     );
     const serializeContent = `{${propertiesStr.join(",")}}`;
     return `"${serializedName}": ${serializeContent}`;
@@ -1941,7 +1963,7 @@ function getOptional(
   const serializedValue = serializeRequestValue(
     context,
     param.type,
-    paramName,
+    paramAccessor,
     false,
     getEncodeForType(param.type),
     serializedName,
@@ -1992,7 +2014,7 @@ function getPathParameters(
       const methodParam = param.methodParameterSegments[0]?.[0];
       if (methodParam) {
         pathParams.push(
-          `"${param.serializedName}": ${getPathParamExpr(methodParam, getDefaultValue(param) as string, optionalParamName)}`
+          `"${param.serializedName}": ${getPathParamExpr(param, getDefaultValue(param) as string, optionalParamName)}`
         );
       }
     }
@@ -2028,13 +2050,18 @@ function getQueryParameters(
         param.methodParameterSegments &&
         param.methodParameterSegments.length > 0
       ) {
+        const paramAccessor = getParamAccessor(param);
         parametersImplementation[param.kind].push({
-          paramMap: getParameterMap(dpgContext, {
-            ...param,
-            // TODO: remember to remove this hack once compiler gives us a name
-            // https://github.com/microsoft/typespec/issues/6743
-            serializedName: getUriTemplateQueryParamName(param.serializedName)
-          }),
+          paramMap: getParameterMap(
+            dpgContext,
+            {
+              ...param,
+              // TODO: remember to remove this hack once compiler gives us a name
+              // https://github.com/microsoft/typespec/issues/6743
+              serializedName: getUriTemplateQueryParamName(param.serializedName)
+            },
+            paramAccessor
+          ),
           param
         });
       }
@@ -2057,19 +2084,83 @@ function escapeUriTemplateParamName(name: string) {
   });
 }
 
+/**
+ * Returns the parameter expression matching the operation signature for an HTTP parameter.
+ * 1. Client-level parameter (`param.onClient`): returns `context.<paramName>`.
+ * 2. Method-level parameter with `methodParameterSegments`: returns the expression
+ *    built from those segments (e.g. `options?.ocpDate`, `body.nested`).
+ * 3. Fallback: returns the parameter name directly, with optional chaining if optional.
+ */
+function getParamAccessor(
+  param: SdkHttpParameter,
+  optionalParamName: string = "options"
+): string {
+  const methodParamExpr = getMethodParamExpr(param, optionalParamName);
+  const clientPrefix = "context.";
+  if (methodParamExpr) {
+    return param.onClient
+      ? `${clientPrefix}${methodParamExpr}`
+      : methodParamExpr;
+  }
+  if (param.onClient) {
+    return `${clientPrefix}${getClientParameterName(param)}`;
+  }
+  if (getEffectiveOptional(param)) {
+    return `${optionalParamName}?.${param.name}`;
+  }
+  return param.name;
+}
+
+/**
+ * Builds a property accessor expression from the param's `methodParameterSegments`.
+ * Each segment represents a level of property access (e.g. `options?.nested.value`).
+ * Returns `undefined` when no segments are available, so the caller can fall back.
+ */
+function getMethodParamExpr(
+  param: SdkHttpParameter,
+  optionalParamName: string = "options"
+): string | undefined {
+  const segments = param.methodParameterSegments;
+  if (segments.length === 0) {
+    return undefined;
+  }
+  const path = segments[0];
+  if (!path || path.length < 1) {
+    return undefined;
+  }
+
+  const parts: string[] = [];
+  for (let i = 0; i < path.length; i++) {
+    const segment = path[i]!;
+    if (i === 0) {
+      // Normalize names for client-level segments to match the context interface property names
+      const segmentName = segment.onClient
+        ? getClientParameterName(segment as SdkMethodParameter)
+        : segment.name;
+      if (segment.optional && !segment.onClient) {
+        // If the first segment is optional and not on the client, we need to start with the optionalParamName
+        parts.push(`${optionalParamName}?.`);
+      }
+      parts.push(segmentName);
+    } else {
+      const needsOptionalChain = path[i - 1]!.optional;
+      parts.push(`${needsOptionalChain ? "?." : "."}${segment.name}`);
+    }
+  }
+  return parts.join("");
+}
+
 function getPathParamExpr(
-  param: SdkMethodParameter | SdkModelPropertyType,
+  param: SdkHttpParameter,
   defaultValue?: string,
   optionalParamName: string = "options"
 ) {
   if (isConstant(param.type)) {
     return getConstantValue(param.type);
   }
-  const paramName = param.onClient
-    ? `context.${param.name}`
-    : param.optional
-      ? `${optionalParamName}["${param.name}"]`
-      : param.name;
+
+  const paramName = getParamAccessor(param, optionalParamName);
+
   return defaultValue
     ? typeof defaultValue === "string"
       ? `${paramName} ?? "${defaultValue}"`
@@ -3032,6 +3123,32 @@ export function getOperationResponseTypeName(
 }
 
 /**
+ * Returns true when a type should be wrapped with a `body` property.
+ * Wrapping is needed for primitive/enum types; composite (model, dict, model-array)
+ * and unknown-as-record types map to the HLC PropertyKind.Composite / Dictionary
+ * patterns which do NOT get a body wrapper.
+ *
+ * Covered cases (no wrap):
+ *   - model array  (e.g. Foo[])          → HLC PropertyKind.Composite
+ *   - model                               → HLC PropertyKind.Composite
+ *   - dict / Record<string, unknown>      → HLC PropertyKind.Dictionary
+ *   - unknown with treatUnknownAsRecord   → treated as Dict
+ *
+ * Covered cases (wrap):
+ *   - string, boolean, number             → HLC PropertyKind.Primitive
+ *   - string[]                            → HLC PropertyKind.Primitive (item kind)
+ *   - enum / KnownXxx | string            → HLC PropertyKind.Enum
+ *   - any / unknown (no treatAsRecord)    → HLC PropertyKind.Primitive
+ */
+function isWrappableType(context: SdkContext, type: SdkType): boolean {
+  if (type.kind === "array" && type.valueType.kind === "model") return false;
+  if (type.kind === "dict" || type.kind === "model") return false;
+  if (type.kind === "unknown" && context.rlcOptions?.treatUnknownAsRecord)
+    return false;
+  return true;
+}
+
+/**
  * Determines whether wrapping the non-model return type is needed for an operation.
  * Returns an object with `shouldWrap` (whether to wrap) and `isBinary` (whether it's a binary response).
  */
@@ -3041,12 +3158,8 @@ export function checkWrapNonModelReturn(
 ): { shouldWrap: boolean; isBinary: boolean } {
   const noWrap = { shouldWrap: false, isBinary: false };
 
-  // Only for non-LRO, non-paging normal operations
-  if (
-    isLroOnlyOperation(operation) ||
-    isLroAndPagingOperation(operation) ||
-    isPagingOnlyOperation(operation)
-  ) {
+  // LRO+paging and paging-only operations are not wrapped
+  if (isLroAndPagingOperation(operation) || isPagingOnlyOperation(operation)) {
     return noWrap;
   }
 
@@ -3055,56 +3168,32 @@ export function checkWrapNonModelReturn(
     return noWrap;
   }
 
-  const response = operation.response;
-  if (!response.type) {
+  // For LRO-only operations, check the final result type from LRO metadata
+  if (isLroOnlyOperation(operation)) {
+    const lroResultType = operation.lroMetadata?.finalResponse?.result;
+    if (!lroResultType) {
+      return noWrap; // void LRO - no wrap needed
+    }
+    return {
+      shouldWrap: isWrappableType(context, lroResultType),
+      isBinary: false
+    };
+  }
+
+  const { type } = operation.response;
+  if (!type) {
     return noWrap; // void return type - no wrap needed
   }
 
-  const type = response.type;
   const contentTypes = operation.operation.responses[0]?.contentTypes ?? [];
 
-  // Determine whether to wrap based on the HLC PropertyKind mapping.
-  // HLC wraps with `body` only when the type is PropertyKind.Primitive or PropertyKind.Enum
-  // (i.e. NOT PropertyKind.Composite or PropertyKind.Dictionary).
-  // For array types, HLC uses the item's kind, not the array itself.
-  //
-  // Case: bytes with binary content type → binary wrap (isBinary=true)
+  // bytes with binary content type → binary wrap (isBinary=true)
   //   HLC: bytes → binary payload → separate binary handling
   if (type.__raw && isBinaryPayload(context, type.__raw, contentTypes)) {
     return { shouldWrap: true, isBinary: true };
   }
 
-  // Case: model array (e.g. Foo[]) → no wrap
-  //   HLC: model array → PropertyKind.Composite (item kind = model) → no body wrapper
-  //   Modular: array with valueType.kind === "model"
-  if (type.kind === "array" && type.valueType.kind === "model") {
-    return noWrap;
-  }
-
-  // Case: any object / Record (e.g. Record<string, unknown>) → no wrap
-  //   HLC: SchemaType.AnyObject → PropertyKind.Dictionary → no body wrapper
-  //   Modular: kind === "dict"
-  // Case: model → no wrap
-  //   HLC: model → PropertyKind.Composite → no body wrapper
-  //   Modular: kind === "model"
-  if (type.kind === "dict" || type.kind === "model") {
-    return noWrap;
-  }
-
-  // Case: unknown with treatUnknownAsRecord enabled → no wrap
-  //   When treatUnknownAsRecord is enabled, `unknown` is treated as Record<string, unknown>
-  //   which maps to HLC PropertyKind.Dictionary → no body wrapper
-  if (type.kind === "unknown" && context.rlcOptions?.treatUnknownAsRecord) {
-    return noWrap;
-  }
-
-  // Remaining cases → wrap with `body`:
-  //   - string   → HLC PropertyKind.Primitive → modular `string`
-  //   - boolean  → HLC PropertyKind.Primitive → modular `boolean`
-  //   - string[] → HLC PropertyKind.Primitive (array keeps item kind) → modular `string[]`
-  //   - any      → HLC PropertyKind.Primitive → modular `unknown` or `any`
-  //   - enum     → HLC PropertyKind.Enum → modular `KnownXxx | string`
-  return { shouldWrap: true, isBinary: false };
+  return { shouldWrap: isWrappableType(context, type), isBinary: false };
 }
 
 /**

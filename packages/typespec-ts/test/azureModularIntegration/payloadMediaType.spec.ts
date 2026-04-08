@@ -1,5 +1,6 @@
+import { describe, it, beforeEach, assert } from "vitest";
+
 import { MediaTypeClient } from "./generated/payload/media-type/src/index.js";
-import { assert } from "chai";
 
 describe("MediaType Client", () => {
   let client: MediaTypeClient;

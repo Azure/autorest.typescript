@@ -732,13 +732,31 @@ function buildModelInterface(
   type: SdkModelType
 ): InterfaceDeclarationStructure {
   const flattenPropertySet = new Set<SdkModelPropertyType>();
+  // For non-input models (output-only, exception, etc.), filter out metadata
+  // properties (@header, @query, @path) since they are deserialized separately.
+  // For input models, keep metadata properties — users need to pass them.
+  const hasInputUsage = (type.usage & UsageFlags.Input) === UsageFlags.Input;
+  const isArmResource = isArmResourceModel(type);
   const interfaceStructure = {
     kind: StructureKind.Interface,
     name: normalizeModelName(context, type, NameType.Interface, true),
     isExported: true,
     properties: type.properties
-      .filter((p) => !isMetadata(context.program, p.__raw!))
       .filter((p) => {
+        if (!hasInputUsage && p.__raw && isMetadata(context.program, p.__raw)) {
+          return false;
+        }
+        // Skip the "name" metadata property on ARM resource models.
+        // ARM resource "name" is a @path property inherited from the base Resource type
+        // and is handled by the ARM infrastructure, not set by the user directly.
+        if (
+          isArmResource &&
+          p.name === "name" &&
+          p.__raw &&
+          isMetadata(context.program, p.__raw)
+        ) {
+          return false;
+        }
         // filter out the flatten property to be processed later
         if (p.flatten && p.type.kind === "model") {
           flattenPropertySet.add(p);
@@ -757,7 +775,7 @@ function buildModelInterface(
       context,
       flatten.type,
       getAllAncestors(flatten.type)
-    ).filter((p) => !isMetadata(context.program, p.__raw!));
+    );
     interfaceStructure.properties!.push(
       ...allProperties.map((p) => {
         // when the flattened property is optional, all its child properties should be optional too
@@ -930,6 +948,20 @@ export function normalizeModelName(
   const internalModelPrefix =
     isPagedResultModel(context, type) || type.isGeneratedName ? "_" : "";
   return `${internalModelPrefix}${normalizeName(namespacePrefix + type.name, nameType, true)}${unionSuffix}`;
+}
+
+/**
+ * Checks if a model descends from the ARM common-types Resource base type
+ * (TrackedResource, ProxyResource, etc.) by walking the ancestor chain.
+ */
+function isArmResourceModel(type: SdkModelType): boolean {
+  const ancestors = getAllAncestors(type);
+  return ancestors.some(
+    (ancestor) =>
+      ancestor.kind === "model" &&
+      ancestor.crossLanguageDefinitionId ===
+        "Azure.ResourceManager.CommonTypes.Resource"
+  );
 }
 
 function buildModelPolymorphicType(context: SdkContext, type: SdkModelType) {

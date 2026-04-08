@@ -1,4 +1,5 @@
-import { assert } from "chai";
+import { describe, it, beforeEach, assert } from "vitest";
+
 import AzureCoreModelClientFactory, {
   AzureCoreModelClient
 } from "./generated/azure/core/model/src/index.js";
