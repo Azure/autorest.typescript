@@ -4,9 +4,30 @@
 
 ```ts
 
+import { AbortSignalLike } from '@azure/abort-controller';
 import { ClientOptions } from '@azure-rest/core-client';
+import { OperationOptions } from '@azure-rest/core-client';
+import { OperationState } from '@azure/core-lro';
+import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
+import { PollerLike } from '@azure/core-lro';
 import { TokenCredential } from '@azure/core-auth';
+
+// @public
+export interface ActionGroupsGetOptionalParams extends OperationOptions {
+    // (undocumented)
+    expand?: string;
+}
+
+// @public
+export interface ActionGroupsListOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface ActionGroupsOperations {
+    get: (resourceGroupName: string, actionGroupName: string, options?: ActionGroupsGetOptionalParams) => Promise<ComputeActionGroup>;
+    list: (options?: ActionGroupsListOptionalParams) => PagedAsyncIterableIterator<ComputeDiskActionGroup>;
+}
 
 // @public
 export enum AzureClouds {
@@ -18,15 +39,283 @@ export enum AzureClouds {
 // @public
 export type AzureSupportedClouds = `${AzureClouds}`;
 
+// @public
+export interface ComputeActionGroup extends TrackedResource {
+    properties?: ComputeActionGroupsProperties;
+}
+
+// @public
+export interface ComputeActionGroupsProperties {
+    // (undocumented)
+    readonly provisioningState?: string;
+}
+
 // @public (undocumented)
 export class ComputeClient {
-    constructor(credential: TokenCredential, options?: ComputeClientOptionalParams);
+    constructor(credential: TokenCredential, subscriptionId: string, options?: ComputeClientOptionalParams);
+    readonly actionGroups: ActionGroupsOperations;
+    readonly diskAccesses: DiskAccessesOperations;
+    readonly disks: DisksOperations;
     readonly pipeline: Pipeline;
+    readonly restorePointCollections: RestorePointCollectionsOperations;
+    readonly virtualMachines: VirtualMachinesOperations;
 }
 
 // @public
 export interface ComputeClientOptionalParams extends ClientOptions {
     cloudSetting?: AzureSupportedClouds;
+}
+
+// @public
+export interface ComputeDiskActionGroup extends TrackedResource {
+    properties?: ComputeDiskActionGroupsProperties;
+}
+
+// @public
+export interface ComputeDiskActionGroupsProperties {
+    // (undocumented)
+    readonly provisioningState?: string;
+}
+
+// @public
+export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
+    continuationToken?: string;
+};
+
+// @public
+export type CreatedByType = string;
+
+// @public
+export interface Disk extends TrackedResource {
+    properties?: DiskProperties;
+}
+
+// @public
+export interface DiskAccess extends TrackedResource {
+    properties?: DiskAccessProperties;
+}
+
+// @public
+export interface DiskAccessesCreateOrUpdateOptionalParams extends OperationOptions {
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface DiskAccessesGetOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface DiskAccessesOperations {
+    createOrUpdate: (resourceGroupName: string, diskAccessName: string, resource: DiskAccess, options?: DiskAccessesCreateOrUpdateOptionalParams) => PollerLike<OperationState<DiskAccess>, DiskAccess>;
+    get: (resourceGroupName: string, diskAccessName: string, options?: DiskAccessesGetOptionalParams) => Promise<DiskAccess>;
+}
+
+// @public
+export interface DiskAccessProperties {
+    readonly privateEndpointConnections?: PrivateEndpointConnection[];
+    readonly provisioningState?: string;
+    readonly timeCreated?: Date;
+}
+
+// @public
+export interface DiskProperties {
+    // (undocumented)
+    readonly provisioningState?: ResourceProvisioningState;
+}
+
+// @public
+export interface DisksCreateOrUpdateOptionalParams extends OperationOptions {
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface DisksGetOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface DisksOperations {
+    createOrUpdate: (resourceGroupName: string, diskName: string, resource: Disk, options?: DisksCreateOrUpdateOptionalParams) => PollerLike<OperationState<Disk>, Disk>;
+    get: (resourceGroupName: string, diskName: string, options?: DisksGetOptionalParams) => Promise<Disk>;
+}
+
+// @public
+export interface ErrorAdditionalInfo {
+    readonly info?: any;
+    readonly type?: string;
+}
+
+// @public
+export interface ErrorDetail {
+    readonly additionalInfo?: ErrorAdditionalInfo[];
+    readonly code?: string;
+    readonly details?: ErrorDetail[];
+    readonly message?: string;
+    readonly target?: string;
+}
+
+// @public
+export interface ErrorResponse {
+    error?: ErrorDetail;
+}
+
+// @public
+export enum KnownCreatedByType {
+    Application = "Application",
+    Key = "Key",
+    ManagedIdentity = "ManagedIdentity",
+    User = "User"
+}
+
+// @public
+export enum KnownPrivateEndpointConnectionProvisioningState {
+    Creating = "Creating",
+    Deleting = "Deleting",
+    Failed = "Failed",
+    Succeeded = "Succeeded"
+}
+
+// @public
+export enum KnownPrivateEndpointServiceConnectionStatus {
+    Approved = "Approved",
+    Pending = "Pending",
+    Rejected = "Rejected"
+}
+
+// @public
+export enum KnownResourceProvisioningState {
+    Canceled = "Canceled",
+    Failed = "Failed",
+    Succeeded = "Succeeded"
+}
+
+// @public
+export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends PageSettings = PageSettings> {
+    [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
+    byPage: (settings?: TPageSettings) => AsyncIterableIterator<ContinuablePage<TElement, TPage>>;
+    next(): Promise<IteratorResult<TElement>>;
+}
+
+// @public
+export interface PageSettings {
+    continuationToken?: string;
+}
+
+// @public
+export interface PrivateEndpoint {
+    readonly id?: string;
+}
+
+// @public
+export interface PrivateEndpointConnection extends Resource {
+    properties?: PrivateEndpointConnectionProperties;
+}
+
+// @public
+export interface PrivateEndpointConnectionProperties {
+    privateEndpoint?: PrivateEndpoint;
+    privateLinkServiceConnectionState: PrivateLinkServiceConnectionState;
+    readonly provisioningState?: PrivateEndpointConnectionProvisioningState;
+}
+
+// @public
+export type PrivateEndpointConnectionProvisioningState = string;
+
+// @public
+export type PrivateEndpointServiceConnectionStatus = string;
+
+// @public
+export interface PrivateLinkServiceConnectionState {
+    actionsRequired?: string;
+    description?: string;
+    status?: PrivateEndpointServiceConnectionStatus;
+}
+
+// @public
+export interface Resource {
+    readonly id?: string;
+    readonly name?: string;
+    readonly systemData?: SystemData;
+    readonly type?: string;
+}
+
+// @public
+export type ResourceProvisioningState = string;
+
+// @public
+export interface RestorePointCollection extends TrackedResource {
+    properties?: RestorePointCollectionProperties;
+}
+
+// @public
+export interface RestorePointCollectionProperties {
+    instantAccess?: boolean;
+    readonly provisioningState?: string;
+}
+
+// @public
+export interface RestorePointCollectionsCreateOrUpdateOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface RestorePointCollectionsGetOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface RestorePointCollectionsOperations {
+    createOrUpdate: (resourceGroupName: string, restorePointCollectionName: string, resource: RestorePointCollection, options?: RestorePointCollectionsCreateOrUpdateOptionalParams) => Promise<RestorePointCollection>;
+    get: (resourceGroupName: string, restorePointCollectionName: string, options?: RestorePointCollectionsGetOptionalParams) => Promise<RestorePointCollection>;
+}
+
+// @public
+export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(client: ComputeClient, serializedState: string, sourceOperation: (...args: any[]) => PollerLike<OperationState<TResult>, TResult>, options?: RestorePollerOptions<TResult>): PollerLike<OperationState<TResult>, TResult>;
+
+// @public (undocumented)
+export interface RestorePollerOptions<TResult, TResponse extends PathUncheckedResponse = PathUncheckedResponse> extends OperationOptions {
+    abortSignal?: AbortSignalLike;
+    processResponseBody?: (result: TResponse) => Promise<TResult>;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface SystemData {
+    createdAt?: Date;
+    createdBy?: string;
+    createdByType?: CreatedByType;
+    lastModifiedAt?: Date;
+    lastModifiedBy?: string;
+    lastModifiedByType?: CreatedByType;
+}
+
+// @public
+export interface TrackedResource extends Resource {
+    location: string;
+    tags?: Record<string, string>;
+}
+
+// @public
+export interface VirtualMachine extends TrackedResource {
+    properties?: VirtualMachineProperties;
+}
+
+// @public
+export interface VirtualMachineProperties {
+    // (undocumented)
+    readonly provisioningState?: ResourceProvisioningState;
+}
+
+// @public
+export interface VirtualMachinesCreateOrUpdateOptionalParams extends OperationOptions {
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface VirtualMachinesGetOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface VirtualMachinesOperations {
+    createOrUpdate: (resourceGroupName: string, vmName: string, resource: VirtualMachine, options?: VirtualMachinesCreateOrUpdateOptionalParams) => PollerLike<OperationState<VirtualMachine>, VirtualMachine>;
+    get: (resourceGroupName: string, vmName: string, options?: VirtualMachinesGetOptionalParams) => Promise<VirtualMachine>;
 }
 
 // (No @packageDocumentation comment for this package)
