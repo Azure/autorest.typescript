@@ -16,17 +16,11 @@ describe("Azure ClientGeneratorCore ClientDefaultValue Client", () => {
   });
 
   it("should get header parameter with default value", async () => {
-    await client.getHeaderParameter({
-      accept: "application/json;odata.metadata=none",
-      customHeader: "default-value"
-    });
+    await client.getHeaderParameter();
   });
 
   it("should get operation parameter with default values", async () => {
-    await client.getOperationParameter("test", {
-      pageSize: 10,
-      format: "json"
-    });
+    await client.getOperationParameter("test");
   });
 
   it("should get path parameter with default segment", async () => {

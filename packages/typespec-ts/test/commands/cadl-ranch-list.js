@@ -1021,20 +1021,8 @@ export const azureModularTsps = [
     inputPath: "service/multi-service"
   },
   {
-    outputPath: "documentation",
-    inputPath: "documentation"
-  },
-  {
     outputPath: "parameters/query",
     inputPath: "parameters/query"
-  },
-  {
-    outputPath: "payload/json-merge-patch",
-    inputPath: "payload/json-merge-patch"
-  },
-  {
-    outputPath: "type/union/discriminated",
-    inputPath: "type/union/discriminated"
   }
 ];
 

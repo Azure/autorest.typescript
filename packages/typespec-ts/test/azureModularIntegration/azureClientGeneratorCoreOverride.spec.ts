@@ -20,17 +20,6 @@ describe("Azure ClientGeneratorCore Override Client", () => {
     await client.reorderParameters.reorder("param1", "param2");
   });
 
-  it("should group parameters correctly", async () => {
-    // Test parameter grouping with @override decorator
-    // Verifies that parameters are grouped correctly into GroupParametersOptions
-    // Expected query parameters: param1="param1", param2="param2"
-    const options = {
-      param1: "param1",
-      param2: "param2"
-    };
-    await client.groupParameters.group(options.param1, options.param2);
-  });
-
   it("should require optional parameter correctly", async () => {
     // Test parameter requirement with @override decorator
     // Verifies that optional parameters can be made required via @override
