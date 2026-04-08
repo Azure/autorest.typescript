@@ -460,7 +460,11 @@ export function getDeserializePrivateFunction(
     }
   } else if (returnType.type === "void") {
     statements.push("return;");
-  } else if (!deserializedType && isHeadOperation(operation) && context.rlcOptions?.headAsBoolean) {
+  } else if (
+    !deserializedType &&
+    isHeadOperation(operation) &&
+    context.rlcOptions?.headAsBoolean
+  ) {
     if (shouldWrap) {
       // Case 1: wrap-non-model-return + head-as-boolean → return { body: boolean }
       statements.push(`return { body: result.status.startsWith("2") };`);
