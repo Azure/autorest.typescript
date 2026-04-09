@@ -202,17 +202,18 @@ describe("Azure Arm Resources Rest Client", () => {
           {
             location: "eastus",
             properties: {
-              username: "00"
+              username: "00",
+              provisioningState: ""
             }
           }
         );
         assert.fail("Should have thrown an error for bad request");
       } catch (error: any) {
+        // Azure Modular clients use createRestError which creates errors with statusCode property
         assert.strictEqual(error.statusCode, 400);
-        assert.isObject(error.details);
-        assert.strictEqual(error.details.error.code, "BadRequest");
+        assert.strictEqual(error.code, "BadRequest");
         assert.strictEqual(
-          error.details.error.message,
+          error.message,
           "Username should not contain only numbers."
         );
       }
