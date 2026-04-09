@@ -200,4 +200,48 @@ describe("Payload XML Client", () => {
       await client.modelWithEncodedNamesValue.put(expected);
     });
   });
+
+  describe("ModelWithDatetimeValue", () => {
+    it("should get model with datetime value", async () => {
+      const result = await client.modelWithDatetimeValue.get();
+      assert.strictEqual(
+        result.rfc3339.toISOString(),
+        "2022-08-26T18:38:00.000Z"
+      );
+      // rfc7231: "Fri, 26 Aug 2022 14:38:00 GMT" = 2022-08-26T14:38:00.000Z UTC
+      assert.strictEqual(
+        result.rfc7231.toUTCString(),
+        "Fri, 26 Aug 2022 14:38:00 GMT"
+      );
+    });
+
+    it("should put model with datetime value", async () => {
+      await client.modelWithDatetimeValue.put({
+        rfc3339: new Date("2022-08-26T18:38:00.000Z"),
+        rfc7231: new Date("Fri, 26 Aug 2022 14:38:00 GMT")
+      });
+    });
+  });
+
+  describe("ModelWithEnumValue", () => {
+    it("should get model with enum value", async () => {
+      const result = await client.modelWithEnumValue.get();
+      assert.strictEqual(result.status, "success");
+    });
+
+    it("should put model with enum value", async () => {
+      await client.modelWithEnumValue.put({ status: "success" });
+    });
+  });
+
+  describe("XmlErrorValue", () => {
+    it("should get xml error value (expects 400 error)", async () => {
+      try {
+        await client.xmlErrorValue.get();
+        assert.fail("Should have thrown an error");
+      } catch (error: any) {
+        assert.strictEqual(error.statusCode, 400);
+      }
+    });
+  });
 });

@@ -440,10 +440,10 @@ importers:
         version: 0.80.0(@typespec/compiler@1.10.0(@types/node@25.3.5))
       '@vitest/coverage-istanbul':
         specifier: ^4.1.0
-        version: 4.1.1(vitest@4.1.1(@opentelemetry/api@1.9.0)(@types/node@25.3.5)(vite@6.4.1(@types/node@25.3.5)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.2)))
+        version: 4.1.3(vitest@4.1.1(@opentelemetry/api@1.9.0)(@types/node@25.3.5)(vite@6.4.1(@types/node@25.3.5)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.2)))
       '@vitest/coverage-v8':
         specifier: ^4.1.0
-        version: 4.1.1(vitest@4.1.1(@opentelemetry/api@1.9.0)(@types/node@25.3.5)(vite@6.4.1(@types/node@25.3.5)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.2)))
+        version: 4.1.3(vitest@4.1.1(@opentelemetry/api@1.9.0)(@types/node@25.3.5)(vite@6.4.1(@types/node@25.3.5)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.2)))
       chai:
         specifier: ^4.3.6
         version: 4.5.0
@@ -2022,16 +2022,16 @@ packages:
   '@ungap/promise-all-settled@1.1.2':
     resolution: {integrity: sha512-sL/cEvJWAnClXw0wHk85/2L0G6Sj8UB0Ctc1TEMbKSsmpRosqhwj9gWgFRZSrBr2f9tiXISwNhCPmlfqUqyb9Q==}
 
-  '@vitest/coverage-istanbul@4.1.1':
-    resolution: {integrity: sha512-f0VwU9676B5WdyZVY/MN4c2KSbgVnDVkoAKsMAzZEQlQti23Dhhb8If9sJQNFIr24AIbG3YijYYtkg7i6giz2A==}
+  '@vitest/coverage-istanbul@4.1.3':
+    resolution: {integrity: sha512-IjlvIg2MaFDgeYOXgqxWwTh8c8Y8HkR/36SN0Iq5XtmsmbEau7a5i7g1F+Lv7G9R+vDzOt+HyNOmKqg/8kKzug==}
     peerDependencies:
-      vitest: 4.1.1
+      vitest: 4.1.3
 
-  '@vitest/coverage-v8@4.1.1':
-    resolution: {integrity: sha512-nZ4RWwGCoGOQRMmU/Q9wlUY540RVRxJZ9lxFsFfy0QV7Zmo5VVBhB6Sl9Xa0KIp2iIs3zWfPlo9LcY1iqbpzCw==}
+  '@vitest/coverage-v8@4.1.3':
+    resolution: {integrity: sha512-/MBdrkA8t6hbdCWFKs09dPik774xvs4Z6L4bycdCxYNLHM8oZuRyosumQMG19LUlBsB6GeVpL1q4kFFazvyKGA==}
     peerDependencies:
-      '@vitest/browser': 4.1.1
-      vitest: 4.1.1
+      '@vitest/browser': 4.1.3
+      vitest: 4.1.3
     peerDependenciesMeta:
       '@vitest/browser':
         optional: true
@@ -2053,6 +2053,9 @@ packages:
   '@vitest/pretty-format@4.1.1':
     resolution: {integrity: sha512-GM+TEQN5WhOygr1lp7skeVjdLPqqWMHsfzXrcHAqZJi/lIVh63H0kaRCY8MDhNWikx19zBUK8ceaLB7X5AH9NQ==}
 
+  '@vitest/pretty-format@4.1.3':
+    resolution: {integrity: sha512-hYqqwuMbpkkBodpRh4k4cQSOELxXky1NfMmQvOfKvV8zQHz8x8Dla+2wzElkMkBvSAJX5TRGHJAQvK0TcOafwg==}
+
   '@vitest/runner@4.1.1':
     resolution: {integrity: sha512-f7+FPy75vN91QGWsITueq0gedwUZy1fLtHOCMeQpjs8jTekAHeKP80zfDEnhrleviLHzVSDXIWuCIOFn3D3f8A==}
 
@@ -2064,6 +2067,9 @@ packages:
 
   '@vitest/utils@4.1.1':
     resolution: {integrity: sha512-cNxAlaB3sHoCdL6pj6yyUXv9Gry1NHNg0kFTXdvSIZXLHsqKH7chiWOkwJ5s5+d/oMwcoG9T0bKU38JZWKusrQ==}
+
+  '@vitest/utils@4.1.3':
+    resolution: {integrity: sha512-Pc/Oexse/khOWsGB+w3q4yzA4te7W4gpZZAvk+fr8qXfTURZUMj5i7kuxsNK5mP/dEB6ao3jfr0rs17fHhbHdw==}
 
   '@vue/reactivity@3.5.25':
     resolution: {integrity: sha512-5xfAypCQepv4Jog1U4zn8cZIcbKKFka3AgWHEFQeK65OW+Ys4XybP6z2kKgws4YB43KGpqp5D/K3go2UPPunLA==}
@@ -7242,7 +7248,7 @@ snapshots:
 
   '@ungap/promise-all-settled@1.1.2': {}
 
-  '@vitest/coverage-istanbul@4.1.1(vitest@4.1.1(@opentelemetry/api@1.9.0)(@types/node@25.3.5)(vite@6.4.1(@types/node@25.3.5)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.2)))':
+  '@vitest/coverage-istanbul@4.1.3(vitest@4.1.1(@opentelemetry/api@1.9.0)(@types/node@25.3.5)(vite@6.4.1(@types/node@25.3.5)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.2)))':
     dependencies:
       '@babel/core': 7.29.0
       '@istanbuljs/schema': 0.1.3
@@ -7258,10 +7264,10 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@vitest/coverage-v8@4.1.1(vitest@4.1.1(@opentelemetry/api@1.9.0)(@types/node@25.3.5)(vite@6.4.1(@types/node@25.3.5)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.2)))':
+  '@vitest/coverage-v8@4.1.3(vitest@4.1.1(@opentelemetry/api@1.9.0)(@types/node@25.3.5)(vite@6.4.1(@types/node@25.3.5)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.2)))':
     dependencies:
       '@bcoe/v8-coverage': 1.0.2
-      '@vitest/utils': 4.1.1
+      '@vitest/utils': 4.1.3
       ast-v8-to-istanbul: 1.0.0
       istanbul-lib-coverage: 3.2.2
       istanbul-lib-report: 3.0.1
@@ -7293,6 +7299,10 @@ snapshots:
     dependencies:
       tinyrainbow: 3.1.0
 
+  '@vitest/pretty-format@4.1.3':
+    dependencies:
+      tinyrainbow: 3.1.0
+
   '@vitest/runner@4.1.1':
     dependencies:
       '@vitest/utils': 4.1.1
@@ -7310,6 +7320,12 @@ snapshots:
   '@vitest/utils@4.1.1':
     dependencies:
       '@vitest/pretty-format': 4.1.1
+      convert-source-map: 2.0.0
+      tinyrainbow: 3.1.0
+
+  '@vitest/utils@4.1.3':
+    dependencies:
+      '@vitest/pretty-format': 4.1.3
       convert-source-map: 2.0.0
       tinyrainbow: 3.1.0
 
@@ -8537,7 +8553,7 @@ snapshots:
       once: 1.4.0
       parseurl: 1.3.3
       proxy-addr: 2.0.7
-      qs: 6.14.0
+      qs: 6.15.0
       range-parser: 1.2.1
       router: 2.2.0
       send: 1.2.0
