@@ -1,3 +1,9 @@
+## 6.0.67 (2026-04-09)
+
+- [Bugfix] Fix normalize issue for optional operation parameter name. Please refer to [#3877](https://github.com/Azure/autorest.typescript/pull/3877)
+- [Feature] Support HEAD operations as `boolean` or `{ body: boolean }` in Modular SDK with `head-as-boolean` and `wrap-non-model-return`. Please refer to [#3887](https://github.com/Azure/autorest.typescript/pull/3887)
+- [Feature] Bump TypeSpec dependencies to latest stable. Please refer to [#3902](https://github.com/Azure/autorest.typescript/pull/3902)
+
 ## 6.0.66 (2026-04-03)
 
 - [Feature] Support metadata parameters in body models and use methodParameterSegments for accessor paths. Please refer to [#3848](https://github.com/Azure/autorest.typescript/pull/3848)
