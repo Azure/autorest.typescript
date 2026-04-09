@@ -268,6 +268,13 @@ export interface RLCOptions {
    */
   wrapNonModelReturn?: boolean;
   /**
+   * When set to true, HEAD operations with void response return `{ body: boolean }` instead of void.
+   * `body: true` = 2xx (resource exists), `body: false` = non-2xx (e.g., 404 Not Found).
+   * Requires `wrapNonModelReturn` to also be enabled.
+   * Defaults to false.
+   */
+  headAsBoolean?: boolean;
+  /**
    * When enabled, every regular (non-LRO, non-paging) operation return type is augmented with a
    * `_response` property containing `rawResponse`, `parsedBody`, and `parsedHeaders`.
    */

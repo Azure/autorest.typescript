@@ -87,6 +87,15 @@ export interface EmitterOptions {
    */
   "wrap-non-model-return"?: boolean;
   /**
+   * When set to true, HEAD operations with a void response body will return `{ body: boolean }`
+   * instead of `void`, where `body: true` indicates a 2xx success (resource exists) and
+   * `body: false` indicates a non-2xx response (e.g., 404 Not Found).
+   * This matches the HLC behavior for resource existence check operations.
+   * Only applies when `wrap-non-model-return` is also enabled.
+   * Defaults to `false`.
+   */
+  "head-as-boolean"?: boolean;
+  /**
    * When enabled, every regular (non-LRO, non-paging) operation return type is augmented with a
    * `_response` property containing `rawResponse`, `parsedBody`, and `parsedHeaders`.
    * Defaults to `false`.
@@ -389,6 +398,12 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
       nullable: true,
       description:
         "When set to true (default for Azure services), non-model return types (arrays, scalars, enums, bytes with binary content type) will be wrapped in an XxxResponse type for HLC backward compatibility during TypeSpec migration."
+    },
+    "head-as-boolean": {
+      type: "boolean",
+      nullable: true,
+      description:
+        "When set to true, HEAD operations with void response return `{ body: boolean }` (true=2xx, false=non-2xx) instead of void. Requires wrap-non-model-return to also be enabled. Defaults to false."
     },
     "enable-storage-compat": {
       type: "boolean",
