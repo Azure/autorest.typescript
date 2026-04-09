@@ -3,9 +3,9 @@
 
 import { RadiologyInsightsContext as Client } from "./index.js";
 import {
+  patientRecordArraySerializer,
   PatientRecord,
   radiologyInsightsModelConfigurationSerializer,
-  patientRecordArraySerializer,
   RadiologyInsightsInferenceResult,
   radiologyInsightsInferenceResultDeserializer,
 } from "../models/models.js";
