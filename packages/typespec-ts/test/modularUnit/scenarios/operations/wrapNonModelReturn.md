@@ -915,7 +915,9 @@ export type GetIkeSasResponse = { body: string };
 ## Operations
 
 ```ts operations function _getIkeSasDeserialize
-export async function _getIkeSasDeserialize(result: PathUncheckedResponse): Promise<GetIkeSasResponse> {
+export async function _getIkeSasDeserialize(
+  result: PathUncheckedResponse,
+): Promise<GetIkeSasResponse> {
   const expectedStatuses = ["202", "200", "201"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -935,23 +937,13 @@ export function getIkeSas(
   vpnSiteLinkConnectionName: string,
   options: GetIkeSasOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<GetIkeSasResponse>, GetIkeSasResponse> {
-  return getLongRunningPoller(
-    context,
-    _getIkeSasDeserialize,
-    ["202", "200", "201"],
-    {
-      updateIntervalInMs: options?.updateIntervalInMs,
-      abortSignal: options?.abortSignal,
-      getInitialResponse: () =>
-        _getIkeSasSend(
-          context,
-          resourceGroupName,
-          vpnSiteLinkConnectionName,
-          options,
-        ),
-      resourceLocationConfig: "location",
-      apiVersion: context.apiVersion ?? "2024-01-01",
-    },
-  ) as PollerLike<OperationState<GetIkeSasResponse>, GetIkeSasResponse>;
+  return getLongRunningPoller(context, _getIkeSasDeserialize, ["202", "200", "201"], {
+    updateIntervalInMs: options?.updateIntervalInMs,
+    abortSignal: options?.abortSignal,
+    getInitialResponse: () =>
+      _getIkeSasSend(context, resourceGroupName, vpnSiteLinkConnectionName, options),
+    resourceLocationConfig: "location",
+    apiVersion: context.apiVersion ?? "2024-01-01",
+  }) as PollerLike<OperationState<GetIkeSasResponse>, GetIkeSasResponse>;
 }
 ```

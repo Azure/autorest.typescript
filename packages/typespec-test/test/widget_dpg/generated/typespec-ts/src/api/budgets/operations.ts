@@ -43,11 +43,6 @@ export async function _$continueDeserialize(result: PathUncheckedResponse): Prom
   return;
 }
 
-/**
- *  @fixme continue is a reserved word that cannot be used as an operation name.
- *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
- *         to the operation to override the generated name.
- */
 export async function $continue(
   context: Client,
   options: BudgetsContinueOptionalParams = { requestOptions: {} },
