@@ -1,3 +1,5 @@
+import { describe, it, beforeEach } from "vitest";
+
 import { resolvePath } from "@typespec/compiler";
 import { MultiPartClient } from "./generated/payload/multipart/src/index.js";
 import { fileURLToPath } from "node:url";

@@ -1,5 +1,6 @@
+import { describe, it, beforeEach, assert } from "vitest";
+
 import { OperationTemplatesClient } from "./generated/azure/resource-manager/operation-templates/src/index.js";
-import { assert } from "chai";
 
 describe("Azure ARM Operation Templates", () => {
   let client: OperationTemplatesClient;
@@ -100,6 +101,14 @@ describe("Azure ARM Operation Templates", () => {
       });
 
       assert.equal(result.content, "order1,product1,1");
+    });
+
+    it("should export array with LRO", async () => {
+      const result = await client.lro.exportArray({ format: "csv" });
+      assert.isArray(result);
+      assert.strictEqual(result.length, 2);
+      assert.strictEqual(result[0]?.content, "order1,product1,1");
+      assert.strictEqual(result[1]?.content, "order2,product2,2");
     });
 
     it("should delete order with LRO", async () => {

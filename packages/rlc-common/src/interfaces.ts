@@ -261,6 +261,30 @@ export interface RLCOptions {
   compatibilityLro?: boolean;
   ignoreNullableOnOptional?: boolean;
   isMultiService?: boolean;
+  /**
+   * When set to true, non-model return types (arrays, scalars, enums, bytes with binary content type)
+   * will be wrapped in an XxxResponse type to maintain backward compatibility with HLC.
+   * This option defaults to true for Azure flavor and to false otherwise, unless explicitly set.
+   */
+  wrapNonModelReturn?: boolean;
+  /**
+   * When set to true, HEAD operations with void response return `{ body: boolean }` instead of void.
+   * `body: true` = 2xx (resource exists), `body: false` = non-2xx (e.g., 404 Not Found).
+   * Requires `wrapNonModelReturn` to also be enabled.
+   * Defaults to false.
+   */
+  headAsBoolean?: boolean;
+  /**
+   * When enabled, every regular (non-LRO, non-paging) operation return type is augmented with a
+   * `_response` property containing `rawResponse`, `parsedBody`, and `parsedHeaders`.
+   */
+  enableStorageCompat?: boolean;
+  /**
+   * When set to true, TypeSpec `unknown` type will be translated to `Record<string, unknown>`
+   * instead of `any` in the generated Modular SDK. This is useful when migrating from HLC
+   * where `unknown` in swagger mapped to `Record<string, unknown>`.
+   */
+  treatUnknownAsRecord?: boolean;
 }
 
 export interface ServiceInfo {

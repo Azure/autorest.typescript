@@ -502,8 +502,14 @@ function buildModelTypeSerializer(
         return ${serializeContent}
       `);
     } else {
+      // Nothing to serialize (all properties are read-only or metadata).
+      // Rename the parameter to _item to avoid TypeScript unused-variable errors.
+      const firstParam = serializerFunction.parameters?.[0];
+      if (firstParam) {
+        firstParam.name = "_item";
+      }
       output.push(`
-        return item;
+        return {};
       `);
     }
     serializerFunction.statements = output;

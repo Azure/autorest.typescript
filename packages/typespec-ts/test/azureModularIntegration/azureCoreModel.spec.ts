@@ -1,5 +1,6 @@
+import { describe, it, beforeEach, assert } from "vitest";
+
 import { ModelClient } from "./generated/azure/core/model/src/index.js";
-import { assert } from "chai";
 
 describe("Traits Client", () => {
   let client: ModelClient;
@@ -13,7 +14,7 @@ describe("Traits Client", () => {
 
   it("should get core model embeddingVector", async () => {
     const result = await client.get();
-    assert.deepStrictEqual(result, [0, 1, 2, 3, 4]);
+    assert.deepStrictEqual(result.body, [0, 1, 2, 3, 4]);
   });
 
   it("should put core model embeddingVector", async () => {

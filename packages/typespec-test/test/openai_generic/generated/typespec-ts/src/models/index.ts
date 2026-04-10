@@ -48,4 +48,5 @@ export type {
   ListPaginatedFineTuningJobsResponse,
   ListFineTuningJobEventsResponse,
   FineTuningJobEvent,
+  FilesDownloadResponse,
 } from "./models.js";

@@ -4,8 +4,8 @@
 export type {
   ComputeDiskActionGroup,
   ComputeDiskActionGroupsProperties,
-  ComputeDiskDisk,
-  ComputeDiskDiskProperties,
-  ComputeDiskDiskAccess,
-  ComputeDiskDiskAccessProperties,
+  Disk,
+  DiskProperties,
+  DiskAccess,
+  DiskAccessProperties,
 } from "./models.js";

@@ -17,7 +17,7 @@ import {
 import { KeyCredential, TokenCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
-export { ChatProtocolClientOptionalParams } from "./api/chatProtocolContext.js";
+export type { ChatProtocolClientOptionalParams } from "./api/chatProtocolContext.js";
 
 export class ChatProtocolClient {
   private _client: ChatProtocolContext;

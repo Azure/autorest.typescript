@@ -13,7 +13,7 @@ import {
 import { TokenCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
-export { ParametrizedHostClientOptionalParams } from "./api/parametrizedHostContext.js";
+export type { ParametrizedHostClientOptionalParams } from "./api/parametrizedHostContext.js";
 
 export class ParametrizedHostClient {
   private _client: ParametrizedHostContext;

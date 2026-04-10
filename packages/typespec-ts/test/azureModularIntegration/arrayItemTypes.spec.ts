@@ -1,4 +1,5 @@
-import { assert } from "chai";
+import { describe, it, beforeEach, assert } from "vitest";
+
 import { ArrayClient } from "./generated/type/array/src/index.js";
 
 interface TypeDetail {
@@ -89,46 +90,46 @@ describe("Array Item-Types Client", () => {
       let result: any;
       switch (item.type) {
         case "int32":
-          result = await client.int32Value.get();
+          result = (await client.int32Value.get()).body;
           break;
         case "int64":
-          result = await client.int64Value.get();
+          result = (await client.int64Value.get()).body;
           break;
         case "boolean":
-          result = await client.booleanValue.get();
+          result = (await client.booleanValue.get()).body;
           break;
         case "string":
-          result = await client.stringValue.get();
+          result = (await client.stringValue.get()).body;
           break;
         case "float32":
-          result = await client.float32Value.get();
+          result = (await client.float32Value.get()).body;
           break;
         case "datetime":
-          result = await client.datetimeValue.get();
+          result = (await client.datetimeValue.get()).body;
           break;
         case "duration":
-          result = await client.durationValue.get();
+          result = (await client.durationValue.get()).body;
           break;
         case "unknown":
-          result = await client.unknownValue.get();
+          result = (await client.unknownValue.get()).body;
           break;
         case "model":
           result = await client.modelValue.get();
           break;
         case "nullable-float":
-          result = await client.nullableFloatValue.get();
+          result = (await client.nullableFloatValue.get()).body;
           break;
         case "nullable-int32":
-          result = await client.nullableInt32Value.get();
+          result = (await client.nullableInt32Value.get()).body;
           break;
         case "nullable-string":
-          result = await client.nullableStringValue.get();
+          result = (await client.nullableStringValue.get()).body;
           break;
         case "nullable-boolean":
-          result = await client.nullableBooleanValue.get();
+          result = (await client.nullableBooleanValue.get()).body;
           break;
         case "nullable-model":
-          result = await client.nullableModelValue.get();
+          result = (await client.nullableModelValue.get()).body;
           break;
         default:
           break;

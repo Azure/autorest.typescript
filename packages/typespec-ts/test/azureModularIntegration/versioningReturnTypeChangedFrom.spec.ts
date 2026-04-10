@@ -1,4 +1,5 @@
-import { assert } from "chai";
+import { describe, it, beforeEach, assert } from "vitest";
+
 import { ReturnTypeChangedFromClient } from "./generated/versioning/returnTypeChangedFrom/src/index.js";
 
 describe("VersioningReturnTypeChangedFrom Rest Client", () => {
@@ -16,6 +17,6 @@ describe("VersioningReturnTypeChangedFrom Rest Client", () => {
         headers: { "content-type": "text/plain" }
       }
     });
-    assert.strictEqual(result, "test");
+    assert.strictEqual(result.body, "test");
   });
 });

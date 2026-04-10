@@ -10,7 +10,7 @@ import { YOperations, _getYOperations } from "./classic/y/index.js";
 import { A } from "./models/models.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
-export { FooClientOptionalParams } from "./api/fooContext.js";
+export type { FooClientOptionalParams } from "./api/fooContext.js";
 
 export class FooClient {
   private _client: FooContext;

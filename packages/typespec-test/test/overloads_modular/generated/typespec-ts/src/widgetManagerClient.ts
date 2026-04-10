@@ -13,7 +13,7 @@ import {
 import { KeyCredential, TokenCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
-export { WidgetManagerClientOptionalParams } from "./api/widgetManagerContext.js";
+export type { WidgetManagerClientOptionalParams } from "./api/widgetManagerContext.js";
 
 export class WidgetManagerClient {
   private _client: WidgetManagerContext;

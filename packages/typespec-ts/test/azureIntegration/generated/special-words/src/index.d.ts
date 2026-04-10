@@ -1,6 +1,7 @@
 import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import type { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
@@ -79,6 +80,34 @@ export declare interface Except {
 export declare interface Exec {
     name: string;
 }
+
+export declare type ExtensibleString = string;
+
+export declare type ExtensibleStringOutput = string;
+
+export declare interface ExtensibleStringsPutExtensibleStringValue {
+    put(options: ExtensibleStringsPutExtensibleStringValueParameters): StreamableMethod<ExtensibleStringsPutExtensibleStringValue200Response>;
+}
+
+export declare interface ExtensibleStringsPutExtensibleStringValue200Headers {
+    "content-type": "application/json";
+}
+
+export declare interface ExtensibleStringsPutExtensibleStringValue200Response extends HttpResponse {
+    status: "200";
+    body: ExtensibleStringOutput;
+    headers: RawHttpHeaders & ExtensibleStringsPutExtensibleStringValue200Headers;
+}
+
+export declare interface ExtensibleStringsPutExtensibleStringValueBodyParam {
+    body: ExtensibleString;
+}
+
+export declare interface ExtensibleStringsPutExtensibleStringValueMediaTypesParam {
+    contentType: "application/json";
+}
+
+export declare type ExtensibleStringsPutExtensibleStringValueParameters = ExtensibleStringsPutExtensibleStringValueMediaTypesParam & ExtensibleStringsPutExtensibleStringValueBodyParam & RequestParameters;
 
 export declare interface Finally {
     name: string;
@@ -1623,6 +1652,7 @@ export declare interface Routes {
     (path: "/special-words/model-properties/same-as-model"): ModelPropertiesSameAsModel;
     (path: "/special-words/model-properties/dict-methods"): ModelPropertiesDictMethods;
     (path: "/special-words/model-properties/list"): ModelPropertiesWithList;
+    (path: "/special-words/extensible-strings/string"): ExtensibleStringsPutExtensibleStringValue;
     (path: "/special-words/operations/and"): OperationsAnd;
     (path: "/special-words/operations/as"): OperationsAs;
     (path: "/special-words/operations/assert"): OperationsAssert;

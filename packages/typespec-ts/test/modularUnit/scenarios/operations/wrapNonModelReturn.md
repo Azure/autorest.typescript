@@ -1,0 +1,1301 @@
+# wrap-non-model-return wraps string scalar response with body property
+
+When `wrap-non-model-return` is enabled, scalar/non-model responses are wrapped with a `body` property to maintain HLC compatibility.
+
+## TypeSpec
+
+```tsp
+scalar PrivateDnsZoneSuffix extends string;
+
+@route("/dns")
+@get
+op get(): PrivateDnsZoneSuffix;
+```
+
+```yaml
+wrap-non-model-return: true
+```
+
+## Models
+
+```ts models alias GetResponse
+export type GetResponse = { body: string };
+```
+
+## Operations
+
+```ts operations
+import { TestingContext as Client } from "./index.js";
+import { GetResponse } from "../models/models.js";
+import { GetOptionalParams } from "./options.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+
+export function _getSend(
+  context: Client,
+  options: GetOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/dns")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: { accept: "text/plain", ...options.requestOptions?.headers },
+    });
+}
+
+export async function _getDeserialize(result: PathUncheckedResponse): Promise<GetResponse> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return { body: result.body };
+}
+
+export async function get(
+  context: Client,
+  options: GetOptionalParams = { requestOptions: {} },
+): Promise<GetResponse> {
+  const result = await _getSend(context, options);
+  return _getDeserialize(result);
+}
+```
+
+# wrap-non-model-return wraps string array response with body property
+
+## TypeSpec
+
+```tsp
+@route("/domains")
+@post
+op listDomains(): string[];
+```
+
+```yaml
+wrap-non-model-return: true
+```
+
+## Models
+
+```ts models alias ListDomainsResponse
+export type ListDomainsResponse = { body: string[] };
+```
+
+## Operations
+
+```ts operations
+import { TestingContext as Client } from "./index.js";
+import { ListDomainsResponse } from "../models/models.js";
+import { ListDomainsOptionalParams } from "./options.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+
+export function _listDomainsSend(
+  context: Client,
+  options: ListDomainsOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/domains")
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
+    });
+}
+
+export async function _listDomainsDeserialize(
+  result: PathUncheckedResponse,
+): Promise<ListDomainsResponse> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return {
+    body: result.body.map((p: any) => {
+      return p;
+    }),
+  };
+}
+
+export async function listDomains(
+  context: Client,
+  options: ListDomainsOptionalParams = { requestOptions: {} },
+): Promise<ListDomainsResponse> {
+  const result = await _listDomainsSend(context, options);
+  return _listDomainsDeserialize(result);
+}
+```
+
+# wrap-non-model-return wraps binary response with blobBody and readableStreamBody
+
+## TypeSpec
+
+```tsp
+@route("/logs")
+@get
+op getLogs(): {
+  @header contentType: "application/octet-stream";
+  @body body: bytes;
+};
+```
+
+```yaml
+wrap-non-model-return: true
+```
+
+## Models
+
+```ts models alias GetLogsResponse
+export type GetLogsResponse = {
+  /**
+   * BROWSER ONLY
+   *
+   * The response body as a browser Blob.
+   * Always `undefined` in node.js.
+   */
+  blobBody?: Promise<Blob>;
+  /**
+   * NODEJS ONLY
+   *
+   * The response body as a node.js Readable stream.
+   * Always `undefined` in the browser.
+   */
+  readableStreamBody?: NodeJS.ReadableStream;
+};
+```
+
+## Operations
+
+```ts operations
+import { TestingContext as Client } from "./index.js";
+import { GetLogsResponse } from "../models/models.js";
+import { getBinaryStreamResponse } from "../static-helpers/serialization/get-binary-stream-response.js";
+import { GetLogsOptionalParams } from "./options.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+
+export function _getLogsSend(
+  context: Client,
+  options: GetLogsOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/logs")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: { accept: "application/octet-stream", ...options.requestOptions?.headers },
+    });
+}
+
+export async function _getLogsDeserialize(
+  result: PathUncheckedResponse & GetLogsResponse,
+): Promise<GetLogsResponse> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return { blobBody: result.blobBody, readableStreamBody: result.readableStreamBody };
+}
+
+export async function getLogs(
+  context: Client,
+  options: GetLogsOptionalParams = { requestOptions: {} },
+): Promise<GetLogsResponse> {
+  const streamableMethod = _getLogsSend(context, options);
+  const result = await getBinaryStreamResponse(streamableMethod);
+  return _getLogsDeserialize(result);
+}
+```
+
+# wrap-non-model-return is false: returns non-model type directly
+
+When wrap-non-model-return is false, non-model types are returned directly.
+
+## TypeSpec
+
+```tsp
+scalar PrivateDnsZoneSuffix extends string;
+
+@route("/dns")
+@get
+op get(): PrivateDnsZoneSuffix;
+```
+
+```yaml
+wrap-non-model-return: false
+```
+
+## Operations
+
+```ts operations
+import { TestingContext as Client } from "./index.js";
+import { GetOptionalParams } from "./options.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+
+export function _getSend(
+  context: Client,
+  options: GetOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/dns")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: { accept: "text/plain", ...options.requestOptions?.headers },
+    });
+}
+
+export async function _getDeserialize(result: PathUncheckedResponse): Promise<string> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return result.body;
+}
+
+export async function get(
+  context: Client,
+  options: GetOptionalParams = { requestOptions: {} },
+): Promise<string> {
+  const result = await _getSend(context, options);
+  return _getDeserialize(result);
+}
+```
+
+# wrap-non-model-return does not wrap array-of-models response
+
+Array-of-models responses (Composite kind) are not wrapped — they are returned as `Resource[]` directly (matching HLC behavior where PropertyKind.Composite means no body wrapper).
+
+## TypeSpec
+
+```tsp
+model Resource {
+  id: string;
+  name: string;
+  scope: string;
+}
+
+@route("/resources")
+@get
+op list(): Resource[];
+```
+
+```yaml
+wrap-non-model-return: true
+```
+
+## Operations
+
+```ts operations
+import { TestingContext as Client } from "./index.js";
+import { Resource, resourceArrayDeserializer } from "../models/models.js";
+import { ListOptionalParams } from "./options.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+
+export function _listSend(
+  context: Client,
+  options: ListOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/resources")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
+    });
+}
+
+export async function _listDeserialize(result: PathUncheckedResponse): Promise<Resource[]> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return resourceArrayDeserializer(result.body);
+}
+
+export async function list(
+  context: Client,
+  options: ListOptionalParams = { requestOptions: {} },
+): Promise<Resource[]> {
+  const result = await _listSend(context, options);
+  return _listDeserialize(result);
+}
+```
+
+# wrap-non-model-return does not wrap model response types
+
+Model types (interfaces) are always returned directly even when wrap-non-model-return is true.
+
+## TypeSpec
+
+```tsp
+model MyModel {
+  name: string;
+}
+
+@route("/models")
+@get
+op getModel(): MyModel;
+```
+
+```yaml
+wrap-non-model-return: true
+```
+
+## Operations
+
+```ts operations
+import { TestingContext as Client } from "./index.js";
+import { MyModel, myModelDeserializer } from "../models/models.js";
+import { GetModelOptionalParams } from "./options.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+
+export function _getModelSend(
+  context: Client,
+  options: GetModelOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/models")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
+    });
+}
+
+export async function _getModelDeserialize(result: PathUncheckedResponse): Promise<MyModel> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return myModelDeserializer(result.body);
+}
+
+export async function getModel(
+  context: Client,
+  options: GetModelOptionalParams = { requestOptions: {} },
+): Promise<MyModel> {
+  const result = await _getModelSend(context, options);
+  return _getModelDeserialize(result);
+}
+```
+
+# wrap-non-model-return binary wrap generates error.details deserialization
+
+When a binary response operation has an error model, the deserializer should generate
+full `error.details` deserialization via status check + error enrichment.
+
+## TypeSpec
+
+```yaml
+wrap-non-model-return: true
+```
+
+```tsp
+@error
+model ApiError {
+  code: string;
+  message: string;
+}
+
+@route("/logs")
+@get
+op getLogs(): {
+  @header contentType: "application/octet-stream";
+  @body body: bytes;
+} | ApiError;
+```
+
+## Operations
+
+```ts operations function _getLogsDeserialize
+export async function _getLogsDeserialize(
+  result: PathUncheckedResponse & GetLogsResponse,
+): Promise<GetLogsResponse> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    const error = createRestError(result);
+    error.details = apiErrorDeserializer(result.body);
+
+    throw error;
+  }
+
+  return { blobBody: result.blobBody, readableStreamBody: result.readableStreamBody };
+}
+```
+
+# wrap-non-model-return binary wrap generates error.details with exception headers
+
+When a binary response operation has an error model with `@header` properties and
+`include-headers-in-response: true`, the deserializer should generate exception headers
+deserialization alongside the error.details enrichment.
+
+## TypeSpec
+
+```yaml
+wrap-non-model-return: true
+include-headers-in-response: true
+```
+
+```tsp
+@error
+model StorageError {
+  code: string;
+  message: string;
+  @header("x-ms-error-code") errorCode: string;
+}
+
+@route("/blobs")
+@get
+op getBlob(): {
+  @header contentType: "application/octet-stream";
+  @body body: bytes;
+} | StorageError;
+```
+
+## Operations
+
+```ts operations function _getBlobDeserializeExceptionHeaders
+export function _getBlobDeserializeExceptionHeaders(result: PathUncheckedResponse): {
+  errorCode: string;
+} {
+  return { errorCode: result.headers["x-ms-error-code"] };
+}
+```
+
+```ts operations function _getBlobDeserialize
+export async function _getBlobDeserialize(
+  result: PathUncheckedResponse & GetBlobResponse,
+): Promise<GetBlobResponse> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    const error = createRestError(result);
+    error.details = storageErrorDeserializer(result.body);
+    error.details = { ...(error.details as any), ..._getBlobDeserializeExceptionHeaders(result) };
+    throw error;
+  }
+
+  return { blobBody: result.blobBody, readableStreamBody: result.readableStreamBody };
+}
+```
+
+# skip: wrap-non-model-return wraps (string, boolean, string[], enum, any, model array,any object) response with body property
+
+Skip as need upgrade tcgc to next version https://github.com/Azure/typespec-azure/pull/4108/changes
+## TypeSpec
+
+```tsp
+model Test {
+  name: string;
+}
+union EnumTest  {
+  one: "one",
+  two: "two",
+  others: string
+}
+
+interface testResponse {
+  @route("/string")
+  @get
+  getString():string;
+
+  @route("/boolean")
+  @get
+  getBoolean():boolean;
+  
+  @route("/stringArray")
+  @get
+  getStringArray():string[];
+
+  @route("/any")
+  @get
+  getAny():unknown;
+
+  @route("/enum")
+  @get
+  getEnum(@body body:EnumTest):EnumTest;
+
+  @route("/modelArray")
+  @get
+  getModelArray():Test[];
+  
+  @route("/anyObject")
+  @get
+  getAnyObject():unknown;
+
+}
+```
+
+```yaml
+wrap-non-model-return: true
+```
+
+## Models
+
+```ts models
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/** model interface Test */
+export interface Test {
+  name: string;
+}
+
+export function testDeserializer(item: any): Test {
+  return {
+    name: item["name"],
+  };
+}
+
+/** Type of EnumTest */
+export type EnumTest = "one" | "two";
+/** Alias for _ */
+export type _ = "one" | "two" | string;
+
+export function testArrayDeserializer(result: Array<Test>): any[] {
+  return result.map((item) => {
+    return testDeserializer(item);
+  });
+}
+
+export type GetAnyObjectResponse = { body: any };
+
+export type GetEnumResponse = { body: "one" | "two" | string };
+
+export type GetAnyResponse = { body: any };
+
+export type GetStringArrayResponse = { body: string[] };
+
+export type GetBooleanResponse = { body: boolean };
+
+export type GetStringResponse = { body: string };
+```
+
+## Operations
+
+```ts operations
+import { TestingContext as Client } from "./index.js";
+import {
+  Test,
+  EnumTest,
+  testArrayDeserializer,
+  GetAnyObjectResponse,
+  GetEnumResponse,
+  GetAnyResponse,
+  GetStringArrayResponse,
+  GetBooleanResponse,
+  GetStringResponse,
+} from "../models/models.js";
+import {
+  GetAnyObjectOptionalParams,
+  GetModelArrayOptionalParams,
+  GetEnumOptionalParams,
+  GetAnyOptionalParams,
+  GetStringArrayOptionalParams,
+  GetBooleanOptionalParams,
+  GetStringOptionalParams,
+} from "./options.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+
+export function _getAnyObjectSend(
+  context: Client,
+  options: GetAnyObjectOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/anyObject")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
+    });
+}
+
+export async function _getAnyObjectDeserialize(
+  result: PathUncheckedResponse,
+): Promise<GetAnyObjectResponse> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return { body: result.body };
+}
+
+export async function getAnyObject(
+  context: Client,
+  options: GetAnyObjectOptionalParams = { requestOptions: {} },
+): Promise<GetAnyObjectResponse> {
+  const result = await _getAnyObjectSend(context, options);
+  return _getAnyObjectDeserialize(result);
+}
+
+export function _getModelArraySend(
+  context: Client,
+  options: GetModelArrayOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/modelArray")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
+    });
+}
+
+export async function _getModelArrayDeserialize(result: PathUncheckedResponse): Promise<Test[]> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return testArrayDeserializer(result.body);
+}
+
+export async function getModelArray(
+  context: Client,
+  options: GetModelArrayOptionalParams = { requestOptions: {} },
+): Promise<Test[]> {
+  const result = await _getModelArraySend(context, options);
+  return _getModelArrayDeserialize(result);
+}
+
+export function _getEnumSend(
+  context: Client,
+  body: EnumTest,
+  options: GetEnumOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/enum")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "text/plain",
+      body: body,
+    });
+}
+
+export async function _getEnumDeserialize(result: PathUncheckedResponse): Promise<GetEnumResponse> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return { body: result.body };
+}
+
+export async function getEnum(
+  context: Client,
+  body: EnumTest,
+  options: GetEnumOptionalParams = { requestOptions: {} },
+): Promise<GetEnumResponse> {
+  const result = await _getEnumSend(context, body, options);
+  return _getEnumDeserialize(result);
+}
+
+export function _getAnySend(
+  context: Client,
+  options: GetAnyOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/any")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
+    });
+}
+
+export async function _getAnyDeserialize(result: PathUncheckedResponse): Promise<GetAnyResponse> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return { body: result.body };
+}
+
+export async function getAny(
+  context: Client,
+  options: GetAnyOptionalParams = { requestOptions: {} },
+): Promise<GetAnyResponse> {
+  const result = await _getAnySend(context, options);
+  return _getAnyDeserialize(result);
+}
+
+export function _getStringArraySend(
+  context: Client,
+  options: GetStringArrayOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/stringArray")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
+    });
+}
+
+export async function _getStringArrayDeserialize(
+  result: PathUncheckedResponse,
+): Promise<GetStringArrayResponse> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return {
+    body: result.body.map((p: any) => {
+      return p;
+    }),
+  };
+}
+
+export async function getStringArray(
+  context: Client,
+  options: GetStringArrayOptionalParams = { requestOptions: {} },
+): Promise<GetStringArrayResponse> {
+  const result = await _getStringArraySend(context, options);
+  return _getStringArrayDeserialize(result);
+}
+
+export function _getBooleanSend(
+  context: Client,
+  options: GetBooleanOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/boolean")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: { accept: "text/plain", ...options.requestOptions?.headers },
+    });
+}
+
+export async function _getBooleanDeserialize(
+  result: PathUncheckedResponse,
+): Promise<GetBooleanResponse> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return { body: result.body };
+}
+
+export async function getBoolean(
+  context: Client,
+  options: GetBooleanOptionalParams = { requestOptions: {} },
+): Promise<GetBooleanResponse> {
+  const result = await _getBooleanSend(context, options);
+  return _getBooleanDeserialize(result);
+}
+
+export function _getStringSend(
+  context: Client,
+  options: GetStringOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/string")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: { accept: "text/plain", ...options.requestOptions?.headers },
+    });
+}
+
+export async function _getStringDeserialize(
+  result: PathUncheckedResponse,
+): Promise<GetStringResponse> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return { body: result.body };
+}
+
+export async function getString(
+  context: Client,
+  options: GetStringOptionalParams = { requestOptions: {} },
+): Promise<GetStringResponse> {
+  const result = await _getStringSend(context, options);
+  return _getStringDeserialize(result);
+}
+```
+
+# wrap-non-model-return wraps LRO string response with body property
+
+When `wrap-non-model-return` is enabled, LRO operations with non-model final result types
+(e.g., string) should also be wrapped in a response type alias for HLC compatibility.
+
+## TypeSpec
+
+```tsp
+import "@typespec/http";
+import "@typespec/rest";
+import "@typespec/versioning";
+import "@azure-tools/typespec-azure-core";
+import "@azure-tools/typespec-azure-resource-manager";
+using TypeSpec.Http;
+using TypeSpec.Rest;
+using TypeSpec.Versioning;
+using Azure.Core;
+using Azure.ResourceManager;
+
+@armProviderNamespace
+@service
+@versioned(Versions)
+@armCommonTypesVersion(Azure.ResourceManager.CommonTypes.Versions.v5)
+namespace Microsoft.Test;
+
+enum Versions {
+    v2024_01_01: "2024-01-01",
+}
+
+scalar IkeSasDocument extends string;
+
+model VpnSiteLinkConnection is TrackedResource<{}> {
+    @key("vpnSiteLinkConnectionName")
+    @path
+    @segment("vpnSiteLinkConnections")
+    name: string;
+}
+
+@armResourceOperations
+interface VpnSiteLinkConnections {
+    getIkeSas is ArmResourceActionAsync<
+        VpnSiteLinkConnection,
+        void,
+        { @body body: IkeSasDocument; },
+        LroHeaders = ArmLroLocationHeader<FinalResult = IkeSasDocument> &
+            Azure.Core.Foundations.RetryAfterHeader
+    >;
+}
+```
+
+```yaml
+wrap-non-model-return: true
+withRawContent: true
+```
+
+## Models
+
+```ts models alias GetIkeSasResponse
+export type GetIkeSasResponse = { body: string };
+```
+
+## Operations
+
+```ts operations function _getIkeSasDeserialize
+export async function _getIkeSasDeserialize(
+  result: PathUncheckedResponse,
+): Promise<GetIkeSasResponse> {
+  const expectedStatuses = ["202", "200", "201"];
+  if (!expectedStatuses.includes(result.status)) {
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+
+    throw error;
+  }
+
+  return { body: result.body };
+}
+```
+
+```ts operations function getIkeSas
+export function getIkeSas(
+  context: Client,
+  resourceGroupName: string,
+  vpnSiteLinkConnectionName: string,
+  options: GetIkeSasOptionalParams = { requestOptions: {} },
+): PollerLike<OperationState<GetIkeSasResponse>, GetIkeSasResponse> {
+  return getLongRunningPoller(context, _getIkeSasDeserialize, ["202", "200", "201"], {
+    updateIntervalInMs: options?.updateIntervalInMs,
+    abortSignal: options?.abortSignal,
+    getInitialResponse: () =>
+      _getIkeSasSend(context, resourceGroupName, vpnSiteLinkConnectionName, options),
+    resourceLocationConfig: "location",
+    apiVersion: context.apiVersion ?? "2024-01-01",
+  }) as PollerLike<OperationState<GetIkeSasResponse>, GetIkeSasResponse>;
+}
+```
+
+# wrap-non-model-return wraps HEAD void response as boolean body property
+
+When both `wrap-non-model-return` and `head-as-boolean` are enabled and the operation is a HEAD request with no response body,
+the response is wrapped as `{ body: boolean }` to indicate resource existence (true = exists, false = not found).
+This matches HLC behavior for HEAD operations.
+
+## TypeSpec
+
+```tsp
+@route("/resource-groups/{resourceGroupName}")
+@head
+op checkExistence(@path resourceGroupName: string): {
+  @statusCode _: 204;
+} | {
+  @statusCode _: 404;
+};
+```
+
+```yaml
+wrap-non-model-return: true
+head-as-boolean: true
+```
+
+## Models
+
+```ts models alias CheckExistenceResponse
+export type CheckExistenceResponse = { body: boolean };
+```
+
+## Operations
+
+```ts operations
+import { TestingContext as Client } from "./index.js";
+import { CheckExistenceResponse } from "../models/models.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import { CheckExistenceOptionalParams } from "./options.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+
+export function _checkExistenceSend(
+  context: Client,
+  resourceGroupName: string,
+  options: CheckExistenceOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/resource-groups/{resourceGroupName}",
+    {
+      resourceGroupName: resourceGroupName,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context.path(path).head({ ...operationOptionsToRequestParameters(options) });
+}
+
+export async function _checkExistenceDeserialize(
+  result: PathUncheckedResponse,
+): Promise<CheckExistenceResponse> {
+  const expectedStatuses = ["204", "404"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return { body: result.status.startsWith("2") };
+}
+
+export async function checkExistence(
+  context: Client,
+  resourceGroupName: string,
+  options: CheckExistenceOptionalParams = { requestOptions: {} },
+): Promise<CheckExistenceResponse> {
+  const result = await _checkExistenceSend(context, resourceGroupName, options);
+  return _checkExistenceDeserialize(result);
+}
+```
+
+# wrap-non-model-return wraps HEAD void-only response as boolean body property
+
+When both `wrap-non-model-return` and `head-as-boolean` are enabled and the operation is a HEAD request returning only void (success only),
+the response is wrapped as `{ body: boolean }`.
+
+## TypeSpec
+
+```tsp
+@route("/resources/{resourceName}")
+@head
+op headResource(@path resourceName: string): void;
+```
+
+```yaml
+wrap-non-model-return: true
+head-as-boolean: true
+```
+
+## Models
+
+```ts models alias HeadResourceResponse
+export type HeadResourceResponse = { body: boolean };
+```
+
+## Operations
+
+```ts operations
+import { TestingContext as Client } from "./index.js";
+import { HeadResourceResponse } from "../models/models.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import { HeadResourceOptionalParams } from "./options.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+
+export function _headResourceSend(
+  context: Client,
+  resourceName: string,
+  options: HeadResourceOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/resources/{resourceName}",
+    {
+      resourceName: resourceName,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context.path(path).head({ ...operationOptionsToRequestParameters(options) });
+}
+
+export async function _headResourceDeserialize(
+  result: PathUncheckedResponse,
+): Promise<HeadResourceResponse> {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return { body: result.status.startsWith("2") };
+}
+
+export async function headResource(
+  context: Client,
+  resourceName: string,
+  options: HeadResourceOptionalParams = { requestOptions: {} },
+): Promise<HeadResourceResponse> {
+  const result = await _headResourceSend(context, resourceName, options);
+  return _headResourceDeserialize(result);
+}
+```
+
+# Non wrap HEAD void-only response as boolean (no body wrap)
+
+When `head-as-boolean` is true but `wrap-non-model-return` is false, the HEAD operation
+returns a plain `boolean` (not wrapped in `{ body: boolean }`).
+
+## TypeSpec
+
+```tsp
+@route("/resources/{resourceName}")
+@head
+op headResource(@path resourceName: string): void;
+```
+
+```yaml
+wrap-non-model-return: false
+head-as-boolean: true
+```
+
+## Operations
+
+```ts operations
+import { TestingContext as Client } from "./index.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import { HeadResourceOptionalParams } from "./options.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+
+export function _headResourceSend(
+  context: Client,
+  resourceName: string,
+  options: HeadResourceOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/resources/{resourceName}",
+    {
+      resourceName: resourceName,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context.path(path).head({ ...operationOptionsToRequestParameters(options) });
+}
+
+export async function _headResourceDeserialize(result: PathUncheckedResponse): Promise<boolean> {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return result.status.startsWith("2");
+}
+
+export async function headResource(
+  context: Client,
+  resourceName: string,
+  options: HeadResourceOptionalParams = { requestOptions: {} },
+): Promise<boolean> {
+  const result = await _headResourceSend(context, resourceName, options);
+  return _headResourceDeserialize(result);
+}
+```
+
+# HEAD void-only response as void body property
+
+## TypeSpec
+
+```tsp
+@route("/resources/{resourceName}")
+@head
+op headResource(@path resourceName: string): void;
+```
+
+```yaml
+wrap-non-model-return: false
+head-as-boolean: false
+```
+
+## Operations
+
+```ts operations
+import { TestingContext as Client } from "./index.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import { HeadResourceOptionalParams } from "./options.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+
+export function _headResourceSend(
+  context: Client,
+  resourceName: string,
+  options: HeadResourceOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/resources/{resourceName}",
+    {
+      resourceName: resourceName,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context.path(path).head({ ...operationOptionsToRequestParameters(options) });
+}
+
+export async function _headResourceDeserialize(result: PathUncheckedResponse): Promise<void> {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return;
+}
+
+export async function headResource(
+  context: Client,
+  resourceName: string,
+  options: HeadResourceOptionalParams = { requestOptions: {} },
+): Promise<void> {
+  const result = await _headResourceSend(context, resourceName, options);
+  return _headResourceDeserialize(result);
+}
+```
+
+# Wrap-non-model-return wraps HEAD void-only response as void body property
+
+## TypeSpec
+
+```tsp
+@route("/resources/{resourceName}")
+@head
+op headResource(@path resourceName: string): void;
+```
+
+```yaml
+wrap-non-model-return: true
+head-as-boolean: false
+```
+
+## Operations
+
+```ts operations
+import { TestingContext as Client } from "./index.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import { HeadResourceOptionalParams } from "./options.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+
+export function _headResourceSend(
+  context: Client,
+  resourceName: string,
+  options: HeadResourceOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/resources/{resourceName}",
+    {
+      resourceName: resourceName,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context.path(path).head({ ...operationOptionsToRequestParameters(options) });
+}
+
+export async function _headResourceDeserialize(result: PathUncheckedResponse): Promise<void> {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return;
+}
+
+export async function headResource(
+  context: Client,
+  resourceName: string,
+  options: HeadResourceOptionalParams = { requestOptions: {} },
+): Promise<void> {
+  const result = await _headResourceSend(context, resourceName, options);
+  return _headResourceDeserialize(result);
+}
+```

@@ -9,7 +9,7 @@ import {
 import { AOperations, _getAOperations } from "./classic/a/index.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
-export { DemoServiceClientOptionalParams } from "./api/demoServiceContext.js";
+export type { DemoServiceClientOptionalParams } from "./api/demoServiceContext.js";
 
 export class DemoServiceClient {
   private _client: DemoServiceContext;

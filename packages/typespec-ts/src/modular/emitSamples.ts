@@ -577,11 +577,30 @@ function getParameterValue(
     }
     case "boolean":
     case "number":
-    case "null":
     case "unknown":
     case "union":
       retValue = `${JSON.stringify(value.value)}`;
       break;
+    case "null": {
+      const ignoreNullableOnOptional =
+        context.rlcOptions?.ignoreNullableOnOptional ?? false;
+      if (ignoreNullableOnOptional) {
+        // When ignore-nullable-on-optional is true, the TypeScript type won't include
+        // | null for optional properties, so we convert null to a type-appropriate default
+        // to avoid type errors in the generated sample code.
+        const innerTypeKind = value.type.type.kind;
+        if (innerTypeKind === "array") {
+          retValue = "[]";
+        } else if (innerTypeKind === "model" || innerTypeKind === "dict") {
+          retValue = "{}";
+        } else {
+          retValue = "undefined";
+        }
+      } else {
+        retValue = `${JSON.stringify(value.value)}`;
+      }
+      break;
+    }
     case "dict":
     case "model": {
       const mapper = buildPropertyNameMapper(
@@ -627,9 +646,15 @@ function getParameterValue(
           propRetValue =
             paramValue.length > 2 ? paramValue.slice(1, -1) : undefined;
         } else {
+          // Don't propagate enableFlatten:false to deeper levels — it's only
+          // meant to block consecutive (transition) flatten at the direct child
+          // level.  Non-flatten properties should recurse with default behavior
+          // so that independent inner flattens at deeper levels still work.
+          const childOptions =
+            options?.overrides?.enableFlatten === false ? undefined : options;
           propRetValue =
             `"${mapper.get(propName) ?? propName}": ` +
-            getParameterValue(context, propValue, options);
+            getParameterValue(context, propValue, childOptions);
         }
         if (propRetValue) values.push(propRetValue);
       }

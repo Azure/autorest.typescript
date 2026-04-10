@@ -1,5 +1,6 @@
+import { describe, it, beforeEach, assert } from "vitest";
+
 import { PageClient, User } from "./generated/azure/core/page/src/index.js";
-import { assert } from "chai";
 
 describe("Page Client", () => {
   let client: PageClient;
@@ -78,5 +79,18 @@ describe("Page Client", () => {
       .withParameterizedNextLink("name", { includePending: true })
       .next();
     assert.strictEqual(result.value.name, "User1");
+  });
+
+  it("should list core page withRelativeNextLink", async () => {
+    const result = client.withRelativeNextLink();
+    const items: User[] = [];
+    for await (const page of result) {
+      items.push(page);
+    }
+    assert.strictEqual(items.length, 2);
+    assert.strictEqual(items[0]?.id, 1);
+    assert.strictEqual(items[0]?.name, "User1");
+    assert.strictEqual(items[1]?.id, 2);
+    assert.strictEqual(items[1]?.name, "User2");
   });
 });

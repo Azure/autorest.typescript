@@ -21,21 +21,6 @@ Skip if the user confirms these have already been run.
 
 ## Workflow
 
-### Step 0: Ensure Specs Are Up-to-Date
-
-Check if newer dev versions of the spec packages are available:
-
-```bash
-npm view @typespec/http-specs dist-tags.next
-npm view @azure-tools/azure-http-specs dist-tags.next
-```
-
-Compare the output versions with the versions listed in the `devDependencies` section of `packages/typespec-ts/package.json`. If either package has a newer version:
-
-1. Edit `packages/typespec-ts/package.json` — update the version string for the package(s) in `devDependencies`.
-2. Run `pnpm install` at the repo root to update `pnpm-lock.yaml`.
-3. Both `packages/typespec-ts/package.json` and `pnpm-lock.yaml` must be committed with your changes.
-
 For each test case path (e.g., `encode/numeric`):
 
 ### Step 1: Validate the Path
@@ -64,7 +49,7 @@ Then branch:
 
 **Case A -- Fully new (not in azureModularTsps, no .spec.ts):** Go to Step 4.
 
-**Case B -- Entry + .spec.ts exist:** Compare scenarios from mockapi.ts against the .spec.ts. If all covered, report this to the user and skip to the next path. If new scenarios exist, add only missing test cases, then go to Step 6.
+**Case B -- Entry + .spec.ts exist:** Compare scenarios from mockapi.ts against the .spec.ts. If all covered, report this to the user and skip to the next path. If new scenarios exist, add only missing test cases, then go to Step 6. **Important:** When modifying existing `.spec.ts` files, follow the [skip preservation rules](#preserving-skipped-tests).
 
 **Case C -- Entry exists but no .spec.ts:** Skip Step 4, go to Step 5.
 
@@ -95,11 +80,12 @@ This step has two phases: first create the config and generate the client, then 
    ```bash
    npx tsx ./test/commands/gen-cadl-ranch.js --tag=azure-modular --filter=<path>
    ```
-4. Read `test/azureModularIntegration/generated/<path>/src/index.ts` to discover the client class name, method signatures, and operation groups.
+4. **Verify generation succeeded:** Check that `test/azureModularIntegration/generated/<path>/src/index.ts` exists and contains actual client class exports (not empty or placeholder). If the file is missing or empty, **stop** — remove the entry from `cadl-ranch-list.js`, delete the generated directory, and report that generation is not supported for this path.
+5. Read `test/azureModularIntegration/generated/<path>/src/index.ts` to discover the client class name, method signatures, and operation groups.
 
 **Phase 2 -- .spec.ts file:**
 
-1. Read `temp/specs/<path>/mockapi.ts` to understand scenarios and expected behavior.
+1. Read both the TypeSpec source file(s) at `temp/specs/<path>/main.tsp` (and any additional `.tsp` files) and the `mockapi.ts` file. Understand what each scenario expects: the correct request parameters, request body, and response shape. Pay attention to decorators and annotations that affect how the SDK should behave — the `.tsp` file is the source of truth for intended semantics, while `mockapi.ts` defines what the mock server validates.
 2. Find 1-2 similar existing `.spec.ts` files in `test/azureModularIntegration/` and use them as templates.
 3. Create the test file at `test/azureModularIntegration/<camelCaseName>.spec.ts`. See [naming conventions and test templates](references/naming-and-templates.md) for file naming rules, the test boilerplate, and assertion patterns.
 
@@ -114,8 +100,10 @@ npm run start-test-server:azure-modular
 Wait for `Started server on 3002` to appear, then in a separate terminal run the specific test file:
 
 ```bash
-cross-env TS_NODE_PROJECT=tsconfig.integration.json mocha -r ts-node/register --experimental-specifier-resolution=node --timeout 36000 ./test/azureModularIntegration/<specFileName>.spec.ts
+npx vitest run --project integration-azure-modular ./test/azureModularIntegration/<specFileName>.spec.ts
 ```
+
+If any test cases fail, verify your test implementation against `mockapi.ts` and the `.tsp` file. If the test correctly matches the expected behavior but still fails (e.g., the SDK doesn't inject default values, serialization is wrong, or the generated code has bugs), **remove the failing test case** from the `.spec.ts` file. Keep any passing test cases. Re-run the test file until all remaining tests pass.
 
 After the test completes, stop the server:
 
@@ -125,28 +113,55 @@ npm run stop-test-server -- -p 3002
 
 **Note:** Do not use `npm run generate-and-run:azure-modular` for validation -- it regenerates all clients and runs all tests (~30+ minutes), and unrelated flaky tests may cause false failures. Only run the specific test file you created.
 
-### Step 7: Report Results
+### Step 7: Format Code
 
-After running tests, report to the user:
+After creating or modifying any files, **always** run the formatter from the repo root:
+
+```bash
+cd <repo-root>
+pnpm format
+```
+
+This must be done before committing. Skipping this step will cause CI formatting checks to fail.
+
+### Step 8: Report Results
+
+After all tests pass, report to the user:
 
 - Which paths were processed
 - Which scenarios were newly implemented (and in which `.spec.ts` file)
 - Which scenarios already existed and were skipped
-- **Which scenarios failed.** For each failure, compare the expected values in your test against `mockapi.ts` to confirm your test implementation is correct (e.g., correct method calls, correct request bodies, correct expected response values). If your test has a bug, fix it and re-run. If the test correctly matches `mockapi.ts` but still fails due to mismatched expected vs actual results, it's likely an emitter bug or unsupported feature. In that case, keep the test code -- do not delete failing tests -- and tell the user which specific scenarios failed so they can investigate the emitter.
+- Which scenarios were removed due to test failures (with a brief reason for each)
+
+## Preserving Skipped Tests
+
+When modifying existing `.spec.ts` files, check for `it.skip` blocks with associated GitHub issue references before making changes.
+
+Before unskipping any test:
+
+1. Find the associated issue URL (usually in a comment above the `it.skip`)
+2. Check whether the issue is **closed/resolved** on GitHub
+3. Only unskip if the issue is explicitly closed — if still open, leave it skipped
+4. Unskip the test and remove the issue reference comment if the test is now passing and the issue is resolved
+
+## PR Description Requirements
+
+Always keep the PR description updated with an implementation status report including:
+
+- ✅ **Implemented scenarios** — paths and test counts
+- ❌ **Non-implemented scenarios** — with specific reason or emitter bug descriptions
 
 ## Expected Output Files
 
 For each new test path, these are the files that should be committed:
 
-| File                                                           | Action                                             |
-| -------------------------------------------------------------- | -------------------------------------------------- |
-| `packages/typespec-ts/package.json`                            | Modified (if spec versions were updated in Step 0) |
-| `pnpm-lock.yaml`                                               | Modified (if spec versions were updated in Step 0) |
-| `test/commands/cadl-ranch-list.js`                             | Modified (new entry in `azureModularTsps`)         |
-| `test/azureModularIntegration/generated/<path>/.gitignore`     | Created                                            |
-| `test/azureModularIntegration/generated/<path>/tspconfig.yaml` | Created                                            |
-| `test/azureModularIntegration/generated/<path>/src/index.d.ts` | Generated (by gen-cadl-ranch.js)                   |
-| `test/azureModularIntegration/<camelCaseName>.spec.ts`         | Created                                            |
+| File                                                           | Action                                     |
+| -------------------------------------------------------------- | ------------------------------------------ |
+| `test/commands/cadl-ranch-list.js`                             | Modified (new entry in `azureModularTsps`) |
+| `test/azureModularIntegration/generated/<path>/.gitignore`     | Created                                    |
+| `test/azureModularIntegration/generated/<path>/tspconfig.yaml` | Created                                    |
+| `test/azureModularIntegration/generated/<path>/src/index.d.ts` | Generated (by gen-cadl-ranch.js)           |
+| `test/azureModularIntegration/<camelCaseName>.spec.ts`         | Created                                    |
 
 Do **not** commit these files:
 
@@ -155,9 +170,12 @@ Do **not** commit these files:
 
 ## Troubleshooting
 
-| Problem              | Fix                                                             |
-| -------------------- | --------------------------------------------------------------- |
-| Import fails         | Check the exact client name in `generated/<path>/src/index.ts`  |
-| Connection refused   | Ensure test server is running on port 3002                      |
-| Constructor mismatch | Read the generated client's `index.ts` for the actual signature |
-| Assertion mismatch   | Re-read `mockapi.ts` for exact expected values                  |
+| Problem                                   | Fix                                                                               |
+| ----------------------------------------- | --------------------------------------------------------------------------------- |
+| Import fails                              | Check the exact client name in `generated/<path>/src/index.ts`                    |
+| Connection refused                        | Ensure test server is running on port 3002                                        |
+| Constructor mismatch                      | Read the generated client's `index.ts` for the actual signature                   |
+| Assertion mismatch                        | Re-read `mockapi.ts` for exact expected values                                    |
+| Formatting CI fails                       | Run `pnpm format` at repo root before committing                                  |
+| Generation produces no output             | Remove path from `cadl-ranch-list.js`; emitter doesn't support it                 |
+| Test passes locally but body is undefined | Check generated code for placeholder types like `__PLACEHOLDER_*__` — emitter bug |

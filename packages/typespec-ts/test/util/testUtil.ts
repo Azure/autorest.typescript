@@ -28,13 +28,16 @@ import {
   PagingHelpers,
   PollingHelpers,
   SerializationHelpers,
+  StorageCompatHelpers,
   UrlTemplateHelpers,
-  XmlHelpers
+  XmlHelpers,
+  CreateRecorderHelpers
 } from "../../src/modular/static-helpers-metadata.js";
 import {
   AzureCoreDependencies,
   AzureIdentityDependencies,
-  AzurePollingDependencies
+  AzurePollingDependencies,
+  AzureTestDependencies
 } from "../../src/modular/external-dependencies.js";
 
 export interface ExampleJson {
@@ -268,7 +271,8 @@ export async function provideBinderWithAzureDependencies(project: Project) {
   const extraDependencies = {
     ...AzurePollingDependencies,
     ...AzureCoreDependencies,
-    ...AzureIdentityDependencies
+    ...AzureIdentityDependencies,
+    ...AzureTestDependencies
   };
 
   const staticHelpers = {
@@ -277,11 +281,14 @@ export async function provideBinderWithAzureDependencies(project: Project) {
     ...PagingHelpers,
     ...PollingHelpers,
     ...UrlTemplateHelpers,
-    ...MultipartHelpers
+    ...MultipartHelpers,
+    ...CreateRecorderHelpers,
+    ...StorageCompatHelpers
   };
 
   const staticHelperMap = await loadStaticHelpers(project, staticHelpers, {
-    helpersAssetDirectory: helpersDirectory
+    helpersAssetDirectory: helpersDirectory,
+    loadTestHelpers: true
   });
 
   const binder = provideBinder(project, {

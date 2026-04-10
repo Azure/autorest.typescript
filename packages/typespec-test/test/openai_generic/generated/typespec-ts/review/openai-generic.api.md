@@ -455,6 +455,11 @@ export interface FilesDeleteOptionalParams extends OperationOptions {
 export interface FilesDownloadOptionalParams extends OperationOptions {
 }
 
+// @public (undocumented)
+export type FilesDownloadResponse = {
+    body: string;
+};
+
 // @public
 export interface FilesListOptionalParams extends OperationOptions {
 }
@@ -465,7 +470,7 @@ export interface FilesOperations {
     create: (file: CreateFileRequest, options?: FilesCreateOptionalParams) => Promise<OpenAIFile>;
     delete: (fileId: string, options?: FilesDeleteOptionalParams) => Promise<DeleteFileResponse>;
     // (undocumented)
-    download: (fileId: string, options?: FilesDownloadOptionalParams) => Promise<string>;
+    download: (fileId: string, options?: FilesDownloadOptionalParams) => Promise<FilesDownloadResponse>;
     // (undocumented)
     list: (options?: FilesListOptionalParams) => Promise<ListFilesResponse>;
     // (undocumented)

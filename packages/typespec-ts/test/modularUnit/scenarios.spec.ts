@@ -1,4 +1,5 @@
-import { assert } from "chai";
+import { describe, it, assert } from "vitest";
+
 import { readdirSync, readFileSync, statSync, writeFileSync } from "fs";
 import path from "path";
 import {
@@ -7,7 +8,8 @@ import {
   emitModularModelsFromTypeSpec,
   emitModularOperationsFromTypeSpec,
   emitRootIndexFromTypeSpec,
-  emitSamplesFromTypeSpec
+  emitSamplesFromTypeSpec,
+  emitTestsFromTypeSpec
 } from "../util/emitUtil.js";
 import { assertEqualContent, ExampleJson } from "../util/testUtil.js";
 import { format } from "prettier";
@@ -218,6 +220,52 @@ const OUTPUT_CODE_BLOCK_TYPES: Record<string, EmitterFunction> = {
       : {};
     const result = await emitModularClientFromTypeSpec(tsp, configs);
     return result ? result!.getFullText()! : "";
+  },
+
+  // Pattern for a specific test file - look it up by file name
+  "(ts|typescript) tests {fileName}": async (
+    tsp,
+    { fileName },
+    namedUnknownArgs
+  ) => {
+    if (!namedUnknownArgs || !namedUnknownArgs["examples"]) {
+      throw new Error(`Expected 'examples' to be passed in as an argument`);
+    }
+    const configs = namedUnknownArgs["configs"] as Record<string, string>;
+    const examples = namedUnknownArgs["examples"] as ExampleJson[];
+    const result = await emitTestsFromTypeSpec(tsp, examples, configs);
+
+    // Normalize fileName to handle both "backupTest" and "backupTest.spec.ts" patterns
+    const normalizedFileName = fileName?.replace(/\.spec\.ts$/, "") || "";
+
+    // Find the specific file by name
+    const targetFile = result.find((x) =>
+      x.getFilePath().includes(normalizedFileName)
+    );
+    if (!targetFile) {
+      throw new Error(
+        `File with name containing '${normalizedFileName}' not found in generated tests`
+      );
+    }
+
+    return `/** This file path is ${targetFile.getFilePath()} */\n\n${targetFile.getFullText()}`;
+  },
+
+  // Pattern for single test file - returns the first generated test file
+  "(ts|typescript) tests": async (tsp, {}, namedUnknownArgs) => {
+    if (!namedUnknownArgs || !namedUnknownArgs["examples"]) {
+      throw new Error(`Expected 'examples' to be passed in as an argument`);
+    }
+    const configs = namedUnknownArgs["configs"] as Record<string, string>;
+    const examples = namedUnknownArgs["examples"] as ExampleJson[];
+    const result = await emitTestsFromTypeSpec(tsp, examples, configs);
+
+    if (result.length === 0) {
+      return "// (file was not generated)";
+    }
+
+    const file = result[0]!;
+    return `/** This file path is ${file.getFilePath()} */\n\n${file.getFullText()}`;
   }
 };
 

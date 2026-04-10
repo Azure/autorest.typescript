@@ -6,18 +6,21 @@ import {
   AzureCoreDependencies,
   AzureIdentityDependencies,
   AzurePollingDependencies,
-  DefaultCoreDependencies
+  DefaultCoreDependencies,
+  AzureTestDependencies
 } from "./modular/external-dependencies.js";
 import { clearDirectory } from "./utils/fileSystemUtils.js";
 import { EmitContext, Program } from "@typespec/compiler";
 import { GenerationDirDetail, SdkContext } from "./utils/interfaces.js";
 import {
   CloudSettingHelpers,
+  CreateRecorderHelpers,
   MultipartHelpers,
   PagingHelpers,
   PollingHelpers,
   SerializationHelpers,
   SimplePollerHelpers,
+  StorageCompatHelpers,
   UrlTemplateHelpers,
   XmlHelpers
 } from "./modular/static-helpers-metadata.js";
@@ -90,7 +93,7 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import { transformModularEmitterOptions } from "./modular/buildModularOptions.js";
 import { emitLoggerFile } from "./modular/emitLoggerFile.js";
-import { emitTypes } from "./modular/emitModels.js";
+import { emitTypes, emitNonModelResponseTypes } from "./modular/emitModels.js";
 import { existsSync } from "fs";
 import { getModuleExports } from "./modular/buildProjectFiles.js";
 import {
@@ -106,6 +109,7 @@ import { provideSdkTypes } from "./framework/hooks/sdkTypes.js";
 import { transformRLCModel } from "./transform/transform.js";
 import { transformRLCOptions } from "./transform/transfromRLCOptions.js";
 import { emitSamples } from "./modular/emitSamples.js";
+import { emitTests } from "./modular/emitTests.js";
 import { generateCrossLanguageDefinitionFile } from "./utils/crossLanguageDef.js";
 import { getClassicalClientName } from "./modular/helpers/namingHelpers.js";
 
@@ -120,6 +124,12 @@ export async function $onEmit(context: EmitContext) {
   const program: Program = context.program;
   const emitterOptions: EmitterOptions = context.options;
   const dpgContext = await createContextWithDefaultOptions(context);
+
+  // Report any diagnostics from TCGC
+  if (dpgContext.diagnostics?.length > 0) {
+    program.reportDiagnostics(dpgContext.diagnostics);
+  }
+
   // Enrich the dpg context with path detail and common options
   await enrichDpgContext();
   const rlcOptions = dpgContext.rlcOptions ?? {};
@@ -146,10 +156,13 @@ export async function $onEmit(context: EmitContext) {
       ...UrlTemplateHelpers,
       ...MultipartHelpers,
       ...CloudSettingHelpers,
-      ...XmlHelpers
+      ...XmlHelpers,
+      ...(rlcOptions.generateTest ? CreateRecorderHelpers : {}),
+      ...(rlcOptions.enableStorageCompat ? StorageCompatHelpers : {})
     },
     {
       sourcesDir: dpgContext.generationPathDetail?.modularSourcesDir,
+      rootDir: dpgContext.generationPathDetail?.rootDir,
       options: rlcOptions,
       program
     }
@@ -158,7 +171,8 @@ export async function $onEmit(context: EmitContext) {
     ? {
         ...AzurePollingDependencies,
         ...AzureCoreDependencies,
-        ...AzureIdentityDependencies
+        ...AzureIdentityDependencies,
+        ...AzureTestDependencies
       }
     : { ...DefaultCoreDependencies };
   const binder = provideBinder(outputProject, {
@@ -325,6 +339,7 @@ export async function $onEmit(context: EmitContext) {
     );
 
     emitTypes(dpgContext, { sourceRoot: modularSourcesRoot });
+    emitNonModelResponseTypes(dpgContext, { sourceRoot: modularSourcesRoot });
     buildSubpathIndexFile(modularEmitterOptions, "models", undefined, {
       recursive: true
     });
@@ -379,7 +394,10 @@ export async function $onEmit(context: EmitContext) {
       }
     }
 
-    binder.resolveAllReferences(modularSourcesRoot);
+    binder.resolveAllReferences(
+      modularSourcesRoot,
+      dpgContext.generationPathDetail?.rootDir
+    );
     if (program.compilerOptions.noEmit || program.hasError()) {
       return;
     }
@@ -444,11 +462,6 @@ export async function $onEmit(context: EmitContext) {
       "README.md"
     );
     const hasReadmeFile = await existsSync(existingReadmeFilePath);
-    const existingWarpConfigFilePath = join(
-      dpgContext.generationPathDetail?.metadataDir ?? "",
-      "warp.config.yml"
-    );
-    const hasWarpConfigFile = await existsSync(existingWarpConfigFilePath);
     const shouldGenerateMetadata =
       option.generateMetadata === true || !hasPackageFile;
     const existingTestFolderPath = join(
@@ -456,7 +469,7 @@ export async function $onEmit(context: EmitContext) {
       "test"
     );
     const hasTestFolder = await existsSync(existingTestFolderPath);
-    if (option.azureSdkForJs && option.generateTest === undefined) {
+    if (option.generateTest === undefined) {
       if (hasTestFolder) {
         option.generateTest = false;
       } else {
@@ -489,6 +502,13 @@ export async function $onEmit(context: EmitContext) {
       }
       if (isAzureFlavor) {
         commonBuilders.push(buildEsLintConfig);
+      }
+      if (
+        emitterOptions["generate-test"] === true &&
+        option.azureSdkForJs === true &&
+        emitterOptions["generate-metadata"] === true
+      ) {
+        await emitTests(dpgContext);
       }
       let modularPackageInfo = {};
       if (option.isModularLibrary) {
@@ -523,8 +543,8 @@ export async function $onEmit(context: EmitContext) {
       commonBuilders.push((model) =>
         buildPackageFile(model, modularPackageInfo)
       );
-      // Generate warp.config.yml for Azure monorepo ESM packages (only if it doesn't exist)
-      if (option.azureSdkForJs && !hasWarpConfigFile) {
+      // Generate warp.config.yml for Azure monorepo ESM packages
+      if (option.azureSdkForJs) {
         commonBuilders.push((model) =>
           buildWarpConfig(model, modularPackageInfo)
         );
@@ -538,7 +558,7 @@ export async function $onEmit(context: EmitContext) {
       }
 
       // TODO: need support snippets generation for multi-client cases. https://github.com/Azure/autorest.typescript/issues/3048
-      if (option.generateTest && isAzureFlavor) {
+      if (option.generateTest) {
         for (const subClient of dpgContext.sdkPackage.clients) {
           commonBuilders.push((model) =>
             buildSnippets(model, subClient.name, option.azureSdkForJs)
@@ -582,8 +602,8 @@ export async function $onEmit(context: EmitContext) {
         );
       }
 
-      // Generate warp.config.yml for Azure monorepo packages (only if it doesn't exist)
-      if (option.azureSdkForJs && !hasWarpConfigFile) {
+      // Update warp.config.yml for Azure monorepo packages
+      if (option.azureSdkForJs) {
         updateBuilders.push((model: RLCModel) =>
           buildWarpConfig(model, modularPackageInfo)
         );
@@ -635,7 +655,7 @@ export async function $onEmit(context: EmitContext) {
     }
 
     // Generate test relevant files
-    if (option.generateTest && isAzureFlavor && !hasTestFolder) {
+    if (option.generateTest && !hasTestFolder) {
       await emitContentByBuilder(
         program,
         [buildRecordedClientFile, buildSampleTest],

@@ -1,4 +1,5 @@
-import { assert } from "chai";
+import { describe, it, beforeEach, assert } from "vitest";
+
 import { ScalarClient } from "./generated/azure/core/scalar/src/index.js";
 describe("Scalar Azure core Client", () => {
   let client: ScalarClient;
@@ -12,7 +13,7 @@ describe("Scalar Azure core Client", () => {
 
   it("should get an Azure Location value", async () => {
     const result = await client.get();
-    assert.strictEqual(result, "eastus");
+    assert.strictEqual(result.body, "eastus");
   });
 
   it("should put an Azure Location value", async () => {

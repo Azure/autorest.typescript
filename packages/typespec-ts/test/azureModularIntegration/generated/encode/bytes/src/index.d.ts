@@ -115,24 +115,47 @@ export declare interface RequestBodyOperations {
 export declare interface ResponseBodyBase64OptionalParams extends OperationOptions {
 }
 
+export declare type ResponseBodyBase64Response = {
+    body: Uint8Array;
+};
+
 export declare interface ResponseBodyBase64UrlOptionalParams extends OperationOptions {
 }
+
+export declare type ResponseBodyBase64UrlResponse = {
+    body: Uint8Array;
+};
 
 export declare interface ResponseBodyCustomContentTypeOptionalParams extends OperationOptions {
 }
 
+export declare type ResponseBodyCustomContentTypeResponse = {
+    blobBody?: Promise<Blob>;
+    readableStreamBody?: NodeJS.ReadableStream;
+};
+
 export declare interface ResponseBodyDefaultOptionalParams extends OperationOptions {
 }
+
+export declare type ResponseBodyDefaultResponse = {
+    blobBody?: Promise<Blob>;
+    readableStreamBody?: NodeJS.ReadableStream;
+};
 
 export declare interface ResponseBodyOctetStreamOptionalParams extends OperationOptions {
 }
 
+export declare type ResponseBodyOctetStreamResponse = {
+    blobBody?: Promise<Blob>;
+    readableStreamBody?: NodeJS.ReadableStream;
+};
+
 export declare interface ResponseBodyOperations {
-    base64Url: (options?: ResponseBodyBase64UrlOptionalParams) => Promise<Uint8Array>;
-    base64: (options?: ResponseBodyBase64OptionalParams) => Promise<Uint8Array>;
-    customContentType: (options?: ResponseBodyCustomContentTypeOptionalParams) => Promise<Uint8Array>;
-    octetStream: (options?: ResponseBodyOctetStreamOptionalParams) => Promise<Uint8Array>;
-    default: (options?: ResponseBodyDefaultOptionalParams) => Promise<Uint8Array>;
+    base64Url: (options?: ResponseBodyBase64UrlOptionalParams) => Promise<ResponseBodyBase64UrlResponse>;
+    base64: (options?: ResponseBodyBase64OptionalParams) => Promise<ResponseBodyBase64Response>;
+    customContentType: (options?: ResponseBodyCustomContentTypeOptionalParams) => Promise<ResponseBodyCustomContentTypeResponse>;
+    octetStream: (options?: ResponseBodyOctetStreamOptionalParams) => Promise<ResponseBodyOctetStreamResponse>;
+    default: (options?: ResponseBodyDefaultOptionalParams) => Promise<ResponseBodyDefaultResponse>;
 }
 
 export { }

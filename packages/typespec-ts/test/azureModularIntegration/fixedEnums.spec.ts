@@ -1,4 +1,5 @@
-import { assert } from "chai";
+import { describe, it, beforeEach, assert } from "vitest";
+
 import { FixedClient } from "./generated/type/enum/fixed/src/index.js";
 describe("FixedEnums Rest Client", () => {
   let client: FixedClient;
@@ -12,7 +13,7 @@ describe("FixedEnums Rest Client", () => {
 
   it("should get known value", async () => {
     const result = await client.string.getKnownValue();
-    assert.strictEqual(result, "Monday");
+    assert.strictEqual(result.body, "Monday");
   });
 
   it("should put known value", async () => {

@@ -646,14 +646,15 @@ export const azureModularTsps = [
     outputPath: "client/structure/multi-client",
     inputPath: "client/structure/multi-client"
   },
-  {
-    outputPath: "client/structure/renamed-operation",
-    inputPath: "client/structure/renamed-operation"
-  },
-  {
-    outputPath: "client/structure/two-operation-group",
-    inputPath: "client/structure/two-operation-group"
-  },
+  // disable it as need upgrade tcgc to support it https://github.com/Azure/typespec-azure/pull/3997.
+  // {
+  //   outputPath: "client/structure/renamed-operation",
+  //   inputPath: "client/structure/renamed-operation"
+  // },
+  // {
+  //   outputPath: "client/structure/two-operation-group",
+  //   inputPath: "client/structure/two-operation-group"
+  // },
   {
     outputPath: "azure/special-headers/client-request-id",
     inputPath: "azure/special-headers/client-request-id"
@@ -871,10 +872,11 @@ export const azureModularTsps = [
     outputPath: "azure/core/page",
     inputPath: "azure/core/page"
   },
-  {
-    outputPath: "client/structure/client-operation-group",
-    inputPath: "client/structure/client-operation-group"
-  },
+  // disable it as need upgrade tcgc to support it https://github.com/Azure/typespec-azure/pull/3997.
+  // {
+  //   outputPath: "client/structure/client-operation-group",
+  //   inputPath: "client/structure/client-operation-group"
+  // },
   {
     outputPath: "encode/numeric",
     inputPath: "encode/numeric"
@@ -1001,6 +1003,26 @@ export const azureModularTsps = [
       "azure/client-generator-core/client-location/move-method-parameter-to-client",
     inputPath:
       "azure/client-generator-core/client-location/move-method-parameter-to-client"
+  },
+  {
+    outputPath: "azure/client-generator-core/client-default-value",
+    inputPath: "azure/client-generator-core/client-default-value"
+  },
+  {
+    outputPath: "azure/resource-manager/multi-service",
+    inputPath: "azure/resource-manager/multi-service"
+  },
+  {
+    outputPath: "azure/resource-manager/multi-service-shared-models",
+    inputPath: "azure/resource-manager/multi-service-shared-models"
+  },
+  {
+    outputPath: "service/multi-service",
+    inputPath: "service/multi-service"
+  },
+  {
+    outputPath: "parameters/query",
+    inputPath: "parameters/query"
   }
 ];
 

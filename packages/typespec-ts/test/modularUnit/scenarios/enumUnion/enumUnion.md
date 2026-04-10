@@ -904,8 +904,8 @@ mustEmptyDiagnostic: false
 /** model interface Foo */
 export interface Foo {}
 
-export function fooSerializer(item: Foo): any {
-  return item;
+export function fooSerializer(_item: Foo): any {
+  return {};
 }
 
 /** Alias for MixedTypes */

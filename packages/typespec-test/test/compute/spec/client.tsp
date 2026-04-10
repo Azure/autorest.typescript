@@ -10,5 +10,13 @@ using Azure.ClientGenerator.Core;
 @client({
     name: "ComputeClient",
     service: [Compute, ComputeDisk],
+    autoMergeService: true,
 })
 namespace ComputeCombine;
+
+@@clientName(Compute.ActionGroup, "ComputeActionGroup");
+@@clientName(Compute.ActionGroupsProperties, "ComputeActionGroupsProperties");
+@@clientName(ComputeDisk.ActionGroup, "ComputeDiskActionGroup");
+@@clientName(ComputeDisk.ActionGroupsProperties,
+    "ComputeDiskActionGroupsProperties"
+);

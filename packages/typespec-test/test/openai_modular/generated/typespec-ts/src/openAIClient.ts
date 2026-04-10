@@ -38,11 +38,14 @@ import {
   SpeechGenerationOptions,
   EmbeddingsOptions,
   Embeddings,
+  GenerateSpeechFromTextResponse,
+  GetAudioTranslationAsPlainTextResponse,
+  GetAudioTranscriptionAsPlainTextResponse,
 } from "./models/models.js";
 import { KeyCredential, TokenCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
-export { OpenAIClientOptionalParams } from "./api/openAIContext.js";
+export type { OpenAIClientOptionalParams } from "./api/openAIContext.js";
 
 export class OpenAIClient {
   private _client: OpenAIContext;
@@ -79,7 +82,7 @@ export class OpenAIClient {
     deploymentId: string,
     body: SpeechGenerationOptions,
     options: GenerateSpeechFromTextOptionalParams = { requestOptions: {} },
-  ): Promise<Uint8Array> {
+  ): Promise<GenerateSpeechFromTextResponse> {
     return generateSpeechFromText(this._client, deploymentId, body, options);
   }
 
@@ -132,7 +135,7 @@ export class OpenAIClient {
     deploymentId: string,
     body: AudioTranslationOptions,
     options: GetAudioTranslationAsPlainTextOptionalParams = { requestOptions: {} },
-  ): Promise<string> {
+  ): Promise<GetAudioTranslationAsPlainTextResponse> {
     return getAudioTranslationAsPlainText(this._client, deploymentId, body, options);
   }
 
@@ -156,7 +159,7 @@ export class OpenAIClient {
     deploymentId: string,
     body: AudioTranscriptionOptions,
     options: GetAudioTranscriptionAsPlainTextOptionalParams = { requestOptions: {} },
-  ): Promise<string> {
+  ): Promise<GetAudioTranscriptionAsPlainTextResponse> {
     return getAudioTranscriptionAsPlainText(this._client, deploymentId, body, options);
   }
 }

@@ -1,4 +1,5 @@
-import { assert } from "chai";
+import { describe, it, beforeEach, assert } from "vitest";
+
 import SingleParamInServerPathClientFactory, {
   SingleParamInServerPathClient
 } from "./generated/server/path/single/src/index.js";

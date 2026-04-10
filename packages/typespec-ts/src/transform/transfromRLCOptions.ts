@@ -92,12 +92,17 @@ function extractRLCOptions(
     emitterOptions["ignore-enum-member-name-normalize"];
   const compatibilityQueryMultiFormat =
     emitterOptions["compatibility-query-multi-format"];
+  const enableStorageCompat = emitterOptions["enable-storage-compat"] === true;
+  const treatUnknownAsRecord =
+    emitterOptions["treat-unknown-as-record"] === true;
+  const headAsBoolean = emitterOptions["head-as-boolean"] === true;
   const typespecTitleMap = emitterOptions["typespec-title-map"];
   const hasSubscriptionId = getSubscriptionId(dpgContext);
   const ignoreNullableOnOptional = getIgnoreNullableOnOptional(
     emitterOptions,
     flavor
   );
+  const wrapNonModelReturn = getWrapNonModelReturn(emitterOptions, flavor);
   const isMultiService = (dpgContext.allServiceNamespaces?.length ?? 0) > 1;
 
   return {
@@ -134,7 +139,11 @@ function extractRLCOptions(
     ignoreEnumMemberNameNormalize,
     hasSubscriptionId,
     ignoreNullableOnOptional,
-    isMultiService
+    wrapNonModelReturn,
+    isMultiService,
+    enableStorageCompat,
+    treatUnknownAsRecord,
+    headAsBoolean
   };
 }
 
@@ -281,6 +290,18 @@ function getIgnoreNullableOnOptional(
     return Boolean(emitterOptions["ignore-nullable-on-optional"]);
   }
   // Default to true for Azure services (same as HLC behavior)
+  return flavor === "azure";
+}
+
+function getWrapNonModelReturn(
+  emitterOptions: EmitterOptions,
+  flavor: PackageFlavor
+): boolean {
+  // If explicitly set in options, use that value
+  if (emitterOptions["wrap-non-model-return"] !== undefined) {
+    return Boolean(emitterOptions["wrap-non-model-return"]);
+  }
+  // Default to true for Azure services to maintain HLC backward compatibility
   return flavor === "azure";
 }
 
