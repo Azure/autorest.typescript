@@ -35,9 +35,14 @@ export function getOperationName(
   dpgContext?: SdkContext
 ): GuardedName {
   const norm = normalizeName(operation.name, NameType.Method, true);
-  const isDataplane = dpgContext !== undefined && !dpgContext.rlcOptions?.azureArm;
+  const isDataplane =
+    dpgContext !== undefined && !dpgContext.rlcOptions?.azureArm;
   const isFixmeName = DATAPLANE_FIXME_NAMES.has(operation.name.toLowerCase());
-  if (isReservedName(operation.name, NameType.Method) && isDataplane && isFixmeName) {
+  if (
+    isReservedName(operation.name, NameType.Method) &&
+    isDataplane &&
+    isFixmeName
+  ) {
     return {
       name: norm,
       fixme: [
