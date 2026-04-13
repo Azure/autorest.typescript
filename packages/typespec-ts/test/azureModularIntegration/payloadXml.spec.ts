@@ -244,4 +244,145 @@ describe("Payload XML Client", () => {
       }
     });
   });
+
+  describe("ModelWithRenamedProperty", () => {
+    const expected = { title: "foo", author: "bar" };
+
+    it("should get model with renamed property", async () => {
+      const result = await client.modelWithRenamedPropertyValue.get();
+      assert.deepEqual(result, expected);
+    });
+
+    it("should put model with renamed property", async () => {
+      await client.modelWithRenamedPropertyValue.put(expected);
+    });
+  });
+
+  describe("ModelWithNestedModel", () => {
+    const expected = { nested: { name: "foo", age: 123 } };
+
+    it("should get model with nested model", async () => {
+      const result = await client.modelWithNestedModelValue.get();
+      assert.deepEqual(result, expected);
+    });
+
+    it("should put model with nested model", async () => {
+      await client.modelWithNestedModelValue.put(expected);
+    });
+  });
+
+  describe("ModelWithRenamedNestedModel", () => {
+    const expected = { author: { name: "foo" } };
+
+    it("should get model with renamed nested model", async () => {
+      const result = await client.modelWithRenamedNestedModelValue.get();
+      assert.deepEqual(result, expected);
+    });
+
+    it("should put model with renamed nested model", async () => {
+      await client.modelWithRenamedNestedModelValue.put(expected);
+    });
+  });
+
+  describe("ModelWithWrappedPrimitiveCustomItemNames", () => {
+    const expected = { tags: ["fiction", "classic"] };
+
+    it("should get model with wrapped primitive custom item names", async () => {
+      const result =
+        await client.modelWithWrappedPrimitiveCustomItemNamesValue.get();
+      assert.deepEqual(result, expected);
+    });
+
+    it("should put model with wrapped primitive custom item names", async () => {
+      await client.modelWithWrappedPrimitiveCustomItemNamesValue.put(expected);
+    });
+  });
+
+  describe("ModelWithUnwrappedModelArray", () => {
+    const expected = {
+      items: [
+        { name: "foo", age: 123 },
+        { name: "bar", age: 456 }
+      ]
+    };
+
+    it("should get model with unwrapped model array", async () => {
+      const result = await client.modelWithUnwrappedModelArrayValue.get();
+      assert.deepEqual(result, expected);
+    });
+
+    it("should put model with unwrapped model array", async () => {
+      await client.modelWithUnwrappedModelArrayValue.put(expected);
+    });
+  });
+
+  describe("ModelWithRenamedWrappedModelArray", () => {
+    const expected = {
+      items: [
+        { name: "foo", age: 123 },
+        { name: "bar", age: 456 }
+      ]
+    };
+
+    it("should get model with renamed wrapped model array", async () => {
+      const result = await client.modelWithRenamedWrappedModelArrayValue.get();
+      assert.deepEqual(result, expected);
+    });
+
+    it("should put model with renamed wrapped model array", async () => {
+      await client.modelWithRenamedWrappedModelArrayValue.put(expected);
+    });
+  });
+
+  describe("ModelWithRenamedUnwrappedModelArray", () => {
+    const expected = {
+      items: [
+        { name: "foo", age: 123 },
+        { name: "bar", age: 456 }
+      ]
+    };
+
+    it("should get model with renamed unwrapped model array", async () => {
+      const result =
+        await client.modelWithRenamedUnwrappedModelArrayValue.get();
+      assert.deepEqual(result, expected);
+    });
+
+    it("should put model with renamed unwrapped model array", async () => {
+      await client.modelWithRenamedUnwrappedModelArrayValue.put(expected);
+    });
+  });
+
+  describe("ModelWithRenamedWrappedAndItemModelArray", () => {
+    const expected = {
+      books: [{ title: "The Great Gatsby" }, { title: "Les Miserables" }]
+    };
+
+    it("should get model with renamed wrapped and item model array", async () => {
+      const result =
+        await client.modelWithRenamedWrappedAndItemModelArrayValue.get();
+      assert.deepEqual(result, expected);
+    });
+
+    it("should put model with renamed wrapped and item model array", async () => {
+      await client.modelWithRenamedWrappedAndItemModelArrayValue.put(expected);
+    });
+  });
+
+  describe("ModelWithRenamedAttribute", () => {
+    const expected = {
+      id: 123,
+      title: "The Great Gatsby",
+      author: "F. Scott Fitzgerald"
+    };
+
+    it("should get model with renamed attribute", async () => {
+      const result = await client.modelWithRenamedAttributeValue.get();
+      assert.deepEqual(result, expected);
+    });
+
+    it("should put model with renamed attribute", async () => {
+      await client.modelWithRenamedAttributeValue.put(expected);
+    });
+  });
 });
