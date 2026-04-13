@@ -4,6 +4,7 @@
 import { ComputeClient } from "./computeClient.js";
 import { _createOrUpdateDeserialize } from "./api/diskAccesses/operations.js";
 import { _createOrUpdateDeserialize as _createOrUpdateDeserializeDisks } from "./api/disks/operations.js";
+import { _createOrUpdateDeserialize as _createOrUpdateDeserializeVirtualMachineScaleSetExtensions } from "./api/virtualMachineScaleSetExtensions/operations.js";
 import { _createOrUpdateDeserialize as _createOrUpdateDeserializeVirtualMachines } from "./api/virtualMachines/operations.js";
 import { getLongRunningPoller } from "./static-helpers/pollingHelpers.js";
 import { OperationOptions, PathUncheckedResponse } from "@azure-rest/core-client";
@@ -84,6 +85,11 @@ const deserializeMap: Record<string, DeserializationHelper> = {
     { deserializer: _createOrUpdateDeserialize, expectedStatuses: ["200", "202", "201"] },
   "PUT /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/disks/{diskName}":
     { deserializer: _createOrUpdateDeserializeDisks, expectedStatuses: ["200", "201", "202"] },
+  "PUT /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/extensions/{vmssExtensionName}":
+    {
+      deserializer: _createOrUpdateDeserializeVirtualMachineScaleSetExtensions,
+      expectedStatuses: ["200", "201", "202"],
+    },
   "PUT /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}":
     {
       deserializer: _createOrUpdateDeserializeVirtualMachines,

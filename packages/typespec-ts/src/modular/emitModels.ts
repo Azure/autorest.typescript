@@ -33,6 +33,7 @@ import {
   isReadOnly,
   listAllServiceNamespaces
 } from "@azure-tools/typespec-client-generator-core";
+// import { isKey } from "@typespec/compiler";
 import {
   getExternalModel,
   getModelExpression,
@@ -59,7 +60,7 @@ import {
 import path from "path";
 import { refkey } from "../framework/refkey.js";
 import { useContext } from "../contextManager.js";
-import { isMetadata, isOrExtendsHttpFile } from "@typespec/http";
+import { isMetadata, isOrExtendsHttpFile, Visibility } from "@typespec/http";
 import { isAzureCoreErrorType } from "../utils/modelUtils.js";
 import { getHeaderClientOptions } from "./helpers/clientOptionHelpers.js";
 import { isExtensibleEnum } from "./type-expressions/get-enum-expression.js";
@@ -736,7 +737,6 @@ function buildModelInterface(
   // properties (@header, @query, @path) since they are deserialized separately.
   // For input models, keep metadata properties — users need to pass them.
   const hasInputUsage = (type.usage & UsageFlags.Input) === UsageFlags.Input;
-  const isArmResource = isArmResourceModel(type);
   const interfaceStructure = {
     kind: StructureKind.Interface,
     name: normalizeModelName(context, type, NameType.Interface, true),
@@ -746,15 +746,8 @@ function buildModelInterface(
         if (!hasInputUsage && p.__raw && isMetadata(context.program, p.__raw)) {
           return false;
         }
-        // Skip the "name" metadata property on ARM resource models.
-        // ARM resource "name" is a @path property inherited from the base Resource type
-        // and is handled by the ARM infrastructure, not set by the user directly.
-        if (
-          isArmResource &&
-          p.name === "name" &&
-          p.__raw &&
-          isMetadata(context.program, p.__raw)
-        ) {
+        // Skip required metadata properties with Read visibility for ARM as they are not intended to be in the model
+        if (context.arm && p.__raw && isMetadata(context.program, p.__raw) && !p.optional && p.visibility?.includes(Visibility.Read)) {
           return false;
         }
         // filter out the flatten property to be processed later
@@ -948,20 +941,6 @@ export function normalizeModelName(
   const internalModelPrefix =
     isPagedResultModel(context, type) || type.isGeneratedName ? "_" : "";
   return `${internalModelPrefix}${normalizeName(namespacePrefix + type.name, nameType, true)}${unionSuffix}`;
-}
-
-/**
- * Checks if a model descends from the ARM common-types Resource base type
- * (TrackedResource, ProxyResource, etc.) by walking the ancestor chain.
- */
-function isArmResourceModel(type: SdkModelType): boolean {
-  const ancestors = getAllAncestors(type);
-  return ancestors.some(
-    (ancestor) =>
-      ancestor.kind === "model" &&
-      ancestor.crossLanguageDefinitionId ===
-        "Azure.ResourceManager.CommonTypes.Resource"
-  );
 }
 
 function buildModelPolymorphicType(context: SdkContext, type: SdkModelType) {
