@@ -166,6 +166,18 @@ export function todoLabelRecordArrayDeserializer(result: Array<TodoLabelRecord>)
   });
 }
 
+export function todoAttachmentArraySerializer(result: Array<TodoAttachment>): any[] {
+  return result.map((item) => {
+    return todoAttachmentSerializer(item);
+  });
+}
+
+export function todoAttachmentArrayDeserializer(result: Array<TodoAttachment>): any[] {
+  return result.map((item) => {
+    return todoAttachmentDeserializer(item);
+  });
+}
+
 /** model interface TodoAttachment */
 export interface TodoAttachment {
   /** The file name of the attachment */
@@ -195,18 +207,6 @@ export function todoAttachmentDeserializer(item: any): TodoAttachment {
   };
 }
 
-export function todoAttachmentArraySerializer(result: Array<TodoAttachment>): any[] {
-  return result.map((item) => {
-    return todoAttachmentSerializer(item);
-  });
-}
-
-export function todoAttachmentArrayDeserializer(result: Array<TodoAttachment>): any[] {
-  return result.map((item) => {
-    return todoAttachmentDeserializer(item);
-  });
-}
-
 /** model interface ToDoItemMultipartRequest */
 export interface ToDoItemMultipartRequest {
   item: {
@@ -224,15 +224,15 @@ export interface ToDoItemMultipartRequest {
 
 export function toDoItemMultipartRequestSerializer(item: ToDoItemMultipartRequest): any {
   return [
-    { name: "item", body: _createFormRequestItemSerializer(item["item"]) },
+    { name: "item", body: _toDoItemMultipartRequestItemSerializer(item["item"]) },
     ...(item["attachments"] === undefined
       ? []
       : [...item["attachments"].map((x: unknown) => createFilePartDescriptor("attachments", x))]),
   ];
 }
 
-/** model interface _CreateFormRequestItem */
-export interface _CreateFormRequestItem {
+/** model interface _ToDoItemMultipartRequestItem */
+export interface _ToDoItemMultipartRequestItem {
   /** The item's title */
   title: string;
   /** User that the todo is assigned to */
@@ -245,7 +245,7 @@ export interface _CreateFormRequestItem {
   dummy?: string;
 }
 
-export function _createFormRequestItemSerializer(item: _CreateFormRequestItem): any {
+export function _toDoItemMultipartRequestItemSerializer(item: _ToDoItemMultipartRequestItem): any {
   return {
     title: item["title"],
     assignedTo: item["assignedTo"],

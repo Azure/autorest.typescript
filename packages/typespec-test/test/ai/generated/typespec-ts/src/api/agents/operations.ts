@@ -3,10 +3,10 @@
 
 import { AIProjectContext as Client } from "../index.js";
 import {
+  toolDefinitionUnionArraySerializer,
   toolResourcesSerializer,
   vectorStoreDataSourceArraySerializer,
   vectorStoreConfigurationSerializer,
-  toolDefinitionUnionArraySerializer,
   agentsApiResponseFormatOptionSerializer,
   Agent,
   agentDeserializer,
@@ -14,9 +14,9 @@ import {
   openAIPageableListOfAgentDeserializer,
   AgentDeletionStatus,
   agentDeletionStatusDeserializer,
+  threadMessageOptionsArraySerializer,
   MessageRole,
   messageAttachmentArraySerializer,
-  threadMessageOptionsArraySerializer,
   AgentThread,
   agentThreadDeserializer,
   ThreadDeletionStatus,
@@ -32,8 +32,8 @@ import {
   updateToolResourcesOptionsSerializer,
   OpenAIPageableListOfThreadRun,
   openAIPageableListOfThreadRunDeserializer,
-  ToolOutput,
   toolOutputArraySerializer,
+  ToolOutput,
   agentThreadCreationOptionsSerializer,
   RunStep,
   runStepDeserializer,
