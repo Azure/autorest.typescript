@@ -747,11 +747,11 @@ function buildModelInterface(
           return false;
         }
         // Skip required metadata properties with Read visibility for ARM as they are not intended to be in the model
+        // These properties are not be generated no matter they are in input or output models in most cases in HLC
         if (
           context.arm &&
           p.__raw &&
           isMetadata(context.program, p.__raw) &&
-          !p.optional &&
           p.visibility?.includes(Visibility.Read)
         ) {
           return false;
