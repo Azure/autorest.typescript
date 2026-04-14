@@ -747,7 +747,13 @@ function buildModelInterface(
           return false;
         }
         // Skip required metadata properties with Read visibility for ARM as they are not intended to be in the model
-        if (context.arm && p.__raw && isMetadata(context.program, p.__raw) && !p.optional && p.visibility?.includes(Visibility.Read)) {
+        if (
+          context.arm &&
+          p.__raw &&
+          isMetadata(context.program, p.__raw) &&
+          !p.optional &&
+          p.visibility?.includes(Visibility.Read)
+        ) {
           return false;
         }
         // filter out the flatten property to be processed later
