@@ -451,19 +451,16 @@ export async function $onEmit(context: EmitContext) {
     const rlcClient: RLCModel = rlcCodeModels[0];
     const option = dpgContext.rlcOptions!;
     // When generateMetadata is explicitly false and the sources are generated
-    // into a path containing "generated" (e.g. src/generated), this package
+    // into a path ending with "generated" (e.g. src/generated), this package
     // has a manual convenience layer. Skip all metadata/test file generation
     // to avoid unexpected modifications to files like package.json, README.md,
-    // warp.config.yml, and snippets.spec.ts.
-    if (option.generateMetadata === false) {
-      const sourcesDir =
-        dpgContext.generationPathDetail?.rlcSourcesDir ??
-        dpgContext.generationPathDetail?.modularSourcesDir ??
-        "";
-      if (basename(sourcesDir) === "generated") {
-        return;
-      }
-    }
+    // warp.config.yml, and snippets.spec.ts. metadata.json is still updated.
+    const sourcesDir =
+      dpgContext.generationPathDetail?.rlcSourcesDir ??
+      dpgContext.generationPathDetail?.modularSourcesDir ??
+      "";
+    const hasManualConvenienceLayer =
+      option.generateMetadata === false && basename(sourcesDir) === "generated";
     const isAzureFlavor = isAzurePackage({ options: option });
     // Generate metadata
     const existingPackageFilePath = join(
@@ -498,7 +495,7 @@ export async function $onEmit(context: EmitContext) {
       }
     }
 
-    if (shouldGenerateMetadata) {
+    if (shouldGenerateMetadata && !hasManualConvenienceLayer) {
       const commonBuilders = [
         buildRollupConfig,
         buildApiExtractorConfig,
@@ -598,7 +595,7 @@ export async function $onEmit(context: EmitContext) {
           );
         }
       }
-    } else if (hasPackageFile) {
+    } else if (hasPackageFile && !hasManualConvenienceLayer) {
       const updateBuilders = [];
       let modularPackageInfo = {};
 
