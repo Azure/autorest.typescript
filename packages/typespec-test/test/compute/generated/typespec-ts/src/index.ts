@@ -40,6 +40,9 @@ export type {
   RestorePointCollectionProperties,
   ComputeActionGroup,
   ComputeActionGroupsProperties,
+  VirtualMachineScaleSetExtension,
+  VirtualMachineScaleSetExtensionProperties,
+  SubResourceReadOnly,
 } from "./models/compute/index.js";
 export type {
   ComputeDiskActionGroup,
@@ -71,11 +74,16 @@ export type {
   VirtualMachinesGetOptionalParams,
 } from "./api/virtualMachines/index.js";
 export type {
+  VirtualMachineScaleSetExtensionsCreateOrUpdateOptionalParams,
+  VirtualMachineScaleSetExtensionsGetOptionalParams,
+} from "./api/virtualMachineScaleSetExtensions/index.js";
+export type {
   ActionGroupsOperations,
   DiskAccessesOperations,
   DisksOperations,
   RestorePointCollectionsOperations,
   VirtualMachinesOperations,
+  VirtualMachineScaleSetExtensionsOperations,
 } from "./classic/index.js";
 export type { PageSettings, ContinuablePage, PagedAsyncIterableIterator };
 export { AzureClouds };
