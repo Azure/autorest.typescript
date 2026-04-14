@@ -101,7 +101,7 @@ import {
   getRLCClients,
   getModularClientOptions
 } from "./utils/clientUtils.js";
-import { join } from "path";
+import { basename, join } from "path";
 import { loadStaticHelpers } from "./framework/load-static-helpers.js";
 import { packageUsesXmlSerialization } from "./modular/serialization/buildXmlSerializerFunction.js";
 import { provideBinder } from "./framework/hooks/binder.js";
@@ -450,6 +450,20 @@ export async function $onEmit(context: EmitContext) {
     }
     const rlcClient: RLCModel = rlcCodeModels[0];
     const option = dpgContext.rlcOptions!;
+    // When generateMetadata is explicitly false and the sources are generated
+    // into a path containing "generated" (e.g. src/generated), this package
+    // has a manual convenience layer. Skip all metadata/test file generation
+    // to avoid unexpected modifications to files like package.json, README.md,
+    // warp.config.yml, and snippets.spec.ts.
+    if (option.generateMetadata === false) {
+      const sourcesDir =
+        dpgContext.generationPathDetail?.rlcSourcesDir ??
+        dpgContext.generationPathDetail?.modularSourcesDir ??
+        "";
+      if (basename(sourcesDir) === "generated") {
+        return;
+      }
+    }
     const isAzureFlavor = isAzurePackage({ options: option });
     // Generate metadata
     const existingPackageFilePath = join(
