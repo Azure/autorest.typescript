@@ -385,4 +385,34 @@ describe("Payload XML Client", () => {
       await client.modelWithRenamedAttributeValue.put(expected);
     });
   });
+
+  describe("ModelWithNamespace", () => {
+    const expected = { id: 123, title: "The Great Gatsby" };
+
+    it("should get model with namespace", async () => {
+      const result = await client.modelWithNamespaceValue.get();
+      assert.deepEqual(result, expected);
+    });
+
+    it("should put model with namespace", async () => {
+      await client.modelWithNamespaceValue.put(expected);
+    });
+  });
+
+  describe("ModelWithNamespaceOnProperties", () => {
+    const expected = {
+      id: 123,
+      title: "The Great Gatsby",
+      author: "F. Scott Fitzgerald"
+    };
+
+    it("should get model with namespace on properties", async () => {
+      const result = await client.modelWithNamespaceOnPropertiesValue.get();
+      assert.deepEqual(result, expected);
+    });
+
+    it("should put model with namespace on properties", async () => {
+      await client.modelWithNamespaceOnPropertiesValue.put(expected);
+    });
+  });
 });
