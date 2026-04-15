@@ -37,10 +37,4 @@ describe("Azure ClientGeneratorCore Override Client", () => {
       param2: "param2"
     });
   });
-
-  it.skip("should group parameters correctly", async () => {
-    // Test parameter grouping with @override decorator
-    // Verifies that parameters are grouped correctly into GroupParametersOptions
-    await client.groupParameters.group("param1", "param2");
-  });
 });
