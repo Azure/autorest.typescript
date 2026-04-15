@@ -8,4 +8,7 @@ export type {
   RestorePointCollectionProperties,
   ComputeActionGroup,
   ComputeActionGroupsProperties,
+  VirtualMachineScaleSetExtension,
+  VirtualMachineScaleSetExtensionProperties,
+  SubResourceReadOnly,
 } from "./models.js";
