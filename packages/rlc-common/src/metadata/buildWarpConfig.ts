@@ -2,13 +2,19 @@
 // Licensed under the MIT License.
 
 import { RLCModel } from "../interfaces.js";
-import { isAzureMonorepoPackage } from "../helpers/packageUtil.js";
 
 export interface WarpConfigOptions {
   /** Source-level exports, e.g. { ".": "./src/index.ts", "./models": "./src/models/index.ts" } */
   exports?: Record<string, string>;
 }
 
+/** Default exports included in every warp config. */
+const BASE_EXPORTS: Record<string, string> = {
+  "./package.json": "./package.json",
+  ".": "./src/index.ts"
+};
+
+/** Full inline warp config template with polyfillSuffix on browser/react-native targets. */
 export const WarpConfigTemplate = `# warp.config.yml — build configuration
 
 exports:
@@ -30,27 +36,28 @@ targets:
   - name: commonjs
     condition: require
     tsconfig: "../../../tsconfig.src.cjs.json"
+    moduleType: commonjs
 `;
 
 /**
- * Builds a warp.config.yml file for Azure SDK monorepo packages.
- * Only generated when azureSdkForJs is true.
+ * Builds a self-contained warp.config.yml file.
+ *
+ * Always emits a full inline config with all exports and targets.
+ * We intentionally do NOT use `extends: warp.base.config.yml` because
+ * warp replaces targets entirely (no per-name merge), so we'd have to
+ * redefine every target anyway to include polyfillSuffix. A standalone
+ * config is simpler and avoids a hidden dependency on the base file.
  */
 export function buildWarpConfig(
   model: RLCModel,
   { exports }: WarpConfigOptions = {}
 ) {
-  if (!isAzureMonorepoPackage(model)) {
-    return;
-  }
-
   if (model.options?.moduleKind !== "esm") {
     return;
   }
 
   const allExports: Record<string, string> = {
-    "./package.json": "./package.json",
-    ".": "./src/index.ts",
+    ...BASE_EXPORTS,
     ...exports
   };
 
@@ -60,8 +67,5 @@ export function buildWarpConfig(
 
   const content = WarpConfigTemplate.replace("{{exports}}", exportsContent);
 
-  return {
-    path: "warp.config.yml",
-    content
-  };
+  return { path: "warp.config.yml", content };
 }
