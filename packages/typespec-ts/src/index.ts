@@ -455,12 +455,8 @@ export async function $onEmit(context: EmitContext) {
     // has a manual convenience layer. Skip all metadata/test file generation
     // to avoid unexpected modifications to files like package.json, README.md,
     // warp.config.yml, and snippets.spec.ts. metadata.json is still updated.
-    const sourcesDir =
-      dpgContext.generationPathDetail?.rlcSourcesDir ??
-      dpgContext.generationPathDetail?.modularSourcesDir ??
-      "";
-    const hasManualConvenienceLayer =
-      option.generateMetadata === false && basename(sourcesDir) === "generated";
+    const sourcesDir = dpgContext.generationPathDetail?.modularSourcesDir ?? "";
+    const hasManualConvenienceLayer = basename(sourcesDir) === "generated";
     const isAzureFlavor = isAzurePackage({ options: option });
     // Generate metadata
     const existingPackageFilePath = join(
@@ -495,7 +491,7 @@ export async function $onEmit(context: EmitContext) {
       }
     }
 
-    if (shouldGenerateMetadata && !hasManualConvenienceLayer) {
+    if (shouldGenerateMetadata) {
       const commonBuilders = [
         buildRollupConfig,
         buildApiExtractorConfig,
