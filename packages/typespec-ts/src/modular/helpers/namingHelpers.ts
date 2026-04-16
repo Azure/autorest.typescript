@@ -7,7 +7,11 @@ import {
   SdkClientType,
   SdkServiceOperation
 } from "@azure-tools/typespec-client-generator-core";
+import { SdkContext } from "../../utils/interfaces.js";
 import { ServiceOperation } from "../../utils/operationUtil.js";
+
+/** Reserved operation names that require a fixme comment in dataplane packages. */
+const DATAPLANE_FIXME_NAMES = new Set(["property", "interface", "function"]);
 
 export function getClientName(
   client: SdkClientType<SdkServiceOperation>
@@ -26,9 +30,19 @@ export interface GuardedName {
   fixme?: string[];
 }
 
-export function getOperationName(operation: ServiceOperation): GuardedName {
+export function getOperationName(
+  operation: ServiceOperation,
+  dpgContext?: SdkContext
+): GuardedName {
   const norm = normalizeName(operation.name, NameType.Method, true);
-  if (isReservedName(operation.name, NameType.Method)) {
+  const isDataplane =
+    dpgContext !== undefined && !dpgContext.rlcOptions?.azureArm;
+  const isFixmeName = DATAPLANE_FIXME_NAMES.has(operation.name.toLowerCase());
+  if (
+    isReservedName(operation.name, NameType.Method) &&
+    isDataplane &&
+    isFixmeName
+  ) {
     return {
       name: norm,
       fixme: [

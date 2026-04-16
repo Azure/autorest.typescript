@@ -34,6 +34,7 @@ export interface BudgetsGetBudgetsOptionalParams extends OperationOptions {
 
 // @public
 export interface BudgetsOperations {
+    // (undocumented)
     continue: (options?: BudgetsContinueOptionalParams) => Promise<void>;
     createOrReplace: (name: string, resource: SAPUser, options?: BudgetsCreateOrReplaceOptionalParams) => PollerLike<OperationState<SAPUser>, SAPUser>;
     // (undocumented)

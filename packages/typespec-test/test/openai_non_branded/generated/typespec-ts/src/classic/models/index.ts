@@ -11,11 +11,6 @@ import { ListModelsResponse, Model, DeleteModelResponse } from "../../models/mod
 
 /** Interface representing a Models operations. */
 export interface ModelsOperations {
-  /**
-   *  @fixme delete is a reserved word that cannot be used as an operation name.
-   *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
-   *         to the operation to override the generated name.
-   */
   delete: (model: string, options?: ModelsDeleteOptionalParams) => Promise<DeleteModelResponse>;
   retrieve: (model: string, options?: ModelsRetrieveOptionalParams) => Promise<Model>;
   list: (options?: ModelsListOptionalParams) => Promise<ListModelsResponse>;

@@ -186,6 +186,7 @@ export interface TodoItemsOperations {
     createForm: (body: ToDoItemMultipartRequest, options?: TodoItemsCreateFormOptionalParams) => Promise<TodoItem>;
     // (undocumented)
     createJson: (item: TodoItem, options?: TodoItemsCreateJsonOptionalParams) => Promise<TodoItem>;
+    // (undocumented)
     delete: (id: number, options?: TodoItemsDeleteOptionalParams) => Promise<void>;
     // (undocumented)
     get: (id: number, options?: TodoItemsGetOptionalParams) => Promise<TodoItem>;
