@@ -214,7 +214,7 @@ describe("Responses.ts", () => {
       `
       );
     });
-    it("@header contentType text/plain with bytes body - should be treated as binary (trust body type)", async () => {
+    it("@header contentType text/plain should keep format to byte(finally string)", async () => {
       const responses = await emitResponsesFromTypeSpec(`
       @get op read(): {@header contentType: "text/plain", @body body: bytes};
       `);
@@ -232,8 +232,7 @@ describe("Responses.ts", () => {
        /** The request has succeeded. */
        export interface Read200Response extends HttpResponse {
          status: "200";
-         /** Value may contain any sequence of octets */
-         body: Uint8Array;
+         body: string;
          headers: RawHttpHeaders & Read200Headers;
        }
       `
