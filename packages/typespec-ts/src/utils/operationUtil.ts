@@ -196,12 +196,10 @@ export function isBinaryPayload(
   contentType: string | string[]
 ) {
   const contentTypes = Array.isArray(contentType) ? contentType : [contentType];
+  const isBytes = body ? isByteOrByteUnion(dpgContext, body) : false;
 
   // Treat */* as binary when the body is a bytes type
-  if (
-    contentTypes.some((ct) => ct === "*/*") &&
-    isByteOrByteUnion(dpgContext, body)
-  ) {
+  if (contentTypes.some((ct) => ct === "*/*") && isBytes) {
     return true;
   }
 
@@ -209,7 +207,7 @@ export function isBinaryPayload(
     knownMediaType(ct)
   );
   for (const type of knownMediaTypes) {
-    if (type === KnownMediaType.Binary && isByteOrByteUnion(dpgContext, body)) {
+    if (type === KnownMediaType.Binary || isBytes) {
       return true;
     }
   }
