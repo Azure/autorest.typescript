@@ -539,6 +539,34 @@ describe("bytes", () => {
       `
       );
     });
+    it("*/* content type with bytes body - should be treated as binary", async () => {
+      const parameters = await emitParameterFromTypeSpec(
+        `
+        @post op uploadFile(
+          @header contentType: "*/*",
+          @body body: bytes
+        ): void;
+        `
+      );
+      assert.ok(parameters);
+      await assertEqualContent(
+        parameters?.content!,
+        `
+        import type { RequestParameters } from "@azure-rest/core-client";
+
+        export interface UploadFileBodyParam {
+          /** Value may contain any sequence of octets */
+          body: string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream;
+        }
+
+        export interface UploadFileMediaTypesParam {
+          contentType: "*/*";
+        }
+
+        export type UploadFileParameters = UploadFileMediaTypesParam & UploadFileBodyParam & RequestParameters;
+        `
+      );
+    });
     // TODO: we need more discussions about current behavior
     // This case is not finalized yet and some validations would be added in tcgc
     it.skip("mixed non-binary and binary content types - should report errors?", async () => {
