@@ -173,10 +173,10 @@ const clientOptions = {
           assert.deepEqual(result.field, new Date("0001-01-01"));
           assert.deepEqual(result.leap, new Date("2016-02-29"));
 
-          const complexBody = <DateWrapper>{
+          const complexBody = {
             field: new Date("0001-01-01"),
             leap: new Date("2016-02-29")
-          };
+          } as DateWrapper;
 
           await testClient.primitive.putDate(
             complexBody,
@@ -660,38 +660,38 @@ const clientOptions = {
           species: "king",
           length: 1,
           siblings: [
-            <Shark>{
+            {
               fishtype: "shark",
               age: 6,
               birthday: new Date("2012-01-05T01:00:00Z"),
               species: "predator",
               length: 20,
               siblings: [
-                <Salmon>{
+                {
                   fishtype: "salmon",
                   location: "atlantic",
                   iswild: true,
                   species: "coho",
                   length: 2,
                   siblings: [
-                    <Shark>{
+                    {
                       fishtype: "shark",
                       age: 6,
                       birthday: new Date("2012-01-05T01:00:00Z"),
                       species: "predator",
                       length: 20
-                    },
-                    <Sawshark>{
+                    } as Shark,
+                    {
                       fishtype: "sawshark",
                       age: 105,
                       birthday: new Date("1900-01-05T01:00:00Z"),
                       picture: new Uint8Array([255, 255, 255, 255, 254]),
                       species: "dangerous",
                       length: 10
-                    }
+                    } as Sawshark
                   ]
-                },
-                <Sawshark>{
+                } as Salmon,
+                {
                   fishtype: "sawshark",
                   age: 105,
                   birthday: new Date("1900-01-05T01:00:00Z"),
@@ -699,10 +699,10 @@ const clientOptions = {
                   species: "dangerous",
                   length: 10,
                   siblings: []
-                }
+                } as Sawshark
               ]
-            },
-            <Sawshark>{
+            } as Shark,
+            {
               fishtype: "sawshark",
               age: 105,
               birthday: new Date("1900-01-05T01:00:00Z"),
@@ -710,7 +710,7 @@ const clientOptions = {
               species: "dangerous",
               length: 10,
               siblings: []
-            }
+            } as Sawshark
           ]
         });
         let testClient: BodyComplexClient | BodyComplexWithTracing;
