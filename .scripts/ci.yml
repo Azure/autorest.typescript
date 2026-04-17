@@ -19,7 +19,7 @@ parameters:
     default: ubuntu-24.04
   - name: Windows_Latest
     type: string
-    default: "windows-2222"
+    default: "windows-2022"
   - name: macOS_Latest
     type: string
     default: "macOS-latest"
