@@ -207,7 +207,7 @@ export function isBinaryPayload(
     knownMediaType(ct)
   );
   for (const type of knownMediaTypes) {
-    if (type === KnownMediaType.Binary && isBytes) {
+    if (type === KnownMediaType.Binary || isBytes) {
       return true;
     }
   }
