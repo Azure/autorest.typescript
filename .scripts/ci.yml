@@ -19,7 +19,7 @@ parameters:
     default: ubuntu-24.04
   - name: Windows_Latest
     type: string
-    default: "windows-2022"
+    default: "windows-2222"
   - name: macOS_Latest
     type: string
     default: "macOS-latest"
@@ -127,10 +127,10 @@ stages:
           - template: globals.yml
         strategy:
           matrix:
-            Linux_Node20:
+            Linux_Node22:
               Pool: ${{ parameters.LinuxPool }}
               OSVmImage: ${{ parameters.OSVmImage }}
-              NodeTestVersion: "20.x"
+              NodeTestVersion: "22.x"
         pool:
           name: $[coalesce(variables['Pool'], '')]
           demands: ImageOverride -equals $(OSVmImage)
@@ -149,10 +149,10 @@ stages:
           - template: globals.yml
         strategy:
           matrix:
-            Linux_Node20:
+            Linux_Node22:
               Pool: ${{ parameters.LinuxPool }}
               OSVmImage: ${{ parameters.OSVmImage }}
-              NodeTestVersion: "20.x"
+              NodeTestVersion: "22.x"
         pool:
           name: $[coalesce(variables['Pool'], '')]
           demands: ImageOverride -equals $(OSVmImage)
@@ -176,14 +176,14 @@ stages:
           - template: globals.yml
         strategy:
           matrix:
-            macOS_Node20:
+            macOS_Node22:
               Pool: ${{ parameters.MacPool }}
               OSVmImage: "macOS-latest"
-              NodeTestVersion: "20.x"
-            Linux_Node20:
+              NodeTestVersion: "22.x"
+            Linux_Node22:
               Pool: ${{ parameters.LinuxPool }}
               OSVmImage: ${{ parameters.OSVmImage }}
-              NodeTestVersion: "20.x"
+              NodeTestVersion: "22.x"
         pool:
           name: $[coalesce(variables['Pool'], '')]
           vmImage: $[coalesce(variables['OSVmImage'], '')]
@@ -235,10 +235,10 @@ stages:
           - template: globals.yml
         strategy:
           matrix:
-            Linux_Node20:
+            Linux_Node22:
               Pool: ${{ parameters.LinuxPool }}
               OSVmImage: ${{ parameters.OSVmImage }}
-              NodeTestVersion: "20.x"
+              NodeTestVersion: "22.x"
         pool:
           name: $[coalesce(variables['Pool'], '')]
           demands: ImageOverride -equals $(OSVmImage)
@@ -260,11 +260,11 @@ stages:
             Windows_Latest:
               Pool: ${{ parameters.WindowsPool }}
               OSVmImage: ${{ parameters.Windows_Latest }}
-              NodeTestVersion: "20.x"
+              NodeTestVersion: "22.x"
             macOS_Latest:
               Pool: ${{ parameters.MacPool }}
               OSVmImage: ${{ parameters.macOS_Latest }}
-              NodeTestVersion: "20.x"
+              NodeTestVersion: "22.x"
         pool:
           name: $[coalesce(variables['Pool'], '')]
           vmImage: $[coalesce(variables['OSVmImage'], '')]
@@ -280,10 +280,10 @@ stages:
           - template: globals.yml
         strategy:
           matrix:
-            Linux_Node20:
+            Linux_Node22:
               Pool: ${{ parameters.LinuxPool }}
               OSVmImage: ${{ parameters.OSVmImage }}
-              NodeTestVersion: "20.x"
+              NodeTestVersion: "22.x"
         pool:
           name: $[coalesce(variables['Pool'], '')]
           vmImage: $[coalesce(variables['OSVmImage'], '')]
@@ -348,10 +348,10 @@ stages:
           - template: globals.yml
         strategy:
           matrix:
-            Linux_Node20:
+            Linux_Node22:
               Pool: ${{ parameters.LinuxPool }}
               OSVmImage: ${{ parameters.OSVmImage }}
-              NodeTestVersion: "20.x"
+              NodeTestVersion: "22.x"
         pool:
           name: $[coalesce(variables['Pool'], '')]
           vmImage: $[coalesce(variables['OSVmImage'], '')]

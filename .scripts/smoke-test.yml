@@ -8,10 +8,10 @@ jobs:
       - template: globals.yml
     strategy:
       matrix:
-        Linux_Node20:
+        Linux_Node22:
           Pool: azsdk-pool
           OSVmImage: "ubuntu-24.04"
-          NodeTestVersion: "20.x"
+          NodeTestVersion: "22.x"
     pool:
       name: $[coalesce(variables['Pool'], '')]
       demands: ImageOverride -equals $(OSVmImage)
