@@ -932,6 +932,172 @@ describe("Package file generation", () => {
         { path: "src/old-path.ts", prefix: "userAgentInfo" }
       ]);
     });
+
+    it("should auto-detect @azure/core-client and migrate to canonical TypeSpec deps", () => {
+      const model = createMockModel({
+        moduleKind: "esm",
+        flavor: "azure",
+        isMonorepo: true,
+        hasLro: false,
+        isModularLibrary: true
+      });
+
+      const initialPackageInfo = {
+        name: "@azure/test-package",
+        version: "1.0.0",
+        dependencies: {
+          "@azure/core-client": "^1.9.3",
+          "@azure/core-auth": "^1.9.0",
+          "@azure/core-rest-pipeline": "^1.19.1",
+          "@azure/core-tracing": "^1.0.0",
+          tslib: "^2.6.2"
+        },
+        devDependencies: {
+          "@types/node": "^18.0.0",
+          autorest: "catalog:"
+        }
+      };
+
+      // No explicit deps param — detection is automatic
+      const packageFileContent = updatePackageFile(model, initialPackageInfo);
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      // AutoRest-specific deps should be gone; canonical TypeSpec ones should take over
+      expect(packageFile.dependencies).to.not.have.property("@azure/core-client");
+      expect(packageFile.dependencies).to.not.have.property("@azure/core-tracing");
+      expect(packageFile.dependencies).to.have.property("@azure-rest/core-client", "^2.3.1");
+      expect(packageFile.dependencies).to.have.property("@azure/core-util", "^1.12.0");
+      // devDependencies should also be overwritten with canonical TypeSpec values
+      expect(packageFile.devDependencies).to.not.have.property("autorest");
+      expect(packageFile.devDependencies).to.have.property("@azure/dev-tool");
+    });
+
+    it("should auto-detect @azure/core-lro ^2.x and migrate to canonical TypeSpec deps", () => {
+      const model = createMockModel({
+        moduleKind: "esm",
+        flavor: "azure",
+        isMonorepo: true,
+        hasLro: true,
+        isModularLibrary: true
+      });
+
+      const initialPackageInfo = {
+        name: "@azure/test-package",
+        version: "1.0.0",
+        dependencies: {
+          "@azure-rest/core-client": "^2.0.0",
+          "@azure/core-lro": "^2.7.0",
+          tslib: "^2.6.2"
+        }
+      };
+
+      const packageFileContent = updatePackageFile(model, initialPackageInfo);
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      // @azure/core-lro should be updated to the TypeSpec-expected version (^3.x)
+      expect(packageFile.dependencies).to.have.property("@azure/core-lro", "^3.1.0");
+      expect(packageFile.dependencies).to.have.property("@azure-rest/core-client", "^2.3.1");
+    });
+
+    it("should return undefined when no AutoRest deps are present and no other update needed", () => {
+      const model = createMockModel({
+        moduleKind: "esm",
+        flavor: "azure",
+        isMonorepo: true,
+        hasLro: false,
+        isModularLibrary: true
+      });
+
+      const initialPackageInfo = {
+        name: "@azure/test-package",
+        version: "1.0.0",
+        dependencies: {
+          "@azure-rest/core-client": "^2.3.1",
+          "@azure/core-auth": "^1.9.0",
+          tslib: "^2.8.1"
+        }
+      };
+
+      // No AutoRest deps → no migration needed
+      const packageFileContent = updatePackageFile(model, initialPackageInfo);
+      expect(packageFileContent).to.be.undefined;
+    });
+
+    it("should merge additional dependencies (e.g. fast-xml-parser) into canonical set on migration", () => {
+      const model = createMockModel({
+        moduleKind: "esm",
+        flavor: "azure",
+        isMonorepo: true,
+        hasLro: false,
+        isModularLibrary: true
+      });
+
+      const initialPackageInfo = {
+        name: "@azure/test-package",
+        version: "1.0.0",
+        dependencies: {
+          "@azure/core-client": "^1.9.3",
+          tslib: "^2.6.2"
+        }
+      };
+
+      // Caller passes format-specific extra deps to be merged into the canonical set
+      const packageFileContent = updatePackageFile(model, initialPackageInfo, {
+        dependencies: { "fast-xml-parser": "^4.5.0" }
+      });
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      expect(packageFile.dependencies).to.not.have.property("@azure/core-client");
+      expect(packageFile.dependencies).to.have.property("@azure-rest/core-client", "^2.3.1");
+      expect(packageFile.dependencies).to.have.property("fast-xml-parser", "^4.5.0");
+    });
+
+    it("should include LRO-specific deps in canonical set when model has polling operations", () => {
+      const model = createMockModel({
+        moduleKind: "esm",
+        flavor: "azure",
+        isMonorepo: true,
+        hasLro: true,
+        isModularLibrary: true
+      });
+
+      const initialPackageInfo = {
+        name: "@azure/test-package",
+        version: "1.0.0",
+        dependencies: {
+          "@azure/core-client": "^1.9.3",
+          tslib: "^2.6.2"
+        }
+      };
+
+      const packageFileContent = updatePackageFile(model, initialPackageInfo);
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      expect(packageFile.dependencies).to.not.have.property("@azure/core-client");
+      expect(packageFile.dependencies).to.have.property("@azure-rest/core-client", "^2.3.1");
+      expect(packageFile.dependencies).to.have.property("@azure/core-lro", "^3.1.0");
+      expect(packageFile.dependencies).to.have.property("@azure/abort-controller", "^2.1.2");
+    });
+
+    it("should return undefined when no deps/exports/lro/contextPaths update is needed", () => {
+      const model = createMockModel({
+        moduleKind: "esm",
+        flavor: "azure",
+        isMonorepo: true,
+        hasLro: false
+      });
+
+      const initialPackageInfo = {
+        name: "@azure/test-package",
+        version: "1.0.0",
+        dependencies: {
+          "@azure-rest/core-client": "^2.3.1"
+        }
+      };
+
+      const packageFileContent = updatePackageFile(model, initialPackageInfo);
+      expect(packageFileContent).to.be.undefined;
+    });
   });
 
   describe("Flavorless lib", () => {
