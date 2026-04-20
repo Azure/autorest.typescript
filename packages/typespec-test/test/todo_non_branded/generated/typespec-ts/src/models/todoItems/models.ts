@@ -4,8 +4,8 @@ import {
   ApiError,
   todoItemArrayDeserializer,
   TodoItem,
-  TodoAttachment,
   todoAttachmentArrayDeserializer,
+  TodoAttachment,
 } from "../models.js";
 
 /**

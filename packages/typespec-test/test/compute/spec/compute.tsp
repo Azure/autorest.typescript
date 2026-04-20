@@ -135,3 +135,95 @@ interface ActionGroups {
         }
     >;
 }
+
+#suppress "@azure-tools/typespec-azure-core/documentation-required" "For backward compatibility"
+model SubResourceReadOnly {
+    /**
+     * Resource Id
+     */
+    @visibility(Lifecycle.Read)
+    id?: Azure.Core.armResourceIdentifier;
+}
+
+#suppress "@azure-tools/typespec-azure-core/no-private-usage" "For backward compatibility"
+#suppress "@azure-tools/typespec-azure-core/no-legacy-usage" "For backward compatibility"
+@doc("Concrete proxy resource types can be created by aliasing this type using a specific property type.")
+@Http.Private.includeInapplicableMetadataInPayload(false)
+@Azure.ResourceManager.Legacy.customAzureResource
+model ProxySubResourceReadOnly<Properties extends {}>
+    extends SubResourceReadOnly {
+    @doc("The resource-specific properties for this resource.")
+    properties?: Properties;
+
+    /**
+     * The name of the parent resource.
+     */
+    @path
+    @visibility(Lifecycle.Read)
+    @segment("parents")
+    parentName: string;
+}
+
+/**
+ * Describes a Virtual Machine Scale Set Extension.
+ */
+#suppress "@azure-tools/typespec-azure-resource-manager/arm-custom-resource-usage-discourage" "For backward compatibility"
+model VirtualMachineScaleSetExtension
+    is ProxySubResourceReadOnly<VirtualMachineScaleSetExtensionProperties> {
+    /**
+     * Resource type
+     */
+    @visibility(Lifecycle.Read)
+    @encodedName("application/json", "type")
+    vmType?: string;
+
+    /**
+     * Resource name
+     */
+    name?: string;
+
+    /**
+     * The name of the VM scale set extension.
+     */
+    @path
+    @visibility(Lifecycle.Read)
+    @segment("extensions")
+    @key("vmssExtensionName")
+    vmssExtensionName: string;
+}
+
+/**
+ * Describes the properties of a Virtual Machine Scale Set Extension.
+ */
+model VirtualMachineScaleSetExtensionProperties {
+    /**
+     * If a value is provided and is different from the previous value, the extension handler will be forced to update even if the extension configuration has not changed.
+     */
+    forceUpdateTag?: string;
+}
+
+@armResourceOperations
+interface VirtualMachineScaleSetExtensions {
+    /**
+     * The operation to get the extension.
+     */
+    get is ArmResourceRead<
+        VirtualMachineScaleSetExtension,
+        Parameters = {
+            /**
+             * The expand expression to apply on the operation.
+             */
+            @query("$expand")
+            $expand?: string;
+        }
+    >;
+
+    /**
+     * The operation to create or update an extension.
+     */
+    createOrUpdate is ArmResourceCreateOrReplaceAsync<
+        VirtualMachineScaleSetExtension,
+        LroHeaders = ArmLroLocationHeader<FinalResult = VirtualMachineScaleSetExtension> &
+            Azure.Core.Foundations.RetryAfterHeader
+    >;
+}
