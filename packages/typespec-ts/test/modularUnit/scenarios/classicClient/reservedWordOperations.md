@@ -32,6 +32,11 @@ export class TestingClient {
     this.pipeline = this._client.pipeline;
   }
 
+  /**
+   *  @fixme continue is a reserved word that cannot be used as an operation name.
+   *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
+   *         to the operation to override the generated name.
+   */
   continue(options: ContinueOptionalParams = { requestOptions: {} }): Promise<void> {
     return $continue(this._client, options);
   }

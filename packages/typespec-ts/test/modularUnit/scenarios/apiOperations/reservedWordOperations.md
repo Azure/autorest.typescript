@@ -43,6 +43,11 @@ export async function _$continueDeserialize(result: PathUncheckedResponse): Prom
   return testDeserializer(result.body);
 }
 
+/**
+ *  @fixme continue is a reserved word that cannot be used as an operation name.
+ *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
+ *         to the operation to override the generated name.
+ */
 export async function $continue(
   context: Client,
   options: ContinueOptionalParams = { requestOptions: {} },
@@ -97,6 +102,11 @@ export async function _$returnDeserialize(result: PathUncheckedResponse): Promis
   return testDeserializer(result.body);
 }
 
+/**
+ *  @fixme return is a reserved word that cannot be used as an operation name.
+ *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
+ *         to the operation to override the generated name.
+ */
 export async function $return(
   context: Client,
   options: ReturnOptionalParams = { requestOptions: {} },
