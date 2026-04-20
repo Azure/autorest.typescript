@@ -662,7 +662,7 @@ export async function $onEmit(context: EmitContext) {
     }
 
     // Generate test relevant files
-    if (option.generateTest && !hasTestFolder) {
+    if (option.generateTest && !hasTestFolder && !hasManualConvenienceLayer) {
       await emitContentByBuilder(
         program,
         [buildRecordedClientFile, buildSampleTest],
