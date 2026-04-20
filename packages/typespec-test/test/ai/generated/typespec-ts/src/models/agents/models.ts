@@ -9,6 +9,18 @@ import { FileContents, createFilePartDescriptor } from "../../static-helpers/mul
  */
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+export function toolDefinitionUnionArraySerializer(result: Array<ToolDefinitionUnion>): any[] {
+  return result.map((item) => {
+    return toolDefinitionUnionSerializer(item);
+  });
+}
+
+export function toolDefinitionUnionArrayDeserializer(result: Array<ToolDefinitionUnion>): any[] {
+  return result.map((item) => {
+    return toolDefinitionUnionDeserializer(item);
+  });
+}
+
 /** An abstract representation of an input tool definition that an agent can use. */
 export interface ToolDefinition {
   /** The object type. */
@@ -954,6 +966,35 @@ export function indexResourceDeserializer(item: any): IndexResource {
 }
 
 /**
+ * Specifies the format that the model must output. Compatible with GPT-4 Turbo and all GPT-3.5 Turbo models since `gpt-3.5-turbo-1106`.
+ *
+ * Setting to `{ "type": "json_object" }` enables JSON mode, which guarantees the message the model generates is valid JSON.
+ *
+ * **Important:** when using JSON mode, you **must** also instruct the model to produce JSON yourself via a system or user message.
+ * Without this, the model may generate an unending stream of whitespace until the generation reaches the token limit,
+ * resulting in a long-running and seemingly "stuck" request. Also note that the message content may be partially cut off
+ * if `finish_reason="length"`, which indicates the generation exceeded `max_tokens` or the conversation exceeded the max context length.
+ */
+export type AgentsApiResponseFormatOption =
+  | string
+  | AgentsApiResponseFormatMode
+  | AgentsApiResponseFormat
+  | ResponseFormatJsonSchemaType;
+
+export function agentsApiResponseFormatOptionSerializer(item: AgentsApiResponseFormatOption): any {
+  return item;
+}
+
+export function agentsApiResponseFormatOptionDeserializer(
+  item: any,
+): AgentsApiResponseFormatOption {
+  return item;
+}
+
+/** Represents the mode in which the model will handle the return format of a tool call. */
+export type AgentsApiResponseFormatMode = "auto" | "none";
+
+/**
  * An object describing the expected output of the model. If `json_object` only `function` type `tools` are allowed to be passed to the Run.
  * If `text` the model can return text or any value needed.
  */
@@ -1018,47 +1059,6 @@ export function responseFormatJsonSchemaDeserializer(item: any): ResponseFormatJ
     schema: item["schema"],
   };
 }
-
-export function toolDefinitionUnionArraySerializer(result: Array<ToolDefinitionUnion>): any[] {
-  return result.map((item) => {
-    return toolDefinitionUnionSerializer(item);
-  });
-}
-
-export function toolDefinitionUnionArrayDeserializer(result: Array<ToolDefinitionUnion>): any[] {
-  return result.map((item) => {
-    return toolDefinitionUnionDeserializer(item);
-  });
-}
-
-/**
- * Specifies the format that the model must output. Compatible with GPT-4 Turbo and all GPT-3.5 Turbo models since `gpt-3.5-turbo-1106`.
- *
- * Setting to `{ "type": "json_object" }` enables JSON mode, which guarantees the message the model generates is valid JSON.
- *
- * **Important:** when using JSON mode, you **must** also instruct the model to produce JSON yourself via a system or user message.
- * Without this, the model may generate an unending stream of whitespace until the generation reaches the token limit,
- * resulting in a long-running and seemingly "stuck" request. Also note that the message content may be partially cut off
- * if `finish_reason="length"`, which indicates the generation exceeded `max_tokens` or the conversation exceeded the max context length.
- */
-export type AgentsApiResponseFormatOption =
-  | string
-  | AgentsApiResponseFormatMode
-  | AgentsApiResponseFormat
-  | ResponseFormatJsonSchemaType;
-
-export function agentsApiResponseFormatOptionSerializer(item: AgentsApiResponseFormatOption): any {
-  return item;
-}
-
-export function agentsApiResponseFormatOptionDeserializer(
-  item: any,
-): AgentsApiResponseFormatOption {
-  return item;
-}
-
-/** Represents the mode in which the model will handle the return format of a tool call. */
-export type AgentsApiResponseFormatMode = "auto" | "none";
 
 /** Represents an agent that can call the model and use tools. */
 export interface Agent {
@@ -1175,6 +1175,12 @@ export function agentDeletionStatusDeserializer(item: any): AgentDeletionStatus 
   };
 }
 
+export function threadMessageOptionsArraySerializer(result: Array<ThreadMessageOptions>): any[] {
+  return result.map((item) => {
+    return threadMessageOptionsSerializer(item);
+  });
+}
+
 /** A single message within an agent thread, as provided during that thread's creation for its initial state. */
 export interface ThreadMessageOptions {
   /**
@@ -1284,12 +1290,6 @@ export function messageAttachmentToolDefinitionDeserializer(
   item: any,
 ): MessageAttachmentToolDefinition {
   return item;
-}
-
-export function threadMessageOptionsArraySerializer(result: Array<ThreadMessageOptions>): any[] {
-  return result.map((item) => {
-    return threadMessageOptionsSerializer(item);
-  });
 }
 
 /** Information about a single thread associated with an agent. */
@@ -1707,6 +1707,28 @@ export function truncationObjectDeserializer(item: any): TruncationObject {
 
 /** Possible truncation strategies for the thread. */
 export type TruncationStrategy = "auto" | "last_messages";
+/**
+ * Controls which (if any) tool is called by the model.
+ * - `none` means the model will not call any tools and instead generates a message.
+ * - `auto` is the default value and means the model can pick between generating a message or calling a tool.
+ * Specifying a particular tool like `{"type": "file_search"}` or `{"type": "function", "function": {"name": "my_function"}}`
+ * forces the model to call that tool.
+ */
+export type AgentsApiToolChoiceOption =
+  | string
+  | AgentsApiToolChoiceOptionMode
+  | AgentsNamedToolChoice;
+
+export function agentsApiToolChoiceOptionSerializer(item: AgentsApiToolChoiceOption): any {
+  return item;
+}
+
+export function agentsApiToolChoiceOptionDeserializer(item: any): AgentsApiToolChoiceOption {
+  return item;
+}
+
+/** Specifies how the tool choice will be used */
+export type AgentsApiToolChoiceOptionMode = "none" | "auto";
 
 /** Specifies a tool the model should use. Use to force the model to call a specific tool. */
 export interface AgentsNamedToolChoice {
@@ -1755,29 +1777,6 @@ export function functionNameDeserializer(item: any): FunctionName {
     name: item["name"],
   };
 }
-
-/**
- * Controls which (if any) tool is called by the model.
- * - `none` means the model will not call any tools and instead generates a message.
- * - `auto` is the default value and means the model can pick between generating a message or calling a tool.
- * Specifying a particular tool like `{"type": "file_search"}` or `{"type": "function", "function": {"name": "my_function"}}`
- * forces the model to call that tool.
- */
-export type AgentsApiToolChoiceOption =
-  | string
-  | AgentsApiToolChoiceOptionMode
-  | AgentsNamedToolChoice;
-
-export function agentsApiToolChoiceOptionSerializer(item: AgentsApiToolChoiceOption): any {
-  return item;
-}
-
-export function agentsApiToolChoiceOptionDeserializer(item: any): AgentsApiToolChoiceOption {
-  return item;
-}
-
-/** Specifies how the tool choice will be used */
-export type AgentsApiToolChoiceOptionMode = "none" | "auto";
 
 /** Data representing a single evaluation run of an agent thread. */
 export interface ThreadRun {
@@ -2211,6 +2210,12 @@ export function threadRunArrayDeserializer(result: Array<ThreadRun>): any[] {
   });
 }
 
+export function toolOutputArraySerializer(result: Array<ToolOutput>): any[] {
+  return result.map((item) => {
+    return toolOutputSerializer(item);
+  });
+}
+
 /** The data provided during a tool outputs submission to resolve pending tool calls and allow the model to continue. */
 export interface ToolOutput {
   /** The ID of the tool call being resolved, as provided in the tool calls of a required action from a run. */
@@ -2221,12 +2226,6 @@ export interface ToolOutput {
 
 export function toolOutputSerializer(item: ToolOutput): any {
   return { tool_call_id: item["toolCallId"], output: item["output"] };
-}
-
-export function toolOutputArraySerializer(result: Array<ToolOutput>): any[] {
-  return result.map((item) => {
-    return toolOutputSerializer(item);
-  });
 }
 
 /** The details used to create a new agent thread. */

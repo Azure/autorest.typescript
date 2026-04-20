@@ -947,3 +947,355 @@ export function getIkeSas(
   }) as PollerLike<OperationState<GetIkeSasResponse>, GetIkeSasResponse>;
 }
 ```
+
+# wrap-non-model-return wraps HEAD void response as boolean body property
+
+When both `wrap-non-model-return` and `head-as-boolean` are enabled and the operation is a HEAD request with no response body,
+the response is wrapped as `{ body: boolean }` to indicate resource existence (true = exists, false = not found).
+This matches HLC behavior for HEAD operations.
+
+## TypeSpec
+
+```tsp
+@route("/resource-groups/{resourceGroupName}")
+@head
+op checkExistence(@path resourceGroupName: string): {
+  @statusCode _: 204;
+} | {
+  @statusCode _: 404;
+};
+```
+
+```yaml
+wrap-non-model-return: true
+head-as-boolean: true
+```
+
+## Models
+
+```ts models alias CheckExistenceResponse
+export type CheckExistenceResponse = { body: boolean };
+```
+
+## Operations
+
+```ts operations
+import { TestingContext as Client } from "./index.js";
+import { CheckExistenceResponse } from "../models/models.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import { CheckExistenceOptionalParams } from "./options.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+
+export function _checkExistenceSend(
+  context: Client,
+  resourceGroupName: string,
+  options: CheckExistenceOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/resource-groups/{resourceGroupName}",
+    {
+      resourceGroupName: resourceGroupName,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context.path(path).head({ ...operationOptionsToRequestParameters(options) });
+}
+
+export async function _checkExistenceDeserialize(
+  result: PathUncheckedResponse,
+): Promise<CheckExistenceResponse> {
+  const expectedStatuses = ["204", "404"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return { body: result.status.startsWith("2") };
+}
+
+export async function checkExistence(
+  context: Client,
+  resourceGroupName: string,
+  options: CheckExistenceOptionalParams = { requestOptions: {} },
+): Promise<CheckExistenceResponse> {
+  const result = await _checkExistenceSend(context, resourceGroupName, options);
+  return _checkExistenceDeserialize(result);
+}
+```
+
+# wrap-non-model-return wraps HEAD void-only response as boolean body property
+
+When both `wrap-non-model-return` and `head-as-boolean` are enabled and the operation is a HEAD request returning only void (success only),
+the response is wrapped as `{ body: boolean }`.
+
+## TypeSpec
+
+```tsp
+@route("/resources/{resourceName}")
+@head
+op headResource(@path resourceName: string): void;
+```
+
+```yaml
+wrap-non-model-return: true
+head-as-boolean: true
+```
+
+## Models
+
+```ts models alias HeadResourceResponse
+export type HeadResourceResponse = { body: boolean };
+```
+
+## Operations
+
+```ts operations
+import { TestingContext as Client } from "./index.js";
+import { HeadResourceResponse } from "../models/models.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import { HeadResourceOptionalParams } from "./options.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+
+export function _headResourceSend(
+  context: Client,
+  resourceName: string,
+  options: HeadResourceOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/resources/{resourceName}",
+    {
+      resourceName: resourceName,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context.path(path).head({ ...operationOptionsToRequestParameters(options) });
+}
+
+export async function _headResourceDeserialize(
+  result: PathUncheckedResponse,
+): Promise<HeadResourceResponse> {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return { body: result.status.startsWith("2") };
+}
+
+export async function headResource(
+  context: Client,
+  resourceName: string,
+  options: HeadResourceOptionalParams = { requestOptions: {} },
+): Promise<HeadResourceResponse> {
+  const result = await _headResourceSend(context, resourceName, options);
+  return _headResourceDeserialize(result);
+}
+```
+
+# Non wrap HEAD void-only response as boolean (no body wrap)
+
+When `head-as-boolean` is true but `wrap-non-model-return` is false, the HEAD operation
+returns a plain `boolean` (not wrapped in `{ body: boolean }`).
+
+## TypeSpec
+
+```tsp
+@route("/resources/{resourceName}")
+@head
+op headResource(@path resourceName: string): void;
+```
+
+```yaml
+wrap-non-model-return: false
+head-as-boolean: true
+```
+
+## Operations
+
+```ts operations
+import { TestingContext as Client } from "./index.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import { HeadResourceOptionalParams } from "./options.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+
+export function _headResourceSend(
+  context: Client,
+  resourceName: string,
+  options: HeadResourceOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/resources/{resourceName}",
+    {
+      resourceName: resourceName,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context.path(path).head({ ...operationOptionsToRequestParameters(options) });
+}
+
+export async function _headResourceDeserialize(result: PathUncheckedResponse): Promise<boolean> {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return result.status.startsWith("2");
+}
+
+export async function headResource(
+  context: Client,
+  resourceName: string,
+  options: HeadResourceOptionalParams = { requestOptions: {} },
+): Promise<boolean> {
+  const result = await _headResourceSend(context, resourceName, options);
+  return _headResourceDeserialize(result);
+}
+```
+
+# HEAD void-only response as void body property
+
+## TypeSpec
+
+```tsp
+@route("/resources/{resourceName}")
+@head
+op headResource(@path resourceName: string): void;
+```
+
+```yaml
+wrap-non-model-return: false
+head-as-boolean: false
+```
+
+## Operations
+
+```ts operations
+import { TestingContext as Client } from "./index.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import { HeadResourceOptionalParams } from "./options.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+
+export function _headResourceSend(
+  context: Client,
+  resourceName: string,
+  options: HeadResourceOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/resources/{resourceName}",
+    {
+      resourceName: resourceName,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context.path(path).head({ ...operationOptionsToRequestParameters(options) });
+}
+
+export async function _headResourceDeserialize(result: PathUncheckedResponse): Promise<void> {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return;
+}
+
+export async function headResource(
+  context: Client,
+  resourceName: string,
+  options: HeadResourceOptionalParams = { requestOptions: {} },
+): Promise<void> {
+  const result = await _headResourceSend(context, resourceName, options);
+  return _headResourceDeserialize(result);
+}
+```
+
+# Wrap-non-model-return wraps HEAD void-only response as void body property
+
+## TypeSpec
+
+```tsp
+@route("/resources/{resourceName}")
+@head
+op headResource(@path resourceName: string): void;
+```
+
+```yaml
+wrap-non-model-return: true
+head-as-boolean: false
+```
+
+## Operations
+
+```ts operations
+import { TestingContext as Client } from "./index.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import { HeadResourceOptionalParams } from "./options.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+
+export function _headResourceSend(
+  context: Client,
+  resourceName: string,
+  options: HeadResourceOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/resources/{resourceName}",
+    {
+      resourceName: resourceName,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context.path(path).head({ ...operationOptionsToRequestParameters(options) });
+}
+
+export async function _headResourceDeserialize(result: PathUncheckedResponse): Promise<void> {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return;
+}
+
+export async function headResource(
+  context: Client,
+  resourceName: string,
+  options: HeadResourceOptionalParams = { requestOptions: {} },
+): Promise<void> {
+  const result = await _headResourceSend(context, resourceName, options);
+  return _headResourceDeserialize(result);
+}
+```
