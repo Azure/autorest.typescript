@@ -80,13 +80,11 @@ function buildExportsForMultiClient(
             NameType.File,
             "/"
           )}`;
-          // Strip leading "./" to match the pre-existing format for this specific
-          // hierarchy-client subpath entry (e.g. "src/blobBlob/api/index.ts").
-          const srcPrefixRelative = srcPrefix.replace(/^\.\//, "");
+
           packageInfo.exports[
             `./${subfolder ? subfolder + "/" : ""}${subApiPath}`
           ] =
-            `${srcPrefixRelative}/${subfolder ? subfolder + "/" : ""}${subApiPath}/index.ts`;
+            `${srcPrefix}/${subfolder ? subfolder + "/" : ""}${subApiPath}/index.ts`;
         }
       }
     }
