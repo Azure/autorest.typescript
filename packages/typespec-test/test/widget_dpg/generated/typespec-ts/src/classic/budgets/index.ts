@@ -13,6 +13,11 @@ import { PollerLike, OperationState } from "@azure/core-lro";
 
 /** Interface representing a Budgets operations. */
 export interface BudgetsOperations {
+  /**
+   *  @fixme continue is a reserved word that cannot be used as an operation name.
+   *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
+   *         to the operation to override the generated name.
+   */
   continue: (options?: BudgetsContinueOptionalParams) => Promise<void>;
   getBudgets: (name: string, options?: BudgetsGetBudgetsOptionalParams) => Promise<Widget[]>;
   /** Long-running resource create or replace operation template. */

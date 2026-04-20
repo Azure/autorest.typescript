@@ -24,6 +24,11 @@ export interface FilesOperations {
     fileId: string,
     options?: FilesDownloadOptionalParams,
   ) => Promise<FilesDownloadResponse>;
+  /**
+   *  @fixme delete is a reserved word that cannot be used as an operation name.
+   *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
+   *         to the operation to override the generated name.
+   */
   delete: (fileId: string, options?: FilesDeleteOptionalParams) => Promise<DeleteFileResponse>;
   retrieve: (fileId: string, options?: FilesRetrieveOptionalParams) => Promise<OpenAIFile>;
   create: (file: CreateFileRequest, options?: FilesCreateOptionalParams) => Promise<OpenAIFile>;

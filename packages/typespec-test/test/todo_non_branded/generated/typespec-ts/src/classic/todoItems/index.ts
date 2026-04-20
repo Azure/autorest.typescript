@@ -27,6 +27,11 @@ import {
 
 /** Interface representing a TodoItems operations. */
 export interface TodoItemsOperations {
+  /**
+   *  @fixme delete is a reserved word that cannot be used as an operation name.
+   *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
+   *         to the operation to override the generated name.
+   */
   delete: (id: number, options?: TodoItemsDeleteOptionalParams) => Promise<void>;
   update: (
     id: number,
