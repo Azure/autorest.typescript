@@ -34,10 +34,7 @@ export function getOperationName(
   const norm = normalizeName(operation.name, NameType.Method, true);
   const isDataplane =
     dpgContext !== undefined && !dpgContext.rlcOptions?.azureArm;
-  if (
-    isReservedName(operation.name, NameType.Method) &&
-    isDataplane
-  ) {
+  if (isReservedName(operation.name, NameType.Method) && isDataplane) {
     return {
       name: norm,
       fixme: [
