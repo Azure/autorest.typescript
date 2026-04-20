@@ -646,15 +646,14 @@ export const azureModularTsps = [
     outputPath: "client/structure/multi-client",
     inputPath: "client/structure/multi-client"
   },
-  // disable it as need upgrade tcgc to support it https://github.com/Azure/typespec-azure/pull/3997.
-  // {
-  //   outputPath: "client/structure/renamed-operation",
-  //   inputPath: "client/structure/renamed-operation"
-  // },
-  // {
-  //   outputPath: "client/structure/two-operation-group",
-  //   inputPath: "client/structure/two-operation-group"
-  // },
+  {
+    outputPath: "client/structure/renamed-operation",
+    inputPath: "client/structure/renamed-operation"
+  },
+  {
+    outputPath: "client/structure/two-operation-group",
+    inputPath: "client/structure/two-operation-group"
+  },
   {
     outputPath: "azure/special-headers/client-request-id",
     inputPath: "azure/special-headers/client-request-id"
@@ -764,10 +763,10 @@ export const azureModularTsps = [
     outputPath: "payload/media-type",
     inputPath: "payload/media-type"
   },
-  // {
-  //   outputPath: "payload/multipart",
-  //   inputPath: "payload/multipart"
-  // },
+  {
+    outputPath: "payload/multipart",
+    inputPath: "payload/multipart"
+  },
   {
     outputPath: "payload/xml",
     inputPath: "payload/xml"
@@ -872,11 +871,10 @@ export const azureModularTsps = [
     outputPath: "azure/core/page",
     inputPath: "azure/core/page"
   },
-  // disable it as need upgrade tcgc to support it https://github.com/Azure/typespec-azure/pull/3997.
-  // {
-  //   outputPath: "client/structure/client-operation-group",
-  //   inputPath: "client/structure/client-operation-group"
-  // },
+  {
+    outputPath: "client/structure/client-operation-group",
+    inputPath: "client/structure/client-operation-group"
+  },
   {
     outputPath: "encode/numeric",
     inputPath: "encode/numeric"
@@ -1023,6 +1021,42 @@ export const azureModularTsps = [
   {
     outputPath: "parameters/query",
     inputPath: "parameters/query"
+  },
+  {
+    outputPath: "documentation",
+    inputPath: "documentation"
+  },
+  {
+    outputPath: "payload/json-merge-patch",
+    inputPath: "payload/json-merge-patch"
+  },
+  {
+    outputPath: "authentication/noauth/union",
+    inputPath: "authentication/noauth/union"
+  },
+  {
+    outputPath: "type/model/visibility",
+    inputPath: "type/model/visibility"
+  },
+  {
+    outputPath: "type/union/discriminated",
+    inputPath: "type/union/discriminated"
+  },
+  {
+    outputPath: "response/status-code-range",
+    inputPath: "response/status-code-range"
+  },
+  {
+    outputPath: "streaming/jsonl",
+    inputPath: "streaming/jsonl"
+  },
+  {
+    outputPath: "type/file",
+    inputPath: "type/file"
+  },
+  {
+    outputPath: "service/multiple-services",
+    inputPath: "service/multiple-services"
   }
 ];
 

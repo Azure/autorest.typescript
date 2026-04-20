@@ -59,12 +59,6 @@ export default defineConfig({
         test: {
           name: "integration-azure-modular",
           include: ["test/azureModularIntegration/*.spec.ts"],
-          exclude: [
-            "test/azureModularIntegration/clientStructureOperationGroup.spec.ts",
-            "test/azureModularIntegration/clientStructureRenamed.spec.ts",
-            "test/azureModularIntegration/clientStructureTwoGroup.spec.ts",
-            "test/azureModularIntegration/payloadMultipart.spec.ts"
-          ],
           testTimeout: 36000
         }
       }
