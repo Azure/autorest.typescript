@@ -6,3 +6,4 @@ export type { DiskAccessesOperations } from "./diskAccesses/index.js";
 export type { DisksOperations } from "./disks/index.js";
 export type { RestorePointCollectionsOperations } from "./restorePointCollections/index.js";
 export type { VirtualMachinesOperations } from "./virtualMachines/index.js";
+export type { VirtualMachineScaleSetExtensionsOperations } from "./virtualMachineScaleSetExtensions/index.js";

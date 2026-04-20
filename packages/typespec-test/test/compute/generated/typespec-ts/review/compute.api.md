@@ -59,6 +59,7 @@ export class ComputeClient {
     readonly pipeline: Pipeline;
     readonly restorePointCollections: RestorePointCollectionsOperations;
     readonly virtualMachines: VirtualMachinesOperations;
+    readonly virtualMachineScaleSetExtensions: VirtualMachineScaleSetExtensionsOperations;
 }
 
 // @public
@@ -277,6 +278,11 @@ export interface RestorePollerOptions<TResult, TResponse extends PathUncheckedRe
 }
 
 // @public
+export interface SubResourceReadOnly {
+    readonly id?: string;
+}
+
+// @public
 export interface SystemData {
     createdAt?: Date;
     createdBy?: string;
@@ -301,6 +307,34 @@ export interface VirtualMachine extends TrackedResource {
 export interface VirtualMachineProperties {
     // (undocumented)
     readonly provisioningState?: ResourceProvisioningState;
+}
+
+// @public
+export interface VirtualMachineScaleSetExtension extends SubResourceReadOnly {
+    name?: string;
+    properties?: VirtualMachineScaleSetExtensionProperties;
+    readonly vmType?: string;
+}
+
+// @public
+export interface VirtualMachineScaleSetExtensionProperties {
+    forceUpdateTag?: string;
+}
+
+// @public
+export interface VirtualMachineScaleSetExtensionsCreateOrUpdateOptionalParams extends OperationOptions {
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface VirtualMachineScaleSetExtensionsGetOptionalParams extends OperationOptions {
+    expand?: string;
+}
+
+// @public
+export interface VirtualMachineScaleSetExtensionsOperations {
+    createOrUpdate: (resourceGroupName: string, vmssExtensionName: string, resource: VirtualMachineScaleSetExtension, options?: VirtualMachineScaleSetExtensionsCreateOrUpdateOptionalParams) => PollerLike<OperationState<VirtualMachineScaleSetExtension>, VirtualMachineScaleSetExtension>;
+    get: (resourceGroupName: string, vmssExtensionName: string, options?: VirtualMachineScaleSetExtensionsGetOptionalParams) => Promise<VirtualMachineScaleSetExtension>;
 }
 
 // @public

@@ -115,7 +115,7 @@ describe("Integration tests for UrlRest", () => {
     it("should work when path has enum", async function() {
       try {
         await client
-          .path("/paths/enum/green%20color/{enumPath}", <UriColor>"")
+          .path("/paths/enum/green%20color/{enumPath}", "" as UriColor)
           .get();
       } catch (error) {
         assert.equal(
@@ -426,7 +426,7 @@ describe("Integration tests for UrlRest", () => {
       try {
         await client.path("/queries/enum/green%20color").get({
           queryParameters: {
-            enumQuery: <UriColor>""
+            enumQuery: "" as UriColor
           }
         });
       } catch (error) {
