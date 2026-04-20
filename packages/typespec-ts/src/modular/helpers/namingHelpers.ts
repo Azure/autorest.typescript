@@ -10,9 +10,6 @@ import {
 import { SdkContext } from "../../utils/interfaces.js";
 import { ServiceOperation } from "../../utils/operationUtil.js";
 
-/** Reserved operation names that require a fixme comment in dataplane packages. */
-const DATAPLANE_FIXME_NAMES = new Set(["property", "interface", "function"]);
-
 export function getClientName(
   client: SdkClientType<SdkServiceOperation>
 ): string {
@@ -37,11 +34,9 @@ export function getOperationName(
   const norm = normalizeName(operation.name, NameType.Method, true);
   const isDataplane =
     dpgContext !== undefined && !dpgContext.rlcOptions?.azureArm;
-  const isFixmeName = DATAPLANE_FIXME_NAMES.has(operation.name.toLowerCase());
   if (
     isReservedName(operation.name, NameType.Method) &&
-    isDataplane &&
-    isFixmeName
+    isDataplane
   ) {
     return {
       name: norm,
