@@ -19,7 +19,7 @@ import {
   isAzurePackage,
   NameType,
   normalizeName
-} from "@azure-tools/rlc-common";
+} from "../rlc-common/index.js";
 import { useContext } from "../contextManager.js";
 import { join } from "path";
 import { AzureIdentityDependencies } from "../modular/external-dependencies.js";

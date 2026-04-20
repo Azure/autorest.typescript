@@ -16,7 +16,7 @@ import {
 } from "@typespec/compiler";
 import { SdkContext } from "./interfaces.js";
 import { ModularClientOptions } from "../modular/interfaces.js";
-import { NameType, normalizeName } from "@azure-tools/rlc-common";
+import { NameType, normalizeName } from "../rlc-common/index.js";
 
 export function getRLCClients(
   dpgContext: SdkContext,

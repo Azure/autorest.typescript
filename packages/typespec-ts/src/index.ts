@@ -65,7 +65,7 @@ import {
   buildSnippets,
   buildTsSrcConfig,
   buildTsSampleConfig
-} from "@azure-tools/rlc-common";
+} from "./rlc-common/index.js";
 import {
   buildRootIndex,
   buildSubClientIndexFile

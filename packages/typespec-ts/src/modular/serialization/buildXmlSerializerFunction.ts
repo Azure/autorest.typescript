@@ -18,7 +18,7 @@ import {
   normalizeModelName,
   getAdditionalPropertiesName
 } from "../emitModels.js";
-import { NameType } from "@azure-tools/rlc-common";
+import { NameType } from "../../rlc-common/index.js";
 import { isAzureCoreErrorType } from "../../utils/modelUtils.js";
 import {
   isSupportedSerializeType,
