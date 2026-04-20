@@ -1,4 +1,3 @@
-// @ts-nocheck
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
@@ -515,7 +514,7 @@ export function getClientFactoryBody(
       // within an operation group so we add them as key: value
       return `${
         key && key !== "client" ? `"${key}":` : "..."
-      } {${shortcutImplementations[key].join()}}`;
+      } {${shortcutImplementations[key]!.join()}}`;
     });
     returnStatement = `return { ...client, ${shortcutBody.join()} };`;
   }

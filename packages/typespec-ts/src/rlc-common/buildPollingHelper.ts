@@ -1,8 +1,5 @@
-// @ts-nocheck
 import { OPERATION_LRO_HIGH_PRIORITY, RLCModel } from "./interfaces.js";
 import * as path from "path";
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore: to fix the handlebars issue
 import hbs from "handlebars";
 import { hasPollingOperations } from "./helpers/operationHelpers.js";
 import { pollingContent } from "./static/pollingContent.js";
@@ -46,14 +43,14 @@ function buildLroHelperDetail(model: RLCModel): LroDetail {
   const responses = new Set<string>();
   for (const details of Object.values(pathDictionary)) {
     for (const methodDetails of Object.values(details.methods)) {
-      const lroDetail = methodDetails[0].operationHelperDetail?.lroDetails;
+      const lroDetail = methodDetails[0]!.operationHelperDetail?.lroDetails;
       if (lroDetail?.isLongRunning) {
-        const initialResponses = methodDetails[0].responseTypes.success.concat(
-          methodDetails[0].responseTypes.error
+        const initialResponses = methodDetails[0]!.responseTypes.success.concat(
+          methodDetails[0]!.responseTypes.error
         );
 
         const finalResponse = lroDetail.logicalResponseTypes?.success.concat(
-          methodDetails[0].responseTypes.error
+          methodDetails[0]!.responseTypes.error
         );
 
         if (initialResponses && finalResponse) {

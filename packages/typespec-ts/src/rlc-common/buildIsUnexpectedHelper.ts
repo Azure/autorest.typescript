@@ -1,4 +1,3 @@
-// @ts-nocheck
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
@@ -33,7 +32,7 @@ export function buildIsUnexpectedHelper(model: RLCModel) {
     for (const [methodName, methodDetails] of Object.entries(details.methods)) {
       const originalMethod = methodName.toUpperCase();
       const operation = `${originalMethod} ${path}`;
-      const successCodeSet = new Set<string>(map.operation ?? []);
+      const successCodeSet = new Set<string>(map["operation"] ?? []);
       for (const detail of methodDetails) {
         detail.successStatus.forEach(successCodeSet.add, successCodeSet);
         // LROs may call the same path but with GET
@@ -48,8 +47,8 @@ export function buildIsUnexpectedHelper(model: RLCModel) {
             ? ["200"]
             : [];
           const initialSuccessCodes =
-            (pathDictionary[path].methods["get"] &&
-              pathDictionary[path].methods["get"][0]?.successStatus) ??
+            (pathDictionary[path]!.methods["get"] &&
+              pathDictionary[path]!.methods["get"]![0]?.successStatus) ??
             detail.successStatus;
           map = {
             ...map,

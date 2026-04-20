@@ -1,4 +1,3 @@
-// @ts-nocheck
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
@@ -571,12 +570,12 @@ function getPropertySignatures(
 ) {
   let validProperties = Object.keys(properties);
   const readOnlyFilter = (name: string) =>
-    !(schemaUsage.includes(SchemaContext.Input) && properties[name].readOnly);
-  const neverFilter = (name: string) => properties[name].type !== "never";
+    !(schemaUsage.includes(SchemaContext.Input) && properties[name]!.readOnly);
+  const neverFilter = (name: string) => properties[name]!.type !== "never";
   validProperties = validProperties.filter(readOnlyFilter).filter(neverFilter);
   return validProperties.map((p) =>
     getPropertySignature(
-      { ...properties[p], name: p },
+      { ...properties[p]!, name: p },
       schemaUsage,
       importedModels,
       options

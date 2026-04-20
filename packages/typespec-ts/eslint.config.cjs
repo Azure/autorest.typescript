@@ -41,15 +41,6 @@ module.exports = [
     },
   },
   {
-    files: ["src/rlc-common/**/*.ts"],
-    linterOptions: {
-      reportUnusedDisableDirectives: false,
-    },
-    rules: {
-      "@typescript-eslint/ban-ts-comment": "off",
-    },
-  },
-  {
     ignores: [
       "dist/**",
       "node_modules/**",

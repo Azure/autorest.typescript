@@ -1,4 +1,3 @@
-// @ts-nocheck
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
@@ -133,7 +132,7 @@ export function updatePackageFile(
         exports,
         azureSdkForJs: model.options?.azureSdkForJs
       } as PackageCommonInfoConfig);
-      packageInfo.tshy.exports = newTshy.exports;
+      packageInfo.tshy["exports"] = newTshy["exports"];
     }
   }
 

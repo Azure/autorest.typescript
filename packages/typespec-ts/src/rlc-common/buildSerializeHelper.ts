@@ -1,8 +1,5 @@
-// @ts-nocheck
 import { RLCModel } from "./interfaces.js";
 import * as path from "path";
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore: to fix the handlebars issue
 import hbs from "handlebars";
 import {
   hasCsvCollection,
@@ -46,4 +43,5 @@ export function buildSerializeHelper(model: RLCModel) {
       content: readmeFileContents({})
     };
   }
+  return undefined;
 }

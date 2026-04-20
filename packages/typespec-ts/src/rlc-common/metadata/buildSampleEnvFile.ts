@@ -1,4 +1,3 @@
-// @ts-nocheck
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 import { RLCModel } from "../interfaces.js";
@@ -19,4 +18,5 @@ export function buildSampleEnvFile(model: RLCModel) {
       content: sampleEnvText.trim()
     };
   }
+  return undefined;
 }

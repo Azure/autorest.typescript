@@ -1,4 +1,3 @@
-// @ts-nocheck
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
@@ -16,12 +15,12 @@ export function generateMethodShortcuts(
 ): OptionalKind<InterfaceDeclarationStructure>[] {
   const keys: Record<string, OptionalKind<MethodSignatureStructure>[]> = {};
   for (const path in paths) {
-    const groupName = paths[path].operationGroupName;
-    const definitions = buildOperationDefinitions(paths[path]);
+    const groupName = paths[path]!.operationGroupName;
+    const definitions = buildOperationDefinitions(paths[path]!);
     if (!keys[groupName]) {
       keys[groupName] = definitions;
     } else {
-      keys[groupName] = [...keys[groupName], ...definitions];
+      keys[groupName] = [...keys[groupName]!, ...definitions];
     }
   }
 
@@ -46,7 +45,7 @@ function buildOperationDefinitions(
   let ops: OptionalKind<MethodSignatureStructure>[] = [];
 
   for (const verb in path.methods) {
-    const methods = path.methods[verb];
+    const methods = path.methods[verb]!;
     for (const method of methods) {
       const name = normalizeName(method.operationName, NameType.Property);
       const pathParams = path.pathParameters;

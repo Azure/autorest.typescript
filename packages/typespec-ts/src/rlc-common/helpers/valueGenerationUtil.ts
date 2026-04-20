@@ -1,4 +1,3 @@
-// @ts-nocheck
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
@@ -203,7 +202,7 @@ function getAllProperties(
     }
   });
   for (const prop in schema.properties) {
-    propertiesMap.set(prop, schema.properties[prop]);
+    propertiesMap.set(prop, schema.properties[prop]!);
   }
   return propertiesMap;
 }

@@ -1,4 +1,3 @@
-// @ts-nocheck
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
@@ -9,7 +8,7 @@ export function isRecord(type: string) {
 }
 
 export function getRecordType(type: string) {
-  return /^Record<([a-zA-Z]+),(\s*)(?<type>.+)>$/.exec(type)?.groups?.type;
+  return /^Record<([a-zA-Z]+),(\s*)(?<type>.+)>$/.exec(type)?.groups?.["type"];
 }
 
 export function isArray(type: string) {
@@ -21,7 +20,7 @@ export function isArrayObject(type: string) {
 }
 
 export function getArrayObjectType(type: string) {
-  return /^Array<(?<type>.+)>$/g.exec(type)?.groups?.type;
+  return /^Array<(?<type>.+)>$/g.exec(type)?.groups?.["type"];
 }
 
 export function isNativeArray(type: string) {
@@ -29,7 +28,7 @@ export function isNativeArray(type: string) {
 }
 
 export function getNativeArrayType(type: string) {
-  return /(?<type>.+)\[\]/g.exec(type)?.groups?.type;
+  return /(?<type>.+)\[\]/g.exec(type)?.groups?.["type"];
 }
 
 export function isUnion(type: string) {
@@ -38,7 +37,7 @@ export function isUnion(type: string) {
 }
 
 export function getUnionType(type: string) {
-  return leaveBracket(type.split("|").map((m) => m.trim())[0]);
+  return leaveBracket(type.split("|").map((m) => m.trim())[0]!);
 }
 
 export function leaveBracket(type: string) {
@@ -109,6 +108,7 @@ export function toTypeScriptTypeFromSchema(
   } else if (schema.type === "object") {
     return TypeScriptType.object;
   }
+  return undefined;
 }
 
 export function toTypeScriptTypeFromName(
@@ -134,6 +134,7 @@ export function toTypeScriptTypeFromName(
   } else if (isUnion(typeName)) {
     return TypeScriptType.union;
   }
+  return undefined;
 }
 
 export function isConstant(typeName: string) {

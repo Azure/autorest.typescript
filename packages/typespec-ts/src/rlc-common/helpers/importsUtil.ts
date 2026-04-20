@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { SourceFile } from "ts-morph";
 import { ImportType, Imports, PackageFlavor } from "../interfaces.js";
 
@@ -176,7 +175,7 @@ export function addImportsToFiles(
         });
 
       if (!hasModifier) {
-        return file.addImportDeclaration({
+        file.addImportDeclaration({
           isTypeOnly: true,
           moduleSpecifier: specifier,
           namedImports: [...importType.importsSet!.values()]

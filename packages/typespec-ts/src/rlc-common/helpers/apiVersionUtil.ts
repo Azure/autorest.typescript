@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { ApiVersionInfo, ApiVersionPosition, UrlInfo } from "../interfaces.js";
 
 /**
@@ -24,7 +23,7 @@ export function extractPathApiVersion(
     definedPosition: "path",
     isCrossedVersion: Boolean(param?.length > 1),
     defaultValue:
-      param.length === 1 ? (param[0].value as string | undefined) : undefined,
+      param.length === 1 ? (param[0]!.value as string | undefined) : undefined,
     required: true
   };
   return detail;

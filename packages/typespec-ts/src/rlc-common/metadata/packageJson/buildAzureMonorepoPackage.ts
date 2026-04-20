@@ -1,4 +1,3 @@
-// @ts-nocheck
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
@@ -145,7 +144,7 @@ function addSwaggerMetadata(
     return;
   }
 
-  metadata.constantPaths.push({
+  metadata["constantPaths"].push({
     path: "swagger/README.md",
     prefix: "package-version"
   });
@@ -208,7 +207,7 @@ function getMetadataInfo(config: AzureMonorepoInfoConfig) {
     : config.clientFilePaths;
   addSwaggerMetadata(metadata, config.specSource);
   for (const path of paths ?? []) {
-    metadata.constantPaths.push({
+    metadata["constantPaths"].push({
       path: path,
       prefix: "userAgentInfo"
     });

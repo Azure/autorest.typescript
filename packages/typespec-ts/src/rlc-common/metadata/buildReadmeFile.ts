@@ -2,8 +2,6 @@
 // Licensed under the MIT License.
 
 import { RLCModel } from "../interfaces.js";
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore: to fix the handlebars issue
 import hbs from "handlebars";
 import { NameType, normalizeName } from "../helpers/nameUtils.js";
 import { isAzurePackage } from "../helpers/packageUtil.js";

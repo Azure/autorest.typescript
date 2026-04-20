@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { generateParameterTypeValue } from "./helpers/valueGenerationUtil.js";
 import { getClientName } from "./helpers/nameConstructors.js";
 import { normalizeName, NameType, camelCase } from "./helpers/nameUtils.js";
@@ -52,11 +51,11 @@ export function transformSampleGroups(model: RLCModel, allowMockValue = true) {
   const methodParameterMap = buildMethodParamMap(model);
   const schemaObjectMap = buildSchemaObjectMap(model);
   for (const path in paths) {
-    const pathDetails = paths[path];
+    const pathDetails = paths[path]!;
     const methods = pathDetails.methods;
     for (const method in methods) {
       const importedDict: Record<string, Set<string>> = {};
-      const detail: OperationMethod = methods[method][0];
+      const detail: OperationMethod = methods[method]![0]!;
       const operatonConcante = getOperationConcate(
         detail.operationName,
         pathDetails.operationGroupName,
@@ -99,7 +98,7 @@ export function transformSampleGroups(model: RLCModel, allowMockValue = true) {
         ),
         path: convertPathLevelParameters(pathDetails, path, schemaObjectMap),
         method: convertMethodLevelParameters(
-          methods[method],
+          methods[method]!,
           schemaObjectMap,
           methodParameterMap.get(operatonConcante)
         )
@@ -157,11 +156,11 @@ function enrichImportedString(
   packageName: string
 ) {
   const importedTypes: string[] = [];
-  if (!importedDict[packageName] || importedDict[packageName].size === 0) {
+  if (!importedDict[packageName] || importedDict[packageName]!.size === 0) {
     importedTypes.push(`import ${defaultFactoryName} from "${packageName}";`);
   }
   for (const key in importedDict) {
-    const values = Array.from(importedDict[key]).join(", ");
+    const values = Array.from(importedDict[key]!).join(", ");
     const hasDefaultFactory =
       key === packageName ? `${defaultFactoryName},` : "";
     importedTypes.push(
@@ -181,7 +180,7 @@ function enrichParameterInSample(
   sample.pathParamNames = getContactParameterNames(parameters.path);
   // Directly apply the inline option value as method parameter
   sample.methodParamNames =
-    parameters.method.length > 0 ? (parameters.method[0].value ?? "") : "";
+    parameters.method.length > 0 ? (parameters.method[0]!.value ?? "") : "";
 }
 
 function getAssignmentStrArray(parameters: SampleParameter[]) {
@@ -319,8 +318,8 @@ function convertMethodLevelParameters(
     return [];
   }
   const rawMethodParams = operationParameter.parameters;
-  const method = methods[0];
-  const requestParameter = rawMethodParams[0];
+  const method = methods[0]!;
+  const requestParameter = rawMethodParams[0]!;
   const hasInputParams = !!rawMethodParams && rawMethodParams.length > 0,
     requireParam = !method.hasOptionalOptions;
   if (!hasInputParams && !requireParam) {
@@ -336,7 +335,7 @@ function convertMethodLevelParameters(
     requestParameter.body.body &&
     requestParameter.body.body?.length > 0
   ) {
-    const body = requestParameter.body.body[0];
+    const body = requestParameter.body.body[0]!;
     const bodyTypeName = body.typeName ?? body.type;
     if (bodyTypeName !== "string" && body.oriSchema) {
       schemaMap.set(bodyTypeName, body.oriSchema);
@@ -379,10 +378,10 @@ function convertMethodLevelParameters(
     .filter((p) => p.name.toLowerCase() === "contenttype");
   if (contentType && contentType.length > 0) {
     allSideAssignments.push(
-      ` ${contentType[0].name}: ` +
+      ` ${contentType[0]!.name}: ` +
         generateParameterTypeValue(
-          contentType[0].param.type,
-          contentType[0].name,
+          contentType[0]!.param.type,
+          contentType[0]!.name,
           schemaMap
         )
     );

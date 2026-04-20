@@ -1,4 +1,3 @@
-// @ts-nocheck
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
@@ -62,4 +61,5 @@ export function buildTopLevelIndex(model: RLCModel) {
     );
     return { path: filePath, content };
   }
+  return undefined;
 }

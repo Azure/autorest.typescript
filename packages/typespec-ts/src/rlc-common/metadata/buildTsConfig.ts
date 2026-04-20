@@ -1,4 +1,3 @@
-// @ts-nocheck
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
@@ -78,27 +77,27 @@ export function buildTsConfig(model: RLCModel) {
 
   if (!azureSdkForJs) {
     if (generateTest) {
-      restLevelTsConfig.include.push("test/**/*.ts");
+      restLevelTsConfig["include"].push("test/**/*.ts");
     }
     if (generateSample) {
-      restLevelTsConfig.include.push("samples-dev/**/*.ts");
-      restLevelTsConfig.compilerOptions["paths"] = {};
-      restLevelTsConfig.compilerOptions["paths"][clientPackageName] = [
+      restLevelTsConfig["include"].push("samples-dev/**/*.ts");
+      restLevelTsConfig["compilerOptions"]["paths"] = {};
+      restLevelTsConfig["compilerOptions"]["paths"][clientPackageName] = [
         "./src/index"
       ];
     }
   } else {
     if (generateSample) {
-      restLevelTsConfig.references.push({
+      restLevelTsConfig["references"].push({
         path: "./tsconfig.samples.json"
       });
     }
 
     if (generateTest) {
-      restLevelTsConfig.references.push({
+      restLevelTsConfig["references"].push({
         path: "./tsconfig.test.json"
       });
-      restLevelTsConfig.references.push({
+      restLevelTsConfig["references"].push({
         path: "./tsconfig.snippets.json"
       });
     }

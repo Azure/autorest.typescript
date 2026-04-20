@@ -1,4 +1,3 @@
-// @ts-nocheck
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
@@ -53,7 +52,7 @@ export function buildParameterTypes(model: RLCModel) {
     // the operation can get different values for content-type and each value may
     // have a different type associated to it.
     for (let i = 0; i < requestCount; i++) {
-      const parameter = requestParameter.parameters[i];
+      const parameter = requestParameter.parameters[i]!;
       const internalReferences = new Set<string>();
       // In case we have more than one request to model we need to add a suffix to differentiate
       const nameSuffix = i > 0 ? `${i}` : "";
@@ -434,7 +433,7 @@ function buildContentTypeParametersDefinition(
 
   // Mark the queryParameter interface for importing
   internalReferences.add(mediaTypesParameterInterfaceName);
-  const mediaParam = mediaTypeParameters[0].param;
+  const mediaParam = mediaTypeParameters[0]!.param;
 
   return {
     isExported: true,
@@ -499,7 +498,7 @@ function buildBodyParametersDefinition(
       formBodyInterface
     ];
   } else {
-    const bodySignature = getPropertyFromSchema(bodyParameters.body[0]);
+    const bodySignature = getPropertyFromSchema(bodyParameters.body[0]!);
 
     return [
       {
@@ -539,7 +538,7 @@ export function buildBodyTypeAlias(
     return undefined;
   }
 
-  const contentType = headerParameters[0].param.type;
+  const contentType = headerParameters[0]!.param.type;
   const description = `${schema.description}`;
   const typeName = `${schema.typeName}ResourceMergeAndPatch`;
   if (partialBodyTypeNames.has(typeName)) {
@@ -557,4 +556,5 @@ export function buildBodyTypeAlias(
       isExported: true
     };
   }
+  return undefined;
 }

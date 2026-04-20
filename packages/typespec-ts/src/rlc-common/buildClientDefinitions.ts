@@ -1,4 +1,3 @@
-// @ts-nocheck
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
@@ -160,8 +159,8 @@ function getPathFirstRoutesInterfaceDefinition(
 
   const signatures: CallSignatureDeclarationStructure[] = [];
   for (const key of Object.keys(paths)) {
-    for (const verb of Object.keys(paths[key].methods)) {
-      for (const method of paths[key].methods[verb]) {
+    for (const verb of Object.keys(paths[key]!.methods)) {
+      for (const method of paths[key]!.methods[verb]!) {
         options.importedParameters.add(method.optionsName);
         method.returnType
           .split(" | ")
@@ -169,11 +168,11 @@ function getPathFirstRoutesInterfaceDefinition(
       }
     }
     generatePathFirstRouteMethodsDefinition(
-      paths[key],
+      paths[key]!,
       operationGroupCount,
       sourcefile
     );
-    const pathParams = paths[key].pathParameters;
+    const pathParams = paths[key]!.pathParameters;
     getGeneratedWrapperTypes(pathParams).forEach((p) =>
       options.importedParameters.add(p.name ?? p.type)
     );
@@ -185,7 +184,7 @@ function getPathFirstRoutesInterfaceDefinition(
             /{/g,
             "\\{"
           )}' has methods for the following verbs: ${Object.keys(
-          paths[key].methods
+          paths[key]!.methods
         ).join(", ")}`
       ],
       parameters: [
@@ -193,7 +192,7 @@ function getPathFirstRoutesInterfaceDefinition(
         ...getPathParamDefinitions(pathParams)
       ],
       returnType: getOperationReturnTypeName(
-        paths[key],
+        paths[key]!,
         getOperationGroupCount(paths)
       ),
       kind: StructureKind.CallSignature
@@ -204,7 +203,7 @@ function getPathFirstRoutesInterfaceDefinition(
 
 function getOperationGroupCount(paths: Paths) {
   const operationGroups = Object.keys(paths)
-    .map((p) => paths[p].operationGroupName)
+    .map((p) => paths[p]!.operationGroupName)
     .filter((p) => p && p !== "Client");
   const uniqueNames = new Set(operationGroups);
 

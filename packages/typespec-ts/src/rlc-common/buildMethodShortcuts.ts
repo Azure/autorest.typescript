@@ -1,4 +1,3 @@
-// @ts-nocheck
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
@@ -26,7 +25,7 @@ export function buildMethodShortcutImplementation(paths: Paths) {
   const keys: Record<string, string[]> = {};
   for (const path of Object.keys(paths)) {
     const groupName = normalizeName(
-      paths[path].operationGroupName,
+      paths[path]!.operationGroupName,
       NameType.OperationGroup,
       true,
       REST_CLIENT_RESERVED,
@@ -34,9 +33,9 @@ export function buildMethodShortcutImplementation(paths: Paths) {
     );
 
     if (keys[groupName]) {
-      keys[groupName].push(...buildOperationDeclarations(path, paths[path]));
+      keys[groupName]!.push(...buildOperationDeclarations(path, paths[path]!));
     } else {
-      keys[groupName] = buildOperationDeclarations(path, paths[path]);
+      keys[groupName] = buildOperationDeclarations(path, paths[path]!);
     }
   }
   return keys;
@@ -45,7 +44,7 @@ export function buildMethodShortcutImplementation(paths: Paths) {
 function buildOperationDeclarations(path: string, pathMetadata: PathMetadata) {
   let ops: string[] = [];
   for (const method of Object.keys(pathMetadata.methods)) {
-    for (const op of pathMetadata.methods[method]) {
+    for (const op of pathMetadata.methods[method]!) {
       const pathParams = pathMetadata?.pathParameters;
       const name = normalizeName(op.operationName, NameType.Property);
       const methodDefinitions = generateOperationDeclaration(

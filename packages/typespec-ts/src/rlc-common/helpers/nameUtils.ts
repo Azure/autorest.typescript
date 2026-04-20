@@ -1,4 +1,3 @@
-// @ts-nocheck
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
@@ -197,7 +196,7 @@ export function normalizeName(
     return name;
   }
   const [firstPart, ...otherParts] = parts;
-  const normalizedFirstPart = toCasing(firstPart, casingConvention, true);
+  const normalizedFirstPart = toCasing(firstPart!, casingConvention, true);
   const normalizedParts = (otherParts || [])
     .map((part) => toCasing(part, CasingConvention.Pascal))
     .join("");

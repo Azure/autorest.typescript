@@ -1,4 +1,3 @@
-// @ts-nocheck
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
@@ -25,7 +24,7 @@ export function buildMethodDefinitions(
 ): OptionalKind<MethodSignatureStructure>[] {
   const methodDefinitions: OptionalKind<MethodSignatureStructure>[] = [];
   for (const key of Object.keys(methods)) {
-    const verbMethods = methods[key];
+    const verbMethods = methods[key]!;
 
     for (const method of verbMethods) {
       const description = method.description;
@@ -94,8 +93,8 @@ export function hasUnexpectedHelper(model: RLCModel) {
   const pathDictionary = model.paths;
   for (const details of Object.values(pathDictionary)) {
     for (const methodDetails of Object.values(details.methods)) {
-      const successTypes = methodDetails[0].responseTypes.success;
-      const errorTypes = methodDetails[0].responseTypes.error;
+      const successTypes = methodDetails[0]!.responseTypes.success;
+      const errorTypes = methodDetails[0]!.responseTypes.error;
 
       if (successTypes.length > 0 && errorTypes.length > 0 && !!errorTypes[0]) {
         return true;
