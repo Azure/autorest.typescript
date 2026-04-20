@@ -30,4 +30,8 @@ describe("Azure ClientGeneratorCore ClientDefaultValue Client", () => {
     assert.strictEqual(result.tier, "standard");
     assert.strictEqual(result.retry, true);
   });
+
+  it("should get header parameter with default values", async () => {
+    await client.getHeaderParameter();
+  });
 });

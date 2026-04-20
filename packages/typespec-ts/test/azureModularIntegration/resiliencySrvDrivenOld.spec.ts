@@ -55,3 +55,13 @@ describe("Service Driven old Client v2", () => {
     assert.isUndefined(result);
   });
 });
+
+// Skipped: breakTheGlass requires the v1 (old) client to call the add-operation endpoint
+// (client:v1/service:v2/api-version:v2). The old client doesn't expose addOperation(),
+// so this scenario cannot be exercised via the generated SDK surface.
+describe("Service Driven breakTheGlass", () => {
+  it.skip("should break the glass to call add-operation using v1 client", async () => {
+    // Would need: old client with serviceDeploymentVersion="v2", apiVersion="v2",
+    // calling add-operation (DELETE) via the pipeline directly.
+  });
+});
