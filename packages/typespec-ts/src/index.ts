@@ -180,7 +180,8 @@ export async function $onEmit(context: EmitContext) {
     staticHelpers,
     dependencies: {
       ...extraDependencies
-    }
+    },
+    useSubpathImports: rlcOptions.azureSdkForJs === true
   });
   provideSdkTypes(dpgContext);
 
@@ -606,6 +607,11 @@ export async function $onEmit(context: EmitContext) {
             modularEmitterOptions
           )
         };
+      }
+
+      // Always update package.json for monorepo packages (adds #platform/* imports)
+      // and for modular packages (adds exports, clientContextPaths, LRO deps)
+      if (option.isModularLibrary || option.azureSdkForJs) {
         updateBuilders.push((model: RLCModel) =>
           updatePackageFile(model, existingPackageFilePath, modularPackageInfo)
         );
