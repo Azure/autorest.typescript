@@ -78,7 +78,8 @@ import {
 import {
   emitQueue,
   flattenPropertyModelMap,
-  getAllOperationsFromClient
+  getAllOperationsFromClient,
+  pagedModelsUsedInNonPagingOps
 } from "../framework/hooks/sdkTypes.js";
 import {
   getAllAncestors,
@@ -945,7 +946,11 @@ export function normalizeModelName(
     ? segments.join("")
     : "";
   const internalModelPrefix =
-    isPagedResultModel(context, type) || type.isGeneratedName ? "_" : "";
+    (isPagedResultModel(context, type) &&
+      !pagedModelsUsedInNonPagingOps.has(type)) ||
+    type.isGeneratedName
+      ? "_"
+      : "";
   return `${internalModelPrefix}${normalizeName(namespacePrefix + type.name, nameType, true)}${unionSuffix}`;
 }
 
@@ -1038,6 +1043,7 @@ export function visitPackageTypes(context: SdkContext) {
   const { sdkPackage } = context;
   emitQueue.clear();
   flattenPropertyModelMap.clear();
+  pagedModelsUsedInNonPagingOps.clear();
   // Add all models in the package to the emit queue
   for (const model of sdkPackage.models) {
     visitType(context, model);
@@ -1119,6 +1125,22 @@ function visitMethod(
     visitType(context, parameter.type);
   });
   visitType(context, method.response.type);
+  trackPagedModelInNonPagingMethod(context, method);
+}
+
+/**
+ * If a non-paging method's direct response type is a paged result model,
+ * mark it so that normalizeModelName keeps it public (no "_" prefix).
+ */
+function trackPagedModelInNonPagingMethod(
+  context: SdkContext,
+  method: SdkServiceMethod<SdkHttpOperation>
+): void {
+  if (method.kind !== "basic" && method.kind !== "lro") return;
+  const respType = method.response.type;
+  if (respType && isPagedResultModel(context, respType)) {
+    pagedModelsUsedInNonPagingOps.add(respType);
+  }
 }
 
 function visitType(context: SdkContext, type: SdkType | undefined) {

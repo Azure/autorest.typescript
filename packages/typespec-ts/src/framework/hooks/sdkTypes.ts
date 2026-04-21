@@ -23,6 +23,11 @@ import { NameType, normalizeName } from "@azure-tools/rlc-common";
 export const emitQueue: Set<SdkType> = new Set<SdkType>();
 export const flattenPropertyModelMap: Map<SdkModelPropertyType, SdkModelType> =
   new Map<SdkModelPropertyType, SdkModelType>();
+/**
+ * Set of paged result models that are also used in non-paging operations.
+ * Precomputed during visitPackageTypes for O(1) lookups in normalizeModelName.
+ */
+export const pagedModelsUsedInNonPagingOps = new Set<SdkType>();
 
 export interface SdkTypeContext {
   operations: Map<Type, SdkServiceMethod<SdkHttpOperation>>;
