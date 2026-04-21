@@ -7,6 +7,7 @@ import {
   SdkClientType,
   SdkServiceOperation
 } from "@azure-tools/typespec-client-generator-core";
+import { SdkContext } from "../../utils/interfaces.js";
 import { ServiceOperation } from "../../utils/operationUtil.js";
 
 export function getClientName(
@@ -26,9 +27,14 @@ export interface GuardedName {
   fixme?: string[];
 }
 
-export function getOperationName(operation: ServiceOperation): GuardedName {
+export function getOperationName(
+  operation: ServiceOperation,
+  dpgContext?: SdkContext
+): GuardedName {
   const norm = normalizeName(operation.name, NameType.Method, true);
-  if (isReservedName(operation.name, NameType.Method)) {
+  const isDataplane =
+    dpgContext !== undefined && !dpgContext.rlcOptions?.azureArm;
+  if (isReservedName(operation.name, NameType.Method) && isDataplane) {
     return {
       name: norm,
       fixme: [
