@@ -1,4 +1,4 @@
-# only: Paged result model used in both paging and non-paging operations should not have \_ prefix
+# Paged result model used in both paging and non-paging operations should not have \_ prefix
 
 ## TypeSpec
 
@@ -91,7 +91,9 @@ export interface UsageListResult {
 export function usageListResultDeserializer(item: any): UsageListResult {
   return {
     nextLink: item["nextLink"],
-    value: !item["value"] ? item["value"] : usageArrayDeserializer(item["value"]),
+    value: !item["value"]
+      ? item["value"]
+      : usageArrayDeserializer(item["value"])
   };
 }
 
@@ -108,7 +110,7 @@ export interface Usage {
 
 export function usageDeserializer(item: any): Usage {
   return {
-    test: item["test"],
+    test: item["test"]
   };
 }
 
@@ -120,7 +122,9 @@ export interface ErrorResponse {
 
 export function errorResponseDeserializer(item: any): ErrorResponse {
   return {
-    error: !item["error"] ? item["error"] : errorDetailDeserializer(item["error"]),
+    error: !item["error"]
+      ? item["error"]
+      : errorDetailDeserializer(item["error"])
   };
 }
 
@@ -143,20 +147,26 @@ export function errorDetailDeserializer(item: any): ErrorDetail {
     code: item["code"],
     message: item["message"],
     target: item["target"],
-    details: !item["details"] ? item["details"] : errorDetailArrayDeserializer(item["details"]),
+    details: !item["details"]
+      ? item["details"]
+      : errorDetailArrayDeserializer(item["details"]),
     additionalInfo: !item["additionalInfo"]
       ? item["additionalInfo"]
-      : errorAdditionalInfoArrayDeserializer(item["additionalInfo"]),
+      : errorAdditionalInfoArrayDeserializer(item["additionalInfo"])
   };
 }
 
-export function errorDetailArrayDeserializer(result: Array<ErrorDetail>): any[] {
+export function errorDetailArrayDeserializer(
+  result: Array<ErrorDetail>
+): any[] {
   return result.map((item) => {
     return errorDetailDeserializer(item);
   });
 }
 
-export function errorAdditionalInfoArrayDeserializer(result: Array<ErrorAdditionalInfo>): any[] {
+export function errorAdditionalInfoArrayDeserializer(
+  result: Array<ErrorAdditionalInfo>
+): any[] {
   return result.map((item) => {
     return errorAdditionalInfoDeserializer(item);
   });
@@ -170,16 +180,18 @@ export interface ErrorAdditionalInfo {
   readonly info?: any;
 }
 
-export function errorAdditionalInfoDeserializer(item: any): ErrorAdditionalInfo {
+export function errorAdditionalInfoDeserializer(
+  item: any
+): ErrorAdditionalInfo {
   return {
     type: item["type"],
-    info: item["info"],
+    info: item["info"]
   };
 }
 
 /** Known values of {@link Versions} that the service accepts. */
 export enum KnownVersions {
   /** 2023-12-01 */
-  V20231201 = "2023-12-01",
+  V20231201 = "2023-12-01"
 }
 ```
