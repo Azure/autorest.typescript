@@ -1,4 +1,4 @@
-import { describe, it, beforeEach } from "vitest";
+import { assert, describe, it, beforeEach } from "vitest";
 
 import { SpecialWordsClient } from "./generated/special-words/src/index.js";
 
@@ -400,6 +400,14 @@ describe("Special Words Client", () => {
   it("should post models withYield", async () => {
     await client.models.withYield({
       name: "ok"
+    });
+  });
+
+  describe("ExtensibleStrings", () => {
+    it("should put extensible string value", async () => {
+      const result =
+        await client.extensibleStrings.putExtensibleStringValue("class");
+      assert.strictEqual(result.body, "class");
     });
   });
 });

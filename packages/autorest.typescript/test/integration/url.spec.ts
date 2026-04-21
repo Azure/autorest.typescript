@@ -75,7 +75,7 @@ describe("Integration tests for Url", () => {
 
     it("should work when path has enum", async function() {
       try {
-        await client.paths.enumValid(<UriColor>"");
+        await client.paths.enumValid("" as UriColor);
         assert.fail("Expected to throw");
       } catch (error) {
         assert.equal(
@@ -251,7 +251,7 @@ describe("Integration tests for Url", () => {
 
     it("should work when query has enum values", async function() {
       await shouldThrow(() =>
-        client.queries.enumValid({ enumQuery: <UriColor>"" })
+        client.queries.enumValid({ enumQuery: "" as UriColor })
       );
       await client.queries.enumNull({ enumQuery: null as any });
       await client.queries.enumValid({ enumQuery: "green color" });

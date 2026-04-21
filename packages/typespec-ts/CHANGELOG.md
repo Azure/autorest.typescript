@@ -1,3 +1,10 @@
+## 0.52.2 (2026-04-16)
+
+- [Feature] Add devcontainer config with GitHub Copilot extensions. Please refer to [#3815](https://github.com/Azure/autorest.typescript/pull/3815)
+- [Bugfix] Fix arm resource model property filtering for specific cases. Please refer to [#3911](https://github.com/Azure/autorest.typescript/pull/3911)
+- [Feature] Add spector integration tests for 16 not-yet-covered scenario groups. Please refer to [#3909](https://github.com/Azure/autorest.typescript/pull/3909)
+- [Feature] Bump TypeSpec dependencies to latest stable. Please refer to [#3914](https://github.com/Azure/autorest.typescript/pull/3914)
+
 ## 0.52.1 (2026-04-09)
 
 - [Bugfix] Fix normalize issue for optional operation parameter name. Please refer to [#3877](https://github.com/Azure/autorest.typescript/pull/3877)

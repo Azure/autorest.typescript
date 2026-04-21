@@ -34,6 +34,7 @@ import {
   buildIndexFile,
   buildIsUnexpectedHelper,
   buildLicenseFile,
+  buildChangelogFile,
   buildLogger,
   buildPackageFile,
   buildParameterTypes,
@@ -469,6 +470,11 @@ export async function $onEmit(context: EmitContext) {
       "README.md"
     );
     const hasReadmeFile = await existsSync(existingReadmeFilePath);
+    const existingChangelogFilePath = join(
+      dpgContext.generationPathDetail?.metadataDir ?? "",
+      "CHANGELOG.md"
+    );
+    const hasChangelogFile = await existsSync(existingChangelogFilePath);
     const shouldGenerateMetadata =
       option.generateMetadata === true || !hasPackageFile;
     const existingTestFolderPath = join(
@@ -509,6 +515,9 @@ export async function $onEmit(context: EmitContext) {
       }
       if (isAzureFlavor) {
         commonBuilders.push(buildEsLintConfig);
+      }
+      if (!hasChangelogFile) {
+        commonBuilders.push(buildChangelogFile);
       }
       if (
         emitterOptions["generate-test"] === true &&

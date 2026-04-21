@@ -31,6 +31,20 @@ describe("PageableClient Classical Client", () => {
     assert.deepStrictEqual<Pet[]>(items, pets);
   });
 
+  describe("AlternateInitialVerb", () => {
+    it("should list pets using post initial verb", async () => {
+      const iter = client.serverDrivenPagination.alternateInitialVerb.post({
+        filter: "foo eq bar"
+      });
+      const items: Array<Pet> = [];
+      for await (const pet of iter) {
+        items.push(pet);
+      }
+      assert.strictEqual(items.length, 4);
+      assert.deepStrictEqual<Pet[]>(items, pets);
+    });
+  });
+
   describe("XmlPagination", () => {
     it("should list xml pagination with next link", async () => {
       const iter = client.xmlPagination.listWithNextLink();
