@@ -1100,7 +1100,7 @@ export function getOperationFunction(
     }
   }
 
-  const { name, fixme = [] } = getOperationName(operation);
+  const { name, fixme = [] } = getOperationName(operation, context);
   const functionStatement = {
     kind: StructureKind.Function,
     docs: [
@@ -1248,7 +1248,7 @@ function getLroOnlyOperationFunction(
   const parameters: OptionalKind<ParameterDeclarationStructure>[] =
     getOperationSignatureParameters(context, method, clientType);
   const returnType = buildLroReturnType(context, operation);
-  const { name, fixme = [] } = getOperationName(operation);
+  const { name, fixme = [] } = getOperationName(operation, context);
   const pollerLikeReference = resolveReference(
     AzurePollingDependencies.PollerLike
   );
@@ -1343,7 +1343,7 @@ function getLroAndPagingOperationFunction(
     method,
     clientType
   );
-  const { name, fixme = [] } = getOperationName(operation);
+  const { name, fixme = [] } = getOperationName(operation, context);
 
   const returnType = buildLroPagingReturnType(context, operation);
 
@@ -1476,7 +1476,7 @@ function getPagingOnlyOperationFunction(
       type: getTypeExpression(context, type.valueType)
     };
   }
-  const { name, fixme = [] } = getOperationName(operation);
+  const { name, fixme = [] } = getOperationName(operation, context);
   const pagedAsyncIterableIteratorReference = resolveReference(
     PagingHelpers.PagedAsyncIterableIterator
   );
