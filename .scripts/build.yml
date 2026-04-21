@@ -1,8 +1,8 @@
 steps:
   - task: NodeTool@0
     inputs:
-      versionSpec: "20.x"
-    displayName: "Use Node 20"
+      versionSpec: "22.x"
+    displayName: "Use Node 22"
   - script: |
       npm install -g pnpm
     displayName: "Install Pnpm"
