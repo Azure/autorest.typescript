@@ -17,6 +17,7 @@ model Test {
 Shouldn't be included in root index file
 
 ```ts root index
+export { RestError, isRestError } from "@azure/core-rest-pipeline";
 ```
 
 # should generate models with `@usage` added for model-only case
@@ -62,6 +63,7 @@ Should be included in root index file
 
 ```ts root index
 export type { Test } from "./models/index.js";
+export { RestError, isRestError } from "@azure/core-rest-pipeline";
 ```
 
 # should handle type_literals:boolean -> boolean_literals

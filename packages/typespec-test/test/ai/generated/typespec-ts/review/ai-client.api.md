@@ -5,8 +5,10 @@
 ```ts
 
 import { ClientOptions } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
+import { RestError } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
 
 // @public
@@ -782,6 +784,8 @@ export interface InternalConnectionPropertiesSASAuth extends InternalConnectionP
 // @public
 export type InternalConnectionPropertiesUnion = InternalConnectionPropertiesApiKeyAuth | InternalConnectionPropertiesAADAuth | InternalConnectionPropertiesSASAuth | InternalConnectionProperties;
 
+export { isRestError }
+
 // @public
 export enum KnownVersions {
     Versions20240701Preview = "2024-07-01-preview"
@@ -1169,6 +1173,8 @@ export interface ResponseFormatJsonSchemaType {
     jsonSchema: ResponseFormatJsonSchema;
     type: "json_schema";
 }
+
+export { RestError }
 
 // @public
 export type RunAdditionalFieldList = "step_details.tool_calls[*].file_search.results[*].content";
