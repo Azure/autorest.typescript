@@ -23,12 +23,6 @@ import {
  */
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-export function patientRecordArraySerializer(result: Array<PatientRecord>): any[] {
-  return result.map((item) => {
-    return patientRecordSerializer(item);
-  });
-}
-
 /** A patient record, including their clinical information and data. */
 export interface PatientRecord {
   /** A given identifier for the patient. Has to be unique across all patients in a single request. */
@@ -385,6 +379,12 @@ export interface FindingOptions {
 
 export function findingOptionsSerializer(item: FindingOptions): any {
   return { provideFocusedSentenceEvidence: item["provideFocusedSentenceEvidence"] };
+}
+
+export function patientRecordArraySerializer(result: Array<PatientRecord>): any[] {
+  return result.map((item) => {
+    return patientRecordSerializer(item);
+  });
 }
 
 /** The inference results for the Radiology Insights request. */
