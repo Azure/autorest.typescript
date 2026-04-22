@@ -102,7 +102,7 @@ import {
   getRLCClients,
   getModularClientOptions
 } from "./utils/clientUtils.js";
-import { join } from "path";
+import { basename, join } from "path";
 import { loadStaticHelpers } from "./framework/load-static-helpers.js";
 import { packageUsesXmlSerialization } from "./modular/serialization/buildXmlSerializerFunction.js";
 import { provideBinder } from "./framework/hooks/binder.js";
@@ -451,6 +451,13 @@ export async function $onEmit(context: EmitContext) {
     }
     const rlcClient: RLCModel = rlcCodeModels[0];
     const option = dpgContext.rlcOptions!;
+    // When generateMetadata is explicitly false and the sources are generated
+    // into a path ending with "generated" (e.g. src/generated), this package
+    // has a manual convenience layer. Skip all metadata/test file generation
+    // to avoid unexpected modifications to files like package.json, README.md,
+    // warp.config.yml, and snippets.spec.ts. metadata.json is still updated.
+    const sourcesDir = dpgContext.generationPathDetail?.modularSourcesDir ?? "";
+    const hasManualConvenienceLayer = basename(sourcesDir) === "generated";
     const isAzureFlavor = isAzurePackage({ options: option });
     // Generate metadata
     const existingPackageFilePath = join(
@@ -593,7 +600,7 @@ export async function $onEmit(context: EmitContext) {
           );
         }
       }
-    } else if (hasPackageFile) {
+    } else if (hasPackageFile && !hasManualConvenienceLayer) {
       const updateBuilders = [];
       let modularPackageInfo = {};
 
