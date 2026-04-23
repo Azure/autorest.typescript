@@ -109,9 +109,7 @@ export function updatePackageFile(
 ) {
   const hasLro = hasPollingOperations(model);
   const isAzure = isAzurePackage(model);
-  const isAzureMonorepoLib =
-    isAzureMonorepoPackage(model) && !!model.options?.isModularLibrary;
-  const needsLroUpdate = isAzure && hasLro && !isAzureMonorepoLib;
+  const needsLroUpdate = isAzure && hasLro;
   const needsExportsUpdate = exports;
   const needsConstantPathsUpdate =
     clientContextPaths && clientContextPaths.length > 0;
