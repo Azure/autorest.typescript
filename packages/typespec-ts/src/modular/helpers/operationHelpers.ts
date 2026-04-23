@@ -2322,7 +2322,7 @@ export function getSerializationExpression(
   // Apply clientDefaultValue for model properties that have one
   const defaultValueSuffix =
     property.clientDefaultValue !== undefined &&
-    isModelPropertyDefaultValueTypeMatch(property, property.clientDefaultValue)
+    isDefaultValueTypeMatch(property, property.clientDefaultValue)
       ? ` ?? ${formatDefaultValue(property.clientDefaultValue)}`
       : "";
 
@@ -2889,11 +2889,11 @@ export function getAllAncestors(type: SdkType): SdkType[] {
 }
 
 /**
- * Checks if a clientDefaultValue type matches the parameter type.
- * Returns true if the default value type is compatible with the parameter type.
+ * Checks if a clientDefaultValue type matches a parameter or model property type.
+ * Returns true if the default value type is compatible with the target type.
  */
 function isDefaultValueTypeMatch(
-  param: SdkHttpParameter | SdkBodyParameter,
+  param: SdkHttpParameter | SdkBodyParameter | SdkModelPropertyType,
   defaultValue: unknown
 ): boolean {
   const defaultType = typeof defaultValue;
@@ -2920,39 +2920,6 @@ function isDefaultValueTypeMatch(
   }
 
   // For other types, don't apply the default
-  return false;
-}
-
-/**
- * Checks if a clientDefaultValue type matches a model property type.
- * Returns true if the default value type is compatible with the property type.
- */
-function isModelPropertyDefaultValueTypeMatch(
-  property: SdkModelPropertyType,
-  defaultValue: unknown
-): boolean {
-  const defaultType = typeof defaultValue;
-  const propType = property.type;
-
-  if (defaultType === "string") {
-    return propType.kind === "string" || propType.kind === "enum";
-  }
-  if (defaultType === "number") {
-    return (
-      propType.kind === "int32" ||
-      propType.kind === "int64" ||
-      propType.kind === "float32" ||
-      propType.kind === "float64" ||
-      propType.kind === "numeric" ||
-      propType.kind === "integer" ||
-      propType.kind === "float" ||
-      propType.kind === "decimal"
-    );
-  }
-  if (defaultType === "boolean") {
-    return propType.kind === "boolean";
-  }
-
   return false;
 }
 
