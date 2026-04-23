@@ -17,7 +17,7 @@ import {
   NameType,
   normalizeName,
   PackageFlavor
-} from "@azure-tools/rlc-common";
+} from "../../rlc-common/index.js";
 import { SdkContext } from "../../utils/interfaces.js";
 import { getClassicalClientName } from "./namingHelpers.js";
 import { getTypeExpression } from "../type-expressions/get-type-expression.js";

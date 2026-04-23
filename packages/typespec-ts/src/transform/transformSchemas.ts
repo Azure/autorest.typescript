@@ -17,7 +17,7 @@ import {
   trimUsage
 } from "../utils/modelUtils.js";
 
-import { SchemaContext } from "@azure-tools/rlc-common";
+import { SchemaContext } from "../rlc-common/index.js";
 import { SdkContext } from "../utils/interfaces.js";
 import { useContext } from "../contextManager.js";
 import { listOperationsUnderRLCClient } from "../utils/clientUtils.js";

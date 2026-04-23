@@ -19,7 +19,7 @@ import {
   getAdditionalPropertiesName,
   normalizeModelName
 } from "../emitModels.js";
-import { NameType, normalizeName } from "@azure-tools/rlc-common";
+import { NameType, normalizeName } from "../../rlc-common/index.js";
 import { isAzureCoreErrorType } from "../../utils/modelUtils.js";
 import {
   getAllDiscriminatedValues,

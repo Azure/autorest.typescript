@@ -10,7 +10,7 @@ import {
   SchemaContext,
   isArraySchema,
   normalizeName
-} from "@azure-tools/rlc-common";
+} from "../rlc-common/index.js";
 import {
   Discriminator,
   EncodeData,

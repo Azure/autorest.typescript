@@ -323,9 +323,6 @@ importers:
 
   packages/typespec-ts:
     dependencies:
-      '@azure-tools/rlc-common':
-        specifier: workspace:^0.52.2
-        version: link:../rlc-common
       '@typespec/xml':
         specifier: ^0.81.0
         version: 0.81.0(@typespec/compiler@1.11.0(@types/node@25.3.5))
@@ -335,6 +332,9 @@ importers:
       fs-extra:
         specifier: ^11.1.0
         version: 11.3.2
+      handlebars:
+        specifier: ^4.7.7
+        version: 4.7.8
       lodash:
         specifier: ^4.17.21
         version: 4.17.21

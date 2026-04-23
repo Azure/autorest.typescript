@@ -1,4 +1,4 @@
-import { NameType } from "@azure-tools/rlc-common";
+import { NameType } from "../rlc-common/index.js";
 import { SourceFile } from "ts-morph";
 import { getClassicalOperation } from "./helpers/classicalOperationHelpers.js";
 import { getClassicalLayerPrefix } from "./helpers/namingHelpers.js";

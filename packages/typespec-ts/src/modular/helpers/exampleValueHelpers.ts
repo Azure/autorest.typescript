@@ -12,7 +12,7 @@ import {
   isAzurePackage,
   NameType,
   normalizeName
-} from "@azure-tools/rlc-common";
+} from "../../rlc-common/index.js";
 import { resolveReference } from "../../framework/reference.js";
 import { SdkContext } from "../../utils/interfaces.js";
 import {

@@ -2,7 +2,7 @@ import {
   NameType,
   normalizeName,
   ReservedModelNames
-} from "@azure-tools/rlc-common";
+} from "../../rlc-common/index.js";
 import {
   SdkClientType,
   SdkServiceOperation

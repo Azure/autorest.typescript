@@ -3,7 +3,7 @@ import {
   NameType,
   isAzurePackage,
   normalizeName
-} from "@azure-tools/rlc-common";
+} from "../rlc-common/index.js";
 import {
   buildGetClientCredentialParam,
   buildGetClientEndpointParam,

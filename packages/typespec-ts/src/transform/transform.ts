@@ -17,7 +17,7 @@ import {
   SchemaContext,
   transformSampleGroups,
   UrlInfo
-} from "@azure-tools/rlc-common";
+} from "../rlc-common/index.js";
 import { SdkClient } from "@azure-tools/typespec-client-generator-core";
 import { getDoc } from "@typespec/compiler";
 import { getServers } from "@typespec/http";

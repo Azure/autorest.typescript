@@ -10,7 +10,7 @@ import {
   buildRuntimeImports,
   buildSchemaTypes,
   initInternalImports
-} from "@azure-tools/rlc-common";
+} from "../../src/rlc-common/index.js";
 import {
   emitTypes,
   emitNonModelResponseTypes,

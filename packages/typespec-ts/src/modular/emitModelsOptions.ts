@@ -10,7 +10,7 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import { getMethodHierarchiesMap } from "../utils/operationUtil.js";
 import { getModularClientOptions } from "../utils/clientUtils.js";
-import { NameType, normalizeName } from "@azure-tools/rlc-common";
+import { NameType, normalizeName } from "../rlc-common/index.js";
 import { useContext } from "../contextManager.js";
 
 // ====== UTILITIES ======

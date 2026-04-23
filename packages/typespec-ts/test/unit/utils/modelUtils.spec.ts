@@ -1,6 +1,6 @@
 import { describe, it, assert } from "vitest";
 
-import { ObjectSchema } from "@azure-tools/rlc-common";
+import { ObjectSchema } from "../../../src/rlc-common/index.js";
 import { getModelInlineSigniture } from "../../../src/utils/modelUtils.js";
 import { emitSchemasFromTypeSpec } from "../../util/emitUtil.js";
 
