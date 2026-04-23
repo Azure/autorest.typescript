@@ -747,12 +747,15 @@ function buildModelInterface(
         if (!hasInputUsage && p.__raw && isMetadata(context.program, p.__raw)) {
           return false;
         }
-        // Skip required metadata properties with Read visibility for ARM as they are not intended to be in the model
+        // Skip required metadata properties with Read-only visibility for ARM as they are not intended to be in the model
         // These properties are not be generated no matter they are in input or output models in most cases in HLC
+        // Only skip properties that have exclusively Read visibility to avoid stripping @path properties
+        // on parameter bag models that also carry other visibility flags (e.g. Create/Update)
         if (
           context.arm &&
           p.__raw &&
           isMetadata(context.program, p.__raw) &&
+          p.visibility?.length === 1 &&
           p.visibility?.includes(Visibility.Read)
         ) {
           return false;
