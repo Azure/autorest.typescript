@@ -177,7 +177,7 @@ export function updatePackageFile(
     }
   }
 
-  // Add LRO dependencies for non-monorepo Azure packages
+  // Update LRO dependencies for Azure packages
   if (needsLroUpdate) {
     packageInfo.dependencies = {
       ...packageInfo.dependencies,
