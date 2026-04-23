@@ -2,7 +2,7 @@ import { NameType } from "@azure-tools/rlc-common";
 
 import { ModularEmitterOptions } from "./interfaces.js";
 import { getClassicalLayerPrefix } from "./helpers/namingHelpers.js";
-import { SdkContext } from "@azure-tools/typespec-client-generator-core";
+import { SdkContext } from "../utils/interfaces.js";
 import {
   getClientHierarchyMap,
   getModularClientOptions
@@ -11,11 +11,39 @@ import { getMethodHierarchiesMap } from "../utils/operationUtil.js";
 import { useContext } from "../contextManager.js";
 import path from "path/posix";
 
+/**
+ * Computes the relative path prefix (e.g. `./src` or `./src/generated`) from
+ * the project root to the modular sources directory.  This prefix is used when
+ * building export map entries so that they always point to the correct folder
+ * even when the generated code lives under `src/generated` instead of `src`.
+ */
+function getSourceRootPrefix(
+  emitterOptions: ModularEmitterOptions,
+  context: SdkContext
+): string {
+  const sourceRoot = emitterOptions.modularOptions.sourceRoot.replace(
+    /\\/g,
+    "/"
+  );
+  const rootDir = (context.generationPathDetail?.rootDir ?? "").replace(
+    /\\/g,
+    "/"
+  );
+
+  if (rootDir && sourceRoot.startsWith(rootDir)) {
+    const relativePath = path.relative(rootDir, sourceRoot).replace(/\\/g, "/");
+    return `./${relativePath}`;
+  }
+
+  return "./src";
+}
+
 function buildExportsForMultiClient(
   context: SdkContext,
   emitterOptions: ModularEmitterOptions,
   packageInfo: any
 ) {
+  const srcPrefix = getSourceRootPrefix(emitterOptions, context);
   const clientMap = getClientHierarchyMap(context);
   let hasTopLevelClient = false;
   for (const [hierarchy, client] of clientMap) {
@@ -25,10 +53,11 @@ function buildExportsForMultiClient(
     }
     const { subfolder } = getModularClientOptions([hierarchy, client]);
     if (subfolder !== "" && methodMap.size > 0) {
-      packageInfo.exports[`./${subfolder}`] = `./src/${subfolder}/index.ts`;
+      packageInfo.exports[`./${subfolder}`] =
+        `${srcPrefix}/${subfolder}/index.ts`;
 
       packageInfo.exports[`./${subfolder}/api`] =
-        `./src/${subfolder}/api/index.ts`;
+        `${srcPrefix}/${subfolder}/api/index.ts`;
     }
   }
   if (!hasTopLevelClient) {
@@ -51,9 +80,11 @@ function buildExportsForMultiClient(
             NameType.File,
             "/"
           )}`;
+
           packageInfo.exports[
             `./${subfolder ? subfolder + "/" : ""}${subApiPath}`
-          ] = `src/${subfolder ? subfolder + "/" : ""}${subApiPath}/index.ts`;
+          ] =
+            `${srcPrefix}/${subfolder ? subfolder + "/" : ""}${subApiPath}/index.ts`;
         }
       }
     }
@@ -61,7 +92,7 @@ function buildExportsForMultiClient(
     const modelSubpaths = getModelSubpaths(emitterOptions);
     for (const modelSubpath of modelSubpaths) {
       packageInfo.exports[`./${modelSubpath.replace("/index.ts", "")}`] =
-        `./src/${modelSubpath}`;
+        `${srcPrefix}/${modelSubpath}`;
     }
   }
 
@@ -72,13 +103,14 @@ export function getModuleExports(
   context: SdkContext,
   emitterOptions: ModularEmitterOptions
 ) {
+  const srcPrefix = getSourceRootPrefix(emitterOptions, context);
   const exports: Record<string, any> = {
     exports: {
-      ".": "./src/index.ts",
-      "./models": "./src/models/index.ts"
+      ".": `${srcPrefix}/index.ts`,
+      "./models": `${srcPrefix}/models/index.ts`
     }
   };
-  exports["exports"]["./api"] = "./src/api/index.ts";
+  exports["exports"]["./api"] = `${srcPrefix}/api/index.ts`;
 
   return buildExportsForMultiClient(context, emitterOptions, exports);
 }
