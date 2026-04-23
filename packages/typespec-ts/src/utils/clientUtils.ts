@@ -160,14 +160,15 @@ export function getClientHierarchyMap(
   for (let i = 0; i < clients.length; i++) {
     const [hierarchy, client] = clients[i]!;
     clientMap.push([hierarchy, client]);
-    const childIndividualClients = client.children?.filter((client) => {
+    const childClientsToGenerate = client.children?.filter((child) => {
       return (
-        client.clientInitialization.initializedBy &
-        InitializedByFlags.Individually
+        (child.clientInitialization.initializedBy &
+          InitializedByFlags.Individually) ||
+        (child.clientInitialization.initializedBy & InitializedByFlags.Parent)
       );
     });
-    if (childIndividualClients && childIndividualClients.length > 0) {
-      childIndividualClients.forEach((child) => {
+    if (childClientsToGenerate && childClientsToGenerate.length > 0) {
+      childClientsToGenerate.forEach((child) => {
         const childHierarchy = [
           ...hierarchy,
           normalizeName(child.name.replace("Client", ""), NameType.File)
