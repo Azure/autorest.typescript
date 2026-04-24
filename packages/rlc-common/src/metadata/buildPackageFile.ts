@@ -15,15 +15,7 @@ import {
 } from "./packageJson/packageCommon.js";
 import { Project, SourceFile } from "ts-morph";
 import { RLCModel } from "../interfaces.js";
-import {
-  AzureMonorepoInfoConfig,
-  buildAzureMonorepoPackage,
-  getAzureMonorepoDependencies
-} from "./packageJson/buildAzureMonorepoPackage.js";
-export {
-  getAzureMonorepoDependencies,
-  AzureMonorepoInfoConfig
-} from "./packageJson/buildAzureMonorepoPackage.js";
+import { buildAzureMonorepoPackage } from "./packageJson/buildAzureMonorepoPackage.js";
 import { buildAzureStandalonePackage } from "./packageJson/buildAzureStandalonePackage.js";
 import { buildFlavorlessPackage } from "./packageJson/buildFlavorlessPackage.js";
 import { getRelativePartFromSrcPath } from "../helpers/pathUtils.js";
