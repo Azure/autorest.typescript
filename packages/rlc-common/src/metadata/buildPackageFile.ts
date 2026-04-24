@@ -131,25 +131,11 @@ export function updatePackageFile(
 
   // Migrate AutoRest-specific dependency names and versions to their TypeSpec equivalents.
   const deps: Record<string, string> = { ...(packageInfo.dependencies ?? {}) };
-  let depsChanged = false;
+  let needsCoreClientUpdate = false;
 
   // @azure/core-client is AutoRest-only; TypeSpec uses @azure-rest/core-client.
   if ("@azure/core-client" in deps) {
-    delete deps["@azure/core-client"];
-    if (!("@azure-rest/core-client" in deps)) {
-      deps["@azure-rest/core-client"] = "^2.3.1";
-    }
-    depsChanged = true;
-  }
-
-  // core-lro v2.x was the AutoRest version; TypeSpec targets v3.x.
-  if (deps["@azure/core-lro"]?.startsWith("^2.")) {
-    deps["@azure/core-lro"] = "^3.1.0";
-    depsChanged = true;
-  }
-
-  if (depsChanged) {
-    packageInfo.dependencies = deps;
+    needsCoreClientUpdate = true;
   }
 
   // Early return if nothing needs to be updated
@@ -157,7 +143,7 @@ export function updatePackageFile(
     !needsLroUpdate &&
     !needsExportsUpdate &&
     !needsConstantPathsUpdate &&
-    !depsChanged
+    !needsCoreClientUpdate
   ) {
     return;
   }
@@ -175,6 +161,15 @@ export function updatePackageFile(
       } as PackageCommonInfoConfig);
       packageInfo.tshy.exports = newTshy.exports;
     }
+  }
+
+  // Update Core Client dependency
+  if (needsCoreClientUpdate) {
+    delete deps["@azure/core-client"];
+    if (!("@azure-rest/core-client" in deps)) {
+      deps["@azure-rest/core-client"] = "^2.3.1";
+    }
+    packageInfo.dependencies = deps;
   }
 
   // Update LRO dependencies for Azure packages
