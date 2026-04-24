@@ -1663,8 +1663,16 @@ function buildHeaderParameter(
     return paramMap;
   }
 
+  // If the param has a clientDefaultValue that type-matches, the paramMap already contains
+  // `?? defaultValue` from getOptional(). In this case, always send the header (do not
+  // conditionally omit it when the accessor is undefined) so the default is always applied.
+  const hasEffectiveDefaultValue =
+    effectiveOptional &&
+    param.clientDefaultValue !== undefined &&
+    isDefaultValueTypeMatch(param, param.clientDefaultValue);
+
   const conditions = [];
-  if (effectiveOptional) {
+  if (effectiveOptional && !hasEffectiveDefaultValue) {
     conditions.push(`${paramAccessor} !== undefined`);
   }
   if (isTypeNullable(param.type) === true) {
