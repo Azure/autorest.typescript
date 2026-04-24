@@ -934,7 +934,7 @@ describe("Package file generation", () => {
       ]);
     });
   });
-  
+
   describe("Flavorless lib", () => {
     it("should have correct dependencies", () => {
       const model = createMockModel({
