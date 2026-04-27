@@ -1100,7 +1100,7 @@ export function getOperationFunction(
     }
   }
 
-  const { name, fixme = [] } = getOperationName(operation);
+  const { name, fixme = [] } = getOperationName(operation, context);
   const functionStatement = {
     kind: StructureKind.Function,
     docs: [
@@ -1248,7 +1248,7 @@ function getLroOnlyOperationFunction(
   const parameters: OptionalKind<ParameterDeclarationStructure>[] =
     getOperationSignatureParameters(context, method, clientType);
   const returnType = buildLroReturnType(context, operation);
-  const { name, fixme = [] } = getOperationName(operation);
+  const { name, fixme = [] } = getOperationName(operation, context);
   const pollerLikeReference = resolveReference(
     AzurePollingDependencies.PollerLike
   );
@@ -1343,7 +1343,7 @@ function getLroAndPagingOperationFunction(
     method,
     clientType
   );
-  const { name, fixme = [] } = getOperationName(operation);
+  const { name, fixme = [] } = getOperationName(operation, context);
 
   const returnType = buildLroPagingReturnType(context, operation);
 
@@ -1476,7 +1476,7 @@ function getPagingOnlyOperationFunction(
       type: getTypeExpression(context, type.valueType)
     };
   }
-  const { name, fixme = [] } = getOperationName(operation);
+  const { name, fixme = [] } = getOperationName(operation, context);
   const pagedAsyncIterableIteratorReference = resolveReference(
     PagingHelpers.PagedAsyncIterableIterator
   );
@@ -2318,12 +2318,20 @@ export function getSerializationExpression(
       skipDiscriminatedUnionSuffix: false
     }
   );
+
+  // Apply clientDefaultValue for model properties that have one
+  const defaultValueSuffix =
+    property.clientDefaultValue !== undefined &&
+    isDefaultValueTypeMatch(property, property.clientDefaultValue)
+      ? ` ?? ${formatDefaultValue(property.clientDefaultValue)}`
+      : "";
+
   if (serializeFunctionName) {
-    return `${nullOrUndefinedPrefix}${serializeFunctionName}(${propertyFullName})`;
+    return `${nullOrUndefinedPrefix}${serializeFunctionName}(${propertyFullName})${defaultValueSuffix}`;
   } else if (isAzureCoreErrorType(context.program, property.type.__raw)) {
-    return `${nullOrUndefinedPrefix}${propertyFullName}`;
+    return `${nullOrUndefinedPrefix}${propertyFullName}${defaultValueSuffix}`;
   } else {
-    return serializeRequestValue(
+    const baseExpr = serializeRequestValue(
       context,
       property.type,
       propertyFullName,
@@ -2332,6 +2340,7 @@ export function getSerializationExpression(
       getPropertySerializedName(property),
       propertyPath === "" ? true : false
     );
+    return `${baseExpr}${defaultValueSuffix}`;
   }
 }
 
@@ -2880,11 +2889,11 @@ export function getAllAncestors(type: SdkType): SdkType[] {
 }
 
 /**
- * Checks if a clientDefaultValue type matches the parameter type.
- * Returns true if the default value type is compatible with the parameter type.
+ * Checks if a clientDefaultValue type matches a parameter or model property type.
+ * Returns true if the default value type is compatible with the target type.
  */
 function isDefaultValueTypeMatch(
-  param: SdkHttpParameter | SdkBodyParameter,
+  param: SdkHttpParameter | SdkBodyParameter | SdkModelPropertyType,
   defaultValue: unknown
 ): boolean {
   const defaultType = typeof defaultValue;
