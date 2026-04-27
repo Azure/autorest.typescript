@@ -162,9 +162,9 @@ export function getClientHierarchyMap(
     clientMap.push([hierarchy, client]);
     const childClientsToGenerate = client.children?.filter((child) => {
       return (
-        (child.clientInitialization.initializedBy &
-          InitializedByFlags.Individually) ||
-        (child.clientInitialization.initializedBy & InitializedByFlags.Parent)
+        child.clientInitialization.initializedBy &
+          InitializedByFlags.Individually ||
+        child.clientInitialization.initializedBy & InitializedByFlags.Parent
       );
     });
     if (childClientsToGenerate && childClientsToGenerate.length > 0) {

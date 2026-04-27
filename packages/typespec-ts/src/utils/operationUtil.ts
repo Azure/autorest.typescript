@@ -693,9 +693,7 @@ export function getMethodHierarchiesMap(
             p.clientInitialization.initializedBy &
             InitializedByFlags.Individually
           ) &&
-          !(
-            p.clientInitialization.initializedBy & InitializedByFlags.Parent
-          )
+          !(p.clientInitialization.initializedBy & InitializedByFlags.Parent)
         );
       })
       .map((m) => {
