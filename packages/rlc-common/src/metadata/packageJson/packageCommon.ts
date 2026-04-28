@@ -113,10 +113,19 @@ function getEsmEntrypointInformation(config: PackageCommonInfoConfig) {
       types: "./dist/commonjs/index.d.ts",
       browser: "./dist/browser/index.js",
       "react-native": "./dist/react-native/index.js",
+      imports: {
+        "#platform/*.js": {
+          browser: "./src/*-browser.mjs",
+          "react-native": "./src/*-react-native.mjs",
+          default: "./src/*.js"
+        }
+      },
       exports: resolveWarpExports(config.exports)
     };
   }
 
+  // Non-monorepo packages use tshy which manages polyfill resolution
+  // via esmDialects — do NOT add imports here.
   return {
     tshy: getTshyConfig(config),
     type: "module",

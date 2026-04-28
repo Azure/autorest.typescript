@@ -901,8 +901,12 @@ describe("Package file generation", () => {
         clientContextPaths: []
       });
 
-      // Should return undefined when nothing needs to be updated
-      expect(packageFileContent).to.be.undefined;
+      // Should still return a result (imports are added for warp packages),
+      // but constantPaths should remain unchanged
+      const packageInfo = JSON.parse(packageFileContent!.content);
+      expect(packageInfo["//metadata"].constantPaths).to.deep.equal([
+        { path: "src/old-path.ts", prefix: "userAgentInfo" }
+      ]);
     });
 
     it("should not update constantPaths for non-Azure packages", () => {
