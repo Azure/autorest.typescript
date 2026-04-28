@@ -1,0 +1,8 @@
+{
+  "extends": "../../../../eng/tsconfigs/samples.json",
+  "compilerOptions": {
+    "paths": {
+      "@msinternal/dpg-customization-rest": ["../dist/esm"]
+    }
+  }
+}
