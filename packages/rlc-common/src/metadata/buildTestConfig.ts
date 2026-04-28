@@ -70,28 +70,3 @@ export function buildTestNodeTsConfig(model: RLCModel) {
     )
   };
 }
-
-// ─── Backward-compatible export for autorest.typescript (maintenance mode) ───
-
-/** @deprecated Kept for autorest.typescript compat. */
-export function buildTestMainTsConfig(model: RLCModel) {
-  if (!shouldGenerateTestConfig(model)) {
-    return;
-  }
-
-  return {
-    path: "tsconfig.test.json",
-    content: JSON.stringify(
-      {
-        references: [
-          { path: "./tsconfig.test.node.json" },
-          { path: "./tsconfig.browser.config.json" }
-        ],
-        compilerOptions: { composite: true },
-        files: []
-      },
-      null,
-      2
-    )
-  };
-}

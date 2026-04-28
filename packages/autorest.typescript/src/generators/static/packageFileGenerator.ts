@@ -8,7 +8,7 @@ import { getAutorestOptions, getSession } from "../../autorestSession";
 import { hasPollingOperations } from "../../restLevelClient/helpers/hasPollingOperations";
 import { NameType, normalizeName } from "../../utils/nameUtils";
 import { getSecurityInfoFromModel } from "../../utils/schemaHelpers";
-import { WarpConfigTemplateLegacy } from "@azure-tools/rlc-common";
+import { WarpConfigTemplate } from "@azure-tools/rlc-common";
 
 export function generatePackageJson(
   project: Project,
@@ -275,7 +275,7 @@ export function generateWarpConfig(project: Project) {
   }
 
   const exportsContent = ['  "./package.json": "./package.json"', '  ".": "./src/index.ts"'].join("\n");
-  const content = WarpConfigTemplateLegacy.replace("{{exports}}", exportsContent);
+  const content = WarpConfigTemplate.replace("{{exports}}", exportsContent);
 
   project.createSourceFile("warp.config.yml", content, {
     overwrite: true

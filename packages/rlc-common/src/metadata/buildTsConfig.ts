@@ -198,25 +198,3 @@ export function buildTsSnippetsConfig() {
     )
   };
 }
-
-// ─── Backward-compatible exports for autorest.typescript (maintenance mode) ───
-
-/** @deprecated Use buildTsSrcEsmConfig instead. Kept for autorest.typescript compat. */
-export function buildTsSrcConfig() {
-  return {
-    path: "tsconfig.src.json",
-    content: `{
-    extends: "../../../tsconfig.lib.json"
-  }`
-  };
-}
-
-/** @deprecated Kept for autorest.typescript compat. */
-export function buildTsTestConfig() {
-  return {
-    path: "tsconfig.test.json",
-    content: `{
-    extends: ["./tsconfig.src.json", "../../../tsconfig.test.base.json"]
-  }`
-  };
-}
