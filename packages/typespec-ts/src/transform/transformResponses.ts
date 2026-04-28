@@ -173,7 +173,7 @@ function transformBody(
       continue;
     }
     const hasBinaryContent = body.contentTypes.some((contentType) =>
-      isBinaryPayload(dpgContext, body.type, contentType)
+      isBinaryPayload(dpgContext, body.type, contentType, body.property)
     );
     if (hasBinaryContent) {
       typeSet.add(getBinaryType([SchemaContext.Output]));

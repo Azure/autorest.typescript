@@ -95,8 +95,16 @@ export function getBinaryType(usage: SchemaContext[]) {
     : BINARY_TYPE_UNION;
 }
 
-export function isByteOrByteUnion(dpgContext: SdkContext, type: Type) {
-  const schema = getSchemaForType(dpgContext, type);
+export function isByteOrByteUnion(
+  dpgContext: SdkContext,
+  type: Type,
+  relevantProperty?: ModelProperty
+) {
+  const schema = getSchemaForType(
+    dpgContext,
+    type,
+    relevantProperty ? { relevantProperty } : undefined
+  );
   return isBytesType(schema) || isBytesUnion(schema);
 }
 
