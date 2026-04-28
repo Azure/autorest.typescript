@@ -22,6 +22,29 @@ exports:
 
 targets:
   - name: browser
+    tsconfig: "./config/tsconfig.src.browser.json"
+
+  - name: react-native
+    tsconfig: "./config/tsconfig.src.react-native.json"
+
+  - name: esm
+    condition: import
+    tsconfig: "./config/tsconfig.src.esm.json"
+
+  - name: commonjs
+    condition: require
+    tsconfig: "./config/tsconfig.src.cjs.json"
+    moduleType: commonjs
+`;
+
+/** @deprecated Legacy template with root-relative tsconfig paths. Kept for autorest.typescript compat. */
+export const WarpConfigTemplateLegacy = `# warp.config.yml — build configuration
+
+exports:
+{{exports}}
+
+targets:
+  - name: browser
     tsconfig: "../../../tsconfig.src.browser.json"
 
   - name: react-native

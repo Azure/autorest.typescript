@@ -52,9 +52,12 @@ import {
   buildTopLevelIndex,
   buildTsConfig,
   buildTsSnippetsConfig,
+  buildTsSrcEsmConfig,
+  buildTsSrcBrowserConfig,
+  buildTsSrcReactNativeConfig,
+  buildTsSrcCjsConfig,
   buildTestBrowserTsConfig,
   buildTestNodeTsConfig,
-  buildTestMainTsConfig,
   buildVitestConfig,
   buildWarpConfig,
   getClientName,
@@ -63,7 +66,6 @@ import {
   updatePackageFile,
   buildSampleEnvFile,
   buildSnippets,
-  buildTsSrcConfig,
   buildTsSampleConfig
 } from "@azure-tools/rlc-common";
 import {
@@ -508,11 +510,9 @@ export async function $onEmit(context: EmitContext) {
       ];
       if (option.generateTest) {
         commonBuilders.push((model) => buildVitestConfig(model, "node"));
-        commonBuilders.push((model) => buildVitestConfig(model, "esm"));
         commonBuilders.push((model) => buildVitestConfig(model, "browser"));
         commonBuilders.push((model) => buildTestBrowserTsConfig(model));
         commonBuilders.push((model) => buildTestNodeTsConfig(model));
-        commonBuilders.push((model) => buildTestMainTsConfig(model));
       }
       if (isAzureFlavor) {
         commonBuilders.push(buildEsLintConfig);
@@ -568,7 +568,10 @@ export async function $onEmit(context: EmitContext) {
       }
       commonBuilders.push(buildTsConfig);
       if (option.azureSdkForJs) {
-        commonBuilders.push(buildTsSrcConfig);
+        commonBuilders.push(buildTsSrcEsmConfig);
+        commonBuilders.push(buildTsSrcBrowserConfig);
+        commonBuilders.push(buildTsSrcReactNativeConfig);
+        commonBuilders.push(buildTsSrcCjsConfig);
         if (option.generateSample) {
           commonBuilders.push(buildTsSampleConfig);
         }
