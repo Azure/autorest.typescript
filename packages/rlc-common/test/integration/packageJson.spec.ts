@@ -1000,7 +1000,7 @@ describe("Package file generation", () => {
       );
     });
 
-    it("should return undefined when no @azure/core-client and no other update triggers", () => {
+    it("should only add platform imports when no @azure/core-client and no other update triggers", () => {
       const model = createMockModel({
         moduleKind: "esm",
         flavor: "azure",
@@ -1019,7 +1019,19 @@ describe("Package file generation", () => {
       };
 
       const packageFileContent = updatePackageFile(model, initialPackageInfo);
-      expect(packageFileContent).to.be.undefined;
+      expect(packageFileContent).to.not.be.undefined;
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      // Dependencies should remain unchanged
+      expect(packageFile.dependencies).to.not.have.property("@azure/core-client");
+      expect(packageFile.dependencies).to.have.property(
+        "@azure-rest/core-client",
+        "^2.3.1"
+      );
+
+      // Platform imports should be added for Azure monorepo ESM packages
+      expect(packageFile).to.have.property("imports");
+      expect(packageFile.imports).to.have.property("#platform/*.js");
     });
 
     it("should migrate @azure/core-client for non-monorepo Azure packages", () => {
