@@ -142,7 +142,7 @@ export function updatePackageFile(
   ) {
     return;
   }
-  
+
   // Ensure warp packages have #platform/* imports for polyfill resolution
   if (needsPlatformImportsUpdate) {
     packageInfo.imports = {
