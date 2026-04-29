@@ -193,13 +193,10 @@ export function isDefinedStatusCode(statusCodes: HttpStatusCodesEntry) {
 export function isBinaryPayload(
   dpgContext: SdkContext,
   body: Type,
-  contentType: string | string[],
-  relevantProperty?: ModelProperty
+  contentType: string | string[]
 ) {
   const contentTypes = Array.isArray(contentType) ? contentType : [contentType];
-  const isBytes = body
-    ? isByteOrByteUnion(dpgContext, body, relevantProperty)
-    : false;
+  const isBytes = body ? isByteOrByteUnion(dpgContext, body) : false;
 
   // Treat */* as binary when the body is a bytes type
   if (contentTypes.some((ct) => ct === "*/*") && isBytes) {
