@@ -1,3 +1,44 @@
+## 6.0.69 (2026-04-23)
+
+- [Feature] Bump TypeSpec dependencies to latest stable. Please refer to [#3932](https://github.com/Azure/autorest.typescript/pull/3932)
+- [Bugfix] Narrow ARM metadata filter to only strip exclusively read-only properties. Please refer to [#3931](https://github.com/Azure/autorest.typescript/pull/3931)
+- [Bugfix] Correct export paths when sources are emitted to `src/generated`. Please refer to [#3905](https://github.com/Azure/autorest.typescript/pull/3905)
+- [Bugfix] Skip metadata/test generation for manual convenience layer packages. Please refer to [#3912](https://github.com/Azure/autorest.typescript/pull/3912)
+- [Bugfix] Keep paged result model public when used in non-paging operations. Please refer to [#3927](https://github.com/Azure/autorest.typescript/pull/3927)
+- [Feature] Generate empty CHANGELOG.md when scaffolding new packages. Please refer to [#3880](https://github.com/Azure/autorest.typescript/pull/3880)
+
+## 6.0.68 (2026-04-16)
+
+- [Feature] Add devcontainer config with GitHub Copilot extensions. Please refer to [#3815](https://github.com/Azure/autorest.typescript/pull/3815)
+- [Bugfix] Fix arm resource model property filtering for specific cases. Please refer to [#3911](https://github.com/Azure/autorest.typescript/pull/3911)
+- [Feature] Add spector integration tests for 16 not-yet-covered scenario groups. Please refer to [#3909](https://github.com/Azure/autorest.typescript/pull/3909)
+- [Feature] Bump TypeSpec dependencies to latest stable. Please refer to [#3914](https://github.com/Azure/autorest.typescript/pull/3914)
+
+## 6.0.67 (2026-04-09)
+
+- [Bugfix] Fix normalize issue for optional operation parameter name. Please refer to [#3877](https://github.com/Azure/autorest.typescript/pull/3877)
+- [Feature] Support HEAD operations as `boolean` or `{ body: boolean }` in Modular SDK with `head-as-boolean` and `wrap-non-model-return`. Please refer to [#3887](https://github.com/Azure/autorest.typescript/pull/3887)
+- [Feature] Bump TypeSpec dependencies to latest stable. Please refer to [#3902](https://github.com/Azure/autorest.typescript/pull/3902)
+
+## 6.0.66 (2026-04-03)
+
+- [Feature] Support metadata parameters in body models and use methodParameterSegments for accessor paths. Please refer to [#3848](https://github.com/Azure/autorest.typescript/pull/3848)
+- [Feature] Migrate test runner from mocha to vitest v4. Please refer to [#3865](https://github.com/Azure/autorest.typescript/pull/3865)
+- [Feature] Export client options params as type in *Client.ts. Please refer to [#3873](https://github.com/Azure/autorest.typescript/pull/3873)
+- [Bugfix] Fix: wrap LRO non-model response types when wrapNonModelReturn is enabled. Please refer to [#3876](https://github.com/Azure/autorest.typescript/pull/3876)
+
+## 6.0.65 (2026-03-30)
+
+- [Feature] Bump TypeSpec dependencies to latest stable. Please refer to [#3870](https://github.com/Azure/autorest.typescript/pull/3870)
+- [Feature] Add `treat-unknown-as-record` feature flag to map TypeSpec `unknown` to `Record<string, unknown>` in Modular SDK. Please refer to [#3869](https://github.com/Azure/autorest.typescript/pull/3869)
+- [Bugfix] Fix enum member names: use enum type name as prefix instead of `_` for leading-digit identifiers. Please refer to [#3868](https://github.com/Azure/autorest.typescript/pull/3868)
+- [Bugfix] Fix model array responses return directly (no body wrapper) when `wrap-non-model-return` is enabled. Please refer to [#3856](https://github.com/Azure/autorest.typescript/pull/3856)
+- [Bugfix] Restore full error.details handling for binary wrap-non-model-return deserializers. Please refer to [#3852](https://github.com/Azure/autorest.typescript/pull/3852)
+- [Feature] Report TCGC diagnostics and consolidate diagnostics tests. Please refer to [#3810](https://github.com/Azure/autorest.typescript/pull/3810)
+- [Bugfix] Hotfix for modular readme generation. Please refer to [#3854](https://github.com/Azure/autorest.typescript/pull/3854)
+- [Bugfix] Fix optional query/header parameters with constant values being hardcoded. Please refer to [#3812](https://github.com/Azure/autorest.typescript/pull/3812)
+- [Bugfix] Exclude required headerCollectionPrefix params from operation signature. Please refer to [#3845](https://github.com/Azure/autorest.typescript/pull/3845)
+
 ## 6.0.64 (2026-03-17)
 
 - [Bugfix] Fix detectModelConflicts false positive for API version enums in multi-service scenarios. Please refer to [#3842](https://github.com/Azure/autorest.typescript/pull/3842)

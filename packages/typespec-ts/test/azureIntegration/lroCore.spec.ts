@@ -1,9 +1,10 @@
+import { describe, it, beforeEach, assert } from "vitest";
+
 import SpecsAzureCoreLroStandardClientFactory, {
   StandardClient,
   getLongRunningPoller,
   isUnexpected
 } from "./generated/azure/core/lro/standard/src/index.js";
-import { assert } from "chai";
 describe("AzureLroCoreClient Rest Client", () => {
   let client: StandardClient;
 

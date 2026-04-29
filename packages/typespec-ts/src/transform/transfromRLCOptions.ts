@@ -93,6 +93,9 @@ function extractRLCOptions(
   const compatibilityQueryMultiFormat =
     emitterOptions["compatibility-query-multi-format"];
   const enableStorageCompat = emitterOptions["enable-storage-compat"] === true;
+  const treatUnknownAsRecord =
+    emitterOptions["treat-unknown-as-record"] === true;
+  const headAsBoolean = emitterOptions["head-as-boolean"] === true;
   const typespecTitleMap = emitterOptions["typespec-title-map"];
   const hasSubscriptionId = getSubscriptionId(dpgContext);
   const ignoreNullableOnOptional = getIgnoreNullableOnOptional(
@@ -138,7 +141,9 @@ function extractRLCOptions(
     ignoreNullableOnOptional,
     wrapNonModelReturn,
     isMultiService,
-    enableStorageCompat
+    enableStorageCompat,
+    treatUnknownAsRecord,
+    headAsBoolean
   };
 }
 

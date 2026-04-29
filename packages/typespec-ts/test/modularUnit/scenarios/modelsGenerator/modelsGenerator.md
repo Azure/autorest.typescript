@@ -2414,6 +2414,7 @@ op read(@bodyRoot body: A): void;
 export interface A {
   prop1: string;
   prop2: string;
+  name: string;
 }
 ```
 
@@ -2469,7 +2470,9 @@ export function bSerializer(item: B): any {
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface A */
-export interface A extends B {}
+export interface A extends B {
+  name: string;
+}
 ```
 
 ## Model function aSerializer
@@ -2506,8 +2509,8 @@ export interface A {
   readonly exactVersion?: string;
 }
 
-export function aSerializer(item: A): any {
-  return item;
+export function aSerializer(_item: A): any {
+  return {};
 }
 ```
 

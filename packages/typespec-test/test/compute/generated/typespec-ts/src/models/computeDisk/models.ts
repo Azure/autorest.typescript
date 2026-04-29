@@ -99,8 +99,8 @@ export interface DiskProperties {
   readonly provisioningState?: ResourceProvisioningState;
 }
 
-export function diskPropertiesSerializer(item: DiskProperties): any {
-  return item;
+export function diskPropertiesSerializer(_item: DiskProperties): any {
+  return {};
 }
 
 export function diskPropertiesDeserializer(item: any): DiskProperties {
@@ -153,8 +153,8 @@ export interface DiskAccessProperties {
   readonly timeCreated?: Date;
 }
 
-export function diskAccessPropertiesSerializer(item: DiskAccessProperties): any {
-  return item;
+export function diskAccessPropertiesSerializer(_item: DiskAccessProperties): any {
+  return {};
 }
 
 export function diskAccessPropertiesDeserializer(item: any): DiskAccessProperties {

@@ -1,4 +1,5 @@
-import { assert } from "chai";
+import { describe, it, beforeEach, assert } from "vitest";
+
 import RepeatabilityClientFactory, {
   RepeatabilityClient
 } from "./generated/special-headers/repeatability/src/index.js";

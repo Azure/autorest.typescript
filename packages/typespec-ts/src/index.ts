@@ -34,6 +34,7 @@ import {
   buildIndexFile,
   buildIsUnexpectedHelper,
   buildLicenseFile,
+  buildChangelogFile,
   buildLogger,
   buildPackageFile,
   buildParameterTypes,
@@ -101,7 +102,7 @@ import {
   getRLCClients,
   getModularClientOptions
 } from "./utils/clientUtils.js";
-import { join } from "path";
+import { basename, join } from "path";
 import { loadStaticHelpers } from "./framework/load-static-helpers.js";
 import { packageUsesXmlSerialization } from "./modular/serialization/buildXmlSerializerFunction.js";
 import { provideBinder } from "./framework/hooks/binder.js";
@@ -124,6 +125,12 @@ export async function $onEmit(context: EmitContext) {
   const program: Program = context.program;
   const emitterOptions: EmitterOptions = context.options;
   const dpgContext = await createContextWithDefaultOptions(context);
+
+  // Report any diagnostics from TCGC
+  if (dpgContext.diagnostics?.length > 0) {
+    program.reportDiagnostics(dpgContext.diagnostics);
+  }
+
   // Enrich the dpg context with path detail and common options
   await enrichDpgContext();
   const rlcOptions = dpgContext.rlcOptions ?? {};
@@ -173,7 +180,8 @@ export async function $onEmit(context: EmitContext) {
     staticHelpers,
     dependencies: {
       ...extraDependencies
-    }
+    },
+    useSubpathImports: rlcOptions.azureSdkForJs === true
   });
   provideSdkTypes(dpgContext);
 
@@ -444,6 +452,13 @@ export async function $onEmit(context: EmitContext) {
     }
     const rlcClient: RLCModel = rlcCodeModels[0];
     const option = dpgContext.rlcOptions!;
+    // When generateMetadata is explicitly false and the sources are generated
+    // into a path ending with "generated" (e.g. src/generated), this package
+    // has a manual convenience layer. Skip all metadata/test file generation
+    // to avoid unexpected modifications to files like package.json, README.md,
+    // warp.config.yml, and snippets.spec.ts. metadata.json is still updated.
+    const sourcesDir = dpgContext.generationPathDetail?.modularSourcesDir ?? "";
+    const hasManualConvenienceLayer = basename(sourcesDir) === "generated";
     const isAzureFlavor = isAzurePackage({ options: option });
     // Generate metadata
     const existingPackageFilePath = join(
@@ -456,6 +471,11 @@ export async function $onEmit(context: EmitContext) {
       "README.md"
     );
     const hasReadmeFile = await existsSync(existingReadmeFilePath);
+    const existingChangelogFilePath = join(
+      dpgContext.generationPathDetail?.metadataDir ?? "",
+      "CHANGELOG.md"
+    );
+    const hasChangelogFile = await existsSync(existingChangelogFilePath);
     const shouldGenerateMetadata =
       option.generateMetadata === true || !hasPackageFile;
     const existingTestFolderPath = join(
@@ -496,6 +516,9 @@ export async function $onEmit(context: EmitContext) {
       }
       if (isAzureFlavor) {
         commonBuilders.push(buildEsLintConfig);
+      }
+      if (!hasChangelogFile) {
+        commonBuilders.push(buildChangelogFile);
       }
       if (
         emitterOptions["generate-test"] === true &&
@@ -578,7 +601,7 @@ export async function $onEmit(context: EmitContext) {
           );
         }
       }
-    } else if (hasPackageFile) {
+    } else if (hasPackageFile && !hasManualConvenienceLayer) {
       const updateBuilders = [];
       let modularPackageInfo = {};
 
@@ -600,6 +623,11 @@ export async function $onEmit(context: EmitContext) {
             dependencies: additionalDependencies
           })
         };
+      }
+
+      // Always update package.json for monorepo packages (adds #platform/* imports)
+      // and for modular packages (adds exports, clientContextPaths, LRO deps)
+      if (option.isModularLibrary || option.azureSdkForJs) {
         updateBuilders.push((model: RLCModel) =>
           updatePackageFile(model, existingPackageFilePath, modularPackageInfo)
         );

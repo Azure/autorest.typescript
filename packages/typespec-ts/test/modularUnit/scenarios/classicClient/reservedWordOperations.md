@@ -13,7 +13,7 @@ import { $continue } from "./api/operations.js";
 import { ContinueOptionalParams } from "./api/options.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
-export { TestingClientOptionalParams } from "./api/testingContext.js";
+export type { TestingClientOptionalParams } from "./api/testingContext.js";
 
 export class TestingClient {
   private _client: TestingContext;

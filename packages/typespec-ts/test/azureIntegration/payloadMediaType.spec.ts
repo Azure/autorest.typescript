@@ -1,4 +1,5 @@
-import { assert } from "chai";
+import { describe, it, beforeEach, assert } from "vitest";
+
 import MediaTypeClientFactory, {
   MediaTypeClient
 } from "./generated/payload/media-type/src/index.js";

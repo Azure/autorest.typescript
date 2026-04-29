@@ -1,4 +1,5 @@
-import { assert } from "chai";
+import { describe, it, beforeEach, assert } from "vitest";
+
 import PathClientFactory, {
   PathClient
 } from "./generated/azure/client-generator-core/api-version/path/src/index.js";

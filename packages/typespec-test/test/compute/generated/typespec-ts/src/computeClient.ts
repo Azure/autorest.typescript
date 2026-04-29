@@ -16,13 +16,17 @@ import {
   _getRestorePointCollectionsOperations,
 } from "./classic/restorePointCollections/index.js";
 import {
+  VirtualMachineScaleSetExtensionsOperations,
+  _getVirtualMachineScaleSetExtensionsOperations,
+} from "./classic/virtualMachineScaleSetExtensions/index.js";
+import {
   VirtualMachinesOperations,
   _getVirtualMachinesOperations,
 } from "./classic/virtualMachines/index.js";
 import { TokenCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
-export { ComputeClientOptionalParams } from "./api/computeContext.js";
+export type { ComputeClientOptionalParams } from "./api/computeContext.js";
 
 export class ComputeClient {
   private _client: ComputeContext;
@@ -46,6 +50,9 @@ export class ComputeClient {
     this.pipeline = this._client.pipeline;
     this.diskAccesses = _getDiskAccessesOperations(this._client);
     this.disks = _getDisksOperations(this._client);
+    this.virtualMachineScaleSetExtensions = _getVirtualMachineScaleSetExtensionsOperations(
+      this._client,
+    );
     this.actionGroups = _getActionGroupsOperations(this._client);
     this.restorePointCollections = _getRestorePointCollectionsOperations(this._client);
     this.virtualMachines = _getVirtualMachinesOperations(this._client);
@@ -55,6 +62,8 @@ export class ComputeClient {
   public readonly diskAccesses: DiskAccessesOperations;
   /** The operation groups for disks */
   public readonly disks: DisksOperations;
+  /** The operation groups for virtualMachineScaleSetExtensions */
+  public readonly virtualMachineScaleSetExtensions: VirtualMachineScaleSetExtensionsOperations;
   /** The operation groups for actionGroups */
   public readonly actionGroups: ActionGroupsOperations;
   /** The operation groups for restorePointCollections */

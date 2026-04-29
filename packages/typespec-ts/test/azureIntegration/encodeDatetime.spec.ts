@@ -1,4 +1,5 @@
-import { assert } from "chai";
+import { describe, it, beforeEach, assert } from "vitest";
+
 import EncodeDatetimeClientFactory, {
   DatetimeClient
 } from "./generated/encode/datetime/src/index.js";

@@ -49,7 +49,7 @@ import { PagedAsyncIterableIterator } from "./static-helpers/pagingHelpers.js";
 import { TokenCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
-export { GlobalServiceClientOptionalParams } from "./api/globalServiceContext.js";
+export type { GlobalServiceClientOptionalParams } from "./api/globalServiceContext.js";
 
 export class GlobalServiceClient {
   private _client: GlobalServiceContext;
@@ -181,7 +181,7 @@ import { PagedAsyncIterableIterator } from "./static-helpers/pagingHelpers.js";
 import { TokenCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
-export { StandardServiceClientOptionalParams } from "./api/standardServiceContext.js";
+export type { StandardServiceClientOptionalParams } from "./api/standardServiceContext.js";
 
 export class StandardServiceClient {
   private _client: StandardServiceContext;
@@ -318,7 +318,7 @@ import { PagedAsyncIterableIterator } from "./static-helpers/pagingHelpers.js";
 import { TokenCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
-export { MixedServiceClientOptionalParams } from "./api/mixedServiceContext.js";
+export type { MixedServiceClientOptionalParams } from "./api/mixedServiceContext.js";
 
 export class MixedServiceClient {
   private _client: MixedServiceContext;

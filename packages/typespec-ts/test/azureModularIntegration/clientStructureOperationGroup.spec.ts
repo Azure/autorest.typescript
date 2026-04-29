@@ -1,9 +1,9 @@
+import { assert } from "vitest";
 // import {
 //   FirstClient,
 //   SecondClient
 // } from "./generated/client/structure/client-operation-group/src/index.js";
-// import { assert } from "chai";
-// describe("Client Structure Operation Group Rest Client", () => {
+// // describe("Client Structure Operation Group Rest Client", () => {
 //   let client1: FirstClient;
 //   let client2: SecondClient;
 

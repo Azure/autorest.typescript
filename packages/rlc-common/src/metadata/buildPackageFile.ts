@@ -105,6 +105,8 @@ export function updatePackageFile(
   const needsExportsUpdate = exports;
   const needsConstantPathsUpdate =
     clientContextPaths && clientContextPaths.length > 0;
+  const needsPlatformImportsUpdate =
+    model.options?.azureSdkForJs && model.options?.moduleKind === "esm";
 
   let packageInfo;
   if (typeof existingFilePathOrContent === "string") {
@@ -135,9 +137,21 @@ export function updatePackageFile(
     !needsLroUpdate &&
     !needsExportsUpdate &&
     !needsConstantPathsUpdate &&
+    !needsPlatformImportsUpdate &&
     !needsCoreClientUpdate
   ) {
     return;
+  }
+  
+  // Ensure warp packages have #platform/* imports for polyfill resolution
+  if (needsPlatformImportsUpdate) {
+    packageInfo.imports = {
+      "#platform/*.js": {
+        browser: "./src/*-browser.mjs",
+        "react-native": "./src/*-react-native.mjs",
+        default: "./src/*.js"
+      }
+    };
   }
 
   // Update exports based on build system (warp for monorepo, tshy for others)

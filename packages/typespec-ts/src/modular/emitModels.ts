@@ -33,6 +33,7 @@ import {
   isReadOnly,
   listAllServiceNamespaces
 } from "@azure-tools/typespec-client-generator-core";
+// import { isKey } from "@typespec/compiler";
 import {
   getExternalModel,
   getModelExpression,
@@ -59,7 +60,7 @@ import {
 import path from "path";
 import { refkey } from "../framework/refkey.js";
 import { useContext } from "../contextManager.js";
-import { isMetadata, isOrExtendsHttpFile } from "@typespec/http";
+import { isMetadata, isOrExtendsHttpFile, Visibility } from "@typespec/http";
 import { isAzureCoreErrorType } from "../utils/modelUtils.js";
 import { getHeaderClientOptions } from "./helpers/clientOptionHelpers.js";
 import { isExtensibleEnum } from "./type-expressions/get-enum-expression.js";
@@ -77,7 +78,8 @@ import {
 import {
   emitQueue,
   flattenPropertyModelMap,
-  getAllOperationsFromClient
+  getAllOperationsFromClient,
+  pagedModelsUsedInNonPagingOps
 } from "../framework/hooks/sdkTypes.js";
 import {
   getAllAncestors,
@@ -597,13 +599,14 @@ export function buildEnumTypes(
   type: SdkEnumType,
   reportMemberNameDiagnostic = false // if reportMemberNameDiagnostic is true, it will report diagnostic for enum member name
 ): [TypeAliasDeclarationStructure, EnumDeclarationStructure] {
+  const rawMembers = type.values.map((value) =>
+    emitEnumMember(context, value, reportMemberNameDiagnostic)
+  );
   const enumDeclaration: EnumDeclarationStructure = {
     kind: StructureKind.Enum,
     name: `Known${normalizeModelName(context, type)}`,
     isExported: true,
-    members: type.values.map((value) =>
-      emitEnumMember(context, value, reportMemberNameDiagnostic)
-    )
+    members: deduplicateEnumMemberNames(rawMembers)
   };
 
   const enumAsUnion: TypeAliasDeclarationStructure = {
@@ -650,27 +653,65 @@ function getExtensibleEnumDescription(
   ].join(" \n");
 }
 
+/**
+ * Deduplicates enum member names by appending a numeric suffix (_1, _2, ...)
+ * to all members that share the same normalized name.
+ * This handles cases where different values (e.g. "10" and "1.0") normalize
+ * to the same identifier.
+ */
+function deduplicateEnumMemberNames(
+  members: EnumMemberStructure[]
+): EnumMemberStructure[] {
+  const nameCount = new Map<string, number>();
+  for (const member of members) {
+    const name = member.name as string;
+    nameCount.set(name, (nameCount.get(name) ?? 0) + 1);
+  }
+  const nameCurrentIndex = new Map<string, number>();
+  return members.map((member) => {
+    const name = member.name as string;
+    if ((nameCount.get(name) ?? 0) > 1) {
+      const index = (nameCurrentIndex.get(name) ?? 0) + 1;
+      nameCurrentIndex.set(name, index);
+      return { ...member, name: `${name}_${index}` };
+    }
+    return member;
+  });
+}
+
 function emitEnumMember(
   context: SdkContext,
   member: SdkEnumValueType,
   reportMemberNameDiagnostic = false // if reportMemberNameDiagnostic is true, it will report diagnostic for enum member name
 ): EnumMemberStructure {
-  const normalizedMemberName = context.rlcOptions?.ignoreEnumMemberNameNormalize
+  const shouldNormalizeName = !member.name.startsWith("$DO_NOT_NORMALIZE$");
+  const enumTypeName = normalizeName(
+    member.enumType.name,
+    NameType.Interface,
+    true
+  );
+  let normalizedMemberName = context.rlcOptions?.ignoreEnumMemberNameNormalize
     ? fixLeadingNumber(member.name, NameType.EnumMemberName) // need to fix the leading number also for enum member
     : normalizeName(member.name, NameType.EnumMemberName, true);
+  // If the member name starts with _ due to a leading digit (not because the original has _),
+  // replace the _ prefix with the enum type name for a more descriptive identifier
   if (
-    reportMemberNameDiagnostic &&
+    shouldNormalizeName &&
     normalizedMemberName.toLowerCase().startsWith("_") &&
     !member.name.toLowerCase().startsWith("_")
   ) {
-    reportDiagnostic(context.program, {
-      code: "prefix-adding-in-enum-member",
-      format: {
-        memberName: member.name,
-        normalizedName: normalizedMemberName
-      },
-      target: NoTarget
-    });
+    normalizedMemberName = enumTypeName + normalizedMemberName.slice(1);
+    if (reportMemberNameDiagnostic) {
+      reportDiagnostic(context.program, {
+        code: "prefix-adding-in-enum-member",
+        format: {
+          memberName: member.name,
+          normalizedName: normalizedMemberName,
+          enumTypeName
+        },
+        target: NoTarget
+      });
+    }
   }
   const memberStructure: EnumMemberStructure = {
     kind: StructureKind.EnumMember,
@@ -693,13 +734,32 @@ function buildModelInterface(
   type: SdkModelType
 ): InterfaceDeclarationStructure {
   const flattenPropertySet = new Set<SdkModelPropertyType>();
+  // For non-input models (output-only, exception, etc.), filter out metadata
+  // properties (@header, @query, @path) since they are deserialized separately.
+  // For input models, keep metadata properties — users need to pass them.
+  const hasInputUsage = (type.usage & UsageFlags.Input) === UsageFlags.Input;
   const interfaceStructure = {
     kind: StructureKind.Interface,
     name: normalizeModelName(context, type, NameType.Interface, true),
     isExported: true,
     properties: type.properties
-      .filter((p) => !isMetadata(context.program, p.__raw!))
       .filter((p) => {
+        if (!hasInputUsage && p.__raw && isMetadata(context.program, p.__raw)) {
+          return false;
+        }
+        // Skip required metadata properties with Read-only visibility for ARM as they are not intended to be in the model
+        // These properties are not be generated no matter they are in input or output models in most cases in HLC
+        // Only skip properties that have exclusively Read visibility to avoid stripping @path properties
+        // on parameter bag models that also carry other visibility flags (e.g. Create/Update)
+        if (
+          context.arm &&
+          p.__raw &&
+          isMetadata(context.program, p.__raw) &&
+          p.visibility?.length === 1 &&
+          p.visibility?.includes(Visibility.Read)
+        ) {
+          return false;
+        }
         // filter out the flatten property to be processed later
         if (p.flatten && p.type.kind === "model") {
           flattenPropertySet.add(p);
@@ -718,7 +778,7 @@ function buildModelInterface(
       context,
       flatten.type,
       getAllAncestors(flatten.type)
-    ).filter((p) => !isMetadata(context.program, p.__raw!));
+    );
     interfaceStructure.properties!.push(
       ...allProperties.map((p) => {
         // when the flattened property is optional, all its child properties should be optional too
@@ -889,7 +949,11 @@ export function normalizeModelName(
     ? segments.join("")
     : "";
   const internalModelPrefix =
-    isPagedResultModel(context, type) || type.isGeneratedName ? "_" : "";
+    (isPagedResultModel(context, type) &&
+      !pagedModelsUsedInNonPagingOps.has(type)) ||
+    type.isGeneratedName
+      ? "_"
+      : "";
   return `${internalModelPrefix}${normalizeName(namespacePrefix + type.name, nameType, true)}${unionSuffix}`;
 }
 
@@ -982,6 +1046,7 @@ export function visitPackageTypes(context: SdkContext) {
   const { sdkPackage } = context;
   emitQueue.clear();
   flattenPropertyModelMap.clear();
+  pagedModelsUsedInNonPagingOps.clear();
   // Add all models in the package to the emit queue
   for (const model of sdkPackage.models) {
     visitType(context, model);
@@ -1063,6 +1128,22 @@ function visitMethod(
     visitType(context, parameter.type);
   });
   visitType(context, method.response.type);
+  trackPagedModelInNonPagingMethod(context, method);
+}
+
+/**
+ * If a non-paging method's direct response type is a paged result model,
+ * mark it so that normalizeModelName keeps it public (no "_" prefix).
+ */
+function trackPagedModelInNonPagingMethod(
+  context: SdkContext,
+  method: SdkServiceMethod<SdkHttpOperation>
+): void {
+  if (method.kind !== "basic" && method.kind !== "lro") return;
+  const respType = method.response.type;
+  if (respType && isPagedResultModel(context, respType)) {
+    pagedModelsUsedInNonPagingOps.add(respType);
+  }
 }
 
 function visitType(context: SdkContext, type: SdkType | undefined) {

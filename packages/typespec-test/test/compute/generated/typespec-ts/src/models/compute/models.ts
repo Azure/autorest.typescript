@@ -48,8 +48,8 @@ export interface VirtualMachineProperties {
   readonly provisioningState?: ResourceProvisioningState;
 }
 
-export function virtualMachinePropertiesSerializer(item: VirtualMachineProperties): any {
-  return item;
+export function virtualMachinePropertiesSerializer(_item: VirtualMachineProperties): any {
+  return {};
 }
 
 export function virtualMachinePropertiesDeserializer(item: any): VirtualMachineProperties {
@@ -149,5 +149,75 @@ export function computeActionGroupsPropertiesDeserializer(
 ): ComputeActionGroupsProperties {
   return {
     provisioningState: item["provisioningState"],
+  };
+}
+
+/** Describes a Virtual Machine Scale Set Extension. */
+export interface VirtualMachineScaleSetExtension extends SubResourceReadOnly {
+  /** The resource-specific properties for this resource. */
+  properties?: VirtualMachineScaleSetExtensionProperties;
+  /** Resource type */
+  readonly vmType?: string;
+  /** Resource name */
+  name?: string;
+}
+
+export function virtualMachineScaleSetExtensionSerializer(
+  item: VirtualMachineScaleSetExtension,
+): any {
+  return {
+    properties: !item["properties"]
+      ? item["properties"]
+      : virtualMachineScaleSetExtensionPropertiesSerializer(item["properties"]),
+    name: item["name"],
+  };
+}
+
+export function virtualMachineScaleSetExtensionDeserializer(
+  item: any,
+): VirtualMachineScaleSetExtension {
+  return {
+    id: item["id"],
+    properties: !item["properties"]
+      ? item["properties"]
+      : virtualMachineScaleSetExtensionPropertiesDeserializer(item["properties"]),
+    vmType: item["type"],
+    name: item["name"],
+  };
+}
+
+/** Describes the properties of a Virtual Machine Scale Set Extension. */
+export interface VirtualMachineScaleSetExtensionProperties {
+  /** If a value is provided and is different from the previous value, the extension handler will be forced to update even if the extension configuration has not changed. */
+  forceUpdateTag?: string;
+}
+
+export function virtualMachineScaleSetExtensionPropertiesSerializer(
+  item: VirtualMachineScaleSetExtensionProperties,
+): any {
+  return { forceUpdateTag: item["forceUpdateTag"] };
+}
+
+export function virtualMachineScaleSetExtensionPropertiesDeserializer(
+  item: any,
+): VirtualMachineScaleSetExtensionProperties {
+  return {
+    forceUpdateTag: item["forceUpdateTag"],
+  };
+}
+
+/** model interface SubResourceReadOnly */
+export interface SubResourceReadOnly {
+  /** Resource Id */
+  readonly id?: string;
+}
+
+export function subResourceReadOnlySerializer(_item: SubResourceReadOnly): any {
+  return {};
+}
+
+export function subResourceReadOnlyDeserializer(item: any): SubResourceReadOnly {
+  return {
+    id: item["id"],
   };
 }

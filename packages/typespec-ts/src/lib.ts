@@ -87,11 +87,27 @@ export interface EmitterOptions {
    */
   "wrap-non-model-return"?: boolean;
   /**
+   * When set to true, HEAD operations with a void response body will return `{ body: boolean }`
+   * instead of `void`, where `body: true` indicates a 2xx success (resource exists) and
+   * `body: false` indicates a non-2xx response (e.g., 404 Not Found).
+   * This matches the HLC behavior for resource existence check operations.
+   * Only applies when `wrap-non-model-return` is also enabled.
+   * Defaults to `false`.
+   */
+  "head-as-boolean"?: boolean;
+  /**
    * When enabled, every regular (non-LRO, non-paging) operation return type is augmented with a
    * `_response` property containing `rawResponse`, `parsedBody`, and `parsedHeaders`.
    * Defaults to `false`.
    */
   "enable-storage-compat"?: boolean;
+  /**
+   * When set to true, TypeSpec `unknown` type will be translated to `Record<string, unknown>`
+   * instead of `any` in the generated Modular SDK. This is useful when migrating from HLC
+   * where `unknown` in swagger mapped to `Record<string, unknown>` in the SDK.
+   * (Modular SDK only) Defaults to `false`.
+   */
+  "treat-unknown-as-record"?: boolean;
 }
 
 export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
@@ -383,11 +399,23 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
       description:
         "When set to true (default for Azure services), non-model return types (arrays, scalars, enums, bytes with binary content type) will be wrapped in an XxxResponse type for HLC backward compatibility during TypeSpec migration."
     },
+    "head-as-boolean": {
+      type: "boolean",
+      nullable: true,
+      description:
+        "When set to true, HEAD operations with void response return `{ body: boolean }` (true=2xx, false=non-2xx) instead of void. Requires wrap-non-model-return to also be enabled. Defaults to false."
+    },
     "enable-storage-compat": {
       type: "boolean",
       nullable: true,
       description:
         "When enabled, every regular (non-LRO, non-paging) operation return type is augmented with a `_response` property containing `rawResponse` (PathUncheckedResponse), `parsedBody`, and `parsedHeaders`. Defaults to `false`."
+    },
+    "treat-unknown-as-record": {
+      type: "boolean",
+      nullable: true,
+      description:
+        "When set to true, TypeSpec `unknown` type will be translated to `Record<string, unknown>` instead of `any` in the generated Modular SDK. This is useful when migrating from HLC where `unknown` in swagger mapped to `Record<string, unknown>`. (Modular SDK only) Defaults to `false`."
     }
   },
   required: []
@@ -573,7 +601,7 @@ const libDef = {
     "prefix-adding-in-enum-member": {
       severity: "warning",
       messages: {
-        default: paramMessage`Enum member name ${"memberName"} is normalized to ${"normalizedName"} with "_" prefix.`
+        default: paramMessage`Enum member name ${"memberName"} is not a valid TypeScript identifier. It has been renamed to ${"normalizedName"} using the enum type name ${"enumTypeName"} as prefix.`
       }
     },
     "default-value-object": {

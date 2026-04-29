@@ -1,5 +1,10 @@
-import { PageableClient, Pet } from "./generated/payload/pageable/src/index.js";
-import { assert } from "chai";
+import { describe, it, beforeEach, assert } from "vitest";
+
+import {
+  PageableClient,
+  Pet,
+  XmlPet
+} from "./generated/payload/pageable/src/index.js";
 
 describe("PageableClient Classical Client", () => {
   let client: PageableClient;
@@ -24,5 +29,38 @@ describe("PageableClient Classical Client", () => {
     }
     assert.strictEqual(items.length, 4);
     assert.deepStrictEqual<Pet[]>(items, pets);
+  });
+
+  describe("AlternateInitialVerb", () => {
+    it("should list pets using post initial verb", async () => {
+      const iter = client.serverDrivenPagination.alternateInitialVerb.post({
+        filter: "foo eq bar"
+      });
+      const items: Array<Pet> = [];
+      for await (const pet of iter) {
+        items.push(pet);
+      }
+      assert.strictEqual(items.length, 4);
+      assert.deepStrictEqual<Pet[]>(items, pets);
+    });
+  });
+
+  describe("XmlPagination", () => {
+    it("should list xml pagination with next link", async () => {
+      const iter = client.xmlPagination.listWithNextLink();
+      const items: Array<XmlPet> = [];
+      for await (const pet of iter) {
+        items.push(pet);
+      }
+      assert.strictEqual(items.length, 4);
+      assert.strictEqual(items[0]?.id, "1");
+      assert.strictEqual(items[0]?.name, "dog");
+      assert.strictEqual(items[1]?.id, "2");
+      assert.strictEqual(items[1]?.name, "cat");
+      assert.strictEqual(items[2]?.id, "3");
+      assert.strictEqual(items[2]?.name, "bird");
+      assert.strictEqual(items[3]?.id, "4");
+      assert.strictEqual(items[3]?.name, "fish");
+    });
   });
 });

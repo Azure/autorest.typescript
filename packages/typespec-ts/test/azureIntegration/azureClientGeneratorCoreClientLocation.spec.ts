@@ -1,4 +1,5 @@
-import { assert } from "chai";
+import { describe, it, beforeEach, assert } from "vitest";
+
 import MoveMethodParameterToClientClientFactory, {
   MoveMethodParameterToClientClient
 } from "./generated/azure/client-generator-core/client-location/move-method-parameter-to-client/src/index.js";

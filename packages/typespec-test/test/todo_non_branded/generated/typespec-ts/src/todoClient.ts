@@ -5,7 +5,7 @@ import { TodoItemsOperations, _getTodoItemsOperations } from "./classic/todoItem
 import { UsersOperations, _getUsersOperations } from "./classic/users/index.js";
 import { Pipeline, KeyCredential } from "@typespec/ts-http-runtime";
 
-export { TodoClientOptionalParams } from "./api/todoContext.js";
+export type { TodoClientOptionalParams } from "./api/todoContext.js";
 
 export class TodoClient {
   private _client: TodoContext;

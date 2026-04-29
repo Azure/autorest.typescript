@@ -670,6 +670,14 @@ export type ServiceOperation = SdkServiceMethod<SdkHttpOperation> & {
   oriName?: string;
 };
 
+export type ServiceParameter = (
+  | SdkMethodParameter
+  | SdkHttpParameter
+  | SdkBodyParameter
+) & {
+  oriName?: string;
+};
+
 export function getMethodHierarchiesMap(
   context: SdkContext,
   client: SdkClientType<SdkServiceOperation>
@@ -680,8 +688,12 @@ export function getMethodHierarchiesMap(
   ][] =
     client.children
       ?.filter((p) => {
-        return !(
-          p.clientInitialization.initializedBy & InitializedByFlags.Individually
+        return (
+          !(
+            p.clientInitialization.initializedBy &
+            InitializedByFlags.Individually
+          ) &&
+          !(p.clientInitialization.initializedBy & InitializedByFlags.Parent)
         );
       })
       .map((m) => {
@@ -713,9 +725,15 @@ export function getMethodHierarchiesMap(
       );
       const nonIndependentChildren = operationOrGroup.children?.filter(
         (child) => {
-          return !(
-            child.clientInitialization.initializedBy &
-            InitializedByFlags.Individually
+          return (
+            !(
+              child.clientInitialization.initializedBy &
+              InitializedByFlags.Individually
+            ) &&
+            !(
+              child.clientInitialization.initializedBy &
+              InitializedByFlags.Parent
+            )
           );
         }
       );
@@ -804,9 +822,23 @@ export function isTenantLevelOperation(
 
 function resolveParameterNameConflict(
   operationOrGroup: SdkServiceMethod<SdkHttpOperation>,
-  p: SdkMethodParameter | SdkHttpParameter | SdkBodyParameter
-): SdkMethodParameter | SdkHttpParameter | SdkBodyParameter {
-  const paramName = normalizeName(p.name, NameType.Parameter, true);
+  p: ServiceParameter
+): ServiceParameter {
+  // When the name starts with $DO_NOT_NORMALIZE$, record the original name so that
+  // subsequent calls (e.g. emitNonModelResponseTypes then buildApiOptions both call
+  // getMethodHierarchiesMap on the same TCGC object) always normalize from the
+  // original, not from the already-mutated value.
+  const paramName = normalizeName(
+    p.name,
+    NameType.Parameter,
+    true,
+    undefined,
+    undefined,
+    p.oriName
+  );
+  if (!p.oriName) {
+    p.oriName = p.name;
+  }
   if (paramName === operationOrGroup.name) {
     p.name = `${paramName}Parameter`;
   } else {

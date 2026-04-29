@@ -1,4 +1,5 @@
-import { assert } from "chai";
+import { describe, it, beforeEach, assert } from "vitest";
+
 import { SingleClient } from "./generated/server/path/single/src/index.js";
 import { MultipleClient } from "./generated/server/path/multiple/src/index.js";
 import { NotVersionedClient } from "./generated/server/versions/not-versioned/src/index.js";

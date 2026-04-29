@@ -431,6 +431,13 @@ export async function emitModularModelsFromTypeSpec(
     dpgContext.rlcOptions!.wrapNonModelReturn =
       options["wrap-non-model-return"] === true;
   }
+  if (options["head-as-boolean"] !== undefined) {
+    dpgContext.rlcOptions!.headAsBoolean = options["head-as-boolean"] === true;
+  }
+  if (options["treat-unknown-as-record"] !== undefined) {
+    dpgContext.rlcOptions!.treatUnknownAsRecord =
+      options["treat-unknown-as-record"] === true;
+  }
   const modularEmitterOptions = transformModularEmitterOptions(dpgContext, "", {
     casing: "camel"
   });
@@ -586,8 +593,15 @@ export async function emitModularOperationsFromTypeSpec(
     dpgContext.rlcOptions!.wrapNonModelReturn =
       options["wrap-non-model-return"] === true;
   }
+  if (options["head-as-boolean"] !== undefined) {
+    dpgContext.rlcOptions!.headAsBoolean = options["head-as-boolean"] === true;
+  }
   dpgContext.rlcOptions!.enableStorageCompat =
     options["enable-storage-compat"] === true;
+  if (options["treat-unknown-as-record"] !== undefined) {
+    dpgContext.rlcOptions!.treatUnknownAsRecord =
+      options["treat-unknown-as-record"] === true;
+  }
   const modularEmitterOptions = transformModularEmitterOptions(dpgContext, "", {
     casing: "camel"
   });
