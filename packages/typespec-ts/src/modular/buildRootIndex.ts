@@ -31,6 +31,7 @@ export function buildRootIndex(
   if (!clientMap) {
     // we still need to export the models if no client is provided
     exportModels(emitterOptions, rootIndexFile);
+    exportRestErrorTypes(context, rootIndexFile);
     return;
   }
   const project = useContext("outputProject");
@@ -87,6 +88,7 @@ export function buildRootIndex(
   exportPagingTypes(context, rootIndexFile);
   exportFileContentsType(context, rootIndexFile);
   exportAzureCloudTypes(context, rootIndexFile);
+  exportRestErrorTypes(context, rootIndexFile);
 }
 
 function exportModels(
@@ -121,6 +123,25 @@ function exportAzureCloudTypes(context: SdkContext, rootIndexFile: SourceFile) {
       [resolveReference(CloudSettingHelpers.AzureSupportedClouds)],
       true
     );
+  }
+}
+
+function exportRestErrorTypes(
+  context: SdkContext,
+  rootIndexFile: SourceFile
+) {
+  if (context.rlcOptions?.flavor !== "azure") {
+    return;
+  }
+  const existingExports = getExistingExports(rootIndexFile);
+  const namedExports = ["RestError", "isRestError"].filter(
+    (name) => !existingExports.has(name)
+  );
+  if (namedExports.length > 0) {
+    rootIndexFile.addExportDeclaration({
+      moduleSpecifier: "@azure/core-rest-pipeline",
+      namedExports
+    });
   }
 }
 

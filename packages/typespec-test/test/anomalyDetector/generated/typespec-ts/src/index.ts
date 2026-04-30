@@ -63,3 +63,4 @@ export type {
 } from "./api/univariate/index.js";
 export type { MultivariateOperations, UnivariateOperations } from "./classic/index.js";
 export type { PageSettings, ContinuablePage, PagedAsyncIterableIterator };
+export { RestError, isRestError } from "@azure/core-rest-pipeline";

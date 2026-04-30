@@ -5,9 +5,11 @@
 ```ts
 
 import { ClientOptions } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import { KeyCredential } from '@azure/core-auth';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
+import { RestError } from '@azure/core-rest-pipeline';
 
 // @public (undocumented)
 export class AnomalyDetectorClient {
@@ -29,6 +31,8 @@ export type APIVersion = "v1.1";
 export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
     continuationToken?: string;
 };
+
+export { isRestError }
 
 // @public
 export type MultivariateAlignMode = "Inner" | "Outer";
@@ -230,6 +234,8 @@ export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageS
 export interface PageSettings {
     continuationToken?: string;
 }
+
+export { RestError }
 
 // @public
 export interface UnivariateAnomalyDetectorError {
