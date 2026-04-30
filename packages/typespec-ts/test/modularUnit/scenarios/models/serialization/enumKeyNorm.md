@@ -168,6 +168,6 @@ export enum KnownVersions {
   /** 2024-07-01 */
   StableVersion = "2024-07-01",
   /** 2024-08-01-preview */
-  Versions20240801Preview = "2024-08-01-preview",
+  V20240801Preview = "2024-08-01-preview",
 }
 ```

@@ -5715,7 +5715,7 @@ export function nodeVMExtensionArrayDeserializer(result: Array<NodeVMExtension>)
 /** The Azure Batch service version. */
 export enum KnownVersions {
   /** API Version 2023-05-01.17.0 */
-  Versions20230501170 = "2023-05-01.17.0",
+  V20230501170 = "2023-05-01.17.0",
 }
 
 export type GetNodeFileResponse = {

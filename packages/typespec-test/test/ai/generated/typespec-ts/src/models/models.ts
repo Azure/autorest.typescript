@@ -747,5 +747,5 @@ export function evaluationScheduleArrayDeserializer(result: Array<EvaluationSche
 /** Azure AI API versions */
 export enum KnownVersions {
   /** Azure AI API version 2024-07-01-preview. */
-  Versions20240701Preview = "2024-07-01-preview",
+  V20240701Preview = "2024-07-01-preview",
 }
