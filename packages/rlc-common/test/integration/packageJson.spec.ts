@@ -901,8 +901,12 @@ describe("Package file generation", () => {
         clientContextPaths: []
       });
 
-      // Should return undefined when nothing needs to be updated
-      expect(packageFileContent).to.be.undefined;
+      // Should still return a result (imports are added for warp packages),
+      // but constantPaths should remain unchanged
+      const packageInfo = JSON.parse(packageFileContent!.content);
+      expect(packageInfo["//metadata"].constantPaths).to.deep.equal([
+        { path: "src/old-path.ts", prefix: "userAgentInfo" }
+      ]);
     });
 
     it("should not update constantPaths for non-Azure packages", () => {
@@ -931,6 +935,131 @@ describe("Package file generation", () => {
       expect(packageFile["//metadata"]["constantPaths"]).to.deep.equal([
         { path: "src/old-path.ts", prefix: "userAgentInfo" }
       ]);
+    });
+
+    it("should migrate @azure/core-client to @azure-rest/core-client", () => {
+      const model = createMockModel({
+        moduleKind: "esm",
+        flavor: "azure",
+        isMonorepo: true,
+        hasLro: false
+      });
+
+      const initialPackageInfo = {
+        name: "@azure/test-package",
+        version: "1.0.0",
+        dependencies: {
+          "@azure/core-client": "^1.9.3",
+          "@azure/core-rest-pipeline": "^1.19.1",
+          "tslib": "^2.6.2"
+        }
+      };
+
+      const packageFileContent = updatePackageFile(model, initialPackageInfo);
+      expect(packageFileContent).to.not.be.undefined;
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      expect(packageFile.dependencies).to.not.have.property("@azure/core-client");
+      expect(packageFile.dependencies).to.have.property(
+        "@azure-rest/core-client",
+        "^2.3.1"
+      );
+      expect(packageFile.dependencies).to.have.property(
+        "@azure/core-rest-pipeline",
+        "^1.19.1"
+      );
+    });
+
+    it("should not add duplicate @azure-rest/core-client if already present", () => {
+      const model = createMockModel({
+        moduleKind: "esm",
+        flavor: "azure",
+        isMonorepo: true,
+        hasLro: false
+      });
+
+      const initialPackageInfo = {
+        name: "@azure/test-package",
+        version: "1.0.0",
+        dependencies: {
+          "@azure/core-client": "^1.9.3",
+          "@azure-rest/core-client": "^2.0.0",
+          "tslib": "^2.6.2"
+        }
+      };
+
+      const packageFileContent = updatePackageFile(model, initialPackageInfo);
+      expect(packageFileContent).to.not.be.undefined;
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      expect(packageFile.dependencies).to.not.have.property("@azure/core-client");
+      // Existing version should be preserved, not overwritten
+      expect(packageFile.dependencies).to.have.property(
+        "@azure-rest/core-client",
+        "^2.0.0"
+      );
+    });
+
+    it("should only add platform imports when no @azure/core-client and no other update triggers", () => {
+      const model = createMockModel({
+        moduleKind: "esm",
+        flavor: "azure",
+        isMonorepo: true,
+        hasLro: false
+      });
+
+      const initialPackageInfo = {
+        name: "@azure/test-package",
+        version: "1.0.0",
+        dependencies: {
+          "@azure-rest/core-client": "^2.3.1",
+          "@azure/core-rest-pipeline": "^1.20.0",
+          "tslib": "^2.8.1"
+        }
+      };
+
+      const packageFileContent = updatePackageFile(model, initialPackageInfo);
+      expect(packageFileContent).to.not.be.undefined;
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      // Dependencies should remain unchanged
+      expect(packageFile.dependencies).to.not.have.property("@azure/core-client");
+      expect(packageFile.dependencies).to.have.property(
+        "@azure-rest/core-client",
+        "^2.3.1"
+      );
+
+      // Platform imports should be added for Azure monorepo ESM packages
+      expect(packageFile).to.have.property("imports");
+      expect(packageFile.imports).to.have.property("#platform/*.js");
+    });
+
+    it("should migrate @azure/core-client for non-monorepo Azure packages", () => {
+      const model = createMockModel({
+        moduleKind: "cjs",
+        flavor: "azure",
+        isMonorepo: false,
+        hasLro: false
+      });
+
+      const initialPackageInfo = {
+        name: "@azure/test-package",
+        version: "1.0.0",
+        dependencies: {
+          "@azure/core-client": "^1.9.3",
+          "tslib": "^2.6.2"
+        }
+      };
+
+      const packageFileContent = updatePackageFile(model, initialPackageInfo);
+      expect(packageFileContent).to.not.be.undefined;
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      expect(packageFile.dependencies).to.not.have.property("@azure/core-client");
+      expect(packageFile.dependencies).to.have.property(
+        "@azure-rest/core-client",
+        "^2.3.1"
+      );
     });
   });
 

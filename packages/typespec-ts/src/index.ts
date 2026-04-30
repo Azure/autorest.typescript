@@ -180,7 +180,8 @@ export async function $onEmit(context: EmitContext) {
     staticHelpers,
     dependencies: {
       ...extraDependencies
-    }
+    },
+    useSubpathImports: rlcOptions.azureSdkForJs === true
   });
   provideSdkTypes(dpgContext);
 
@@ -606,13 +607,27 @@ export async function $onEmit(context: EmitContext) {
 
       // update existing package.json file with correct dependencies
       if (option.isModularLibrary) {
+        // Additional format-specific dependencies to merge when migrating
+        // (e.g. fast-xml-parser when XML serialization is used)
+        const additionalDependencies: Record<string, string> = {};
+        if (packageUsesXmlSerialization(dpgContext.sdkPackage)) {
+          additionalDependencies["fast-xml-parser"] = "^4.5.0";
+        }
         modularPackageInfo = {
           exports: getModuleExports(context, modularEmitterOptions),
           clientContextPaths: getRelativeContextPaths(
             context,
             modularEmitterOptions
-          )
+          ),
+          ...(Object.keys(additionalDependencies).length > 0 && {
+            dependencies: additionalDependencies
+          })
         };
+      }
+
+      // Always update package.json for monorepo packages (adds #platform/* imports)
+      // and for modular packages (adds exports, clientContextPaths, LRO deps)
+      if (option.isModularLibrary || option.azureSdkForJs) {
         updateBuilders.push((model: RLCModel) =>
           updatePackageFile(model, existingPackageFilePath, modularPackageInfo)
         );
