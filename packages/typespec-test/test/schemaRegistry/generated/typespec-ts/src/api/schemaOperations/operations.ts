@@ -32,7 +32,6 @@ import {
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
 
 export function _registerSchemaSend(
   context: Client,
@@ -58,7 +57,7 @@ export function _registerSchemaSend(
     .put({
       ...operationOptionsToRequestParameters(options),
       contentType: contentType,
-      body: uint8ArrayToString(content, "base64"),
+      body: content,
     });
 }
 
@@ -108,7 +107,7 @@ export function _getSchemaIdByContentSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: contentType,
-      body: uint8ArrayToString(schemaContent, "base64"),
+      body: schemaContent,
     });
 }
 
@@ -166,16 +165,14 @@ export function _getSchemaByVersionSend(
 }
 
 export async function _getSchemaByVersionDeserialize(
-  result: PathUncheckedResponse,
+  result: PathUncheckedResponse & SchemaOperationsGetSchemaByVersionResponse,
 ): Promise<SchemaOperationsGetSchemaByVersionResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return {
-    body: typeof result.body === "string" ? stringToUint8Array(result.body, "base64") : result.body,
-  };
+  return { blobBody: result.blobBody, readableStreamBody: result.readableStreamBody };
 }
 
 /** Gets one specific version of one schema. */
@@ -261,16 +258,14 @@ export function _getSchemaByIdSend(
 }
 
 export async function _getSchemaByIdDeserialize(
-  result: PathUncheckedResponse,
+  result: PathUncheckedResponse & SchemaOperationsGetSchemaByIdResponse,
 ): Promise<SchemaOperationsGetSchemaByIdResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return {
-    body: typeof result.body === "string" ? stringToUint8Array(result.body, "base64") : result.body,
-  };
+  return { blobBody: result.blobBody, readableStreamBody: result.readableStreamBody };
 }
 
 /** Gets a registered schema by its unique ID.  Azure Schema Registry guarantees that ID is unique within a namespace. Operation response type is based on serialization of schema requested. */

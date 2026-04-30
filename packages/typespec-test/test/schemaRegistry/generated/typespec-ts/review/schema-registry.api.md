@@ -59,7 +59,8 @@ export interface SchemaOperationsGetSchemaByIdOptionalParams extends OperationOp
 
 // @public (undocumented)
 export type SchemaOperationsGetSchemaByIdResponse = {
-    body: Uint8Array;
+    blobBody?: Promise<Blob>;
+    readableStreamBody?: NodeJS.ReadableStream;
 };
 
 // @public
@@ -68,7 +69,8 @@ export interface SchemaOperationsGetSchemaByVersionOptionalParams extends Operat
 
 // @public (undocumented)
 export type SchemaOperationsGetSchemaByVersionResponse = {
-    body: Uint8Array;
+    blobBody?: Promise<Blob>;
+    readableStreamBody?: NodeJS.ReadableStream;
 };
 
 // @public
