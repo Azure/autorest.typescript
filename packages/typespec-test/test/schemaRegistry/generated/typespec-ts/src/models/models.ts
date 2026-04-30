@@ -156,6 +156,36 @@ export type ContentTypeEnum =
   | "application/json; serialization=json"
   | "text/vnd.ms.protobuf";
 
-export type SchemaOperationsGetSchemaByVersionResponse = { body: Uint8Array };
+export type SchemaOperationsGetSchemaByVersionResponse = {
+  /**
+   * BROWSER ONLY
+   *
+   * The response body as a browser Blob.
+   * Always `undefined` in node.js.
+   */
+  blobBody?: Promise<Blob>;
+  /**
+   * NODEJS ONLY
+   *
+   * The response body as a node.js Readable stream.
+   * Always `undefined` in the browser.
+   */
+  readableStreamBody?: NodeJS.ReadableStream;
+};
 
-export type SchemaOperationsGetSchemaByIdResponse = { body: Uint8Array };
+export type SchemaOperationsGetSchemaByIdResponse = {
+  /**
+   * BROWSER ONLY
+   *
+   * The response body as a browser Blob.
+   * Always `undefined` in node.js.
+   */
+  blobBody?: Promise<Blob>;
+  /**
+   * NODEJS ONLY
+   *
+   * The response body as a node.js Readable stream.
+   * Always `undefined` in the browser.
+   */
+  readableStreamBody?: NodeJS.ReadableStream;
+};
