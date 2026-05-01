@@ -6,6 +6,7 @@ import {
   ContinuablePage,
   PagedAsyncIterableIterator,
 } from "./static-helpers/pagingHelpers.js";
+import { NodeReadableStream } from "./static-helpers/platform-types.js";
 
 export { TodoClient } from "./todoClient.js";
 export type {
@@ -51,4 +52,4 @@ export type {
   TodoItemsAttachmentsOperations,
 } from "./classic/index.js";
 export type { PageSettings, ContinuablePage, PagedAsyncIterableIterator };
-export type { FileContents };
+export type { FileContents, NodeReadableStream };

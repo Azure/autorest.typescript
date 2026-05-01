@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import { FileContents, createFilePartDescriptor } from "../static-helpers/multipartHelpers.js";
+import { NodeReadableStream } from "../static-helpers/platform-types.js";
 import { ErrorModel } from "@azure-rest/core-client";
 
 /**
@@ -3655,7 +3656,7 @@ export type GenerateSpeechFromTextResponse = {
    * The response body as a node.js Readable stream.
    * Always `undefined` in the browser.
    */
-  readableStreamBody?: NodeJS.ReadableStream;
+  readableStreamBody?: NodeReadableStream;
 };
 
 export type GetAudioTranslationAsPlainTextResponse = { body: string };

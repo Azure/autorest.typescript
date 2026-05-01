@@ -1,12 +1,14 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import { NodeReadableStream } from "./platform-types.js";
+
 /**
  * Valid values for the contents of a binary file.
  */
 export type FileContents =
   | string
-  | NodeJS.ReadableStream
+  | NodeReadableStream
   | ReadableStream<Uint8Array>
   | Uint8Array
   | Blob;

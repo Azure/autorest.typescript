@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import { FileContents } from "./static-helpers/multipartHelpers.js";
+import { NodeReadableStream } from "./static-helpers/platform-types.js";
 
 export { OpenAIClient } from "./openAIClient.js";
 export type {
@@ -108,4 +109,4 @@ export type {
   ChatCompletionsOperations,
   FineTuningJobsOperations,
 } from "./classic/index.js";
-export type { FileContents };
+export type { FileContents, NodeReadableStream };
