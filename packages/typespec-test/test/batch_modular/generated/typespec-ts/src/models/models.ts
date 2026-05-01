@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import { NodeReadableStream } from "../static-helpers/platform-types.js";
 import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
 
 /**
@@ -5732,7 +5733,7 @@ export type GetNodeFileResponse = {
    * The response body as a node.js Readable stream.
    * Always `undefined` in the browser.
    */
-  readableStreamBody?: NodeJS.ReadableStream;
+  readableStreamBody?: NodeReadableStream;
 };
 
 export type GetNodeRemoteDesktopFileResponse = {
@@ -5749,7 +5750,7 @@ export type GetNodeRemoteDesktopFileResponse = {
    * The response body as a node.js Readable stream.
    * Always `undefined` in the browser.
    */
-  readableStreamBody?: NodeJS.ReadableStream;
+  readableStreamBody?: NodeReadableStream;
 };
 
 export type GetTaskFileResponse = {
@@ -5766,5 +5767,5 @@ export type GetTaskFileResponse = {
    * The response body as a node.js Readable stream.
    * Always `undefined` in the browser.
    */
-  readableStreamBody?: NodeJS.ReadableStream;
+  readableStreamBody?: NodeReadableStream;
 };
