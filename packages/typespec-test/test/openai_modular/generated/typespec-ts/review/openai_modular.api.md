@@ -714,7 +714,7 @@ export interface EmbeddingsUsage {
 }
 
 // @public
-export type FileContents = string | NodeJS.ReadableStream | ReadableStream<Uint8Array> | Uint8Array | Blob;
+export type FileContents = string | NodeReadableStream | ReadableStream<Uint8Array> | Uint8Array | Blob;
 
 // @public
 export interface FunctionCall {
@@ -744,7 +744,7 @@ export interface GenerateSpeechFromTextOptionalParams extends OperationOptions {
 // @public (undocumented)
 export type GenerateSpeechFromTextResponse = {
     blobBody?: Promise<Blob>;
-    readableStreamBody?: NodeJS.ReadableStream;
+    readableStreamBody?: NodeReadableStream;
 };
 
 // @public
@@ -859,6 +859,9 @@ export enum KnownServiceApiVersions {
 export interface MaxTokensFinishDetails extends ChatFinishDetails {
     type: "max_tokens";
 }
+
+// @public
+export type NodeReadableStream = NodeJS.ReadableStream;
 
 // @public
 export interface OnYourDataAccessTokenAuthenticationOptions extends OnYourDataAuthenticationOptions {
