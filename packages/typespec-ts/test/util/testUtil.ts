@@ -26,6 +26,7 @@ import { getDirname } from "../../src/utils/dirname.js";
 import {
   MultipartHelpers,
   PagingHelpers,
+  PlatformTypeHelpers,
   PollingHelpers,
   SerializationHelpers,
   StorageCompatHelpers,
@@ -282,6 +283,7 @@ export async function provideBinderWithAzureDependencies(project: Project) {
     ...PollingHelpers,
     ...UrlTemplateHelpers,
     ...MultipartHelpers,
+    ...PlatformTypeHelpers,
     ...CreateRecorderHelpers,
     ...StorageCompatHelpers
   };

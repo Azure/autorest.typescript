@@ -9,6 +9,7 @@ import { NoTarget, Program } from "@typespec/compiler";
 import {
   PagingHelpers,
   PollingHelpers,
+  PlatformTypeHelpers,
   SerializationHelpers,
   StorageCompatHelpers,
   UrlTemplateHelpers,
@@ -3249,7 +3250,7 @@ export function checkWrapNonModelReturn(
 
 /**
  * Builds a TypeAliasDeclarationStructure for the non-model response wrapper type.
- * - For binary responses: { blobBody?: Promise<Blob>; readableStreamBody?: NodeJS.ReadableStream }
+ * - For binary responses: { blobBody?: Promise<Blob>; readableStreamBody?: NodeReadableStream }
  * - For other non-model responses: { body: <type> }
  */
 export function buildNonModelResponseTypeDeclaration(
@@ -3262,6 +3263,9 @@ export function buildNonModelResponseTypeDeclaration(
   let typeBody: string;
 
   if (isBinary) {
+    const nodeReadableStreamRef = resolveReference(
+      PlatformTypeHelpers.NodeReadableStream
+    );
     typeBody = `{
       /**
        * BROWSER ONLY
@@ -3276,7 +3280,7 @@ export function buildNonModelResponseTypeDeclaration(
        * The response body as a node.js Readable stream.
        * Always \`undefined\` in the browser.
        */
-      readableStreamBody?: NodeJS.ReadableStream;
+      readableStreamBody?: ${nodeReadableStreamRef};
   }`;
   } else if (!operation.response.type && isHeadOperation(operation)) {
     // HEAD as boolean: the body property is a boolean indicating if the resource exists.

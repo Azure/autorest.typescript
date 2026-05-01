@@ -46,7 +46,7 @@ export declare interface ComplexPartsRequest {
     }>;
 }
 
-export declare type FileContents = string | NodeJS.ReadableStream | ReadableStream<Uint8Array> | Uint8Array | Blob;
+export declare type FileContents = string | NodeReadableStream | ReadableStream<Uint8Array> | Uint8Array | Blob;
 
 export declare interface FileWithHttpPartOptionalContentTypeRequest {
     profileImage: File | {
@@ -243,5 +243,7 @@ export declare interface MultiPartRequestWithWireName {
         filename?: string;
     };
 }
+
+export declare type NodeReadableStream = NodeJS.ReadableStream;
 
 export { }
