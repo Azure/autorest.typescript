@@ -123,15 +123,22 @@ function getEsmEntrypointInformation(config: PackageCommonInfoConfig) {
           default: "./src/*.js"
         } as Record<string, string>
       },
-      exports: resolveWarpExports(config.exports, config.generateReactNativeTarget)
+      exports: resolveWarpExports(
+        config.exports,
+        config.generateReactNativeTarget
+      )
     };
 
     if (config.generateReactNativeTarget) {
       result["react-native"] = "./dist/react-native/index.js";
-      (result.imports["#platform/*.js"] as Record<string, string>)["react-native"] =
-        "./src/*-react-native.mjs";
+      (result.imports["#platform/*.js"] as Record<string, string>)[
+        "react-native"
+      ] = "./src/*-react-native.mjs";
       // Reorder so react-native comes before default
-      const importsEntry = result.imports["#platform/*.js"] as Record<string, string>;
+      const importsEntry = result.imports["#platform/*.js"] as Record<
+        string,
+        string
+      >;
       result.imports["#platform/*.js"] = {
         browser: importsEntry.browser,
         "react-native": importsEntry["react-native"],
