@@ -11,16 +11,9 @@ import viteConfig from "../../../vitest.browser.shared.config.ts";
 
 export default viteConfig;`;
 
-const esmConfig = `
-import { mergeConfig } from "vitest/config";
-import vitestConfig from "./vitest.config.ts";
-import vitestEsmConfig from "../../../vitest.esm.shared.config.ts";
-
-export default mergeConfig(vitestConfig, vitestEsmConfig);`;
-
 export function generateVitestConfig(
   project: Project,
-  platform: "browser" | "node" | "esm"
+  platform: "browser" | "node"
 ) {
   const { generateTest, generateMetadata, azureSdkForJs } = getAutorestOptions();
   if (
@@ -35,13 +28,11 @@ export function generateVitestConfig(
       project.createSourceFile("vitest.browser.config.ts", browserConfig, {
         overwrite: true
       });
+      break;
     case "node":
       project.createSourceFile("vitest.config.ts", nodeConfig, {
         overwrite: true
       });
-    case "esm":
-      project.createSourceFile("vitest.esm.config.ts", esmConfig, {
-        overwrite: true
-      });
+      break;
   }
 }
