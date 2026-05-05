@@ -236,7 +236,7 @@ describe("Package file generation", () => {
       );
     });
 
-    it("[esm] should include correct entrypoints", () => {
+    it("[esm] should include correct entrypoints (without react-native by default)", () => {
       const model = createMockModel({
         ...baseConfig,
         withSamples: true,
@@ -258,15 +258,39 @@ describe("Package file generation", () => {
         "browser",
         "./dist/browser/index.js"
       );
+      // Default: no react-native entrypoint
+      expect(packageFile).to.not.have.property("react-native");
       expect(packageFile).to.have.property("exports");
       expect(packageFile.exports["./package.json"]).to.equal("./package.json");
       expect(packageFile.exports["."]).to.have.property("browser");
-      expect(packageFile.exports["."]).to.have.property("react-native");
+      // Default: no react-native in exports
+      expect(packageFile.exports["."]).to.not.have.property("react-native");
       expect(packageFile.exports["."]).to.have.property("import");
       expect(packageFile.exports["."]).to.have.property("require");
       expect(packageFile.exports["."]["import"]).to.deep.equal({
         types: "./dist/esm/index.d.ts",
         default: "./dist/esm/index.js"
+      });
+    });
+
+    it("[esm] should include react-native entrypoints when generateReactNativeTarget is true", () => {
+      const model = createMockModel({
+        ...baseConfig,
+        withSamples: true,
+        moduleKind: "esm",
+        generateReactNativeTarget: true
+      });
+      const packageFileContent = buildPackageFile(model);
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      expect(packageFile).to.have.property(
+        "react-native",
+        "./dist/react-native/index.js"
+      );
+      expect(packageFile.exports["."]).to.have.property("react-native");
+      expect(packageFile.exports["."]["react-native"]).to.deep.equal({
+        types: "./dist/react-native/index.d.ts",
+        default: "./dist/react-native/index.js"
       });
     });
 
@@ -444,11 +468,28 @@ describe("Package file generation", () => {
       );
     });
 
-    it("should include browser and react-native entrypoints in package.json", () => {
+    it("should include browser but not react-native entrypoints by default", () => {
       const model = createMockModel({
         ...baseConfig,
         azureArm: true,
         isModularLibrary: true
+      });
+      const packageFileContent = buildPackageFile(model);
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      expect(packageFile).to.have.property(
+        "browser", "./dist/browser/index.js",
+      );
+      // Default: no react-native entrypoint
+      expect(packageFile).to.not.have.property("react-native");
+    });
+
+    it("should include react-native entrypoint when generateReactNativeTarget is true", () => {
+      const model = createMockModel({
+        ...baseConfig,
+        azureArm: true,
+        isModularLibrary: true,
+        generateReactNativeTarget: true
       });
       const packageFileContent = buildPackageFile(model);
       const packageFile = JSON.parse(packageFileContent?.content ?? "{}");

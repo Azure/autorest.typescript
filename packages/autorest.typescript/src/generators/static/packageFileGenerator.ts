@@ -8,7 +8,26 @@ import { getAutorestOptions, getSession } from "../../autorestSession";
 import { hasPollingOperations } from "../../restLevelClient/helpers/hasPollingOperations";
 import { NameType, normalizeName } from "../../utils/nameUtils";
 import { getSecurityInfoFromModel } from "../../utils/schemaHelpers";
-import { WarpConfigTemplate } from "@azure-tools/rlc-common";
+
+/** Warp config template for HLC packages (does not include react-native by default). */
+const WarpConfigTemplate = `# warp.config.yml — build configuration
+
+exports:
+{{exports}}
+
+targets:
+  - name: browser
+    tsconfig: "./config/tsconfig.src.browser.json"
+
+  - name: esm
+    condition: import
+    tsconfig: "./config/tsconfig.src.esm.json"
+
+  - name: commonjs
+    condition: require
+    tsconfig: "./config/tsconfig.src.cjs.json"
+    moduleType: commonjs
+`;
 
 export function generatePackageJson(
   project: Project,
