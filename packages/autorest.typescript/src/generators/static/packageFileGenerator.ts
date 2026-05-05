@@ -81,7 +81,8 @@ function regularAutorestPackage(
     generateSample,
     coreHttpCompatMode,
     azureSdkForJs,
-    isTestPackage
+    isTestPackage,
+    generateReactNativeTarget
   } = getAutorestOptions();
   const { model } = getSession();
   const { addCredentials } = getSecurityInfoFromModel(model.security);
@@ -176,33 +177,38 @@ function regularAutorestPackage(
     },
     autoPublish: true,
     browser: "./dist/browser/index.js",
-    "react-native": "./dist/react-native/index.js",
   };
+  if (generateReactNativeTarget) {
+    packageInfo["react-native"] = "./dist/react-native/index.js";
+  }
   if (azureOutputDirectory) {
     packageInfo.homepage = `https://github.com/Azure/azure-sdk-for-js/tree/main/${azureOutputDirectory}`;
   }
   if (azureSdkForJs) {
     // Azure monorepo packages use warp (via dev-tool run build-package) instead of tshy
+    const exportsEntry: Record<string, any> = {
+      browser: {
+        types: "./dist/browser/index.d.ts",
+        default: "./dist/browser/index.js"
+      },
+      import: {
+        types: "./dist/esm/index.d.ts",
+        default: "./dist/esm/index.js"
+      },
+      require: {
+        types: "./dist/commonjs/index.d.ts",
+        default: "./dist/commonjs/index.js"
+      }
+    };
+    if (generateReactNativeTarget) {
+      exportsEntry["react-native"] = {
+        types: "./dist/react-native/index.d.ts",
+        default: "./dist/react-native/index.js"
+      };
+    }
     packageInfo.exports = {
       "./package.json": "./package.json",
-      ".": {
-        browser: {
-          types: "./dist/browser/index.d.ts",
-          default: "./dist/browser/index.js"
-        },
-        "react-native": {
-          types: "./dist/react-native/index.d.ts",
-          default: "./dist/react-native/index.js"
-        },
-        import: {
-          types: "./dist/esm/index.d.ts",
-          default: "./dist/esm/index.js"
-        },
-        require: {
-          types: "./dist/commonjs/index.d.ts",
-          default: "./dist/commonjs/index.js"
-        }
-      }
+      ".": exportsEntry
     };
     packageInfo.devDependencies["@azure/dev-tool"] = "workspace:^";
     packageInfo.devDependencies["cross-env"] = "catalog:";
@@ -223,13 +229,16 @@ function regularAutorestPackage(
     packageInfo.scripts["format"] = "prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore \"src/**/*.{ts,cts,mts}\" \"test/**/*.{ts,cts,mts}\" \"*.{js,cjs,mjs,json}\" ";
   } else {
     // Non-Azure packages use tshy for building
+    const esmDialects = generateReactNativeTarget
+      ? ["browser", "react-native"]
+      : ["browser"];
     packageInfo.tshy = {
       exports: {
         "./package.json": "./package.json",
         ".": "./src/index.ts"
       },
       dialects: ["esm", "commonjs"],
-      esmDialects: ["browser", "react-native"],
+      esmDialects,
       selfLink: false
     };
     packageInfo.devDependencies["@rollup/plugin-commonjs"] = "^24.0.0";
