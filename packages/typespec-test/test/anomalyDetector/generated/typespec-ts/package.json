@@ -92,10 +92,6 @@
         "types": "./dist/browser/api/index.d.ts",
         "default": "./dist/browser/api/index.js"
       },
-      "react-native": {
-        "types": "./dist/react-native/api/index.d.ts",
-        "default": "./dist/react-native/api/index.js"
-      },
       "import": {
         "types": "./dist/esm/api/index.d.ts",
         "default": "./dist/esm/api/index.js"
@@ -109,10 +105,6 @@
       "browser": {
         "types": "./dist/browser/api/multivariate/index.d.ts",
         "default": "./dist/browser/api/multivariate/index.js"
-      },
-      "react-native": {
-        "types": "./dist/react-native/api/multivariate/index.d.ts",
-        "default": "./dist/react-native/api/multivariate/index.js"
       },
       "import": {
         "types": "./dist/esm/api/multivariate/index.d.ts",
@@ -128,10 +120,6 @@
         "types": "./dist/browser/api/univariate/index.d.ts",
         "default": "./dist/browser/api/univariate/index.js"
       },
-      "react-native": {
-        "types": "./dist/react-native/api/univariate/index.d.ts",
-        "default": "./dist/react-native/api/univariate/index.js"
-      },
       "import": {
         "types": "./dist/esm/api/univariate/index.d.ts",
         "default": "./dist/esm/api/univariate/index.js"
@@ -145,10 +133,6 @@
       "browser": {
         "types": "./dist/browser/models/index.d.ts",
         "default": "./dist/browser/models/index.js"
-      },
-      "react-native": {
-        "types": "./dist/react-native/models/index.d.ts",
-        "default": "./dist/react-native/models/index.js"
       },
       "import": {
         "types": "./dist/esm/models/index.d.ts",
@@ -164,10 +148,6 @@
         "types": "./dist/browser/models/multivariate/index.d.ts",
         "default": "./dist/browser/models/multivariate/index.js"
       },
-      "react-native": {
-        "types": "./dist/react-native/models/multivariate/index.d.ts",
-        "default": "./dist/react-native/models/multivariate/index.js"
-      },
       "import": {
         "types": "./dist/esm/models/multivariate/index.d.ts",
         "default": "./dist/esm/models/multivariate/index.js"
@@ -181,10 +161,6 @@
       "browser": {
         "types": "./dist/browser/models/univariate/index.d.ts",
         "default": "./dist/browser/models/univariate/index.js"
-      },
-      "react-native": {
-        "types": "./dist/react-native/models/univariate/index.d.ts",
-        "default": "./dist/react-native/models/univariate/index.js"
       },
       "import": {
         "types": "./dist/esm/models/univariate/index.d.ts",

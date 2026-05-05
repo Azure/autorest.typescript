@@ -94,10 +94,6 @@
         "types": "./dist/browser/api/index.d.ts",
         "default": "./dist/browser/api/index.js"
       },
-      "react-native": {
-        "types": "./dist/react-native/api/index.d.ts",
-        "default": "./dist/react-native/api/index.js"
-      },
       "import": {
         "types": "./dist/esm/api/index.d.ts",
         "default": "./dist/esm/api/index.js"
@@ -111,10 +107,6 @@
       "browser": {
         "types": "./dist/browser/api/dataProducts/index.d.ts",
         "default": "./dist/browser/api/dataProducts/index.js"
-      },
-      "react-native": {
-        "types": "./dist/react-native/api/dataProducts/index.d.ts",
-        "default": "./dist/react-native/api/dataProducts/index.js"
       },
       "import": {
         "types": "./dist/esm/api/dataProducts/index.d.ts",
@@ -130,10 +122,6 @@
         "types": "./dist/browser/api/dataTypes/index.d.ts",
         "default": "./dist/browser/api/dataTypes/index.js"
       },
-      "react-native": {
-        "types": "./dist/react-native/api/dataTypes/index.d.ts",
-        "default": "./dist/react-native/api/dataTypes/index.js"
-      },
       "import": {
         "types": "./dist/esm/api/dataTypes/index.d.ts",
         "default": "./dist/esm/api/dataTypes/index.js"
@@ -147,10 +135,6 @@
       "browser": {
         "types": "./dist/browser/api/dataProductsCatalogs/index.d.ts",
         "default": "./dist/browser/api/dataProductsCatalogs/index.js"
-      },
-      "react-native": {
-        "types": "./dist/react-native/api/dataProductsCatalogs/index.d.ts",
-        "default": "./dist/react-native/api/dataProductsCatalogs/index.js"
       },
       "import": {
         "types": "./dist/esm/api/dataProductsCatalogs/index.d.ts",
@@ -166,10 +150,6 @@
         "types": "./dist/browser/api/operations/index.d.ts",
         "default": "./dist/browser/api/operations/index.js"
       },
-      "react-native": {
-        "types": "./dist/react-native/api/operations/index.d.ts",
-        "default": "./dist/react-native/api/operations/index.js"
-      },
       "import": {
         "types": "./dist/esm/api/operations/index.d.ts",
         "default": "./dist/esm/api/operations/index.js"
@@ -183,10 +163,6 @@
       "browser": {
         "types": "./dist/browser/models/index.d.ts",
         "default": "./dist/browser/models/index.js"
-      },
-      "react-native": {
-        "types": "./dist/react-native/models/index.d.ts",
-        "default": "./dist/react-native/models/index.js"
       },
       "import": {
         "types": "./dist/esm/models/index.d.ts",

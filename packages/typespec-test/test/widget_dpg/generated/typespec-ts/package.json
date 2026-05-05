@@ -92,10 +92,6 @@
         "types": "./dist/browser/api/index.d.ts",
         "default": "./dist/browser/api/index.js"
       },
-      "react-native": {
-        "types": "./dist/react-native/api/index.d.ts",
-        "default": "./dist/react-native/api/index.js"
-      },
       "import": {
         "types": "./dist/esm/api/index.d.ts",
         "default": "./dist/esm/api/index.js"
@@ -109,10 +105,6 @@
       "browser": {
         "types": "./dist/browser/api/budgets/index.d.ts",
         "default": "./dist/browser/api/budgets/index.js"
-      },
-      "react-native": {
-        "types": "./dist/react-native/api/budgets/index.d.ts",
-        "default": "./dist/react-native/api/budgets/index.js"
       },
       "import": {
         "types": "./dist/esm/api/budgets/index.d.ts",
@@ -128,10 +120,6 @@
         "types": "./dist/browser/api/sapWidgets/index.d.ts",
         "default": "./dist/browser/api/sapWidgets/index.js"
       },
-      "react-native": {
-        "types": "./dist/react-native/api/sapWidgets/index.d.ts",
-        "default": "./dist/react-native/api/sapWidgets/index.js"
-      },
       "import": {
         "types": "./dist/esm/api/sapWidgets/index.d.ts",
         "default": "./dist/esm/api/sapWidgets/index.js"
@@ -145,10 +133,6 @@
       "browser": {
         "types": "./dist/browser/models/index.d.ts",
         "default": "./dist/browser/models/index.js"
-      },
-      "react-native": {
-        "types": "./dist/react-native/models/index.d.ts",
-        "default": "./dist/react-native/models/index.js"
       },
       "import": {
         "types": "./dist/esm/models/index.d.ts",

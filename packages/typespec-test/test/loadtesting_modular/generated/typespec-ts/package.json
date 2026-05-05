@@ -95,10 +95,6 @@
         "types": "./dist/browser/models/index.d.ts",
         "default": "./dist/browser/models/index.js"
       },
-      "react-native": {
-        "types": "./dist/react-native/models/index.d.ts",
-        "default": "./dist/react-native/models/index.js"
-      },
       "import": {
         "types": "./dist/esm/models/index.d.ts",
         "default": "./dist/esm/models/index.js"
@@ -112,10 +108,6 @@
       "browser": {
         "types": "./dist/browser/loadTestAdministration/index.d.ts",
         "default": "./dist/browser/loadTestAdministration/index.js"
-      },
-      "react-native": {
-        "types": "./dist/react-native/loadTestAdministration/index.d.ts",
-        "default": "./dist/react-native/loadTestAdministration/index.js"
       },
       "import": {
         "types": "./dist/esm/loadTestAdministration/index.d.ts",
@@ -131,10 +123,6 @@
         "types": "./dist/browser/loadTestAdministration/api/index.d.ts",
         "default": "./dist/browser/loadTestAdministration/api/index.js"
       },
-      "react-native": {
-        "types": "./dist/react-native/loadTestAdministration/api/index.d.ts",
-        "default": "./dist/react-native/loadTestAdministration/api/index.js"
-      },
       "import": {
         "types": "./dist/esm/loadTestAdministration/api/index.d.ts",
         "default": "./dist/esm/loadTestAdministration/api/index.js"
@@ -148,10 +136,6 @@
       "browser": {
         "types": "./dist/browser/loadTestRun/index.d.ts",
         "default": "./dist/browser/loadTestRun/index.js"
-      },
-      "react-native": {
-        "types": "./dist/react-native/loadTestRun/index.d.ts",
-        "default": "./dist/react-native/loadTestRun/index.js"
       },
       "import": {
         "types": "./dist/esm/loadTestRun/index.d.ts",
@@ -167,10 +151,6 @@
         "types": "./dist/browser/loadTestRun/api/index.d.ts",
         "default": "./dist/browser/loadTestRun/api/index.js"
       },
-      "react-native": {
-        "types": "./dist/react-native/loadTestRun/api/index.d.ts",
-        "default": "./dist/react-native/loadTestRun/api/index.js"
-      },
       "import": {
         "types": "./dist/esm/loadTestRun/api/index.d.ts",
         "default": "./dist/esm/loadTestRun/api/index.js"
@@ -184,10 +164,6 @@
       "browser": {
         "types": "./dist/browser/testProfileAdministration/index.d.ts",
         "default": "./dist/browser/testProfileAdministration/index.js"
-      },
-      "react-native": {
-        "types": "./dist/react-native/testProfileAdministration/index.d.ts",
-        "default": "./dist/react-native/testProfileAdministration/index.js"
       },
       "import": {
         "types": "./dist/esm/testProfileAdministration/index.d.ts",
@@ -203,10 +179,6 @@
         "types": "./dist/browser/testProfileAdministration/api/index.d.ts",
         "default": "./dist/browser/testProfileAdministration/api/index.js"
       },
-      "react-native": {
-        "types": "./dist/react-native/testProfileAdministration/api/index.d.ts",
-        "default": "./dist/react-native/testProfileAdministration/api/index.js"
-      },
       "import": {
         "types": "./dist/esm/testProfileAdministration/api/index.d.ts",
         "default": "./dist/esm/testProfileAdministration/api/index.js"
@@ -221,10 +193,6 @@
         "types": "./dist/browser/testProfileRun/index.d.ts",
         "default": "./dist/browser/testProfileRun/index.js"
       },
-      "react-native": {
-        "types": "./dist/react-native/testProfileRun/index.d.ts",
-        "default": "./dist/react-native/testProfileRun/index.js"
-      },
       "import": {
         "types": "./dist/esm/testProfileRun/index.d.ts",
         "default": "./dist/esm/testProfileRun/index.js"
@@ -238,10 +206,6 @@
       "browser": {
         "types": "./dist/browser/testProfileRun/api/index.d.ts",
         "default": "./dist/browser/testProfileRun/api/index.js"
-      },
-      "react-native": {
-        "types": "./dist/react-native/testProfileRun/api/index.d.ts",
-        "default": "./dist/react-native/testProfileRun/api/index.js"
       },
       "import": {
         "types": "./dist/esm/testProfileRun/api/index.d.ts",

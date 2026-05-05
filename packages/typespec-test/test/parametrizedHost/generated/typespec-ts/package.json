@@ -89,10 +89,6 @@
         "types": "./dist/browser/api/index.d.ts",
         "default": "./dist/browser/api/index.js"
       },
-      "react-native": {
-        "types": "./dist/react-native/api/index.d.ts",
-        "default": "./dist/react-native/api/index.js"
-      },
       "import": {
         "types": "./dist/esm/api/index.d.ts",
         "default": "./dist/esm/api/index.js"
@@ -107,10 +103,6 @@
         "types": "./dist/browser/api/confidentialLedger/index.d.ts",
         "default": "./dist/browser/api/confidentialLedger/index.js"
       },
-      "react-native": {
-        "types": "./dist/react-native/api/confidentialLedger/index.d.ts",
-        "default": "./dist/react-native/api/confidentialLedger/index.js"
-      },
       "import": {
         "types": "./dist/esm/api/confidentialLedger/index.d.ts",
         "default": "./dist/esm/api/confidentialLedger/index.js"
@@ -124,10 +116,6 @@
       "browser": {
         "types": "./dist/browser/models/index.d.ts",
         "default": "./dist/browser/models/index.js"
-      },
-      "react-native": {
-        "types": "./dist/react-native/models/index.d.ts",
-        "default": "./dist/react-native/models/index.js"
       },
       "import": {
         "types": "./dist/esm/models/index.d.ts",
