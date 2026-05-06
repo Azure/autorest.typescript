@@ -46,16 +46,23 @@ function getClientOptionsInterface(
       };
     }) ?? [];
 
+  const apiVersionUrlParam = model.urlInfo?.urlParameters?.find(
+    (p) => p.name === "apiVersion"
+  );
+  // apiVersionUrlParam with a value is already added via optionalUrlParameters.map above; avoid duplication
+  const apiVersionAlreadyInOptions = apiVersionUrlParam && !!apiVersionUrlParam.value;
   if (
     model.apiVersionInfo?.isCrossedVersion === false &&
-    !model.urlInfo?.urlParameters?.find((p) => p.name === "apiVersion") &&
+    !apiVersionAlreadyInOptions &&
     (model.apiVersionInfo.defaultValue || !model.apiVersionInfo?.required)
   ) {
     properties.push({
       name: "apiVersion",
-      type: "string",
+      type: apiVersionUrlParam?.type ?? "string",
       hasQuestionToken: true,
-      docs: ["The api version option of the client"]
+      docs: [
+        apiVersionUrlParam?.description ?? "The api version option of the client"
+      ]
     });
   }
   return {
@@ -82,7 +89,14 @@ export function buildClient(model: RLCModel): File | undefined {
   normalizeUrlInfo(model);
   const urlParameters = model?.urlInfo?.urlParameters?.filter(
     // Do not include parameters with constant values in the signature, these should go in the options bag
-    (p) => p.value === undefined
+    (p) =>
+      p.value === undefined &&
+      // Do not include apiVersion when it has a default value from apiVersionInfo (it goes in options bag via destructuring)
+      !(
+        p.name === "apiVersion" &&
+        model.apiVersionInfo?.isCrossedVersion === false &&
+        !!model.apiVersionInfo?.defaultValue
+      )
   );
 
   const optionalUrlParameters = model?.urlInfo?.urlParameters?.filter(
