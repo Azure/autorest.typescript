@@ -196,6 +196,25 @@ export function transformUrlInfo(
     endpoint,
     urlParameters
   });
+  // If apiVersion is a path parameter in the server URL template and has a default value from
+  // the service versioning, ensure its `value` is set so it is treated as an optional/options-bag
+  // parameter rather than an explicit positional parameter (restoring pre-TCGC-0.68 behavior).
+  // Note: definedPosition may be "path" (when TCGC also detects it at operation level) or
+  // "baseurl" (when only the server URL template is found). Both cases should set the value.
+  if (
+    apiVersionInfo &&
+    (apiVersionInfo.definedPosition === "path" ||
+      apiVersionInfo.definedPosition === "baseurl") &&
+    apiVersionInfo.defaultValue &&
+    !apiVersionInfo.isCrossedVersion
+  ) {
+    const apiVersionParam = urlParameters.find(
+      (p) => p.name === "apiVersion" && !p.value
+    );
+    if (apiVersionParam) {
+      apiVersionParam.value = apiVersionInfo.defaultValue;
+    }
+  }
   if (
     apiVersionInfo &&
     urlParameters &&
