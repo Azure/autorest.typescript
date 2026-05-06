@@ -135,16 +135,24 @@ export function buildClient(model: RLCModel): File | undefined {
         ])
   ];
 
+  // Check if apiVersion is already an explicit URL parameter (without a default value).
+  // If it is, we should not also add it to the options destructuring to avoid duplicate binding.
+  const hasApiVersionInExplicitParams =
+    urlParameters?.some((p) => p.name === "apiVersion") ?? false;
+
   let apiVersionStatement: string = "";
   // Set the default api-version when we have a default AND its position is query
+  // Only add to options destructuring if apiVersion is NOT already an explicit URL parameter
   if (
     model.apiVersionInfo?.isCrossedVersion === false &&
+    !hasApiVersionInExplicitParams &&
     !!model.apiVersionInfo?.defaultValue
   ) {
     apiVersionStatement = `
     apiVersion = "${model.apiVersionInfo?.defaultValue}"`;
   } else if (
     model.apiVersionInfo?.isCrossedVersion === false &&
+    !hasApiVersionInExplicitParams &&
     !model.apiVersionInfo.required
   ) {
     apiVersionStatement = `

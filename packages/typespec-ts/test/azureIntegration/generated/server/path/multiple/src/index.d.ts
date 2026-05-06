@@ -4,7 +4,7 @@ import type { HttpResponse } from '@azure-rest/core-client';
 import type { RequestParameters } from '@azure-rest/core-client';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
-declare function createClient(endpointParam: string, { apiVersion, ...options }?: MultipleParamInServerPathClientOptions): MultipleParamInServerPathClient;
+declare function createClient(endpointParam: string, apiVersion: Versions, options?: MultipleParamInServerPathClientOptions): MultipleParamInServerPathClient;
 export default createClient;
 
 export declare type MultipleParamInServerPathClient = Client & {
@@ -12,7 +12,6 @@ export declare type MultipleParamInServerPathClient = Client & {
 };
 
 export declare interface MultipleParamInServerPathClientOptions extends ClientOptions {
-    apiVersion?: Versions;
 }
 
 export declare interface NoOperationParams {
