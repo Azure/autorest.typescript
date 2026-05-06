@@ -63,7 +63,9 @@ export async function _getWidgetDeserialize(result: PathUncheckedResponse): Prom
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
-    error.details = storageErrorXmlDeserializer(result.body);
+    if (result.body) {
+      error.details = storageErrorXmlDeserializer(result.body);
+    }
 
     throw error;
   }
@@ -158,17 +160,23 @@ export async function _getDocumentDeserialize(result: PathUncheckedResponse): Pr
     const isXml = isXmlContentType(responseContentType);
     const statusCode = Number.parseInt(result.status);
     if (statusCode === 400) {
-      error.details = isXml
-        ? apiErrorXmlDeserializer(result.body)
-        : apiErrorDeserializer(result.body);
+      if (result.body) {
+        error.details = isXml
+          ? apiErrorXmlDeserializer(result.body)
+          : apiErrorDeserializer(result.body);
+      }
     } else if (statusCode === 404) {
-      error.details = isXml
-        ? apiErrorXmlDeserializer(result.body)
-        : apiErrorDeserializer(result.body);
+      if (result.body) {
+        error.details = isXml
+          ? apiErrorXmlDeserializer(result.body)
+          : apiErrorDeserializer(result.body);
+      }
     } else if (statusCode === 500) {
-      error.details = isXml
-        ? apiErrorXmlDeserializer(result.body)
-        : apiErrorDeserializer(result.body);
+      if (result.body) {
+        error.details = isXml
+          ? apiErrorXmlDeserializer(result.body)
+          : apiErrorDeserializer(result.body);
+      }
     }
     throw error;
   }
@@ -254,7 +262,9 @@ export async function _getItemDeserialize(result: PathUncheckedResponse): Promis
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
-    error.details = simpleErrorDeserializer(result.body);
+    if (result.body) {
+      error.details = simpleErrorDeserializer(result.body);
+    }
 
     throw error;
   }
