@@ -7,6 +7,7 @@ import {
   ContinuablePage,
   PagedAsyncIterableIterator,
 } from "./static-helpers/pagingHelpers.js";
+import { NodeReadableStream } from "./static-helpers/platform-types.js";
 
 export { AIProjectClient } from "./aiProjectClient.js";
 export type {
@@ -312,5 +313,5 @@ export type {
   TelemetryOperations,
 } from "./classic/index.js";
 export type { PageSettings, ContinuablePage, PagedAsyncIterableIterator };
-export type { FileContents };
+export type { FileContents, NodeReadableStream };
 export { RestError, isRestError } from "@azure/core-rest-pipeline";

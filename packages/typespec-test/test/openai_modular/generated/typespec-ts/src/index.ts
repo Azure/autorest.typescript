@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import { FileContents } from "./static-helpers/multipartHelpers.js";
+import { NodeReadableStream } from "./static-helpers/platform-types.js";
 
 export { OpenAIClient } from "./openAIClient.js";
 export type {
@@ -162,4 +163,5 @@ export type {
   GetAudioTranscriptionAsResponseObjectOptionalParams,
   GetAudioTranscriptionAsPlainTextOptionalParams,
 } from "./api/index.js";
-export type { FileContents };
+export type { FileContents, NodeReadableStream };
+export { RestError, isRestError } from "@azure/core-rest-pipeline";

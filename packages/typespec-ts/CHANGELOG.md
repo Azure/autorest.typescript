@@ -1,3 +1,12 @@
+## 0.52.3 (2026-04-23)
+
+- [Feature] Bump TypeSpec dependencies to latest stable. Please refer to [#3932](https://github.com/Azure/autorest.typescript/pull/3932)
+- [Bugfix] Narrow ARM metadata filter to only strip exclusively read-only properties. Please refer to [#3931](https://github.com/Azure/autorest.typescript/pull/3931)
+- [Bugfix] Correct export paths when sources are emitted to `src/generated`. Please refer to [#3905](https://github.com/Azure/autorest.typescript/pull/3905)
+- [Bugfix] Skip metadata/test generation for manual convenience layer packages. Please refer to [#3912](https://github.com/Azure/autorest.typescript/pull/3912)
+- [Bugfix] Keep paged result model public when used in non-paging operations. Please refer to [#3927](https://github.com/Azure/autorest.typescript/pull/3927)
+- [Feature] Generate empty CHANGELOG.md when scaffolding new packages. Please refer to [#3880](https://github.com/Azure/autorest.typescript/pull/3880)
+
 ## 0.52.2 (2026-04-16)
 
 - [Feature] Add devcontainer config with GitHub Copilot extensions. Please refer to [#3815](https://github.com/Azure/autorest.typescript/pull/3815)

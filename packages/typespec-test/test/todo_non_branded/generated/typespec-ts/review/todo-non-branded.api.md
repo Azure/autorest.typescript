@@ -31,7 +31,7 @@ export interface FileAttachmentMultipartRequest {
 }
 
 // @public
-export type FileContents = string | NodeJS.ReadableStream | ReadableStream<Uint8Array> | Uint8Array | Blob;
+export type FileContents = string | NodeReadableStream | ReadableStream<Uint8Array> | Uint8Array | Blob;
 
 // @public
 export interface InvalidTodoItem extends ApiError {
@@ -42,6 +42,9 @@ export interface InvalidUserResponse extends ApiError {
     // (undocumented)
     code: "invalid-user";
 }
+
+// @public
+export type NodeReadableStream = NodeJS.ReadableStream;
 
 // @public
 export interface NotFoundErrorResponse {

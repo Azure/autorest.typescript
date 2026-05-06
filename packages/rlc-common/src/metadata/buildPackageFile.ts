@@ -86,8 +86,13 @@ export function buildPackageFile(
 }
 
 /**
- * Automatically updates the package.json with correct paging and LRO dependencies for Azure SDK.
- * Also updates tshy.exports if provided.
+ * Automatically updates the package.json for an existing Azure SDK package.
+ * - Migrates `@azure/core-client` → `@azure-rest/core-client` when found in dependencies.
+ * - Updates `@azure/core-lro` from `^2.x` to `^3.1.0`.
+ * - Adds LRO dependencies (`@azure/core-lro`, `@azure/abort-controller`) when the package has
+ *   polling operations (for non-monorepo Azure packages).
+ * - Updates exports (tshy or warp) when `exports` is provided.
+ * - Updates `//metadata.constantPaths` when `clientContextPaths` is provided.
  */
 export function updatePackageFile(
   model: RLCModel,
@@ -100,11 +105,8 @@ export function updatePackageFile(
   const needsExportsUpdate = exports;
   const needsConstantPathsUpdate =
     clientContextPaths && clientContextPaths.length > 0;
-
-  // Early return if nothing needs to be updated
-  if (!needsLroUpdate && !needsExportsUpdate && !needsConstantPathsUpdate) {
-    return;
-  }
+  const needsPlatformImportsUpdate =
+    model.options?.azureSdkForJs && model.options?.moduleKind === "esm";
 
   let packageInfo;
   if (typeof existingFilePathOrContent === "string") {
@@ -121,6 +123,37 @@ export function updatePackageFile(
     packageInfo = existingFilePathOrContent;
   }
 
+  // Migrate AutoRest-specific dependency names and versions to their TypeSpec equivalents.
+  const deps: Record<string, string> = { ...(packageInfo.dependencies ?? {}) };
+  let needsCoreClientUpdate = false;
+
+  // @azure/core-client is AutoRest-only; TypeSpec uses @azure-rest/core-client.
+  if ("@azure/core-client" in deps) {
+    needsCoreClientUpdate = true;
+  }
+
+  // Early return if nothing needs to be updated
+  if (
+    !needsLroUpdate &&
+    !needsExportsUpdate &&
+    !needsConstantPathsUpdate &&
+    !needsPlatformImportsUpdate &&
+    !needsCoreClientUpdate
+  ) {
+    return;
+  }
+
+  // Ensure warp packages have #platform/* imports for polyfill resolution
+  if (needsPlatformImportsUpdate) {
+    packageInfo.imports = {
+      "#platform/*.js": {
+        browser: "./src/*-browser.mjs",
+        "react-native": "./src/*-react-native.mjs",
+        default: "./src/*.js"
+      }
+    };
+  }
+
   // Update exports based on build system (warp for monorepo, tshy for others)
   if (needsExportsUpdate) {
     if (model.options?.azureSdkForJs) {
@@ -134,6 +167,15 @@ export function updatePackageFile(
       } as PackageCommonInfoConfig);
       packageInfo.tshy.exports = newTshy.exports;
     }
+  }
+
+  // Update Core Client dependency
+  if (needsCoreClientUpdate) {
+    delete deps["@azure/core-client"];
+    if (!("@azure-rest/core-client" in deps)) {
+      deps["@azure-rest/core-client"] = "^2.3.1";
+    }
+    packageInfo.dependencies = deps;
   }
 
   // Update LRO dependencies for Azure packages

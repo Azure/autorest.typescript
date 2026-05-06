@@ -150,6 +150,14 @@ export const MultipartHelpers = {
   }
 } as const;
 
+export const PlatformTypeHelpers = {
+  NodeReadableStream: {
+    kind: "typeAlias",
+    name: "NodeReadableStream",
+    location: "platform-types.ts"
+  }
+} as const;
+
 export const CloudSettingHelpers = {
   AzureClouds: {
     kind: "enum",

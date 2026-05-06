@@ -5,9 +5,11 @@
 ```ts
 
 import { ClientOptions } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import { KeyCredential } from '@azure/core-auth';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
+import { RestError } from '@azure/core-rest-pipeline';
 
 // @public
 export interface AudioOperations {
@@ -441,7 +443,7 @@ export interface ErrorResponse {
 }
 
 // @public
-export type FileContents = string | NodeJS.ReadableStream | ReadableStream<Uint8Array> | Uint8Array | Blob;
+export type FileContents = string | NodeReadableStream | ReadableStream<Uint8Array> | Uint8Array | Blob;
 
 // @public
 export interface FilesCreateOptionalParams extends OperationOptions {
@@ -664,6 +666,8 @@ export interface ImagesResponse {
     data: Image[];
 }
 
+export { isRestError }
+
 // @public
 export interface ListFilesResponse {
     // (undocumented)
@@ -753,6 +757,9 @@ export interface ModerationsOperations {
     create: (content: CreateModerationRequest, options?: ModerationsCreateOptionalParams) => Promise<CreateModerationResponse>;
 }
 
+// @public
+export type NodeReadableStream = NodeJS.ReadableStream;
+
 // @public (undocumented)
 export class OpenAIClient {
     constructor(credential: KeyCredential, options?: OpenAIClientOptionalParams);
@@ -788,6 +795,8 @@ export interface OpenAIFile {
 
 // @public
 export type Prompt = (string | string[] | number[] | number[][]) | null;
+
+export { RestError }
 
 // @public
 export type Stop = (string | string[]) | null;
