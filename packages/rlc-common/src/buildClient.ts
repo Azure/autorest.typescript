@@ -50,7 +50,8 @@ function getClientOptionsInterface(
     (p) => p.name === "apiVersion"
   );
   // apiVersionUrlParam with a value is already added via optionalUrlParameters.map above; avoid duplication
-  const apiVersionAlreadyInOptions = apiVersionUrlParam && !!apiVersionUrlParam.value;
+  const apiVersionAlreadyInOptions =
+    apiVersionUrlParam && !!apiVersionUrlParam.value;
   if (
     model.apiVersionInfo?.isCrossedVersion === false &&
     !apiVersionAlreadyInOptions &&
@@ -61,7 +62,8 @@ function getClientOptionsInterface(
       type: apiVersionUrlParam?.type ?? "string",
       hasQuestionToken: true,
       docs: [
-        apiVersionUrlParam?.description ?? "The api version option of the client"
+        apiVersionUrlParam?.description ??
+          "The api version option of the client"
       ]
     });
   }
