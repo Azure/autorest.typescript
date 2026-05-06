@@ -683,7 +683,7 @@ needAzureCore: true
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { errorDeserializer, _Bar, _barDeserializer } from "../models/models.js";
+import { _Bar, _barDeserializer, errorDeserializer} from "../models/models.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
@@ -771,7 +771,7 @@ needAzureCore: true
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { errorDeserializer, _Child, _childDeserializer } from "../models/models.js";
+import { _Child, _childDeserializer, errorDeserializer } from "../models/models.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
