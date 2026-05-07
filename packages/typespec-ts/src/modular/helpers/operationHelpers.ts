@@ -314,12 +314,7 @@ export function getDeserializePrivateFunction(
     // guard all body deserialization so we return undefined instead of throwing.
     // This only applies to non-LRO, non-paging operations where the deserialized type
     // comes from response.type (not from LRO metadata or paging).
-    if (
-      response.optional &&
-      !isLroOnly &&
-      !isLroAndPaging &&
-      !isPagingOnly
-    ) {
+    if (response.optional && !isLroOnly && !isLroAndPaging && !isPagingOnly) {
       statements.push(
         `if (!result.body) {
           return result.body as ${returnType.type};
