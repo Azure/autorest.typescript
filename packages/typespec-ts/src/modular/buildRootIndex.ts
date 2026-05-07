@@ -127,10 +127,7 @@ function exportAzureCloudTypes(context: SdkContext, rootIndexFile: SourceFile) {
   }
 }
 
-function exportRestErrorTypes(
-  context: SdkContext,
-  rootIndexFile: SourceFile
-) {
+function exportRestErrorTypes(context: SdkContext, rootIndexFile: SourceFile) {
   if (context.rlcOptions?.flavor !== "azure") {
     return;
   }
