@@ -1,8 +1,10 @@
 import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
 export declare interface BooleanModelGet {
@@ -200,6 +202,10 @@ export declare interface DecimalVerifyVerifyMediaTypesParam {
 }
 
 export declare type DecimalVerifyVerifyParameters = DecimalVerifyVerifyMediaTypesParam & DecimalVerifyVerifyBodyParam & RequestParameters;
+
+export { isRestError }
+
+export { RestError }
 
 export declare interface Routes {
     (path: "/type/scalar/string"): StringModelGet;

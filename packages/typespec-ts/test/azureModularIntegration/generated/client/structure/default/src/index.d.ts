@@ -1,6 +1,8 @@
 import { ClientOptions } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
+import { RestError } from '@azure/core-rest-pipeline';
 
 export declare interface BarFiveOptionalParams extends OperationOptions {
 }
@@ -37,6 +39,8 @@ export declare interface FooOperations {
 export declare interface FooThreeOptionalParams extends OperationOptions {
 }
 
+export { isRestError }
+
 export declare interface OneOptionalParams extends OperationOptions {
 }
 
@@ -54,6 +58,8 @@ export declare interface QuxOperations {
     eight: (options?: QuxEightOptionalParams) => Promise<void>;
     bar: QuxBarOperations;
 }
+
+export { RestError }
 
 export declare class ServiceClient {
     private _client;

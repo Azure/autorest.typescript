@@ -1,7 +1,9 @@
 import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
 declare function createClient(host: string, options?: MediaTypesClientOptions): MediaTypesClient;
@@ -96,12 +98,16 @@ export declare interface GetByUnionOnlyMediaTypesParam {
 
 export declare type GetByUnionOnlyParameters = GetByUnionOnlyMediaTypesParam & GetByUnionOnlyBodyParam & RequestParameters;
 
+export { isRestError }
+
 export declare type MediaTypesClient = Client & {
     path: Routes;
 };
 
 export declare interface MediaTypesClientOptions extends ClientOptions {
 }
+
+export { RestError }
 
 export declare interface Routes {
     (path: "/mediatypes/union"): GetByUnionOnly;

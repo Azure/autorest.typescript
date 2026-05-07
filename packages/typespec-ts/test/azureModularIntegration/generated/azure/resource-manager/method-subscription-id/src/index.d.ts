@@ -1,6 +1,8 @@
 import { ClientOptions } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
+import { RestError } from '@azure/core-rest-pipeline';
 
 export declare type ActionType = string;
 
@@ -34,6 +36,8 @@ export declare interface ErrorDetail {
 export declare interface ErrorResponse {
     error?: ErrorDetail;
 }
+
+export { isRestError }
 
 export declare enum KnownActionType {
     Internal = "Internal"
@@ -148,6 +152,8 @@ export declare interface ResourceGroupResourceProperties {
 }
 
 export declare type ResourceProvisioningState = string;
+
+export { RestError }
 
 export declare interface SubscriptionResource extends ProxyResource {
     properties?: SubscriptionResourceProperties;

@@ -1,7 +1,9 @@
 import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
 export declare interface CommonRegistrationRequest {
@@ -14,6 +16,8 @@ export declare interface CommonRegistrationRequestOutput {
 
 declare function createClient(endpointParam: string, options?: UnionBodyClientOptions): UnionBodyClient;
 export default createClient;
+
+export { isRestError }
 
 export declare type PaymentMethods = "01";
 
@@ -60,6 +64,8 @@ export declare interface ResponseUnionBody200Response extends HttpResponse {
 }
 
 export declare type ResponseUnionBodyParameters = RequestParameters;
+
+export { RestError }
 
 export declare interface Routes {
     (path: "/request-union-body"): RequestUnionBody;

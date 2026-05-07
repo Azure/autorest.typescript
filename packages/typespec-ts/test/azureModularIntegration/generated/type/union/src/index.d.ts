@@ -1,6 +1,8 @@
 import { ClientOptions } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
+import { RestError } from '@azure/core-rest-pipeline';
 
 export declare interface Cat {
     name: string;
@@ -53,6 +55,8 @@ export declare interface IntsOnlyOperations {
 
 export declare interface IntsOnlySendOptionalParams extends OperationOptions {
 }
+
+export { isRestError }
 
 export declare enum KnownStringExtensibleNamedUnion {
     OptionB = "b",
@@ -112,6 +116,8 @@ export declare interface ModelsOnlyOperations {
 
 export declare interface ModelsOnlySendOptionalParams extends OperationOptions {
 }
+
+export { RestError }
 
 export declare interface StringAndArrayCases {
     string: string | string[];

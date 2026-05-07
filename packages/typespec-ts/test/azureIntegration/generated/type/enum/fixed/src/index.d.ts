@@ -1,8 +1,10 @@
 import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
 declare function createClient(options?: FixedClientOptions): FixedClient;
@@ -36,6 +38,8 @@ export declare interface GetKnownValue200Response extends HttpResponse {
 
 export declare type GetKnownValueParameters = RequestParameters;
 
+export { isRestError }
+
 export declare interface PutKnownValue204Response extends HttpResponse {
     status: "204";
 }
@@ -67,6 +71,8 @@ export declare interface PutUnknownValueMediaTypesParam {
 }
 
 export declare type PutUnknownValueParameters = PutUnknownValueMediaTypesParam & PutUnknownValueBodyParam & RequestParameters;
+
+export { RestError }
 
 export declare interface Routes {
     (path: "/type/enum/fixed/string/known-value"): GetKnownValue;

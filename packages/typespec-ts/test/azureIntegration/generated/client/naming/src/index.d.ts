@@ -1,9 +1,11 @@
 import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import type { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
 export declare interface ClientNameAndJsonEncodedNameModel {
@@ -48,6 +50,8 @@ export declare interface HeaderResponse204Response extends HttpResponse {
 }
 
 export declare type HeaderResponseParameters = RequestParameters;
+
+export { isRestError }
 
 export declare interface LanguageClientNameModel {
     defaultName: boolean;
@@ -165,6 +169,8 @@ export declare interface PropertyLanguageBodyParam {
 }
 
 export declare type PropertyLanguageParameters = PropertyLanguageBodyParam & RequestParameters;
+
+export { RestError }
 
 export declare interface Routes {
     (path: "/client/naming/operation"): Operation;

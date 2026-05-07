@@ -1,6 +1,8 @@
 import { ClientOptions } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
+import { RestError } from '@azure/core-rest-pipeline';
 
 export declare class ClientAClient {
     private _client;
@@ -28,6 +30,8 @@ export declare interface ClientBClientOptionalParams extends ClientOptions {
 
 export declare type ClientType = "default" | "multi-client" | "renamed-operation" | "two-operation-group" | "client-operation-group";
 
+export { isRestError }
+
 export declare interface RenamedFiveOptionalParams extends OperationOptions {
 }
 
@@ -45,5 +49,7 @@ export declare interface RenamedThreeOptionalParams extends OperationOptions {
 
 export declare interface RenamedTwoOptionalParams extends OperationOptions {
 }
+
+export { RestError }
 
 export { }

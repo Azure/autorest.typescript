@@ -2,9 +2,11 @@ import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { ErrorResponse } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import type { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
 export declare type AzureCoreTraitsClient = Client & {
@@ -17,6 +19,8 @@ export declare interface AzureCoreTraitsClientOptions extends ClientOptions {
 
 declare function createClient({ apiVersion, ...options }?: AzureCoreTraitsClientOptions): AzureCoreTraitsClient;
 export default createClient;
+
+export { isRestError }
 
 export declare function isUnexpected(response: SmokeTest200Response | SmokeTestDefaultResponse): response is SmokeTestDefaultResponse;
 
@@ -62,6 +66,8 @@ export declare interface RepeatableActionHeaders {
 }
 
 export declare type RepeatableActionParameters = RepeatableActionHeaderParam & RepeatableActionBodyParam & RequestParameters;
+
+export { RestError }
 
 export declare interface Routes {
     (path: "/azure/core/traits/user/{id}", id: number): SmokeTest;

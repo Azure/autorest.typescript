@@ -1,7 +1,9 @@
 import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
 export declare type AdditionalPropertiesClient = Client & {
@@ -486,6 +488,8 @@ export declare interface IsModelPutBodyParam {
 
 export declare type IsModelPutParameters = IsModelPutBodyParam & RequestParameters;
 
+export { isRestError }
+
 export declare interface IsStringAdditionalProperties extends Record<string, string> {
     name: string;
 }
@@ -663,6 +667,8 @@ export declare interface MultipleSpreadRecord extends Record<string, unknown> {
 export declare interface MultipleSpreadRecordOutput extends Record<string, any> {
     flag: boolean;
 }
+
+export { RestError }
 
 export declare interface Routes {
     (path: "/type/property/additionalProperties/extendsRecordUnknown"): ExtendsUnknownGet;

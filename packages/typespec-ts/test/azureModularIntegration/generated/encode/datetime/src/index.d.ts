@@ -1,6 +1,8 @@
 import { ClientOptions } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
+import { RestError } from '@azure/core-rest-pipeline';
 
 export declare class DatetimeClient {
     private _client;
@@ -41,6 +43,8 @@ export declare interface HeaderUnixTimestampArrayOptionalParams extends Operatio
 
 export declare interface HeaderUnixTimestampOptionalParams extends OperationOptions {
 }
+
+export { isRestError }
 
 export declare interface PropertyDefaultOptionalParams extends OperationOptions {
 }
@@ -106,6 +110,8 @@ export declare interface ResponseHeaderRfc7231OptionalParams extends OperationOp
 
 export declare interface ResponseHeaderUnixTimestampOptionalParams extends OperationOptions {
 }
+
+export { RestError }
 
 export declare interface Rfc3339DatetimeProperty {
     value: Date;

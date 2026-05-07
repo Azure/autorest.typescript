@@ -5,9 +5,11 @@
 ```ts
 
 import { ClientOptions } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import { KeyCredential } from '@azure/core-auth';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
+import { RestError } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
 
 // @public
@@ -24,10 +26,14 @@ export interface FooOperationsOperations {
     getAvatarAsPng: (image: Uint8Array, options?: FooOperationsGetAvatarAsPngOptionalParams) => Promise<void>;
 }
 
+export { isRestError }
+
 // @public
 export enum KnownVersions {
     Versions20220830 = "2022-08-30"
 }
+
+export { RestError }
 
 // @public (undocumented)
 export class WidgetManagerClient {

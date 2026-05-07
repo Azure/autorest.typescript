@@ -1,8 +1,10 @@
 import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
 declare function createClient(endpointParam: string, version: Versions, options?: VersioningAddedClientOptions): VersioningAddedClient;
@@ -15,6 +17,8 @@ export declare type EnumV1Output = "enumMemberV1" | "enumMemberV2";
 export declare type EnumV2 = "enumMember";
 
 export declare type EnumV2Output = "enumMember";
+
+export { isRestError }
 
 export declare interface ModelV1 {
     prop: string;
@@ -39,6 +43,8 @@ export declare interface ModelV2Output {
     enumProp: EnumV2Output;
     unionProp: UnionV2Output;
 }
+
+export { RestError }
 
 export declare interface Routes {
     (path: "/v1"): V1;

@@ -1,7 +1,9 @@
 import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
 export declare type ClientType = "default" | "multi-client" | "renamed-operation" | "two-operation-group" | "client-operation-group";
@@ -39,6 +41,8 @@ export declare interface Four204Response extends HttpResponse {
 
 export declare type FourParameters = RequestParameters;
 
+export { isRestError }
+
 export declare interface Nine {
     post(options?: NineParameters): StreamableMethod<Nine204Response>;
 }
@@ -58,6 +62,8 @@ export declare interface One204Response extends HttpResponse {
 }
 
 export declare type OneParameters = RequestParameters;
+
+export { RestError }
 
 export declare interface Routes {
     (path: "/one"): One;
