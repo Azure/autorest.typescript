@@ -10,11 +10,13 @@ import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { CreateHttpPollerOptions } from '@azure/core-lro';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { KeyCredential } from '@azure/core-auth';
 import type { OperationState } from '@azure/core-lro';
 import type { PathUncheckedResponse } from '@azure-rest/core-client';
 import type { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
 // @public
@@ -505,6 +507,8 @@ export type GetPage<TPage> = (pageLink: string) => Promise<{
     nextPageLink?: string;
 }>;
 
+export { isRestError }
+
 // @public (undocumented)
 export function isUnexpected(response: DetectEntireSeries200Response | DetectEntireSeriesDefaultResponse): response is DetectEntireSeriesDefaultResponse;
 
@@ -731,6 +735,8 @@ export type PaginateReturn<TResult> = TResult extends {
 export interface PagingOptions<TResponse> {
     customGetPage?: GetPage<PaginateReturn<TResponse>[]>;
 }
+
+export { RestError }
 
 // @public (undocumented)
 export interface Routes {
