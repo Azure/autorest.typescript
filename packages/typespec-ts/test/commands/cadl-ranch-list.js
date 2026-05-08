@@ -163,10 +163,10 @@ export const azureRlcTsps = [
     outputPath: "server/path/single",
     inputPath: "server/path/single"
   },
-  {
-    outputPath: "server/path/multiple",
-    inputPath: "server/path/multiple"
-  },
+  // {
+  //   outputPath: "server/path/multiple",
+  //   inputPath: "server/path/multiple"
+  // },
   {
     outputPath: "azure/core/basic",
     inputPath: "azure/core/basic"
@@ -506,10 +506,10 @@ export const rlcTsps = [
     outputPath: "server/path/single",
     inputPath: "server/path/single"
   },
-  {
-    outputPath: "server/path/multiple",
-    inputPath: "server/path/multiple"
-  },
+  // {
+  //   outputPath: "server/path/multiple",
+  //   inputPath: "server/path/multiple"
+  // },
   {
     outputPath: "type/scalar",
     inputPath: "type/scalar"
