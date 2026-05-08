@@ -3,9 +3,9 @@ import { describe, it, beforeEach, assert } from "vitest";
 import SingleParamInServerPathClientFactory, {
   SingleParamInServerPathClient
 } from "./generated/server/path/single/src/index.js";
-// import MultipleParamInServerPathClientFactory, {
-//   MultipleParamInServerPathClient
-// } from "./generated/server/path/multiple/src/index.js";
+import MultipleParamInServerPathClientFactory, {
+  MultipleParamInServerPathClient
+} from "./generated/server/path/multiple/src/index.js";
 import NotVersionedParamInServerVersionsClientFactory, {
   NotVersionedParamInServerVersionsClient
 } from "./generated/server/versions/not-versioned/src/index.js";
@@ -31,28 +31,28 @@ describe("SingleParamInServerPath Rest Client", () => {
   });
 });
 
-// describe("MultipleParamInServerPath Rest Client", () => {
-//   let client: MultipleParamInServerPathClient;
+describe("MultipleParamInServerPath Rest Client", () => {
+  let client: MultipleParamInServerPathClient;
 
-//   beforeEach(() => {
-//     client = MultipleParamInServerPathClientFactory("http://localhost:3000", {
-//       allowInsecureConnection: true,
-//       retryOptions: {
-//         maxRetries: 0
-//       }
-//     });
-//   });
+  beforeEach(() => {
+    client = MultipleParamInServerPathClientFactory("http://localhost:3000", {
+      allowInsecureConnection: true,
+      retryOptions: {
+        maxRetries: 0
+      }
+    });
+  });
 
-//   it("should work with no param", async () => {
-//     const result = await client.path("/").get();
-//     assert.strictEqual(result.status, "204");
-//   });
+  it("should work with no param", async () => {
+    const result = await client.path("/").get();
+    assert.strictEqual(result.status, "204");
+  });
 
-//   it("should work with param", async () => {
-//     const result = await client.path("/{keyword}", "test").get();
-//     assert.strictEqual(result.status, "204");
-//   });
-// });
+  it("should work with param", async () => {
+    const result = await client.path("/{keyword}", "test").get();
+    assert.strictEqual(result.status, "204");
+  });
+});
 
 describe(" NotVersionedParamInServerVersions Rest Client", () => {
   let client: NotVersionedParamInServerVersionsClient;
