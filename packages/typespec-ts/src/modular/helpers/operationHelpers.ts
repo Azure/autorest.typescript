@@ -451,7 +451,12 @@ export function getDeserializePrivateFunction(
             deserializedType,
             deserializedRoot,
             true,
-            isBinaryPayload(context, response.type!.__raw!, contentTypes)
+            isBinaryPayload(
+              context,
+              response.type!.__raw!,
+              contentTypes,
+              getEncodeForType(deserializedType)
+            )
               ? "binary"
               : getEncodeForType(deserializedType)
           )}${multipartCastSuffix}`
@@ -1774,7 +1779,12 @@ function buildBodyParameter(
     bodyParameter.type,
     bodyNameExpression,
     !bodyParameter.optional,
-    isBinaryPayload(context, bodyParameter.__raw!, bodyParameter.contentTypes)
+    isBinaryPayload(
+      context,
+      bodyParameter.__raw!,
+      bodyParameter.contentTypes,
+      getEncodeForType(bodyParameter.type)
+    )
       ? "binary"
       : getEncodeForType(bodyParameter.type),
     undefined,
@@ -3231,7 +3241,7 @@ export function checkWrapNonModelReturn(
 
   // bytes with binary content type → binary wrap (isBinary=true)
   //   HLC: bytes → binary payload → separate binary handling
-  if (type.__raw && isBinaryPayload(context, type.__raw, contentTypes)) {
+  if (type.__raw && isBinaryPayload(context, type.__raw, contentTypes, getEncodeForType(type))) {
     return { shouldWrap: true, isBinary: true };
   }
 
