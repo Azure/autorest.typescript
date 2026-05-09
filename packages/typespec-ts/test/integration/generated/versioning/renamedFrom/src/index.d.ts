@@ -4,7 +4,7 @@ import type { HttpResponse } from '@typespec/ts-http-runtime';
 import type { RequestParameters } from '@typespec/ts-http-runtime';
 import type { StreamableMethod } from '@typespec/ts-http-runtime';
 
-declare function createClient(endpointParam: string, version: Versions, options?: VersioningRenamedFromClientOptions): VersioningRenamedFromClient;
+declare function createClient(endpointParam: string, options?: VersioningRenamedFromClientOptions): VersioningRenamedFromClient;
 export default createClient;
 
 export declare type NewEnum = "newEnumMember";
@@ -75,6 +75,7 @@ export declare type VersioningRenamedFromClient = Client & {
 };
 
 export declare interface VersioningRenamedFromClientOptions extends ClientOptions {
+    version?: Versions;
 }
 
 export declare type Versions = "v1" | "v2";

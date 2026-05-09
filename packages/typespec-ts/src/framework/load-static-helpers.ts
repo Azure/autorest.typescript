@@ -117,6 +117,21 @@ export async function loadStaticHelpers(
             i.setModuleSpecifier("@typespec/ts-http-runtime");
           }
         }
+        // Rewrite relative platform-types imports to #platform/ specifiers
+        // so that browser/react-native variants are resolved via subpath imports.
+        // Only rewrite imports to the default variant (not -browser/-react-native variants
+        // which are already platform-specific direct imports).
+        if (options.options?.azureSdkForJs) {
+          const specifier = i.getModuleSpecifierValue();
+          if (
+            specifier.startsWith(".") &&
+            specifier.includes("platform-types") &&
+            !specifier.includes("-browser") &&
+            !specifier.includes("-react-native")
+          ) {
+            i.setModuleSpecifier("#platform/static-helpers/platform-types.js");
+          }
+        }
       });
 
       for (const entry of Object.values(helpers)) {

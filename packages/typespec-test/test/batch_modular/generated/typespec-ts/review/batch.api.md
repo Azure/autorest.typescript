@@ -1063,7 +1063,7 @@ export interface GetNodeFilePropertiesOptionalParams extends OperationOptions {
 // @public (undocumented)
 export type GetNodeFileResponse = {
     blobBody?: Promise<Blob>;
-    readableStreamBody?: NodeJS.ReadableStream;
+    readableStreamBody?: NodeReadableStream;
 };
 
 // @public
@@ -1086,7 +1086,7 @@ export interface GetNodeRemoteDesktopFileOptionalParams extends OperationOptions
 // @public (undocumented)
 export type GetNodeRemoteDesktopFileResponse = {
     blobBody?: Promise<Blob>;
-    readableStreamBody?: NodeJS.ReadableStream;
+    readableStreamBody?: NodeReadableStream;
 };
 
 // @public
@@ -1135,7 +1135,7 @@ export interface GetTaskFilePropertiesOptionalParams extends OperationOptions {
 // @public (undocumented)
 export type GetTaskFileResponse = {
     blobBody?: Promise<Blob>;
-    readableStreamBody?: NodeJS.ReadableStream;
+    readableStreamBody?: NodeReadableStream;
 };
 
 // @public
@@ -2401,6 +2401,10 @@ export interface WindowsConfiguration {
 export interface WindowsUserConfiguration {
     loginMode?: LoginMode;
 }
+
+// Warnings were encountered during analysis:
+//
+// src/models/models.ts:5736:3 - (ae-forgotten-export) The symbol "NodeReadableStream" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

@@ -7,13 +7,10 @@ describe("VersioningMadeOptional Rest Client", () => {
   let client: VersioningMadeOptionalClient;
 
   beforeEach(() => {
-    client = VersioningMadeOptionalClientFactory(
-      "http://localhost:3000",
-      "v2",
-      {
-        allowInsecureConnection: true
-      }
-    );
+    client = VersioningMadeOptionalClientFactory("http://localhost:3000", {
+      version: "v2",
+      allowInsecureConnection: true
+    });
   });
 
   it("versioning madeOptional test", async () => {

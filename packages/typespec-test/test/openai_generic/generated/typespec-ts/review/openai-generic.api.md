@@ -441,7 +441,7 @@ export interface ErrorResponse {
 }
 
 // @public
-export type FileContents = string | NodeJS.ReadableStream | ReadableStream<Uint8Array> | Uint8Array | Blob;
+export type FileContents = string | NodeReadableStream | ReadableStream<Uint8Array> | Uint8Array | Blob;
 
 // @public
 export interface FilesCreateOptionalParams extends OperationOptions {
@@ -752,6 +752,9 @@ export interface ModerationsOperations {
     // (undocumented)
     create: (content: CreateModerationRequest, options?: ModerationsCreateOptionalParams) => Promise<CreateModerationResponse>;
 }
+
+// @public
+export type NodeReadableStream = NodeJS.ReadableStream;
 
 // @public (undocumented)
 export class OpenAIClient {

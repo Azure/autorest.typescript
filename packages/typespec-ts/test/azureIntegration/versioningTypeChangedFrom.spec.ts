@@ -7,13 +7,10 @@ describe("VersioningTypeChangedFrom Rest Client", () => {
   let client: VersioningTypeChangedFromClient;
 
   beforeEach(() => {
-    client = VersioningTypeChangedFromClientFactory(
-      "http://localhost:3000",
-      "v2",
-      {
-        allowInsecureConnection: true
-      }
-    );
+    client = VersioningTypeChangedFromClientFactory("http://localhost:3000", {
+      version: "v2",
+      allowInsecureConnection: true
+    });
   });
 
   it("versioning typeChangedFrom test", async () => {

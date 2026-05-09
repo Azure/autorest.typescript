@@ -123,10 +123,7 @@ export function transformUrlInfo(
   const importedModels = new Set<string>();
   const usage = [SchemaContext.Exception, SchemaContext.Input];
   const program = dpgContext.program;
-  const serviceNs = getDefaultService(
-    program,
-    dpgContext.rlcOptions?.isModularLibrary
-  )?.type;
+  const serviceNs = client.services[0];
   let endpoint = undefined;
   const urlParameters: PathParameter[] = [];
   if (serviceNs) {

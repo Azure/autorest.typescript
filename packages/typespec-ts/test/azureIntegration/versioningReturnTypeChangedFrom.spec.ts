@@ -9,8 +9,8 @@ describe("VersioningReturnTypeChangedFrom Rest Client", () => {
   beforeEach(() => {
     client = VersioningReturnTypeChangedFromClientFactory(
       "http://localhost:3000",
-      "v2",
       {
+        version: "v2",
         allowInsecureConnection: true
       }
     );

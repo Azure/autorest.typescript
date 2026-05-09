@@ -4,7 +4,7 @@ import type { HttpResponse } from '@typespec/ts-http-runtime';
 import type { RequestParameters } from '@typespec/ts-http-runtime';
 import type { StreamableMethod } from '@typespec/ts-http-runtime';
 
-declare function createClient(endpointParam: string, version: Versions, options?: VersioningTypeChangedFromClientOptions): VersioningTypeChangedFromClient;
+declare function createClient(endpointParam: string, options?: VersioningTypeChangedFromClientOptions): VersioningTypeChangedFromClient;
 export default createClient;
 
 export declare interface Routes {
@@ -49,6 +49,7 @@ export declare type VersioningTypeChangedFromClient = Client & {
 };
 
 export declare interface VersioningTypeChangedFromClientOptions extends ClientOptions {
+    version?: Versions;
 }
 
 export declare type Versions = "v1" | "v2";
