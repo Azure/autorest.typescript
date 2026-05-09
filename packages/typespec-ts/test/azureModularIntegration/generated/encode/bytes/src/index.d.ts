@@ -51,6 +51,8 @@ export declare interface HeaderOperations {
     default: (value: Uint8Array, options?: HeaderDefaultOptionalParams) => Promise<void>;
 }
 
+declare type NodeReadableStream = NodeJS.ReadableStream;
+
 export declare interface PropertyBase64OptionalParams extends OperationOptions {
 }
 
@@ -131,7 +133,7 @@ export declare interface ResponseBodyCustomContentTypeOptionalParams extends Ope
 
 export declare type ResponseBodyCustomContentTypeResponse = {
     blobBody?: Promise<Blob>;
-    readableStreamBody?: NodeJS.ReadableStream;
+    readableStreamBody?: NodeReadableStream;
 };
 
 export declare interface ResponseBodyDefaultOptionalParams extends OperationOptions {
@@ -139,7 +141,7 @@ export declare interface ResponseBodyDefaultOptionalParams extends OperationOpti
 
 export declare type ResponseBodyDefaultResponse = {
     blobBody?: Promise<Blob>;
-    readableStreamBody?: NodeJS.ReadableStream;
+    readableStreamBody?: NodeReadableStream;
 };
 
 export declare interface ResponseBodyOctetStreamOptionalParams extends OperationOptions {
@@ -147,7 +149,7 @@ export declare interface ResponseBodyOctetStreamOptionalParams extends Operation
 
 export declare type ResponseBodyOctetStreamResponse = {
     blobBody?: Promise<Blob>;
-    readableStreamBody?: NodeJS.ReadableStream;
+    readableStreamBody?: NodeReadableStream;
 };
 
 export declare interface ResponseBodyOperations {

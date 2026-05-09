@@ -640,7 +640,7 @@ export interface EvaluatorConfiguration {
 }
 
 // @public
-export type FileContents = string | NodeJS.ReadableStream | ReadableStream<Uint8Array> | Uint8Array | Blob;
+export type FileContents = string | NodeReadableStream | ReadableStream<Uint8Array> | Uint8Array | Blob;
 
 // @public
 export interface FileDeletionStatus {
@@ -977,6 +977,9 @@ export interface MicrosoftFabricToolDefinition extends ToolDefinition {
     fabricAiskill: ToolConnectionList;
     type: "fabric_aiskill";
 }
+
+// @public
+export type NodeReadableStream = NodeJS.ReadableStream;
 
 // @public
 export interface OpenAIFile {

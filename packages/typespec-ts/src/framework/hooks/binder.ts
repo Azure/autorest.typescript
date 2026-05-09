@@ -346,22 +346,27 @@ class BinderImp implements Binder {
       }
     }
 
-    function isFileUnused(file: SourceFile) {
-      const name = file.getBaseNameWithoutExtension();
-      // A file is used if it matches a used helper name exactly,
-      // or is a platform-specific variant (e.g. "foo-browser" for helper "foo")
-      return !usedHelperNames.some(
-        (s) =>
-          name === s || name === `${s}-browser` || name === `${s}-react-native`
-      );
+    // Also keep files that are imported by any used helper file
+    const helperFiles = this.project.getSourceFiles(
+      normalizePath(path.join(sourceRoot, "static-helpers/**/*.*ts"))
+    );
+    const usedFiles = helperFiles.filter(
+      (file) => !isFileUnused(file, usedHelperNames)
+    );
+    for (const usedFile of usedFiles) {
+      for (const importDecl of usedFile.getImportDeclarations()) {
+        const resolved = importDecl.getModuleSpecifierSourceFile();
+        if (resolved) {
+          const importedName = resolved.getBaseNameWithoutExtension();
+          if (!usedHelperNames.includes(importedName)) {
+            usedHelperNames.push(importedName);
+          }
+        }
+      }
     }
 
-    this.project
-      //normalizae the final path to adapt to different systems
-      .getSourceFiles(
-        normalizePath(path.join(sourceRoot, "static-helpers/**/*.*ts"))
-      )
-      .filter(isFileUnused)
+    helperFiles
+      .filter((file) => isFileUnused(file, usedHelperNames))
       .forEach((helperFile) => helperFile.delete());
 
     if (!testRoot) {
@@ -372,7 +377,7 @@ class BinderImp implements Binder {
       .getSourceFiles(
         normalizePath(path.join(testRoot, "test/generated/util/**/*.*ts"))
       )
-      .filter(isFileUnused)
+      .filter((file) => isFileUnused(file, usedHelperNames))
       .forEach((helperFile) => helperFile.delete());
   }
 }
@@ -385,6 +390,15 @@ export function provideBinder(
   const binder = new BinderImp(project, options);
   provideContext("binder", binder);
   return binder;
+}
+
+function isFileUnused(file: SourceFile, usedHelperNames: string[]) {
+  const name = file.getBaseNameWithoutExtension();
+  // A file is used if it matches a used helper name exactly,
+  // or is a platform-specific variant (e.g. "foo-browser" for helper "foo")
+  return !usedHelperNames.some(
+    (s) => name === s || name === `${s}-browser` || name === `${s}-react-native`
+  );
 }
 
 /**
