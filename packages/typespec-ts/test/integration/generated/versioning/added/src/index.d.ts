@@ -5,7 +5,7 @@ import type { RawHttpHeadersInput } from '@typespec/ts-http-runtime';
 import type { RequestParameters } from '@typespec/ts-http-runtime';
 import type { StreamableMethod } from '@typespec/ts-http-runtime';
 
-declare function createClient(endpointParam: string, version: Versions, options?: VersioningAddedClientOptions): VersioningAddedClient;
+declare function createClient(endpointParam: string, options?: VersioningAddedClientOptions): VersioningAddedClient;
 export default createClient;
 
 export declare type EnumV1 = "enumMemberV1" | "enumMemberV2";
@@ -112,6 +112,7 @@ export declare type VersioningAddedClient = Client & {
 };
 
 export declare interface VersioningAddedClientOptions extends ClientOptions {
+    version?: Versions;
 }
 
 export declare type Versions = "v1" | "v2";

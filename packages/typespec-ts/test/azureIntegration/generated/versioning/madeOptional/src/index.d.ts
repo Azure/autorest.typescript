@@ -6,7 +6,7 @@ import type { RequestParameters } from '@azure-rest/core-client';
 import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
-declare function createClient(endpointParam: string, version: Versions, options?: VersioningMadeOptionalClientOptions): VersioningMadeOptionalClient;
+declare function createClient(endpointParam: string, options?: VersioningMadeOptionalClientOptions): VersioningMadeOptionalClient;
 export default createClient;
 
 export { isRestError }
@@ -55,6 +55,7 @@ export declare type VersioningMadeOptionalClient = Client & {
 };
 
 export declare interface VersioningMadeOptionalClientOptions extends ClientOptions {
+    version?: Versions;
 }
 
 export declare type Versions = "v1" | "v2";

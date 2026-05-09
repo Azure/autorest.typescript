@@ -6,7 +6,7 @@ import type { RequestParameters } from '@azure-rest/core-client';
 import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
-declare function createClient(endpointParam: string, version: Versions, options?: VersioningRenamedFromClientOptions): VersioningRenamedFromClient;
+declare function createClient(endpointParam: string, options?: VersioningRenamedFromClientOptions): VersioningRenamedFromClient;
 export default createClient;
 
 export { isRestError }
@@ -81,6 +81,7 @@ export declare type VersioningRenamedFromClient = Client & {
 };
 
 export declare interface VersioningRenamedFromClientOptions extends ClientOptions {
+    version?: Versions;
 }
 
 export declare type Versions = "v1" | "v2";
