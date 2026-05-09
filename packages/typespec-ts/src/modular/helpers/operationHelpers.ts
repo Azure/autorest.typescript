@@ -3241,7 +3241,10 @@ export function checkWrapNonModelReturn(
 
   // bytes with binary content type → binary wrap (isBinary=true)
   //   HLC: bytes → binary payload → separate binary handling
-  if (type.__raw && isBinaryPayload(context, type.__raw, contentTypes, getEncodeForType(type))) {
+  if (
+    type.__raw &&
+    isBinaryPayload(context, type.__raw, contentTypes, getEncodeForType(type))
+  ) {
     return { shouldWrap: true, isBinary: true };
   }
 
