@@ -5,7 +5,7 @@ import type { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
-declare function createClient(endpointParam: string, version: Versions, options?: VersioningReturnTypeChangedFromClientOptions): VersioningReturnTypeChangedFromClient;
+declare function createClient(endpointParam: string, options?: VersioningReturnTypeChangedFromClientOptions): VersioningReturnTypeChangedFromClient;
 export default createClient;
 
 export declare interface Routes {
@@ -41,6 +41,7 @@ export declare type VersioningReturnTypeChangedFromClient = Client & {
 };
 
 export declare interface VersioningReturnTypeChangedFromClientOptions extends ClientOptions {
+    version?: Versions;
 }
 
 export declare type Versions = "v1" | "v2";

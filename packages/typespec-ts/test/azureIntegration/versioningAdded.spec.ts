@@ -7,7 +7,8 @@ describe("VersioningAdded Rest Client", () => {
   let client: VersioningAddedClient;
 
   beforeEach(() => {
-    client = VersioningAddedClientFactory("http://localhost:3000", "v2", {
+    client = VersioningAddedClientFactory("http://localhost:3000", {
+      version: "v2",
       allowInsecureConnection: true
     });
   });
