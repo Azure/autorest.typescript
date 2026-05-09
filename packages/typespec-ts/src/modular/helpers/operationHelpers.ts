@@ -1667,9 +1667,7 @@ function buildHeaderParameter(
   // `?? defaultValue` from getOptional(). In this case, always send the header (do not
   // conditionally omit it when the accessor is undefined) so the default is always applied.
   const hasEffectiveDefaultValue =
-    effectiveOptional &&
-    param.clientDefaultValue !== undefined &&
-    isDefaultValueTypeMatch(param, param.clientDefaultValue);
+    effectiveOptional && hasEffectiveClientDefaultValue(param);
 
   const conditions = [];
   if (effectiveOptional && !hasEffectiveDefaultValue) {
@@ -1728,9 +1726,7 @@ function buildBodyParameter(
 
   // Check if body parameter has a client default value with matching type
   const hasClientDefault =
-    bodyParameter.optional &&
-    bodyParameter.clientDefaultValue !== undefined &&
-    isDefaultValueTypeMatch(bodyParameter, bodyParameter.clientDefaultValue);
+    bodyParameter.optional && hasEffectiveClientDefaultValue(bodyParameter);
 
   // Apply client default value if present for optional body parameters
   if (hasClientDefault) {
@@ -1981,11 +1977,9 @@ function getOptional(
   paramAccessor: string
 ) {
   // Apply client default value if present and type matches
-  const defaultSuffix =
-    param.clientDefaultValue !== undefined &&
-    isDefaultValueTypeMatch(param, param.clientDefaultValue)
-      ? ` ?? ${formatDefaultValue(param.clientDefaultValue)}`
-      : "";
+  const defaultSuffix = hasEffectiveClientDefaultValue(param)
+    ? ` ?? ${formatDefaultValue(param.clientDefaultValue)}`
+    : "";
 
   if (param.type.kind === "model") {
     const propertiesStr = getRequestModelMapping(
@@ -2328,11 +2322,9 @@ export function getSerializationExpression(
   );
 
   // Apply clientDefaultValue for model properties that have one
-  const defaultValueSuffix =
-    property.clientDefaultValue !== undefined &&
-    isDefaultValueTypeMatch(property, property.clientDefaultValue)
-      ? ` ?? ${formatDefaultValue(property.clientDefaultValue)}`
-      : "";
+  const defaultValueSuffix = hasEffectiveClientDefaultValue(property)
+    ? ` ?? ${formatDefaultValue(property.clientDefaultValue)}`
+    : "";
 
   if (serializeFunctionName) {
     return `${nullOrUndefinedPrefix}${serializeFunctionName}(${propertyFullName})${defaultValueSuffix}`;
@@ -2894,6 +2886,20 @@ export function getAllAncestors(type: SdkType): SdkType[] {
     ancestors.push(...getAllAncestors(type.baseModel));
   }
   return ancestors;
+}
+
+/**
+ * Returns true when a param/property has a clientDefaultValue whose JavaScript type
+ * is compatible with the declared TypeSpec type, meaning the default can be emitted
+ * safely into generated code.
+ */
+function hasEffectiveClientDefaultValue(
+  param: SdkHttpParameter | SdkBodyParameter | SdkModelPropertyType
+): boolean {
+  return (
+    param.clientDefaultValue !== undefined &&
+    isDefaultValueTypeMatch(param, param.clientDefaultValue)
+  );
 }
 
 /**
