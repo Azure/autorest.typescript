@@ -434,11 +434,6 @@ export function getDeserializePrivateFunction(
           statements
         };
       }
-      // HEAD has no body; derive boolean from status code
-      if (isHeadAsBooleanOperation(context, operation)) {
-        statements.push(`return result.status.startsWith("2");`);
-        return { ...functionStatement, statements };
-      }
       if (deserializeFunctionName) {
         statements.push(
           `return ${deserializeFunctionName}(${deserializedRoot})${multipartCastSuffix}`
@@ -447,6 +442,9 @@ export function getDeserializePrivateFunction(
         isAzureCoreErrorType(context.program, deserializedType.__raw)
       ) {
         statements.push(`return ${deserializedRoot}${multipartCastSuffix}`);
+      } else if (isHeadAsBooleanOperation(context, operation)) {
+        // HEAD has no body; derive boolean from status code
+        statements.push(`return result.status.startsWith("2");`);
       } else {
         statements.push(
           `return ${deserializeResponseValue(
@@ -461,12 +459,7 @@ export function getDeserializePrivateFunction(
         );
       }
     }
-  } else if (returnType.type === "void") {
-    statements.push("return;");
-  } else if (
-    !deserializedType &&
-    isHeadAsBooleanOperation(context, operation)
-  ) {
+  } else if (isHeadAsBooleanOperation(context, operation)) {
     if (shouldWrap) {
       statements.push(`return { body: result.status.startsWith("2") };`);
     } else {
@@ -3257,7 +3250,7 @@ export function checkWrapNonModelReturn(
   const { type } = operation.response;
   if (!type) {
     // Special case: HEAD operation with void response → wrap as boolean { body: boolean }
-    // Triggered by either @responseAsBool decorator (TCGC) or head-as-boolean emitter option.
+    // Triggered by head-as-boolean emitter option.
     if (isHeadAsBooleanOperation(context, operation)) {
       return { shouldWrap: true, isBinary: false };
     }
