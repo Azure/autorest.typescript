@@ -1,11 +1,15 @@
 import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
 declare function createClient(options?: OverloadClientOptions): OverloadClient;
 export default createClient;
+
+export { isRestError }
 
 export declare interface List {
     get(options?: ListParameters): StreamableMethod<List200Response>;
@@ -41,6 +45,8 @@ export declare interface ResourceOutput {
     name: string;
     scope: string;
 }
+
+export { RestError }
 
 export declare interface Routes {
     (path: "/client/overload/resources"): List;

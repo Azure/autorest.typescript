@@ -1,7 +1,9 @@
 import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
 export declare interface ChildFlattenModel {
@@ -53,6 +55,8 @@ export declare interface FlattenUnknownModelOutput {
     name: string;
     properties?: any;
 }
+
+export { isRestError }
 
 export declare interface NestedFlattenModel {
     name: string;
@@ -123,6 +127,8 @@ export declare interface PutNestedFlattenModelBodyParam {
 }
 
 export declare type PutNestedFlattenModelParameters = PutNestedFlattenModelBodyParam & RequestParameters;
+
+export { RestError }
 
 export declare interface Routes {
     (path: "/azure/client-generator-core/flatten-property/flattenModel"): PutFlattenModel;

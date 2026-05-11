@@ -1,7 +1,9 @@
 import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
 export declare type AbstractModelOutput = AbstractModelOutputParent | RealModelOutput;
@@ -89,6 +91,8 @@ export declare interface InternalQueryParam {
 export declare interface InternalQueryParamProperties {
     name: string;
 }
+
+export { isRestError }
 
 export declare interface NoDecoratorInInternal {
     get(options: NoDecoratorInInternalParameters): StreamableMethod<NoDecoratorInInternal200Response>;
@@ -227,6 +231,8 @@ export declare interface PublicQueryParamProperties {
 export declare interface RealModelOutput extends AbstractModelOutputParent {
     kind: "real";
 }
+
+export { RestError }
 
 export declare interface Routes {
     (path: "/azure/client-generator-core/access/publicOperation/noDecoratorInPublic"): NoDecoratorInPublic;

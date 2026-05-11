@@ -1,6 +1,8 @@
 import { ClientOptions } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
+import { RestError } from '@azure/core-rest-pipeline';
 
 declare interface Element_2 {
     extension?: Extension[];
@@ -13,6 +15,8 @@ export declare interface Extension extends Element_2 {
 
 export declare interface GetOptionalParams extends OperationOptions {
 }
+
+export { isRestError }
 
 export declare interface PutOptionalParams extends OperationOptions {
 }
@@ -27,5 +31,7 @@ export declare class RecursiveClient {
 
 export declare interface RecursiveClientOptionalParams extends ClientOptions {
 }
+
+export { RestError }
 
 export { }

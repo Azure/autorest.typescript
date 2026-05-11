@@ -314,3 +314,4 @@ export type {
 } from "./classic/index.js";
 export type { PageSettings, ContinuablePage, PagedAsyncIterableIterator };
 export type { FileContents, NodeReadableStream };
+export { RestError, isRestError } from "@azure/core-rest-pipeline";

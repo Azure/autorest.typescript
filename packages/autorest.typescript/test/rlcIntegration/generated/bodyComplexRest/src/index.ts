@@ -13,5 +13,6 @@ export * from "./clientDefinitions";
 export * from "./isUnexpected";
 export * from "./models";
 export * from "./outputModels";
+export { RestError, isRestError } from "@azure/core-rest-pipeline";
 
 export default BodyComplexRestClient;

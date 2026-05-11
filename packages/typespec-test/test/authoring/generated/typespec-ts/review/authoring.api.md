@@ -12,11 +12,13 @@ import type { CreateHttpPollerOptions } from '@azure/core-lro';
 import type { ErrorModel } from '@azure-rest/core-client';
 import type { ErrorResponse } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { KeyCredential } from '@azure/core-auth';
 import type { OperationState } from '@azure/core-lro';
 import type { PathUncheckedResponse } from '@azure-rest/core-client';
 import type { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
 // @public (undocumented)
@@ -563,6 +565,8 @@ export interface ImportxLogicalResponse extends HttpResponse {
 // @public (undocumented)
 export type ImportxParameters = RequestParameters;
 
+export { isRestError }
+
 // @public (undocumented)
 export function isUnexpected(response: CreateOrUpdate200Response | CreateOrUpdate201Response | CreateOrUpdateLogicalResponse | CreateOrUpdateDefaultResponse): response is CreateOrUpdateDefaultResponse;
 
@@ -816,6 +820,8 @@ export interface ProjectSettings extends Record<string, string> {
 // @public
 export interface ProjectSettingsOutput extends Record<string, string> {
 }
+
+export { RestError }
 
 // @public (undocumented)
 export interface Routes {

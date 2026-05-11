@@ -1,9 +1,11 @@
 import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import type { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
 export declare function buildCsvCollection(items: string[] | number[]): string;
@@ -115,6 +117,8 @@ export declare interface HeaderUnixTimestampHeaders {
 }
 
 export declare type HeaderUnixTimestampParameters = HeaderUnixTimestampHeaderParam & RequestParameters;
+
+export { isRestError }
 
 export declare interface PropertyDefault {
     post(options: PropertyDefaultParameters): StreamableMethod<PropertyDefault200Response>;
@@ -346,6 +350,8 @@ export declare interface ResponseHeaderUnixTimestamp204Response extends HttpResp
 }
 
 export declare type ResponseHeaderUnixTimestampParameters = RequestParameters;
+
+export { RestError }
 
 export declare interface Rfc3339DatetimeProperty {
     value: Date | string;

@@ -1,7 +1,9 @@
 import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
 declare function createClient(options?: UsageClientOptions): UsageClient;
@@ -48,6 +50,8 @@ export declare interface InputRecord {
     requiredProp: string;
 }
 
+export { isRestError }
+
 export declare interface Output {
     get(options?: OutputParameters): StreamableMethod<Output200Response>;
 }
@@ -62,6 +66,8 @@ export declare type OutputParameters = RequestParameters;
 export declare interface OutputRecordOutput {
     requiredProp: string;
 }
+
+export { RestError }
 
 export declare interface Routes {
     (path: "/type/model/usage/input"): Input;

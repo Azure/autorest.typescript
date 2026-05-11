@@ -1,7 +1,9 @@
 import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
 export declare interface Cat extends Pet {
@@ -21,6 +23,8 @@ export declare interface GetValid200Response extends HttpResponse {
 }
 
 export declare type GetValidParameters = RequestParameters;
+
+export { isRestError }
 
 export declare type NotDiscriminatedClient = Client & {
     path: Routes;
@@ -63,6 +67,8 @@ export declare interface PutValidBodyParam {
 }
 
 export declare type PutValidParameters = PutValidBodyParam & RequestParameters;
+
+export { RestError }
 
 export declare interface Routes {
     (path: "/type/model/inheritance/not-discriminated/valid"): PostValid;

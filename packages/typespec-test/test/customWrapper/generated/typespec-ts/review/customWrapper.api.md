@@ -8,9 +8,11 @@ import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { ErrorResponse } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { KeyCredential } from '@azure/core-auth';
 import type { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
 // @public (undocumented)
@@ -115,11 +117,15 @@ export interface GetDeploymentDefaultResponse extends HttpResponse {
 // @public (undocumented)
 export type GetDeploymentParameters = RequestParameters;
 
+export { isRestError }
+
 // @public (undocumented)
 export function isUnexpected(response: GetDeployment200Response | GetDeploymentDefaultResponse): response is GetDeploymentDefaultResponse;
 
 // @public (undocumented)
 export function isUnexpected(response: DeployProject200Response | DeployProject201Response | DeployProjectDefaultResponse): response is DeployProjectDefaultResponse;
+
+export { RestError }
 
 // @public (undocumented)
 export interface Routes {

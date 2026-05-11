@@ -1,10 +1,12 @@
 import { AbortSignalLike } from '@azure/abort-controller';
 import { ClientOptions } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import { OperationOptions } from '@azure-rest/core-client';
 import { OperationState } from '@azure/core-lro';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 import { PollerLike } from '@azure/core-lro';
+import { RestError } from '@azure/core-rest-pipeline';
 
 export declare interface GenerationOptions {
     prompt: string;
@@ -14,6 +16,8 @@ export declare interface GenerationResult {
     data: string;
 }
 
+export { isRestError }
+
 export declare enum KnownVersions {
     V20221201Preview = "2022-12-01-preview"
 }
@@ -21,6 +25,8 @@ export declare enum KnownVersions {
 export declare interface LongRunningRpcOptionalParams extends OperationOptions {
     updateIntervalInMs?: number;
 }
+
+export { RestError }
 
 export declare function restorePoller<TResponse extends PathUncheckedResponse, TResult>(client: RpcClient, serializedState: string, sourceOperation: (...args: any[]) => PollerLike<OperationState<TResult>, TResult>, options?: RestorePollerOptions<TResult>): PollerLike<OperationState<TResult>, TResult>;
 

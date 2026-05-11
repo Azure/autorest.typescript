@@ -1,6 +1,8 @@
 import { ClientOptions } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
+import { RestError } from '@azure/core-rest-pipeline';
 
 export declare interface Fish {
     kind: string;
@@ -25,6 +27,8 @@ export declare interface GoblinShark extends Shark {
     sharktype: "goblin";
 }
 
+export { isRestError }
+
 export declare class NestedDiscriminatorClient {
     private _client;
     readonly pipeline: Pipeline;
@@ -45,6 +49,8 @@ export declare interface PutModelOptionalParams extends OperationOptions {
 
 export declare interface PutRecursiveModelOptionalParams extends OperationOptions {
 }
+
+export { RestError }
 
 export declare interface Salmon extends Fish {
     kind: "salmon";

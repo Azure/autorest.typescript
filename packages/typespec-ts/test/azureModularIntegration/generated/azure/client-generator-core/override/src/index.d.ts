@@ -1,6 +1,8 @@
 import { ClientOptions } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
+import { RestError } from '@azure/core-rest-pipeline';
 
 export declare interface GroupParametersGroupOptionalParams extends OperationOptions {
 }
@@ -13,6 +15,8 @@ export declare interface GroupParametersOptions {
     param1: string;
     param2: string;
 }
+
+export { isRestError }
 
 export declare class OverrideClient {
     private _client;
@@ -48,5 +52,7 @@ export declare interface RequireOptionalParameterOperations {
 
 export declare interface RequireOptionalParameterRequireOptionalOptionalParams extends OperationOptions {
 }
+
+export { RestError }
 
 export { }

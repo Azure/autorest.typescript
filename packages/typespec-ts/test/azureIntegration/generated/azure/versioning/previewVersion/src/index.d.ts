@@ -1,7 +1,9 @@
 import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
 declare function createClient({ apiVersion, ...options }?: PreviewVersionClientOptions): PreviewVersionClient;
@@ -21,6 +23,8 @@ export declare interface GetWidget404Response extends HttpResponse {
 }
 
 export declare type GetWidgetParameters = RequestParameters;
+
+export { isRestError }
 
 export declare interface ListWidgets {
     get(options?: ListWidgetsParameters): StreamableMethod<ListWidgets200Response>;
@@ -51,6 +55,8 @@ export declare type PreviewVersionClient = Client & {
 export declare interface PreviewVersionClientOptions extends ClientOptions {
     apiVersion?: string;
 }
+
+export { RestError }
 
 export declare interface Routes {
     (path: "/azure/versioning/previewVersion/widgets/{id}", id: string): GetWidget;
