@@ -116,5 +116,5 @@ export function nonReferencedModelDeserializer(item: any): NonReferencedModel {
 /** The Contoso Widget Manager service version. */
 export enum KnownVersions {
   /** Version 2022-08-31 */
-  Versions100 = "1.0.0",
+  V100 = "1.0.0",
 }

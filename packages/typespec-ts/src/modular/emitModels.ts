@@ -694,13 +694,17 @@ function emitEnumMember(
     ? fixLeadingNumber(member.name, NameType.EnumMemberName) // need to fix the leading number also for enum member
     : normalizeName(member.name, NameType.EnumMemberName, true);
   // If the member name starts with _ due to a leading digit (not because the original has _),
-  // replace the _ prefix with the enum type name for a more descriptive identifier
+  // replace the _ prefix with either "V" (for API version enums) or the enum type name.
   if (
     shouldNormalizeName &&
     normalizedMemberName.toLowerCase().startsWith("_") &&
     !member.name.toLowerCase().startsWith("_")
   ) {
-    normalizedMemberName = enumTypeName + normalizedMemberName.slice(1);
+    const isApiVersionEnum =
+      (member.enumType.usage & UsageFlags.ApiVersionEnum) ===
+      UsageFlags.ApiVersionEnum;
+    const prefix = isApiVersionEnum ? "V" : enumTypeName;
+    normalizedMemberName = prefix + normalizedMemberName.slice(1);
     if (reportMemberNameDiagnostic) {
       reportDiagnostic(context.program, {
         code: "prefix-adding-in-enum-member",
