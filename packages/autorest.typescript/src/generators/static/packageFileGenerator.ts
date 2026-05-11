@@ -115,7 +115,11 @@ function regularAutorestPackage(
       rimraf: "^5.0.0",
       dotenv: azureSdkForJs ? "catalog:testing" : "^16.0.0"
     },
-    repository: "github:Azure/azure-sdk-for-js",
+    repository: {
+      type: "git",
+      url: "git+https://github.com/Azure/azure-sdk-for-js",
+      directory: azureOutputDirectory ?? "sdk/"
+    },
     bugs: {
       url: "https://github.com/Azure/azure-sdk-for-js/issues"
     },
@@ -160,7 +164,7 @@ function regularAutorestPackage(
     "react-native": "./dist/react-native/index.js",
   };
   if (azureOutputDirectory) {
-    packageInfo.homepage = `https://github.com/Azure/azure-sdk-for-js/tree/main/${azureOutputDirectory}`;
+    packageInfo.homepage = `https://github.com/Azure/azure-sdk-for-js/tree/main/${azureOutputDirectory}/README.md`;
   }
   if (azureSdkForJs) {
     // Azure monorepo packages use warp (via dev-tool run build-package) instead of tshy
