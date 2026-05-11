@@ -36,8 +36,7 @@ import {
   getSchemaForType,
   getTypeName,
   isArrayType,
-  isBodyRequired,
-  isByteOrByteUnion
+  isBodyRequired
 } from "../utils/modelUtils.js";
 import {
   getOperationGroupName,
@@ -303,18 +302,7 @@ function transformRequestBody(
   importedModels: Set<string>,
   headers: ParameterMetadata[]
 ) {
-  const rawContentTypes = parameters.body?.contentTypes ?? [];
-  let contentTypes = extractMediaTypes(rawContentTypes);
-
-  // Treat */* as binary when the body is a bytes type
-  if (
-    rawContentTypes.some((ct) => ct === "*/*") &&
-    isByteOrByteUnion(dpgContext, bodyType) &&
-    !contentTypes.includes(KnownMediaType.Binary)
-  ) {
-    contentTypes = [...contentTypes, KnownMediaType.Binary];
-  }
-
+  const contentTypes = extractMediaTypes(parameters.body?.contentTypes ?? []);
   const schema = getSchemaForType(dpgContext, bodyType, {
     mediaTypes: contentTypes,
     isRequestBody: true,
