@@ -115,11 +115,13 @@ function regularAutorestPackage(
       rimraf: "^5.0.0",
       dotenv: azureSdkForJs ? "catalog:testing" : "^16.0.0"
     },
-    repository: {
-      type: "git",
-      url: "git+https://github.com/Azure/azure-sdk-for-js",
-      directory: azureOutputDirectory ?? "sdk/"
-    },
+    repository: azureSdkForJs
+      ? {
+        type: "git",
+        url: "git+https://github.com/Azure/azure-sdk-for-js",
+        directory: azureOutputDirectory ?? "sdk/"
+      }
+      : "github:Azure/azure-sdk-for-js",
     bugs: {
       url: "https://github.com/Azure/azure-sdk-for-js/issues"
     },

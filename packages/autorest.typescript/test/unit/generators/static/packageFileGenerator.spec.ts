@@ -49,6 +49,20 @@ describe("packageFileGenerator", () => {
       directory: "sdk/"
     });
   });
+
+  it("should keep string repository metadata for non-azure-sdk-for-js packages", () => {
+    const autorestOption = getMockAutorestOptions();
+    autorestOption.azureSdkForJs = false;
+
+    sinon.replace(autorestSession, "getAutorestOptions", () => autorestOption);
+    sinon.replace(autorestSession, "getSession", () => getMockSession() as any);
+
+    const project = getEmptyProject();
+    generatePackageJson(project, getMockClientDetails());
+    const packageJson = getGeneratedPackageJson(project);
+
+    assert.strictEqual(packageJson.repository, "github:Azure/azure-sdk-for-js");
+  });
 });
 
 function getMockAutorestOptions() {
