@@ -30,7 +30,7 @@ export { isRestError }
 
 // @public
 export enum KnownVersions {
-    Versions20220830 = "2022-08-30"
+    V20220830 = "2022-08-30"
 }
 
 export { RestError }

@@ -788,7 +788,7 @@ export { isRestError }
 
 // @public
 export enum KnownVersions {
-    Versions20240701Preview = "2024-07-01-preview"
+    V20240701Preview = "2024-07-01-preview"
 }
 
 // @public
