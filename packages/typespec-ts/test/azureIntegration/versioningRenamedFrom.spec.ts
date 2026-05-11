@@ -7,7 +7,8 @@ describe("VersioningRenamedFrom Rest Client", () => {
   let client: VersioningRenamedFromClient;
 
   beforeEach(() => {
-    client = VersioningRenamedFromClientFactory("http://localhost:3000", "v2", {
+    client = VersioningRenamedFromClientFactory("http://localhost:3000", {
+      version: "v2",
       allowInsecureConnection: true
     });
   });

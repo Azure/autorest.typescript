@@ -15,6 +15,10 @@ describe("Azure ClientGeneratorCore ClientDefaultValue Client", () => {
     });
   });
 
+  it("should get header parameter with default values when not provided", async () => {
+    await client.getHeaderParameter();
+  });
+
   it("should get operation parameter with default values", async () => {
     await client.getOperationParameter("test");
   });
