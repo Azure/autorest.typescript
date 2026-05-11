@@ -1,4 +1,8 @@
-import { NameType, normalizeName } from "@azure-tools/rlc-common";
+import {
+  NameType,
+  normalizeName,
+  isAzurePackage
+} from "@azure-tools/rlc-common";
 import { Project, SourceFile } from "ts-morph";
 import { getClassicalClientName } from "./helpers/namingHelpers.js";
 import { ModularEmitterOptions } from "./interfaces.js";
@@ -128,7 +132,7 @@ function exportAzureCloudTypes(context: SdkContext, rootIndexFile: SourceFile) {
 }
 
 function exportRestErrorTypes(context: SdkContext, rootIndexFile: SourceFile) {
-  if (context.rlcOptions?.flavor !== "azure") {
+  if (!isAzurePackage({ options: context.rlcOptions })) {
     return;
   }
   const existingExports = getExistingExports(rootIndexFile);
