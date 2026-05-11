@@ -4,9 +4,11 @@ import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { CreateHttpPollerOptions } from '@azure/core-lro';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { OperationState } from '@azure/core-lro';
 import type { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
 export declare type AzureArmLargeHeaderClient = Client & {
@@ -43,7 +45,11 @@ export declare interface ErrorResponseOutput {
 
 export declare function getLongRunningPoller<TResult extends Two6KLogicalResponse | Two6KDefaultResponse>(client: Client, initialResponse: Two6K200Response | Two6K202Response | Two6KDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 
+export { isRestError }
+
 export declare function isUnexpected(response: Two6K200Response | Two6K202Response | Two6KLogicalResponse | Two6KDefaultResponse): response is Two6KDefaultResponse;
+
+export { RestError }
 
 export declare interface Routes {
     (path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.LargeHeader/largeHeaders/{largeHeaderName}/two6k", subscriptionId: string, resourceGroupName: string, largeHeaderName: string): Two6K;

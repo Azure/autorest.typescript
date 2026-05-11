@@ -6,9 +6,11 @@
 
 import { ClientOptions } from '@azure-rest/core-client';
 import { ErrorModel } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import { KeyCredential } from '@azure/core-auth';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
+import { RestError } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
 
 // @public
@@ -847,6 +849,8 @@ export type ImageGenerationStyle = "natural" | "vivid";
 // @public
 export type ImageSize = "256x256" | "512x512" | "1024x1024" | "1792x1024" | "1024x1792";
 
+export { isRestError }
+
 // @public
 export enum KnownServiceApiVersions {
     V20221201 = "2022-12-01",
@@ -1023,6 +1027,8 @@ export interface PineconeFieldMappingOptions {
     titleField?: string;
     urlField?: string;
 }
+
+export { RestError }
 
 // @public
 export interface SpeechGenerationOptions {

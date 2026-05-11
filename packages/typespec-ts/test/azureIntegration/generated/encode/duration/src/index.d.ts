@@ -1,8 +1,10 @@
 import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
 export declare function buildCsvCollection(items: string[] | number[]): string;
@@ -380,6 +382,8 @@ export declare interface ISO8601DurationProperty {
 export declare interface ISO8601DurationPropertyOutput {
     value: string;
 }
+
+export { isRestError }
 
 export declare interface PropertyDefault {
     post(options: PropertyDefaultParameters): StreamableMethod<PropertyDefault200Response>;
@@ -854,6 +858,8 @@ export declare interface QueryIso8601QueryParam {
 export declare interface QueryIso8601QueryParamProperties {
     input: string;
 }
+
+export { RestError }
 
 export declare interface Routes {
     (path: "/encode/duration/query/default"): QueryDefault;

@@ -10,3 +10,4 @@ export type {
   ATest1OptionalParams,
 } from "./api/a/index.js";
 export type { AOperations } from "./classic/index.js";
+export { RestError, isRestError } from "@azure/core-rest-pipeline";

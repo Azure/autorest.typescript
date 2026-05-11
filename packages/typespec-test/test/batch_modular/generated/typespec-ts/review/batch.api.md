@@ -5,8 +5,10 @@
 ```ts
 
 import { ClientOptions } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
+import { RestError } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
 
 // @public
@@ -1213,6 +1215,8 @@ export interface InstanceViewStatus {
 // @public
 export type IpAddressProvisioningType = "batchmanaged" | "usermanaged" | "nopublicipaddresses";
 
+export { isRestError }
+
 // @public
 export type JobAction = "none" | "disable" | "terminate";
 
@@ -2016,6 +2020,8 @@ export interface ResourceStatistics {
     peakMemoryGiB: number;
     startTime: Date;
 }
+
+export { RestError }
 
 // @public
 export interface Schedule {

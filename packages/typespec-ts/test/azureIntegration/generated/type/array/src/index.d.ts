@@ -1,7 +1,9 @@
 import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
 export declare type ArrayItemTypesClient = Client & {
@@ -156,6 +158,8 @@ export declare interface Int64ValuePutBodyParam {
 
 export declare type Int64ValuePutParameters = Int64ValuePutBodyParam & RequestParameters;
 
+export { isRestError }
+
 export declare interface ModelValueGet {
     get(options?: ModelValueGetParameters): StreamableMethod<ModelValueGet200Response>;
     put(options: ModelValuePutParameters): StreamableMethod<ModelValuePut204Response>;
@@ -287,6 +291,8 @@ export declare interface NullableStringValuePutBodyParam {
 }
 
 export declare type NullableStringValuePutParameters = NullableStringValuePutBodyParam & RequestParameters;
+
+export { RestError }
 
 export declare interface Routes {
     (path: "/type/array/int32"): Int32ValueGet;

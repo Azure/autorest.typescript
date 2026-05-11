@@ -1,7 +1,9 @@
 import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
 declare function createClient(host: string, options?: OveralodClientOptions): OveralodClient;
@@ -21,6 +23,8 @@ export declare interface GetThingBodyParam {
 }
 
 export declare type GetThingParameters = GetThingBodyParam & RequestParameters;
+
+export { isRestError }
 
 export declare type OveralodClient = Client & {
     path: Routes;
@@ -48,6 +52,8 @@ export declare interface ProcessMediaTypesParam {
 }
 
 export declare type ProcessParameters = ProcessMediaTypesParam & ProcessBodyParam & RequestParameters;
+
+export { RestError }
 
 export declare interface Routes {
     (path: "/get"): GetThing;

@@ -110,6 +110,7 @@ export type {
   CreateOrUpdateTestOptionalParams,
 } from "./loadTestAdministration/api/index.js";
 export type { PageSettings, ContinuablePage, PagedAsyncIterableIterator };
+export { RestError, isRestError } from "@azure/core-rest-pipeline";
 export { LoadTestRunClient } from "./loadTestRun/loadTestRunClient.js";
 export type {
   LoadTestRunClientOptionalParams,

@@ -1,6 +1,8 @@
 import { ClientOptions } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
+import { RestError } from '@azure/core-rest-pipeline';
 
 export declare class ClientDefaultValueClient {
     private _client;
@@ -29,6 +31,8 @@ export declare interface GetPathParameterOptionalParams extends OperationOptions
     segment1?: string;
 }
 
+export { isRestError }
+
 export declare interface ModelWithDefaultValues {
     name: string;
     timeout?: number;
@@ -38,5 +42,7 @@ export declare interface ModelWithDefaultValues {
 
 export declare interface PutModelPropertyOptionalParams extends OperationOptions {
 }
+
+export { RestError }
 
 export { }

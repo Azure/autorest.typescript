@@ -1,8 +1,10 @@
 import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
 export declare interface And {
@@ -140,6 +142,8 @@ export declare interface In {
 export declare interface Is {
     name: string;
 }
+
+export { isRestError }
 
 export declare interface Lambda {
     name: string;
@@ -1610,6 +1614,8 @@ export declare interface Pass {
 export declare interface Raise {
     name: string;
 }
+
+export { RestError }
 
 export declare interface Return {
     name: string;

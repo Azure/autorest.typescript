@@ -1,7 +1,9 @@
 import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
 declare function createClient(options?: RoutesClientOptions): RoutesClient;
@@ -26,6 +28,8 @@ export declare interface InInterfaceFixed204Response extends HttpResponse {
 }
 
 export declare type InInterfaceFixedParameters = RequestParameters;
+
+export { isRestError }
 
 export declare interface PathParametersAnnotationOnly {
     get(options?: PathParametersAnnotationOnlyParameters): StreamableMethod<PathParametersAnnotationOnly204Response>;
@@ -644,6 +648,8 @@ export declare interface QueryParametersTemplateOnlyQueryParam {
 export declare interface QueryParametersTemplateOnlyQueryParamProperties {
     param: string;
 }
+
+export { RestError }
 
 export declare interface Routes {
     (path: "/routes/fixed"): Fixed;

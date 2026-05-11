@@ -1,7 +1,9 @@
 import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
 export declare interface BooleanLiteralGetAll {
@@ -423,6 +425,8 @@ export declare interface IntLiteralPutDefaultBodyParam {
 
 export declare type IntLiteralPutDefaultParameters = IntLiteralPutDefaultBodyParam & RequestParameters;
 
+export { isRestError }
+
 export declare type OptionalClient = Client & {
     path: Routes;
 };
@@ -587,6 +591,8 @@ export declare interface RequiredAndOptionalPutRequiredOnlyBodyParam {
 }
 
 export declare type RequiredAndOptionalPutRequiredOnlyParameters = RequiredAndOptionalPutRequiredOnlyBodyParam & RequestParameters;
+
+export { RestError }
 
 export declare interface Routes {
     (path: "/type/property/optional/string/all"): StringModelGetAll;

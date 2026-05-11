@@ -164,3 +164,4 @@ export type {
   GetAudioTranscriptionAsPlainTextOptionalParams,
 } from "./api/index.js";
 export type { FileContents, NodeReadableStream };
+export { RestError, isRestError } from "@azure/core-rest-pipeline";
