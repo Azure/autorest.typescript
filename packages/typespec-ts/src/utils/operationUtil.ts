@@ -201,7 +201,8 @@ export function isBinaryPayload(
     knownMediaType(ct)
   );
 
-  // When encode is "bytes" and none of the content types is text/plain, treat as binary
+  // When encode is "bytes" and none of the content types is text/plain, treat as binary.
+  // Mixed content types that include text/plain stay on the non-binary path.
   if (
     encode === "bytes" &&
     knownMediaTypes.every((type) => type !== KnownMediaType.Text)

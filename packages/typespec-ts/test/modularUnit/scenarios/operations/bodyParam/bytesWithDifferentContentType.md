@@ -2,6 +2,7 @@
 
 When a response has `*/*` content type and a `bytes` body, `isBinaryPayload` should return
 `true` so the response is deserialized as `Uint8Array` (binary) rather than `string` (base64).
+The request body type is unrelated to this scenario and is intentionally kept simple.
 
 ## TypeSpec
 
@@ -189,7 +190,8 @@ export type UploadFileResponse = {
 # bytes response with @encode("bytes") and application/json content type should be treated as binary
 
 When a response has `application/json` content type and a `@encode("bytes")` bytes body,
-`isBinaryPayload` should return `true` because encode="bytes" and content-type is not text/plain.
+`isBinaryPayload` should return `true` because when `encode="bytes"` is specified and the
+content type is not `text/plain`, the payload is treated as binary.
 
 ## TypeSpec
 
