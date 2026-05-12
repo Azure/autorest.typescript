@@ -2983,10 +2983,9 @@ export function getExpectedStatuses(
   // For HEAD + @responseAsBool / head-as-boolean, 404 is a valid "false" response.
   if (
     context &&
-    isHeadAsBooleanOperation(context, operation) &&
-    !statusCodes.includes(404)
+    isHeadAsBooleanOperation(context, operation)
   ) {
-    statusCodes = [...statusCodes, 404];
+    statusCodes = Array.from(new Set([...statusCodes, 404]));
   }
   // LROs may call the same path but with GET to get the operation status.
   if (
@@ -3003,7 +3002,6 @@ export function getExpectedStatuses(
     }
   }
 
-  statusCodes = Array.from(new Set(statusCodes));
   return `[${statusCodes.map((x) => `"${x}"`).join(", ")}]`;
 }
 
