@@ -40,6 +40,9 @@ export function parseMediaType(mediaType: string) {
 }
 
 export function knownMediaType(mediaType: string) {
+  if (mediaType === "*/*") {
+    return KnownMediaType.Binary;
+  }
   const mt = parseMediaType(mediaType);
   if (mt) {
     if (

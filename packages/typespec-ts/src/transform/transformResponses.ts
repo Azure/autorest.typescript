@@ -14,7 +14,7 @@ import {
   getHttpOperationWithCache,
   SdkClient
 } from "@azure-tools/typespec-client-generator-core";
-import { getDoc, isVoidType } from "@typespec/compiler";
+import { getDoc, getEncode, isVoidType, Scalar } from "@typespec/compiler";
 import { HttpOperation, HttpOperationResponse } from "@typespec/http";
 import { SdkContext } from "../utils/interfaces.js";
 import {
@@ -172,8 +172,16 @@ function transformBody(
     if (!body || isVoidType(body.type)) {
       continue;
     }
+    // @encode is applied on the body property (e.g. `@body @encode(base64) value: bytes`),
+    // not on the scalar type itself, so check body.property first.
+    const encodeData = body.property
+      ? getEncode(dpgContext.program, body.property)
+      : body.type.kind === "Scalar"
+        ? getEncode(dpgContext.program, body.type as Scalar)
+        : undefined;
+    const encode = encodeData?.encoding;
     const hasBinaryContent = body.contentTypes.some((contentType) =>
-      isBinaryPayload(dpgContext, body.type, contentType)
+      isBinaryPayload(dpgContext, body.type, contentType, encode)
     );
     if (hasBinaryContent) {
       typeSet.add(getBinaryType([SchemaContext.Output]));
