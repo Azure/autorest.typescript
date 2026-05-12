@@ -3004,7 +3004,7 @@ export function getExpectedStatuses(
   }
 
   statusCodes = Array.from(new Set(statusCodes));
-  
+
   return `[${statusCodes.map((x) => `"${x}"`).join(", ")}]`;
 }
 
