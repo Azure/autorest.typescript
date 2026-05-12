@@ -119,7 +119,9 @@ import { getClassicalClientName } from "./modular/helpers/namingHelpers.js";
 
 export * from "./lib.js";
 
+/* eslint-disable no-console */
 export async function $onEmit(context: EmitContext) {
+  console.time("onEmit");
   if (context.program.compilerOptions.noEmit || context.program.hasError()) {
     return;
   }
@@ -127,7 +129,9 @@ export async function $onEmit(context: EmitContext) {
   const outputProject = new Project();
   const program: Program = context.program;
   const emitterOptions: EmitterOptions = context.options;
+  console.time("onEmit: create context");
   const dpgContext = await createContextWithDefaultOptions(context);
+  console.timeEnd("onEmit: create context");
 
   // Report any diagnostics from TCGC
   if (dpgContext.diagnostics?.length > 0) {
@@ -150,6 +154,7 @@ export async function $onEmit(context: EmitContext) {
     compilerContext: context,
     tcgcContext: dpgContext
   });
+  console.time("onEmit: load static helpers");
   const staticHelpers = await loadStaticHelpers(
     outputProject,
     {
@@ -172,6 +177,7 @@ export async function $onEmit(context: EmitContext) {
       program
     }
   );
+  console.timeEnd("onEmit: load static helpers");
   const extraDependencies = isAzurePackage({ options: rlcOptions })
     ? {
         ...AzurePollingDependencies,
@@ -180,6 +186,7 @@ export async function $onEmit(context: EmitContext) {
         ...AzureTestDependencies
       }
     : { ...DefaultCoreDependencies };
+  console.time("onEmit: provide binder");
   const binder = provideBinder(outputProject, {
     staticHelpers,
     dependencies: {
@@ -188,6 +195,7 @@ export async function $onEmit(context: EmitContext) {
     useSubpathImports: rlcOptions.azureSdkForJs === true
   });
   provideSdkTypes(dpgContext);
+  console.timeEnd("onEmit: provide binder");
 
   const rlcCodeModels: RLCModel[] = [];
   let modularEmitterOptions: ModularEmitterOptions;
@@ -195,7 +203,9 @@ export async function $onEmit(context: EmitContext) {
   await clearSrcFolder();
   // 2. Generate RLC code model
   // TODO: skip this step in modular once modular generator is sufficiently decoupled
+  console.time("onEmit: build RLC code models");
   await buildRLCCodeModels();
+  console.timeEnd("onEmit: build RLC code models");
   // 3. Clear samples-dev folder if generateSample is true
   await clearSamplesDevFolder();
 
@@ -323,6 +333,7 @@ export async function $onEmit(context: EmitContext) {
   }
 
   async function generateModularSources() {
+    console.time("onEmit: generate modular sources");
     const modularSourcesRoot =
       dpgContext.generationPathDetail?.modularSourcesDir ?? "src";
     const project = useContext("outputProject");
@@ -344,8 +355,10 @@ export async function $onEmit(context: EmitContext) {
       }
     );
 
+    console.time("onEmit: emit models");
     emitTypes(dpgContext, { sourceRoot: modularSourcesRoot });
     emitNonModelResponseTypes(dpgContext, { sourceRoot: modularSourcesRoot });
+    console.timeEnd("onEmit: emit models");
     buildSubpathIndexFile(modularEmitterOptions, "models", undefined, {
       recursive: true
     });
@@ -354,6 +367,7 @@ export async function $onEmit(context: EmitContext) {
       // If no clients, we still need to build the root index file
       buildRootIndex(dpgContext, modularEmitterOptions, rootIndexFile);
     }
+    console.time("onEmit: emit source files");
     for (const subClient of clientMap) {
       await renameClientName(subClient[1], modularEmitterOptions);
       buildApiOptions(dpgContext, subClient, modularEmitterOptions);
@@ -390,9 +404,12 @@ export async function $onEmit(context: EmitContext) {
         subClient
       );
     }
+    console.timeEnd("onEmit: emit source files");
     // Enable modular sample generation when explicitly set to true or MPG
     if (emitterOptions["generate-sample"] === true) {
+      console.time("onEmit: emit samples");
       const samples = emitSamples(dpgContext);
+      console.timeEnd("onEmit: emit samples");
       // Refine the rlc sample generation logic
       // TODO: remember to remove this out when RLC is splitted from Modular
       if (samples.length > 0) {
@@ -400,6 +417,7 @@ export async function $onEmit(context: EmitContext) {
       }
     }
 
+    console.time("onEmit: resolve references");
     binder.resolveAllReferences(
       modularSourcesRoot,
       dpgContext.generationPathDetail?.rootDir
@@ -407,6 +425,9 @@ export async function $onEmit(context: EmitContext) {
     if (program.compilerOptions.noEmit || program.hasError()) {
       return;
     }
+    console.timeEnd("onEmit: resolve references");
+
+    console.time("onEmit: generate files");
 
     for (const file of project.getSourceFiles()) {
       await emitContentByBuilder(
@@ -415,6 +436,8 @@ export async function $onEmit(context: EmitContext) {
         modularEmitterOptions as any
       );
     }
+    console.timeEnd("onEmit: generate files");
+    console.timeEnd("onEmit: generate modular sources");
   }
 
   interface Metadata {
@@ -710,7 +733,9 @@ export async function $onEmit(context: EmitContext) {
       .map((subClient) => getClientContextPath(subClient, options))
       .map((path) => path.substring(path.indexOf("src")));
   }
+  console.timeEnd("onEmit");
 }
+/* eslint-enable no-console */
 
 export async function createContextWithDefaultOptions(
   context: EmitContext<Record<string, any>>
