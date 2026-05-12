@@ -193,11 +193,22 @@ export function isDefinedStatusCode(statusCodes: HttpStatusCodesEntry) {
 export function isBinaryPayload(
   dpgContext: SdkContext,
   body: Type,
-  contentType: string | string[]
+  contentType: string | string[],
+  encode?: string
 ) {
-  const knownMediaTypes: KnownMediaType[] = (
-    Array.isArray(contentType) ? contentType : [contentType]
-  ).map((ct) => knownMediaType(ct));
+  const contentTypes = Array.isArray(contentType) ? contentType : [contentType];
+  const knownMediaTypes: KnownMediaType[] = contentTypes.map((ct) =>
+    knownMediaType(ct)
+  );
+
+  // When encode is "bytes" and none of the content types is text/plain, treat as binary
+  if (
+    encode === "bytes" &&
+    knownMediaTypes.every((type) => type !== KnownMediaType.Text)
+  ) {
+    return true;
+  }
+
   for (const type of knownMediaTypes) {
     if (type === KnownMediaType.Binary && isByteOrByteUnion(dpgContext, body)) {
       return true;
