@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 export {
-  read,
+  uploadFile,
   listBySubscription,
   listByResourceGroup,
   listRolesAssignments,
@@ -16,7 +16,7 @@ export {
   create,
 } from "./operations.js";
 export type {
-  DataProductsReadOptionalParams,
+  DataProductsUploadFileOptionalParams,
   DataProductsListBySubscriptionOptionalParams,
   DataProductsListByResourceGroupOptionalParams,
   DataProductsListRolesAssignmentsOptionalParams,

@@ -25,9 +25,7 @@ import {
   listRoleAssignmentsDeserializer,
   _DataProductListResult,
   _dataProductListResultDeserializer,
-  Client as Client_1,
-  clientSerializer,
-  clientDeserializer,
+  DataProductsUploadFileResponse,
 } from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
@@ -36,7 +34,7 @@ import {
 import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
-  DataProductsReadOptionalParams,
+  DataProductsUploadFileOptionalParams,
   DataProductsListBySubscriptionOptionalParams,
   DataProductsListByResourceGroupOptionalParams,
   DataProductsListRolesAssignmentsOptionalParams,
@@ -56,38 +54,43 @@ import {
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 import { PollerLike, OperationState } from "@azure/core-lro";
+import { stringToUint8Array } from "@azure/core-util";
 
-export function _readSend(
+export function _uploadFileSend(
   context: Client,
-  body: Client_1,
-  options: DataProductsReadOptionalParams = { requestOptions: {} },
+  body: string,
+  options: DataProductsUploadFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
-      headers: { accept: "application/json", ...options.requestOptions?.headers },
-      body: clientSerializer(body),
+      contentType: "text/plain",
+      headers: { accept: "application/xml", ...options.requestOptions?.headers },
+      body: body,
     });
 }
 
-export async function _readDeserialize(result: PathUncheckedResponse): Promise<Client_1> {
+export async function _uploadFileDeserialize(
+  result: PathUncheckedResponse,
+): Promise<DataProductsUploadFileResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return clientDeserializer(result.body);
+  return {
+    body: typeof result.body === "string" ? stringToUint8Array(result.body, "base64") : result.body,
+  };
 }
 
-export async function read(
+export async function uploadFile(
   context: Client,
-  body: Client_1,
-  options: DataProductsReadOptionalParams = { requestOptions: {} },
-): Promise<Client_1> {
-  const result = await _readSend(context, body, options);
-  return _readDeserialize(result);
+  body: string,
+  options: DataProductsUploadFileOptionalParams = { requestOptions: {} },
+): Promise<DataProductsUploadFileResponse> {
+  const result = await _uploadFileSend(context, body, options);
+  return _uploadFileDeserialize(result);
 }
 
 export function _listBySubscriptionSend(

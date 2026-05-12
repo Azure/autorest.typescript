@@ -60,7 +60,7 @@ export type {
   DataProductUserRole,
   RoleAssignmentDetail,
   ListRoleAssignments,
-  Client,
+  DataProductsUploadFileResponse,
 } from "./models/index.js";
 export {
   KnownOrigin,
@@ -76,7 +76,7 @@ export {
 } from "./models/index.js";
 export type { NetworkAnalyticsApiOptionalParams } from "./api/index.js";
 export type {
-  DataProductsReadOptionalParams,
+  DataProductsUploadFileOptionalParams,
   DataProductsListBySubscriptionOptionalParams,
   DataProductsListByResourceGroupOptionalParams,
   DataProductsListRolesAssignmentsOptionalParams,

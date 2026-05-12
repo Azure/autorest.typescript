@@ -49,7 +49,7 @@ export type {
   DataProductUserRole,
   RoleAssignmentDetail,
   ListRoleAssignments,
-  Client,
+  DataProductsUploadFileResponse,
 } from "./models.js";
 export {
   KnownOrigin,

@@ -3,7 +3,7 @@
 
 import { NetworkAnalyticsApiContext } from "../../api/networkAnalyticsApiContext.js";
 import {
-  read,
+  uploadFile,
   listBySubscription,
   listByResourceGroup,
   listRolesAssignments,
@@ -17,7 +17,7 @@ import {
   create,
 } from "../../api/dataProducts/operations.js";
 import {
-  DataProductsReadOptionalParams,
+  DataProductsUploadFileOptionalParams,
   DataProductsListBySubscriptionOptionalParams,
   DataProductsListByResourceGroupOptionalParams,
   DataProductsListRolesAssignmentsOptionalParams,
@@ -39,7 +39,7 @@ import {
   RoleAssignmentCommonProperties,
   RoleAssignmentDetail,
   ListRoleAssignments,
-  Client,
+  DataProductsUploadFileResponse,
 } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 import { SimplePollerLike, getSimplePoller } from "../../static-helpers/simplePollerHelpers.js";
@@ -47,7 +47,10 @@ import { PollerLike, OperationState } from "@azure/core-lro";
 
 /** Interface representing a DataProducts operations. */
 export interface DataProductsOperations {
-  read: (body: Client, options?: DataProductsReadOptionalParams) => Promise<Client>;
+  uploadFile: (
+    body: string,
+    options?: DataProductsUploadFileOptionalParams,
+  ) => Promise<DataProductsUploadFileResponse>;
   /** List data products by subscription. */
   listBySubscription: (
     options?: DataProductsListBySubscriptionOptionalParams,
@@ -167,7 +170,8 @@ export interface DataProductsOperations {
 
 function _getDataProducts(context: NetworkAnalyticsApiContext) {
   return {
-    read: (body: Client, options?: DataProductsReadOptionalParams) => read(context, body, options),
+    uploadFile: (body: string, options?: DataProductsUploadFileOptionalParams) =>
+      uploadFile(context, body, options),
     listBySubscription: (options?: DataProductsListBySubscriptionOptionalParams) =>
       listBySubscription(context, options),
     listByResourceGroup: (

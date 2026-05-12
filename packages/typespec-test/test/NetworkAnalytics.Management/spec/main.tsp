@@ -632,5 +632,8 @@ interface DataProducts {
   @doc("List data products by subscription.")
   listBySubscription is ArmListBySubscription<DataProduct>;
 
-  read(@body body: Client): Client;
+  @post uploadFile(@body body: string): {
+    @header contentType: "application/xml";
+    @body body: bytes;
+  };
 }

@@ -1427,23 +1427,6 @@ export function dataProductArrayDeserializer(result: Array<DataProduct>): any[] 
   });
 }
 
-/** model interface Client */
-export interface Client {
-  id: string;
-  email: string;
-}
-
-export function clientSerializer(item: Client): any {
-  return { id: item["id"], email: item["email"] };
-}
-
-export function clientDeserializer(item: any): Client {
-  return {
-    id: item["id"],
-    email: item["email"],
-  };
-}
-
 /** The available API versions for the Microsoft.NetworkAnalytics RP. */
 export enum KnownVersions {
   /** The 2023-11-15 stable version. */
@@ -1540,3 +1523,5 @@ export function _dataProductPropertiesDeserializer(item: any) {
     keyVaultUrl: item["keyVaultUrl"],
   };
 }
+
+export type DataProductsUploadFileResponse = { body: Uint8Array };
