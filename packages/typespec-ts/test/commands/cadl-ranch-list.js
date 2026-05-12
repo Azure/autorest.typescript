@@ -1023,6 +1023,18 @@ export const azureModularTsps = [
   {
     outputPath: "parameters/query",
     inputPath: "parameters/query"
+  },
+  {
+    outputPath: "azure/client-generator-core/client-doc",
+    inputPath: "azure/client-generator-core/client-doc"
+  },
+  {
+    outputPath: "azure/client-generator-core/response-as-bool",
+    inputPath: "azure/client-generator-core/response-as-bool"
+  },
+  {
+    outputPath: "documentation",
+    inputPath: "documentation"
   }
 ];
 
