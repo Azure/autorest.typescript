@@ -119,8 +119,8 @@ import { getClassicalClientName } from "./modular/helpers/namingHelpers.js";
 
 export * from "./lib.js";
 
-/* eslint-disable no-console */
 export async function $onEmit(context: EmitContext) {
+  // eslint-disable-next-line no-console
   console.time("onEmit");
   if (context.program.compilerOptions.noEmit || context.program.hasError()) {
     return;
@@ -129,8 +129,10 @@ export async function $onEmit(context: EmitContext) {
   const outputProject = new Project();
   const program: Program = context.program;
   const emitterOptions: EmitterOptions = context.options;
+  // eslint-disable-next-line no-console
   console.time("onEmit: create context");
   const dpgContext = await createContextWithDefaultOptions(context);
+  // eslint-disable-next-line no-console
   console.timeEnd("onEmit: create context");
 
   // Report any diagnostics from TCGC
@@ -154,6 +156,7 @@ export async function $onEmit(context: EmitContext) {
     compilerContext: context,
     tcgcContext: dpgContext
   });
+  // eslint-disable-next-line no-console
   console.time("onEmit: load static helpers");
   const staticHelpers = await loadStaticHelpers(
     outputProject,
@@ -177,6 +180,7 @@ export async function $onEmit(context: EmitContext) {
       program
     }
   );
+  // eslint-disable-next-line no-console
   console.timeEnd("onEmit: load static helpers");
   const extraDependencies = isAzurePackage({ options: rlcOptions })
     ? {
@@ -186,6 +190,7 @@ export async function $onEmit(context: EmitContext) {
         ...AzureTestDependencies
       }
     : { ...DefaultCoreDependencies };
+  // eslint-disable-next-line no-console
   console.time("onEmit: provide binder");
   const binder = provideBinder(outputProject, {
     staticHelpers,
@@ -195,6 +200,7 @@ export async function $onEmit(context: EmitContext) {
     useSubpathImports: rlcOptions.azureSdkForJs === true
   });
   provideSdkTypes(dpgContext);
+  // eslint-disable-next-line no-console
   console.timeEnd("onEmit: provide binder");
 
   const rlcCodeModels: RLCModel[] = [];
@@ -203,8 +209,10 @@ export async function $onEmit(context: EmitContext) {
   await clearSrcFolder();
   // 2. Generate RLC code model
   // TODO: skip this step in modular once modular generator is sufficiently decoupled
+  // eslint-disable-next-line no-console
   console.time("onEmit: build RLC code models");
   await buildRLCCodeModels();
+  // eslint-disable-next-line no-console
   console.timeEnd("onEmit: build RLC code models");
   // 3. Clear samples-dev folder if generateSample is true
   await clearSamplesDevFolder();
@@ -333,6 +341,7 @@ export async function $onEmit(context: EmitContext) {
   }
 
   async function generateModularSources() {
+    // eslint-disable-next-line no-console
     console.time("onEmit: generate modular sources");
     const modularSourcesRoot =
       dpgContext.generationPathDetail?.modularSourcesDir ?? "src";
@@ -355,9 +364,11 @@ export async function $onEmit(context: EmitContext) {
       }
     );
 
+    // eslint-disable-next-line no-console
     console.time("onEmit: emit models");
     emitTypes(dpgContext, { sourceRoot: modularSourcesRoot });
     emitNonModelResponseTypes(dpgContext, { sourceRoot: modularSourcesRoot });
+    // eslint-disable-next-line no-console
     console.timeEnd("onEmit: emit models");
     buildSubpathIndexFile(modularEmitterOptions, "models", undefined, {
       recursive: true
@@ -367,6 +378,7 @@ export async function $onEmit(context: EmitContext) {
       // If no clients, we still need to build the root index file
       buildRootIndex(dpgContext, modularEmitterOptions, rootIndexFile);
     }
+    // eslint-disable-next-line no-console
     console.time("onEmit: emit source files");
     for (const subClient of clientMap) {
       await renameClientName(subClient[1], modularEmitterOptions);
@@ -404,11 +416,14 @@ export async function $onEmit(context: EmitContext) {
         subClient
       );
     }
+    // eslint-disable-next-line no-console
     console.timeEnd("onEmit: emit source files");
     // Enable modular sample generation when explicitly set to true or MPG
     if (emitterOptions["generate-sample"] === true) {
+      // eslint-disable-next-line no-console
       console.time("onEmit: emit samples");
       const samples = emitSamples(dpgContext);
+      // eslint-disable-next-line no-console
       console.timeEnd("onEmit: emit samples");
       // Refine the rlc sample generation logic
       // TODO: remember to remove this out when RLC is splitted from Modular
@@ -417,6 +432,7 @@ export async function $onEmit(context: EmitContext) {
       }
     }
 
+    // eslint-disable-next-line no-console
     console.time("onEmit: resolve references");
     binder.resolveAllReferences(
       modularSourcesRoot,
@@ -425,8 +441,10 @@ export async function $onEmit(context: EmitContext) {
     if (program.compilerOptions.noEmit || program.hasError()) {
       return;
     }
+    // eslint-disable-next-line no-console
     console.timeEnd("onEmit: resolve references");
 
+    // eslint-disable-next-line no-console
     console.time("onEmit: generate files");
 
     for (const file of project.getSourceFiles()) {
@@ -436,7 +454,9 @@ export async function $onEmit(context: EmitContext) {
         modularEmitterOptions as any
       );
     }
+    // eslint-disable-next-line no-console
     console.timeEnd("onEmit: generate files");
+    // eslint-disable-next-line no-console
     console.timeEnd("onEmit: generate modular sources");
   }
 
@@ -733,9 +753,9 @@ export async function $onEmit(context: EmitContext) {
       .map((subClient) => getClientContextPath(subClient, options))
       .map((path) => path.substring(path.indexOf("src")));
   }
+  // eslint-disable-next-line no-console
   console.timeEnd("onEmit");
 }
-/* eslint-enable no-console */
 
 export async function createContextWithDefaultOptions(
   context: EmitContext<Record<string, any>>
