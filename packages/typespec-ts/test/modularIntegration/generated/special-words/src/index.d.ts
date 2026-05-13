@@ -564,6 +564,13 @@ export declare interface Raise {
     name: string;
 }
 
+export declare interface ReservedOperationBodyParamsOperations {
+    withItems: (items: string[], options?: ReservedOperationBodyParamsWithItemsOptionalParams) => Promise<void>;
+}
+
+export declare interface ReservedOperationBodyParamsWithItemsOptionalParams extends OperationOptions {
+}
+
 export declare interface Return {
     name: string;
 }
@@ -579,6 +586,7 @@ export declare class SpecialWordsClient {
     readonly parameters: ParametersOperations;
     readonly operations: OperationsOperations;
     readonly extensibleStrings: ExtensibleStringsOperations;
+    readonly reservedOperationBodyParams: ReservedOperationBodyParamsOperations;
     readonly modelProperties: ModelPropertiesOperations;
     readonly models: ModelsOperations;
 }
