@@ -1,6 +1,8 @@
 import { ClientOptions } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
+import { RestError } from '@azure/core-rest-pipeline';
 
 export declare interface AzureLocationModel {
     location: string;
@@ -16,6 +18,8 @@ export declare type GetResponse = {
 export declare interface HeaderOptionalParams extends OperationOptions {
 }
 
+export { isRestError }
+
 export declare enum KnownVersions {
     V20221201Preview = "2022-12-01-preview"
 }
@@ -28,6 +32,8 @@ export declare interface PutOptionalParams extends OperationOptions {
 
 export declare interface QueryOptionalParams extends OperationOptions {
 }
+
+export { RestError }
 
 export declare class ScalarClient {
     private _client;

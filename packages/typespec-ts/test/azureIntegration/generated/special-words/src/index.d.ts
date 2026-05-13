@@ -1,8 +1,10 @@
 import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
 export declare interface And {
@@ -140,6 +142,8 @@ export declare interface In {
 export declare interface Is {
     name: string;
 }
+
+export { isRestError }
 
 export declare interface Lambda {
     name: string;
@@ -1611,6 +1615,24 @@ export declare interface Raise {
     name: string;
 }
 
+export declare interface ReservedOperationBodyParamsWithItems {
+    post(options: ReservedOperationBodyParamsWithItemsParameters): StreamableMethod<ReservedOperationBodyParamsWithItems204Response>;
+}
+
+export declare interface ReservedOperationBodyParamsWithItems204Response extends HttpResponse {
+    status: "204";
+}
+
+export declare interface ReservedOperationBodyParamsWithItemsBodyParam {
+    body: {
+        items: string[];
+    };
+}
+
+export declare type ReservedOperationBodyParamsWithItemsParameters = ReservedOperationBodyParamsWithItemsBodyParam & RequestParameters;
+
+export { RestError }
+
 export declare interface Return {
     name: string;
 }
@@ -1652,6 +1674,7 @@ export declare interface Routes {
     (path: "/special-words/model-properties/same-as-model"): ModelPropertiesSameAsModel;
     (path: "/special-words/model-properties/dict-methods"): ModelPropertiesDictMethods;
     (path: "/special-words/model-properties/list"): ModelPropertiesWithList;
+    (path: "/special-words/operations/body-param-reserved"): ReservedOperationBodyParamsWithItems;
     (path: "/special-words/extensible-strings/string"): ExtensibleStringsPutExtensibleStringValue;
     (path: "/special-words/operations/and"): OperationsAnd;
     (path: "/special-words/operations/as"): OperationsAs;

@@ -1,6 +1,8 @@
 import { ClientOptions } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
+import { RestError } from '@azure/core-rest-pipeline';
 
 export declare interface BytesGetNonNullOptionalParams extends OperationOptions {
 }
@@ -150,6 +152,8 @@ export declare interface InnerModel {
     property: string;
 }
 
+export { isRestError }
+
 export declare class NullableClient {
     private _client;
     readonly pipeline: Pipeline;
@@ -165,6 +169,8 @@ export declare class NullableClient {
 
 export declare interface NullableClientOptionalParams extends ClientOptions {
 }
+
+export { RestError }
 
 export declare interface StringGetNonNullOptionalParams extends OperationOptions {
 }

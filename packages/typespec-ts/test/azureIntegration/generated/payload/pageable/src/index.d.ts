@@ -1,10 +1,12 @@
 import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { PathUncheckedResponse } from '@azure-rest/core-client';
 import type { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import type { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
 declare function createClient(options?: PageableClientOptions): PageableClient;
@@ -20,6 +22,8 @@ export declare type GetPage<TPage> = (pageLink: string) => Promise<{
     page: TPage;
     nextPageLink?: string;
 }>;
+
+export { isRestError }
 
 export declare type PageableClient = Client & {
     path: Routes;
@@ -92,6 +96,8 @@ export declare interface PetOutput {
     id: string;
     name: string;
 }
+
+export { RestError }
 
 export declare interface Routes {
     (path: "/payload/pageable/server-driven-pagination/link"): ServerDrivenPaginationLink;

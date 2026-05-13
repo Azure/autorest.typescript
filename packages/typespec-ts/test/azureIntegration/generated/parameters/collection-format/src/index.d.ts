@@ -1,8 +1,10 @@
 import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
 export declare function buildCsvCollection(items: string[] | number[]): string;
@@ -36,6 +38,8 @@ export declare interface HeaderCsvHeaders {
 }
 
 export declare type HeaderCsvParameters = HeaderCsvHeaderParam & RequestParameters;
+
+export { isRestError }
 
 export declare interface QueryCsv {
     get(options: QueryCsvParameters): StreamableMethod<QueryCsv204Response>;
@@ -132,6 +136,8 @@ export declare interface QuerySsvQueryParam {
 export declare interface QuerySsvQueryParamProperties {
     colors: QuerySsvColorsQueryParam;
 }
+
+export { RestError }
 
 export declare interface Routes {
     (path: "/parameters/collection-format/query/multi"): QueryMulti;

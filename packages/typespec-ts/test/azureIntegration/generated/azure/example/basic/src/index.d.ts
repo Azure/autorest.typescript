@@ -1,8 +1,10 @@
 import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
 export declare interface ActionRequest {
@@ -38,6 +40,8 @@ export declare type Enum = string;
 
 export declare type EnumOutput = string;
 
+export { isRestError }
+
 export declare interface Model {
     int32Property?: number;
     float32Property?: number;
@@ -49,6 +53,8 @@ export declare interface ModelOutput {
     float32Property?: number;
     enumProperty?: EnumOutput;
 }
+
+export { RestError }
 
 export declare interface Routes {
     (path: "/azure/example/basic/basic"): Basic;

@@ -37,3 +37,4 @@ export type {
 } from "./api/sapWidgets/index.js";
 export type { BudgetsOperations, SAPWidgetsOperations } from "./classic/index.js";
 export type { PageSettings, ContinuablePage, PagedAsyncIterableIterator };
+export { RestError, isRestError } from "@azure/core-rest-pipeline";

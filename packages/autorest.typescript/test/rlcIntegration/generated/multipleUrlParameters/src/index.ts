@@ -14,5 +14,6 @@ export * from "./isUnexpected";
 export * from "./models";
 export * from "./outputModels";
 export * from "./serializeHelper";
+export { RestError, isRestError } from "@azure/core-rest-pipeline";
 
 export default MultipleUrlParameterRestClient;

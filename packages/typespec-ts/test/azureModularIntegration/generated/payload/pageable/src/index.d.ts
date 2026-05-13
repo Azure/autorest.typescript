@@ -1,6 +1,8 @@
 import { ClientOptions } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
+import { RestError } from '@azure/core-rest-pipeline';
 
 export declare type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
     continuationToken?: string;
@@ -9,6 +11,8 @@ export declare type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
 export declare interface Filter {
     filter: string;
 }
+
+export { isRestError }
 
 export declare class PageableClient {
     private _client;
@@ -48,6 +52,8 @@ export declare interface Pet {
     id: string;
     name: string;
 }
+
+export { RestError }
 
 export declare interface ServerDrivenPaginationAlternateInitialVerbOperations {
     post: (body: Filter, options?: ServerDrivenPaginationAlternateInitialVerbPostOptionalParams) => PagedAsyncIterableIterator<Pet>;

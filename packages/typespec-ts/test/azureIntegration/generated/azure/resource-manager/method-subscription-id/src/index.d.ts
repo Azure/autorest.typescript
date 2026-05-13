@@ -1,8 +1,10 @@
 import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { PathUncheckedResponse } from '@azure-rest/core-client';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
 export declare interface AccessRule {
@@ -106,6 +108,8 @@ export declare interface IdentityOutput {
     readonly tenantId?: string;
     type?: ResourceIdentityTypeOutput;
 }
+
+export { isRestError }
 
 export declare type IssueType = string;
 
@@ -530,6 +534,8 @@ export declare interface ResourceOutput {
 export declare type ResourceProvisioningState = string;
 
 export declare type ResourceProvisioningStateOutput = string;
+
+export { RestError }
 
 export declare interface Routes {
     (path: "/providers/Azure.ResourceManager.MethodSubscriptionId/operations"): OperationsList;

@@ -1,8 +1,10 @@
 import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { PathUncheckedResponse } from '@azure-rest/core-client';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
 declare function createClient(options?: NextLinkVerbClientOptions): NextLinkVerbClient;
@@ -14,6 +16,8 @@ export declare type GetPage<TPage> = (pageLink: string) => Promise<{
     page: TPage;
     nextPageLink?: string;
 }>;
+
+export { isRestError }
 
 export declare interface ListItems {
     post(options?: ListItemsParameters): StreamableMethod<ListItems200Response>;
@@ -63,6 +67,8 @@ export declare type PaginateReturn<TResult> = TResult extends {
 export declare interface PagingOptions<TResponse> {
     customGetPage?: GetPage<PaginateReturn<TResponse>[]>;
 }
+
+export { RestError }
 
 export declare interface Routes {
     (path: "/azure/client-generator-core/next-link-verb/items"): ListItems;

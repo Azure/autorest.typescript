@@ -1,7 +1,9 @@
 import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
 declare function createClient(options?: NestedDiscriminatorClientOptions): NestedDiscriminatorClient;
@@ -75,6 +77,8 @@ export declare interface GoblinSharkOutput extends SharkOutputParent {
     sharktype: "goblin";
 }
 
+export { isRestError }
+
 export declare type NestedDiscriminatorClient = Client & {
     path: Routes;
 };
@@ -101,6 +105,8 @@ export declare interface PutRecursiveModelBodyParam {
 }
 
 export declare type PutRecursiveModelParameters = PutRecursiveModelBodyParam & RequestParameters;
+
+export { RestError }
 
 export declare interface Routes {
     (path: "/type/model/inheritance/nested-discriminator/model"): GetModel;

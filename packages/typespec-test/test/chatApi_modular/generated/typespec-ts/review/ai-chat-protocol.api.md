@@ -5,9 +5,11 @@
 ```ts
 
 import { ClientOptions } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import { KeyCredential } from '@azure/core-auth';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
+import { RestError } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
 
 // @public
@@ -86,10 +88,14 @@ export interface CreateStreamingOptionalParams extends OperationOptions {
 // @public
 export type FinishReason = "stop" | "length";
 
+export { isRestError }
+
 // @public
 export enum KnownAPIVersion {
     V20231001Preview = "2023-10-01-preview"
 }
+
+export { RestError }
 
 // @public
 export interface StreamingChatCompletionOptionsRecord {

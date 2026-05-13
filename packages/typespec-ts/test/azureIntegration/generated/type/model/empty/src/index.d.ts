@@ -1,7 +1,9 @@
 import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
 declare function createClient(options?: EmptyClientOptions): EmptyClient;
@@ -33,6 +35,8 @@ export declare interface GetEmpty200Response extends HttpResponse {
 
 export declare type GetEmptyParameters = RequestParameters;
 
+export { isRestError }
+
 export declare interface PostRoundTripEmpty {
     post(options: PostRoundTripEmptyParameters): StreamableMethod<PostRoundTripEmpty200Response>;
 }
@@ -62,6 +66,8 @@ export declare interface PutEmptyBodyParam {
 }
 
 export declare type PutEmptyParameters = PutEmptyBodyParam & RequestParameters;
+
+export { RestError }
 
 export declare interface Routes {
     (path: "/type/model/empty/alone"): PutEmpty;

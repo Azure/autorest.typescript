@@ -1,9 +1,11 @@
 import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import type { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
 export declare interface Base64BytesProperty {
@@ -121,6 +123,8 @@ export declare interface HeaderDefaultHeaders {
 }
 
 export declare type HeaderDefaultParameters = HeaderDefaultHeaderParam & RequestParameters;
+
+export { isRestError }
 
 export declare interface PropertyBase64 {
     post(options: PropertyBase64Parameters): StreamableMethod<PropertyBase64200Response>;
@@ -420,6 +424,8 @@ export declare interface ResponseBodyOctetStream200Response extends HttpResponse
 }
 
 export declare type ResponseBodyOctetStreamParameters = RequestParameters;
+
+export { RestError }
 
 export declare interface Routes {
     (path: "/encode/bytes/query/default"): QueryDefault;

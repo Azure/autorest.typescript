@@ -234,13 +234,7 @@ export function getDeserializePrivateFunction(
       name: (response as any).name ?? "",
       type: getTypeExpression(context, response.type)
     };
-  } else if (
-    !response.type &&
-    isHeadOperation(operation) &&
-    context.rlcOptions?.headAsBoolean
-  ) {
-    // HEAD operation with head-as-boolean but wrap-non-model-return disabled:
-    // return plain boolean instead of wrapped { body: boolean }
+  } else if (isHeadAsBooleanOperation(context, operation)) {
     returnType = { name: "", type: "boolean" };
   } else {
     returnType = { name: "", type: "void" };
@@ -268,7 +262,7 @@ export function getDeserializePrivateFunction(
     dependencies.createRestError
   );
   statements.push(
-    `const expectedStatuses = ${getExpectedStatuses(operation)};`
+    `const expectedStatuses = ${getExpectedStatuses(operation, context)};`
   );
   statements.push(
     `if(!expectedStatuses.includes(result.status)){`,
@@ -419,6 +413,9 @@ export function getDeserializePrivateFunction(
           statements.push(
             `return { blobBody: result.blobBody, readableStreamBody: result.readableStreamBody };`
           );
+        } else if (isHeadAsBooleanOperation(context, operation)) {
+          // HEAD has no body; derive boolean from status code
+          statements.push(`return { body: result.status.startsWith("2") };`);
         } else {
           // Non-model response: wrap with body property
           // Generate the appropriate deserialization for the body value.
@@ -445,6 +442,9 @@ export function getDeserializePrivateFunction(
         isAzureCoreErrorType(context.program, deserializedType.__raw)
       ) {
         statements.push(`return ${deserializedRoot}${multipartCastSuffix}`);
+      } else if (isHeadAsBooleanOperation(context, operation)) {
+        // HEAD has no body; derive boolean from status code
+        statements.push(`return result.status.startsWith("2");`);
       } else {
         statements.push(
           `return ${deserializeResponseValue(
@@ -459,18 +459,10 @@ export function getDeserializePrivateFunction(
         );
       }
     }
-  } else if (returnType.type === "void") {
-    statements.push("return;");
-  } else if (
-    !deserializedType &&
-    isHeadOperation(operation) &&
-    context.rlcOptions?.headAsBoolean
-  ) {
+  } else if (isHeadAsBooleanOperation(context, operation)) {
     if (shouldWrap) {
-      // Case 1: wrap-non-model-return + head-as-boolean → return { body: boolean }
       statements.push(`return { body: result.status.startsWith("2") };`);
     } else {
-      // Case 2: head-as-boolean only (no wrap) → return plain boolean
       statements.push(`return result.status.startsWith("2");`);
     }
   } else {
@@ -1061,13 +1053,7 @@ export function getOperationFunction(
       name: "",
       type: `${buildHeaderOnlyResponseType(context, responseHeaders)}`
     };
-  } else if (
-    !response.type &&
-    isHeadOperation(operation) &&
-    context.rlcOptions?.headAsBoolean
-  ) {
-    // HEAD operation with head-as-boolean but wrap-non-model-return disabled:
-    // return plain boolean instead of wrapped { body: boolean }
+  } else if (isHeadAsBooleanOperation(context, operation)) {
     returnType = { name: "", type: "boolean" };
   }
 
@@ -2989,8 +2975,19 @@ export function getPropertyFullName(
  * Get an expression representing an array of expected status codes for the operation
  * @param operation The operation
  */
-export function getExpectedStatuses(operation: ServiceOperation): string {
+export function getExpectedStatuses(
+  operation: ServiceOperation,
+  context?: SdkContext
+): string {
   let statusCodes = operation.operation.responses.map((x) => x.statusCodes);
+  // For HEAD + @responseAsBool / head-as-boolean, 404 is a valid "false" response.
+  if (
+    context &&
+    isHeadAsBooleanOperation(context, operation) &&
+    !statusCodes.includes(404)
+  ) {
+    statusCodes = [...statusCodes, 404];
+  }
   // LROs may call the same path but with GET to get the operation status.
   if (
     (isLroOnlyOperation(operation) || isLroAndPagingOperation(operation)) &&
@@ -3000,11 +2997,13 @@ export function getExpectedStatuses(operation: ServiceOperation): string {
     // POST/PUT/PATCH: Add 200, 201, 202 for polling
     const verb = operation.operation.verb.toLowerCase();
     if (verb === "delete") {
-      statusCodes = Array.from(new Set([...statusCodes, 200, 202]));
+      statusCodes = [...statusCodes, 200, 202];
     } else {
-      statusCodes = Array.from(new Set([...statusCodes, 200, 201, 202]));
+      statusCodes = [...statusCodes, 200, 201, 202];
     }
   }
+
+  statusCodes = Array.from(new Set(statusCodes));
 
   return `[${statusCodes.map((x) => `"${x}"`).join(", ")}]`;
 }
@@ -3207,6 +3206,17 @@ function isHeadOperation(operation: ServiceOperation): boolean {
   return operation.operation.verb.toLowerCase() === "head";
 }
 
+function isHeadAsBooleanOperation(
+  context: SdkContext,
+  operation: ServiceOperation
+): boolean {
+  if (!isHeadOperation(operation)) return false;
+  // @responseAsBool: TCGC promotes response.type to SdkBuiltInType { kind: "boolean" }
+  if ((operation.response.type as any)?.kind === "boolean") return true;
+  // Legacy head-as-boolean emitter option (response.type remains void)
+  return !!context.rlcOptions?.headAsBoolean;
+}
+
 /**
  * Determines whether wrapping the non-model return type is needed for an operation.
  * Returns an object with `shouldWrap` (whether to wrap) and `isBinary` (whether it's a binary response).
@@ -3242,10 +3252,8 @@ export function checkWrapNonModelReturn(
   const { type } = operation.response;
   if (!type) {
     // Special case: HEAD operation with void response → wrap as boolean { body: boolean }
-    // This matches HLC behavior where HEAD operations with no response body
-    // return { body: boolean } indicating if the resource exists (2xx = true, 4xx = false).
-    // Requires `head-as-boolean: true` to be explicitly set in the emitter options.
-    if (isHeadOperation(operation) && context.rlcOptions?.headAsBoolean) {
+    // Triggered by head-as-boolean emitter option.
+    if (isHeadAsBooleanOperation(context, operation)) {
       return { shouldWrap: true, isBinary: false };
     }
     return noWrap; // void return type - no wrap needed

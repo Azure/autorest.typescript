@@ -1,7 +1,9 @@
 import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
 declare function createClient(options?: VisibilityClientOptions): VisibilityClient;
@@ -63,6 +65,8 @@ export declare interface HeadModelQueryParamProperties {
     queryProp: number;
 }
 
+export { isRestError }
+
 export declare interface PatchModel204Response extends HttpResponse {
     status: "204";
 }
@@ -115,6 +119,8 @@ export declare interface ReadOnlyModelOutput {
     readonly optionalNullableIntList?: number[] | null;
     readonly optionalStringRecord?: Record<string, string>;
 }
+
+export { RestError }
 
 export declare interface Routes {
     (path: "/type/model/visibility"): GetModel;

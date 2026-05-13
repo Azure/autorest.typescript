@@ -1,7 +1,9 @@
 import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
 export declare type Bird = BirdParent | SeaGull | Sparrow | Goose | Eagle;
@@ -107,6 +109,8 @@ export declare interface GooseOutput extends BirdOutputParent {
     kind: "goose";
 }
 
+export { isRestError }
+
 export declare interface PutModel204Response extends HttpResponse {
     status: "204";
 }
@@ -126,6 +130,8 @@ export declare interface PutRecursiveModelBodyParam {
 }
 
 export declare type PutRecursiveModelParameters = PutRecursiveModelBodyParam & RequestParameters;
+
+export { RestError }
 
 export declare interface Routes {
     (path: "/type/model/inheritance/single-discriminator/model"): GetModel;

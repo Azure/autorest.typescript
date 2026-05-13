@@ -1,6 +1,8 @@
 import { ClientOptions } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
+import { RestError } from '@azure/core-rest-pipeline';
 
 export declare interface And {
     name: string;
@@ -119,6 +121,8 @@ export declare interface In {
 export declare interface Is {
     name: string;
 }
+
+export { isRestError }
 
 export declare interface Lambda {
     name: string;
@@ -568,6 +572,15 @@ export declare interface Raise {
     name: string;
 }
 
+export declare interface ReservedOperationBodyParamsOperations {
+    withItems: (items: string[], options?: ReservedOperationBodyParamsWithItemsOptionalParams) => Promise<void>;
+}
+
+export declare interface ReservedOperationBodyParamsWithItemsOptionalParams extends OperationOptions {
+}
+
+export { RestError }
+
 export declare interface Return {
     name: string;
 }
@@ -583,6 +596,7 @@ export declare class SpecialWordsClient {
     readonly parameters: ParametersOperations;
     readonly operations: OperationsOperations;
     readonly extensibleStrings: ExtensibleStringsOperations;
+    readonly reservedOperationBodyParams: ReservedOperationBodyParamsOperations;
     readonly modelProperties: ModelPropertiesOperations;
     readonly models: ModelsOperations;
 }

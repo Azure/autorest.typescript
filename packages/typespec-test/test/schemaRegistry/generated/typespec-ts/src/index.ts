@@ -31,3 +31,4 @@ export type {
 } from "./api/schemaOperations/index.js";
 export type { SchemaOperationsOperations } from "./classic/index.js";
 export type { PageSettings, ContinuablePage, PagedAsyncIterableIterator };
+export { RestError, isRestError } from "@azure/core-rest-pipeline";

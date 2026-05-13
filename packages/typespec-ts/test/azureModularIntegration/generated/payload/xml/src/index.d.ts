@@ -1,6 +1,8 @@
 import { ClientOptions } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
+import { RestError } from '@azure/core-rest-pipeline';
 
 export declare interface Author {
     name: string;
@@ -9,6 +11,8 @@ export declare interface Author {
 export declare interface Book {
     title: string;
 }
+
+export { isRestError }
 
 export declare interface ModelWithArrayOfModel {
     items: SimpleModel[];
@@ -385,6 +389,8 @@ export declare interface ModelWithWrappedPrimitiveCustomItemNamesValueOperations
 
 export declare interface ModelWithWrappedPrimitiveCustomItemNamesValuePutOptionalParams extends OperationOptions {
 }
+
+export { RestError }
 
 export declare interface SimpleModel {
     name: string;

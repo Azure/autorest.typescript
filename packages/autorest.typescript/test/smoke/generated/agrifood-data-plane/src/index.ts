@@ -16,5 +16,6 @@ export * from "./outputModels.js";
 export * from "./paginateHelper.js";
 export * from "./pollingHelper.js";
 export * from "./serializeHelper.js";
+export { RestError, isRestError } from "@azure/core-rest-pipeline";
 
 export default AzureAgriFoodPlatformDataPlaneService;

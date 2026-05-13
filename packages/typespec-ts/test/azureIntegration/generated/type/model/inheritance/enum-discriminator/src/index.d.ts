@@ -1,7 +1,9 @@
 import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
 export declare interface Cobra extends SnakeParent {
@@ -116,6 +118,8 @@ export declare interface GoldenOutput extends DogOutputParent {
     kind: "golden";
 }
 
+export { isRestError }
+
 export declare interface PutExtensibleModel204Response extends HttpResponse {
     status: "204";
 }
@@ -135,6 +139,8 @@ export declare interface PutFixedModelBodyParam {
 }
 
 export declare type PutFixedModelParameters = PutFixedModelBodyParam & RequestParameters;
+
+export { RestError }
 
 export declare interface Routes {
     (path: "/type/model/inheritance/enum-discriminator/extensible-enum"): GetExtensibleModel;

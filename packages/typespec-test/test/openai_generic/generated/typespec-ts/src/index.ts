@@ -110,3 +110,4 @@ export type {
   FineTuningJobsOperations,
 } from "./classic/index.js";
 export type { FileContents, NodeReadableStream };
+export { RestError, isRestError } from "@azure/core-rest-pipeline";

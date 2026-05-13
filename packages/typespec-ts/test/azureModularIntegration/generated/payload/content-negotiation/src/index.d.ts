@@ -1,6 +1,8 @@
 import { ClientOptions } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
+import { RestError } from '@azure/core-rest-pipeline';
 
 export declare class ContentNegotiationClient {
     private _client;
@@ -29,11 +31,15 @@ export declare interface DifferentBodyOperations {
     getAvatarAsPng: (options?: DifferentBodyGetAvatarAsPngOptionalParams) => Promise<DifferentBodyGetAvatarAsPngResponse>;
 }
 
+export { isRestError }
+
 declare type NodeReadableStream = NodeJS.ReadableStream;
 
 export declare interface PngImageAsJson {
     content: Uint8Array;
 }
+
+export { RestError }
 
 export declare interface SameBodyGetAvatarAsJpegOptionalParams extends OperationOptions {
 }

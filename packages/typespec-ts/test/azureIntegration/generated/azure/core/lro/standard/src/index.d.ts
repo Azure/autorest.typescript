@@ -6,9 +6,11 @@ import type { CreateHttpPollerOptions } from '@azure/core-lro';
 import type { ErrorModel } from '@azure-rest/core-client';
 import type { ErrorResponse } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { OperationState } from '@azure/core-lro';
 import type { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
 declare function createClient({ apiVersion, ...options }?: StandardClientOptions): StandardClient;
@@ -137,6 +139,8 @@ export declare function getLongRunningPoller<TResult extends CreateOrReplaceLogi
 
 export declare function getLongRunningPoller<TResult extends DeleteLogicalResponse | DeleteDefaultResponse>(client: Client, initialResponse: Delete202Response | DeleteDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 
+export { isRestError }
+
 export declare function isUnexpected(response: CreateOrReplace200Response | CreateOrReplace201Response | CreateOrReplaceLogicalResponse | CreateOrReplaceDefaultResponse): response is CreateOrReplaceDefaultResponse;
 
 export declare function isUnexpected(response: Delete202Response | DeleteLogicalResponse | DeleteDefaultResponse): response is DeleteDefaultResponse;
@@ -157,6 +161,8 @@ export declare interface ResourceOperationStatusUserExportedUserErrorOutput {
     error?: ErrorModel;
     result?: ExportedUserOutput;
 }
+
+export { RestError }
 
 export declare interface Routes {
     (path: "/azure/core/lro/standard/users/{name}", name: string): CreateOrReplace;
