@@ -2997,11 +2997,13 @@ export function getExpectedStatuses(
     // POST/PUT/PATCH: Add 200, 201, 202 for polling
     const verb = operation.operation.verb.toLowerCase();
     if (verb === "delete") {
-      statusCodes = Array.from(new Set([...statusCodes, 200, 202]));
+      statusCodes = [...statusCodes, 200, 202];
     } else {
-      statusCodes = Array.from(new Set([...statusCodes, 200, 201, 202]));
+      statusCodes = [...statusCodes, 200, 201, 202];
     }
   }
+
+  statusCodes = Array.from(new Set(statusCodes));
 
   return `[${statusCodes.map((x) => `"${x}"`).join(", ")}]`;
 }
