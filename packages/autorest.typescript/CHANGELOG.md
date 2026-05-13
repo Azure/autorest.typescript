@@ -2,7 +2,9 @@
 
 - [Feature] Bump TypeSpec dependencies to latest stable. Please refer to [#3959](https://github.com/Azure/autorest.typescript/pull/3959)
 - [Bugfix] Deduplicate statusCodes in getExpectedStatuses. Please refer to [#3956](https://github.com/Azure/autorest.typescript/pull/3956)
+- [Feature] Align Azure monorepo package.json metadata with new repository schema across codegen packages. Please refer to [#3950](https://github.com/Azure/autorest.typescript/pull/3950)
 - [Feature] Add spector integration tests for ClientDoc, ResponseAsBool, Documentation_Lists, and Documentation_TextFormatting. Please refer to [#3944](https://github.com/Azure/autorest.typescript/pull/3944)
+- [Bugfix] Fix nightly CI. Please refer to [#3947](https://github.com/Azure/autorest.typescript/pull/3947)
 - [Bugfix] Stop generating vitest.esm.config.ts. Please refer to [#3941](https://github.com/Azure/autorest.typescript/pull/3941)
 - [Feature] Use `V` prefix for digit-starting members in API version enums. Please refer to [#3939](https://github.com/Azure/autorest.typescript/pull/3939)
 - [Feature] Migrate generated configs to eng/tsconfigs pattern. Please refer to [#3938](https://github.com/Azure/autorest.typescript/pull/3938)
