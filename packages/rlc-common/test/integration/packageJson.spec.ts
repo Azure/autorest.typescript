@@ -132,10 +132,12 @@ describe("Package file generation", () => {
       const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
 
       expect(packageFile).to.have.property("sdk-type", "client");
-      expect(packageFile).to.have.property(
-        "repository",
-        "github:Azure/azure-sdk-for-js"
-      );
+      expect(packageFile).to.have.property("repository");
+      expect(packageFile.repository).to.deep.equal({
+        type: "git",
+        url: "git+https://github.com/Azure/azure-sdk-for-js",
+        directory: "test"
+      });
       expect(packageFile).to.have.property("bugs");
       expect(packageFile.bugs).to.have.property(
         "url",
@@ -149,6 +151,21 @@ describe("Package file generation", () => {
         "prettier",
         "@azure/eslint-plugin-azure-sdk/prettier.json"
       );
+    });
+
+    it("should set a default repository directory when package directory is unavailable", () => {
+      const model = createMockModel({
+        ...baseConfig
+      });
+      const packageFileContent = buildPackageFile(model);
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      expect(packageFile).to.have.property("repository");
+      expect(packageFile.repository).to.deep.equal({
+        type: "git",
+        url: "git+https://github.com/Azure/azure-sdk-for-js",
+        directory: "sdk/"
+      });
     });
 
     it("should have monorepo metadata", () => {
