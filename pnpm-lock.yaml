@@ -408,9 +408,6 @@ importers:
       '@typespec/compiler':
         specifier: ^1.12.0
         version: 1.12.0(@types/node@25.3.5)
-      '@typespec/events':
-        specifier: ^0.82.0
-        version: 0.82.0(@typespec/compiler@1.12.0(@types/node@25.3.5))
       '@typespec/http':
         specifier: ^1.12.0
         version: 1.12.0(@typespec/compiler@1.12.0(@types/node@25.3.5))(@typespec/streams@0.82.0(@typespec/compiler@1.12.0(@types/node@25.3.5)))
@@ -429,12 +426,6 @@ importers:
       '@typespec/spector':
         specifier: 0.1.0-dev.4
         version: 0.1.0-dev.4(@types/node@25.3.5)(@typespec/streams@0.82.0(@typespec/compiler@1.12.0(@types/node@25.3.5)))
-      '@typespec/sse':
-        specifier: ^0.82.0
-        version: 0.82.0(@typespec/compiler@1.12.0(@types/node@25.3.5))(@typespec/events@0.82.0(@typespec/compiler@1.12.0(@types/node@25.3.5)))(@typespec/http@1.12.0(@typespec/compiler@1.12.0(@types/node@25.3.5))(@typespec/streams@0.82.0(@typespec/compiler@1.12.0(@types/node@25.3.5))))(@typespec/streams@0.82.0(@typespec/compiler@1.12.0(@types/node@25.3.5)))
-      '@typespec/streams':
-        specifier: ^0.82.0
-        version: 0.82.0(@typespec/compiler@1.12.0(@types/node@25.3.5))
       '@typespec/ts-http-runtime':
         specifier: ^0.1.0
         version: 0.1.0
