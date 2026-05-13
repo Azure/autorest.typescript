@@ -83,7 +83,7 @@ export async function getWidget(
 }
 ```
 
-# skip: Dual-format error deserialization
+# Dual-format error deserialization
 
 Tests that when an error model uses XML serialization and the error response supports both XML and JSON,
 the generated deserialize function uses runtime content-type detection to choose the correct deserializer.

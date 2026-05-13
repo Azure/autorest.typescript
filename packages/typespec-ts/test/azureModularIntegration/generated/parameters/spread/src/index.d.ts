@@ -1,6 +1,8 @@
 import { ClientOptions } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
+import { RestError } from '@azure/core-rest-pipeline';
 
 export declare interface AliasOperations {
     spreadParameterWithInnerAlias: (id: string, name: string, age: number, xMsTestHeader: string, options?: AliasSpreadParameterWithInnerAliasOptionalParams) => Promise<void>;
@@ -31,6 +33,8 @@ export declare interface BodyParameter {
     name: string;
 }
 
+export { isRestError }
+
 export declare interface ModelOperations {
     spreadCompositeRequestMix: (name: string, testHeader: string, prop: string, options?: ModelSpreadCompositeRequestMixOptionalParams) => Promise<void>;
     spreadCompositeRequest: (name: string, testHeader: string, body: BodyParameter, options?: ModelSpreadCompositeRequestOptionalParams) => Promise<void>;
@@ -53,6 +57,8 @@ export declare interface ModelSpreadCompositeRequestOptionalParams extends Opera
 
 export declare interface ModelSpreadCompositeRequestWithoutBodyOptionalParams extends OperationOptions {
 }
+
+export { RestError }
 
 export declare class SpreadClient {
     private _client;

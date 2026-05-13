@@ -1,9 +1,13 @@
 import { ClientOptions } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
+import { RestError } from '@azure/core-rest-pipeline';
 
 export declare interface GetOptionalParams extends OperationOptions {
 }
+
+export { isRestError }
 
 export declare class JsonClient {
     private _client;
@@ -19,6 +23,8 @@ export declare interface JsonClientOptionalParams extends ClientOptions {
 export declare interface JsonEncodedNameModel {
     defaultName: boolean;
 }
+
+export { RestError }
 
 export declare interface SendOptionalParams extends OperationOptions {
 }

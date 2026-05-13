@@ -5,8 +5,10 @@
 ```ts
 
 import { ClientOptions } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
+import { RestError } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
 
 // @public
@@ -16,6 +18,8 @@ export type ContentTypeEnum = "application/octet-stream" | "application/json; se
 export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
     continuationToken?: string;
 };
+
+export { isRestError }
 
 // @public
 export enum KnownServiceApiVersions {
@@ -35,6 +39,8 @@ export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageS
 export interface PageSettings {
     continuationToken?: string;
 }
+
+export { RestError }
 
 // @public
 export interface Schema {

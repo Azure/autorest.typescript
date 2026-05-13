@@ -12,11 +12,13 @@ import type { CreateHttpPollerOptions } from '@azure/core-lro';
 import type { ErrorModel } from '@azure-rest/core-client';
 import type { ErrorResponse } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { KeyCredential } from '@azure/core-auth';
 import type { OperationState } from '@azure/core-lro';
 import type { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import type { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
 // @public
@@ -355,6 +357,8 @@ export interface HealthInsightsClinicalMatchingClientOptions extends ClientOptio
     apiVersion?: string;
 }
 
+export { isRestError }
+
 // @public (undocumented)
 export function isUnexpected(response: GetJob200Response | GetJobDefaultResponse): response is GetJobDefaultResponse;
 
@@ -393,6 +397,8 @@ export interface PatientRecord {
 
 // @public
 export type RepeatabilityResultOutput = "accepted" | "rejected";
+
+export { RestError }
 
 // @public (undocumented)
 export interface Routes {

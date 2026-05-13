@@ -653,7 +653,7 @@ export async function read(
 }
 ```
 
-# skip: should generate paging if @items defined
+# should generate paging if @items defined
 
 ## TypeSpec
 
@@ -736,7 +736,7 @@ export function test(
 }
 ```
 
-# skip: should generate paging if have extend model
+# should generate paging if have extend model
 
 ## TypeSpec
 

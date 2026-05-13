@@ -6,12 +6,14 @@
 
 import { AbortSignalLike } from '@azure/abort-controller';
 import { ClientOptions } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import { KeyCredential } from '@azure/core-auth';
 import { OperationOptions } from '@azure-rest/core-client';
 import { OperationState } from '@azure/core-lro';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 import { PollerLike } from '@azure/core-lro';
+import { RestError } from '@azure/core-rest-pipeline';
 
 // @public
 export interface AgeMismatchInference extends RadiologyInsightsInference {
@@ -215,6 +217,8 @@ export interface InferRadiologyInsightsOptionalParams extends OperationOptions {
     repeatabilityRequestId?: string;
     updateIntervalInMs?: number;
 }
+
+export { isRestError }
 
 // @public
 export enum KnownApiVersion {
@@ -492,6 +496,8 @@ export interface Resource {
     meta?: Meta;
     resourceType: string;
 }
+
+export { RestError }
 
 // @public
 export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(client: RadiologyInsightsClient, serializedState: string, sourceOperation: (...args: any[]) => PollerLike<OperationState<TResult>, TResult>, options?: RestorePollerOptions<TResult>): PollerLike<OperationState<TResult>, TResult>;

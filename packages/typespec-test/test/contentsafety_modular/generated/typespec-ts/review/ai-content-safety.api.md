@@ -5,9 +5,11 @@
 ```ts
 
 import { ClientOptions } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import { KeyCredential } from '@azure/core-auth';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
+import { RestError } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
 
 // @public
@@ -143,6 +145,8 @@ export interface ImageData {
     content?: Uint8Array;
 }
 
+export { isRestError }
+
 // @public
 export enum KnownVersions {
     V20231001 = "2023-10-01",
@@ -180,6 +184,8 @@ export interface RemoveBlocklistItemsOptionalParams extends OperationOptions {
 export interface RemoveTextBlocklistItemsOptions {
     blocklistItemIds: string[];
 }
+
+export { RestError }
 
 // @public
 export interface ShieldPromptOptionalParams extends OperationOptions {

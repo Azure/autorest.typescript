@@ -12,10 +12,12 @@ import type { CreateHttpPollerOptions } from '@azure/core-lro';
 import type { ErrorModel } from '@azure-rest/core-client';
 import type { ErrorResponse } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { KeyCredential } from '@azure/core-auth';
 import type { OperationState } from '@azure/core-lro';
 import type { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 import type { TokenCredential } from '@azure/core-auth';
 
@@ -505,6 +507,8 @@ export interface ImagePayloadOutput {
 // @public
 export type ImageSize = "256x256" | "512x512" | "1024x1024";
 
+export { isRestError }
+
 // @public (undocumented)
 export function isUnexpected(response: GetEmbeddings200Response | GetEmbeddingsDefaultResponse): response is GetEmbeddingsDefaultResponse;
 
@@ -538,6 +542,8 @@ export interface PromptFilterResultOutput {
     content_filter_results?: ContentFilterResultsOutput;
     prompt_index: number;
 }
+
+export { RestError }
 
 // @public (undocumented)
 export interface Routes {

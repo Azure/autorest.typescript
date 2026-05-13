@@ -36,3 +36,4 @@ export type {
   YTestOperationsOperations,
   BECOperations,
 } from "./classic/index.js";
+export { RestError, isRestError } from "@azure/core-rest-pipeline";

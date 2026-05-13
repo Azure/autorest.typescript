@@ -10,5 +10,6 @@ export * from "./securityKeyRestClient";
 export * from "./parameters";
 export * from "./responses";
 export * from "./clientDefinitions";
+export { RestError, isRestError } from "@azure/core-rest-pipeline";
 
 export default SecurityKeyRestClient;

@@ -4,10 +4,12 @@ import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { CreateHttpPollerOptions } from '@azure/core-lro';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { OperationState } from '@azure/core-lro';
 import type { PathUncheckedResponse } from '@azure-rest/core-client';
 import type { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
 export declare interface AccessRule {
@@ -270,6 +272,8 @@ export declare interface IdentityOutput {
     readonly tenantId?: string;
     type?: ResourceIdentityTypeOutput;
 }
+
+export { isRestError }
 
 export declare type IssueType = string;
 
@@ -820,6 +824,8 @@ export declare interface ResourceOutput {
 export declare type ResourceProvisioningState = string;
 
 export declare type ResourceProvisioningStateOutput = string;
+
+export { RestError }
 
 export declare interface Routes {
     (path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.Resources/topLevelTrackedResources/{topLevelTrackedResourceName}", subscriptionId: string, resourceGroupName: string, topLevelTrackedResourceName: string): TopLevelGet;

@@ -1,8 +1,10 @@
 import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
 declare function createClient(options?: MediaTypeClientOptions): MediaTypeClient;
@@ -16,12 +18,16 @@ export declare interface GetAsText {
     get(options?: StringBodyGetAsTextParameters): StreamableMethod<StringBodyGetAsText200Response>;
 }
 
+export { isRestError }
+
 export declare type MediaTypeClient = Client & {
     path: Routes;
 };
 
 export declare interface MediaTypeClientOptions extends ClientOptions {
 }
+
+export { RestError }
 
 export declare interface Routes {
     (path: "/payload/media-type/string-body/sendAsText"): SendAsText;

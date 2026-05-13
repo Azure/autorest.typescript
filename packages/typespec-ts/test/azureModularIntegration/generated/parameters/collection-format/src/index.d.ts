@@ -1,6 +1,8 @@
 import { ClientOptions } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
+import { RestError } from '@azure/core-rest-pipeline';
 
 export declare class CollectionFormatClient {
     private _client;
@@ -20,6 +22,8 @@ export declare interface HeaderOperations {
     csv: (colors: string[], options?: HeaderCsvOptionalParams) => Promise<void>;
 }
 
+export { isRestError }
+
 export declare interface QueryCsvOptionalParams extends OperationOptions {
 }
 
@@ -38,5 +42,7 @@ export declare interface QueryPipesOptionalParams extends OperationOptions {
 
 export declare interface QuerySsvOptionalParams extends OperationOptions {
 }
+
+export { RestError }
 
 export { }

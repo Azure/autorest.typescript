@@ -1,4 +1,8 @@
-import { NameType, normalizeName } from "@azure-tools/rlc-common";
+import {
+  NameType,
+  normalizeName,
+  isAzurePackage
+} from "@azure-tools/rlc-common";
 import { Project, SourceFile } from "ts-morph";
 import { getClassicalClientName } from "./helpers/namingHelpers.js";
 import { ModularEmitterOptions } from "./interfaces.js";
@@ -32,6 +36,7 @@ export function buildRootIndex(
   if (!clientMap) {
     // we still need to export the models if no client is provided
     exportModels(emitterOptions, rootIndexFile);
+    exportRestErrorTypes(context, rootIndexFile);
     return;
   }
   const project = useContext("outputProject");
@@ -88,6 +93,7 @@ export function buildRootIndex(
   exportPagingTypes(context, rootIndexFile);
   exportFileContentsType(context, rootIndexFile);
   exportAzureCloudTypes(context, rootIndexFile);
+  exportRestErrorTypes(context, rootIndexFile);
 }
 
 function exportModels(
@@ -122,6 +128,22 @@ function exportAzureCloudTypes(context: SdkContext, rootIndexFile: SourceFile) {
       [resolveReference(CloudSettingHelpers.AzureSupportedClouds)],
       true
     );
+  }
+}
+
+function exportRestErrorTypes(context: SdkContext, rootIndexFile: SourceFile) {
+  if (!isAzurePackage({ options: context.rlcOptions })) {
+    return;
+  }
+  const existingExports = getExistingExports(rootIndexFile);
+  const namedExports = ["RestError", "isRestError"].filter(
+    (name) => !existingExports.has(name)
+  );
+  if (namedExports.length > 0) {
+    rootIndexFile.addExportDeclaration({
+      moduleSpecifier: "@azure/core-rest-pipeline",
+      namedExports
+    });
   }
 }
 

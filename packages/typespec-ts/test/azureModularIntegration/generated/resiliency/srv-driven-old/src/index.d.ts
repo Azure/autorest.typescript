@@ -1,6 +1,8 @@
 import { ClientOptions } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
+import { RestError } from '@azure/core-rest-pipeline';
 
 export declare interface FromNoneOptionalParams extends OperationOptions {
 }
@@ -11,6 +13,8 @@ export declare interface FromOneOptionalOptionalParams extends OperationOptions 
 
 export declare interface FromOneRequiredOptionalParams extends OperationOptions {
 }
+
+export { isRestError }
 
 export declare enum KnownVersions {
     V1 = "v1"
@@ -28,5 +32,7 @@ export declare class ResiliencyServiceDrivenClient {
 export declare interface ResiliencyServiceDrivenClientOptionalParams extends ClientOptions {
     apiVersion?: string;
 }
+
+export { RestError }
 
 export { }

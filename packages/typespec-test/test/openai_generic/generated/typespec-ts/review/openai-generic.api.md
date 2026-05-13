@@ -5,9 +5,11 @@
 ```ts
 
 import { ClientOptions } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import { KeyCredential } from '@azure/core-auth';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
+import { RestError } from '@azure/core-rest-pipeline';
 
 // @public
 export interface AudioOperations {
@@ -664,6 +666,8 @@ export interface ImagesResponse {
     data: Image[];
 }
 
+export { isRestError }
+
 // @public
 export interface ListFilesResponse {
     // (undocumented)
@@ -791,6 +795,8 @@ export interface OpenAIFile {
 
 // @public
 export type Prompt = (string | string[] | number[] | number[][]) | null;
+
+export { RestError }
 
 // @public
 export type Stop = (string | string[]) | null;

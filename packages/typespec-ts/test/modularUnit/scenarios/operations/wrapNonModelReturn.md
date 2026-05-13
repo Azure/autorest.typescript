@@ -1093,7 +1093,7 @@ export function _headResourceSend(
 export async function _headResourceDeserialize(
   result: PathUncheckedResponse,
 ): Promise<HeadResourceResponse> {
-  const expectedStatuses = ["204"];
+  const expectedStatuses = ["204", "404"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
@@ -1160,7 +1160,7 @@ export function _headResourceSend(
 }
 
 export async function _headResourceDeserialize(result: PathUncheckedResponse): Promise<boolean> {
-  const expectedStatuses = ["204"];
+  const expectedStatuses = ["204", "404"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }

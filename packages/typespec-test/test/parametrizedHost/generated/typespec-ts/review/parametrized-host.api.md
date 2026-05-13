@@ -5,8 +5,10 @@
 ```ts
 
 import { ClientOptions } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
+import { RestError } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
 
 // @public
@@ -23,6 +25,8 @@ export interface ConfidentialLedgerListCollectionsOptionalParams extends Operati
 export interface ConfidentialLedgerOperations {
     listCollections: (options?: ConfidentialLedgerListCollectionsOptionalParams) => Promise<Collection[]>;
 }
+
+export { isRestError }
 
 // @public
 export enum KnownVersions {
@@ -46,6 +50,8 @@ export interface ParametrizedHostClientOptionalParams extends ClientOptions {
     // (undocumented)
     sufix?: string;
 }
+
+export { RestError }
 
 // (No @packageDocumentation comment for this package)
 

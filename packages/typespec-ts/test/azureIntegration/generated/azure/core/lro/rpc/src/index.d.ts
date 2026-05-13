@@ -6,9 +6,11 @@ import type { CreateHttpPollerOptions } from '@azure/core-lro';
 import type { ErrorModel } from '@azure-rest/core-client';
 import type { ErrorResponse } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { OperationState } from '@azure/core-lro';
 import type { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
 declare function createClient({ apiVersion, ...options }?: RpcClientOptions): RpcClient;
@@ -23,6 +25,8 @@ export declare interface GenerationResultOutput {
 }
 
 export declare function getLongRunningPoller<TResult extends LongRunningRpcLogicalResponse | LongRunningRpcDefaultResponse>(client: Client, initialResponse: LongRunningRpc202Response | LongRunningRpcDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+
+export { isRestError }
 
 export declare function isUnexpected(response: LongRunningRpc202Response | LongRunningRpcLogicalResponse | LongRunningRpcDefaultResponse): response is LongRunningRpcDefaultResponse;
 
@@ -69,6 +73,8 @@ export declare interface ResourceOperationStatusGenerationResponseGenerationResu
     error?: ErrorModel;
     result?: GenerationResultOutput;
 }
+
+export { RestError }
 
 export declare interface Routes {
     (path: "/azure/core/lro/rpc/generations:submit"): LongRunningRpc;

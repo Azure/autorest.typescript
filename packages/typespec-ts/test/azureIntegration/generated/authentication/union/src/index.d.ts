@@ -1,8 +1,10 @@
 import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { KeyCredential } from '@azure/core-auth';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 import type { TokenCredential } from '@azure/core-auth';
 
@@ -15,6 +17,10 @@ export declare interface AuthUnionClientOptions extends ClientOptions {
 
 declare function createClient(credentials: TokenCredential | KeyCredential, options?: AuthUnionClientOptions): AuthUnionClient;
 export default createClient;
+
+export { isRestError }
+
+export { RestError }
 
 export declare interface Routes {
     (path: "/authentication/union/validkey"): ValidKey;

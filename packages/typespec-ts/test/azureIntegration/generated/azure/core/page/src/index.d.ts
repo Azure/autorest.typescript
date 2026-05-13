@@ -2,9 +2,11 @@ import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { ErrorResponse } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { PathUncheckedResponse } from '@azure-rest/core-client';
 import type { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
 export declare type AzureCorePageClient = Client & {
@@ -27,6 +29,8 @@ export declare type GetPage<TPage> = (pageLink: string) => Promise<{
     page: TPage;
     nextPageLink?: string;
 }>;
+
+export { isRestError }
 
 export declare function isUnexpected(response: ListWithPage200Response | ListWithPageDefaultResponse): response is ListWithPageDefaultResponse;
 
@@ -243,6 +247,8 @@ export declare interface ParameterizedNextLinkPagingResultOutput {
     values: Array<UserOutput>;
     nextLink: string;
 }
+
+export { RestError }
 
 export declare interface Routes {
     (path: "/azure/core/page/page"): ListWithPage;

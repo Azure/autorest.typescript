@@ -20,3 +20,4 @@ export type {
   CreateOptionalParams,
   CreateStreamingOptionalParams,
 } from "./api/index.js";
+export { RestError, isRestError } from "@azure/core-rest-pipeline";

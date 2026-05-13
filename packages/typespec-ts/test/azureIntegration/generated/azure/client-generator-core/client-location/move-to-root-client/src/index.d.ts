@@ -1,7 +1,9 @@
 import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
 declare function createClient(options?: MoveToRootClientClientOptions): MoveToRootClientClient;
@@ -27,12 +29,16 @@ export declare interface GetResource204Response extends HttpResponse {
 
 export declare type GetResourceParameters = RequestParameters;
 
+export { isRestError }
+
 export declare type MoveToRootClientClient = Client & {
     path: Routes;
 };
 
 export declare interface MoveToRootClientClientOptions extends ClientOptions {
 }
+
+export { RestError }
 
 export declare interface Routes {
     (path: "/azure/client-generator-core/client-location/move-to-root-client/resource"): GetResource;
