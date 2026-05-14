@@ -1030,9 +1030,7 @@ export function _disableNodeSchedulingSend(
           : {}),
         ...options.requestOptions?.headers,
       },
-      body: !options["body"]
-        ? options["body"]
-        : nodeDisableSchedulingOptionsSerializer(options["body"]),
+      body: !options?.body ? options?.body : nodeDisableSchedulingOptionsSerializer(options?.body),
     });
 }
 
@@ -1099,7 +1097,7 @@ export function _reimageNodeSend(
           : {}),
         ...options.requestOptions?.headers,
       },
-      body: !options["body"] ? options["body"] : nodeReimageOptionsSerializer(options["body"]),
+      body: !options?.body ? options?.body : nodeReimageOptionsSerializer(options?.body),
     });
 }
 
@@ -1165,7 +1163,7 @@ export function _rebootNodeSend(
           : {}),
         ...options.requestOptions?.headers,
       },
-      body: !options["body"] ? options["body"] : nodeRebootOptionsSerializer(options["body"]),
+      body: !options?.body ? options?.body : nodeRebootOptionsSerializer(options?.body),
     });
 }
 
@@ -4001,9 +3999,7 @@ export function _terminateJobSend(
           : {}),
         ...options.requestOptions?.headers,
       },
-      body: !options["body"]
-        ? options["body"]
-        : batchJobTerminateOptionsSerializer(options["body"]),
+      body: !options?.body ? options?.body : batchJobTerminateOptionsSerializer(options?.body),
     });
 }
 

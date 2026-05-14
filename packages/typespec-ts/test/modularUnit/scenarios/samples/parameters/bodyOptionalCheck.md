@@ -108,7 +108,7 @@ export function _readSend(
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
       headers: { accept: "application/json", ...options.requestOptions?.headers },
-      body: !options["widget"] ? options["widget"] : bodyParameterSerializer(options["widget"]),
+      body: !options?.widget ? options?.widget : bodyParameterSerializer(options?.widget),
     });
 }
 

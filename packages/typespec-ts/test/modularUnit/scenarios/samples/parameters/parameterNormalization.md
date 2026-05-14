@@ -80,9 +80,9 @@ export function _postSend(
         ...(options?.headerParam !== undefined ? { header_param: options?.headerParam } : {}),
         ...options.requestOptions?.headers,
       },
-      body: !options["listCredentialsRequest"]
-        ? options["listCredentialsRequest"]
-        : listCredentialsRequestSerializer(options["listCredentialsRequest"]),
+      body: !options?.listCredentialsRequest
+        ? options?.listCredentialsRequest
+        : listCredentialsRequestSerializer(options?.listCredentialsRequest),
     });
 }
 
