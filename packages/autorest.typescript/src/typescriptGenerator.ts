@@ -21,7 +21,10 @@ import { generateSampleTestFile } from "./generators/test/sampleTestGenerator";
 import {
   generateTsConfig,
   generateTsSampleConfig,
-  generateTsSrcConfig,
+  generateTsSrcCjsConfig,
+  generateTsSrcBrowserConfig,
+  generateTsSrcEsmConfig,
+  generateTsSrcReactNativeConfig,
   generateTsSnippetsConfig
 } from "./generators/static/tsConfigFileGenerator";
 import { generateRollupConfig } from "./generators/static/rollupConfigFileGenerator";
@@ -102,7 +105,10 @@ export async function generateTypeScriptLibrary(
   }
   generateTsConfig(project);
   if (azureSdkForJs && generateMetadata) {
-    generateTsSrcConfig(project);
+    generateTsSrcEsmConfig(project);
+    generateTsSrcBrowserConfig(project);
+    generateTsSrcReactNativeConfig(project);
+    generateTsSrcCjsConfig(project);
     if (generateSample) {
       generateTsSampleConfig(project);
     }

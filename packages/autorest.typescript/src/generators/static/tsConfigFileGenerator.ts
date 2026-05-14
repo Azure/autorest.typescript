@@ -27,14 +27,12 @@ const highLevelTsConfig: Record<string, any> = {
 
 const highLevelTsConfigInAzureSdkForJs: Record<string, any> = {
   references: [
-    {
-      path: "./tsconfig.src.json"
-    }
-  ]
-}
-
-const highLevelTsSrcConfig: Record<string, any> = {
-  extends: "../../../tsconfig.lib.json"
+    { path: "./config/tsconfig.src.esm.json" },
+    { path: "./config/tsconfig.src.browser.json" },
+    { path: "./config/tsconfig.src.react-native.json" },
+    { path: "./config/tsconfig.src.cjs.json" }
+  ],
+  files: []
 }
 
 const highLevelTsSampleConfig: Record<string, any> = {
@@ -94,10 +92,52 @@ export function generateTsConfig(project: Project) {
   });
 }
 
-export function generateTsSrcConfig(project: Project) {
-  project.createSourceFile("tsconfig.src.json", JSON.stringify(highLevelTsSrcConfig, null, 2), {
-    overwrite: true
-  });
+export function generateTsSrcEsmConfig(project: Project) {
+  project.createSourceFile(
+    "config/tsconfig.src.esm.json",
+    JSON.stringify(
+      { extends: "../../../../eng/tsconfigs/src.esm.json", include: ["../src/index.ts"] },
+      null,
+      2
+    ),
+    { overwrite: true }
+  );
+}
+
+export function generateTsSrcBrowserConfig(project: Project) {
+  project.createSourceFile(
+    "config/tsconfig.src.browser.json",
+    JSON.stringify(
+      { extends: "../../../../eng/tsconfigs/src.browser.json", include: ["../src/index.ts"] },
+      null,
+      2
+    ),
+    { overwrite: true }
+  );
+}
+
+export function generateTsSrcReactNativeConfig(project: Project) {
+  project.createSourceFile(
+    "config/tsconfig.src.react-native.json",
+    JSON.stringify(
+      { extends: "../../../../eng/tsconfigs/src.react-native.json", include: ["../src/index.ts"] },
+      null,
+      2
+    ),
+    { overwrite: true }
+  );
+}
+
+export function generateTsSrcCjsConfig(project: Project) {
+  project.createSourceFile(
+    "config/tsconfig.src.cjs.json",
+    JSON.stringify(
+      { extends: "../../../../eng/tsconfigs/src.cjs.json", include: ["../src/index.ts"] },
+      null,
+      2
+    ),
+    { overwrite: true }
+  );
 }
 export function generateTsSampleConfig(project: Project) {
   const {

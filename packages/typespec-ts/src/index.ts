@@ -638,11 +638,19 @@ export async function $onEmit(context: EmitContext) {
         );
       }
 
-      // Update warp.config.yml for Azure monorepo packages
+      // Update warp.config.yml and config/tsconfig.src.*.json for Azure monorepo packages
       if (option.azureSdkForJs) {
         updateBuilders.push((model: RLCModel) =>
           buildWarpConfig(model, modularPackageInfo)
         );
+        updateBuilders.push(buildTsConfig);
+        updateBuilders.push(buildTsSrcEsmConfig);
+        updateBuilders.push(buildTsSrcBrowserConfig);
+        updateBuilders.push(buildTsSrcReactNativeConfig);
+        updateBuilders.push(buildTsSrcCjsConfig);
+        if (option.generateSample) {
+          updateBuilders.push(buildTsSampleConfig);
+        }
       }
 
       // If the client name changed, regenerate the README and snippets completely;
