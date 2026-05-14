@@ -1,5 +1,6 @@
-## 0.53.0 (2026-05-13)
+## 0.53.0 (2026-05-14)
 
+- [Bugfix] Fix body parameter accessor to use methodParameterSegments. Please refer to [#3961](https://github.com/Azure/autorest.typescript/pull/3961)
 - [Feature] Bump TypeSpec dependencies to latest stable. Please refer to [#3959](https://github.com/Azure/autorest.typescript/pull/3959)
 - [Bugfix] Deduplicate statusCodes in getExpectedStatuses. Please refer to [#3956](https://github.com/Azure/autorest.typescript/pull/3956)
 - [Feature] Align Azure monorepo package.json metadata with new repository schema across codegen packages. Please refer to [#3950](https://github.com/Azure/autorest.typescript/pull/3950)
