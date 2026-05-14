@@ -1,6 +1,6 @@
 ## 6.0.71 (2026-05-14)
 
-- [Bugfix] Fix dependencies error. Please refer to [#3961](https://github.com/Azure/autorest.typescript/pull/3961)
+- [Bugfix] Fix dependencies error. Please refer to [#3963](https://github.com/Azure/autorest.typescript/pull/3963)
 
 ## 6.0.70 (2026-05-14)
 
