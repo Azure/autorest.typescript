@@ -15,12 +15,12 @@ pool:
 stages:
   - stage: NightlyCI
     jobs:
-      - job: CadlRanchTest
+      - job: SpectorTest
         steps:
           - template: nightly-prepare.yml
           - script: npm run integration-test-ci
             workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
-            displayName: "Run all Cadl-ranch test cases"
+            displayName: "Run all Spector test cases"
       - job: UnitTest
         steps:
           - template: nightly-prepare.yml

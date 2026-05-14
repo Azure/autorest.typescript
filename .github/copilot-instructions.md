@@ -22,8 +22,8 @@ This repository focuses on the TypeSpec TypeScript emitter, which generates Type
   - ALWAYS run `npm run copy:typespec` first before integration tests (takes <1 second)
   - RLC Integration: `npm run integration-test-ci:rlc` -- takes ~30+ minutes. NEVER CANCEL. Set timeout to 60+ minutes.
   - Azure RLC Integration: `npm run integration-test-ci:azure-rlc` -- takes ~30+ minutes. NEVER CANCEL. Set timeout to 60+ minutes.
-  - Modular Integration: `npm run integration-test-ci:modular` -- takes ~30+ minutes. NEVER CANCEL. Set timeout to 60+ minutes.
-  - Azure Modular Integration: `npm run integration-test-ci:azure-modular` -- takes ~30+ minutes. NEVER CANCEL. Set timeout to 60+ minutes.
+  - JS Emitter Integration: `npm run integration-test-ci:modular` -- takes ~30+ minutes. NEVER CANCEL. Set timeout to 60+ minutes.
+  - Azure JS Emitter Integration: `npm run integration-test-ci:azure-modular` -- takes ~30+ minutes. NEVER CANCEL. Set timeout to 60+ minutes.
   - All integration tests: `npm run integration-test-ci` -- takes ~1+ hour. NEVER CANCEL. Set timeout to 90+ minutes.
 
 - **Validation steps before committing:**
@@ -35,17 +35,15 @@ This repository focuses on the TypeSpec TypeScript emitter, which generates Type
 
 ## Key Concepts
 
-We have two main SDK styles in this repository. One is the [REST Level Client (RLC) SDK](https://devblogs.microsoft.com/azure-sdk/azure-rest-libraries-for-javascript/), and the other is the [Modular SDK](https://devblogs.microsoft.com/azure-sdk/azure-sdk-modularized-libraries-for-javascript/).
+We have two main SDK styles in this repository. One is the [REST Level Client (RLC) SDK](https://devblogs.microsoft.com/azure-sdk/azure-rest-libraries-for-javascript/), and the other is the [TypeSpec-generated SDK](https://devblogs.microsoft.com/azure-sdk/azure-sdk-modularized-libraries-for-javascript/) (previously referred to as "Modular SDK").
 
 1. **REST Level Client (RLC) SDK**
-
    - Low-level, direct mapping to REST API operations
    - One-to-one correspondence with API endpoints
    - Follows REST Level Client patterns
    - Minimal abstraction over HTTP operations
 
-2. **Modular SDK**
-
+2. **TypeSpec-generated SDK** _(previously "Modular SDK")_
    - Higher-level abstraction over REST API operations
    - Modularized design for better organization
    - Provides a more user-friendly API surface
@@ -54,23 +52,20 @@ We have two main SDK styles in this repository. One is the [REST Level Client (R
 ## Project Structure
 
 - `packages/typespec-ts/` - TypeSpec TypeScript emitter
-
   - Generates TypeScript http clients from TypeSpec definitions and this is a plugin to the TypeSpec compiler which is called by the compiler with the compiled program as output:
-    - Both RLC and Modular SDK generation
+    - Both RLC and TypeSpec-generated SDK generation
     - RLC provides low-level REST client operations
-    - Modular SDK offers modern, enhanced developer experience
+    - TypeSpec-generated SDK offers modern, enhanced developer experience
 
 - `packages/rlc-common/` - Common utilities for REST Level Client generation
-
-  - Some shared utilities among RLC and Modular SDK
+  - Some shared utilities among RLC and TypeSpec-generated SDK
   - Files generation changes and utilities specific to RLC go here
 
 - `packages/typespec-test/` - Smoke test for TypeSpec TypeScript emitter
-
   - Under `packages/typespec-test/test/` directory, it contains various test scenarios for validating the TypeSpec TypeScript emitter
   - For each test scenario, the `spec` folder contains the TypeSpec definitions and the `generated` folder contains the generated TypeScript client libraries
   - Each test scenario is designed to ensure the generated client libraries are correct, buildable, and function as expected
-  - The test scenarios cover both RLC and Modular SDK generation
+  - The test scenarios cover both RLC and TypeSpec-generated SDK generation
 
 - `packages/autorest.typescript/` - AutoRest TypeScript generator
   > **Note:** @autorest/typescript is in maintenance mode and should not be used as reference nor edited unless explicitly requested.
@@ -98,7 +93,7 @@ The TypeSpec test project (`typespec-test`) which is smoke test for TypeSpec emi
 
 The TypeSpec TypeScript emitter (`typespec-ts`) generates TypeScript client libraries from [TypeSpec](https://typespec.io/) specifications. The emitter supports two distinct SDK styles: RLC libraries and Modular libraries.
 
-## Implementing New Features in the TypeSpec Emitter
+## Implementing New Features in the TypeSpec JS Emitter
 
 When implementing new features (e.g., serialization formats, helpers, utilities), follow these patterns:
 
@@ -107,6 +102,7 @@ When implementing new features (e.g., serialization formats, helpers, utilities)
 Static helpers are runtime utilities that get copied into generated client libraries. They are used for common operations like serialization, pagination, polling, etc.
 
 **Key directories:**
+
 - `packages/typespec-ts/static/static-helpers/` - Runtime helper implementations (TypeScript source files)
 - `packages/typespec-ts/src/modular/static-helpers-metadata.ts` - Registry of available static helpers with their metadata
 - `packages/typespec-ts/src/modular/external-dependencies.ts` - External npm package dependencies that helpers may need
@@ -119,6 +115,7 @@ Static helpers are runtime utilities that get copied into generated client libra
 4. **Update `load-static-helpers.ts`** in `src/framework/` to include the new helper in the loading logic
 
 **Reference framework pattern:**
+
 - Use `refkey("HelperName")` to create references to helpers
 - Use `resolveReference(context, refkey("HelperName"))` to resolve and import helpers in generated code
 - The framework automatically handles imports and deduplication
@@ -128,12 +125,14 @@ Static helpers are runtime utilities that get copied into generated client libra
 Unit tests for static helpers are in `packages/typespec-ts/test-next/unit/static-helpers/`.
 
 **Running specific unit tests:**
+
 ```bash
 cd packages/typespec-ts
 npx vitest run ./test-next/unit/static-helpers/your-helper.test.ts --reporter=verbose
 ```
 
 **Test patterns:**
+
 - Import directly from the static helper source: `import { ... } from "../../../static/static-helpers/..."`
 - Test both serialization and deserialization round-trips
 - Test edge cases: null/undefined, empty arrays, whitespace preservation, etc.
@@ -144,7 +143,7 @@ To regenerate a specific integration test client (faster than regenerating all):
 
 ```bash
 cd packages/typespec-ts
-npx tsx ./test/commands/gen-cadl-ranch.js --tag=azure-modular --filter=payload/xml
+npx tsx ./test/commands/gen-spector.js --tag=azure-modular --filter=payload/xml
 ```
 
 Replace `payload/xml` with the path of the specific test you want to regenerate.
@@ -152,15 +151,16 @@ Replace `payload/xml` with the path of the specific test you want to regenerate.
 ### Integration Test Locations
 
 - **RLC tests:** `packages/typespec-ts/test/integration/*.spec.ts`
-- **Modular tests:** `packages/typespec-ts/test/modularIntegration/*.spec.ts`
+- **JS Emitter tests:** `packages/typespec-ts/test/modularIntegration/*.spec.ts`
 - **Azure RLC tests:** `packages/typespec-ts/test/azureIntegration/*.spec.ts`
-- **Azure Modular tests:** `packages/typespec-ts/test/azureModularIntegration/*.spec.ts`
+- **Azure JS Emitter tests:** `packages/typespec-ts/test/azureModularIntegration/*.spec.ts`
 
 **Generated client code locations:**
+
 - RLC: `packages/typespec-ts/test/integration/generated/`
-- Modular: `packages/typespec-ts/test/modularIntegration/generated/`
+- JS Emitter: `packages/typespec-ts/test/modularIntegration/generated/`
 - Azure RLC: `packages/typespec-ts/test/azureIntegration/generated/`
-- Azure Modular: `packages/typespec-ts/test/azureModularIntegration/generated/`
+- Azure JS Emitter: `packages/typespec-ts/test/azureModularIntegration/generated/`
 
 ### Serialization and Content Type Detection
 
@@ -169,7 +169,6 @@ When implementing format-specific serialization (JSON, XML, etc.):
 1. **TCGC metadata:** Use `@azure-tools/typespec-client-generator-core` to get serialization options (e.g., `serializationOptions.xml`)
 2. **Content type detection:** Check `contentTypes` array on operations to determine request/response format
 3. **Conditional serialization:** Generate serializers that detect content type at runtime when operations support multiple formats
-
 
 ## How to Upgrade TypeSpec dependencies for @azure-tools/typespec-ts (packagest/typespec-ts)
 
@@ -188,17 +187,17 @@ When upgrading TypeSpec dependencies only work on `packages/typespec-ts/` and `p
 - Do run `pnpm format` to format the codebase.
 - Do run `npm run unit-test` under `packages/typespec-ts/` to validate our Unit Test and follow the below instructions to fix any test failures.
 - Do run `npm run copy:typespec` to copy the files which integration test may use.
-- Do run `npm run integration-test-ci:azure-modular` under `packages/typespec-ts/` to validate our Azure Modular Integration Test and follow the below instructions to fix any test failures. Please do not skip this test. This would take around 30 min.
-- Do run `npm run integration-test-ci:modular` under `packages/typespec-ts/` to validate our Modular Integration Test and follow the below instructions to fix any test failures. Please do not skip this test. This would take around 30 min.
+- Do run `npm run integration-test-ci:azure-modular` under `packages/typespec-ts/` to validate our Azure JS Emitter Integration Test and follow the below instructions to fix any test failures. Please do not skip this test. This would take around 30 min.
+- Do run `npm run integration-test-ci:modular` under `packages/typespec-ts/` to validate our JS Emitter Integration Test and follow the below instructions to fix any test failures. Please do not skip this test. This would take around 30 min.
 - Do run `npm run integration-test-ci:rlc` under `packages/typespec-ts/` to validate our RLC Integration Test and follow the below instructions to fix any test failures. Please do not skip this test. This would take around 30 min.
 - Do run `npm run integration-test-ci:azure-rlc` under `packages/typespec-ts/` to validate our Azure RLC Integration Test and follow the below instructions to fix any test failures. Please do not skip this test. This would take around 30 min.
 - Do wait all 4 integration tests to be done under `packages/typespec-ts/` even the integration would take around 1 hour or skip 4 integration testings under `packages/typespec-ts/`
 - Do run `npm run lint` under `packages/typespec-ts/` to run the linter.
 - Do run `npm run smoke-test` under `packages/typespec-test/` to validate our test scenarios for typespec and if any issue try to fix it. **Wait until you see "All specs succeeded!" message before proceeding.**
-- RLC integration testing finish is NOT enough and please pay patient to wait the Modular and Azure Modular integration completed.
+- RLC integration testing finish is NOT enough and please pay patient to wait the JS Emitter and Azure JS Emitter integration completed.
 - Do not write a summery if all 4 integration testings or smoke testing are still in progress and don't write final progress update if integration testing are still in progress and please monitor the job to be done not just running successfully
 - Do wait around 1 hour that all tasks are completed not just start running
-- Follow my instructions exactly and please don't skip modular or azure integrations and wait all 4 integrations
+- Follow my instructions exactly and please don't skip JS Emitter or Azure JS Emitter integrations and wait all 4 integrations
 - Don't return or terminal AI during monitoring, please monitor the 4 integration status every 30 seconds until they finish
 - Fix any issues that arise during the process, and ensure all tests pass before considering the upgrade complete
 
@@ -240,6 +239,7 @@ When preparing a release, we need to bump package versions and update changelogs
    - Update `packages/typespec-ts/CHANGELOG.md`
 
 5. **Example Changelog Format**
+
    ```md
    ## 0.42.2 (2025-08-08)
 
@@ -290,16 +290,16 @@ The tests in the TypeSpec TypeScript emitter can be categorized into:
 We have two types of unit tests in the TypeSpec TypeScript emitter:
 
 - **RLC Unit Tests** - Located in `packages/typespec-ts/test/unit`. These tests validate the functionality of the REST Level Client (RLC) components.
-- **Modular Unit Tests** - Located in `packages/typespec-ts/test/modularUnit`. These tests validate the functionality of the Modular SDK components.
+- **JS Emitter Unit Tests** - Located in `packages/typespec-ts/test/modularUnit`. These tests validate the functionality of the TypeSpec-generated SDK components.
 
 The following commands should be ran under `packages/typespec-ts/`. To fix these tests, follow these steps:
 
-- Do read existing RLC Unit tests in `packages/typespec-ts/test/unit` and Modular Unit tests in `packages/typespec-ts/test/modularUnit` to understand the expected behavior.
-- Do run `npm run unit-test` to run both and `npm run test:rlc` to run the RLC unit tests and `npm run test:modular` to run the Modular unit tests.
+- Do read existing RLC Unit tests in `packages/typespec-ts/test/unit` and JS Emitter Unit tests in `packages/typespec-ts/test/modularUnit` to understand the expected behavior.
+- Do run `npm run unit-test` to run both and `npm run test:rlc` to run the RLC unit tests and `npm run test:modular` to run the JS Emitter unit tests.
 - Do identify the failing tests and read the error messages to understand the root cause.
-- For Modular failures, if the generated code is not as expected, you could try to regenerate the code by running `export SCENARIOS_UPDATE=true && npm run test:modular` to refresh the generated code.
+- For JS Emitter unit test failures, if the generated code is not as expected, you could try to regenerate the code by running `export SCENARIOS_UPDATE=true && npm run test:modular` to refresh the generated code.
 - For RLC failures, if the generated code is not as expected, you need to update the relevant typescript codes and usually it is the second parameter in `assertEqualContent` function in the test files.
-- If the test failures are due to that generated code has compile issues or can't format correctly, then this usually means this is an emitter issue and may be fixed under `packages/typespec-ts/src/modular` for Modular or `packages/typespec-ts/src/rlc/transform/` for RLC.
+- If the test failures are due to that generated code has compile issues or can't format correctly, then this usually means this is an emitter issue and may be fixed under `packages/typespec-ts/src/modular` for JS Emitter or `packages/typespec-ts/src/rlc/transform/` for RLC.
 - After fixing the issues, run `npm run format` to format the codebase.
 - Run `npm run unit-test` again to ensure all unit tests pass.
 
@@ -308,18 +308,18 @@ The following commands should be ran under `packages/typespec-ts/`. To fix these
 Please ensure you have ran `npm run copy:typespec` before running integration tests to ensure the TypeSpec definitions are copied to the correct location. We have four types of integration tests in the TypeSpec TypeScript emitter:
 
 - **RLC Integration Tests** - Tag is `rlc` and located in `packages/typespec-ts/test/integration`. These tests validate the functionality of the REST Level Client (RLC) components.
-- **Modular Integration Tests** - Tag is `modular` and located in `packages/typespec-ts/test/modularIntegration`. These tests validate the functionality of the Modular SDK components.
+- **JS Emitter Integration Tests** - Tag is `modular` and located in `packages/typespec-ts/test/modularIntegration`. These tests validate the functionality of the TypeSpec-generated SDK components.
 - **RLC Integration Tests for Azure** - Tag is `azure-rlc` and located in `packages/typespec-ts/test/azureIntegration`. These tests validate the functionality of the REST Level Client (RLC) components specifically for Azure services.
-- **Modular Integration Tests for Azure** - Tag is `azure-modular` and located in `packages/typespec-ts/test/azureModularIntegration`. These tests validate the functionality of the Modular SDK components specifically for Azure services.
+- **JS Emitter Integration Tests for Azure** - Tag is `azure-modular` and located in `packages/typespec-ts/test/azureModularIntegration`. These tests validate the functionality of the TypeSpec-generated SDK components specifically for Azure services.
 
 Generally integration tests involve mock servers to validate the end-to-end functionality of the generated clients
 
-- First we need to run `npm run generate-tsp-only:tag` to regenerate the integration test scenarios e.g `npm run generate-tsp-only:rlc` for RLC integration tests or `npm run generate-tsp-only:azure-modular` for Modular for Azure integration tests.
-- Relevant generated codes are located in `packages/typespec-test/test/**folder**/generated/` e.g `packages/typespec-test/test/rlc/generated/` for RLC integration tests or `packages/typespec-test/test/modular/generated/` for Modular integration tests.
-- Then open a terminal in the `packages/typespec-ts/` directory and run `npm run start-test-server:tag` to start the test server for the specific integration test tag, e.g. `npm run start-test-server:rlc` for RLC integration tests or `npm run start-test-server:azure-modular` for Modular for Azure integration tests.
-- If you meet issues during starting the test server, you could try to stop the test server first by running `npm run stop-test-server -- -p 3000` for RLC integration tests or `npm run stop-test-server -- -p 3002` for Modular integration tests, and then start the test server again.
-- After the test server is started, you can run the integration tests in another terminal by running `integration-test:alone:tag` command, e.g. `npm run integration-test:alone:rlc` for RLC integration tests or `npm run integration-test:alone:azure-modular` for Modular for Azure integration tests.
-- Do read existing RLC Integration tests in `packages/typespec-ts/test/integration` and Modular Integration tests in `packages/typespec-ts/test/modularIntegration` to understand the expected behavior.
+- First we need to run `npm run generate-tsp-only:tag` to regenerate the integration test scenarios e.g `npm run generate-tsp-only:rlc` for RLC integration tests or `npm run generate-tsp-only:azure-modular` for Azure JS Emitter integration tests.
+- Relevant generated codes are located in `packages/typespec-test/test/**folder**/generated/` e.g `packages/typespec-test/test/rlc/generated/` for RLC integration tests or `packages/typespec-test/test/modular/generated/` for JS Emitter integration tests.
+- Then open a terminal in the `packages/typespec-ts/` directory and run `npm run start-test-server:tag` to start the test server for the specific integration test tag, e.g. `npm run start-test-server:rlc` for RLC integration tests or `npm run start-test-server:azure-modular` for Azure JS Emitter integration tests.
+- If you meet issues during starting the test server, you could try to stop the test server first by running `npm run stop-test-server -- -p 3000` for RLC integration tests or `npm run stop-test-server -- -p 3002` for JS Emitter integration tests, and then start the test server again.
+- After the test server is started, you can run the integration tests in another terminal by running `integration-test:alone:tag` command, e.g. `npm run integration-test:alone:rlc` for RLC integration tests or `npm run integration-test:alone:azure-modular` for Azure JS Emitter integration tests.
+- Do read existing RLC Integration tests in `packages/typespec-ts/test/integration` and JS Emitter Integration tests in `packages/typespec-ts/test/modularIntegration` to understand the expected behavior.
 - The code under `generated` directories is generated from TypeSpec definitions and should not be modified directly.
 - If we have compile issues during running integration tests, it usually means the relevant integration test cases are not matched with the generated code, you need to update the test files under `packages/typespec-ts/test/**folder**/**.spec.ts` e.g. `packages/typespec-ts/test/integration/arrayItemTypes.spec.ts` for RLC integration tests with different item types for array elements.
-- If all integration tests are passing, you can run `npm run stop-test-server -- -p 3000` to stop the RLC test server or `npm run stop-test-server -- -p 3002` to stop the Modular test server.
+- If all integration tests are passing, you can run `npm run stop-test-server -- -p 3000` to stop the RLC test server or `npm run stop-test-server -- -p 3002` to stop the JS Emitter test server.
