@@ -1,3 +1,7 @@
+## 0.53.1 (2026-05-14)
+
+- [Bugfix] Fix dependencies error. Please refer to [#3961](https://github.com/Azure/autorest.typescript/pull/3961)
+
 ## 0.53.0 (2026-05-14)
 
 - [Bugfix] Fix body parameter accessor to use methodParameterSegments. Please refer to [#3961](https://github.com/Azure/autorest.typescript/pull/3961)
