@@ -18,7 +18,7 @@ import {
 } from "../../modular/helpers/operationHelpers.js";
 import { normalizeModelPropertyName } from "../../modular/type-expressions/get-type-expression.js";
 import { reportDiagnostic } from "../../lib.js";
-import { NameType, normalizeName } from "@azure-tools/rlc-common";
+import { NameType, normalizeName } from "../../rlc-common/index.js";
 
 export const emitQueue: Set<SdkType> = new Set<SdkType>();
 export const flattenPropertyModelMap: Map<SdkModelPropertyType, SdkModelType> =
