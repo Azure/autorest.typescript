@@ -31,4 +31,5 @@ export function buildSnippets(
       })
     };
   }
+  return undefined;
 }

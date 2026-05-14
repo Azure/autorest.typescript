@@ -25,7 +25,9 @@ export function buildMethodDefinitions(
   const methodDefinitions: OptionalKind<MethodSignatureStructure>[] = [];
   for (const key of Object.keys(methods)) {
     const verbMethods = methods[key];
-
+    if (!verbMethods) {
+      continue;
+    }
     for (const method of verbMethods) {
       const description = method.description;
       const areAllOptional = method.hasOptionalOptions;
@@ -93,8 +95,12 @@ export function hasUnexpectedHelper(model: RLCModel) {
   const pathDictionary = model.paths;
   for (const details of Object.values(pathDictionary)) {
     for (const methodDetails of Object.values(details.methods)) {
-      const successTypes = methodDetails[0].responseTypes.success;
-      const errorTypes = methodDetails[0].responseTypes.error;
+      const firstMethod = methodDetails[0];
+      if (!firstMethod) {
+        continue;
+      }
+      const successTypes = firstMethod.responseTypes.success;
+      const errorTypes = firstMethod.responseTypes.error;
 
       if (successTypes.length > 0 && errorTypes.length > 0 && !!errorTypes[0]) {
         return true;

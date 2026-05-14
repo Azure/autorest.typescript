@@ -15,8 +15,12 @@ export function generateMethodShortcuts(
 ): OptionalKind<InterfaceDeclarationStructure>[] {
   const keys: Record<string, OptionalKind<MethodSignatureStructure>[]> = {};
   for (const path in paths) {
-    const groupName = paths[path].operationGroupName;
-    const definitions = buildOperationDefinitions(paths[path]);
+    const pathMetadata = paths[path];
+    if (!pathMetadata) {
+      continue;
+    }
+    const groupName = pathMetadata.operationGroupName;
+    const definitions = buildOperationDefinitions(pathMetadata);
     if (!keys[groupName]) {
       keys[groupName] = definitions;
     } else {
@@ -46,6 +50,9 @@ function buildOperationDefinitions(
 
   for (const verb in path.methods) {
     const methods = path.methods[verb];
+    if (!methods) {
+      continue;
+    }
     for (const method of methods) {
       const name = normalizeName(method.operationName, NameType.Property);
       const pathParams = path.pathParameters;

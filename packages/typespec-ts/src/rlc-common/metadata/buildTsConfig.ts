@@ -71,12 +71,12 @@ export function buildTsConfig(model: RLCModel) {
     };
 
     if (generateTest) {
-      tsConfig.include.push("test/**/*.ts");
+      tsConfig["include"].push("test/**/*.ts");
     }
     if (generateSample) {
-      tsConfig.include.push("samples-dev/**/*.ts");
-      tsConfig.compilerOptions["paths"] = {};
-      tsConfig.compilerOptions["paths"][clientPackageName] = ["./src/index"];
+      tsConfig["include"].push("samples-dev/**/*.ts");
+      tsConfig["compilerOptions"]["paths"] = {};
+      tsConfig["compilerOptions"]["paths"][clientPackageName] = ["./src/index"];
     }
   }
 

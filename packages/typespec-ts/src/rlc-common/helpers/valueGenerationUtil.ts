@@ -202,7 +202,10 @@ function getAllProperties(
     }
   });
   for (const prop in schema.properties) {
-    propertiesMap.set(prop, schema.properties[prop]);
+    const propValue = schema.properties[prop];
+    if (propValue) {
+      propertiesMap.set(prop, propValue);
+    }
   }
   return propertiesMap;
 }

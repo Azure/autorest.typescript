@@ -159,8 +159,16 @@ function getPathFirstRoutesInterfaceDefinition(
 
   const signatures: CallSignatureDeclarationStructure[] = [];
   for (const key of Object.keys(paths)) {
-    for (const verb of Object.keys(paths[key].methods)) {
-      for (const method of paths[key].methods[verb]) {
+    const pathMetadata = paths[key];
+    if (!pathMetadata) {
+      continue;
+    }
+    for (const verb of Object.keys(pathMetadata.methods)) {
+      const methods = pathMetadata.methods[verb];
+      if (!methods) {
+        continue;
+      }
+      for (const method of methods) {
         options.importedParameters.add(method.optionsName);
         method.returnType
           .split(" | ")
@@ -168,11 +176,11 @@ function getPathFirstRoutesInterfaceDefinition(
       }
     }
     generatePathFirstRouteMethodsDefinition(
-      paths[key],
+      pathMetadata,
       operationGroupCount,
       sourcefile
     );
-    const pathParams = paths[key].pathParameters;
+    const pathParams = pathMetadata.pathParameters;
     getGeneratedWrapperTypes(pathParams).forEach((p) =>
       options.importedParameters.add(p.name ?? p.type)
     );
@@ -184,7 +192,7 @@ function getPathFirstRoutesInterfaceDefinition(
             /{/g,
             "\\{"
           )}' has methods for the following verbs: ${Object.keys(
-          paths[key].methods
+          pathMetadata.methods
         ).join(", ")}`
       ],
       parameters: [
@@ -192,7 +200,7 @@ function getPathFirstRoutesInterfaceDefinition(
         ...getPathParamDefinitions(pathParams)
       ],
       returnType: getOperationReturnTypeName(
-        paths[key],
+        pathMetadata,
         getOperationGroupCount(paths)
       ),
       kind: StructureKind.CallSignature
@@ -203,7 +211,7 @@ function getPathFirstRoutesInterfaceDefinition(
 
 function getOperationGroupCount(paths: Paths) {
   const operationGroups = Object.keys(paths)
-    .map((p) => paths[p].operationGroupName)
+    .map((p) => paths[p]?.operationGroupName)
     .filter((p) => p && p !== "Client");
   const uniqueNames = new Set(operationGroups);
 

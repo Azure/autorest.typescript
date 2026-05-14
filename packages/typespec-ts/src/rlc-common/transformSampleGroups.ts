@@ -52,10 +52,20 @@ export function transformSampleGroups(model: RLCModel, allowMockValue = true) {
   const schemaObjectMap = buildSchemaObjectMap(model);
   for (const path in paths) {
     const pathDetails = paths[path];
+    if (!pathDetails) {
+      continue;
+    }
     const methods = pathDetails.methods;
     for (const method in methods) {
       const importedDict: Record<string, Set<string>> = {};
-      const detail: OperationMethod = methods[method][0];
+      const methodArray = methods[method];
+      if (!methodArray || methodArray.length === 0) {
+        continue;
+      }
+      const detail = methodArray[0];
+      if (!detail) {
+        continue;
+      }
       const operatonConcante = getOperationConcate(
         detail.operationName,
         pathDetails.operationGroupName,
@@ -98,7 +108,7 @@ export function transformSampleGroups(model: RLCModel, allowMockValue = true) {
         ),
         path: convertPathLevelParameters(pathDetails, path, schemaObjectMap),
         method: convertMethodLevelParameters(
-          methods[method],
+          methodArray,
           schemaObjectMap,
           methodParameterMap.get(operatonConcante)
         )
@@ -160,7 +170,11 @@ function enrichImportedString(
     importedTypes.push(`import ${defaultFactoryName} from "${packageName}";`);
   }
   for (const key in importedDict) {
-    const values = Array.from(importedDict[key]).join(", ");
+    const importedSet = importedDict[key];
+    if (!importedSet) {
+      continue;
+    }
+    const values = Array.from(importedSet).join(", ");
     const hasDefaultFactory =
       key === packageName ? `${defaultFactoryName},` : "";
     importedTypes.push(
@@ -180,7 +194,7 @@ function enrichParameterInSample(
   sample.pathParamNames = getContactParameterNames(parameters.path);
   // Directly apply the inline option value as method parameter
   sample.methodParamNames =
-    parameters.method.length > 0 ? (parameters.method[0].value ?? "") : "";
+    parameters.method.length > 0 ? (parameters.method[0]?.value ?? "") : "";
 }
 
 function getAssignmentStrArray(parameters: SampleParameter[]) {
@@ -320,6 +334,9 @@ function convertMethodLevelParameters(
   const rawMethodParams = operationParameter.parameters;
   const method = methods[0];
   const requestParameter = rawMethodParams[0];
+  if (!method || !requestParameter) {
+    return [];
+  }
   const hasInputParams = !!rawMethodParams && rawMethodParams.length > 0,
     requireParam = !method.hasOptionalOptions;
   if (!hasInputParams && !requireParam) {
@@ -336,13 +353,15 @@ function convertMethodLevelParameters(
     requestParameter.body.body?.length > 0
   ) {
     const body = requestParameter.body.body[0];
-    const bodyTypeName = body.typeName ?? body.type;
-    if (bodyTypeName !== "string" && body.oriSchema) {
-      schemaMap.set(bodyTypeName, body.oriSchema);
+    if (body) {
+      const bodyTypeName = body.typeName ?? body.type;
+      if (bodyTypeName !== "string" && body.oriSchema) {
+        schemaMap.set(bodyTypeName, body.oriSchema);
+      }
+      allSideAssignments.push(
+        ` body: ` + generateParameterTypeValue(bodyTypeName, "body", schemaMap)
+      );
     }
-    allSideAssignments.push(
-      ` body: ` + generateParameterTypeValue(bodyTypeName, "body", schemaMap)
-    );
   }
 
   requestParameter.parameters
@@ -376,12 +395,13 @@ function convertMethodLevelParameters(
   const contentType = requestParameter.parameters
     ?.filter((p) => p.type === "header")
     .filter((p) => p.name.toLowerCase() === "contenttype");
-  if (contentType && contentType.length > 0) {
+  const firstContentType = contentType?.[0];
+  if (firstContentType) {
     allSideAssignments.push(
-      ` ${contentType[0].name}: ` +
+      ` ${firstContentType.name}: ` +
         generateParameterTypeValue(
-          contentType[0].param.type,
-          contentType[0].name,
+          firstContentType.param.type,
+          firstContentType.name,
           schemaMap
         )
     );

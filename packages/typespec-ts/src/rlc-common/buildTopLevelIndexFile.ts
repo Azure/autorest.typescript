@@ -61,4 +61,5 @@ export function buildTopLevelIndex(model: RLCModel) {
     );
     return { path: filePath, content };
   }
+  return undefined;
 }
