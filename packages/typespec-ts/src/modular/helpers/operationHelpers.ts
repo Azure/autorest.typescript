@@ -1702,14 +1702,7 @@ function buildBodyParameter(
     }) as string | undefined;
   }
 
-  const bodyParamName = normalizeName(
-    bodyParameter.name,
-    NameType.Parameter,
-    true
-  );
-  let bodyNameExpression = bodyParameter.optional
-    ? `${optionalParamName}["${bodyParamName}"]`
-    : bodyParamName;
+  let bodyNameExpression = getParamAccessor(bodyParameter, optionalParamName);
 
   // Check if body parameter has a client default value with matching type
   const hasClientDefault =
