@@ -216,7 +216,7 @@ const verifyLibraries = async (readmes: SpecDefinition[]) => {
     results.push(await verifyLibrary(readmes[i]));
   }
 
-  const failed = results.filter(r => !r.success);
+  const failed = results.filter((r) => !r.success);
   logInfo(
     `Smoke Test finished, Took ${Math.round((Date.now() - startTime) / 1000)}s`
   );
@@ -252,7 +252,7 @@ const main = async () => {
   if (tag) {
     tag = tag.toLowerCase();
     swaggers = readmes.filter(
-      r => r.buildTag && r.buildTag.toLowerCase() === tag
+      (r) => r.buildTag && r.buildTag.toLowerCase() === tag
     );
   }
 
@@ -260,6 +260,9 @@ const main = async () => {
 };
 
 const checkoutBranch = async (branch?: string) => {
+  console.log(
+    `Checking out branch ${branch || DEFAULT_SPEC_BRANCH} for specs, cwd: ${SPECS_PATH}...`
+  );
   const childProdcess = spawn(
     "git",
     ["checkout", branch || DEFAULT_SPEC_BRANCH],
@@ -272,7 +275,7 @@ const checkoutBranch = async (branch?: string) => {
   return await onExit(childProdcess);
 };
 
-main().catch(error => {
+main().catch((error) => {
   logError(error);
   process.exit(-1);
 });
