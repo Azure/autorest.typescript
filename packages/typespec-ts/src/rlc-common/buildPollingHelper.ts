@@ -45,14 +45,18 @@ function buildLroHelperDetail(model: RLCModel): LroDetail {
   const responses = new Set<string>();
   for (const details of Object.values(pathDictionary)) {
     for (const methodDetails of Object.values(details.methods)) {
-      const lroDetail = methodDetails[0].operationHelperDetail?.lroDetails;
+      const firstMethod = methodDetails[0];
+      if (!firstMethod) {
+        continue;
+      }
+      const lroDetail = firstMethod.operationHelperDetail?.lroDetails;
       if (lroDetail?.isLongRunning) {
-        const initialResponses = methodDetails[0].responseTypes.success.concat(
-          methodDetails[0].responseTypes.error
+        const initialResponses = firstMethod.responseTypes.success.concat(
+          firstMethod.responseTypes.error
         );
 
         const finalResponse = lroDetail.logicalResponseTypes?.success.concat(
-          methodDetails[0].responseTypes.error
+          firstMethod.responseTypes.error
         );
 
         if (initialResponses && finalResponse) {

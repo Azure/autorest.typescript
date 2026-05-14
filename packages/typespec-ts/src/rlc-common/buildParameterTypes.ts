@@ -53,6 +53,9 @@ export function buildParameterTypes(model: RLCModel) {
     // have a different type associated to it.
     for (let i = 0; i < requestCount; i++) {
       const parameter = requestParameter.parameters[i];
+      if (!parameter) {
+        continue;
+      }
       const internalReferences = new Set<string>();
       // In case we have more than one request to model we need to add a suffix to differentiate
       const nameSuffix = i > 0 ? `${i}` : "";
@@ -433,7 +436,11 @@ function buildContentTypeParametersDefinition(
 
   // Mark the queryParameter interface for importing
   internalReferences.add(mediaTypesParameterInterfaceName);
-  const mediaParam = mediaTypeParameters[0].param;
+  const firstMediaType = mediaTypeParameters[0];
+  if (!firstMediaType) {
+    return undefined;
+  }
+  const mediaParam = firstMediaType.param;
 
   return {
     isExported: true,
@@ -498,7 +505,11 @@ function buildBodyParametersDefinition(
       formBodyInterface
     ];
   } else {
-    const bodySignature = getPropertyFromSchema(bodyParameters.body[0]);
+    const firstBody = bodyParameters.body[0];
+    if (!firstBody) {
+      return [];
+    }
+    const bodySignature = getPropertyFromSchema(firstBody);
 
     return [
       {
@@ -538,7 +549,11 @@ export function buildBodyTypeAlias(
     return undefined;
   }
 
-  const contentType = headerParameters[0].param.type;
+  const firstHeader = headerParameters[0];
+  if (!firstHeader) {
+    return undefined;
+  }
+  const contentType = firstHeader.param.type;
   const description = `${schema.description}`;
   const typeName = `${schema.typeName}ResourceMergeAndPatch`;
   if (partialBodyTypeNames.has(typeName)) {
@@ -556,4 +571,5 @@ export function buildBodyTypeAlias(
       isExported: true
     };
   }
+  return undefined;
 }

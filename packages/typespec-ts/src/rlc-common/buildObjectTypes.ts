@@ -569,18 +569,27 @@ function getPropertySignatures(
   options: GetPropertySignatureOptions = {}
 ) {
   let validProperties = Object.keys(properties);
-  const readOnlyFilter = (name: string) =>
-    !(schemaUsage.includes(SchemaContext.Input) && properties[name].readOnly);
-  const neverFilter = (name: string) => properties[name].type !== "never";
+  const readOnlyFilter = (name: string) => {
+    const prop = properties[name];
+    return !(schemaUsage.includes(SchemaContext.Input) && prop?.readOnly);
+  };
+  const neverFilter = (name: string) => {
+    const prop = properties[name];
+    return prop?.type !== "never";
+  };
   validProperties = validProperties.filter(readOnlyFilter).filter(neverFilter);
-  return validProperties.map((p) =>
-    getPropertySignature(
-      { ...properties[p], name: p },
+  return validProperties.map((p) => {
+    const prop = properties[p];
+    if (!prop) {
+      throw new Error(`Property '${p}' not found`);
+    }
+    return getPropertySignature(
+      { ...prop, name: p } as Schema,
       schemaUsage,
       importedModels,
       options
-    )
-  );
+    );
+  });
 }
 
 function isBinaryArray(schema: Schema): boolean {

@@ -165,7 +165,7 @@ export function updatePackageFile(
         exports,
         azureSdkForJs: model.options?.azureSdkForJs
       } as PackageCommonInfoConfig);
-      packageInfo.tshy.exports = newTshy.exports;
+      packageInfo.tshy["exports"] = newTshy["exports"];
     }
   }
 

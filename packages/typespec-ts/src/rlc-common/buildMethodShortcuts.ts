@@ -24,8 +24,12 @@ export const REST_CLIENT_RESERVED: ReservedName[] = [
 export function buildMethodShortcutImplementation(paths: Paths) {
   const keys: Record<string, string[]> = {};
   for (const path of Object.keys(paths)) {
+    const pathMetadata = paths[path];
+    if (!pathMetadata) {
+      continue;
+    }
     const groupName = normalizeName(
-      paths[path].operationGroupName,
+      pathMetadata.operationGroupName,
       NameType.OperationGroup,
       true,
       REST_CLIENT_RESERVED,
@@ -33,9 +37,9 @@ export function buildMethodShortcutImplementation(paths: Paths) {
     );
 
     if (keys[groupName]) {
-      keys[groupName].push(...buildOperationDeclarations(path, paths[path]));
+      keys[groupName].push(...buildOperationDeclarations(path, pathMetadata));
     } else {
-      keys[groupName] = buildOperationDeclarations(path, paths[path]);
+      keys[groupName] = buildOperationDeclarations(path, pathMetadata);
     }
   }
   return keys;
@@ -44,7 +48,11 @@ export function buildMethodShortcutImplementation(paths: Paths) {
 function buildOperationDeclarations(path: string, pathMetadata: PathMetadata) {
   let ops: string[] = [];
   for (const method of Object.keys(pathMetadata.methods)) {
-    for (const op of pathMetadata.methods[method]) {
+    const methodOps = pathMetadata.methods[method];
+    if (!methodOps) {
+      continue;
+    }
+    for (const op of methodOps) {
       const pathParams = pathMetadata?.pathParameters;
       const name = normalizeName(op.operationName, NameType.Property);
       const methodDefinitions = generateOperationDeclaration(

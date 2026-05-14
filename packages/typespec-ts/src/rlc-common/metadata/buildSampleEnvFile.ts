@@ -18,4 +18,5 @@ export function buildSampleEnvFile(model: RLCModel) {
       content: sampleEnvText.trim()
     };
   }
+  return undefined;
 }

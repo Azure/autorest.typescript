@@ -175,11 +175,12 @@ export function addImportsToFiles(
         });
 
       if (!hasModifier) {
-        return file.addImportDeclaration({
+        file.addImportDeclaration({
           isTypeOnly: true,
           moduleSpecifier: specifier,
           namedImports: [...importType.importsSet!.values()]
         });
+        return;
       }
     });
   clearImportSets(runtimeImports);

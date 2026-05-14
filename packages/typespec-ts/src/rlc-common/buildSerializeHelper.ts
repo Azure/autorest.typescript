@@ -45,4 +45,5 @@ export function buildSerializeHelper(model: RLCModel) {
       content: readmeFileContents({})
     };
   }
+  return undefined;
 }
