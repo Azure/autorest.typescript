@@ -3,7 +3,7 @@ import {
   normalizeName,
   Schema,
   SchemaContext
-} from "@azure-tools/rlc-common";
+} from "../rlc-common/index.js";
 import { HttpOperationParameter } from "@typespec/http";
 import { getTypeName, isArrayType, isObjectOrDictType } from "./modelUtils.js";
 import { SdkContext } from "./interfaces.js";

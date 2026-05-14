@@ -6,7 +6,7 @@ import {
   PackageFlavor,
   RLCOptions,
   ServiceInfo
-} from "@azure-tools/rlc-common";
+} from "../rlc-common/index.js";
 import { getHttpOperationWithCache } from "@azure-tools/typespec-client-generator-core";
 import { getDoc, NoTarget, Program } from "@typespec/compiler";
 import { getAuthentication } from "@typespec/http";

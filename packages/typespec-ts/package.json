@@ -120,9 +120,9 @@
     "@typespec/xml": "^0.82.0"
   },
   "dependencies": {
-    "@azure-tools/rlc-common": "workspace:^0.53.1",
     "fast-xml-parser": "^4.5.0",
     "fs-extra": "^11.1.0",
+    "handlebars": "^4.7.7",
     "lodash": "^4.17.21",
     "prettier": "^3.3.3",
     "ts-morph": "^23.0.0",
