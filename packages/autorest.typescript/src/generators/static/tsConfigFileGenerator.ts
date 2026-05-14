@@ -63,6 +63,7 @@ export function generateTsConfig(project: Project) {
       });
     }
 
+    // snippets are generated alongside tests
     if (generateTest) {
       highLevelTsConfigInAzureSdkForJs.references.push({
         path: "./config/tsconfig.snippets.json"
