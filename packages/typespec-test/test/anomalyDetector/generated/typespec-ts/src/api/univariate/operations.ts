@@ -48,7 +48,9 @@ export async function _detectUnivariateChangePointDeserialize(
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
-    error.details = univariateAnomalyDetectorErrorDeserializer(result.body);
+    if (result.body) {
+      error.details = univariateAnomalyDetectorErrorDeserializer(result.body);
+    }
 
     throw error;
   }
@@ -87,7 +89,9 @@ export async function _detectUnivariateLastPointDeserialize(
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
-    error.details = univariateAnomalyDetectorErrorDeserializer(result.body);
+    if (result.body) {
+      error.details = univariateAnomalyDetectorErrorDeserializer(result.body);
+    }
 
     throw error;
   }
@@ -129,7 +133,9 @@ export async function _detectUnivariateEntireSeriesDeserialize(
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
-    error.details = univariateAnomalyDetectorErrorDeserializer(result.body);
+    if (result.body) {
+      error.details = univariateAnomalyDetectorErrorDeserializer(result.body);
+    }
 
     throw error;
   }

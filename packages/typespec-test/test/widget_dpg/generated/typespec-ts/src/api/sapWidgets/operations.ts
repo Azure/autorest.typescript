@@ -70,7 +70,9 @@ export async function _analyzeWidgetDeserialize(
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
-    error.details = widgetErrorDeserializer(result.body);
+    if (result.body) {
+      error.details = widgetErrorDeserializer(result.body);
+    }
 
     throw error;
   }
@@ -109,7 +111,9 @@ export async function _deleteWidgetDeserialize(result: PathUncheckedResponse): P
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
-    error.details = widgetErrorDeserializer(result.body);
+    if (result.body) {
+      error.details = widgetErrorDeserializer(result.body);
+    }
 
     throw error;
   }
@@ -155,7 +159,9 @@ export async function _updateWidgetDeserialize(result: PathUncheckedResponse): P
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
-    error.details = widgetErrorDeserializer(result.body);
+    if (result.body) {
+      error.details = widgetErrorDeserializer(result.body);
+    }
 
     throw error;
   }
@@ -247,7 +253,9 @@ export async function _createWidgetDeserialize(result: PathUncheckedResponse): P
   const expectedStatuses = ["201"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
-    error.details = widgetErrorDeserializer(result.body);
+    if (result.body) {
+      error.details = widgetErrorDeserializer(result.body);
+    }
 
     throw error;
   }
@@ -297,7 +305,9 @@ export async function _getWidgetDeserialize(result: PathUncheckedResponse): Prom
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
-    error.details = widgetErrorDeserializer(result.body);
+    if (result.body) {
+      error.details = widgetErrorDeserializer(result.body);
+    }
 
     throw error;
   }
@@ -345,7 +355,9 @@ export async function _queryWidgetsPagesDeserialize(
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
-    error.details = widgetErrorDeserializer(result.body);
+    if (result.body) {
+      error.details = widgetErrorDeserializer(result.body);
+    }
 
     throw error;
   }
@@ -398,7 +410,9 @@ export async function _listWidgetsPagesDeserialize(
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
-    error.details = widgetErrorDeserializer(result.body);
+    if (result.body) {
+      error.details = widgetErrorDeserializer(result.body);
+    }
 
     throw error;
   }
@@ -472,7 +486,9 @@ export async function _sapListWidgetsDeserialize(result: PathUncheckedResponse):
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
-    error.details = widgetErrorDeserializer(result.body);
+    if (result.body) {
+      error.details = widgetErrorDeserializer(result.body);
+    }
 
     throw error;
   }

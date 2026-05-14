@@ -228,7 +228,9 @@ export async function _setTagsDeserialize(result: PathUncheckedResponse): Promis
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
-    error.details = storageErrorDeserializer(result.body);
+    if (result.body) {
+      error.details = storageErrorDeserializer(result.body);
+    }
     error.details = { ...(error.details as any), ..._setTagsDeserializeExceptionHeaders(result) };
     throw error;
   }
@@ -317,7 +319,9 @@ export async function _downloadDeserialize(
   const expectedStatuses = ["200", "206"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
-    error.details = errorXmlDeserializer(result.body);
+    if (result.body) {
+      error.details = errorXmlDeserializer(result.body);
+    }
     error.details = { ...(error.details as any), ..._downloadDeserializeExceptionHeaders(result) };
     throw error;
   }
