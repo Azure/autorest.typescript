@@ -35,15 +35,6 @@ const highLevelTsConfigInAzureSdkForJs: Record<string, any> = {
   files: []
 }
 
-const highLevelTsSampleConfig: Record<string, any> = {
-  extends: "../../../tsconfig.samples.base.json",
-  compilerOptions: {}
-}
-
-const highLevelTsSnippetsConfig: Record<string, any> = {
-  extends: ["../../../tsconfig.snippets.base.json"]
-}
-
 export function generateTsConfig(project: Project) {
   const {
     generateMetadata,
@@ -59,18 +50,22 @@ export function generateTsConfig(project: Project) {
 
   const clientPackageName = packageDetails.name;
   if (azureSdkForJs) {
+    if (generateTest) {
+      highLevelTsConfigInAzureSdkForJs.references.push(
+        { path: "./config/tsconfig.test.node.json" },
+        { path: "./config/tsconfig.test.browser.json" }
+      );
+    }
+
     if (generateSample) {
       highLevelTsConfigInAzureSdkForJs.references.push({
-        path: "./tsconfig.samples.json"
+        path: "./config/tsconfig.samples.json"
       });
     }
 
     if (generateTest) {
       highLevelTsConfigInAzureSdkForJs.references.push({
-        path: "./tsconfig.test.json"
-      });
-      highLevelTsConfigInAzureSdkForJs.references.push({
-        path: "./tsconfig.snippets.json"
+        path: "./config/tsconfig.snippets.json"
       });
     }
   }
@@ -139,23 +134,52 @@ export function generateTsSrcCjsConfig(project: Project) {
     { overwrite: true }
   );
 }
+
 export function generateTsSampleConfig(project: Project) {
-  const {
-    packageDetails,
-  } = getAutorestOptions();
+  const { packageDetails } = getAutorestOptions();
   const clientPackageName = packageDetails.name;
-  highLevelTsSampleConfig.compilerOptions["paths"] = {};
-  highLevelTsSampleConfig.compilerOptions["paths"][clientPackageName] = [
-    "./dist/esm"
-  ];
-  project.createSourceFile("tsconfig.samples.json", JSON.stringify(highLevelTsSampleConfig, null, 2), {
-    overwrite: true
-  });
+  project.createSourceFile(
+    "config/tsconfig.samples.json",
+    JSON.stringify(
+      {
+        extends: "../../../../eng/tsconfigs/samples.json",
+        compilerOptions: {
+          paths: {
+            [clientPackageName]: ["../dist/esm"]
+          }
+        }
+      },
+      null,
+      2
+    ),
+    { overwrite: true }
+  );
 }
 
 export function generateTsSnippetsConfig(project: Project) {
-  project.createSourceFile("tsconfig.snippets.json", JSON.stringify(highLevelTsSnippetsConfig, null, 2), {
-    overwrite: true
-  });
+  project.createSourceFile(
+    "config/tsconfig.snippets.json",
+    JSON.stringify(
+      { extends: "../../../../eng/tsconfigs/snippets.json" },
+      null,
+      2
+    ),
+    { overwrite: true }
+  );
+}
+
+export function generateTsLintConfig(project: Project) {
+  project.createSourceFile(
+    "config/tsconfig.lint.json",
+    JSON.stringify(
+      {
+        extends: "../../../../tsconfig.json",
+        include: ["../src", "../test"]
+      },
+      null,
+      2
+    ),
+    { overwrite: true }
+  );
 }
 

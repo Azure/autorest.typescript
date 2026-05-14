@@ -25,6 +25,7 @@ import {
   generateTsSrcBrowserConfig,
   generateTsSrcEsmConfig,
   generateTsSrcReactNativeConfig,
+  generateTsLintConfig,
   generateTsSnippetsConfig
 } from "./generators/static/tsConfigFileGenerator";
 import { generateRollupConfig } from "./generators/static/rollupConfigFileGenerator";
@@ -109,6 +110,7 @@ export async function generateTypeScriptLibrary(
     generateTsSrcBrowserConfig(project);
     generateTsSrcReactNativeConfig(project);
     generateTsSrcCjsConfig(project);
+    generateTsLintConfig(project);
     if (generateSample) {
       generateTsSampleConfig(project);
     }

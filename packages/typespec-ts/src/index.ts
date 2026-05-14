@@ -52,6 +52,7 @@ import {
   buildSerializeHelper,
   buildTopLevelIndex,
   buildTsConfig,
+  buildTsLintConfig,
   buildTsSnippetsConfig,
   buildTsSrcEsmConfig,
   buildTsSrcBrowserConfig,
@@ -574,6 +575,7 @@ export async function $onEmit(context: EmitContext) {
         commonBuilders.push(buildTsSrcBrowserConfig);
         commonBuilders.push(buildTsSrcReactNativeConfig);
         commonBuilders.push(buildTsSrcCjsConfig);
+        commonBuilders.push(buildTsLintConfig);
         if (option.generateSample) {
           commonBuilders.push(buildTsSampleConfig);
         }
@@ -648,6 +650,7 @@ export async function $onEmit(context: EmitContext) {
         updateBuilders.push(buildTsSrcBrowserConfig);
         updateBuilders.push(buildTsSrcReactNativeConfig);
         updateBuilders.push(buildTsSrcCjsConfig);
+        updateBuilders.push(buildTsLintConfig);
         if (option.generateSample) {
           updateBuilders.push(buildTsSampleConfig);
         }
