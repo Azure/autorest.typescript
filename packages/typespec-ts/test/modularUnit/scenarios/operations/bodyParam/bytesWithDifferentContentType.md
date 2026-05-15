@@ -310,7 +310,7 @@ wrap-non-model-return: true
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { UploadFileResponse } from "../models/models.js";
-import { getBinaryResponse } from "../static-helpers/serialization/get-binary-response.js";
+import { getBinaryStreamResponse } from "../static-helpers/serialization/get-binary-stream-response.js";
 import { UploadFileOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -335,14 +335,14 @@ export function _uploadFileSend(
 }
 
 export async function _uploadFileDeserialize(
-  result: PathUncheckedResponse,
+  result: PathUncheckedResponse & UploadFileResponse,
 ): Promise<UploadFileResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return { body: result.body };
+  return { blobBody: result.blobBody, readableStreamBody: result.readableStreamBody };
 }
 
 export async function uploadFile(
@@ -351,7 +351,7 @@ export async function uploadFile(
   options: UploadFileOptionalParams = { requestOptions: {} },
 ): Promise<UploadFileResponse> {
   const streamableMethod = _uploadFileSend(context, body, options);
-  const result = await getBinaryResponse(streamableMethod);
+  const result = await getBinaryStreamResponse(streamableMethod);
   return _uploadFileDeserialize(result);
 }
 ```
@@ -359,7 +359,24 @@ export async function uploadFile(
 ## Models
 
 ```ts models
-export type UploadFileResponse = { body: Uint8Array };
+import { NodeReadableStream } from "../static-helpers/platform-types.js";
+
+export type UploadFileResponse = {
+  /**
+   * BROWSER ONLY
+   *
+   * The response body as a browser Blob.
+   * Always `undefined` in node.js.
+   */
+  blobBody?: Promise<Blob>;
+  /**
+   * NODEJS ONLY
+   *
+   * The response body as a node.js Readable stream.
+   * Always `undefined` in the browser.
+   */
+  readableStreamBody?: NodeReadableStream;
+};
 ```
 
 # bytes response without @encode and application/json content type should NOT be treated as binary
