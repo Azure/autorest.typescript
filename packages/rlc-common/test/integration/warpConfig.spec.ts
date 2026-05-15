@@ -4,6 +4,12 @@
 import { describe, it, expect } from "vitest";
 
 import { buildWarpConfig } from "../../src/metadata/buildWarpConfig.js";
+import {
+  buildTsSrcEsmConfig,
+  buildTsSrcBrowserConfig,
+  buildTsSrcReactNativeConfig,
+  buildTsSrcCjsConfig
+} from "../../src/metadata/buildTsConfig.js";
 import { createMockModel } from "./mockHelper.js";
 
 describe("warp.config.yml generation", () => {
@@ -125,6 +131,30 @@ describe("warp.config.yml generation", () => {
       expect(result!.content).toContain("name: react-native");
       expect(result!.content).toContain("name: esm");
       expect(result!.content).toContain("name: commonjs");
+    });
+  });
+
+  describe("tsconfig path consistency", () => {
+    it("warp config references every config/ tsconfig that the builders produce", () => {
+      const model = createMockModel({
+        moduleKind: "esm",
+        isMonorepo: true,
+        flavor: "azure"
+      });
+
+      const warpContent = buildWarpConfig(model)!.content;
+
+      const configBuilders = [
+        buildTsSrcEsmConfig,
+        buildTsSrcBrowserConfig,
+        buildTsSrcReactNativeConfig,
+        buildTsSrcCjsConfig
+      ];
+
+      for (const builder of configBuilders) {
+        const tsconfigPath = `./${builder().path}`;
+        expect(warpContent).toContain(tsconfigPath);
+      }
     });
   });
 });
