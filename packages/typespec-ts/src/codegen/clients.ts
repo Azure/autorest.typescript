@@ -34,13 +34,7 @@ export function emitClientContext(
   settings: TSGenerationSettings
 ): SourceFile | undefined {
   const dependencies = useDependencies();
-  const subfolder =
-    client.path.length > 0
-      ? normalizeName(
-          client.path[client.path.length - 1]?.replace("Client", "") ?? "",
-          NameType.File
-        )
-      : "";
+  const subfolder = client.path.join("/");
 
   const filePath = `${settings.sourceRoot}/${
     subfolder && subfolder !== "" ? subfolder + "/" : ""
@@ -60,11 +54,9 @@ export function emitClientContext(
   const requiredProperties = client.parameters
     .filter(
       (p) =>
-        p.required &&
-        !p.hasDefaultValue &&
         !p.isEndpoint &&
         !p.isCredential &&
-        !p.isApiVersion
+        (p.isApiVersion || (p.required && !p.hasDefaultValue))
     )
     .map((p) => ({
       name: p.name,
@@ -73,13 +65,15 @@ export function emitClientContext(
       docs: buildParamDocs(p, client)
     }));
 
+  const requiredPropertyNames = new Set(
+    requiredProperties.map((property) => property.name)
+  );
+
   const optionalProperties = client.parameters
-    .filter((p) => !p.required || p.hasDefaultValue || p.isApiVersion)
+    .filter((p) => !p.required || p.hasDefaultValue)
     .filter(
       (p) =>
-        !p.isEndpoint &&
-        !p.isCredential &&
-        !requiredProperties.some((rp) => rp.name === p.name)
+        !p.isEndpoint && !p.isCredential && !requiredPropertyNames.has(p.name)
     )
     .map((p) => ({
       name: p.name,
@@ -97,14 +91,14 @@ export function emitClientContext(
   });
 
   // ── Options interface ──
+  const useStringForApiVersion =
+    client.apiVersion?.parameterName.toLowerCase() === "apiversion";
   const optionsProperties = client.parameters
-    .filter(
-      (p) =>
-        (p.hasDefaultValue || !p.required || p.isApiVersion) && !p.isEndpoint
-    )
+    .filter((p) => p.hasDefaultValue || !p.required)
+    .filter((p) => p.name !== "endpoint")
     .map((p) => ({
       name: p.name,
-      type: p.isApiVersion ? "string" : p.type,
+      type: p.isApiVersion && useStringForApiVersion ? "string" : p.type,
       hasQuestionToken: true,
       docs: buildParamDocs(p, client)
     }));
@@ -151,7 +145,7 @@ export function emitClientContext(
   });
 
   // Factory body: endpoint setup
-  emitEndpointSetup(fn, client, settings);
+  const assignedOptionalParams = emitEndpointSetup(fn, client, settings);
 
   // Factory body: options setup
   emitOptionsSetup(fn, client, settings);
@@ -160,9 +154,7 @@ export function emitClientContext(
   fn.addStatements(
     `const clientContext = ${resolveReference(
       dependencies.getClient
-    )}(${client.endpoint.isParameterized ? "endpointUrl" : "endpointUrl"}, ${
-      client.credential.parameterName
-    }, ${client.parameters.some((p) => p.isApiVersion) ? "updatedOptions" : "updatedOptions"});`
+    )}(endpointUrl, ${client.credential.parameterName}, updatedOptions);`
   );
 
   // Factory body: custom auth policy
@@ -186,7 +178,7 @@ export function emitClientContext(
   emitApiVersionHandling(fn, client, settings);
 
   // Factory body: return statement
-  emitReturnStatement(fn, client);
+  emitReturnStatement(fn, client, assignedOptionalParams);
 
   // Fix imports
   file.fixMissingImports({}, { importModuleSpecifierEnding: "js" });
@@ -201,14 +193,14 @@ function emitEndpointSetup(
   fn: any,
   client: TSClient,
   settings: TSGenerationSettings
-): void {
+): Set<string> {
+  const assignedOptionalParams = new Set<string>();
   const coreEndpoint = settings.isArm
     ? `options.endpoint ?? ${resolveReference(CloudSettingHelpers.getArmEndpoint)}(options.cloudSetting)`
     : "options.endpoint";
 
   const ep = client.endpoint;
   if (ep.isParameterized && ep.serverUrl) {
-    // Template parameters
     for (const tp of ep.templateParameters) {
       if (tp.clientDefaultValue) {
         const defaultStr =
@@ -218,18 +210,22 @@ function emitEndpointSetup(
         fn.addStatements(
           `const ${tp.name} = options.${tp.name} ?? ${defaultStr};`
         );
+        assignedOptionalParams.add(tp.name);
       } else if (tp.isOptional) {
         fn.addStatements(`const ${tp.name} = options.${tp.name};`);
+        assignedOptionalParams.add(tp.name);
       }
     }
 
-    // Parameterized endpoint URL
     let url = ep.serverUrl;
     for (const tp of ep.templateParameters) {
       url = url.replace(`{${tp.tcgcName}}`, `\${${tp.name}}`);
     }
     fn.addStatements(`const endpointUrl = ${coreEndpoint} ?? \`${url}\`;`);
-  } else if (ep.templateParameters.length > 0) {
+    return assignedOptionalParams;
+  }
+
+  if (ep.templateParameters.length > 0) {
     const firstArg = ep.templateParameters[0];
     const defaultStr = firstArg?.clientDefaultValue
       ? typeof firstArg.clientDefaultValue === "string"
@@ -237,9 +233,11 @@ function emitEndpointSetup(
         : firstArg.clientDefaultValue
       : `String(${getEndpointParamName(client)})`;
     fn.addStatements(`const endpointUrl = ${coreEndpoint} ?? ${defaultStr};`);
-  } else {
-    fn.addStatements(`const endpointUrl = ${coreEndpoint};`);
+    return assignedOptionalParams;
   }
+
+  fn.addStatements(`const endpointUrl = ${coreEndpoint};`);
+  return assignedOptionalParams;
 }
 
 function emitOptionsSetup(
@@ -323,34 +321,48 @@ function emitApiVersionHandling(
   }
 }
 
-function emitReturnStatement(fn: any, client: TSClient): void {
-  const contextParams = client.parameters.filter(
-    (p) => !p.isEndpoint && !p.isCredential && p.name !== "options"
-  );
-
-  const requiredParams = contextParams.filter(
-    (p) => p.required && !p.hasDefaultValue && !p.isApiVersion
-  );
-  const optionalParams = contextParams.filter(
+function emitReturnStatement(
+  fn: any,
+  client: TSClient,
+  assignedOptionalParams: Set<string>
+): void {
+  const contextRequiredParams = client.parameters.filter(
     (p) =>
-      (!p.required || p.hasDefaultValue || p.isApiVersion) &&
-      !requiredParams.some((rp) => rp.name === p.name)
+      !p.isEndpoint &&
+      !p.isCredential &&
+      p.name !== "options" &&
+      (p.isApiVersion || (p.required && !p.hasDefaultValue))
   );
 
-  const allParams = [
-    ...requiredParams.map((p) => p.name),
-    ...optionalParams.map((p) => {
-      // If already assigned as a local variable, use directly
-      if (p.isApiVersion || p.hasDefaultValue) {
+  const requiredParamNames = new Set(
+    contextRequiredParams.map((param) => param.name)
+  );
+
+  const contextOptionalParams = client.parameters.filter(
+    (p) =>
+      !p.isEndpoint &&
+      !p.isCredential &&
+      p.name !== "options" &&
+      !requiredParamNames.has(p.name) &&
+      (!p.required || p.hasDefaultValue)
+  );
+
+  const allContextParams = [
+    ...contextRequiredParams.map((p) => p.name),
+    ...contextOptionalParams.map((p) => {
+      if (
+        requiredParamNames.has(p.name) ||
+        assignedOptionalParams.has(p.name)
+      ) {
         return p.name;
       }
       return `${p.name}: options.${p.name}`;
     })
   ];
 
-  if (allParams.length) {
+  if (allContextParams.length) {
     fn.addStatements(
-      `return { ...clientContext, ${allParams.join(", ")}} as ${client.contextTypeName};`
+      `return { ...clientContext, ${allContextParams.join(", ")}} as ${client.contextTypeName};`
     );
   } else {
     fn.addStatements(`return clientContext;`);
@@ -365,7 +377,11 @@ function getEndpointParamName(client: TSClient): string {
 
 function buildParamDocs(param: TSClientParameter, client: TSClient): string[] {
   const docs = [...param.docs];
-  if (param.isApiVersion && client.apiVersion?.knownValuesEnumName) {
+  if (
+    param.isApiVersion &&
+    client.apiVersion?.knownValuesEnumName &&
+    client.apiVersion.parameterName.toLowerCase() === "apiversion"
+  ) {
     docs.push(
       `Known values of {@link ${resolveReference(refkey(client.apiVersion.knownValuesEnumName, "knownValues"))}} that the service accepts.`
     );

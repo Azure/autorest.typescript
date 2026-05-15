@@ -81,10 +81,9 @@ import { ModularEmitterOptions } from "./modular/interfaces.js";
 import { Project } from "ts-morph";
 import { buildClassicOperationFiles } from "./modular/buildClassicalOperationGroups.js";
 import { buildClassicalClient } from "./modular/buildClassicalClient.js";
-import {
-  getClientContextPath,
-  buildClientContext
-} from "./modular/buildClientContext.js";
+import { getClientContextPath } from "./modular/buildClientContext.js";
+import { adaptSettings, adaptSingleClient } from "./tcgcadapter/adapter.js";
+import { emitClientContext } from "./codegen/clients.js";
 import { buildApiOptions } from "./modular/emitModelsOptions.js";
 import { buildOperationFiles } from "./modular/buildOperations.js";
 import { buildRestorePoller } from "./modular/buildRestorePoller.js";
@@ -354,11 +353,17 @@ export async function $onEmit(context: EmitContext) {
       // If no clients, we still need to build the root index file
       buildRootIndex(dpgContext, modularEmitterOptions, rootIndexFile);
     }
+    const generationSettings = adaptSettings(dpgContext, modularEmitterOptions);
     for (const subClient of clientMap) {
       await renameClientName(subClient[1], modularEmitterOptions);
       buildApiOptions(dpgContext, subClient, modularEmitterOptions);
       buildOperationFiles(dpgContext, subClient, modularEmitterOptions);
-      buildClientContext(dpgContext, subClient, modularEmitterOptions);
+      const tsClient = adaptSingleClient(
+        subClient,
+        dpgContext,
+        modularEmitterOptions
+      );
+      emitClientContext(project, tsClient, generationSettings);
       buildRestorePoller(dpgContext, subClient, modularEmitterOptions);
       if (dpgContext.rlcOptions?.hierarchyClient) {
         buildSubpathIndexFile(modularEmitterOptions, "api", subClient, {
