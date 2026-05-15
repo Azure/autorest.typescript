@@ -196,17 +196,13 @@ export function isBinaryPayload(
   contentType: string | string[],
   encode?: string
 ) {
-  const contentTypes = Array.isArray(contentType) ? contentType : [contentType];
-  const knownMediaTypes: KnownMediaType[] = contentTypes.map((ct) =>
-    knownMediaType(ct)
-  );
+  const knownMediaTypes: KnownMediaType[] = (
+    Array.isArray(contentType) ? contentType : [contentType]
+  ).map((ct) => knownMediaType(ct));
 
   // When encode is "bytes" and none of the content types is text/plain, treat as binary.
   // Mixed content types that include text/plain stay on the non-binary path.
-  if (
-    encode === "bytes" &&
-    knownMediaTypes.every((type) => type !== KnownMediaType.Text)
-  ) {
+  if (encode === "bytes") {
     return true;
   }
 
