@@ -1,6 +1,6 @@
 import { SourceFile } from "ts-morph";
 import { SdkContext } from "../utils/interfaces.js";
-import { NameType, normalizeName } from "@azure-tools/rlc-common";
+import { NameType, normalizeName } from "../rlc-common/index.js";
 import { join } from "path";
 import { existsSync, rmSync } from "fs";
 import { getClassicalClientName } from "./helpers/namingHelpers.js";

@@ -11,7 +11,7 @@ import {
 } from "ts-morph";
 import { refkey } from "./refkey.js";
 import { resolveProjectRoot } from "../utils/resolve-project-root.js";
-import { isAzurePackage } from "@azure-tools/rlc-common";
+import { isAzurePackage } from "../rlc-common/index.js";
 import { ModularEmitterOptions } from "../modular/interfaces.js";
 import { NoTarget, Program } from "@typespec/compiler";
 import { reportDiagnostic } from "../lib.js";
