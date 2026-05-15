@@ -466,15 +466,47 @@ function prepareExampleParameters(
         );
       }
     } else {
-      result.push(
-        prepareExampleValue(
-          dpgContext,
-          bodyParam.name,
-          bodyExample.value,
-          bodyParam.optional,
-          bodyParam.onClient
-        )
-      );
+      // Check if the body parameter is nested inside a wrapper (e.g., @bodyRoot)
+      const segments = bodyParam.methodParameterSegments;
+      const isNestedBody =
+        segments.length === 1 &&
+        segments[0] !== undefined &&
+        segments[0].length > 1;
+      if (isNestedBody) {
+        const path = segments[0]!;
+        // The first segment is the method-level wrapper param (e.g., "body")
+        const methodParamName = path[0]!.name;
+        const methodParamOptional = path[0]!.optional;
+        // Wrap the example value with the intermediate property names
+        let wrappedValue = getParameterValue(dpgContext, bodyExample.value);
+        for (let i = path.length - 1; i >= 1; i--) {
+          const propName = normalizeName(
+            path[i]!.name,
+            NameType.Property,
+            true
+          );
+          wrappedValue = `{ ${propName}: ${wrappedValue} }`;
+        }
+        result.push(
+          prepareExampleValue(
+            dpgContext,
+            methodParamName,
+            wrappedValue,
+            methodParamOptional,
+            bodyParam.onClient
+          )
+        );
+      } else {
+        result.push(
+          prepareExampleValue(
+            dpgContext,
+            bodyParam.name,
+            bodyExample.value,
+            bodyParam.optional,
+            bodyParam.onClient
+          )
+        );
+      }
     }
   }
   // optional parameters
