@@ -3,13 +3,15 @@ import { describe, expect, it } from "vitest";
 import { renameClientName } from "../../src/index.js";
 import { transformModularEmitterOptions } from "../../src/modular/buildModularOptions.js";
 import {
+  adaptMethods,
+  adaptOperationGroups,
   adaptSingleClient,
   adaptToCodeModel
 } from "../../src/tcgcadapter/adapter.js";
 import type {
   TSClient,
   TSMethod,
-  TSMethodParameter
+  TSParameter
 } from "../../src/codemodel/index.js";
 import { getClientHierarchyMap } from "../../src/utils/clientUtils.js";
 import {
@@ -121,7 +123,7 @@ function findMethod(client: TSClient, name: string): TSMethod {
   return method!;
 }
 
-function findParameter(method: TSMethod, name: string): TSMethodParameter {
+function findParameter(method: TSMethod, name: string): TSParameter {
   const parameter = method.parameters.find(
     (candidate) => candidate.name === name
   );
@@ -133,10 +135,10 @@ function findParameter(method: TSMethod, name: string): TSMethodParameter {
 }
 
 function expectLocationIfAvailable(
-  parameter: TSMethodParameter,
+  parameter: TSParameter,
   expectedLocation: string
 ): void {
-  const candidate = parameter as TSMethodParameter & {
+  const candidate = parameter as TSParameter & {
     location?: string;
     httpLocation?: string;
   };
@@ -548,7 +550,7 @@ describe("tcgc adapter", () => {
   });
 
   it("creates separate operation groups for different prefixes", async () => {
-    const client = await adaptFirstClientFromTypeSpec(
+    const { clientMap, sdkContext } = await buildAdapterFixture(
       buildServiceTypeSpec(`
         namespace Reports {
           @route("/reports/daily")
@@ -566,9 +568,12 @@ describe("tcgc adapter", () => {
       }
     );
 
-    expect(client.methods).toEqual([]);
+    const methods = adaptMethods(clientMap[1], sdkContext);
+    const operationGroups = adaptOperationGroups(clientMap[1], sdkContext);
+
+    expect(methods).toEqual([]);
     expect(
-      client.operationGroups.map((group) => ({
+      operationGroups.map((group) => ({
         name: group.name,
         prefixes: group.prefixes,
         methods: group.methods.map((method) => method.name).sort(),

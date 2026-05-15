@@ -16,7 +16,10 @@
  */
 
 import type {
+  SdkBodyParameter,
   SdkClientType,
+  SdkHttpParameter,
+  SdkMethodParameter,
   SdkServiceOperation
 } from "@azure-tools/typespec-client-generator-core";
 import { InitializedByFlags } from "@azure-tools/typespec-client-generator-core";
@@ -39,8 +42,17 @@ import {
   buildGetClientCredentialParam
 } from "../modular/helpers/clientHelpers.js";
 import { getApiVersionEnum, buildEnumTypes } from "../modular/emitModels.js";
-import { getMethodHierarchiesMap } from "../utils/operationUtil.js";
-import { getOperationFunction } from "../modular/helpers/operationHelpers.js";
+import {
+  getMethodHierarchiesMap,
+  type ServiceOperation
+} from "../utils/operationUtil.js";
+import {
+  getOperationFunction,
+  isLroAndPagingOperation,
+  isLroOnlyOperation,
+  isPagingOnlyOperation
+} from "../modular/helpers/operationHelpers.js";
+import { isTypeNullable } from "../modular/helpers/typeHelpers.js";
 
 import type {
   TSCodeModel,
@@ -142,8 +154,8 @@ function adaptClient(
   const endpoint = adaptEndpoint(sdkContext, client, settings);
   const credential = adaptCredential(client, emitterOptions);
   const apiVersion = adaptApiVersion(sdkContext, client);
-  const methods = adaptMethods(sdkContext, client, clientMap);
-  const operationGroups = adaptOperationGroups(sdkContext, client, clientMap);
+  const methods = adaptMethods(client, sdkContext);
+  const operationGroups = adaptOperationGroups(client, sdkContext);
 
   const hasParentInitializedChildren = !!(
     client.children &&
@@ -362,18 +374,20 @@ function adaptApiVersion(
 
 // ─── Method Adapter ───────────────────────────────────────────────────
 
-function adaptMethods(
-  sdkContext: SdkContext,
+export function adaptMethods(
   client: SdkClientType<SdkServiceOperation>,
-  clientMap: [string[], SdkClientType<SdkServiceOperation>]
+  sdkContext: SdkContext
 ): TSMethod[] {
   const methodMap = getMethodHierarchiesMap(sdkContext, client);
   const methods: TSMethod[] = [];
 
   for (const [prefixKey, operations] of methodMap) {
-    if (prefixKey !== "") continue; // Only top-level methods here
-    for (const op of operations) {
-      methods.push(adaptMethod(sdkContext, op, clientMap));
+    if (prefixKey !== "") {
+      continue;
+    }
+
+    for (const operation of operations) {
+      methods.push(adaptMethod(operation, sdkContext));
     }
   }
 
@@ -381,89 +395,213 @@ function adaptMethods(
 }
 
 function adaptMethod(
-  sdkContext: SdkContext,
-  operation: any,
-  clientMap: [string[], SdkClientType<SdkServiceOperation>]
+  operation: ServiceOperation,
+  sdkContext: SdkContext
 ): TSMethod {
-  const { rlcClientName } = getModularClientOptions(clientMap);
-
-  // Use getOperationFunction to get the full declaration
-  // (Option A: we call this helper which internally resolves references)
-  const prefixes = [""];
   const declaration = getOperationFunction(
     sdkContext,
-    [prefixes, operation],
-    rlcClientName
+    [[], operation],
+    "Client"
   );
-  const methodName = declaration.propertyName ?? declaration.name ?? "FIXME";
-  const params = (declaration.parameters ?? [])
-    .filter((p) => p.name !== "context")
-    .map((p) => ({
-      name: p.name,
-      type: p.type?.toString() ?? "any",
-      optional: !!p.hasQuestionToken,
-      docs: [] as string[]
-    }));
-
-  let kind: TSMethodKind = "basic";
-  if (declaration.isLro && declaration.isLroPaging) {
-    kind = "lroPaging";
-  } else if (declaration.isLro) {
-    kind = "lro";
-  } else if (
-    String(declaration.returnType ?? "").includes("PagedAsyncIterableIterator")
-  ) {
-    kind = "paging";
-  }
+  const methodName =
+    declaration.propertyName ?? declaration.name ?? operation.name;
+  const description =
+    getDocsFromDescription(operation.doc).join("\n") || undefined;
 
   return {
     id: `method:${methodName}`,
     name: methodName,
-    oriName: operation.oriName,
-    kind,
-    parameters: params,
-    returnType: String(declaration.returnType ?? "void"),
-    docs: (declaration.docs ?? []).map(String),
+    originalName: operation.oriName,
+    kind: adaptMethodKind(operation),
+    description,
+    httpMethod: operation.operation.verb.toUpperCase(),
     route: {
-      path: operation.operation?.path ?? "",
-      method: operation.operation?.verb ?? "get"
+      pathTemplate: operation.operation.path,
+      verb: operation.operation.verb.toUpperCase()
     },
-    lro: declaration.isLro
-      ? { finalReturnType: declaration.lroFinalReturnType ?? "void" }
-      : undefined,
-    paging: declaration.isLroPaging
-      ? {
-          itemType: declaration.lropagingFinalReturnType ?? "void"
-        }
-      : undefined
+    parameters: adaptMethodParameters(operation, sdkContext),
+    returnType: adaptMethodReturnType(
+      operation,
+      sdkContext,
+      declaration.returnType?.toString()
+    )
   };
+}
+
+function adaptMethodKind(operation: ServiceOperation): TSMethodKind {
+  if (isLroAndPagingOperation(operation)) {
+    return "lroPaging";
+  }
+
+  if (isLroOnlyOperation(operation)) {
+    return "lro";
+  }
+
+  if (isPagingOnlyOperation(operation)) {
+    return "paging";
+  }
+
+  return "basic";
+}
+
+function adaptMethodParameters(
+  operation: ServiceOperation,
+  sdkContext: SdkContext
+): TSMethod["parameters"] {
+  const parameters: TSMethod["parameters"] = [];
+  const seen = new Set<string>();
+
+  for (const parameter of operation.parameters) {
+    const httpLocation = getOperationParameterLocation(operation, parameter);
+    if (!httpLocation || !shouldIncludeOperationParameter(parameter)) {
+      continue;
+    }
+
+    parameters.push(adaptMethodParameter(parameter, httpLocation, sdkContext));
+    seen.add(parameter.name);
+  }
+
+  const bodyParameter = operation.operation.bodyParam;
+  if (
+    bodyParameter &&
+    shouldIncludeOperationParameter(bodyParameter) &&
+    !seen.has(bodyParameter.name)
+  ) {
+    parameters.push(adaptMethodParameter(bodyParameter, "body", sdkContext));
+  }
+
+  return parameters;
+}
+
+function adaptMethodParameter(
+  parameter: SdkMethodParameter | SdkBodyParameter,
+  httpLocation: TSMethod["parameters"][number]["httpLocation"],
+  sdkContext: SdkContext
+): TSMethod["parameters"][number] {
+  const defaultValue =
+    parameter.clientDefaultValue ??
+    (parameter as { __raw?: { defaultValue?: unknown } }).__raw?.defaultValue;
+
+  return {
+    name: parameter.name,
+    type: getTypeExpression(sdkContext, parameter.type),
+    optional: !!parameter.optional || defaultValue !== undefined,
+    defaultValue,
+    httpLocation
+  };
+}
+
+function getOperationParameterLocation(
+  operation: ServiceOperation,
+  parameter: SdkMethodParameter | SdkBodyParameter
+): TSMethod["parameters"][number]["httpLocation"] | undefined {
+  if (operation.operation.bodyParam === parameter) {
+    return "body";
+  }
+
+  const httpParameter = operation.operation.parameters.find((candidate) =>
+    isDirectMethodParameter(candidate, parameter)
+  );
+
+  if (!httpParameter) {
+    return undefined;
+  }
+
+  if (
+    httpParameter.kind === "query" ||
+    httpParameter.kind === "header" ||
+    httpParameter.kind === "path"
+  ) {
+    return httpParameter.kind;
+  }
+
+  return undefined;
+}
+
+function isDirectMethodParameter(
+  httpParameter: SdkHttpParameter,
+  parameter: SdkMethodParameter | SdkBodyParameter
+): boolean {
+  return (
+    httpParameter.methodParameterSegments.length === 1 &&
+    httpParameter.methodParameterSegments[0]?.length === 1 &&
+    httpParameter.methodParameterSegments[0]?.[0] === parameter
+  );
+}
+
+function shouldIncludeOperationParameter(
+  parameter: SdkMethodParameter | SdkBodyParameter
+): boolean {
+  return !(
+    parameter.onClient ||
+    parameter.type.kind === "constant" ||
+    (parameter.isGeneratedName &&
+      (parameter.name === "contentType" || parameter.name === "accept"))
+  );
+}
+
+function adaptMethodReturnType(
+  operation: ServiceOperation,
+  sdkContext: SdkContext,
+  declarationReturnType: string | undefined
+): TSMethod["returnType"] {
+  const logicalReturnType = getLogicalReturnType(operation);
+
+  return {
+    type: String(declarationReturnType ?? "Promise<void>"),
+    nullable: logicalReturnType ? isTypeNullable(logicalReturnType) : false,
+    isVoid:
+      !logicalReturnType && !isHeadAsBooleanOperation(operation, sdkContext)
+  };
+}
+
+function getLogicalReturnType(operation: ServiceOperation) {
+  if (isLroOnlyOperation(operation)) {
+    return operation.lroMetadata?.finalResponse?.result;
+  }
+
+  return operation.response.type;
+}
+
+function isHeadAsBooleanOperation(
+  operation: ServiceOperation,
+  sdkContext: SdkContext
+): boolean {
+  if (operation.operation.verb.toLowerCase() !== "head") {
+    return false;
+  }
+
+  return (
+    (operation.response.type as { kind?: string } | undefined)?.kind ===
+      "boolean" || !!sdkContext.rlcOptions?.headAsBoolean
+  );
 }
 
 // ─── Operation Group Adapter ──────────────────────────────────────────
 
-function adaptOperationGroups(
-  sdkContext: SdkContext,
+export function adaptOperationGroups(
   client: SdkClientType<SdkServiceOperation>,
-  clientMap: [string[], SdkClientType<SdkServiceOperation>]
+  sdkContext: SdkContext
 ): TSOperationGroup[] {
   const methodMap = getMethodHierarchiesMap(sdkContext, client);
   const groups: TSOperationGroup[] = [];
 
   for (const [prefixKey, operations] of methodMap) {
-    if (prefixKey === "") continue;
+    if (prefixKey === "") {
+      continue;
+    }
+
     const prefixes = prefixKey.split("/");
-    const groupName = normalizeName(prefixes[0] ?? "", NameType.Interface);
+    const groupName = normalizeName(
+      prefixes[prefixes.length - 1] ?? "",
+      NameType.Interface
+    );
 
-    // Check if group already exists
-    let group = groups.find((g) => g.name === groupName);
-    if (!group) {
-      group = { name: groupName, prefixes, methods: [] };
-      groups.push(group);
-    }
-
-    for (const op of operations) {
-      group.methods.push(adaptMethod(sdkContext, op, clientMap));
-    }
+    groups.push({
+      name: groupName,
+      prefixes,
+      methods: operations.map((operation) => adaptMethod(operation, sdkContext))
+    });
   }
 
   return groups;

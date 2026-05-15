@@ -175,53 +175,53 @@ export interface TSClientParameter {
 
 export type TSMethodKind = "basic" | "lro" | "paging" | "lroPaging";
 
+export type TSParameterLocation = "query" | "header" | "path" | "body";
+
 /**
- * An operation method on a client. Maps to Go's `MethodType` and
- * Rust's `MethodType`.
+ * An operation method on a client. This is a plain data view of the
+ * operation shape that modular rendering currently derives from TCGC.
  */
 export interface TSMethod {
   /** Stable semantic ID */
   id: string;
   /** Method name for the classical client */
   name: string;
-  /** Original operation name (pre-normalization, for classical operation helpers) */
-  oriName?: string;
+  /** Original operation name before operation-group prefixing */
+  originalName?: string;
   /** Operation kind */
   kind: TSMethodKind;
-  /** Method parameters */
-  parameters: TSMethodParameter[];
-  /** Return type expression */
-  returnType: string;
-  /** Documentation */
-  docs: string[];
+  /** Summary/description from the operation doc comment */
+  description?: string;
+  /** HTTP method for the request */
+  httpMethod: string;
   /** HTTP route info */
-  route: TSHttpRoute;
-  /** LRO metadata (if kind is "lro" or "lroPaging") */
-  lro?: TSLroMetadata;
-  /** Paging metadata (if kind is "paging" or "lroPaging") */
-  paging?: TSPagingMetadata;
+  route: TSRoute;
+  /** Operation parameters */
+  parameters: TSParameter[];
+  /** Method return type */
+  returnType: TSReturnType;
 }
 
-export interface TSMethodParameter {
+export interface TSParameter {
   name: string;
   type: string;
   optional: boolean;
-  docs: string[];
+  defaultValue?: unknown;
+  httpLocation: TSParameterLocation;
 }
 
-export interface TSHttpRoute {
-  path: string;
-  method: string;
+export interface TSReturnType {
+  /** Full TypeScript type expression returned by the method */
+  type: string;
+  /** Whether the logical payload/result type is nullable */
+  nullable: boolean;
+  /** Whether the logical payload/result type is void */
+  isVoid: boolean;
 }
 
-export interface TSLroMetadata {
-  /** Final result type expression */
-  finalReturnType: string;
-}
-
-export interface TSPagingMetadata {
-  /** Final item type expression */
-  itemType: string;
+export interface TSRoute {
+  pathTemplate: string;
+  verb: string;
 }
 
 // ─── Operation Groups ─────────────────────────────────────────────────
