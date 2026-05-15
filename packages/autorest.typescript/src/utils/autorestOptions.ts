@@ -80,7 +80,19 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
     dependencyInfo,
     useLegacyLro,
     flavor,
+    generateReactNativeTarget: await getGenerateReactNativeTarget(host)
   };
+}
+
+async function getGenerateReactNativeTarget(
+  host: AutorestExtensionHost
+): Promise<boolean> {
+  const generateReactNativeTarget = await host.getValue(
+    "generate-react-native-target"
+  );
+  return generateReactNativeTarget === null
+    ? false
+    : Boolean(generateReactNativeTarget);
 }
 
 async function getUseLegacyLro(host: AutorestExtensionHost): Promise<boolean> {

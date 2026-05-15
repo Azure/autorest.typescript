@@ -138,7 +138,9 @@ export async function generateRestLevelClient() {
     if (azureSdkForJs) {
       generateFileByBuilder(project, buildTsSrcEsmConfig, rlcModels);
       generateFileByBuilder(project, buildTsSrcBrowserConfig, rlcModels);
-      generateFileByBuilder(project, buildTsSrcReactNativeConfig, rlcModels);
+      if (rlcModels.options?.generateReactNativeTarget) {
+        generateFileByBuilder(project, buildTsSrcReactNativeConfig, rlcModels);
+      }
       generateFileByBuilder(project, buildTsSrcCjsConfig, rlcModels);
       if (generateSample) {
         // buildTsSampleConfig
