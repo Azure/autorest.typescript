@@ -162,7 +162,16 @@ export function _getSchemaByVersionSend(
       allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
-  return context.path(path).get({ ...operationOptionsToRequestParameters(options) });
+  return context
+    .path(path)
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept:
+          "application/json; serialization=Avro, application/json; serialization=json, text/plain; charset=utf-8, text/vnd.ms.protobuf",
+        ...options.requestOptions?.headers,
+      },
+    });
 }
 
 export async function _getSchemaByVersionDeserialize(
@@ -257,7 +266,16 @@ export function _getSchemaByIdSend(
       allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
-  return context.path(path).get({ ...operationOptionsToRequestParameters(options) });
+  return context
+    .path(path)
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept:
+          "application/json; serialization=Avro, application/json; serialization=json, text/plain; charset=utf-8, text/vnd.ms.protobuf",
+        ...options.requestOptions?.headers,
+      },
+    });
 }
 
 export async function _getSchemaByIdDeserialize(

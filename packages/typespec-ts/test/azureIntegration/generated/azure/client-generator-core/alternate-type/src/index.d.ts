@@ -1,7 +1,9 @@
 import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
 export declare type AlternateTypeClient = Client & {
@@ -62,6 +64,8 @@ export declare interface GetProperty200Response extends HttpResponse {
 
 export declare type GetPropertyParameters = RequestParameters;
 
+export { isRestError }
+
 export declare interface ModelWithFeatureProperty {
     feature: Feature;
     additionalProperty: string;
@@ -91,6 +95,8 @@ export declare interface PutPropertyBodyParam {
 }
 
 export declare type PutPropertyParameters = PutPropertyBodyParam & RequestParameters;
+
+export { RestError }
 
 export declare interface Routes {
     (path: "/azure/client-generator-core/alternate-type/external/model"): GetModel;

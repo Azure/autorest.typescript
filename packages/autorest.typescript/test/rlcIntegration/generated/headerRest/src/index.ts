@@ -12,5 +12,6 @@ export * from "./responses";
 export * from "./clientDefinitions";
 export * from "./isUnexpected";
 export * from "./outputModels";
+export { RestError, isRestError } from "@azure/core-rest-pipeline";
 
 export default HeaderRestClient;

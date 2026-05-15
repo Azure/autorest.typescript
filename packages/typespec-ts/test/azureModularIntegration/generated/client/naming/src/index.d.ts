@@ -1,6 +1,8 @@
 import { ClientOptions } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
+import { RestError } from '@azure/core-rest-pipeline';
 
 export declare type ClientExtensibleEnum = "value1";
 
@@ -31,6 +33,8 @@ export declare interface HeaderRequestOptionalParams extends OperationOptions {
 
 export declare interface HeaderResponseOptionalParams extends OperationOptions {
 }
+
+export { isRestError }
 
 export declare interface LanguageClientNameModel {
     tsName: boolean;
@@ -79,6 +83,8 @@ export declare interface PropertyOperations {
     language: (body: LanguageClientNameModel, options?: PropertyLanguageOptionalParams) => Promise<void>;
     client: (body: ClientNameModel, options?: PropertyClientOptionalParams) => Promise<void>;
 }
+
+export { RestError }
 
 export declare interface TSModel {
     defaultName: boolean;

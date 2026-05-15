@@ -1,7 +1,9 @@
 import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
 declare function createClient(options?: DurationClientOptions): DurationClient;
@@ -31,6 +33,10 @@ export declare type DurationConstantParameters = DurationConstantBodyParam & Req
 export declare interface DurationModel {
     input: string;
 }
+
+export { isRestError }
+
+export { RestError }
 
 export declare interface Routes {
     (path: "/azure/encode/duration/duration-constant"): DurationConstant;

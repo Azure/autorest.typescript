@@ -14,5 +14,6 @@ export * from "./isUnexpected";
 export * from "./models";
 export * from "./outputModels";
 export * from "./pollingHelper";
+export { RestError, isRestError } from "@azure/core-rest-pipeline";
 
 export default LRORestClient;

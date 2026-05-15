@@ -79,7 +79,7 @@ export function _createSend(
       ...operationOptionsToRequestParameters(options),
       contentType: "text/plain",
       headers: { accept: "text/plain", ...options.requestOptions?.headers },
-      body: options["body"] ?? "default-body",
+      body: options?.body ?? "default-body",
     });
 }
 
@@ -122,9 +122,7 @@ export function _testQuerySend(
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        ...(options?.customHeader !== undefined
-          ? { "custom-header": options?.customHeader ?? "application/json" }
-          : {}),
+        "custom-header": options?.customHeader ?? "application/json",
         accept: "application/json",
         ...options.requestOptions?.headers,
       },

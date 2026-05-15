@@ -11,5 +11,6 @@ export * from "./parameters";
 export * from "./responses";
 export * from "./clientDefinitions";
 export * from "./models";
+export { RestError, isRestError } from "@azure/core-rest-pipeline";
 
 export default DPGClient;

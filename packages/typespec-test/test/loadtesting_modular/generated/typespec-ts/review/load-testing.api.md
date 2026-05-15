@@ -5,8 +5,10 @@
 ```ts
 
 import { ClientOptions } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
+import { RestError } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
 
 // @public
@@ -169,6 +171,8 @@ export interface GetTestRunFileOptionalParams extends OperationOptions {
 // @public
 export interface GetTestRunOptionalParams extends OperationOptions {
 }
+
+export { isRestError }
 
 // @public
 export enum KnownAggregationType {
@@ -622,6 +626,8 @@ export interface ResourceMetric {
     resourceType: string;
     unit?: string;
 }
+
+export { RestError }
 
 // @public
 export interface Secret {

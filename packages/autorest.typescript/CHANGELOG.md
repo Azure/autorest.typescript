@@ -1,3 +1,24 @@
+## 6.0.71 (2026-05-14)
+
+- [Bugfix] Fix dependencies error. Please refer to [#3963](https://github.com/Azure/autorest.typescript/pull/3963)
+
+## 6.0.70 (2026-05-14)
+
+- [Bugfix] Fix body parameter accessor to use methodParameterSegments. Please refer to [#3961](https://github.com/Azure/autorest.typescript/pull/3961)
+- [Feature] Bump TypeSpec dependencies to latest stable. Please refer to [#3959](https://github.com/Azure/autorest.typescript/pull/3959)
+- [Bugfix] Deduplicate statusCodes in getExpectedStatuses. Please refer to [#3956](https://github.com/Azure/autorest.typescript/pull/3956)
+- [Feature] Align Azure monorepo package.json metadata with new repository schema across codegen packages. Please refer to [#3950](https://github.com/Azure/autorest.typescript/pull/3950)
+- [Feature] Add spector integration tests for ClientDoc, ResponseAsBool, Documentation_Lists, and Documentation_TextFormatting. Please refer to [#3944](https://github.com/Azure/autorest.typescript/pull/3944)
+- [Bugfix] Fix nightly CI. Please refer to [#3947](https://github.com/Azure/autorest.typescript/pull/3947)
+- [Bugfix] Stop generating vitest.esm.config.ts. Please refer to [#3941](https://github.com/Azure/autorest.typescript/pull/3941)
+- [Feature] Use `V` prefix for digit-starting members in API version enums. Please refer to [#3939](https://github.com/Azure/autorest.typescript/pull/3939)
+- [Feature] Migrate generated configs to eng/tsconfigs pattern. Please refer to [#3938](https://github.com/Azure/autorest.typescript/pull/3938)
+- [Bugfix] Fix: optional header with `@clientDefaultValue` always omitted instead of sending default. Please refer to [#3936](https://github.com/Azure/autorest.typescript/pull/3936)
+- [Feature] Support multi-client generation with InitializedBy.Parent only. Please refer to [#3933](https://github.com/Azure/autorest.typescript/pull/3933)
+- [Feature] Re-export RestError and isRestError from @azure/core-rest-pipeline for Azure flavor packages. Please refer to [#3930](https://github.com/Azure/autorest.typescript/pull/3930)
+- [Feature] Use #platform/* subpath imports for polyfill resolution. Please refer to [#3928](https://github.com/Azure/autorest.typescript/pull/3928)
+- [Bugfix] Fix package.json dependency migration when moving from Swagger to TypeSpec modular. Please refer to [#3811](https://github.com/Azure/autorest.typescript/pull/3811)
+
 ## 6.0.69 (2026-04-23)
 
 - [Feature] Bump TypeSpec dependencies to latest stable. Please refer to [#3932](https://github.com/Azure/autorest.typescript/pull/3932)

@@ -1,6 +1,8 @@
 import { ClientOptions } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
+import { RestError } from '@azure/core-rest-pipeline';
 
 export declare interface AdminOperationsDeleteUserOptionalParams extends OperationOptions {
 }
@@ -13,6 +15,8 @@ export declare interface AdminOperationsOperations {
     getAdminInfo: (options?: AdminOperationsGetAdminInfoOptionalParams) => Promise<void>;
 }
 
+export { isRestError }
+
 export declare class MoveToExistingSubClient {
     private _client;
     readonly pipeline: Pipeline;
@@ -23,6 +27,8 @@ export declare class MoveToExistingSubClient {
 
 export declare interface MoveToExistingSubClientOptionalParams extends ClientOptions {
 }
+
+export { RestError }
 
 export declare interface UserOperationsGetUserOptionalParams extends OperationOptions {
 }

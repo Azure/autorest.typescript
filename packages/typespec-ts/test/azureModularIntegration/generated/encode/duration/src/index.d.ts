@@ -1,6 +1,8 @@
 import { ClientOptions } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
+import { RestError } from '@azure/core-rest-pipeline';
 
 export declare interface DefaultDurationProperty {
     value: string;
@@ -129,6 +131,8 @@ export declare interface ISO8601DurationProperty {
     value: string;
 }
 
+export { isRestError }
+
 export declare interface PropertyDefaultOptionalParams extends OperationOptions {
 }
 
@@ -246,5 +250,7 @@ export declare interface QueryOperations {
     iso8601: (input: string, options?: QueryIso8601OptionalParams) => Promise<void>;
     default: (input: string, options?: QueryDefaultOptionalParams) => Promise<void>;
 }
+
+export { RestError }
 
 export { }

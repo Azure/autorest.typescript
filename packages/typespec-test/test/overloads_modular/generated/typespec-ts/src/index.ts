@@ -9,3 +9,4 @@ export type {
   FooOperationsGetAvatarAsPngOptionalParams,
 } from "./api/fooOperations/index.js";
 export type { FooOperationsOperations } from "./classic/index.js";
+export { RestError, isRestError } from "@azure/core-rest-pipeline";

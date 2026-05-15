@@ -1,8 +1,10 @@
 import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
 declare function createClient(options?: XmsClientRequestIdClientOptions): XmsClientRequestIdClient;
@@ -25,6 +27,10 @@ export declare interface GetHeaders {
 }
 
 export declare type GetParameters = GetHeaderParam & RequestParameters;
+
+export { isRestError }
+
+export { RestError }
 
 export declare interface Routes {
     (path: "/azure/special-headers/x-ms-client-request-id/"): Get;

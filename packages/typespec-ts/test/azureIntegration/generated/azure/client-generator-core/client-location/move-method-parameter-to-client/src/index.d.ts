@@ -1,7 +1,9 @@
 import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
 export declare interface BlobOutput {
@@ -35,12 +37,16 @@ export declare interface GetBlobQueryParamProperties {
     blob: string;
 }
 
+export { isRestError }
+
 export declare type MoveMethodParameterToClientClient = Client & {
     path: Routes;
 };
 
 export declare interface MoveMethodParameterToClientClientOptions extends ClientOptions {
 }
+
+export { RestError }
 
 export declare interface Routes {
     (path: "/azure/client-generator-core/client-location/move-method-parameter-to-client/blob"): GetBlob;

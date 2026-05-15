@@ -1,6 +1,8 @@
 import { ClientOptions } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
+import { RestError } from '@azure/core-rest-pipeline';
 
 export declare interface ApiError {
     details?: ApiErrorBase[];
@@ -89,6 +91,8 @@ export declare interface InnerError {
     errordetail?: string;
 }
 
+export { isRestError }
+
 export declare enum KnownCreatedByType {
     User = "User",
     Application = "Application",
@@ -131,6 +135,8 @@ export declare interface Resource {
     readonly type?: string;
     readonly systemData?: SystemData;
 }
+
+export { RestError }
 
 export declare interface SystemData {
     createdBy?: string;

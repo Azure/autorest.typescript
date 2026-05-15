@@ -187,7 +187,7 @@ export function _listMetricsSend(
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
       headers: { accept: "application/json", ...options.requestOptions?.headers },
-      body: !options["body"] ? options["body"] : metricRequestPayloadSerializer(options["body"]),
+      body: !options?.body ? options?.body : metricRequestPayloadSerializer(options?.body),
     });
 }
 

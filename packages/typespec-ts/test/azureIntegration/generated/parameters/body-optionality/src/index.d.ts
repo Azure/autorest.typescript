@@ -1,7 +1,9 @@
 import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
 export declare interface BodyModel {
@@ -17,6 +19,8 @@ export declare interface BodyOptionalityClientOptions extends ClientOptions {
 
 declare function createClient(options?: BodyOptionalityClientOptions): BodyOptionalityClient;
 export default createClient;
+
+export { isRestError }
 
 declare interface Omit_2 {
     post(options?: OptionalExplicitOmitParameters): StreamableMethod<OptionalExplicitOmit204Response>;
@@ -70,6 +74,8 @@ export declare interface RequiredImplicitBodyParam {
 }
 
 export declare type RequiredImplicitParameters = RequiredImplicitBodyParam & RequestParameters;
+
+export { RestError }
 
 export declare interface Routes {
     (path: "/parameters/body-optionality/required-explicit"): RequiredExplicit;

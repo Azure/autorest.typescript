@@ -1,7 +1,9 @@
 import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
 export declare type AzureArmNonResourceClient = Client & {
@@ -65,6 +67,8 @@ export declare interface GetDefaultResponse extends HttpResponse {
 
 export declare type GetParameters = RequestParameters;
 
+export { isRestError }
+
 export declare function isUnexpected(response: Get200Response | GetDefaultResponse): response is GetDefaultResponse;
 
 export declare function isUnexpected(response: Create200Response | CreateDefaultResponse): response is CreateDefaultResponse;
@@ -80,6 +84,8 @@ export declare interface NonResourceOutput {
     name?: string;
     type?: string;
 }
+
+export { RestError }
 
 export declare interface Routes {
     (path: "/subscriptions/{subscriptionId}/providers/Microsoft.NonResource/locations/{location}/otherParameters/{parameter}", subscriptionId: string, location: string, parameter: string): Get;

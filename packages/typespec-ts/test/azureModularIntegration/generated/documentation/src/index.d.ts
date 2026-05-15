@@ -1,6 +1,8 @@
 import { ClientOptions } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
+import { RestError } from '@azure/core-rest-pipeline';
 
 export declare type BulletPointsEnum = "Simple" | "Bold" | "Italic";
 
@@ -19,6 +21,8 @@ export declare class DocumentationClient {
 export declare interface DocumentationClientOptionalParams extends ClientOptions {
 }
 
+export { isRestError }
+
 export declare interface ListsBulletPointsModelOptionalParams extends OperationOptions {
 }
 
@@ -33,6 +37,8 @@ export declare interface ListsOperations {
     bulletPointsModel: (input: BulletPointsModel, options?: ListsBulletPointsModelOptionalParams) => Promise<void>;
     bulletPointsOp: (options?: ListsBulletPointsOpOptionalParams) => Promise<void>;
 }
+
+export { RestError }
 
 export declare interface TextFormattingBoldTextOptionalParams extends OperationOptions {
 }

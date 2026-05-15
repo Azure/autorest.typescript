@@ -1,7 +1,9 @@
 import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
 declare function createClient(options?: UsageClientOptions): UsageClient;
@@ -24,6 +26,8 @@ export declare interface InputToInputOutputBodyParam {
 }
 
 export declare type InputToInputOutputParameters = InputToInputOutputBodyParam & RequestParameters;
+
+export { isRestError }
 
 export declare interface ModelInReadOnlyProperty {
     put(options: ModelInReadOnlyPropertyParameters): StreamableMethod<ModelInReadOnlyProperty200Response>;
@@ -68,6 +72,8 @@ export declare interface OutputToInputOutput200Response extends HttpResponse {
 }
 
 export declare type OutputToInputOutputParameters = RequestParameters;
+
+export { RestError }
 
 export declare interface ResultModel {
     name: string;

@@ -1,11 +1,15 @@
 import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
-declare function createClient(endpointParam: string, version: Versions, options?: VersioningRenamedFromClientOptions): VersioningRenamedFromClient;
+declare function createClient(endpointParam: string, options?: VersioningRenamedFromClientOptions): VersioningRenamedFromClient;
 export default createClient;
+
+export { isRestError }
 
 export declare type NewEnum = "newEnumMember";
 
@@ -65,6 +69,8 @@ export declare type NewUnion = string | number;
 
 export declare type NewUnionOutput = string | number;
 
+export { RestError }
+
 export declare interface Routes {
     (path: "/test"): NewOp;
     (path: "/interface/test"): NewOpInNewInterface;
@@ -75,6 +81,7 @@ export declare type VersioningRenamedFromClient = Client & {
 };
 
 export declare interface VersioningRenamedFromClientOptions extends ClientOptions {
+    version?: Versions;
 }
 
 export declare type Versions = "v1" | "v2";

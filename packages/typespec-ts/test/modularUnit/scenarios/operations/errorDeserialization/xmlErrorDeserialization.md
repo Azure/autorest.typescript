@@ -147,7 +147,12 @@ export function _getDocumentSend(
       allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
-  return context.path(path).get({ ...operationOptionsToRequestParameters(options) });
+  return context
+    .path(path)
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: { accept: "application/json, application/xml", ...options.requestOptions?.headers },
+    });
 }
 
 export async function _getDocumentDeserialize(result: PathUncheckedResponse): Promise<Document> {

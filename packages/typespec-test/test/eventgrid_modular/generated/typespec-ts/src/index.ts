@@ -26,3 +26,4 @@ export type {
   PublishCloudEventsOptionalParams,
   PublishCloudEventOptionalParams,
 } from "./api/index.js";
+export { RestError, isRestError } from "@azure/core-rest-pipeline";

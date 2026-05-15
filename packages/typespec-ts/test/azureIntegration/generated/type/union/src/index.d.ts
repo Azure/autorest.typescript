@@ -1,7 +1,9 @@
 import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
 export declare interface Cat {
@@ -110,6 +112,8 @@ export declare interface IntsOnlySendBodyParam {
 }
 
 export declare type IntsOnlySendParameters = IntsOnlySendBodyParam & RequestParameters;
+
+export { isRestError }
 
 export declare type LR = "left" | "right";
 
@@ -222,6 +226,8 @@ export declare interface ModelsOnlySendBodyParam {
 }
 
 export declare type ModelsOnlySendParameters = ModelsOnlySendBodyParam & RequestParameters;
+
+export { RestError }
 
 export declare interface Routes {
     (path: "/type/union/strings-only"): StringsOnlyGet;

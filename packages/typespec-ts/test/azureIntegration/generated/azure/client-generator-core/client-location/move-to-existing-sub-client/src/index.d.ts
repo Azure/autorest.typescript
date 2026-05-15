@@ -1,7 +1,9 @@
 import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import { isRestError } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
+import { RestError } from '@azure/core-rest-pipeline';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
 declare function createClient(options?: MoveToExistingSubClientClientOptions): MoveToExistingSubClientClient;
@@ -34,12 +36,16 @@ export declare interface GetUser204Response extends HttpResponse {
 
 export declare type GetUserParameters = RequestParameters;
 
+export { isRestError }
+
 export declare type MoveToExistingSubClientClient = Client & {
     path: Routes;
 };
 
 export declare interface MoveToExistingSubClientClientOptions extends ClientOptions {
 }
+
+export { RestError }
 
 export declare interface Routes {
     (path: "/azure/client-generator-core/client-location/move-to-existing-sub-client/admin"): GetAdminInfo;
