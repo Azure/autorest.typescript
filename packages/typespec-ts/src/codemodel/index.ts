@@ -28,6 +28,15 @@ export interface TSCodeModel {
   /** All clients in the package (may be hierarchical) */
   clients: TSClient[];
 
+  /** Named model/interface declarations */
+  models: TSModel[];
+
+  /** Named enum declarations */
+  enums: TSEnum[];
+
+  /** Named union declarations */
+  unions: TSUnion[];
+
   /** Generation settings derived from emitter options */
   settings: TSGenerationSettings;
 }
@@ -233,4 +242,101 @@ export interface TSOperationGroup {
   prefixes: string[];
   /** Operations in this group */
   methods: TSMethod[];
+}
+
+// ─── Models / Types ─────────────────────────────────────────────────────
+
+export type TSTypeReference = string;
+
+export interface TSModel {
+  /** Stable semantic ID */
+  id: string;
+  /** TypeScript model/interface name */
+  name: string;
+  /** Model documentation */
+  docs: string[];
+  /** Direct model properties */
+  properties: TSProperty[];
+  /** Base model reference for inheritance */
+  baseType?: TSTypeReference;
+  /** Additional properties bag value type */
+  additionalPropertiesType?: TSTypeReference;
+  /** Polymorphism metadata */
+  discriminator?: TSDiscriminator;
+}
+
+export interface TSProperty {
+  /** TypeScript property name */
+  name: string;
+  /** Referenced TypeScript type */
+  type: TSTypeReference;
+  /** Whether the property is optional */
+  optional: boolean;
+  /** Whether the property is readonly */
+  readonly: boolean;
+  /** Serialized wire name */
+  serializedName?: string;
+  /** Whether the property is a discriminator */
+  isDiscriminator: boolean;
+  /** Whether the property is flattened in serialization */
+  isFlattened: boolean;
+}
+
+export interface TSDiscriminator {
+  /** TypeScript discriminator property name */
+  propertyName: string;
+  /** Wire name used during serialization */
+  serializedName?: string;
+  /** Discriminator value for derived types */
+  value?: string;
+  /** Known derived model type names */
+  derivedTypes: TSTypeReference[];
+}
+
+export interface TSEnum {
+  /** Stable semantic ID */
+  id: string;
+  /** TypeScript enum alias name */
+  name: string;
+  /** Enum documentation */
+  docs: string[];
+  /** Enum members */
+  members: TSEnumMember[];
+  /** Whether the enum is fixed/exhaustive */
+  isFixed: boolean;
+  /** Whether the enum is extensible/non-exhaustive */
+  isExtensible: boolean;
+  /** Underlying value type */
+  valueType: TSTypeReference;
+}
+
+export interface TSEnumMember {
+  name: string;
+  value: string | number;
+}
+
+export interface TSUnion {
+  /** Stable semantic ID */
+  id: string;
+  /** TypeScript union alias name */
+  name: string;
+  /** Union documentation */
+  docs: string[];
+  /** Union variants */
+  variants: TSUnionVariant[];
+  /** Discriminator metadata when present */
+  discriminator?: TSUnionDiscriminator;
+}
+
+export interface TSUnionVariant {
+  /** Variant label when declared in TypeSpec */
+  name?: string;
+  /** Variant type reference */
+  type: TSTypeReference;
+}
+
+export interface TSUnionDiscriminator {
+  propertyName: string;
+  envelope: "object" | "none";
+  envelopePropertyName?: string;
 }

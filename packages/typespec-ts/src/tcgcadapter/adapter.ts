@@ -18,11 +18,20 @@
 import type {
   SdkBodyParameter,
   SdkClientType,
+  SdkEnumType,
   SdkHttpParameter,
   SdkMethodParameter,
-  SdkServiceOperation
+  SdkModelPropertyType,
+  SdkModelType,
+  SdkServiceOperation,
+  SdkType,
+  SdkUnionType
 } from "@azure-tools/typespec-client-generator-core";
-import { InitializedByFlags } from "@azure-tools/typespec-client-generator-core";
+import {
+  InitializedByFlags,
+  UsageFlags,
+  isReadOnly
+} from "@azure-tools/typespec-client-generator-core";
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import type { SdkContext } from "../utils/interfaces.js";
 import type { ModularEmitterOptions } from "../modular/interfaces.js";
@@ -48,23 +57,33 @@ import {
 } from "../utils/operationUtil.js";
 import {
   getOperationFunction,
+  getPropertySerializedName,
   isLroAndPagingOperation,
   isLroOnlyOperation,
   isPagingOnlyOperation
 } from "../modular/helpers/operationHelpers.js";
 import { isTypeNullable } from "../modular/helpers/typeHelpers.js";
+import { isExtensibleEnum } from "../modular/type-expressions/get-enum-expression.js";
+import { isOrExtendsHttpFile } from "@typespec/http";
+import { isAzureCoreErrorType } from "../utils/modelUtils.js";
 
 import type {
-  TSCodeModel,
-  TSClient,
-  TSEndpointConfig,
-  TSCredentialConfig,
-  TSClientParameter,
   TSApiVersionConfig,
+  TSClient,
+  TSClientParameter,
+  TSCodeModel,
+  TSCredentialConfig,
+  TSEndpointConfig,
+  TSEnum,
+  TSGenerationSettings,
   TSMethod,
   TSMethodKind,
+  TSModel,
   TSOperationGroup,
-  TSGenerationSettings
+  TSProperty,
+  TSTypeReference,
+  TSUnion,
+  TSUnionVariant
 } from "../codemodel/index.js";
 
 // ─── Type alias for TCGC parameter union ──────────────────────────────
@@ -94,8 +113,11 @@ export function adaptToCodeModel(input: AdapterInput): TSCodeModel {
   const clients = clientMaps.map((clientMap) =>
     adaptClient(sdkContext, clientMap, emitterOptions, settings)
   );
+  const models = adaptModels(sdkContext);
+  const enums = adaptEnums(sdkContext);
+  const unions = adaptUnions(sdkContext);
 
-  return { clients, settings };
+  return { clients, models, enums, unions, settings };
 }
 
 /**
@@ -605,4 +627,238 @@ export function adaptOperationGroups(
   }
 
   return groups;
+}
+
+// ─── Model / Enum / Union Adapters ──────────────────────────────────────
+
+export function adaptModels(sdkContext: SdkContext): TSModel[] {
+  return sdkContext.sdkPackage.models
+    .filter((model) => shouldAdaptModel(sdkContext, model))
+    .map((model) => adaptModel(model, sdkContext));
+}
+
+export function adaptEnums(sdkContext: SdkContext): TSEnum[] {
+  return sdkContext.sdkPackage.enums
+    .filter((enumType) => shouldAdaptEnum(sdkContext, enumType))
+    .map((enumType) => adaptEnum(enumType, sdkContext));
+}
+
+export function adaptUnions(sdkContext: SdkContext): TSUnion[] {
+  return sdkContext.sdkPackage.unions
+    .filter((unionType): unionType is SdkUnionType => unionType.kind === "union")
+    .filter((unionType) => shouldAdaptUnion(unionType))
+    .map((unionType) => adaptUnion(unionType, sdkContext));
+}
+
+function adaptModel(model: SdkModelType, sdkContext: SdkContext): TSModel {
+  return {
+    id: `model:${model.name}`,
+    name: model.name,
+    docs: getDocsFromDescription(model.doc),
+    properties: model.properties.map((property) =>
+      adaptModelProperty(property, sdkContext)
+    ),
+    baseType: model.baseModel
+      ? adaptTypeReference(sdkContext, model.baseModel)
+      : undefined,
+    additionalPropertiesType: model.additionalProperties
+      ? adaptTypeReference(sdkContext, model.additionalProperties)
+      : undefined,
+    discriminator: adaptModelDiscriminator(model, sdkContext)
+  };
+}
+
+function adaptModelProperty(
+  property: SdkModelPropertyType,
+  sdkContext: SdkContext
+): TSProperty {
+  return {
+    name: adaptPropertyName(property, sdkContext),
+    type: adaptTypeReference(sdkContext, property.type),
+    optional: property.optional,
+    readonly: isReadOnly(property),
+    serializedName: getPropertySerializedName(property),
+    isDiscriminator: property.discriminator,
+    isFlattened: property.flatten
+  };
+}
+
+function adaptModelDiscriminator(
+  model: SdkModelType,
+  sdkContext: SdkContext
+): TSModel["discriminator"] {
+  const discriminatorProperty =
+    model.discriminatorProperty ?? model.baseModel?.discriminatorProperty;
+  if (
+    !discriminatorProperty &&
+    !model.discriminatorValue &&
+    !model.discriminatedSubtypes
+  ) {
+    return undefined;
+  }
+
+  return {
+    propertyName: discriminatorProperty
+      ? adaptPropertyName(discriminatorProperty, sdkContext)
+      : "discriminator",
+    serializedName: discriminatorProperty
+      ? getPropertySerializedName(discriminatorProperty)
+      : undefined,
+    value: model.discriminatorValue,
+    derivedTypes: Object.values(model.discriminatedSubtypes ?? {}).map(
+      (subtype) => adaptTypeReference(sdkContext, subtype)
+    )
+  };
+}
+
+function adaptEnum(enumType: SdkEnumType, sdkContext: SdkContext): TSEnum {
+  return {
+    id: `enum:${enumType.name}`,
+    name: enumType.name,
+    docs: getDocsFromDescription(enumType.doc),
+    members: enumType.values.map((member) => ({
+      name: member.name,
+      value: member.value
+    })),
+    isFixed: enumType.isFixed,
+    isExtensible: !enumType.isFixed,
+    valueType: adaptTypeReference(sdkContext, enumType.valueType)
+  };
+}
+
+function adaptUnion(unionType: SdkUnionType, sdkContext: SdkContext): TSUnion {
+  return {
+    id: `union:${unionType.name}`,
+    name: unionType.name,
+    docs: getDocsFromDescription(unionType.doc),
+    variants: adaptUnionVariants(unionType, sdkContext),
+    discriminator: unionType.discriminatedOptions
+      ? {
+          propertyName:
+            unionType.discriminatedOptions.discriminatorPropertyName,
+          envelope: unionType.discriminatedOptions.envelope,
+          envelopePropertyName:
+            unionType.discriminatedOptions.envelopePropertyName
+        }
+      : undefined
+  };
+}
+
+function adaptUnionVariants(
+  unionType: SdkUnionType,
+  sdkContext: SdkContext
+): TSUnionVariant[] {
+  const rawVariantNames = getRawUnionVariantNames(unionType);
+
+  return unionType.variantTypes.map((variant, index) => ({
+    name: rawVariantNames[index],
+    type: adaptTypeReference(sdkContext, variant)
+  }));
+}
+
+function getRawUnionVariantNames(
+  unionType: SdkUnionType
+): Array<string | undefined> {
+  const rawUnion = unionType.__raw;
+  if (!rawUnion || !("variants" in rawUnion)) {
+    return [];
+  }
+
+  return [...rawUnion.variants.keys()].map((name) =>
+    typeof name === "string" ? name : undefined
+  );
+}
+
+function adaptTypeReference(
+  sdkContext: SdkContext,
+  type: SdkType
+): TSTypeReference {
+  switch (type.kind) {
+    case "model":
+    case "enum":
+    case "union":
+      return type.name;
+    case "array":
+      return `Array<${adaptTypeReference(sdkContext, type.valueType)}>`;
+    case "dict":
+      return `Record<string, ${adaptTypeReference(sdkContext, type.valueType)}>`;
+    case "nullable":
+      return `${adaptTypeReference(sdkContext, type.type)} | null`;
+    case "constant":
+    case "enumvalue":
+      return JSON.stringify(type.value);
+    default:
+      if ("name" in type && typeof type.name === "string") {
+        return type.name;
+      }
+      return getTypeExpression(sdkContext, type);
+  }
+}
+
+function adaptPropertyName(
+  property: SdkModelPropertyType,
+  sdkContext: SdkContext
+): string {
+  return sdkContext.rlcOptions?.ignorePropertyNameNormalize
+    ? property.name
+    : normalizeName(property.name, NameType.Property);
+}
+
+function shouldAdaptModel(
+  sdkContext: SdkContext,
+  model: SdkModelType
+): boolean {
+  if (isAzureCoreErrorType(sdkContext.program, model.__raw)) {
+    return false;
+  }
+
+  if (isOrExtendsHttpFile(sdkContext.program, model.__raw!)) {
+    return false;
+  }
+
+  if (!model.name && model.isGeneratedName) {
+    return false;
+  }
+
+  return hasModelUsage(model.usage);
+}
+
+function hasModelUsage(usage: UsageFlags | undefined): boolean {
+  if (!usage) {
+    return false;
+  }
+
+  return (
+    (usage & UsageFlags.Input) === UsageFlags.Input ||
+    (usage & UsageFlags.Output) === UsageFlags.Output ||
+    (usage & UsageFlags.Exception) === UsageFlags.Exception
+  );
+}
+
+function shouldAdaptEnum(
+  sdkContext: SdkContext,
+  enumType: SdkEnumType
+): boolean {
+  if (!enumType.usage) {
+    return false;
+  }
+
+  const apiVersionEnumOnly = enumType.usage === UsageFlags.ApiVersionEnum;
+  if (apiVersionEnumOnly && sdkContext.rlcOptions?.isMultiService) {
+    return false;
+  }
+
+  if (enumType.name.startsWith("_")) {
+    return false;
+  }
+
+  return (
+    apiVersionEnumOnly ||
+    hasModelUsage(enumType.usage) ||
+    isExtensibleEnum(sdkContext, enumType)
+  );
+}
+
+function shouldAdaptUnion(unionType: SdkUnionType): boolean {
+  return !!unionType.name;
 }
