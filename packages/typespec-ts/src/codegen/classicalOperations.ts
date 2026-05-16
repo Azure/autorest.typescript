@@ -161,6 +161,18 @@ function emitClassicalOperationFile(
     refkey(interfaceName, node.prefixes.length - 1, "classicOperations")
   );
 
+  if (node.methods.length > 0) {
+    addDeclaration(
+      file,
+      getMethodFactory(node, client),
+      refkey(
+        `_get${interfaceNamePrefix}`,
+        node.prefixes.length - 1,
+        "getClassicOperation"
+      )
+    );
+  }
+
   addDeclaration(
     file,
     getOperationsFactory(node, client),
@@ -268,6 +280,26 @@ function getMethodProperties(
   return properties;
 }
 
+function getMethodFactory(
+  node: ClassicalOperationNode,
+  client: TSClient
+): FunctionDeclarationStructure {
+  const interfaceNamePrefix = getNodeNamePrefix(node);
+  return {
+    kind: StructureKind.Function,
+    name: `_get${interfaceNamePrefix}`,
+    parameters: [
+      {
+        name: "context",
+        type: client.contextTypeName
+      }
+    ],
+    statements: `return {\n${node.methods
+      .map((method) => getMethodImplementation(method))
+      .join(",\n")}\n}`
+  };
+}
+
 function getOperationsFactory(
   node: ClassicalOperationNode,
   client: TSClient
@@ -294,9 +326,9 @@ function getOperationsFactory(
       )}(context)`;
     });
 
-  properties.push(
-    ...node.methods.map((method) => getMethodImplementation(method))
-  );
+  if (node.methods.length > 0) {
+    properties.push(`..._get${interfaceNamePrefix}(context)`);
+  }
 
   return {
     kind: StructureKind.Function,

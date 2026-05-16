@@ -291,26 +291,49 @@ function adaptClientParameters(
   const allParams = getClientParameters(client, sdkContext, {
     onClientOnly: false
   });
+  const endpointParam = getClientParameters(client, sdkContext, {
+    onClientOnly: true,
+    skipEndpointTemplate: true,
+    skipArmSpecific: true
+  }).find(
+    (parameter) => parameter.kind === "endpoint" || parameter.kind === "path"
+  );
+  const endpointParamName = endpointParam
+    ? getClientParameterName(endpointParam)
+    : undefined;
 
-  return allParams.map((p) => ({
-    name: getClientParameterName(p),
-    type: getTypeExpression(sdkContext, p.type),
-    required: !p.optional && !p.clientDefaultValue,
-    hasDefaultValue: !!(
+  return allParams.map((p) => {
+    const hasEndpointTemplateDefaultValue =
+      p.type.kind === "endpoint" &&
+      !!(
+        p.type.templateArguments[0]?.clientDefaultValue ||
+        p.type.templateArguments[0]?.__raw?.defaultValue ||
+        p.type.templateArguments[0]?.type?.kind === "constant"
+      );
+    const hasDefaultValue = !!(
       p.clientDefaultValue ||
       p.__raw?.defaultValue ||
-      p.type.kind === "constant"
-    ),
-    defaultValue: p.clientDefaultValue,
-    docs: getDocsFromDescription(p.doc),
-    isApiVersion: !!p.isApiVersionParam,
-    isEndpoint:
-      (p.kind === "endpoint" && p.type.kind !== "union") ||
-      (p.kind === "endpoint" &&
-        p.type.kind === "union" &&
-        p.type.variantTypes.some((v) => v.kind === "endpoint")),
-    isCredential: p.kind === "credential"
-  }));
+      p.type.kind === "constant" ||
+      hasEndpointTemplateDefaultValue
+    );
+
+    return {
+      name: getClientParameterName(p),
+      type: getTypeExpression(sdkContext, p.type),
+      required: !p.optional && !hasDefaultValue,
+      hasDefaultValue,
+      defaultValue: p.clientDefaultValue,
+      docs: getDocsFromDescription(p.doc),
+      isApiVersion: !!p.isApiVersionParam,
+      isEndpoint:
+        getClientParameterName(p) === endpointParamName ||
+        (p.kind === "endpoint" && p.type.kind !== "union") ||
+        (p.kind === "endpoint" &&
+          p.type.kind === "union" &&
+          p.type.variantTypes.some((v) => v.kind === "endpoint")),
+      isCredential: p.kind === "credential"
+    };
+  });
 }
 
 // ─── Endpoint Adapter ─────────────────────────────────────────────────

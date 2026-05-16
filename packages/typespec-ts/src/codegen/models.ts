@@ -1,10 +1,11 @@
+import {
+  SdkArrayType,
+  SdkDictionaryType,
+  SdkNullableType,
+  SdkType
+} from "@azure-tools/typespec-client-generator-core";
 import { Project, SourceFile } from "ts-morph";
-import type {
-  TSCodeModel,
-  TSEnum,
-  TSModel,
-  TSUnion
-} from "../codemodel/index.js";
+import type { TSCodeModel } from "../codemodel/index.js";
 import type { SdkContext } from "../utils/interfaces.js";
 import {
   flattenPropertyModelMap,
@@ -17,8 +18,6 @@ import {
   getModelsPath
 } from "../modular/emitModels.js";
 
-type ModelDeclaration = TSModel | TSEnum | TSUnion;
-
 /**
  * Emit model, enum, and union files from the code model.
  *
@@ -30,32 +29,8 @@ export function emitModelFiles(
   codeModel: TSCodeModel,
   sdkContext: SdkContext
 ): SourceFile[] {
-  const declarations: ModelDeclaration[] = [
-    ...codeModel.models,
-    ...codeModel.enums,
-    ...codeModel.unions
-  ];
-
-  for (const declaration of declarations) {
-    const sdkType = findSdkType(sdkContext, declaration);
-    if (!sdkType) {
-      continue;
-    }
-
-    const sourceFile = getOrCreateModelsFile(
-      project,
-      codeModel.settings.sourceRoot,
-      declaration.namespace
-    );
-    emitType(sdkContext, sdkType, sourceFile);
-  }
-
   for (const type of emitQueue) {
-    if (
-      type.kind !== "array" &&
-      type.kind !== "dict" &&
-      type.kind !== "nullable"
-    ) {
+    if (!isGenerableType(type)) {
       continue;
     }
 
@@ -79,34 +54,16 @@ export function emitModelFiles(
   return cleanupEmptyModelFiles(project, codeModel.settings.sourceRoot);
 }
 
-function findSdkType(
-  sdkContext: SdkContext,
-  declaration: ModelDeclaration
-):
-  | SdkContext["sdkPackage"]["models"][number]
-  | SdkContext["sdkPackage"]["enums"][number]
-  | SdkContext["sdkPackage"]["unions"][number]
-  | undefined {
-  const candidates = [
-    ...sdkContext.sdkPackage.models,
-    ...sdkContext.sdkPackage.enums,
-    ...sdkContext.sdkPackage.unions
-  ];
-
-  return candidates.find(
-    (candidate) =>
-      candidate.name === declaration.name &&
-      sameNamespace(
-        getModelNamespaces(sdkContext, candidate),
-        declaration.namespace
-      )
-  );
-}
-
-function sameNamespace(left: string[], right: string[]): boolean {
+function isGenerableType(
+  type: SdkType
+): type is SdkArrayType | SdkDictionaryType | SdkNullableType | SdkType {
   return (
-    left.length === right.length &&
-    left.every((segment, index) => segment === right[index])
+    type.kind === "model" ||
+    type.kind === "enum" ||
+    type.kind === "union" ||
+    type.kind === "dict" ||
+    type.kind === "array" ||
+    type.kind === "nullable"
   );
 }
 

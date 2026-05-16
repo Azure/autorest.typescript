@@ -88,6 +88,7 @@ import {
 import { emitOperations } from "./codegen/operations.js";
 import { emitModelFiles } from "./codegen/models.js";
 import { emitResponseTypes } from "./codegen/responseTypes.js";
+import { dedupePagedAsyncIterableIteratorImports } from "./codegen/pagingImports.js";
 import { buildApiOptions } from "./modular/emitModelsOptions.js";
 import { buildRestorePoller } from "./modular/buildRestorePoller.js";
 import {
@@ -412,6 +413,10 @@ export async function $onEmit(context: EmitContext) {
     );
     if (program.compilerOptions.noEmit || program.hasError()) {
       return;
+    }
+
+    for (const file of project.getSourceFiles()) {
+      dedupePagedAsyncIterableIteratorImports(file);
     }
 
     for (const file of project.getSourceFiles()) {

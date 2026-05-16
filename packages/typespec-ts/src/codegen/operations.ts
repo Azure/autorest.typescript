@@ -15,6 +15,7 @@ import type {
   TSOperationGroup
 } from "../codemodel/index.js";
 import { addDeclaration } from "../framework/declaration.js";
+import { dedupePagedAsyncIterableIteratorImports } from "./pagingImports.js";
 
 /**
  * Emit modular operation source files from the TypeScript code model.
@@ -52,6 +53,7 @@ export function emitOperations(
       moduleSpecifier: `${indexPathPrefix}index.js`
     });
     file.fixMissingImports({}, { importModuleSpecifierEnding: "js" });
+    dedupePagedAsyncIterableIteratorImports(file);
     file.fixUnusedIdentifiers();
 
     return file;

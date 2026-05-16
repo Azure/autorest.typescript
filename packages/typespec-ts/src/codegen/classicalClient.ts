@@ -15,6 +15,7 @@ import type {
   TSMethod
 } from "../codemodel/index.js";
 import { resolveReference } from "../framework/reference.js";
+import { dedupePagedAsyncIterableIteratorImports } from "./pagingImports.js";
 import { refkey } from "../framework/refkey.js";
 import { useDependencies } from "../framework/hooks/useDependencies.js";
 import { AzurePollingDependencies } from "../modular/external-dependencies.js";
@@ -195,6 +196,7 @@ export function emitClassicalClient(
   }
 
   file.fixMissingImports({}, { importModuleSpecifierEnding: "js" });
+  dedupePagedAsyncIterableIteratorImports(file);
   file.fixUnusedIdentifiers();
   return file;
 }
