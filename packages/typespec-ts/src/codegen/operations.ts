@@ -16,36 +16,29 @@ import type {
 } from "../codemodel/index.js";
 import { addDeclaration } from "../framework/declaration.js";
 
+/**
+ * Emit modular operation source files from the TypeScript code model.
+ *
+ * Each operation group produces an operation file under `api/` containing the
+ * public operation function plus its private send/deserialize helpers.
+ */
 export function emitOperations(
   project: Project,
   client: TSClient,
   settings: TSGenerationSettings
 ): SourceFile[] {
   const subfolder = client.path.join("/");
-  const files: SourceFile[] = [];
 
-  for (const group of getOperationGroups(client)) {
+  return getOperationGroups(client).map((group) => {
     const filePath = `${settings.sourceRoot}/${
       subfolder && subfolder !== "" ? subfolder + "/" : ""
     }api/${getOperationFileName(group)}.ts`;
-    const file = project.createSourceFile(filePath, undefined, {
+    const file = project.createSourceFile(filePath, "", {
       overwrite: true
     });
 
     for (const method of group.methods) {
-      file.addFunctions([
-        toFunctionDeclaration(method.sendFunction),
-        toFunctionDeclaration(method.deserializeFunction),
-        ...[
-          method.deserializeHeadersFunction,
-          method.deserializeExceptionHeadersFunction
-        ]
-          .filter(
-            (declaration): declaration is TSFunctionDeclaration =>
-              declaration !== undefined
-          )
-          .map(toFunctionDeclaration)
-      ]);
+      file.addFunctions(getHelperFunctions(method));
       addDeclaration(
         file,
         toFunctionDeclaration(method.apiFunction),
@@ -58,11 +51,11 @@ export function emitOperations(
       namedImports: [`${client.contextTypeName} as Client`],
       moduleSpecifier: `${indexPathPrefix}index.js`
     });
+    file.fixMissingImports({}, { importModuleSpecifierEnding: "js" });
     file.fixUnusedIdentifiers();
-    files.push(file);
-  }
 
-  return files;
+    return file;
+  });
 }
 
 function getOperationGroups(client: TSClient): TSOperationGroup[] {
@@ -77,7 +70,11 @@ function getOperationGroups(client: TSClient): TSOperationGroup[] {
   }
 
   groups.push(...client.operationGroups);
-  return groups;
+  return groups.sort((left, right) => {
+    const leftFileName = getOperationFileName(left);
+    const rightFileName = getOperationFileName(right);
+    return leftFileName.localeCompare(rightFileName);
+  });
 }
 
 function getOperationFileName(group: TSOperationGroup): string {
@@ -88,6 +85,25 @@ function getOperationFileName(group: TSOperationGroup): string {
   return `${group.prefixes
     .map((prefix) => normalizeName(prefix, NameType.File))
     .join("/")}/operations`;
+}
+
+function getHelperFunctions(method: {
+  sendFunction: TSFunctionDeclaration;
+  deserializeFunction: TSFunctionDeclaration;
+  deserializeHeadersFunction?: TSFunctionDeclaration;
+  deserializeExceptionHeadersFunction?: TSFunctionDeclaration;
+}): FunctionDeclarationStructure[] {
+  return [
+    method.sendFunction,
+    method.deserializeFunction,
+    method.deserializeHeadersFunction,
+    method.deserializeExceptionHeadersFunction
+  ]
+    .filter(
+      (declaration): declaration is TSFunctionDeclaration =>
+        declaration !== undefined
+    )
+    .map(toFunctionDeclaration);
 }
 
 function toFunctionDeclaration(

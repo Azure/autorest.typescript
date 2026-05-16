@@ -19,7 +19,7 @@ import { emitOperations } from "./operations.js";
  * This is the main entry point for codegen. It walks the code model
  * tree and generates source files for each component.
  *
- * Currently supports: client context files.
+ * Currently supports: operation files, client context files, and classical clients.
  * Returns the list of generated source files.
  */
 export function emitFromCodeModel(
