@@ -109,6 +109,12 @@ export interface TSClient {
 
   /** Whether children are initialized by parent */
   hasParentInitializedChildren: boolean;
+
+  /** Whether ARM subscriptionId overloads should be emitted */
+  allowOptionalSubscriptionId: boolean;
+
+  /** Whether operation helper declarations use a namespaced client type */
+  usesNamespacedContextType: boolean;
 }
 
 // ─── Endpoint Configuration ───────────────────────────────────────────
@@ -186,6 +192,25 @@ export type TSMethodKind = "basic" | "lro" | "paging" | "lroPaging";
 
 export type TSParameterLocation = "query" | "header" | "path" | "body";
 
+export interface TSFunctionParameter {
+  name: string;
+  type?: string;
+  initializer?: string;
+  hasQuestionToken?: boolean;
+  docs?: string[];
+}
+
+export interface TSFunctionDeclaration {
+  name: string;
+  docs?: string[];
+  isAsync?: boolean;
+  isExported?: boolean;
+  propertyName?: string;
+  returnType?: string;
+  parameters: TSFunctionParameter[];
+  statements?: string | string[];
+}
+
 /**
  * An operation method on a client. This is a plain data view of the
  * operation shape that modular rendering currently derives from TCGC.
@@ -197,6 +222,8 @@ export interface TSMethod {
   name: string;
   /** Original operation name before operation-group prefixing */
   originalName?: string;
+  /** Binder refkey for the public api function */
+  apiRefKey: string;
   /** Operation kind */
   kind: TSMethodKind;
   /** Summary/description from the operation doc comment */
@@ -209,6 +236,20 @@ export interface TSMethod {
   parameters: TSParameter[];
   /** Method return type */
   returnType: TSReturnType;
+  /** Public api function declaration */
+  apiFunction: TSFunctionDeclaration;
+  /** Private send helper declaration */
+  sendFunction: TSFunctionDeclaration;
+  /** Private deserialize helper declaration */
+  deserializeFunction: TSFunctionDeclaration;
+  /** Optional response headers helper declaration */
+  deserializeHeadersFunction?: TSFunctionDeclaration;
+  /** Optional exception headers helper declaration */
+  deserializeExceptionHeadersFunction?: TSFunctionDeclaration;
+  /** Compatibility LRO final return type for deprecated helpers */
+  compatibilityLroReturnType?: string;
+  /** Compatibility LRO paging return type for deprecated helpers */
+  compatibilityLroPagingReturnType?: string;
 }
 
 export interface TSParameter {

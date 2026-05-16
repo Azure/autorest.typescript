@@ -186,6 +186,7 @@ describe("tcgc adapter", () => {
 
     const client = model.clients[0]!;
     expect(Object.keys(client).sort()).toEqual([
+      "allowOptionalSubscriptionId",
       "apiVersion",
       "children",
       "contextTypeName",
@@ -199,7 +200,8 @@ describe("tcgc adapter", () => {
       "name",
       "operationGroups",
       "parameters",
-      "path"
+      "path",
+      "usesNamespacedContextType"
     ]);
     expect(client.name).toBe("TestingClient");
     expect(client.modularName).toBe("Testing");
@@ -225,7 +227,14 @@ describe("tcgc adapter", () => {
     });
     expect(client.methods).toHaveLength(1);
     expect(Object.keys(client.methods[0]!).sort()).toEqual([
+      "apiFunction",
+      "apiRefKey",
+      "compatibilityLroPagingReturnType",
+      "compatibilityLroReturnType",
       "description",
+      "deserializeExceptionHeadersFunction",
+      "deserializeFunction",
+      "deserializeHeadersFunction",
       "httpMethod",
       "id",
       "kind",
@@ -233,7 +242,8 @@ describe("tcgc adapter", () => {
       "originalName",
       "parameters",
       "returnType",
-      "route"
+      "route",
+      "sendFunction"
     ]);
     expect(client.methods[0]).toMatchObject({
       id: "method:ping",

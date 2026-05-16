@@ -43,7 +43,8 @@ import { getDocsFromDescription } from "../modular/helpers/docsHelpers.js";
 import { getTypeExpression } from "../modular/type-expressions/get-type-expression.js";
 import {
   getModularClientOptions,
-  getClientHierarchyMap
+  getClientHierarchyMap,
+  isRLCMultiEndpoint
 } from "../utils/clientUtils.js";
 import {
   getClientParameters,
@@ -53,11 +54,16 @@ import {
 import { getApiVersionEnum, buildEnumTypes } from "../modular/emitModels.js";
 import {
   getMethodHierarchiesMap,
+  isTenantLevelOperation,
   type ServiceOperation
 } from "../utils/operationUtil.js";
 import {
+  getDeserializeExceptionHeadersPrivateFunction,
+  getDeserializeHeadersPrivateFunction,
+  getDeserializePrivateFunction,
   getOperationFunction,
   getPropertySerializedName,
+  getSendPrivateFunction,
   isLroAndPagingOperation,
   isLroOnlyOperation,
   isPagingOnlyOperation
@@ -66,6 +72,7 @@ import { isTypeNullable } from "../modular/helpers/typeHelpers.js";
 import { isExtensibleEnum } from "../modular/type-expressions/get-enum-expression.js";
 import { isOrExtendsHttpFile } from "@typespec/http";
 import { isAzureCoreErrorType } from "../utils/modelUtils.js";
+import { refkey } from "../framework/refkey.js";
 
 import type {
   TSApiVersionConfig,
@@ -75,6 +82,7 @@ import type {
   TSCredentialConfig,
   TSEndpointConfig,
   TSEnum,
+  TSFunctionDeclaration,
   TSGenerationSettings,
   TSMethod,
   TSMethodKind,
@@ -176,8 +184,16 @@ function adaptClient(
   const endpoint = adaptEndpoint(sdkContext, client, settings);
   const credential = adaptCredential(client, emitterOptions);
   const apiVersion = adaptApiVersion(sdkContext, client);
-  const methods = adaptMethods(client, sdkContext);
-  const operationGroups = adaptOperationGroups(client, sdkContext);
+  const usesNamespacedContextType = isRLCMultiEndpoint(sdkContext);
+  const operationClientType = usesNamespacedContextType
+    ? `Client.${rlcClientName}`
+    : "Client";
+  const methods = adaptMethods(client, sdkContext, operationClientType);
+  const operationGroups = adaptOperationGroups(
+    client,
+    sdkContext,
+    operationClientType
+  );
 
   const hasParentInitializedChildren = !!(
     client.children &&
@@ -209,7 +225,13 @@ function adaptClient(
           methods: [],
           operationGroups: [],
           children: [],
-          hasParentInitializedChildren: false
+          hasParentInitializedChildren: false,
+          allowOptionalSubscriptionId: shouldAllowOptionalSubscriptionId(
+            childClient,
+            sdkContext,
+            childParams
+          ),
+          usesNamespacedContextType
         });
       }
     }
@@ -229,7 +251,13 @@ function adaptClient(
     methods,
     operationGroups,
     children,
-    hasParentInitializedChildren
+    hasParentInitializedChildren,
+    allowOptionalSubscriptionId: shouldAllowOptionalSubscriptionId(
+      client,
+      sdkContext,
+      parameters
+    ),
+    usesNamespacedContextType
   };
 }
 
@@ -398,7 +426,8 @@ function adaptApiVersion(
 
 export function adaptMethods(
   client: SdkClientType<SdkServiceOperation>,
-  sdkContext: SdkContext
+  sdkContext: SdkContext,
+  clientType: string = "Client"
 ): TSMethod[] {
   const methodMap = getMethodHierarchiesMap(sdkContext, client);
   const methods: TSMethod[] = [];
@@ -409,7 +438,7 @@ export function adaptMethods(
     }
 
     for (const operation of operations) {
-      methods.push(adaptMethod(operation, sdkContext));
+      methods.push(adaptMethod(operation, sdkContext, [], clientType));
     }
   }
 
@@ -418,13 +447,31 @@ export function adaptMethods(
 
 function adaptMethod(
   operation: ServiceOperation,
-  sdkContext: SdkContext
+  sdkContext: SdkContext,
+  prefixes: string[] = [],
+  clientType: string = "Client"
 ): TSMethod {
+  const operationRef = [prefixes, operation] as [string[], ServiceOperation];
   const declaration = getOperationFunction(
     sdkContext,
-    [[], operation],
-    "Client"
+    operationRef,
+    clientType
   );
+  const sendDeclaration = getSendPrivateFunction(
+    sdkContext,
+    operationRef,
+    clientType
+  );
+  const deserializeDeclaration = getDeserializePrivateFunction(
+    sdkContext,
+    operationRef
+  );
+  const deserializeHeadersDeclaration = getDeserializeHeadersPrivateFunction(
+    sdkContext,
+    operation
+  );
+  const deserializeExceptionHeadersDeclaration =
+    getDeserializeExceptionHeadersPrivateFunction(sdkContext, operation);
   const methodName =
     declaration.propertyName ?? declaration.name ?? operation.name;
   const description =
@@ -434,6 +481,7 @@ function adaptMethod(
     id: `method:${methodName}`,
     name: methodName,
     originalName: operation.oriName,
+    apiRefKey: refkey(operation, "api"),
     kind: adaptMethodKind(operation),
     description,
     httpMethod: operation.operation.verb.toUpperCase(),
@@ -446,7 +494,18 @@ function adaptMethod(
       operation,
       sdkContext,
       declaration.returnType?.toString()
-    )
+    ),
+    apiFunction: adaptFunctionDeclaration(declaration),
+    sendFunction: adaptFunctionDeclaration(sendDeclaration),
+    deserializeFunction: adaptFunctionDeclaration(deserializeDeclaration),
+    deserializeHeadersFunction: deserializeHeadersDeclaration
+      ? adaptFunctionDeclaration(deserializeHeadersDeclaration)
+      : undefined,
+    deserializeExceptionHeadersFunction: deserializeExceptionHeadersDeclaration
+      ? adaptFunctionDeclaration(deserializeExceptionHeadersDeclaration)
+      : undefined,
+    compatibilityLroReturnType: declaration.lroFinalReturnType,
+    compatibilityLroPagingReturnType: declaration.lropagingFinalReturnType
   };
 }
 
@@ -603,7 +662,8 @@ function isHeadAsBooleanOperation(
 
 export function adaptOperationGroups(
   client: SdkClientType<SdkServiceOperation>,
-  sdkContext: SdkContext
+  sdkContext: SdkContext,
+  clientType: string = "Client"
 ): TSOperationGroup[] {
   const methodMap = getMethodHierarchiesMap(sdkContext, client);
   const groups: TSOperationGroup[] = [];
@@ -622,11 +682,97 @@ export function adaptOperationGroups(
     groups.push({
       name: groupName,
       prefixes,
-      methods: operations.map((operation) => adaptMethod(operation, sdkContext))
+      methods: operations.map((operation) =>
+        adaptMethod(operation, sdkContext, prefixes, clientType)
+      )
     });
   }
 
   return groups;
+}
+
+function adaptFunctionDeclaration(declaration: any): TSFunctionDeclaration {
+  const params = (declaration.parameters ?? []).map((parameter: any) => {
+    const paramType =
+      typeof parameter.type === "string"
+        ? parameter.type
+        : parameter.type?.toString?.();
+    const paramInitializer =
+      typeof parameter.initializer === "string"
+        ? parameter.initializer
+        : typeof parameter.initializer === "function"
+          ? undefined
+          : parameter.initializer?.toString?.();
+    return {
+      name: parameter.name ?? "",
+      type: paramType,
+      initializer: paramInitializer,
+      hasQuestionToken: parameter.hasQuestionToken,
+      docs: Array.isArray(parameter.docs)
+        ? parameter.docs.filter((d: any) => typeof d === "string")
+        : undefined
+    };
+  });
+
+  const returnTypeValue =
+    typeof declaration.returnType === "string"
+      ? declaration.returnType
+      : declaration.returnType?.toString?.();
+
+  const docsValue = Array.isArray(declaration.docs)
+    ? declaration.docs.filter((d: any) => typeof d === "string")
+    : undefined;
+
+  const statementsValue =
+    typeof declaration.statements === "string"
+      ? declaration.statements
+      : Array.isArray(declaration.statements)
+        ? (declaration.statements as any[])
+            .filter((s: any) => typeof s === "string")
+            .join("\n")
+        : undefined;
+
+  return {
+    name: declaration.name ?? "",
+    docs: docsValue,
+    isAsync: declaration.isAsync,
+    isExported: declaration.isExported,
+    propertyName: declaration.propertyName,
+    returnType: returnTypeValue,
+    parameters: params,
+    statements: statementsValue
+  };
+}
+
+function shouldAllowOptionalSubscriptionId(
+  client: SdkClientType<SdkServiceOperation>,
+  sdkContext: SdkContext,
+  parameters: TSClientParameter[]
+): boolean {
+  return (
+    !!sdkContext.arm &&
+    parameters.some(
+      (parameter) => parameter.name.toLowerCase() === "subscriptionid"
+    ) &&
+    hasTenantLevelOperations(client, sdkContext)
+  );
+}
+
+function hasTenantLevelOperations(
+  client: SdkClientType<SdkServiceOperation>,
+  sdkContext: SdkContext
+): boolean {
+  const methodMap = getMethodHierarchiesMap(sdkContext, client);
+
+  for (const [, operations] of methodMap) {
+    for (const operation of operations) {
+      if (isTenantLevelOperation(operation, client)) {
+        return true;
+      }
+    }
+  }
+
+  return false;
 }
 
 // ─── Model / Enum / Union Adapters ──────────────────────────────────────
@@ -645,7 +791,9 @@ export function adaptEnums(sdkContext: SdkContext): TSEnum[] {
 
 export function adaptUnions(sdkContext: SdkContext): TSUnion[] {
   return sdkContext.sdkPackage.unions
-    .filter((unionType): unionType is SdkUnionType => unionType.kind === "union")
+    .filter(
+      (unionType): unionType is SdkUnionType => unionType.kind === "union"
+    )
     .filter((unionType) => shouldAdaptUnion(unionType))
     .map((unionType) => adaptUnion(unionType, sdkContext));
 }

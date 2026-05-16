@@ -80,12 +80,12 @@ import { EmitterOptions } from "./lib.js";
 import { ModularEmitterOptions } from "./modular/interfaces.js";
 import { Project } from "ts-morph";
 import { buildClassicOperationFiles } from "./modular/buildClassicalOperationGroups.js";
-import { buildClassicalClient } from "./modular/buildClassicalClient.js";
 import { getClientContextPath } from "./modular/buildClientContext.js";
 import { adaptSettings, adaptSingleClient } from "./tcgcadapter/adapter.js";
+import { emitClassicalClient } from "./codegen/classicalClient.js";
 import { emitClientContext } from "./codegen/clients.js";
+import { emitOperations } from "./codegen/operations.js";
 import { buildApiOptions } from "./modular/emitModelsOptions.js";
-import { buildOperationFiles } from "./modular/buildOperations.js";
 import { buildRestorePoller } from "./modular/buildRestorePoller.js";
 import { buildSubpathIndexFile } from "./modular/buildSubpathIndex.js";
 import {
@@ -357,12 +357,12 @@ export async function $onEmit(context: EmitContext) {
     for (const subClient of clientMap) {
       await renameClientName(subClient[1], modularEmitterOptions);
       buildApiOptions(dpgContext, subClient, modularEmitterOptions);
-      buildOperationFiles(dpgContext, subClient, modularEmitterOptions);
       const tsClient = adaptSingleClient(
         subClient,
         dpgContext,
         modularEmitterOptions
       );
+      emitOperations(project, tsClient, generationSettings);
       emitClientContext(project, tsClient, generationSettings);
       buildRestorePoller(dpgContext, subClient, modularEmitterOptions);
       if (dpgContext.rlcOptions?.hierarchyClient) {
@@ -377,7 +377,7 @@ export async function $onEmit(context: EmitContext) {
         });
       }
 
-      buildClassicalClient(dpgContext, subClient, modularEmitterOptions);
+      emitClassicalClient(project, tsClient, generationSettings);
       buildClassicOperationFiles(dpgContext, subClient, modularEmitterOptions);
       buildSubpathIndexFile(modularEmitterOptions, "classic", subClient, {
         exportIndex: true,

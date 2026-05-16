@@ -9,7 +9,9 @@
 
 import { Project, SourceFile } from "ts-morph";
 import type { TSCodeModel } from "../codemodel/index.js";
+import { emitClassicalClient } from "./classicalClient.js";
 import { emitClientContext } from "./clients.js";
+import { emitOperations } from "./operations.js";
 
 /**
  * Generate all source files from the code model.
@@ -27,10 +29,20 @@ export function emitFromCodeModel(
   const files: SourceFile[] = [];
 
   for (const client of codeModel.clients) {
-    // 1. Client context file (factory function + context interface)
+    files.push(...emitOperations(project, client, codeModel.settings));
+
     const contextFile = emitClientContext(project, client, codeModel.settings);
     if (contextFile) {
       files.push(contextFile);
+    }
+
+    const classicalClientFile = emitClassicalClient(
+      project,
+      client,
+      codeModel.settings
+    );
+    if (classicalClientFile) {
+      files.push(classicalClientFile);
     }
   }
 
