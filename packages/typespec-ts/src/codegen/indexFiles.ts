@@ -34,7 +34,10 @@ export function emitSubpathIndexFiles(
         .getDirectories()
         .filter((dir) => {
           const formattedDir = dir.getPath().replace(/\\/g, "/");
-          const targetPath = join(srcPath, subfolder, subpath).replace(/\\/g, "/");
+          const targetPath = join(srcPath, subfolder, subpath).replace(
+            /\\/g,
+            "/"
+          );
           return (
             formattedDir.startsWith(targetPath) &&
             !project.getSourceFile(`${formattedDir}/index.ts`)
@@ -78,7 +81,8 @@ export function emitSubpathIndexFiles(
     });
     for (const file of apiFiles) {
       const filePath = file.getFilePath();
-      const serializerOrDeserializerRegex = /.*(Serializer|Deserializer)(_\d+)?$/;
+      const serializerOrDeserializerRegex =
+        /.*(Serializer|Deserializer)(_\d+)?$/;
       if (!options.exportIndex && filePath.endsWith("index.ts")) {
         continue;
       }
@@ -89,29 +93,29 @@ export function emitSubpathIndexFiles(
         continue;
       }
 
-      let filteredDeclarations = [...file.getExportedDeclarations().entries()].filter(
-        ([name, declarations]) => {
-          if (name.startsWith("_")) {
+      let filteredDeclarations = [
+        ...file.getExportedDeclarations().entries()
+      ].filter(([name, declarations]) => {
+        if (name.startsWith("_")) {
+          return false;
+        }
+        return declarations.some((declaration) => {
+          if (
+            options.interfaceOnly &&
+            declaration.getKindName() !== "InterfaceDeclaration"
+          ) {
             return false;
           }
-          return declarations.some((declaration) => {
-            if (
-              options.interfaceOnly &&
-              declaration.getKindName() !== "InterfaceDeclaration"
-            ) {
-              return false;
-            }
-            if (
-              subpath === "models" &&
-              declaration.getKindName() === "FunctionDeclaration" &&
-              serializerOrDeserializerRegex.test(name)
-            ) {
-              return false;
-            }
-            return true;
-          });
-        }
-      );
+          if (
+            subpath === "models" &&
+            declaration.getKindName() === "FunctionDeclaration" &&
+            serializerOrDeserializerRegex.test(name)
+          ) {
+            return false;
+          }
+          return true;
+        });
+      });
 
       if (filePath.endsWith("pagingTypes.ts")) {
         filteredDeclarations = filteredDeclarations.filter(
@@ -155,8 +159,22 @@ export function emitRootIndex(
   const subfolder = client.path.join("/");
   const clientName = client.name;
   exportClassicalClient(client, rootIndexFile, subfolder);
-  exportSimplePollerLike(client, settings, rootIndexFile, project, subfolder, true);
-  exportRestoreHelpers(rootIndexFile, project, settings, clientName, subfolder, true);
+  exportSimplePollerLike(
+    client,
+    settings,
+    rootIndexFile,
+    project,
+    subfolder,
+    true
+  );
+  exportRestoreHelpers(
+    rootIndexFile,
+    project,
+    settings,
+    clientName,
+    subfolder,
+    true
+  );
   exportModels(project, settings, rootIndexFile, clientName);
   exportModules(project, rootIndexFile, settings, clientName, "api", {
     subfolder,
@@ -188,8 +206,20 @@ export function emitSubClientIndex(
     { overwrite: true }
   );
   exportClassicalClient(client, subClientIndexFile, subfolder, true);
-  exportSimplePollerLike(client, settings, subClientIndexFile, project, subfolder);
-  exportRestoreHelpers(subClientIndexFile, project, settings, client.name, subfolder);
+  exportSimplePollerLike(
+    client,
+    settings,
+    subClientIndexFile,
+    project,
+    subfolder
+  );
+  exportRestoreHelpers(
+    subClientIndexFile,
+    project,
+    settings,
+    client.name,
+    subfolder
+  );
   exportModules(project, subClientIndexFile, settings, client.name, "api", {
     subfolder,
     interfaceOnly: true,
@@ -198,7 +228,10 @@ export function emitSubClientIndex(
   exportModules(project, subClientIndexFile, settings, client.name, "classic", {
     subfolder
   });
-  subClientIndexFile.fixMissingImports({}, { importModuleSpecifierEnding: "js" });
+  subClientIndexFile.fixMissingImports(
+    {},
+    { importModuleSpecifierEnding: "js" }
+  );
   subClientIndexFile.fixUnusedIdentifiers();
   return subClientIndexFile;
 }
@@ -209,9 +242,11 @@ function exportModels(
   rootIndexFile: SourceFile,
   clientName: string = ""
 ): void {
-  const modelsExportsIndex = rootIndexFile.getExportDeclarations().find((declaration) =>
-    declaration.getModuleSpecifierValue()?.startsWith("./models/")
-  );
+  const modelsExportsIndex = rootIndexFile
+    .getExportDeclarations()
+    .find((declaration) =>
+      declaration.getModuleSpecifierValue()?.startsWith("./models/")
+    );
   if (!modelsExportsIndex) {
     exportModules(project, rootIndexFile, settings, clientName, "models", {
       isTopLevel: true,
@@ -228,7 +263,9 @@ function exportAzureCloudTypes(
     return;
   }
 
-  addExportsToIndex(rootIndexFile, [resolveReference(CloudSettingHelpers.AzureClouds)]);
+  addExportsToIndex(rootIndexFile, [
+    resolveReference(CloudSettingHelpers.AzureClouds)
+  ]);
   addExportsToIndex(
     rootIndexFile,
     [resolveReference(CloudSettingHelpers.AzureSupportedClouds)],
@@ -273,9 +310,10 @@ function exportPagingTypes(client: TSClient, rootIndexFile: SourceFile): void {
 }
 
 function hasPaging(client: TSClient): boolean {
-  const currentClientHasPaging = [...client.methods, ...client.operationGroups.flatMap((group) => group.methods)].some(
-    (method) => method.kind === "paging" || method.kind === "lroPaging"
-  );
+  const currentClientHasPaging = [
+    ...client.methods,
+    ...client.operationGroups.flatMap((group) => group.methods)
+  ].some((method) => method.kind === "paging" || method.kind === "lroPaging");
   if (currentClientHasPaging) {
     return true;
   }
@@ -343,9 +381,10 @@ function exportSimplePollerLike(
   subfolder: string = "",
   isTopLevel: boolean = false
 ): void {
-  const hasLro = [...client.methods, ...client.operationGroups.flatMap((group) => group.methods)].some(
-    (method) => method.kind === "lro"
-  );
+  const hasLro = [
+    ...client.methods,
+    ...client.operationGroups.flatMap((group) => group.methods)
+  ].some((method) => method.kind === "lro");
   if (!hasLro || settings.compatibilityLro !== true) {
     return;
   }
@@ -432,7 +471,11 @@ function exportModules(
         .getDirectories()
         .filter((dir) => {
           const formattedDir = dir.getPath().replace(/\\/g, "/");
-          const targetPath = join(settings.sourceRoot, subfolder, moduleName).replace(/\\/g, "/");
+          const targetPath = join(
+            settings.sourceRoot,
+            subfolder,
+            moduleName
+          ).replace(/\\/g, "/");
           return formattedDir.startsWith(targetPath);
         })
         .map((dir) => dir.getPath().replace(/\\/g, "/"))
@@ -440,43 +483,45 @@ function exportModules(
     : [join(settings.sourceRoot, subfolder, moduleName).replace(/\\/g, "/")];
 
   for (const folder of folders) {
-    const moduleFile = project.getSourceFile(join(folder, "index.ts").replace(/\\/g, "/"));
+    const moduleFile = project.getSourceFile(
+      join(folder, "index.ts").replace(/\\/g, "/")
+    );
     if (!moduleFile) {
       continue;
     }
 
     const exported = new Set(indexFile.getExportedDeclarations().keys());
     const serializerOrDeserializerRegex = /.*(Serializer|Deserializer)(_\d+)?$/;
-    const filteredEntries = [...moduleFile.getExportedDeclarations().entries()].filter(
-      ([name, declarations]) => {
-        if (name.startsWith("_")) {
+    const filteredEntries = [
+      ...moduleFile.getExportedDeclarations().entries()
+    ].filter(([name, declarations]) => {
+      if (name.startsWith("_")) {
+        return false;
+      }
+      return declarations.some((declaration) => {
+        if (
+          options.interfaceOnly &&
+          declaration.getKindName() !== "InterfaceDeclaration"
+        ) {
           return false;
         }
-        return declarations.some((declaration) => {
-          if (
-            options.interfaceOnly &&
-            declaration.getKindName() !== "InterfaceDeclaration"
-          ) {
-            return false;
-          }
-          if (
-            moduleName === "models" &&
-            declaration.getKindName() === "FunctionDeclaration" &&
-            serializerOrDeserializerRegex.test(name)
-          ) {
-            return false;
-          }
-          if (
-            options.interfaceOnly &&
-            options.isTopLevel &&
-            name.endsWith("Context")
-          ) {
-            return false;
-          }
-          return true;
-        });
-      }
-    );
+        if (
+          moduleName === "models" &&
+          declaration.getKindName() === "FunctionDeclaration" &&
+          serializerOrDeserializerRegex.test(name)
+        ) {
+          return false;
+        }
+        if (
+          options.interfaceOnly &&
+          options.isTopLevel &&
+          name.endsWith("Context")
+        ) {
+          return false;
+        }
+        return true;
+      });
+    });
 
     const moduleSpecifier = `.${moduleFile
       .getFilePath()
@@ -485,7 +530,12 @@ function exportModules(
       .replace(".ts", "")}.js`;
     const renamer = (name: string) =>
       exported.has(name) ? `${name} as ${clientName}${name}` : name;
-    partitionAndEmitExports(indexFile, moduleSpecifier, filteredEntries, renamer);
+    partitionAndEmitExports(
+      indexFile,
+      moduleSpecifier,
+      filteredEntries,
+      renamer
+    );
   }
 }
 

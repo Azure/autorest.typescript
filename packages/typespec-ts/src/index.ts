@@ -76,7 +76,7 @@ import { EmitterOptions } from "./lib.js";
 import { ModularEmitterOptions } from "./modular/interfaces.js";
 import { Project } from "ts-morph";
 import { getClientContextPath } from "./modular/buildClientContext.js";
-import { adaptSettings, adaptSingleClient } from "./tcgcadapter/adapter.js";
+import { adaptSingleClient, adaptToCodeModel } from "./tcgcadapter/adapter.js";
 import { emitClassicalClient } from "./codegen/classicalClient.js";
 import { emitClassicalOperationFiles } from "./codegen/classicalOperations.js";
 import { emitClientContext } from "./codegen/clients.js";
@@ -86,6 +86,8 @@ import {
   emitSubpathIndexFiles
 } from "./codegen/indexFiles.js";
 import { emitOperations } from "./codegen/operations.js";
+import { emitModelFiles } from "./codegen/models.js";
+import { emitResponseTypes } from "./codegen/responseTypes.js";
 import { buildApiOptions } from "./modular/emitModelsOptions.js";
 import { buildRestorePoller } from "./modular/buildRestorePoller.js";
 import {
@@ -96,7 +98,6 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import { transformModularEmitterOptions } from "./modular/buildModularOptions.js";
 import { emitLoggerFile } from "./modular/emitLoggerFile.js";
-import { emitTypes, emitNonModelResponseTypes } from "./modular/emitModels.js";
 import { existsSync } from "fs";
 import { getModuleExports } from "./modular/buildProjectFiles.js";
 import {
@@ -335,6 +336,12 @@ export async function $onEmit(context: EmitContext) {
 
     emitLoggerFile(modularEmitterOptions, modularSourcesRoot);
 
+    const codeModel = adaptToCodeModel({
+      sdkContext: dpgContext,
+      emitterOptions: modularEmitterOptions
+    });
+    const generationSettings = codeModel.settings;
+
     const rootIndexFile = project.createSourceFile(
       `${modularSourcesRoot}/index.ts`,
       "",
@@ -343,10 +350,9 @@ export async function $onEmit(context: EmitContext) {
       }
     );
 
-    emitTypes(dpgContext, { sourceRoot: modularSourcesRoot });
-    emitNonModelResponseTypes(dpgContext, { sourceRoot: modularSourcesRoot });
+    emitModelFiles(project, codeModel, dpgContext);
+    emitResponseTypes(project, codeModel.clients, generationSettings);
     const clientMap = getClientHierarchyMap(dpgContext);
-    const generationSettings = adaptSettings(dpgContext, modularEmitterOptions);
     emitSubpathIndexFiles(project, generationSettings, "models", undefined, {
       recursive: true
     });

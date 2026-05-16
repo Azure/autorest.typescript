@@ -104,6 +104,12 @@ export interface TSClient {
   /** Named operation groups (non-empty prefix key) */
   operationGroups: TSOperationGroup[];
 
+  /** Generated operation options files under the api/ tree */
+  apiOptions: TSApiOptions[];
+
+  /** Restore-poller helper metadata when compatibility LROs are enabled */
+  lroConfig?: TSLroConfig;
+
   /** Child clients (hierarchical client pattern) */
   children: TSClient[];
 
@@ -236,6 +242,8 @@ export interface TSMethod {
   parameters: TSParameter[];
   /** Method return type */
   returnType: TSReturnType;
+  /** Non-model response alias metadata when the operation wraps its return type */
+  responseTypeAlias?: TSResponseTypeAlias;
   /** Public api function declaration */
   apiFunction: TSFunctionDeclaration;
   /** Private send helper declaration */
@@ -269,6 +277,13 @@ export interface TSReturnType {
   isVoid: boolean;
 }
 
+export interface TSResponseTypeAlias {
+  name: string;
+  refKey: string;
+  kind: "binary" | "body" | "headAsBoolean";
+  bodyType?: string;
+}
+
 export interface TSRoute {
   pathTemplate: string;
   verb: string;
@@ -285,6 +300,48 @@ export interface TSOperationGroup {
   methods: TSMethod[];
 }
 
+export interface TSApiOptions {
+  /** Prefix keys for the api/options file path */
+  prefixes: string[];
+  /** Operation option interfaces emitted into this file */
+  interfaces: TSApiOptionsInterface[];
+}
+
+export interface TSApiOptionsInterface {
+  /** TypeScript interface name */
+  name: string;
+  /** Binder refkey for import resolution */
+  refKey: string;
+  /** Interface properties */
+  properties: TSApiOptionsProperty[];
+}
+
+export interface TSApiOptionsProperty {
+  name: string;
+  type: string;
+  docs: string[];
+}
+
+export interface TSLroConfig {
+  /** Classical client type accepted by restorePoller */
+  clientName: string;
+  /** Deserialization helpers indexed by operation path */
+  deserializers: TSLroDeserializer[];
+}
+
+export interface TSLroDeserializer {
+  /** Import path for the deserialize helper */
+  moduleSpecifier: string;
+  /** Exported helper name */
+  exportName: string;
+  /** Local alias used when duplicate helper names exist */
+  localName: string;
+  /** HTTP method + route key */
+  path: string;
+  /** Expected status expression emitted into the helper map */
+  expectedStatusesExpression: string;
+}
+
 // ─── Models / Types ─────────────────────────────────────────────────────
 
 export type TSTypeReference = string;
@@ -294,6 +351,8 @@ export interface TSModel {
   id: string;
   /** TypeScript model/interface name */
   name: string;
+  /** Relative namespace segments used for file placement */
+  namespace: string[];
   /** Model documentation */
   docs: string[];
   /** Direct model properties */
@@ -339,6 +398,8 @@ export interface TSEnum {
   id: string;
   /** TypeScript enum alias name */
   name: string;
+  /** Relative namespace segments used for file placement */
+  namespace: string[];
   /** Enum documentation */
   docs: string[];
   /** Enum members */
@@ -361,6 +422,8 @@ export interface TSUnion {
   id: string;
   /** TypeScript union alias name */
   name: string;
+  /** Relative namespace segments used for file placement */
+  namespace: string[];
   /** Union documentation */
   docs: string[];
   /** Union variants */

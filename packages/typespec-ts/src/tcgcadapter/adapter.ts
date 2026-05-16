@@ -37,7 +37,8 @@ import type { SdkContext } from "../utils/interfaces.js";
 import type { ModularEmitterOptions } from "../modular/interfaces.js";
 import {
   getClientName,
-  getClassicalClientName
+  getClassicalClientName,
+  getOperationName
 } from "../modular/helpers/namingHelpers.js";
 import { getDocsFromDescription } from "../modular/helpers/docsHelpers.js";
 import { getTypeExpression } from "../modular/type-expressions/get-type-expression.js";
@@ -51,17 +52,26 @@ import {
   getClientParameterName,
   buildGetClientCredentialParam
 } from "../modular/helpers/clientHelpers.js";
-import { getApiVersionEnum, buildEnumTypes } from "../modular/emitModels.js";
+import {
+  getApiVersionEnum,
+  buildEnumTypes,
+  getModelNamespaces
+} from "../modular/emitModels.js";
 import {
   getMethodHierarchiesMap,
+  hasDualFormatSupport,
   isTenantLevelOperation,
   type ServiceOperation
 } from "../utils/operationUtil.js";
 import {
+  checkWrapNonModelReturn,
   getDeserializeExceptionHeadersPrivateFunction,
   getDeserializeHeadersPrivateFunction,
   getDeserializePrivateFunction,
+  getExpectedStatuses,
   getOperationFunction,
+  getOperationOptionsName,
+  getOperationResponseTypeName,
   getPropertySerializedName,
   getSendPrivateFunction,
   isLroAndPagingOperation,
@@ -75,6 +85,9 @@ import { isAzureCoreErrorType } from "../utils/modelUtils.js";
 import { refkey } from "../framework/refkey.js";
 
 import type {
+  TSApiOptions,
+  TSApiOptionsInterface,
+  TSApiOptionsProperty,
   TSApiVersionConfig,
   TSClient,
   TSClientParameter,
@@ -84,11 +97,14 @@ import type {
   TSEnum,
   TSFunctionDeclaration,
   TSGenerationSettings,
+  TSLroConfig,
+  TSLroDeserializer,
   TSMethod,
   TSMethodKind,
   TSModel,
   TSOperationGroup,
   TSProperty,
+  TSResponseTypeAlias,
   TSTypeReference,
   TSUnion,
   TSUnionVariant
@@ -194,6 +210,8 @@ function adaptClient(
     sdkContext,
     operationClientType
   );
+  const apiOptions = adaptApiOptions(client, sdkContext);
+  const lroConfig = adaptLroConfig(client, sdkContext);
 
   const hasParentInitializedChildren = !!(
     client.children &&
@@ -224,6 +242,7 @@ function adaptClient(
           parameters: childParams,
           methods: [],
           operationGroups: [],
+          apiOptions: [],
           children: [],
           hasParentInitializedChildren: false,
           allowOptionalSubscriptionId: shouldAllowOptionalSubscriptionId(
@@ -250,6 +269,8 @@ function adaptClient(
     apiVersion,
     methods,
     operationGroups,
+    apiOptions,
+    lroConfig,
     children,
     hasParentInitializedChildren,
     allowOptionalSubscriptionId: shouldAllowOptionalSubscriptionId(
@@ -422,6 +443,146 @@ function adaptApiVersion(
   };
 }
 
+// ─── API Options / LRO Adapter ─────────────────────────────────────────
+
+function adaptApiOptions(
+  client: SdkClientType<SdkServiceOperation>,
+  sdkContext: SdkContext
+): TSApiOptions[] {
+  const methodMap = getMethodHierarchiesMap(sdkContext, client);
+
+  return [...methodMap.entries()].map(([prefixKey, operations]) => {
+    const prefixes = getGroupPrefixes(prefixKey);
+    return {
+      prefixes,
+      interfaces: operations.map((operation) =>
+        adaptApiOptionsInterface(operation, prefixes, sdkContext)
+      )
+    };
+  });
+}
+
+function adaptApiOptionsInterface(
+  operation: ServiceOperation,
+  prefixes: string[],
+  sdkContext: SdkContext
+): TSApiOptionsInterface {
+  return {
+    name: getOperationOptionsName([prefixes, operation], true),
+    refKey: refkey(operation, "operationOptions"),
+    properties: adaptApiOptionsProperties(operation, sdkContext)
+  };
+}
+
+function adaptApiOptionsProperties(
+  operation: ServiceOperation,
+  sdkContext: SdkContext
+): TSApiOptionsProperty[] {
+  const properties: TSApiOptionsProperty[] = [];
+
+  if (isLroOnlyOperation(operation) || isLroAndPagingOperation(operation)) {
+    properties.push({
+      name: "updateIntervalInMs",
+      type: "number",
+      docs: ["Delay to wait until next poll, in milliseconds."]
+    });
+  }
+
+  const bodyContentTypes = operation.operation.bodyParam?.contentTypes ?? [];
+  if (hasDualFormatSupport(bodyContentTypes)) {
+    properties.push({
+      name: "contentType",
+      type: "string",
+      docs: [
+        'The content type for the request body. Defaults to "application/json". Use "application/xml" for XML serialization.'
+      ]
+    });
+  }
+
+  for (const parameter of operation.parameters) {
+    if (
+      parameter.onClient ||
+      !(parameter.optional || parameter.clientDefaultValue)
+    ) {
+      continue;
+    }
+
+    if (
+      parameter.isGeneratedName &&
+      (parameter.name === "contentType" || parameter.name !== "accept")
+    ) {
+      continue;
+    }
+
+    properties.push({
+      name: normalizeName(parameter.name, NameType.Parameter),
+      type: getTypeExpression(sdkContext, parameter.type, { isOptional: true }),
+      docs: getDocsFromDescription(parameter.doc)
+    });
+  }
+
+  return properties;
+}
+
+function adaptLroConfig(
+  client: SdkClientType<SdkServiceOperation>,
+  sdkContext: SdkContext
+): TSLroConfig | undefined {
+  const methodMap = getMethodHierarchiesMap(sdkContext, client);
+  const deserializers: TSLroDeserializer[] = [];
+  const existingNames = new Set<string>();
+
+  for (const [prefixKey, operations] of methodMap) {
+    const prefixes = getGroupPrefixes(prefixKey);
+    const operationFileName = getOperationFileName(prefixes);
+
+    for (const operation of operations.filter((candidate) =>
+      isLroOnlyOperation(candidate)
+    )) {
+      const { name } = getOperationName(operation);
+      const exportName = `_${name}Deserialize`;
+      const localName = existingNames.has(exportName)
+        ? `_${name}Deserialize${normalizeName(
+            operationFileName.split("/").slice(0, -1).join("_"),
+            NameType.Interface
+          )}`
+        : exportName;
+
+      existingNames.add(exportName);
+      deserializers.push({
+        moduleSpecifier: `./api/${operationFileName}.js`,
+        exportName,
+        localName,
+        path: `${operation.operation.verb.toUpperCase()} ${operation.operation.path}`,
+        expectedStatusesExpression: getExpectedStatuses(operation)
+      });
+    }
+  }
+
+  if (deserializers.length === 0) {
+    return undefined;
+  }
+
+  return {
+    clientName: getClassicalClientName(client),
+    deserializers
+  };
+}
+
+function getGroupPrefixes(prefixKey: string): string[] {
+  return prefixKey === "" ? [] : prefixKey.split("/");
+}
+
+function getOperationFileName(prefixes: string[]): string {
+  if (prefixes.length === 0) {
+    return "operations";
+  }
+
+  return `${prefixes
+    .map((prefix) => normalizeName(prefix, NameType.File))
+    .join("/")}/operations`;
+}
+
 // ─── Method Adapter ───────────────────────────────────────────────────
 
 export function adaptMethods(
@@ -495,6 +656,7 @@ function adaptMethod(
       sdkContext,
       declaration.returnType?.toString()
     ),
+    responseTypeAlias: adaptResponseTypeAlias(operation, sdkContext, prefixes),
     apiFunction: adaptFunctionDeclaration(declaration),
     sendFunction: adaptFunctionDeclaration(sendDeclaration),
     deserializeFunction: adaptFunctionDeclaration(deserializeDeclaration),
@@ -506,6 +668,36 @@ function adaptMethod(
       : undefined,
     compatibilityLroReturnType: declaration.lroFinalReturnType,
     compatibilityLroPagingReturnType: declaration.lropagingFinalReturnType
+  };
+}
+
+function adaptResponseTypeAlias(
+  operation: ServiceOperation,
+  sdkContext: SdkContext,
+  prefixes: string[]
+): TSResponseTypeAlias | undefined {
+  const { shouldWrap, isBinary } = checkWrapNonModelReturn(
+    sdkContext,
+    operation
+  );
+  if (!shouldWrap) {
+    return undefined;
+  }
+
+  const isHeadAsBoolean =
+    !operation.response.type &&
+    operation.operation.verb.toLowerCase() === "head";
+
+  return {
+    name: getOperationResponseTypeName([prefixes, operation]),
+    refKey: refkey(operation, "response"),
+    kind: isBinary ? "binary" : isHeadAsBoolean ? "headAsBoolean" : "body",
+    bodyType:
+      isBinary || isHeadAsBoolean
+        ? isHeadAsBoolean
+          ? "boolean"
+          : undefined
+        : getTypeExpression(sdkContext, operation.response.type!)
   };
 }
 
@@ -802,6 +994,7 @@ function adaptModel(model: SdkModelType, sdkContext: SdkContext): TSModel {
   return {
     id: `model:${model.name}`,
     name: model.name,
+    namespace: getModelNamespaces(sdkContext, model),
     docs: getDocsFromDescription(model.doc),
     properties: model.properties.map((property) =>
       adaptModelProperty(property, sdkContext)
@@ -863,6 +1056,7 @@ function adaptEnum(enumType: SdkEnumType, sdkContext: SdkContext): TSEnum {
   return {
     id: `enum:${enumType.name}`,
     name: enumType.name,
+    namespace: getModelNamespaces(sdkContext, enumType),
     docs: getDocsFromDescription(enumType.doc),
     members: enumType.values.map((member) => ({
       name: member.name,
@@ -878,6 +1072,7 @@ function adaptUnion(unionType: SdkUnionType, sdkContext: SdkContext): TSUnion {
   return {
     id: `union:${unionType.name}`,
     name: unionType.name,
+    namespace: getModelNamespaces(sdkContext, unionType),
     docs: getDocsFromDescription(unionType.doc),
     variants: adaptUnionVariants(unionType, sdkContext),
     discriminator: unionType.discriminatedOptions

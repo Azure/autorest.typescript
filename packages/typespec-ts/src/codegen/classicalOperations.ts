@@ -65,7 +65,9 @@ export function emitClassicalOperationFiles(
   return files;
 }
 
-function buildOperationTree(groups: TSOperationGroup[]): ClassicalOperationNode {
+function buildOperationTree(
+  groups: TSOperationGroup[]
+): ClassicalOperationNode {
   const root: ClassicalOperationNode = {
     prefixes: [],
     methods: [],
@@ -307,7 +309,11 @@ function getOperationsFactory(
       }
     ],
     returnType: resolveReference(
-      refkey(interfaceNamePrefix + "Operations", node.prefixes.length - 1, "classicOperations")
+      refkey(
+        interfaceNamePrefix + "Operations",
+        node.prefixes.length - 1,
+        "classicOperations"
+      )
     ),
     statements: `return {\n${properties.join(",\n")}\n}`
   };

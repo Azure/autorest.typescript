@@ -211,7 +211,11 @@ export function emitNonModelResponseTypes(
   }
 }
 
-function emitType(context: SdkContext, type: SdkType, sourceFile: SourceFile) {
+export function emitType(
+  context: SdkContext,
+  type: SdkType,
+  sourceFile: SourceFile
+) {
   if (type.kind === "model") {
     if (isAzureCoreErrorType(context.program, type.__raw)) {
       return;
@@ -441,7 +445,7 @@ function getModelAndAncestorProperties(
   return properties;
 }
 
-function addSerializationFunctions(
+export function addSerializationFunctions(
   context: SdkContext,
   typeOrProperty: SdkType | SdkModelPropertyType,
   sourceFile: SourceFile,

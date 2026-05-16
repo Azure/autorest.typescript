@@ -187,6 +187,7 @@ describe("tcgc adapter", () => {
     const client = model.clients[0]!;
     expect(Object.keys(client).sort()).toEqual([
       "allowOptionalSubscriptionId",
+      "apiOptions",
       "apiVersion",
       "children",
       "contextTypeName",
@@ -195,6 +196,7 @@ describe("tcgc adapter", () => {
       "endpoint",
       "hasParentInitializedChildren",
       "id",
+      "lroConfig",
       "methods",
       "modularName",
       "name",
@@ -210,8 +212,14 @@ describe("tcgc adapter", () => {
     expect(client.path).toEqual([]);
     expect(client.children).toEqual([]);
     expect(client.operationGroups).toEqual([]);
+    expect(client.apiOptions).toHaveLength(1);
+    expect(client.apiOptions[0]).toMatchObject({
+      prefixes: [],
+      interfaces: [{ name: "PingOptionalParams" }]
+    });
     expect(client.hasParentInitializedChildren).toBe(false);
     expect(client.apiVersion).toBeUndefined();
+    expect(client.lroConfig).toBeUndefined();
     expect(client.endpoint).toEqual({
       isParameterized: true,
       serverUrl: "{endpoint}/widgets",
@@ -241,6 +249,7 @@ describe("tcgc adapter", () => {
       "name",
       "originalName",
       "parameters",
+      "responseTypeAlias",
       "returnType",
       "route",
       "sendFunction"
@@ -720,6 +729,8 @@ describe("tcgc adapter", () => {
     expect(client.name).toBe("EmptyClient");
     expect(client.methods).toEqual([]);
     expect(client.operationGroups).toEqual([]);
+    expect(client.apiOptions).toEqual([]);
+    expect(client.lroConfig).toBeUndefined();
     expect(client.endpoint).toEqual({
       isParameterized: false,
       serverUrl: "{endpoint}",

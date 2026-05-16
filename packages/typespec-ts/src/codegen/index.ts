@@ -13,8 +13,10 @@
  * import/reference resolution.
  */
 
+export { emitApiOptions } from "./apiOptions.js";
 export { emitFromCodeModel } from "./emitter.js";
 export { emitClassicalOperationFiles } from "./classicalOperations.js";
+export { emitLroHelpers } from "./lroHelpers.js";
 export {
   emitRootIndex,
   emitSubClientIndex,

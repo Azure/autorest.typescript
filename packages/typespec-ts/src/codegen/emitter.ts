@@ -9,8 +9,10 @@
 
 import { Project, SourceFile } from "ts-morph";
 import type { TSCodeModel } from "../codemodel/index.js";
+import { emitApiOptions } from "./apiOptions.js";
 import { emitClassicalClient } from "./classicalClient.js";
 import { emitClientContext } from "./clients.js";
+import { emitLroHelpers } from "./lroHelpers.js";
 import { emitOperations } from "./operations.js";
 
 /**
@@ -29,6 +31,7 @@ export function emitFromCodeModel(
   const files: SourceFile[] = [];
 
   for (const client of codeModel.clients) {
+    files.push(...emitApiOptions(project, client, codeModel.settings));
     files.push(...emitOperations(project, client, codeModel.settings));
 
     const contextFile = emitClientContext(project, client, codeModel.settings);
@@ -43,6 +46,11 @@ export function emitFromCodeModel(
     );
     if (classicalClientFile) {
       files.push(classicalClientFile);
+    }
+
+    const lroHelpersFile = emitLroHelpers(project, client, codeModel.settings);
+    if (lroHelpersFile) {
+      files.push(lroHelpersFile);
     }
   }
 
