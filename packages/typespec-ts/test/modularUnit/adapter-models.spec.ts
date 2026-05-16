@@ -1,8 +1,15 @@
 import { describe, expect, it } from "vitest";
 
+import type {
+  TSCodeModel,
+  TSEnum,
+  TSModel,
+  TSProperty,
+  TSUnion
+} from "../../src/codemodel/index.js";
 import { renameClientName } from "../../src/index.js";
 import { transformModularEmitterOptions } from "../../src/modular/buildModularOptions.js";
-import * as adapterModule from "../../src/tcgcadapter/adapter.js";
+import { adaptToCodeModel } from "../../src/tcgcadapter/adapter.js";
 import { getClientHierarchyMap } from "../../src/utils/clientUtils.js";
 import type { SdkContext } from "../../src/utils/interfaces.js";
 import {
@@ -10,65 +17,6 @@ import {
   rlcEmitterFor,
   type RLCEmitterOptions
 } from "../util/testUtil.js";
-
-type TSModelLike = {
-  name: string;
-  properties?: unknown[] | Record<string, unknown>;
-  discriminator?: { propertyName?: string; name?: string };
-  discriminatorProperty?: { name?: string };
-  discriminatorPropertyName?: string;
-};
-
-type TSModelPropertyLike = {
-  name: string;
-  type?: unknown;
-  optional?: boolean;
-  isOptional?: boolean;
-  serializedName?: string;
-  wireName?: string;
-  jsonName?: string;
-  readonly?: boolean;
-  isReadonly?: boolean;
-};
-
-type TSEnumLike = {
-  name: string;
-  members?: unknown[] | Record<string, unknown>;
-  isFixed?: boolean;
-  extensible?: boolean;
-  isExtensible?: boolean;
-};
-
-type TSEnumMemberLike = {
-  name?: string;
-  value?: unknown;
-};
-
-type TSUnionLike = {
-  name: string;
-  variants?: unknown[] | Record<string, unknown>;
-  members?: unknown[] | Record<string, unknown>;
-  variantTypes?: unknown[];
-};
-
-type TSUnionVariantLike = {
-  name?: string;
-  type?: unknown;
-};
-
-type ModelAdapterModule = {
-  adaptModels?: (sdkContext: SdkContext) => TSModelLike[];
-  adaptEnums?: (sdkContext: SdkContext) => TSEnumLike[];
-  adaptUnions?: (sdkContext: SdkContext) => TSUnionLike[];
-};
-
-const { adaptModels, adaptEnums, adaptUnions } =
-  adapterModule as ModelAdapterModule;
-
-const hasStage3Adapters =
-  typeof adaptModels === "function" &&
-  typeof adaptEnums === "function" &&
-  typeof adaptUnions === "function";
 
 function buildAdapterTypeSpec(tspContent: string): string {
   return `
@@ -104,11 +52,14 @@ function buildServiceTypeSpec(
   `;
 }
 
-async function buildSdkContext(
+async function buildAdapterFixture(
   tspContent: string,
   configs: Record<string, unknown> = {},
   hostOptions: RLCEmitterOptions = { withRawContent: true }
-): Promise<SdkContext> {
+): Promise<{
+  sdkContext: SdkContext;
+  emitterOptions: ReturnType<typeof transformModularEmitterOptions>;
+}> {
   const host = await rlcEmitterFor(
     buildAdapterTypeSpec(tspContent),
     hostOptions
@@ -128,24 +79,19 @@ async function buildSdkContext(
   }
 
   expect(getClientHierarchyMap(sdkContext)).toHaveLength(1);
-  return sdkContext;
+  return { sdkContext, emitterOptions };
 }
 
-async function adaptShapesFromTypeSpec(
+async function adaptCodeModelFromTypeSpec(
   tspContent: string,
   configs: Record<string, unknown> = {}
-) {
-  const sdkContext = await buildSdkContext(tspContent, configs);
+): Promise<TSCodeModel> {
+  const { sdkContext, emitterOptions } = await buildAdapterFixture(
+    tspContent,
+    configs
+  );
 
-  if (!adaptModels || !adaptEnums || !adaptUnions) {
-    throw new Error("Stage 3 model adapters are not available yet.");
-  }
-
-  return {
-    models: adaptModels(sdkContext),
-    enums: adaptEnums(sdkContext),
-    unions: adaptUnions(sdkContext)
-  };
+  return adaptToCodeModel({ sdkContext, emitterOptions });
 }
 
 function findByName<T extends { name: string }>(
@@ -158,19 +104,11 @@ function findByName<T extends { name: string }>(
   return item!;
 }
 
-function getModelProperties(model: TSModelLike): TSModelPropertyLike[] {
-  if (Array.isArray(model.properties)) {
-    return model.properties as TSModelPropertyLike[];
-  }
-
-  if (model.properties && typeof model.properties === "object") {
-    return Object.values(model.properties) as TSModelPropertyLike[];
-  }
-
-  return [];
+function getModelProperties(model: TSModel): TSProperty[] {
+  return model.properties;
 }
 
-function findProperty(model: TSModelLike, name: string): TSModelPropertyLike {
+function findProperty(model: TSModel, name: string): TSProperty {
   const property = getModelProperties(model).find(
     (candidate) => candidate.name === name
   );
@@ -181,40 +119,12 @@ function findProperty(model: TSModelLike, name: string): TSModelPropertyLike {
   return property!;
 }
 
-function getEnumMembers(enumType: TSEnumLike): TSEnumMemberLike[] {
-  if (Array.isArray(enumType.members)) {
-    return enumType.members as TSEnumMemberLike[];
-  }
-
-  if (enumType.members && typeof enumType.members === "object") {
-    return Object.values(enumType.members) as TSEnumMemberLike[];
-  }
-
-  return [];
+function getEnumMembers(enumType: TSEnum) {
+  return enumType.members;
 }
 
-function getUnionVariants(unionType: TSUnionLike): TSUnionVariantLike[] {
-  if (Array.isArray(unionType.variants)) {
-    return unionType.variants as TSUnionVariantLike[];
-  }
-
-  if (unionType.variants && typeof unionType.variants === "object") {
-    return Object.values(unionType.variants) as TSUnionVariantLike[];
-  }
-
-  if (Array.isArray(unionType.members)) {
-    return unionType.members as TSUnionVariantLike[];
-  }
-
-  if (unionType.members && typeof unionType.members === "object") {
-    return Object.values(unionType.members) as TSUnionVariantLike[];
-  }
-
-  if (Array.isArray(unionType.variantTypes)) {
-    return unionType.variantTypes as TSUnionVariantLike[];
-  }
-
-  return [];
+function getUnionVariants(unionType: TSUnion) {
+  return unionType.variants;
 }
 
 function readTypeText(value: unknown, depth: number = 0): string {
@@ -251,59 +161,25 @@ function readTypeText(value: unknown, depth: number = 0): string {
   return `${direct} ${nested}`.trim();
 }
 
-function getDiscriminatorPropertyName(model: TSModelLike): string | undefined {
-  return (
-    model.discriminatorPropertyName ??
-    model.discriminator?.propertyName ??
-    model.discriminator?.name ??
-    model.discriminatorProperty?.name
-  );
+function getDiscriminatorPropertyName(model: TSModel): string | undefined {
+  return model.discriminator?.propertyName;
 }
 
-function getSerializedName(property: TSModelPropertyLike): string | undefined {
-  return property.serializedName ?? property.wireName ?? property.jsonName;
+function getSerializedName(property: TSProperty): string | undefined {
+  return property.serializedName;
 }
 
-function isOptionalProperty(
-  property: TSModelPropertyLike
-): boolean | undefined {
-  return property.optional ?? property.isOptional;
+function isOptionalProperty(property: TSProperty): boolean {
+  return property.optional;
 }
 
-function isReadonlyProperty(
-  property: TSModelPropertyLike
-): boolean | undefined {
-  return property.readonly ?? property.isReadonly;
+function isReadonlyProperty(property: TSProperty): boolean {
+  return property.readonly;
 }
 
 describe("tcgc adapter model adapters", () => {
-  if (!hasStage3Adapters) {
-    it("tracks that Stage 3 model adapters are still pending", () => {
-      expect({
-        adaptModels: typeof adaptModels,
-        adaptEnums: typeof adaptEnums,
-        adaptUnions: typeof adaptUnions
-      }).toEqual({
-        adaptModels: typeof adaptModels,
-        adaptEnums: typeof adaptEnums,
-        adaptUnions: typeof adaptUnions
-      });
-    });
-
-    it.todo("adapts a simple model into a TSModel");
-    it.todo("marks optional model properties as optional");
-    it.todo("captures nested model references");
-    it.todo("captures polymorphic discriminator metadata");
-    it.todo("adapts fixed enums into TSEnum values");
-    it.todo("adapts extensible enums from string unions");
-    it.todo("adapts discriminated unions into TSUnion variants");
-    it.todo("captures serialized property names");
-    it.todo("marks readonly model properties");
-    return;
-  }
-
   it("adapts a simple model into a TSModel", async () => {
-    const { models } = await adaptShapesFromTypeSpec(
+    const { models } = await adaptCodeModelFromTypeSpec(
       buildServiceTypeSpec(`
         model Foo {
           name: string;
@@ -329,7 +205,7 @@ describe("tcgc adapter model adapters", () => {
   });
 
   it("marks optional model properties as optional", async () => {
-    const { models } = await adaptShapesFromTypeSpec(
+    const { models } = await adaptCodeModelFromTypeSpec(
       buildServiceTypeSpec(`
         model Bar {
           name?: string;
@@ -348,7 +224,7 @@ describe("tcgc adapter model adapters", () => {
   });
 
   it("captures nested model references", async () => {
-    const { models } = await adaptShapesFromTypeSpec(
+    const { models } = await adaptCodeModelFromTypeSpec(
       buildServiceTypeSpec(`
         model Foo {
           name: string;
@@ -371,7 +247,7 @@ describe("tcgc adapter model adapters", () => {
   });
 
   it("captures polymorphic discriminator metadata", async () => {
-    const { models } = await adaptShapesFromTypeSpec(
+    const { models } = await adaptCodeModelFromTypeSpec(
       buildServiceTypeSpec(`
         @discriminator("kind")
         model Pet {
@@ -395,7 +271,7 @@ describe("tcgc adapter model adapters", () => {
   });
 
   it("adapts fixed enums into TSEnum values", async () => {
-    const { enums } = await adaptShapesFromTypeSpec(
+    const { enums } = await adaptCodeModelFromTypeSpec(
       buildServiceTypeSpec(`
         enum Color {
           Red,
@@ -424,7 +300,7 @@ describe("tcgc adapter model adapters", () => {
   });
 
   it("adapts extensible enums from string unions", async () => {
-    const { enums } = await adaptShapesFromTypeSpec(
+    const { enums } = await adaptCodeModelFromTypeSpec(
       buildServiceTypeSpec(`
         union PetKind {
           dog: "dog",
@@ -453,7 +329,7 @@ describe("tcgc adapter model adapters", () => {
   });
 
   it("adapts discriminated unions into TSUnion variants", async () => {
-    const { unions } = await adaptShapesFromTypeSpec(
+    const { unions } = await adaptCodeModelFromTypeSpec(
       buildServiceTypeSpec(`
         model CatVariant {
           sound: "meow";
@@ -482,7 +358,7 @@ describe("tcgc adapter model adapters", () => {
   });
 
   it("captures serialized property names", async () => {
-    const { models } = await adaptShapesFromTypeSpec(
+    const { models } = await adaptCodeModelFromTypeSpec(
       buildServiceTypeSpec(`
         model Person {
           @encodedName("application/json", "full_name")
@@ -502,7 +378,7 @@ describe("tcgc adapter model adapters", () => {
   });
 
   it("marks readonly model properties", async () => {
-    const { models } = await adaptShapesFromTypeSpec(
+    const { models } = await adaptCodeModelFromTypeSpec(
       buildServiceTypeSpec(`
         model ResourceModel {
           @visibility(Lifecycle.Read)
