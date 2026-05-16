@@ -95,10 +95,20 @@ export function emitClassicalClient(
   });
 
   const constructorParams = getConstructorParameters(client);
+  const clientParamsType = [
+    ...constructorParams.map(
+      (parameter) => `${parameter.name}: ${parameter.type}`
+    ),
+    `options: ${client.name}OptionalParams`
+  ].join("; ");
+  const clientParamsObject = [
+    ...constructorParams.map((parameter) => parameter.name),
+    "options"
+  ].join(", ");
   if (client.hasParentInitializedChildren) {
     clientClass.addProperty({
       name: "_clientParams",
-      type: `{${constructorParams.map((parameter) => `${parameter.name}: ${parameter.type}`).join(";")}; options: ${client.name}OptionalParams}`,
+      type: `{ ${clientParamsType} }`,
       scope: Scope.Private,
       docs: ["The parent client parameters that are used in the constructors."]
     });
@@ -128,7 +138,7 @@ export function emitClassicalClient(
 
   if (client.hasParentInitializedChildren) {
     constructor.addStatements(
-      `this._clientParams = { ${constructorParams.map((parameter) => parameter.name).join(", ")}, options };`
+      `this._clientParams = { ${clientParamsObject} };`
     );
   }
 
