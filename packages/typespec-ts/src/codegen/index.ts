@@ -14,3 +14,9 @@
  */
 
 export { emitFromCodeModel } from "./emitter.js";
+export { emitClassicalOperationFiles } from "./classicalOperations.js";
+export {
+  emitRootIndex,
+  emitSubClientIndex,
+  emitSubpathIndexFiles
+} from "./indexFiles.js";

@@ -69,25 +69,25 @@ import {
   buildSnippets,
   buildTsSampleConfig
 } from "@azure-tools/rlc-common";
-import {
-  buildRootIndex,
-  buildSubClientIndexFile
-} from "./modular/buildRootIndex.js";
 import { emitContentByBuilder, emitModels } from "./utils/emitUtil.js";
 import { provideContext, useContext } from "./contextManager.js";
 
 import { EmitterOptions } from "./lib.js";
 import { ModularEmitterOptions } from "./modular/interfaces.js";
 import { Project } from "ts-morph";
-import { buildClassicOperationFiles } from "./modular/buildClassicalOperationGroups.js";
 import { getClientContextPath } from "./modular/buildClientContext.js";
 import { adaptSettings, adaptSingleClient } from "./tcgcadapter/adapter.js";
 import { emitClassicalClient } from "./codegen/classicalClient.js";
+import { emitClassicalOperationFiles } from "./codegen/classicalOperations.js";
 import { emitClientContext } from "./codegen/clients.js";
+import {
+  emitRootIndex,
+  emitSubClientIndex,
+  emitSubpathIndexFiles
+} from "./codegen/indexFiles.js";
 import { emitOperations } from "./codegen/operations.js";
 import { buildApiOptions } from "./modular/emitModelsOptions.js";
 import { buildRestorePoller } from "./modular/buildRestorePoller.js";
-import { buildSubpathIndexFile } from "./modular/buildSubpathIndex.js";
 import {
   createSdkContext,
   listAllServiceNamespaces,
@@ -345,15 +345,15 @@ export async function $onEmit(context: EmitContext) {
 
     emitTypes(dpgContext, { sourceRoot: modularSourcesRoot });
     emitNonModelResponseTypes(dpgContext, { sourceRoot: modularSourcesRoot });
-    buildSubpathIndexFile(modularEmitterOptions, "models", undefined, {
+    const clientMap = getClientHierarchyMap(dpgContext);
+    const generationSettings = adaptSettings(dpgContext, modularEmitterOptions);
+    emitSubpathIndexFiles(project, generationSettings, "models", undefined, {
       recursive: true
     });
-    const clientMap = getClientHierarchyMap(dpgContext);
     if (clientMap.length === 0) {
       // If no clients, we still need to build the root index file
-      buildRootIndex(dpgContext, modularEmitterOptions, rootIndexFile);
+      emitRootIndex(project, generationSettings, rootIndexFile);
     }
-    const generationSettings = adaptSettings(dpgContext, modularEmitterOptions);
     for (const subClient of clientMap) {
       await renameClientName(subClient[1], modularEmitterOptions);
       buildApiOptions(dpgContext, subClient, modularEmitterOptions);
@@ -366,34 +366,29 @@ export async function $onEmit(context: EmitContext) {
       emitClientContext(project, tsClient, generationSettings);
       buildRestorePoller(dpgContext, subClient, modularEmitterOptions);
       if (dpgContext.rlcOptions?.hierarchyClient) {
-        buildSubpathIndexFile(modularEmitterOptions, "api", subClient, {
+        emitSubpathIndexFiles(project, generationSettings, "api", tsClient, {
           exportIndex: false,
           recursive: true
         });
       } else {
-        buildSubpathIndexFile(modularEmitterOptions, "api", subClient, {
+        emitSubpathIndexFiles(project, generationSettings, "api", tsClient, {
           recursive: true,
           exportIndex: true
         });
       }
 
       emitClassicalClient(project, tsClient, generationSettings);
-      buildClassicOperationFiles(dpgContext, subClient, modularEmitterOptions);
-      buildSubpathIndexFile(modularEmitterOptions, "classic", subClient, {
+      emitClassicalOperationFiles(project, tsClient, generationSettings);
+      emitSubpathIndexFiles(project, generationSettings, "classic", tsClient, {
         exportIndex: true,
         interfaceOnly: true
       });
       const { subfolder } = getModularClientOptions(subClient);
       // Generate index file for clients with subfolders (multi-client scenarios and nested clients)
       if (subfolder) {
-        buildSubClientIndexFile(dpgContext, subClient, modularEmitterOptions);
+        emitSubClientIndex(project, generationSettings, tsClient);
       }
-      buildRootIndex(
-        dpgContext,
-        modularEmitterOptions,
-        rootIndexFile,
-        subClient
-      );
+      emitRootIndex(project, generationSettings, rootIndexFile, tsClient);
     }
     // Enable modular sample generation when explicitly set to true or MPG
     if (emitterOptions["generate-sample"] === true) {
