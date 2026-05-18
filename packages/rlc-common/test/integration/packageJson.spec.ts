@@ -413,7 +413,7 @@ describe("Package file generation", () => {
 
       expect(packageFile.scripts).to.have.property(
         "build:samples",
-        "tsc -p config/tsconfig.samples.json && dev-tool samples publish -f"
+        "tsc -p tsconfig.samples.json && dev-tool samples publish -f"
       );
     });
 
@@ -428,7 +428,7 @@ describe("Package file generation", () => {
 
       expect(packageFile.scripts).to.have.property(
         "build:samples",
-        "tsc -p config/tsconfig.samples.json"
+        "tsc -p tsconfig.samples.json"
       );
     });
 

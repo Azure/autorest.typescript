@@ -159,8 +159,8 @@ function getAzureMonorepoScripts(config: AzureMonorepoInfoConfig) {
   const esmScripts = getEsmScripts(config);
   const skipLinting = config.azureArm && config.isModularLibrary;
   const buildSampleScripts = config.azureArm
-    ? "tsc -p config/tsconfig.samples.json && dev-tool samples publish -f"
-    : "tsc -p config/tsconfig.samples.json";
+    ? "tsc -p tsconfig.samples.json && dev-tool samples publish -f"
+    : "tsc -p tsconfig.samples.json";
   return {
     ...getCommonPackageScripts(),
     "build:samples": config.withSamples ? buildSampleScripts : "echo skipped",

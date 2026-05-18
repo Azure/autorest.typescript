@@ -3,17 +3,29 @@
 
 import { RLCModel } from "../interfaces.js";
 
-const nodeConfig = `import viteConfig from "../../../vitest.shared.config.ts";
+const nodeConfig = `
+import viteConfig from "../../../vitest.shared.config.ts";
 
-export default viteConfig;
-`;
+export default viteConfig;`;
 
-const browserConfig = `export { default } from "../../../eng/vitestconfigs/browser.config.ts";
-`;
+const browserConfig = `
+import viteConfig from "../../../vitest.browser.shared.config.ts";
+
+export default viteConfig;`;
+
+const esmConfig = `
+import { mergeConfig } from "vitest/config";
+import vitestConfig from "./vitest.config.ts";
+import vitestEsmConfig from "../../../vitest.esm.shared.config.ts";
+
+export default mergeConfig(
+  vitestConfig,
+  vitestEsmConfig
+);`;
 
 export function buildVitestConfig(
   model: RLCModel,
-  platform: "browser" | "node"
+  platform: "browser" | "node" | "esm"
 ) {
   if (
     model.options?.generateMetadata === false ||
@@ -31,6 +43,11 @@ export function buildVitestConfig(
       return {
         path: "vitest.config.ts",
         content: nodeConfig
+      };
+    case "esm":
+      return {
+        path: "vitest.esm.config.ts",
+        content: esmConfig
       };
   }
 }

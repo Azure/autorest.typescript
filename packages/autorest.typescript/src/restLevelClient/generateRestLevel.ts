@@ -34,12 +34,10 @@ import {
   buildSamples,
   updatePackageFile,
   buildSnippets,
-  buildTsSrcEsmConfig,
-  buildTsSrcBrowserConfig,
-  buildTsSrcReactNativeConfig,
-  buildTsSrcCjsConfig,
+  buildTsSrcConfig,
   buildTestBrowserTsConfig,
   buildTestNodeTsConfig,
+  buildTestMainTsConfig,
   buildTsSampleConfig
 } from "@azure-tools/rlc-common";
 import {
@@ -136,10 +134,8 @@ export async function generateRestLevelClient() {
     // buildTsConfig
     generateFileByBuilder(project, buildTsConfig, rlcModels);
     if (azureSdkForJs) {
-      generateFileByBuilder(project, buildTsSrcEsmConfig, rlcModels);
-      generateFileByBuilder(project, buildTsSrcBrowserConfig, rlcModels);
-      generateFileByBuilder(project, buildTsSrcReactNativeConfig, rlcModels);
-      generateFileByBuilder(project, buildTsSrcCjsConfig, rlcModels);
+      // buildTsSrcConfig
+      generateFileByBuilder(project, buildTsSrcConfig, rlcModels);
       if (generateSample) {
         // buildTsSampleConfig
         generateFileByBuilder(project, buildTsSampleConfig, rlcModels);
@@ -147,6 +143,7 @@ export async function generateRestLevelClient() {
       if (generateTest) {
         generateFileByBuilder(project, buildTestNodeTsConfig, rlcModels);
         generateFileByBuilder(project, buildTestBrowserTsConfig, rlcModels);
+        generateFileByBuilder(project, buildTestMainTsConfig, rlcModels);
       }
     }
   } else {

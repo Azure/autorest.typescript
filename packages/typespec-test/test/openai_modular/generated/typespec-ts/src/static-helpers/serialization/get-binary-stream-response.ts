@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 
 import { HttpResponse, StreamableMethod } from "@azure-rest/core-client";
-import { NodeReadableStream } from "../platform-types.js";
 
 /**
  * Resolves a StreamableMethod into a binary stream response using Node.js streaming.
@@ -13,7 +12,7 @@ import { NodeReadableStream } from "../platform-types.js";
 export async function getBinaryStreamResponse(streamableMethod: StreamableMethod): Promise<
   HttpResponse & {
     blobBody?: Promise<Blob>;
-    readableStreamBody?: NodeReadableStream;
+    readableStreamBody?: NodeJS.ReadableStream;
   }
 > {
   const response = await streamableMethod.asNodeStream();

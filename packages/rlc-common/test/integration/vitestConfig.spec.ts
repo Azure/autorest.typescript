@@ -14,7 +14,7 @@ describe("vitest.config", () => {
 
       const result = buildVitestConfig(model, "browser");
       expect(result?.content).includes(
-        `export { default } from "../../../eng/vitestconfigs/browser.config.ts";`
+        `export default viteConfig;`
       );
     });
   });

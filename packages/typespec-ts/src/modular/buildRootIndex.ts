@@ -10,8 +10,7 @@ import { resolveReference } from "../framework/reference.js";
 import {
   CloudSettingHelpers,
   MultipartHelpers,
-  PagingHelpers,
-  PlatformTypeHelpers
+  PagingHelpers
 } from "./static-helpers-metadata.js";
 import {
   SdkClientType,
@@ -184,20 +183,17 @@ function exportFileContentsType(
   context: SdkContext,
   rootIndexFile: SourceFile
 ) {
-  const hasMultipartFileParts = context.sdkPackage.models.some((x) =>
-    x.properties.some(
-      // eslint-disable-next-line
-      (y) => y.kind === "property" && y.multipartOptions?.isFilePart
+  if (
+    context.sdkPackage.models.some((x) =>
+      x.properties.some(
+        // eslint-disable-next-line
+        (y) => y.kind === "property" && y.multipartOptions?.isFilePart
+      )
     )
-  );
-
-  if (hasMultipartFileParts) {
+  ) {
     addExportsToRootIndexFile(
       rootIndexFile,
-      [
-        resolveReference(MultipartHelpers.FileContents),
-        resolveReference(PlatformTypeHelpers.NodeReadableStream)
-      ],
+      [resolveReference(MultipartHelpers.FileContents)],
       true
     );
   }

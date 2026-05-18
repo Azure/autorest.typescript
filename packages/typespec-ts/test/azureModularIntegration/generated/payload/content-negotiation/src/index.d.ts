@@ -23,7 +23,7 @@ export declare interface DifferentBodyGetAvatarAsPngOptionalParams extends Opera
 
 export declare type DifferentBodyGetAvatarAsPngResponse = {
     blobBody?: Promise<Blob>;
-    readableStreamBody?: NodeReadableStream;
+    readableStreamBody?: NodeJS.ReadableStream;
 };
 
 export declare interface DifferentBodyOperations {
@@ -32,8 +32,6 @@ export declare interface DifferentBodyOperations {
 }
 
 export { isRestError }
-
-declare type NodeReadableStream = NodeJS.ReadableStream;
 
 export declare interface PngImageAsJson {
     content: Uint8Array;
@@ -46,7 +44,7 @@ export declare interface SameBodyGetAvatarAsJpegOptionalParams extends Operation
 
 export declare type SameBodyGetAvatarAsJpegResponse = {
     blobBody?: Promise<Blob>;
-    readableStreamBody?: NodeReadableStream;
+    readableStreamBody?: NodeJS.ReadableStream;
 };
 
 export declare interface SameBodyGetAvatarAsPngOptionalParams extends OperationOptions {
@@ -54,7 +52,7 @@ export declare interface SameBodyGetAvatarAsPngOptionalParams extends OperationO
 
 export declare type SameBodyGetAvatarAsPngResponse = {
     blobBody?: Promise<Blob>;
-    readableStreamBody?: NodeReadableStream;
+    readableStreamBody?: NodeJS.ReadableStream;
 };
 
 export declare interface SameBodyOperations {

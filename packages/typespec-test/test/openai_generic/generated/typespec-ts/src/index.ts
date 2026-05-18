@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 
 import { FileContents } from "./static-helpers/multipartHelpers.js";
-import { NodeReadableStream } from "./static-helpers/platform-types.js";
 
 export { OpenAIClient } from "./openAIClient.js";
 export type {
@@ -109,5 +108,6 @@ export type {
   ChatCompletionsOperations,
   FineTuningJobsOperations,
 } from "./classic/index.js";
-export type { FileContents, NodeReadableStream };
+export type { FileContents };
 export { RestError, isRestError } from "@azure/core-rest-pipeline";
+export type { FileContents };
