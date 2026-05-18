@@ -1,3 +1,7 @@
+## 0.54.0 (2026-05-18)
+
+- [Bugfix] Do not generate React Native build targets by default. Please refer to [#3943](https://github.com/Azure/autorest.typescript/pull/3943)
+
 ## 0.53.1 (2026-05-14)
 
 - [Bugfix] Fix dependencies error. Please refer to [#3963](https://github.com/Azure/autorest.typescript/pull/3963)
