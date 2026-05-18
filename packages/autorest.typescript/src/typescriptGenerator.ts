@@ -98,6 +98,7 @@ export async function generateTypeScriptLibrary(
     if (azureSdkForJs) {
       generateVitestConfig(project, "node");
       generateVitestConfig(project, "browser");
+      generateVitestConfig(project, "esm");
     }
   }
   generateTsConfig(project);
