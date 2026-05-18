@@ -4,7 +4,7 @@ import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 import { RestError } from '@azure/core-rest-pipeline';
 
-export declare interface BarFiveOptionalParams extends OperationOptions {
+declare interface BarFiveOptionalParams extends OperationOptions {
 }
 
 export declare interface BarOperations {
@@ -12,14 +12,14 @@ export declare interface BarOperations {
     five: (options?: BarFiveOptionalParams) => Promise<void>;
 }
 
-export declare interface BarSixOptionalParams extends OperationOptions {
+declare interface BarSixOptionalParams extends OperationOptions {
 }
 
 export declare interface BazFooOperations {
     seven: (options?: BazFooSevenOptionalParams) => Promise<void>;
 }
 
-export declare interface BazFooSevenOptionalParams extends OperationOptions {
+declare interface BazFooSevenOptionalParams extends OperationOptions {
 }
 
 export declare interface BazOperations {
@@ -28,7 +28,7 @@ export declare interface BazOperations {
 
 export declare type ClientType = "default" | "multi-client" | "renamed-operation" | "two-operation-group" | "client-operation-group";
 
-export declare interface FooFourOptionalParams extends OperationOptions {
+declare interface FooFourOptionalParams extends OperationOptions {
 }
 
 export declare interface FooOperations {
@@ -36,7 +36,7 @@ export declare interface FooOperations {
     three: (options?: FooThreeOptionalParams) => Promise<void>;
 }
 
-export declare interface FooThreeOptionalParams extends OperationOptions {
+declare interface FooThreeOptionalParams extends OperationOptions {
 }
 
 export { isRestError }
@@ -44,19 +44,19 @@ export { isRestError }
 export declare interface OneOptionalParams extends OperationOptions {
 }
 
-export declare interface QuxBarNineOptionalParams extends OperationOptions {
+declare interface QuxBarNineOptionalParams extends OperationOptions {
 }
 
 export declare interface QuxBarOperations {
     nine: (options?: QuxBarNineOptionalParams) => Promise<void>;
 }
 
-export declare interface QuxEightOptionalParams extends OperationOptions {
+declare interface QuxEightOptionalParams extends OperationOptions {
 }
 
 export declare interface QuxOperations {
-    eight: (options?: QuxEightOptionalParams) => Promise<void>;
     bar: QuxBarOperations;
+    eight: (options?: QuxEightOptionalParams) => Promise<void>;
 }
 
 export { RestError }
@@ -65,12 +65,12 @@ export declare class ServiceClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(endpointParam: string, clientParam: ClientType, options?: ServiceClientOptionalParams);
-    two(options?: TwoOptionalParams): Promise<void>;
-    one(options?: OneOptionalParams): Promise<void>;
     readonly bar: BarOperations;
     readonly foo: FooOperations;
     readonly qux: QuxOperations;
     readonly baz: BazOperations;
+    two(options?: TwoOptionalParams): Promise<void>;
+    one(options?: OneOptionalParams): Promise<void>;
 }
 
 export declare interface ServiceClientOptionalParams extends ClientOptions {

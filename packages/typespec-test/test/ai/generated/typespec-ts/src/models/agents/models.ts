@@ -692,6 +692,9 @@ export function azureFunctionStorageQueueDeserializer(item: any): AzureFunctionS
   };
 }
 
+/** Alias for _CreateAgentRequestToolResources */
+export type _CreateAgentRequestToolResources = ToolResources | null;
+
 /**
  * A set of resources that are used by the agent's tools. The resources are specific to the type of
  * tool. For example, the `code_interpreter` tool requires a list of file IDs, while the `file_search`
@@ -965,6 +968,8 @@ export function indexResourceDeserializer(item: any): IndexResource {
   };
 }
 
+/** Alias for _CreateAgentRequestResponseFormat */
+export type _CreateAgentRequestResponseFormat = AgentsApiResponseFormatOption | null;
 /**
  * Specifies the format that the model must output. Compatible with GPT-4 Turbo and all GPT-3.5 Turbo models since `gpt-3.5-turbo-1106`.
  *
@@ -1127,6 +1132,11 @@ export function agentDeserializer(item: any): Agent {
   };
 }
 
+/** Alias for _AgentToolResources */
+export type _AgentToolResources = ToolResources | null;
+/** Alias for _AgentResponseFormat */
+export type _AgentResponseFormat = AgentsApiResponseFormatOption | null;
+
 /** The response data for a requested list of items. */
 export interface OpenAIPageableListOfAgent {
   /** The object type, which is always list. */
@@ -1156,6 +1166,9 @@ export function agentArrayDeserializer(result: Array<Agent>): any[] {
     return agentDeserializer(item);
   });
 }
+
+/** Alias for _UpdateAgentRequestResponseFormat */
+export type _UpdateAgentRequestResponseFormat = AgentsApiResponseFormatOption | null;
 
 /** The status of an agent deletion operation. */
 export interface AgentDeletionStatus {
@@ -1216,6 +1229,8 @@ export function threadMessageOptionsSerializer(item: ThreadMessageOptions): any 
 
 /** The possible values for roles attributed to messages in a thread. */
 export type MessageRole = "user" | "assistant";
+/** Alias for _ThreadMessageOptionsAttachments */
+export type _ThreadMessageOptionsAttachments = MessageAttachment[] | null;
 
 export function messageAttachmentArraySerializer(result: Array<MessageAttachment>): any[] {
   return result.map((item) => {
@@ -1292,6 +1307,9 @@ export function messageAttachmentToolDefinitionDeserializer(
   return item;
 }
 
+/** Alias for _CreateThreadRequestToolResources */
+export type _CreateThreadRequestToolResources = ToolResources | null;
+
 /** Information about a single thread associated with an agent. */
 export interface AgentThread {
   /** The identifier, which can be referenced in API endpoints. */
@@ -1325,6 +1343,11 @@ export function agentThreadDeserializer(item: any): AgentThread {
         ),
   };
 }
+
+/** Alias for _AgentThreadToolResources */
+export type _AgentThreadToolResources = ToolResources | null;
+/** Alias for _UpdateThreadRequestToolResources */
+export type _UpdateThreadRequestToolResources = ToolResources | null;
 
 /** The status of a thread deletion operation. */
 export interface ThreadDeletionStatus {
@@ -1409,6 +1432,8 @@ export function threadMessageDeserializer(item: any): ThreadMessage {
 
 /** The possible execution status values for a thread message. */
 export type MessageStatus = "in_progress" | "incomplete" | "completed";
+/** Alias for _ThreadMessageIncompleteDetails */
+export type _ThreadMessageIncompleteDetails = MessageIncompleteDetails | null;
 
 /** Information providing additional detail about a message entering an incomplete status. */
 export interface MessageIncompleteDetails {
@@ -1647,6 +1672,9 @@ export function messageImageFileDetailsDeserializer(item: any): MessageImageFile
   };
 }
 
+/** Alias for _ThreadMessageAttachments */
+export type _ThreadMessageAttachments = MessageAttachment[] | null;
+
 /** The response data for a requested list of items. */
 export interface OpenAIPageableListOfThreadMessage {
   /** The object type, which is always list. */
@@ -1679,6 +1707,13 @@ export function threadMessageArrayDeserializer(result: Array<ThreadMessage>): an
   });
 }
 
+/** Alias for _CreateRunRequestAdditionalMessages */
+export type _CreateRunRequestAdditionalMessages = ThreadMessageOptions[] | null;
+/** Alias for _CreateRunRequestTools */
+export type _CreateRunRequestTools = ToolDefinitionUnion[] | null;
+/** Alias for _CreateRunRequestTruncationStrategy */
+export type _CreateRunRequestTruncationStrategy = TruncationObject | null;
+
 /**
  * Controls for how a thread will be truncated prior to the run. Use this to control the initial
  * context window of the run.
@@ -1707,6 +1742,8 @@ export function truncationObjectDeserializer(item: any): TruncationObject {
 
 /** Possible truncation strategies for the thread. */
 export type TruncationStrategy = "auto" | "last_messages";
+/** Alias for _CreateRunRequestToolChoice */
+export type _CreateRunRequestToolChoice = AgentsApiToolChoiceOption | null;
 /**
  * Controls which (if any) tool is called by the model.
  * - `none` means the model will not call any tools and instead generates a message.
@@ -1777,6 +1814,9 @@ export function functionNameDeserializer(item: any): FunctionName {
     name: item["name"],
   };
 }
+
+/** Alias for _CreateRunRequestResponseFormat */
+export type _CreateRunRequestResponseFormat = AgentsApiResponseFormatOption | null;
 
 /** Data representing a single evaluation run of an agent thread. */
 export interface ThreadRun {
@@ -1901,6 +1941,8 @@ export type RunStatus =
   | "failed"
   | "completed"
   | "expired";
+/** Alias for _ThreadRunRequiredAction */
+export type _ThreadRunRequiredAction = RequiredActionUnion | null;
 
 /** An abstract representation of a required action for an agent thread run to continue. */
 export interface RequiredAction {
@@ -2025,6 +2067,9 @@ export function requiredFunctionToolCallDetailsDeserializer(
   };
 }
 
+/** Alias for _ThreadRunLastError */
+export type _ThreadRunLastError = RunError | null;
+
 /** The details of an error as encountered by an agent thread run. */
 export interface RunError {
   /** The status for the error. */
@@ -2040,6 +2085,9 @@ export function runErrorDeserializer(item: any): RunError {
   };
 }
 
+/** Alias for _ThreadRunIncompleteDetails */
+export type _ThreadRunIncompleteDetails = IncompleteRunDetails | null;
+
 /** Details on why the run is incomplete. Will be `null` if the run is not incomplete. */
 export interface IncompleteRunDetails {
   /** The reason why the run is incomplete. This indicates which specific token limit was reached during the run. */
@@ -2054,6 +2102,8 @@ export function incompleteRunDetailsDeserializer(item: any): IncompleteRunDetail
 
 /** The reason why the run is incomplete. This will point to which specific token limit was reached over the course of the run. */
 export type IncompleteDetailsReason = "max_completion_tokens" | "max_prompt_tokens";
+/** Alias for _ThreadRunUsage */
+export type _ThreadRunUsage = RunCompletionUsage | null;
 
 /** Usage statistics related to the run. This value will be `null` if the run is not in a terminal state (i.e. `in_progress`, `queued`, etc.). */
 export interface RunCompletionUsage {
@@ -2072,6 +2122,15 @@ export function runCompletionUsageDeserializer(item: any): RunCompletionUsage {
     totalTokens: item["total_tokens"],
   };
 }
+
+/** Alias for _ThreadRunTruncationStrategy */
+export type _ThreadRunTruncationStrategy = TruncationObject | null;
+/** Alias for _ThreadRunToolChoice */
+export type _ThreadRunToolChoice = AgentsApiToolChoiceOption | null;
+/** Alias for _ThreadRunResponseFormat */
+export type _ThreadRunResponseFormat = AgentsApiResponseFormatOption | null;
+/** Alias for _ThreadRunToolResources */
+export type _ThreadRunToolResources = UpdateToolResourcesOptions | null;
 
 /**
  * Request object. A set of resources that are used by the agent's tools. The resources are specific to the type of tool.
@@ -2253,6 +2312,17 @@ export function agentThreadCreationOptionsSerializer(item: AgentThreadCreationOp
     metadata: item["metadata"],
   };
 }
+
+/** Alias for _CreateThreadAndRunRequestTools */
+export type _CreateThreadAndRunRequestTools = ToolDefinitionUnion[] | null;
+/** Alias for _CreateThreadAndRunRequestToolResources */
+export type _CreateThreadAndRunRequestToolResources = UpdateToolResourcesOptions | null;
+/** Alias for _CreateThreadAndRunRequestTruncationStrategy */
+export type _CreateThreadAndRunRequestTruncationStrategy = TruncationObject | null;
+/** Alias for _CreateThreadAndRunRequestToolChoice */
+export type _CreateThreadAndRunRequestToolChoice = AgentsApiToolChoiceOption | null;
+/** Alias for _CreateThreadAndRunRequestResponseFormat */
+export type _CreateThreadAndRunRequestResponseFormat = AgentsApiResponseFormatOption | null;
 
 /** Detailed information about a single step of an agent thread run. */
 export interface RunStep {
@@ -2818,6 +2888,9 @@ export function runStepFunctionToolCallDetailsDeserializer(
   };
 }
 
+/** Alias for _RunStepLastError */
+export type _RunStepLastError = RunStepError | null;
+
 /** The error information associated with a failed run step. */
 export interface RunStepError {
   /** The error code for this error. */
@@ -2835,6 +2908,8 @@ export function runStepErrorDeserializer(item: any): RunStepError {
 
 /** Possible error code values attributable to a failed run step. */
 export type RunStepErrorCode = "server_error" | "rate_limit_exceeded";
+/** Alias for _RunStepUsage */
+export type _RunStepUsage = RunStepCompletionUsage | null;
 
 /** Usage statistics related to the run step. */
 export interface RunStepCompletionUsage {
@@ -3223,6 +3298,9 @@ export function vectorStoreStaticChunkingStrategyOptionsDeserializer(
   };
 }
 
+/** Alias for _ModifyVectorStoreRequestExpiresAfter */
+export type _ModifyVectorStoreRequestExpiresAfter = VectorStoreExpirationPolicy | null;
+
 /** Response object for deleting a vector store. */
 export interface VectorStoreDeletionStatus {
   /** The ID of the resource specified for deletion. */
@@ -3315,6 +3393,8 @@ export function vectorStoreFileDeserializer(item: any): VectorStoreFile {
 
 /** Vector store file status */
 export type VectorStoreFileStatus = "in_progress" | "completed" | "failed" | "cancelled";
+/** Alias for _VectorStoreFileLastError */
+export type _VectorStoreFileLastError = VectorStoreFileError | null;
 
 /** Details on the error that may have occurred while processing a file for this vector store */
 export interface VectorStoreFileError {

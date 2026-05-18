@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { OpenAIContext } from "../../api/openAIContext.js";
+import { OpenAIContext } from "../../api/index.js";
 import {
   AudioTranscriptionsOperations,
   _getAudioTranscriptionsOperations,
@@ -13,13 +13,13 @@ import {
 
 /** Interface representing a Audio operations. */
 export interface AudioOperations {
-  translations: AudioTranslationsOperations;
   transcriptions: AudioTranscriptionsOperations;
+  translations: AudioTranslationsOperations;
 }
 
 export function _getAudioOperations(context: OpenAIContext): AudioOperations {
   return {
-    translations: _getAudioTranslationsOperations(context),
     transcriptions: _getAudioTranscriptionsOperations(context),
+    translations: _getAudioTranslationsOperations(context),
   };
 }

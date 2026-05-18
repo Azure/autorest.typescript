@@ -42,7 +42,6 @@ export async function _getAppInsightsDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return getAppInsightsResponseDeserializer(result.body);
 }
 

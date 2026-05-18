@@ -12,12 +12,13 @@ export declare class ExtensibleClient {
 }
 
 export declare interface ExtensibleClientOptionalParams extends ClientOptions {
+    endpointParam?: string;
 }
 
-export declare interface StringGetKnownValueOptionalParams extends OperationOptions {
+declare interface StringGetKnownValueOptionalParams extends OperationOptions {
 }
 
-export declare interface StringGetUnknownValueOptionalParams extends OperationOptions {
+declare interface StringGetUnknownValueOptionalParams extends OperationOptions {
 }
 
 export declare interface StringOperations {
@@ -27,10 +28,10 @@ export declare interface StringOperations {
     getKnownValue: (options?: StringGetKnownValueOptionalParams) => Promise<DaysOfWeekExtensibleEnum>;
 }
 
-export declare interface StringPutKnownValueOptionalParams extends OperationOptions {
+declare interface StringPutKnownValueOptionalParams extends OperationOptions {
 }
 
-export declare interface StringPutUnknownValueOptionalParams extends OperationOptions {
+declare interface StringPutUnknownValueOptionalParams extends OperationOptions {
 }
 
 export { }

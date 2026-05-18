@@ -41,7 +41,6 @@ export async function _createDeserialize(
 
     throw error;
   }
-
   return createModerationResponseDeserializer(result.body);
 }
 

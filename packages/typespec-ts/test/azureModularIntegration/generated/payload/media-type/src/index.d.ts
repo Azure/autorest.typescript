@@ -14,18 +14,19 @@ export declare class MediaTypeClient {
 }
 
 export declare interface MediaTypeClientOptionalParams extends ClientOptions {
+    endpointParam?: string;
 }
 
 export { RestError }
 
-export declare interface StringBodyGetAsJsonOptionalParams extends OperationOptions {
+declare interface StringBodyGetAsJsonOptionalParams extends OperationOptions {
 }
 
 export declare type StringBodyGetAsJsonResponse = {
     body: string;
 };
 
-export declare interface StringBodyGetAsTextOptionalParams extends OperationOptions {
+declare interface StringBodyGetAsTextOptionalParams extends OperationOptions {
 }
 
 export declare type StringBodyGetAsTextResponse = {
@@ -39,10 +40,10 @@ export declare interface StringBodyOperations {
     sendAsText: (text: string, options?: StringBodySendAsTextOptionalParams) => Promise<void>;
 }
 
-export declare interface StringBodySendAsJsonOptionalParams extends OperationOptions {
+declare interface StringBodySendAsJsonOptionalParams extends OperationOptions {
 }
 
-export declare interface StringBodySendAsTextOptionalParams extends OperationOptions {
+declare interface StringBodySendAsTextOptionalParams extends OperationOptions {
 }
 
 export { }

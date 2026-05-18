@@ -76,35 +76,6 @@ export {
 } from "./models/index.js";
 export type { NetworkAnalyticsApiOptionalParams } from "./api/index.js";
 export type {
-  DataProductsReadOptionalParams,
-  DataProductsListBySubscriptionOptionalParams,
-  DataProductsListByResourceGroupOptionalParams,
-  DataProductsListRolesAssignmentsOptionalParams,
-  DataProductsRemoveUserRoleOptionalParams,
-  DataProductsAddUserRoleOptionalParams,
-  DataProductsRotateKeyOptionalParams,
-  DataProductsGenerateStorageAccountSasTokenOptionalParams,
-  DataProductsDeleteOptionalParams,
-  DataProductsUpdateOptionalParams,
-  DataProductsGetOptionalParams,
-  DataProductsCreateOptionalParams,
-} from "./api/dataProducts/index.js";
-export type {
-  DataProductsCatalogsListBySubscriptionOptionalParams,
-  DataProductsCatalogsListByResourceGroupOptionalParams,
-  DataProductsCatalogsGetOptionalParams,
-} from "./api/dataProductsCatalogs/index.js";
-export type {
-  DataTypesListByDataProductOptionalParams,
-  DataTypesGenerateStorageContainerSasTokenOptionalParams,
-  DataTypesDeleteDataOptionalParams,
-  DataTypesDeleteOptionalParams,
-  DataTypesUpdateOptionalParams,
-  DataTypesGetOptionalParams,
-  DataTypesCreateOptionalParams,
-} from "./api/dataTypes/index.js";
-export type { OperationsListOptionalParams } from "./api/operations/index.js";
-export type {
   DataProductsOperations,
   DataProductsCatalogsOperations,
   DataTypesOperations,

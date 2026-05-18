@@ -177,13 +177,14 @@ export function emitClassicalClient(
   for (const child of client.children) {
     const diffParams = getChildOnlyParameters(client, child);
     const method = clientClass.addMethod({
-      docs: child.docs,
+      docs: buildDocsWithDeprecatedParams(child.docs, diffParams),
       name: `get${child.name}`,
       returnType: child.name,
       parameters: [
         ...diffParams.map((parameter) => ({
           name: parameter.name,
-          type: parameter.type
+          type: parameter.type,
+          docs: parameter.docs.length > 0 ? parameter.docs : undefined
         })),
         {
           name: "options",
@@ -214,15 +215,16 @@ export function emitClassicalClient(
 function addConstructor(
   clientClass: any,
   client: TSClient,
-  constructorParams: { name: string; type: string }[]
+  constructorParams: { name: string; type: string; docs: string[] }[]
 ) {
   if (!client.allowOptionalSubscriptionId) {
     return clientClass.addConstructor({
-      docs: client.docs,
+      docs: buildDocsWithDeprecatedParams(client.docs, constructorParams),
       parameters: [
         ...constructorParams.map((parameter) => ({
           name: parameter.name,
-          type: parameter.type
+          type: parameter.type,
+          docs: parameter.docs.length > 0 ? parameter.docs : undefined
         })),
         {
           name: "options",
@@ -237,11 +239,12 @@ function addConstructor(
     (parameter) => parameter.name.toLowerCase() !== "subscriptionid"
   );
   const constructor = clientClass.addConstructor({
-    docs: client.docs,
+    docs: buildDocsWithDeprecatedParams(client.docs, constructorParams),
     parameters: [
       ...requiredWithoutSubscriptionId.map((parameter) => ({
         name: parameter.name,
-        type: parameter.type
+        type: parameter.type,
+        docs: parameter.docs.length > 0 ? parameter.docs : undefined
       })),
       {
         name: "subscriptionIdOrOptions",
@@ -259,7 +262,8 @@ function addConstructor(
     parameters: [
       ...requiredWithoutSubscriptionId.map((parameter) => ({
         name: parameter.name,
-        type: parameter.type
+        type: parameter.type,
+        docs: parameter.docs.length > 0 ? parameter.docs : undefined
       })),
       {
         name: "options",
@@ -272,7 +276,8 @@ function addConstructor(
     parameters: [
       ...requiredWithoutSubscriptionId.map((parameter) => ({
         name: parameter.name,
-        type: parameter.type
+        type: parameter.type,
+        docs: parameter.docs.length > 0 ? parameter.docs : undefined
       })),
       {
         name: "subscriptionId",
@@ -396,7 +401,8 @@ function getConstructorParameters(client: TSClient) {
     .filter((parameter) => !parameter.isApiVersion)
     .map((parameter) => ({
       name: parameter.name,
-      type: parameter.type
+      type: parameter.type,
+      docs: parameter.docs
     }));
 }
 
@@ -407,4 +413,23 @@ function getChildOnlyParameters(parent: TSClient, child: TSClient) {
   return getConstructorParameters(child).filter(
     (parameter) => !parentParams.has(parameter.name)
   );
+}
+
+function buildDocsWithDeprecatedParams(
+  docs: string[],
+  parameters: Array<{ name: string; docs: string[] }>
+): string[] {
+  return [
+    ...docs,
+    ...parameters.flatMap((parameter) => {
+      const deprecation = parameter.docs.find((doc) =>
+        doc.startsWith("@deprecated ")
+      );
+      return deprecation
+        ? [
+            `@param ${parameter.name} Deprecated: ${deprecation.replace(/^@deprecated\s+/, "")}`
+          ]
+        : [];
+    })
+  ];
 }

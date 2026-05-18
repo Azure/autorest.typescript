@@ -51,17 +51,17 @@ export declare interface ExtensionsResourceProperties {
     readonly provisioningState?: ProvisioningState;
 }
 
-export declare interface ExtensionsResourcesCreateOrUpdateOptionalParams extends OperationOptions {
+declare interface ExtensionsResourcesCreateOrUpdateOptionalParams extends OperationOptions {
     updateIntervalInMs?: number;
 }
 
-export declare interface ExtensionsResourcesDeleteOptionalParams extends OperationOptions {
+declare interface ExtensionsResourcesDeleteOptionalParams extends OperationOptions {
 }
 
-export declare interface ExtensionsResourcesGetOptionalParams extends OperationOptions {
+declare interface ExtensionsResourcesGetOptionalParams extends OperationOptions {
 }
 
-export declare interface ExtensionsResourcesListByScopeOptionalParams extends OperationOptions {
+declare interface ExtensionsResourcesListByScopeOptionalParams extends OperationOptions {
 }
 
 export declare interface ExtensionsResourcesOperations {
@@ -72,7 +72,7 @@ export declare interface ExtensionsResourcesOperations {
     get: (resourceUri: string, extensionsResourceName: string, options?: ExtensionsResourcesGetOptionalParams) => Promise<ExtensionsResource>;
 }
 
-export declare interface ExtensionsResourcesUpdateOptionalParams extends OperationOptions {
+declare interface ExtensionsResourcesUpdateOptionalParams extends OperationOptions {
 }
 
 export { isRestError }
@@ -107,16 +107,16 @@ export declare interface LocationResourceProperties {
     readonly provisioningState?: ProvisioningState;
 }
 
-export declare interface LocationResourcesCreateOrUpdateOptionalParams extends OperationOptions {
+declare interface LocationResourcesCreateOrUpdateOptionalParams extends OperationOptions {
 }
 
-export declare interface LocationResourcesDeleteOptionalParams extends OperationOptions {
+declare interface LocationResourcesDeleteOptionalParams extends OperationOptions {
 }
 
-export declare interface LocationResourcesGetOptionalParams extends OperationOptions {
+declare interface LocationResourcesGetOptionalParams extends OperationOptions {
 }
 
-export declare interface LocationResourcesListByLocationOptionalParams extends OperationOptions {
+declare interface LocationResourcesListByLocationOptionalParams extends OperationOptions {
 }
 
 export declare interface LocationResourcesOperations {
@@ -127,21 +127,21 @@ export declare interface LocationResourcesOperations {
     get: (location: string, locationResourceName: string, options?: LocationResourcesGetOptionalParams) => Promise<LocationResource>;
 }
 
-export declare interface LocationResourcesUpdateOptionalParams extends OperationOptions {
+declare interface LocationResourcesUpdateOptionalParams extends OperationOptions {
 }
 
-export declare interface NestedCreateOrReplaceOptionalParams extends OperationOptions {
+declare interface NestedCreateOrReplaceOptionalParams extends OperationOptions {
     updateIntervalInMs?: number;
 }
 
-export declare interface NestedDeleteOptionalParams extends OperationOptions {
+declare interface NestedDeleteOptionalParams extends OperationOptions {
     updateIntervalInMs?: number;
 }
 
-export declare interface NestedGetOptionalParams extends OperationOptions {
+declare interface NestedGetOptionalParams extends OperationOptions {
 }
 
-export declare interface NestedListByTopLevelTrackedResourceOptionalParams extends OperationOptions {
+declare interface NestedListByTopLevelTrackedResourceOptionalParams extends OperationOptions {
 }
 
 export declare interface NestedOperations {
@@ -161,7 +161,7 @@ export declare interface NestedProxyResourceProperties {
     description?: string;
 }
 
-export declare interface NestedUpdateOptionalParams extends OperationOptions {
+declare interface NestedUpdateOptionalParams extends OperationOptions {
     updateIntervalInMs?: number;
 }
 
@@ -219,14 +219,14 @@ export declare interface RestorePollerOptions<TResult, TResponse extends PathUnc
     processResponseBody?: (result: TResponse) => Promise<TResult>;
 }
 
-export declare interface SingletonCreateOrUpdateOptionalParams extends OperationOptions {
+declare interface SingletonCreateOrUpdateOptionalParams extends OperationOptions {
     updateIntervalInMs?: number;
 }
 
-export declare interface SingletonGetByResourceGroupOptionalParams extends OperationOptions {
+declare interface SingletonGetByResourceGroupOptionalParams extends OperationOptions {
 }
 
-export declare interface SingletonListByResourceGroupOptionalParams extends OperationOptions {
+declare interface SingletonListByResourceGroupOptionalParams extends OperationOptions {
 }
 
 export declare interface SingletonOperations {
@@ -245,7 +245,7 @@ export declare interface SingletonTrackedResourceProperties {
     description?: string;
 }
 
-export declare interface SingletonUpdateOptionalParams extends OperationOptions {
+declare interface SingletonUpdateOptionalParams extends OperationOptions {
 }
 
 export declare interface SystemData {
@@ -257,24 +257,24 @@ export declare interface SystemData {
     lastModifiedAt?: Date;
 }
 
-export declare interface TopLevelActionSyncOptionalParams extends OperationOptions {
+declare interface TopLevelActionSyncOptionalParams extends OperationOptions {
 }
 
-export declare interface TopLevelCreateOrReplaceOptionalParams extends OperationOptions {
+declare interface TopLevelCreateOrReplaceOptionalParams extends OperationOptions {
     updateIntervalInMs?: number;
 }
 
-export declare interface TopLevelDeleteOptionalParams extends OperationOptions {
+declare interface TopLevelDeleteOptionalParams extends OperationOptions {
     updateIntervalInMs?: number;
 }
 
-export declare interface TopLevelGetOptionalParams extends OperationOptions {
+declare interface TopLevelGetOptionalParams extends OperationOptions {
 }
 
-export declare interface TopLevelListByResourceGroupOptionalParams extends OperationOptions {
+declare interface TopLevelListByResourceGroupOptionalParams extends OperationOptions {
 }
 
-export declare interface TopLevelListBySubscriptionOptionalParams extends OperationOptions {
+declare interface TopLevelListBySubscriptionOptionalParams extends OperationOptions {
 }
 
 export declare interface TopLevelOperations {
@@ -296,7 +296,7 @@ export declare interface TopLevelTrackedResourceProperties {
     description?: string;
 }
 
-export declare interface TopLevelUpdateOptionalParams extends OperationOptions {
+declare interface TopLevelUpdateOptionalParams extends OperationOptions {
     updateIntervalInMs?: number;
 }
 

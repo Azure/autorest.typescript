@@ -12,9 +12,10 @@ export declare class FixedClient {
 }
 
 export declare interface FixedClientOptionalParams extends ClientOptions {
+    endpointParam?: string;
 }
 
-export declare interface StringGetKnownValueOptionalParams extends OperationOptions {
+declare interface StringGetKnownValueOptionalParams extends OperationOptions {
 }
 
 export declare interface StringOperations {
@@ -23,10 +24,10 @@ export declare interface StringOperations {
     getKnownValue: (options?: StringGetKnownValueOptionalParams) => Promise<DaysOfWeekEnum>;
 }
 
-export declare interface StringPutKnownValueOptionalParams extends OperationOptions {
+declare interface StringPutKnownValueOptionalParams extends OperationOptions {
 }
 
-export declare interface StringPutUnknownValueOptionalParams extends OperationOptions {
+declare interface StringPutUnknownValueOptionalParams extends OperationOptions {
 }
 
 export { }

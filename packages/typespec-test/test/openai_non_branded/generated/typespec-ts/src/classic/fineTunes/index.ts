@@ -1,6 +1,6 @@
 // Licensed under the MIT License.
 
-import { OpenAIContext } from "../../api/openAIContext.js";
+import { OpenAIContext } from "../../api/index.js";
 import { cancel, listEvents, retrieve, list, create } from "../../api/fineTunes/operations.js";
 import {
   FineTunesCancelOptionalParams,
@@ -18,13 +18,18 @@ import {
 
 /** Interface representing a FineTunes operations. */
 export interface FineTunesOperations {
+  /** @deprecated deprecated */
   cancel: (fineTuneId: string, options?: FineTunesCancelOptionalParams) => Promise<FineTune>;
+  /** @deprecated deprecated */
   listEvents: (
     fineTuneId: string,
     options?: FineTunesListEventsOptionalParams,
   ) => Promise<ListFineTuneEventsResponse>;
+  /** @deprecated deprecated */
   retrieve: (fineTuneId: string, options?: FineTunesRetrieveOptionalParams) => Promise<FineTune>;
+  /** @deprecated deprecated */
   list: (options?: FineTunesListOptionalParams) => Promise<ListFineTunesResponse>;
+  /** @deprecated deprecated */
   create: (
     fineTune: CreateFineTuneRequest,
     options?: FineTunesCreateOptionalParams,

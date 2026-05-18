@@ -1,6 +1,6 @@
 // Licensed under the MIT License.
 
-import { OpenAIContext } from "../../../api/openAIContext.js";
+import { OpenAIContext } from "../../../api/index.js";
 import {
   cancel,
   listEvents,

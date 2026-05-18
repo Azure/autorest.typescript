@@ -26,6 +26,7 @@ export declare class HeaderParamClient {
 }
 
 export declare interface HeaderParamClientOptionalParams extends ClientOptions {
+    endpointParam?: string;
 }
 
 export declare interface Input {
@@ -45,6 +46,7 @@ export declare class MixedParamsClient {
 }
 
 export declare interface MixedParamsClientOptionalParams extends ClientOptions {
+    endpointParam?: string;
 }
 
 export declare interface MixedParamsClientWithBodyOptionalParams extends OperationOptions {
@@ -62,6 +64,7 @@ export declare class MultipleParamsClient {
 }
 
 export declare interface MultipleParamsClientOptionalParams extends ClientOptions {
+    endpointParam?: string;
 }
 
 export declare interface MultipleParamsClientWithBodyOptionalParams extends OperationOptions {
@@ -79,6 +82,7 @@ export declare class ParamAliasClient {
 }
 
 export declare interface ParamAliasClientOptionalParams extends ClientOptions {
+    endpointParam?: string;
 }
 
 export declare class PathParamClient {
@@ -91,6 +95,7 @@ export declare class PathParamClient {
 }
 
 export declare interface PathParamClientOptionalParams extends ClientOptions {
+    endpointParam?: string;
 }
 
 export declare interface PathParamClientWithQueryOptionalParams extends OperationOptions {
@@ -113,6 +118,7 @@ export declare interface QueryParamClientGetStandaloneOptionalParams extends Ope
 }
 
 export declare interface QueryParamClientOptionalParams extends ClientOptions {
+    endpointParam?: string;
 }
 
 export declare interface QueryParamClientWithQueryOptionalParams extends OperationOptions {

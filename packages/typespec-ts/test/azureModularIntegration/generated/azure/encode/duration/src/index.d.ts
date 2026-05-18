@@ -12,6 +12,7 @@ export declare class DurationClient {
 }
 
 export declare interface DurationClientOptionalParams extends ClientOptions {
+    endpointParam?: string;
 }
 
 export declare interface DurationConstantOptionalParams extends OperationOptions {

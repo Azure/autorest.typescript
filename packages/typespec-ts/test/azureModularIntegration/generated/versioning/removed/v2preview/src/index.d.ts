@@ -41,7 +41,7 @@ export declare class RemovedClient {
 }
 
 export declare interface RemovedClientOptionalParams extends ClientOptions {
-    version?: string;
+    version?: Versions;
 }
 
 export { RestError }

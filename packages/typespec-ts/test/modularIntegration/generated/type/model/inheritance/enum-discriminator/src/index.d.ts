@@ -30,6 +30,7 @@ export declare class EnumDiscriminatorClient {
 }
 
 export declare interface EnumDiscriminatorClientOptionalParams extends ClientOptions {
+    endpointParam?: string;
 }
 
 export declare interface GetExtensibleModelMissingDiscriminatorOptionalParams extends OperationOptions {

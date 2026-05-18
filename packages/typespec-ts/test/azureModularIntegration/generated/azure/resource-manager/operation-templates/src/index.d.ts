@@ -37,10 +37,10 @@ export declare interface ChangeAllowanceResult {
     status: string;
 }
 
-export declare interface CheckNameAvailabilityCheckGlobalOptionalParams extends OperationOptions {
+declare interface CheckNameAvailabilityCheckGlobalOptionalParams extends OperationOptions {
 }
 
-export declare interface CheckNameAvailabilityCheckLocalOptionalParams extends OperationOptions {
+declare interface CheckNameAvailabilityCheckLocalOptionalParams extends OperationOptions {
 }
 
 export declare interface CheckNameAvailabilityOperations {
@@ -120,19 +120,19 @@ export declare enum KnownVersions {
     V20231201Preview = "2023-12-01-preview"
 }
 
-export declare interface LroCreateOrReplaceOptionalParams extends OperationOptions {
+declare interface LroCreateOrReplaceOptionalParams extends OperationOptions {
     updateIntervalInMs?: number;
 }
 
-export declare interface LroDeleteOptionalParams extends OperationOptions {
+declare interface LroDeleteOptionalParams extends OperationOptions {
     updateIntervalInMs?: number;
 }
 
-export declare interface LroExportArrayOptionalParams extends OperationOptions {
+declare interface LroExportArrayOptionalParams extends OperationOptions {
     updateIntervalInMs?: number;
 }
 
-export declare interface LroExportOptionalParams extends OperationOptions {
+declare interface LroExportOptionalParams extends OperationOptions {
     updateIntervalInMs?: number;
 }
 
@@ -147,7 +147,7 @@ export declare interface LroPagingOperations {
     postPagingLro: (resourceGroupName: string, productName: string, options?: LroPagingPostPagingLroOptionalParams) => PagedAsyncIterableIterator<Product>;
 }
 
-export declare interface LroPagingPostPagingLroOptionalParams extends OperationOptions {
+declare interface LroPagingPostPagingLroOptionalParams extends OperationOptions {
     updateIntervalInMs?: number;
 }
 
@@ -166,7 +166,7 @@ export declare interface OperationDisplay {
     readonly description?: string;
 }
 
-export declare interface OperationsListOptionalParams extends OperationOptions {
+declare interface OperationsListOptionalParams extends OperationOptions {
 }
 
 export declare interface OperationsOperations {
@@ -189,7 +189,7 @@ export declare interface OperationTemplatesClientOptionalParams extends ClientOp
     cloudSetting?: AzureSupportedClouds;
 }
 
-export declare interface OptionalBodyGetOptionalParams extends OperationOptions {
+declare interface OptionalBodyGetOptionalParams extends OperationOptions {
 }
 
 export declare interface OptionalBodyOperations {
@@ -199,15 +199,15 @@ export declare interface OptionalBodyOperations {
     get: (resourceGroupName: string, widgetName: string, options?: OptionalBodyGetOptionalParams) => Promise<Widget>;
 }
 
-export declare interface OptionalBodyPatchOptionalParams extends OperationOptions {
+declare interface OptionalBodyPatchOptionalParams extends OperationOptions {
     properties?: Widget;
 }
 
-export declare interface OptionalBodyPostOptionalParams extends OperationOptions {
+declare interface OptionalBodyPostOptionalParams extends OperationOptions {
     body?: ActionRequest;
 }
 
-export declare interface OptionalBodyProviderPostOptionalParams extends OperationOptions {
+declare interface OptionalBodyProviderPostOptionalParams extends OperationOptions {
     body?: ChangeAllowanceRequest;
 }
 

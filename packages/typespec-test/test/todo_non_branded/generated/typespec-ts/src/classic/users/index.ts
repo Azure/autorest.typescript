@@ -1,6 +1,6 @@
 // Licensed under the MIT License.
 
-import { TodoContext } from "../../api/todoContext.js";
+import { TodoContext } from "../../api/index.js";
 import { create } from "../../api/users/operations.js";
 import { UsersCreateOptionalParams } from "../../api/users/options.js";
 import { User } from "../../models/models.js";

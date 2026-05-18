@@ -47,6 +47,7 @@ export declare class ScalarClient {
 }
 
 export declare interface ScalarClientOptionalParams extends ClientOptions {
+    endpointParam?: string;
 }
 
 export { }

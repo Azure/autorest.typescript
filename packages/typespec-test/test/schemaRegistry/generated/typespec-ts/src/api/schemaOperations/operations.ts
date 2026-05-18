@@ -67,7 +67,6 @@ export async function _registerSchemaDeserialize(result: PathUncheckedResponse):
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return;
 }
 
@@ -119,7 +118,6 @@ export async function _getSchemaIdByContentDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return;
 }
 
@@ -181,7 +179,6 @@ export async function _getSchemaByVersionDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return {
     body: typeof result.body === "string" ? stringToUint8Array(result.body, "base64") : result.body,
   };
@@ -231,7 +228,6 @@ export async function _listSchemaVersionsDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return _pagedVersionDeserializer(result.body);
 }
 
@@ -285,7 +281,6 @@ export async function _getSchemaByIdDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return {
     body: typeof result.body === "string" ? stringToUint8Array(result.body, "base64") : result.body,
   };
@@ -329,7 +324,6 @@ export async function _listSchemaGroupsDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return _pagedSchemaGroupDeserializer(result.body);
 }
 

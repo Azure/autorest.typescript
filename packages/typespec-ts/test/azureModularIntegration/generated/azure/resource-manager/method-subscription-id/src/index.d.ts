@@ -98,7 +98,7 @@ export declare interface OperationDisplay {
     readonly description?: string;
 }
 
-export declare interface OperationsListOptionalParams extends OperationOptions {
+declare interface OperationsListOptionalParams extends OperationOptions {
 }
 
 export declare interface OperationsOperations {
@@ -131,10 +131,10 @@ export declare interface ResourceGroupResource extends TrackedResource {
     properties?: ResourceGroupResourceProperties;
 }
 
-export declare interface ResourceGroupResourceOperationsDeleteOptionalParams extends OperationOptions {
+declare interface ResourceGroupResourceOperationsDeleteOptionalParams extends OperationOptions {
 }
 
-export declare interface ResourceGroupResourceOperationsGetOptionalParams extends OperationOptions {
+declare interface ResourceGroupResourceOperationsGetOptionalParams extends OperationOptions {
 }
 
 export declare interface ResourceGroupResourceOperationsOperations {
@@ -143,7 +143,7 @@ export declare interface ResourceGroupResourceOperationsOperations {
     get: (resourceGroupName: string, resourceGroupResourceName: string, options?: ResourceGroupResourceOperationsGetOptionalParams) => Promise<ResourceGroupResource>;
 }
 
-export declare interface ResourceGroupResourceOperationsPutOptionalParams extends OperationOptions {
+declare interface ResourceGroupResourceOperationsPutOptionalParams extends OperationOptions {
 }
 
 export declare interface ResourceGroupResourceProperties {
@@ -163,10 +163,10 @@ export declare interface SubscriptionResource1 extends ProxyResource {
     properties?: SubscriptionResource1Properties;
 }
 
-export declare interface SubscriptionResource1OperationsDeleteOptionalParams extends OperationOptions {
+declare interface SubscriptionResource1OperationsDeleteOptionalParams extends OperationOptions {
 }
 
-export declare interface SubscriptionResource1OperationsGetOptionalParams extends OperationOptions {
+declare interface SubscriptionResource1OperationsGetOptionalParams extends OperationOptions {
 }
 
 export declare interface SubscriptionResource1OperationsOperations {
@@ -175,7 +175,7 @@ export declare interface SubscriptionResource1OperationsOperations {
     get: (subscriptionId: string, subscriptionResource1Name: string, options?: SubscriptionResource1OperationsGetOptionalParams) => Promise<SubscriptionResource1>;
 }
 
-export declare interface SubscriptionResource1OperationsPutOptionalParams extends OperationOptions {
+declare interface SubscriptionResource1OperationsPutOptionalParams extends OperationOptions {
 }
 
 export declare interface SubscriptionResource1Properties {
@@ -187,10 +187,10 @@ export declare interface SubscriptionResource2 extends ProxyResource {
     properties?: SubscriptionResource2Properties;
 }
 
-export declare interface SubscriptionResource2OperationsDeleteOptionalParams extends OperationOptions {
+declare interface SubscriptionResource2OperationsDeleteOptionalParams extends OperationOptions {
 }
 
-export declare interface SubscriptionResource2OperationsGetOptionalParams extends OperationOptions {
+declare interface SubscriptionResource2OperationsGetOptionalParams extends OperationOptions {
 }
 
 export declare interface SubscriptionResource2OperationsOperations {
@@ -199,7 +199,7 @@ export declare interface SubscriptionResource2OperationsOperations {
     get: (subscriptionId: string, subscriptionResource2Name: string, options?: SubscriptionResource2OperationsGetOptionalParams) => Promise<SubscriptionResource2>;
 }
 
-export declare interface SubscriptionResource2OperationsPutOptionalParams extends OperationOptions {
+declare interface SubscriptionResource2OperationsPutOptionalParams extends OperationOptions {
 }
 
 export declare interface SubscriptionResource2Properties {
@@ -207,10 +207,10 @@ export declare interface SubscriptionResource2Properties {
     configValue?: string;
 }
 
-export declare interface SubscriptionResourceOperationsDeleteOptionalParams extends OperationOptions {
+declare interface SubscriptionResourceOperationsDeleteOptionalParams extends OperationOptions {
 }
 
-export declare interface SubscriptionResourceOperationsGetOptionalParams extends OperationOptions {
+declare interface SubscriptionResourceOperationsGetOptionalParams extends OperationOptions {
 }
 
 export declare interface SubscriptionResourceOperationsOperations {
@@ -219,7 +219,7 @@ export declare interface SubscriptionResourceOperationsOperations {
     get: (subscriptionId: string, subscriptionResourceName: string, options?: SubscriptionResourceOperationsGetOptionalParams) => Promise<SubscriptionResource>;
 }
 
-export declare interface SubscriptionResourceOperationsPutOptionalParams extends OperationOptions {
+declare interface SubscriptionResourceOperationsPutOptionalParams extends OperationOptions {
 }
 
 export declare interface SubscriptionResourceProperties {

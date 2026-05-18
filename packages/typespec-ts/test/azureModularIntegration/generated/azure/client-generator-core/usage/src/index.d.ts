@@ -52,6 +52,7 @@ export declare class UsageClient {
 }
 
 export declare interface UsageClientOptionalParams extends ClientOptions {
+    endpointParam?: string;
 }
 
 export { }

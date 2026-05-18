@@ -13,16 +13,10 @@ import { RestError } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
 
 // @public
-export interface FooOperationsGetAvatarAsJpegOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface FooOperationsGetAvatarAsPngOptionalParams extends OperationOptions {
-}
-
-// @public
 export interface FooOperationsOperations {
+    // Warning: (ae-forgotten-export) The symbol "FooOperationsGetAvatarAsJpegOptionalParams" needs to be exported by the entry point index.d.ts
     getAvatarAsJpeg: (image: Uint8Array, options?: FooOperationsGetAvatarAsJpegOptionalParams) => Promise<void>;
+    // Warning: (ae-forgotten-export) The symbol "FooOperationsGetAvatarAsPngOptionalParams" needs to be exported by the entry point index.d.ts
     getAvatarAsPng: (image: Uint8Array, options?: FooOperationsGetAvatarAsPngOptionalParams) => Promise<void>;
 }
 

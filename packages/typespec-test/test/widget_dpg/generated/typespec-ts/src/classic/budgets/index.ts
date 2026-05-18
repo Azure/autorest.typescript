@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { SAPWidgetServiceContext } from "../../api/sapWidgetServiceContext.js";
+import { SAPWidgetServiceContext } from "../../api/index.js";
 import { $continue, getBudgets, createOrReplace } from "../../api/budgets/operations.js";
 import {
   BudgetsContinueOptionalParams,
@@ -9,6 +9,7 @@ import {
   BudgetsCreateOrReplaceOptionalParams,
 } from "../../api/budgets/options.js";
 import { Widget, SAPUser } from "../../models/models.js";
+import { getSimplePoller } from "../../static-helpers/simplePollerHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 
 /** Interface representing a Budgets operations. */
@@ -38,6 +39,22 @@ function _getBudgets(context: SAPWidgetServiceContext) {
       resource: SAPUser,
       options?: BudgetsCreateOrReplaceOptionalParams,
     ) => createOrReplace(context, name, resource, options),
+    beginCreateOrReplace: async (
+      name: string,
+      resource: SAPUser,
+      options?: BudgetsCreateOrReplaceOptionalParams,
+    ) => {
+      const poller = createOrReplace(context, name, resource, options);
+      await poller.submitted();
+      return getSimplePoller(poller);
+    },
+    beginCreateOrReplaceAndWait: async (
+      name: string,
+      resource: SAPUser,
+      options?: BudgetsCreateOrReplaceOptionalParams,
+    ) => {
+      return await createOrReplace(context, name, resource, options);
+    },
   };
 }
 

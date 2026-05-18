@@ -83,11 +83,11 @@ export declare interface StorageAccountProperties {
     metadata?: SharedMetadata;
 }
 
-export declare interface StorageAccountsCreateOrUpdateOptionalParams extends OperationOptions {
+declare interface StorageAccountsCreateOrUpdateOptionalParams extends OperationOptions {
     updateIntervalInMs?: number;
 }
 
-export declare interface StorageAccountsGetOptionalParams extends OperationOptions {
+declare interface StorageAccountsGetOptionalParams extends OperationOptions {
 }
 
 export declare interface StorageAccountsOperations {
@@ -118,11 +118,11 @@ export declare interface VirtualMachineProperties {
     metadata?: SharedMetadata;
 }
 
-export declare interface VirtualMachinesCreateOrUpdateOptionalParams extends OperationOptions {
+declare interface VirtualMachinesCreateOrUpdateOptionalParams extends OperationOptions {
     updateIntervalInMs?: number;
 }
 
-export declare interface VirtualMachinesGetOptionalParams extends OperationOptions {
+declare interface VirtualMachinesGetOptionalParams extends OperationOptions {
 }
 
 export declare interface VirtualMachinesOperations {

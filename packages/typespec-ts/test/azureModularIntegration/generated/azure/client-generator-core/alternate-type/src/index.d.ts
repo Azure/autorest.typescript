@@ -12,12 +12,13 @@ export declare class AlternateTypeClient {
 }
 
 export declare interface AlternateTypeClientOptionalParams extends ClientOptions {
+    endpointParam?: string;
 }
 
-export declare interface ExternalTypeGetModelOptionalParams extends OperationOptions {
+declare interface ExternalTypeGetModelOptionalParams extends OperationOptions {
 }
 
-export declare interface ExternalTypeGetPropertyOptionalParams extends OperationOptions {
+declare interface ExternalTypeGetPropertyOptionalParams extends OperationOptions {
 }
 
 export declare interface ExternalTypeOperations {
@@ -27,10 +28,10 @@ export declare interface ExternalTypeOperations {
     getModel: (options?: ExternalTypeGetModelOptionalParams) => Promise<Feature>;
 }
 
-export declare interface ExternalTypePutModelOptionalParams extends OperationOptions {
+declare interface ExternalTypePutModelOptionalParams extends OperationOptions {
 }
 
-export declare interface ExternalTypePutPropertyOptionalParams extends OperationOptions {
+declare interface ExternalTypePutPropertyOptionalParams extends OperationOptions {
 }
 
 export declare interface Feature {

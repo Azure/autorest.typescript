@@ -54,7 +54,6 @@ export async function _listDeserialize(
 
     throw error;
   }
-
   return _actionGroupListResultDeserializer(result.body);
 }
 
@@ -107,7 +106,6 @@ export async function _getDeserialize(result: PathUncheckedResponse): Promise<Co
 
     throw error;
   }
-
   return computeActionGroupDeserializer(result.body);
 }
 

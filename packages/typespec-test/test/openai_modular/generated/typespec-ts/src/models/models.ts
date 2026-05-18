@@ -799,6 +799,9 @@ export function contentFilterCitedDetectionResultDeserializer(
   };
 }
 
+/** Alias for _ChoiceLogprobs */
+export type _ChoiceLogprobs = CompletionsLogProbabilityModel | null;
+
 /** Representation of a log probabilities model for a completions generation. */
 export interface CompletionsLogProbabilityModel {
   /** The textual forms of tokens evaluated in this probability model. */
@@ -832,6 +835,10 @@ export function completionsLogProbabilityModelDeserializer(
   };
 }
 
+/** Alias for _ChoiceLogprobsTokenLogprob */
+export type _ChoiceLogprobsTokenLogprob = number | null;
+/** Alias for _ChoiceFinishReason */
+export type _ChoiceFinishReason = CompletionsFinishReason | null;
 /** Representation of the manner in which a completions response concluded. */
 export type CompletionsFinishReason =
   | "stop"
@@ -1228,6 +1235,9 @@ export function chatRequestAssistantMessageSerializer(item: ChatRequestAssistant
   };
 }
 
+/** Alias for _ChatRequestAssistantMessageContent */
+export type _ChatRequestAssistantMessageContent = string | null;
+
 export function chatCompletionsToolCallUnionArraySerializer(
   result: Array<ChatCompletionsToolCallUnion>,
 ): any[] {
@@ -1357,6 +1367,9 @@ export function chatRequestToolMessageSerializer(item: ChatRequestToolMessage): 
   return { role: item["role"], content: item["content"], tool_call_id: item["toolCallId"] };
 }
 
+/** Alias for _ChatRequestToolMessageContent */
+export type _ChatRequestToolMessageContent = string | null;
+
 /** A request chat message representing requested output from a configured function. */
 export interface ChatRequestFunctionMessage extends ChatRequestMessage {
   /** The chat role associated with this message, which is always 'function' for function messages. */
@@ -1370,6 +1383,9 @@ export interface ChatRequestFunctionMessage extends ChatRequestMessage {
 export function chatRequestFunctionMessageSerializer(item: ChatRequestFunctionMessage): any {
   return { role: item["role"], name: item["name"], content: item["content"] };
 }
+
+/** Alias for _ChatRequestFunctionMessageContent */
+export type _ChatRequestFunctionMessageContent = string | null;
 
 export function functionDefinitionArraySerializer(result: Array<FunctionDefinition>): any[] {
   return result.map((item) => {
@@ -2526,6 +2542,11 @@ export function azureChatOCREnhancementConfigurationSerializer(
   return { enabled: item["enabled"] };
 }
 
+/** Alias for _ChatCompletionsOptionsLogprobs */
+export type _ChatCompletionsOptionsLogprobs = boolean | null;
+/** Alias for _ChatCompletionsOptionsTopLogprobs */
+export type _ChatCompletionsOptionsTopLogprobs = number | null;
+
 /**
  * An abstract representation of a response format configuration usable by Chat Completions. Can be used to enable JSON
  * mode.
@@ -2865,6 +2886,9 @@ export function chatResponseMessageDeserializer(item: any): ChatResponseMessage 
   };
 }
 
+/** Alias for _ChatResponseMessageContent */
+export type _ChatResponseMessageContent = string | null;
+
 /**
  *   A representation of the additional context information available when Azure OpenAI chat extensions are involved
  *   in the generation of a corresponding chat completions response. This context information is only populated when
@@ -2992,6 +3016,8 @@ export function azureChatExtensionRetrievedDocumentDeserializer(
 
 /** The reason for filtering the retrieved document. */
 export type AzureChatExtensionRetrieveDocumentFilterReason = "score" | "rerank";
+/** Alias for _ChatChoiceLogprobs */
+export type _ChatChoiceLogprobs = ChatChoiceLogProbabilityInfo | null;
 
 /** Log probability information for a choice, as requested via 'logprobs' and 'top_logprobs'. */
 export interface ChatChoiceLogProbabilityInfo {
@@ -3006,6 +3032,9 @@ export function chatChoiceLogProbabilityInfoDeserializer(item: any): ChatChoiceL
       : chatTokenLogProbabilityResultArrayDeserializer(item["content"]),
   };
 }
+
+/** Alias for _ChatChoiceLogprobsContent */
+export type _ChatChoiceLogprobsContent = ChatTokenLogProbabilityResult[] | null;
 
 export function chatTokenLogProbabilityResultArrayDeserializer(
   result: Array<ChatTokenLogProbabilityResult>,
@@ -3044,6 +3073,11 @@ export function chatTokenLogProbabilityResultDeserializer(
   };
 }
 
+/** Alias for _ChatTokenLogProbabilityResultBytes */
+export type _ChatTokenLogProbabilityResultBytes = number[] | null;
+/** Alias for _ChatTokenLogProbabilityResultTopLogprobs */
+export type _ChatTokenLogProbabilityResultTopLogprobs = ChatTokenLogProbabilityInfo[] | null;
+
 export function chatTokenLogProbabilityInfoArrayDeserializer(
   result: Array<ChatTokenLogProbabilityInfo>,
 ): any[] {
@@ -3073,6 +3107,9 @@ export function chatTokenLogProbabilityInfoDeserializer(item: any): ChatTokenLog
         }),
   };
 }
+
+/** Alias for _ChatChoiceFinishReason */
+export type _ChatChoiceFinishReason = CompletionsFinishReason | null;
 
 /** An abstract representation of structured information about why a chat completions response terminated. */
 export interface ChatFinishDetails {

@@ -36,6 +36,7 @@ export declare class TraitsClient {
 }
 
 export declare interface TraitsClientOptionalParams extends ClientOptions {
+    endpointParam?: string;
     apiVersion?: string;
 }
 

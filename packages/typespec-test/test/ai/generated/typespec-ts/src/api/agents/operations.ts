@@ -152,7 +152,6 @@ export async function _listVectorStoreFileBatchFilesDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return openAIPageableListOfVectorStoreFileDeserializer(result.body);
 }
 
@@ -199,7 +198,6 @@ export async function _cancelVectorStoreFileBatchDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return vectorStoreFileBatchDeserializer(result.body);
 }
 
@@ -246,7 +244,6 @@ export async function _getVectorStoreFileBatchDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return vectorStoreFileBatchDeserializer(result.body);
 }
 
@@ -303,7 +300,6 @@ export async function _createVectorStoreFileBatchDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return vectorStoreFileBatchDeserializer(result.body);
 }
 
@@ -349,7 +345,6 @@ export async function _deleteVectorStoreFileDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return vectorStoreFileDeletionStatusDeserializer(result.body);
 }
 
@@ -399,7 +394,6 @@ export async function _getVectorStoreFileDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return vectorStoreFileDeserializer(result.body);
 }
 
@@ -454,7 +448,6 @@ export async function _createVectorStoreFileDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return vectorStoreFileDeserializer(result.body);
 }
 
@@ -503,7 +496,6 @@ export async function _listVectorStoreFilesDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return openAIPageableListOfVectorStoreFileDeserializer(result.body);
 }
 
@@ -547,7 +539,6 @@ export async function _deleteVectorStoreDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return vectorStoreDeletionStatusDeserializer(result.body);
 }
 
@@ -599,7 +590,6 @@ export async function _modifyVectorStoreDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return vectorStoreDeserializer(result.body);
 }
 
@@ -643,7 +633,6 @@ export async function _getVectorStoreDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return vectorStoreDeserializer(result.body);
 }
 
@@ -702,7 +691,6 @@ export async function _createVectorStoreDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return vectorStoreDeserializer(result.body);
 }
 
@@ -747,7 +735,6 @@ export async function _listVectorStoresDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return openAIPageableListOfVectorStoreDeserializer(result.body);
 }
 
@@ -790,7 +777,6 @@ export async function _getFileContentDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return result.body;
 }
 
@@ -832,7 +818,6 @@ export async function _getFileDeserialize(result: PathUncheckedResponse): Promis
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return openAIFileDeserializer(result.body);
 }
 
@@ -876,7 +861,6 @@ export async function _deleteFileDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return fileDeletionStatusDeserializer(result.body);
 }
 
@@ -923,7 +907,6 @@ export async function _uploadFileDeserialize(result: PathUncheckedResponse): Pro
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return openAIFileDeserializer(result.body);
 }
 
@@ -970,7 +953,6 @@ export async function _listFilesDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return fileListResponseDeserializer(result.body);
 }
 
@@ -1024,7 +1006,6 @@ export async function _listRunStepsDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return openAIPageableListOfRunStepDeserializer(result.body);
 }
 
@@ -1076,7 +1057,6 @@ export async function _getRunStepDeserialize(result: PathUncheckedResponse): Pro
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return runStepDeserializer(result.body);
 }
 
@@ -1152,7 +1132,6 @@ export async function _createThreadAndRunDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return threadRunDeserializer(result.body);
 }
 
@@ -1196,7 +1175,6 @@ export async function _cancelRunDeserialize(result: PathUncheckedResponse): Prom
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return threadRunDeserializer(result.body);
 }
 
@@ -1246,7 +1224,6 @@ export async function _submitToolOutputsToRunDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return threadRunDeserializer(result.body);
 }
 
@@ -1294,7 +1271,6 @@ export async function _updateRunDeserialize(result: PathUncheckedResponse): Prom
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return threadRunDeserializer(result.body);
 }
 
@@ -1339,7 +1315,6 @@ export async function _getRunDeserialize(result: PathUncheckedResponse): Promise
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return threadRunDeserializer(result.body);
 }
 
@@ -1388,7 +1363,6 @@ export async function _listRunsDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return openAIPageableListOfThreadRunDeserializer(result.body);
 }
 
@@ -1465,7 +1439,6 @@ export async function _createRunDeserialize(result: PathUncheckedResponse): Prom
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return threadRunDeserializer(result.body);
 }
 
@@ -1514,7 +1487,6 @@ export async function _updateMessageDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return threadMessageDeserializer(result.body);
 }
 
@@ -1561,7 +1533,6 @@ export async function _getMessageDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return threadMessageDeserializer(result.body);
 }
 
@@ -1611,7 +1582,6 @@ export async function _listMessagesDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return openAIPageableListOfThreadMessageDeserializer(result.body);
 }
 
@@ -1666,7 +1636,6 @@ export async function _createMessageDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return threadMessageDeserializer(result.body);
 }
 
@@ -1712,7 +1681,6 @@ export async function _deleteThreadDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return threadDeletionStatusDeserializer(result.body);
 }
 
@@ -1763,7 +1731,6 @@ export async function _updateThreadDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return agentThreadDeserializer(result.body);
 }
 
@@ -1805,7 +1772,6 @@ export async function _getThreadDeserialize(result: PathUncheckedResponse): Prom
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return agentThreadDeserializer(result.body);
 }
 
@@ -1857,7 +1823,6 @@ export async function _createThreadDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return agentThreadDeserializer(result.body);
 }
 
@@ -1900,7 +1865,6 @@ export async function _deleteAgentDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return agentDeletionStatusDeserializer(result.body);
 }
 
@@ -1961,7 +1925,6 @@ export async function _updateAgentDeserialize(result: PathUncheckedResponse): Pr
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return agentDeserializer(result.body);
 }
 
@@ -2003,7 +1966,6 @@ export async function _getAgentDeserialize(result: PathUncheckedResponse): Promi
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return agentDeserializer(result.body);
 }
 
@@ -2049,7 +2011,6 @@ export async function _listAgentsDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return openAIPageableListOfAgentDeserializer(result.body);
 }
 
@@ -2108,7 +2069,6 @@ export async function _createAgentDeserialize(result: PathUncheckedResponse): Pr
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return agentDeserializer(result.body);
 }
 

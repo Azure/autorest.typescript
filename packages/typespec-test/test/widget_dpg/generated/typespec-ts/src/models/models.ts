@@ -113,6 +113,11 @@ export function nonReferencedModelDeserializer(item: any): NonReferencedModel {
   };
 }
 
+/** Alias for _SapListWidgetsRequestNullableOptionalHeader */
+export type _SapListWidgetsRequestNullableOptionalHeader = string | null;
+/** Alias for _SapListWidgetsRequestNullableDateHeader */
+export type _SapListWidgetsRequestNullableDateHeader = Date | null;
+
 /** The Contoso Widget Manager service version. */
 export enum KnownVersions {
   /** Version 2022-08-31 */

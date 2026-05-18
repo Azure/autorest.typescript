@@ -38,6 +38,7 @@ export declare class NestedDiscriminatorClient {
 }
 
 export declare interface NestedDiscriminatorClientOptionalParams extends ClientOptions {
+    endpointParam?: string;
 }
 
 export declare interface PutModelOptionalParams extends OperationOptions {

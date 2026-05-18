@@ -2,7 +2,7 @@ import { ClientOptions } from '@typespec/ts-http-runtime';
 import { OperationOptions } from '@typespec/ts-http-runtime';
 import { Pipeline } from '@typespec/ts-http-runtime';
 
-export declare interface BooleanGetOptionalParams extends OperationOptions {
+declare interface BooleanGetOptionalParams extends OperationOptions {
 }
 
 export declare interface BooleanOperations {
@@ -10,7 +10,7 @@ export declare interface BooleanOperations {
     get: (options?: BooleanGetOptionalParams) => Promise<boolean>;
 }
 
-export declare interface BooleanPutOptionalParams extends OperationOptions {
+declare interface BooleanPutOptionalParams extends OperationOptions {
 }
 
 export declare interface Decimal128TypeOperations {
@@ -19,13 +19,13 @@ export declare interface Decimal128TypeOperations {
     responseBody: (options?: Decimal128TypeResponseBodyOptionalParams) => Promise<number>;
 }
 
-export declare interface Decimal128TypeRequestBodyOptionalParams extends OperationOptions {
+declare interface Decimal128TypeRequestBodyOptionalParams extends OperationOptions {
 }
 
-export declare interface Decimal128TypeRequestParameterOptionalParams extends OperationOptions {
+declare interface Decimal128TypeRequestParameterOptionalParams extends OperationOptions {
 }
 
-export declare interface Decimal128TypeResponseBodyOptionalParams extends OperationOptions {
+declare interface Decimal128TypeResponseBodyOptionalParams extends OperationOptions {
 }
 
 export declare interface Decimal128VerifyOperations {
@@ -33,10 +33,10 @@ export declare interface Decimal128VerifyOperations {
     prepareVerify: (options?: Decimal128VerifyPrepareVerifyOptionalParams) => Promise<number[]>;
 }
 
-export declare interface Decimal128VerifyPrepareVerifyOptionalParams extends OperationOptions {
+declare interface Decimal128VerifyPrepareVerifyOptionalParams extends OperationOptions {
 }
 
-export declare interface Decimal128VerifyVerifyOptionalParams extends OperationOptions {
+declare interface Decimal128VerifyVerifyOptionalParams extends OperationOptions {
 }
 
 export declare interface DecimalTypeOperations {
@@ -45,13 +45,13 @@ export declare interface DecimalTypeOperations {
     responseBody: (options?: DecimalTypeResponseBodyOptionalParams) => Promise<number>;
 }
 
-export declare interface DecimalTypeRequestBodyOptionalParams extends OperationOptions {
+declare interface DecimalTypeRequestBodyOptionalParams extends OperationOptions {
 }
 
-export declare interface DecimalTypeRequestParameterOptionalParams extends OperationOptions {
+declare interface DecimalTypeRequestParameterOptionalParams extends OperationOptions {
 }
 
-export declare interface DecimalTypeResponseBodyOptionalParams extends OperationOptions {
+declare interface DecimalTypeResponseBodyOptionalParams extends OperationOptions {
 }
 
 export declare interface DecimalVerifyOperations {
@@ -59,10 +59,10 @@ export declare interface DecimalVerifyOperations {
     prepareVerify: (options?: DecimalVerifyPrepareVerifyOptionalParams) => Promise<number[]>;
 }
 
-export declare interface DecimalVerifyPrepareVerifyOptionalParams extends OperationOptions {
+declare interface DecimalVerifyPrepareVerifyOptionalParams extends OperationOptions {
 }
 
-export declare interface DecimalVerifyVerifyOptionalParams extends OperationOptions {
+declare interface DecimalVerifyVerifyOptionalParams extends OperationOptions {
 }
 
 export declare class ScalarClient {
@@ -79,9 +79,10 @@ export declare class ScalarClient {
 }
 
 export declare interface ScalarClientOptionalParams extends ClientOptions {
+    endpointParam?: string;
 }
 
-export declare interface StringGetOptionalParams extends OperationOptions {
+declare interface StringGetOptionalParams extends OperationOptions {
 }
 
 export declare interface StringOperations {
@@ -89,10 +90,10 @@ export declare interface StringOperations {
     get: (options?: StringGetOptionalParams) => Promise<string>;
 }
 
-export declare interface StringPutOptionalParams extends OperationOptions {
+declare interface StringPutOptionalParams extends OperationOptions {
 }
 
-export declare interface UnknownGetOptionalParams extends OperationOptions {
+declare interface UnknownGetOptionalParams extends OperationOptions {
 }
 
 export declare interface UnknownOperations {
@@ -100,7 +101,7 @@ export declare interface UnknownOperations {
     get: (options?: UnknownGetOptionalParams) => Promise<any>;
 }
 
-export declare interface UnknownPutOptionalParams extends OperationOptions {
+declare interface UnknownPutOptionalParams extends OperationOptions {
 }
 
 export { }

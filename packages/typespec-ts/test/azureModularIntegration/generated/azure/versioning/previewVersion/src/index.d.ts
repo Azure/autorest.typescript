@@ -32,6 +32,7 @@ export declare class PreviewVersionClient {
 }
 
 export declare interface PreviewVersionClientOptionalParams extends ClientOptions {
+    endpointParam?: string;
     apiVersion?: string;
 }
 

@@ -12,34 +12,26 @@ import { RestError } from '@azure/core-rest-pipeline';
 
 // @public
 export interface AOperations {
+    // Warning: (ae-forgotten-export) The symbol "ATest1OptionalParams" needs to be exported by the entry point index.d.ts
+    //
     // (undocumented)
     test1: (a: string, b: string, c: string, options?: ATest1OptionalParams) => Promise<void>;
+    // Warning: (ae-forgotten-export) The symbol "ATest2OptionalParams" needs to be exported by the entry point index.d.ts
+    //
     // (undocumented)
     test2: (prop: string, options?: ATest2OptionalParams) => Promise<void>;
+    // Warning: (ae-forgotten-export) The symbol "ATest3OptionalParams" needs to be exported by the entry point index.d.ts
+    //
     // (undocumented)
     test3: (body: {
         prop: string;
     }, options?: ATest3OptionalParams) => Promise<void>;
+    // Warning: (ae-forgotten-export) The symbol "ATest4OptionalParams" needs to be exported by the entry point index.d.ts
+    //
     // (undocumented)
     test4: (body: {
         prop: string;
     }, options?: ATest4OptionalParams) => Promise<void>;
-}
-
-// @public
-export interface ATest1OptionalParams extends OperationOptions {
-}
-
-// @public
-export interface ATest2OptionalParams extends OperationOptions {
-}
-
-// @public
-export interface ATest3OptionalParams extends OperationOptions {
-}
-
-// @public
-export interface ATest4OptionalParams extends OperationOptions {
 }
 
 // @public (undocumented)

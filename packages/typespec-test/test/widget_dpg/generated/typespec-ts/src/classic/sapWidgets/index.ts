@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { SAPWidgetServiceContext } from "../../api/sapWidgetServiceContext.js";
+import { SAPWidgetServiceContext } from "../../api/index.js";
 import {
   analyzeWidget,
   deleteWidget,
@@ -26,6 +26,7 @@ import {
 } from "../../api/sapWidgets/options.js";
 import { Widget, SAPUser, AnalyzeResult } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
+import { getSimplePoller } from "../../static-helpers/simplePollerHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 
 /** Interface representing a SAPWidgets operations. */
@@ -99,6 +100,22 @@ function _getSAPWidgets(context: SAPWidgetServiceContext) {
       resource: SAPUser,
       options?: SAPWidgetsCreateOrReplaceOptionalParams,
     ) => createOrReplace(context, name, resource, options),
+    beginCreateOrReplace: async (
+      name: string,
+      resource: SAPUser,
+      options?: SAPWidgetsCreateOrReplaceOptionalParams,
+    ) => {
+      const poller = createOrReplace(context, name, resource, options);
+      await poller.submitted();
+      return getSimplePoller(poller);
+    },
+    beginCreateOrReplaceAndWait: async (
+      name: string,
+      resource: SAPUser,
+      options?: SAPWidgetsCreateOrReplaceOptionalParams,
+    ) => {
+      return await createOrReplace(context, name, resource, options);
+    },
     createWidget: (
       weight: number,
       color: "red" | "blue",

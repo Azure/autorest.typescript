@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { OpenAIContext } from "../../api/openAIContext.js";
+import { OpenAIContext } from "../../api/index.js";
 import { createVariation, createEdit } from "../../api/images/operations.js";
 import {
   ImagesCreateVariationOptionalParams,

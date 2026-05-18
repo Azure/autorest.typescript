@@ -10,7 +10,7 @@ import { KeyCredential, isKeyCredential, TokenCredential } from "@azure/core-aut
 export interface EventGridContext extends Client {
   /** The API version to use for this operation. */
   /** Known values of {@link KnownServiceApiVersions} that the service accepts. */
-  apiVersion?: string;
+  apiVersion: string;
 }
 
 /** Optional parameters for the client. */

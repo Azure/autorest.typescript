@@ -42,6 +42,7 @@ export declare class AdditionalPropertiesClient {
 }
 
 export declare interface AdditionalPropertiesClientOptionalParams extends ClientOptions {
+    endpointParam?: string;
 }
 
 export declare interface DifferentSpreadFloatDerived extends DifferentSpreadFloatRecord {
@@ -76,7 +77,7 @@ export declare interface DifferentSpreadStringRecord extends Record<string, any>
     id: number;
 }
 
-export declare interface ExtendsDifferentSpreadFloatGetOptionalParams extends OperationOptions {
+declare interface ExtendsDifferentSpreadFloatGetOptionalParams extends OperationOptions {
 }
 
 export declare interface ExtendsDifferentSpreadFloatOperations {
@@ -84,10 +85,10 @@ export declare interface ExtendsDifferentSpreadFloatOperations {
     get: (options?: ExtendsDifferentSpreadFloatGetOptionalParams) => Promise<DifferentSpreadFloatDerived>;
 }
 
-export declare interface ExtendsDifferentSpreadFloatPutOptionalParams extends OperationOptions {
+declare interface ExtendsDifferentSpreadFloatPutOptionalParams extends OperationOptions {
 }
 
-export declare interface ExtendsDifferentSpreadModelArrayGetOptionalParams extends OperationOptions {
+declare interface ExtendsDifferentSpreadModelArrayGetOptionalParams extends OperationOptions {
 }
 
 export declare interface ExtendsDifferentSpreadModelArrayOperations {
@@ -95,10 +96,10 @@ export declare interface ExtendsDifferentSpreadModelArrayOperations {
     get: (options?: ExtendsDifferentSpreadModelArrayGetOptionalParams) => Promise<DifferentSpreadModelArrayDerived>;
 }
 
-export declare interface ExtendsDifferentSpreadModelArrayPutOptionalParams extends OperationOptions {
+declare interface ExtendsDifferentSpreadModelArrayPutOptionalParams extends OperationOptions {
 }
 
-export declare interface ExtendsDifferentSpreadModelGetOptionalParams extends OperationOptions {
+declare interface ExtendsDifferentSpreadModelGetOptionalParams extends OperationOptions {
 }
 
 export declare interface ExtendsDifferentSpreadModelOperations {
@@ -106,10 +107,10 @@ export declare interface ExtendsDifferentSpreadModelOperations {
     get: (options?: ExtendsDifferentSpreadModelGetOptionalParams) => Promise<DifferentSpreadModelDerived>;
 }
 
-export declare interface ExtendsDifferentSpreadModelPutOptionalParams extends OperationOptions {
+declare interface ExtendsDifferentSpreadModelPutOptionalParams extends OperationOptions {
 }
 
-export declare interface ExtendsDifferentSpreadStringGetOptionalParams extends OperationOptions {
+declare interface ExtendsDifferentSpreadStringGetOptionalParams extends OperationOptions {
 }
 
 export declare interface ExtendsDifferentSpreadStringOperations {
@@ -117,14 +118,14 @@ export declare interface ExtendsDifferentSpreadStringOperations {
     get: (options?: ExtendsDifferentSpreadStringGetOptionalParams) => Promise<DifferentSpreadStringDerived>;
 }
 
-export declare interface ExtendsDifferentSpreadStringPutOptionalParams extends OperationOptions {
+declare interface ExtendsDifferentSpreadStringPutOptionalParams extends OperationOptions {
 }
 
 export declare interface ExtendsFloatAdditionalProperties extends Record<string, number> {
     id: number;
 }
 
-export declare interface ExtendsFloatGetOptionalParams extends OperationOptions {
+declare interface ExtendsFloatGetOptionalParams extends OperationOptions {
 }
 
 export declare interface ExtendsFloatOperations {
@@ -132,7 +133,7 @@ export declare interface ExtendsFloatOperations {
     get: (options?: ExtendsFloatGetOptionalParams) => Promise<ExtendsFloatAdditionalProperties>;
 }
 
-export declare interface ExtendsFloatPutOptionalParams extends OperationOptions {
+declare interface ExtendsFloatPutOptionalParams extends OperationOptions {
 }
 
 export declare interface ExtendsModelAdditionalProperties extends Record<string, ModelForRecord> {
@@ -143,7 +144,7 @@ export declare interface ExtendsModelArrayAdditionalProperties extends Record<st
     knownProp: ModelForRecord[];
 }
 
-export declare interface ExtendsModelArrayGetOptionalParams extends OperationOptions {
+declare interface ExtendsModelArrayGetOptionalParams extends OperationOptions {
 }
 
 export declare interface ExtendsModelArrayOperations {
@@ -151,10 +152,10 @@ export declare interface ExtendsModelArrayOperations {
     get: (options?: ExtendsModelArrayGetOptionalParams) => Promise<ExtendsModelArrayAdditionalProperties>;
 }
 
-export declare interface ExtendsModelArrayPutOptionalParams extends OperationOptions {
+declare interface ExtendsModelArrayPutOptionalParams extends OperationOptions {
 }
 
-export declare interface ExtendsModelGetOptionalParams extends OperationOptions {
+declare interface ExtendsModelGetOptionalParams extends OperationOptions {
 }
 
 export declare interface ExtendsModelOperations {
@@ -162,14 +163,14 @@ export declare interface ExtendsModelOperations {
     get: (options?: ExtendsModelGetOptionalParams) => Promise<ExtendsModelAdditionalProperties>;
 }
 
-export declare interface ExtendsModelPutOptionalParams extends OperationOptions {
+declare interface ExtendsModelPutOptionalParams extends OperationOptions {
 }
 
 export declare interface ExtendsStringAdditionalProperties extends Record<string, string> {
     name: string;
 }
 
-export declare interface ExtendsStringGetOptionalParams extends OperationOptions {
+declare interface ExtendsStringGetOptionalParams extends OperationOptions {
 }
 
 export declare interface ExtendsStringOperations {
@@ -177,7 +178,7 @@ export declare interface ExtendsStringOperations {
     get: (options?: ExtendsStringGetOptionalParams) => Promise<ExtendsStringAdditionalProperties>;
 }
 
-export declare interface ExtendsStringPutOptionalParams extends OperationOptions {
+declare interface ExtendsStringPutOptionalParams extends OperationOptions {
 }
 
 export declare interface ExtendsUnknownAdditionalProperties extends Record<string, any> {
@@ -202,7 +203,7 @@ export declare interface ExtendsUnknownAdditionalPropertiesDiscriminatedDerived 
 
 export declare type ExtendsUnknownAdditionalPropertiesDiscriminatedUnion = ExtendsUnknownAdditionalPropertiesDiscriminatedDerived | ExtendsUnknownAdditionalPropertiesDiscriminated;
 
-export declare interface ExtendsUnknownDerivedGetOptionalParams extends OperationOptions {
+declare interface ExtendsUnknownDerivedGetOptionalParams extends OperationOptions {
 }
 
 export declare interface ExtendsUnknownDerivedOperations {
@@ -210,10 +211,10 @@ export declare interface ExtendsUnknownDerivedOperations {
     get: (options?: ExtendsUnknownDerivedGetOptionalParams) => Promise<ExtendsUnknownAdditionalPropertiesDerived>;
 }
 
-export declare interface ExtendsUnknownDerivedPutOptionalParams extends OperationOptions {
+declare interface ExtendsUnknownDerivedPutOptionalParams extends OperationOptions {
 }
 
-export declare interface ExtendsUnknownDiscriminatedGetOptionalParams extends OperationOptions {
+declare interface ExtendsUnknownDiscriminatedGetOptionalParams extends OperationOptions {
 }
 
 export declare interface ExtendsUnknownDiscriminatedOperations {
@@ -221,10 +222,10 @@ export declare interface ExtendsUnknownDiscriminatedOperations {
     get: (options?: ExtendsUnknownDiscriminatedGetOptionalParams) => Promise<ExtendsUnknownAdditionalPropertiesDiscriminatedUnion>;
 }
 
-export declare interface ExtendsUnknownDiscriminatedPutOptionalParams extends OperationOptions {
+declare interface ExtendsUnknownDiscriminatedPutOptionalParams extends OperationOptions {
 }
 
-export declare interface ExtendsUnknownGetOptionalParams extends OperationOptions {
+declare interface ExtendsUnknownGetOptionalParams extends OperationOptions {
 }
 
 export declare interface ExtendsUnknownOperations {
@@ -232,14 +233,14 @@ export declare interface ExtendsUnknownOperations {
     get: (options?: ExtendsUnknownGetOptionalParams) => Promise<ExtendsUnknownAdditionalProperties>;
 }
 
-export declare interface ExtendsUnknownPutOptionalParams extends OperationOptions {
+declare interface ExtendsUnknownPutOptionalParams extends OperationOptions {
 }
 
 export declare interface IsFloatAdditionalProperties extends Record<string, number> {
     id: number;
 }
 
-export declare interface IsFloatGetOptionalParams extends OperationOptions {
+declare interface IsFloatGetOptionalParams extends OperationOptions {
 }
 
 export declare interface IsFloatOperations {
@@ -247,7 +248,7 @@ export declare interface IsFloatOperations {
     get: (options?: IsFloatGetOptionalParams) => Promise<IsFloatAdditionalProperties>;
 }
 
-export declare interface IsFloatPutOptionalParams extends OperationOptions {
+declare interface IsFloatPutOptionalParams extends OperationOptions {
 }
 
 export declare interface IsModelAdditionalProperties extends Record<string, ModelForRecord> {
@@ -258,7 +259,7 @@ export declare interface IsModelArrayAdditionalProperties extends Record<string,
     knownProp: ModelForRecord[];
 }
 
-export declare interface IsModelArrayGetOptionalParams extends OperationOptions {
+declare interface IsModelArrayGetOptionalParams extends OperationOptions {
 }
 
 export declare interface IsModelArrayOperations {
@@ -266,10 +267,10 @@ export declare interface IsModelArrayOperations {
     get: (options?: IsModelArrayGetOptionalParams) => Promise<IsModelArrayAdditionalProperties>;
 }
 
-export declare interface IsModelArrayPutOptionalParams extends OperationOptions {
+declare interface IsModelArrayPutOptionalParams extends OperationOptions {
 }
 
-export declare interface IsModelGetOptionalParams extends OperationOptions {
+declare interface IsModelGetOptionalParams extends OperationOptions {
 }
 
 export declare interface IsModelOperations {
@@ -277,7 +278,7 @@ export declare interface IsModelOperations {
     get: (options?: IsModelGetOptionalParams) => Promise<IsModelAdditionalProperties>;
 }
 
-export declare interface IsModelPutOptionalParams extends OperationOptions {
+declare interface IsModelPutOptionalParams extends OperationOptions {
 }
 
 export { isRestError }
@@ -286,7 +287,7 @@ export declare interface IsStringAdditionalProperties extends Record<string, str
     name: string;
 }
 
-export declare interface IsStringGetOptionalParams extends OperationOptions {
+declare interface IsStringGetOptionalParams extends OperationOptions {
 }
 
 export declare interface IsStringOperations {
@@ -294,7 +295,7 @@ export declare interface IsStringOperations {
     get: (options?: IsStringGetOptionalParams) => Promise<IsStringAdditionalProperties>;
 }
 
-export declare interface IsStringPutOptionalParams extends OperationOptions {
+declare interface IsStringPutOptionalParams extends OperationOptions {
 }
 
 export declare interface IsUnknownAdditionalProperties extends Record<string, any> {
@@ -319,7 +320,7 @@ export declare interface IsUnknownAdditionalPropertiesDiscriminatedDerived exten
 
 export declare type IsUnknownAdditionalPropertiesDiscriminatedUnion = IsUnknownAdditionalPropertiesDiscriminatedDerived | IsUnknownAdditionalPropertiesDiscriminated;
 
-export declare interface IsUnknownDerivedGetOptionalParams extends OperationOptions {
+declare interface IsUnknownDerivedGetOptionalParams extends OperationOptions {
 }
 
 export declare interface IsUnknownDerivedOperations {
@@ -327,10 +328,10 @@ export declare interface IsUnknownDerivedOperations {
     get: (options?: IsUnknownDerivedGetOptionalParams) => Promise<IsUnknownAdditionalPropertiesDerived>;
 }
 
-export declare interface IsUnknownDerivedPutOptionalParams extends OperationOptions {
+declare interface IsUnknownDerivedPutOptionalParams extends OperationOptions {
 }
 
-export declare interface IsUnknownDiscriminatedGetOptionalParams extends OperationOptions {
+declare interface IsUnknownDiscriminatedGetOptionalParams extends OperationOptions {
 }
 
 export declare interface IsUnknownDiscriminatedOperations {
@@ -338,10 +339,10 @@ export declare interface IsUnknownDiscriminatedOperations {
     get: (options?: IsUnknownDiscriminatedGetOptionalParams) => Promise<IsUnknownAdditionalPropertiesDiscriminatedUnion>;
 }
 
-export declare interface IsUnknownDiscriminatedPutOptionalParams extends OperationOptions {
+declare interface IsUnknownDiscriminatedPutOptionalParams extends OperationOptions {
 }
 
-export declare interface IsUnknownGetOptionalParams extends OperationOptions {
+declare interface IsUnknownGetOptionalParams extends OperationOptions {
 }
 
 export declare interface IsUnknownOperations {
@@ -349,14 +350,14 @@ export declare interface IsUnknownOperations {
     get: (options?: IsUnknownGetOptionalParams) => Promise<IsUnknownAdditionalProperties>;
 }
 
-export declare interface IsUnknownPutOptionalParams extends OperationOptions {
+declare interface IsUnknownPutOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelForRecord {
     state: string;
 }
 
-export declare interface MultipleSpreadGetOptionalParams extends OperationOptions {
+declare interface MultipleSpreadGetOptionalParams extends OperationOptions {
 }
 
 export declare interface MultipleSpreadOperations {
@@ -364,7 +365,7 @@ export declare interface MultipleSpreadOperations {
     get: (options?: MultipleSpreadGetOptionalParams) => Promise<MultipleSpreadRecord>;
 }
 
-export declare interface MultipleSpreadPutOptionalParams extends OperationOptions {
+declare interface MultipleSpreadPutOptionalParams extends OperationOptions {
 }
 
 export declare interface MultipleSpreadRecord extends Record<string, any> {
@@ -373,7 +374,7 @@ export declare interface MultipleSpreadRecord extends Record<string, any> {
 
 export { RestError }
 
-export declare interface SpreadDifferentFloatGetOptionalParams extends OperationOptions {
+declare interface SpreadDifferentFloatGetOptionalParams extends OperationOptions {
 }
 
 export declare interface SpreadDifferentFloatOperations {
@@ -381,10 +382,10 @@ export declare interface SpreadDifferentFloatOperations {
     get: (options?: SpreadDifferentFloatGetOptionalParams) => Promise<DifferentSpreadFloatRecord>;
 }
 
-export declare interface SpreadDifferentFloatPutOptionalParams extends OperationOptions {
+declare interface SpreadDifferentFloatPutOptionalParams extends OperationOptions {
 }
 
-export declare interface SpreadDifferentModelArrayGetOptionalParams extends OperationOptions {
+declare interface SpreadDifferentModelArrayGetOptionalParams extends OperationOptions {
 }
 
 export declare interface SpreadDifferentModelArrayOperations {
@@ -392,10 +393,10 @@ export declare interface SpreadDifferentModelArrayOperations {
     get: (options?: SpreadDifferentModelArrayGetOptionalParams) => Promise<DifferentSpreadModelArrayRecord>;
 }
 
-export declare interface SpreadDifferentModelArrayPutOptionalParams extends OperationOptions {
+declare interface SpreadDifferentModelArrayPutOptionalParams extends OperationOptions {
 }
 
-export declare interface SpreadDifferentModelGetOptionalParams extends OperationOptions {
+declare interface SpreadDifferentModelGetOptionalParams extends OperationOptions {
 }
 
 export declare interface SpreadDifferentModelOperations {
@@ -403,10 +404,10 @@ export declare interface SpreadDifferentModelOperations {
     get: (options?: SpreadDifferentModelGetOptionalParams) => Promise<DifferentSpreadModelRecord>;
 }
 
-export declare interface SpreadDifferentModelPutOptionalParams extends OperationOptions {
+declare interface SpreadDifferentModelPutOptionalParams extends OperationOptions {
 }
 
-export declare interface SpreadDifferentStringGetOptionalParams extends OperationOptions {
+declare interface SpreadDifferentStringGetOptionalParams extends OperationOptions {
 }
 
 export declare interface SpreadDifferentStringOperations {
@@ -414,10 +415,10 @@ export declare interface SpreadDifferentStringOperations {
     get: (options?: SpreadDifferentStringGetOptionalParams) => Promise<DifferentSpreadStringRecord>;
 }
 
-export declare interface SpreadDifferentStringPutOptionalParams extends OperationOptions {
+declare interface SpreadDifferentStringPutOptionalParams extends OperationOptions {
 }
 
-export declare interface SpreadFloatGetOptionalParams extends OperationOptions {
+declare interface SpreadFloatGetOptionalParams extends OperationOptions {
 }
 
 export declare interface SpreadFloatOperations {
@@ -425,14 +426,14 @@ export declare interface SpreadFloatOperations {
     get: (options?: SpreadFloatGetOptionalParams) => Promise<SpreadFloatRecord>;
 }
 
-export declare interface SpreadFloatPutOptionalParams extends OperationOptions {
+declare interface SpreadFloatPutOptionalParams extends OperationOptions {
 }
 
 export declare interface SpreadFloatRecord extends Record<string, number> {
     id: number;
 }
 
-export declare interface SpreadModelArrayGetOptionalParams extends OperationOptions {
+declare interface SpreadModelArrayGetOptionalParams extends OperationOptions {
 }
 
 export declare interface SpreadModelArrayOperations {
@@ -440,14 +441,14 @@ export declare interface SpreadModelArrayOperations {
     get: (options?: SpreadModelArrayGetOptionalParams) => Promise<SpreadModelArrayRecord>;
 }
 
-export declare interface SpreadModelArrayPutOptionalParams extends OperationOptions {
+declare interface SpreadModelArrayPutOptionalParams extends OperationOptions {
 }
 
 export declare interface SpreadModelArrayRecord extends Record<string, ModelForRecord[]> {
     knownProp: ModelForRecord[];
 }
 
-export declare interface SpreadModelGetOptionalParams extends OperationOptions {
+declare interface SpreadModelGetOptionalParams extends OperationOptions {
 }
 
 export declare interface SpreadModelOperations {
@@ -455,7 +456,7 @@ export declare interface SpreadModelOperations {
     get: (options?: SpreadModelGetOptionalParams) => Promise<SpreadModelRecord>;
 }
 
-export declare interface SpreadModelPutOptionalParams extends OperationOptions {
+declare interface SpreadModelPutOptionalParams extends OperationOptions {
 }
 
 export declare interface SpreadModelRecord extends Record<string, ModelForRecord> {
@@ -478,7 +479,7 @@ export declare interface SpreadRecordForUnion extends Record<string, any> {
     flag: boolean;
 }
 
-export declare interface SpreadRecordNonDiscriminatedUnion2GetOptionalParams extends OperationOptions {
+declare interface SpreadRecordNonDiscriminatedUnion2GetOptionalParams extends OperationOptions {
 }
 
 export declare interface SpreadRecordNonDiscriminatedUnion2Operations {
@@ -486,10 +487,10 @@ export declare interface SpreadRecordNonDiscriminatedUnion2Operations {
     get: (options?: SpreadRecordNonDiscriminatedUnion2GetOptionalParams) => Promise<SpreadRecordForNonDiscriminatedUnion2>;
 }
 
-export declare interface SpreadRecordNonDiscriminatedUnion2PutOptionalParams extends OperationOptions {
+declare interface SpreadRecordNonDiscriminatedUnion2PutOptionalParams extends OperationOptions {
 }
 
-export declare interface SpreadRecordNonDiscriminatedUnion3GetOptionalParams extends OperationOptions {
+declare interface SpreadRecordNonDiscriminatedUnion3GetOptionalParams extends OperationOptions {
 }
 
 export declare interface SpreadRecordNonDiscriminatedUnion3Operations {
@@ -497,10 +498,10 @@ export declare interface SpreadRecordNonDiscriminatedUnion3Operations {
     get: (options?: SpreadRecordNonDiscriminatedUnion3GetOptionalParams) => Promise<SpreadRecordForNonDiscriminatedUnion3>;
 }
 
-export declare interface SpreadRecordNonDiscriminatedUnion3PutOptionalParams extends OperationOptions {
+declare interface SpreadRecordNonDiscriminatedUnion3PutOptionalParams extends OperationOptions {
 }
 
-export declare interface SpreadRecordNonDiscriminatedUnionGetOptionalParams extends OperationOptions {
+declare interface SpreadRecordNonDiscriminatedUnionGetOptionalParams extends OperationOptions {
 }
 
 export declare interface SpreadRecordNonDiscriminatedUnionOperations {
@@ -508,10 +509,10 @@ export declare interface SpreadRecordNonDiscriminatedUnionOperations {
     get: (options?: SpreadRecordNonDiscriminatedUnionGetOptionalParams) => Promise<SpreadRecordForNonDiscriminatedUnion>;
 }
 
-export declare interface SpreadRecordNonDiscriminatedUnionPutOptionalParams extends OperationOptions {
+declare interface SpreadRecordNonDiscriminatedUnionPutOptionalParams extends OperationOptions {
 }
 
-export declare interface SpreadRecordUnionGetOptionalParams extends OperationOptions {
+declare interface SpreadRecordUnionGetOptionalParams extends OperationOptions {
 }
 
 export declare interface SpreadRecordUnionOperations {
@@ -519,10 +520,10 @@ export declare interface SpreadRecordUnionOperations {
     get: (options?: SpreadRecordUnionGetOptionalParams) => Promise<SpreadRecordForUnion>;
 }
 
-export declare interface SpreadRecordUnionPutOptionalParams extends OperationOptions {
+declare interface SpreadRecordUnionPutOptionalParams extends OperationOptions {
 }
 
-export declare interface SpreadStringGetOptionalParams extends OperationOptions {
+declare interface SpreadStringGetOptionalParams extends OperationOptions {
 }
 
 export declare interface SpreadStringOperations {
@@ -530,7 +531,7 @@ export declare interface SpreadStringOperations {
     get: (options?: SpreadStringGetOptionalParams) => Promise<SpreadStringRecord>;
 }
 
-export declare interface SpreadStringPutOptionalParams extends OperationOptions {
+declare interface SpreadStringPutOptionalParams extends OperationOptions {
 }
 
 export declare interface SpreadStringRecord extends Record<string, string> {

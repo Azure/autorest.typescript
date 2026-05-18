@@ -69,7 +69,6 @@ export async function _inferRadiologyInsightsDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   if (result?.body?.result === undefined) {
     throw createRestError(
       `Expected a result in the response at position "result.body.result"`,

@@ -14,13 +14,14 @@ export declare class FixedClient {
 }
 
 export declare interface FixedClientOptionalParams extends ClientOptions {
+    endpointParam?: string;
 }
 
 export { isRestError }
 
 export { RestError }
 
-export declare interface StringGetKnownValueOptionalParams extends OperationOptions {
+declare interface StringGetKnownValueOptionalParams extends OperationOptions {
 }
 
 export declare type StringGetKnownValueResponse = {
@@ -33,10 +34,10 @@ export declare interface StringOperations {
     getKnownValue: (options?: StringGetKnownValueOptionalParams) => Promise<StringGetKnownValueResponse>;
 }
 
-export declare interface StringPutKnownValueOptionalParams extends OperationOptions {
+declare interface StringPutKnownValueOptionalParams extends OperationOptions {
 }
 
-export declare interface StringPutUnknownValueOptionalParams extends OperationOptions {
+declare interface StringPutUnknownValueOptionalParams extends OperationOptions {
 }
 
 export { }

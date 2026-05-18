@@ -77,7 +77,6 @@ export async function _readDeserialize(result: PathUncheckedResponse): Promise<C
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return clientDeserializer(result.body);
 }
 
@@ -122,7 +121,6 @@ export async function _listBySubscriptionDeserialize(
 
     throw error;
   }
-
   return _dataProductListResultDeserializer(result.body);
 }
 
@@ -174,7 +172,6 @@ export async function _listByResourceGroupDeserialize(
 
     throw error;
   }
-
   return _dataProductListResultDeserializer(result.body);
 }
 
@@ -232,7 +229,6 @@ export async function _listRolesAssignmentsDeserialize(
 
     throw error;
   }
-
   return listRoleAssignmentsDeserializer(result.body);
 }
 
@@ -290,7 +286,6 @@ export async function _removeUserRoleDeserialize(result: PathUncheckedResponse):
 
     throw error;
   }
-
   return;
 }
 
@@ -351,7 +346,6 @@ export async function _addUserRoleDeserialize(
 
     throw error;
   }
-
   return roleAssignmentDetailDeserializer(result.body);
 }
 
@@ -403,7 +397,6 @@ export async function _rotateKeyDeserialize(result: PathUncheckedResponse): Prom
 
     throw error;
   }
-
   return;
 }
 
@@ -458,7 +451,6 @@ export async function _generateStorageAccountSasTokenDeserialize(
 
     throw error;
   }
-
   return accountSasTokenDeserializer(result.body);
 }
 
@@ -509,7 +501,6 @@ export async function _$deleteDeserialize(result: PathUncheckedResponse): Promis
 
     throw error;
   }
-
   return;
 }
 
@@ -566,7 +557,6 @@ export async function _updateDeserialize(result: PathUncheckedResponse): Promise
 
     throw error;
   }
-
   return dataProductDeserializer(result.body);
 }
 
@@ -622,7 +612,6 @@ export async function _getDeserialize(result: PathUncheckedResponse): Promise<Da
 
     throw error;
   }
-
   return dataProductDeserializer(result.body);
 }
 
@@ -674,7 +663,6 @@ export async function _createDeserialize(result: PathUncheckedResponse): Promise
 
     throw error;
   }
-
   return dataProductDeserializer(result.body);
 }
 

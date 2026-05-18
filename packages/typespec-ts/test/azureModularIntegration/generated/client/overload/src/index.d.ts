@@ -21,6 +21,7 @@ export declare class OverloadClient {
 }
 
 export declare interface OverloadClientOptionalParams extends ClientOptions {
+    endpointParam?: string;
 }
 
 export declare interface Resource {

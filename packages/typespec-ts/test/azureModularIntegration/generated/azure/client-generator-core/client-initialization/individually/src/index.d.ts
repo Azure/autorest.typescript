@@ -33,6 +33,7 @@ export declare interface IndividuallyNestedWithHeaderClientGetStandaloneOptional
 }
 
 export declare interface IndividuallyNestedWithHeaderClientOptionalParams extends ClientOptions {
+    endpointParam?: string;
 }
 
 export declare interface IndividuallyNestedWithHeaderClientWithQueryOptionalParams extends OperationOptions {
@@ -55,6 +56,7 @@ export declare interface IndividuallyNestedWithMixedClientGetStandaloneOptionalP
 }
 
 export declare interface IndividuallyNestedWithMixedClientOptionalParams extends ClientOptions {
+    endpointParam?: string;
 }
 
 export declare interface IndividuallyNestedWithMixedClientWithQueryOptionalParams extends OperationOptions {
@@ -77,6 +79,7 @@ export declare interface IndividuallyNestedWithMultipleClientGetStandaloneOption
 }
 
 export declare interface IndividuallyNestedWithMultipleClientOptionalParams extends ClientOptions {
+    endpointParam?: string;
 }
 
 export declare interface IndividuallyNestedWithMultipleClientWithQueryOptionalParams extends OperationOptions {
@@ -92,6 +95,7 @@ export declare class IndividuallyNestedWithParamAliasClient {
 }
 
 export declare interface IndividuallyNestedWithParamAliasClientOptionalParams extends ClientOptions {
+    endpointParam?: string;
 }
 
 export declare class IndividuallyNestedWithPathClient {
@@ -104,6 +108,7 @@ export declare class IndividuallyNestedWithPathClient {
 }
 
 export declare interface IndividuallyNestedWithPathClientOptionalParams extends ClientOptions {
+    endpointParam?: string;
 }
 
 export declare class IndividuallyNestedWithQueryClient {
@@ -122,6 +127,7 @@ export declare interface IndividuallyNestedWithQueryClientGetStandaloneOptionalP
 }
 
 export declare interface IndividuallyNestedWithQueryClientOptionalParams extends ClientOptions {
+    endpointParam?: string;
 }
 
 export declare interface IndividuallyNestedWithQueryClientWithQueryOptionalParams extends OperationOptions {

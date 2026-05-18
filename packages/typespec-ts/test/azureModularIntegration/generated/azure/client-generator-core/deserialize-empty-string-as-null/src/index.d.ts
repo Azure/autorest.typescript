@@ -12,6 +12,7 @@ export declare class DeserializeEmptyStringAsNullClient {
 }
 
 export declare interface DeserializeEmptyStringAsNullClientOptionalParams extends ClientOptions {
+    endpointParam?: string;
 }
 
 export declare interface GetOptionalParams extends OperationOptions {

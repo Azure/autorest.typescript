@@ -12,7 +12,7 @@ declare interface Blob_2 {
 }
 export { Blob_2 as Blob }
 
-export declare interface BlobOperationsGetBlobOptionalParams extends OperationOptions {
+declare interface BlobOperationsGetBlobOptionalParams extends OperationOptions {
 }
 
 export declare interface BlobOperationsOperations {
@@ -29,6 +29,7 @@ export declare class MoveMethodParameterToClient {
 }
 
 export declare interface MoveMethodParameterToClientOptionalParams extends ClientOptions {
+    endpointParam?: string;
 }
 
 export { RestError }

@@ -16,18 +16,10 @@ import { RestError } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
 
 // @public
-export interface ActionGroupsGetOptionalParams extends OperationOptions {
-    // (undocumented)
-    expand?: string;
-}
-
-// @public
-export interface ActionGroupsListOptionalParams extends OperationOptions {
-}
-
-// @public
 export interface ActionGroupsOperations {
+    // Warning: (ae-forgotten-export) The symbol "ActionGroupsGetOptionalParams" needs to be exported by the entry point index.d.ts
     get: (resourceGroupName: string, actionGroupName: string, options?: ActionGroupsGetOptionalParams) => Promise<ComputeActionGroup>;
+    // Warning: (ae-forgotten-export) The symbol "ActionGroupsListOptionalParams" needs to be exported by the entry point index.d.ts
     list: (options?: ActionGroupsListOptionalParams) => PagedAsyncIterableIterator<ComputeDiskActionGroup>;
 }
 
@@ -99,17 +91,10 @@ export interface DiskAccess extends TrackedResource {
 }
 
 // @public
-export interface DiskAccessesCreateOrUpdateOptionalParams extends OperationOptions {
-    updateIntervalInMs?: number;
-}
-
-// @public
-export interface DiskAccessesGetOptionalParams extends OperationOptions {
-}
-
-// @public
 export interface DiskAccessesOperations {
+    // Warning: (ae-forgotten-export) The symbol "DiskAccessesCreateOrUpdateOptionalParams" needs to be exported by the entry point index.d.ts
     createOrUpdate: (resourceGroupName: string, diskAccessName: string, resource: DiskAccess, options?: DiskAccessesCreateOrUpdateOptionalParams) => PollerLike<OperationState<DiskAccess>, DiskAccess>;
+    // Warning: (ae-forgotten-export) The symbol "DiskAccessesGetOptionalParams" needs to be exported by the entry point index.d.ts
     get: (resourceGroupName: string, diskAccessName: string, options?: DiskAccessesGetOptionalParams) => Promise<DiskAccess>;
 }
 
@@ -127,17 +112,10 @@ export interface DiskProperties {
 }
 
 // @public
-export interface DisksCreateOrUpdateOptionalParams extends OperationOptions {
-    updateIntervalInMs?: number;
-}
-
-// @public
-export interface DisksGetOptionalParams extends OperationOptions {
-}
-
-// @public
 export interface DisksOperations {
+    // Warning: (ae-forgotten-export) The symbol "DisksCreateOrUpdateOptionalParams" needs to be exported by the entry point index.d.ts
     createOrUpdate: (resourceGroupName: string, diskName: string, resource: Disk, options?: DisksCreateOrUpdateOptionalParams) => PollerLike<OperationState<Disk>, Disk>;
+    // Warning: (ae-forgotten-export) The symbol "DisksGetOptionalParams" needs to be exported by the entry point index.d.ts
     get: (resourceGroupName: string, diskName: string, options?: DisksGetOptionalParams) => Promise<Disk>;
 }
 
@@ -260,16 +238,10 @@ export interface RestorePointCollectionProperties {
 }
 
 // @public
-export interface RestorePointCollectionsCreateOrUpdateOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface RestorePointCollectionsGetOptionalParams extends OperationOptions {
-}
-
-// @public
 export interface RestorePointCollectionsOperations {
+    // Warning: (ae-forgotten-export) The symbol "RestorePointCollectionsCreateOrUpdateOptionalParams" needs to be exported by the entry point index.d.ts
     createOrUpdate: (resourceGroupName: string, restorePointCollectionName: string, resource: RestorePointCollection, options?: RestorePointCollectionsCreateOrUpdateOptionalParams) => Promise<RestorePointCollection>;
+    // Warning: (ae-forgotten-export) The symbol "RestorePointCollectionsGetOptionalParams" needs to be exported by the entry point index.d.ts
     get: (resourceGroupName: string, restorePointCollectionName: string, options?: RestorePointCollectionsGetOptionalParams) => Promise<RestorePointCollection>;
 }
 
@@ -328,33 +300,18 @@ export interface VirtualMachineScaleSetExtensionProperties {
 }
 
 // @public
-export interface VirtualMachineScaleSetExtensionsCreateOrUpdateOptionalParams extends OperationOptions {
-    updateIntervalInMs?: number;
-}
-
-// @public
-export interface VirtualMachineScaleSetExtensionsGetOptionalParams extends OperationOptions {
-    expand?: string;
-}
-
-// @public
 export interface VirtualMachineScaleSetExtensionsOperations {
+    // Warning: (ae-forgotten-export) The symbol "VirtualMachineScaleSetExtensionsCreateOrUpdateOptionalParams" needs to be exported by the entry point index.d.ts
     createOrUpdate: (resourceGroupName: string, vmssExtensionName: string, resource: VirtualMachineScaleSetExtension, options?: VirtualMachineScaleSetExtensionsCreateOrUpdateOptionalParams) => PollerLike<OperationState<VirtualMachineScaleSetExtension>, VirtualMachineScaleSetExtension>;
+    // Warning: (ae-forgotten-export) The symbol "VirtualMachineScaleSetExtensionsGetOptionalParams" needs to be exported by the entry point index.d.ts
     get: (resourceGroupName: string, vmssExtensionName: string, options?: VirtualMachineScaleSetExtensionsGetOptionalParams) => Promise<VirtualMachineScaleSetExtension>;
 }
 
 // @public
-export interface VirtualMachinesCreateOrUpdateOptionalParams extends OperationOptions {
-    updateIntervalInMs?: number;
-}
-
-// @public
-export interface VirtualMachinesGetOptionalParams extends OperationOptions {
-}
-
-// @public
 export interface VirtualMachinesOperations {
+    // Warning: (ae-forgotten-export) The symbol "VirtualMachinesCreateOrUpdateOptionalParams" needs to be exported by the entry point index.d.ts
     createOrUpdate: (resourceGroupName: string, vmName: string, resource: VirtualMachine, options?: VirtualMachinesCreateOrUpdateOptionalParams) => PollerLike<OperationState<VirtualMachine>, VirtualMachine>;
+    // Warning: (ae-forgotten-export) The symbol "VirtualMachinesGetOptionalParams" needs to be exported by the entry point index.d.ts
     get: (resourceGroupName: string, vmName: string, options?: VirtualMachinesGetOptionalParams) => Promise<VirtualMachine>;
 }
 

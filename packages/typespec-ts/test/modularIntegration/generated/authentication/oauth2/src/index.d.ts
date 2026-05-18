@@ -19,6 +19,7 @@ export declare class OAuth2Client {
 }
 
 export declare interface OAuth2ClientOptionalParams extends ClientOptions {
+    endpointParam?: string;
 }
 
 export declare interface ValidOptionalParams extends OperationOptions {

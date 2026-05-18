@@ -23,11 +23,9 @@ export interface BA {
 }
 
 // @public
-export interface BCOp1OptionalParams extends OperationOptions {
-}
-
-// @public
 export interface BCOperations {
+    // Warning: (ae-forgotten-export) The symbol "BCOp1OptionalParams" needs to be exported by the entry point index.d.ts
+    //
     // (undocumented)
     op1: (body: BA, options?: BCOp1OptionalParams) => Promise<void>;
 }
@@ -39,11 +37,9 @@ export interface BEA {
 }
 
 // @public
-export interface BECOp1OptionalParams extends OperationOptions {
-}
-
-// @public
 export interface BECOperations {
+    // Warning: (ae-forgotten-export) The symbol "BECOp1OptionalParams" needs to be exported by the entry point index.d.ts
+    //
     // (undocumented)
     op1: (body: BEA, options?: BECOp1OptionalParams) => Promise<void>;
 }
@@ -55,25 +51,21 @@ export interface BEOperations {
 }
 
 // @public
-export interface BOp1OptionalParams extends OperationOptions {
-}
-
-// @public
 export interface BOperations {
     // (undocumented)
     c: BCOperations;
     // (undocumented)
     e: BEOperations;
+    // Warning: (ae-forgotten-export) The symbol "BOp1OptionalParams" needs to be exported by the entry point index.d.ts
+    //
     // (undocumented)
     op1: (body: BA, options?: BOp1OptionalParams) => Promise<void>;
 }
 
 // @public
-export interface DOp1OptionalParams extends OperationOptions {
-}
-
-// @public
 export interface DOperations {
+    // Warning: (ae-forgotten-export) The symbol "DOp1OptionalParams" needs to be exported by the entry point index.d.ts
+    //
     // (undocumented)
     op1: (body: A, options?: DOp1OptionalParams) => Promise<void>;
 }
@@ -143,18 +135,14 @@ export interface YOperations {
 
 // @public
 export interface YTestOperationsOperations {
+    // Warning: (ae-forgotten-export) The symbol "YTestOperationsTestDataverseOptionalParams" needs to be exported by the entry point index.d.ts
+    //
     // (undocumented)
     testDataverse: (options?: YTestOperationsTestDataverseOptionalParams) => Promise<YDataverseDataverseSourceConnectorProperties>;
+    // Warning: (ae-forgotten-export) The symbol "YTestOperationsTestDataverseV2OptionalParams" needs to be exported by the entry point index.d.ts
+    //
     // (undocumented)
     testDataverseV2: (options?: YTestOperationsTestDataverseV2OptionalParams) => Promise<YDataverseV2DataverseSourceConnectorV2Properties>;
-}
-
-// @public
-export interface YTestOperationsTestDataverseOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface YTestOperationsTestDataverseV2OptionalParams extends OperationOptions {
 }
 
 // (No @packageDocumentation comment for this package)

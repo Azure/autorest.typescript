@@ -73,7 +73,6 @@ export async function _renewCloudEventLocksDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return renewCloudEventLocksResultDeserializer(result.body);
 }
 
@@ -132,7 +131,6 @@ export async function _rejectCloudEventsDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return rejectResultDeserializer(result.body);
 }
 
@@ -192,7 +190,6 @@ export async function _releaseCloudEventsDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return releaseResultDeserializer(result.body);
 }
 
@@ -251,7 +248,6 @@ export async function _acknowledgeCloudEventsDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return acknowledgeResultDeserializer(result.body);
 }
 
@@ -307,7 +303,6 @@ export async function _receiveCloudEventsDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return receiveResultDeserializer(result.body);
 }
 
@@ -355,7 +350,6 @@ export async function _publishCloudEventsDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return publishResultDeserializer(result.body);
 }
 
@@ -403,7 +397,6 @@ export async function _publishCloudEventDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return publishResultDeserializer(result.body);
 }
 

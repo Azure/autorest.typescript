@@ -15,6 +15,7 @@ export declare class ConditionalRequestClient {
 }
 
 export declare interface ConditionalRequestClientOptionalParams extends ClientOptions {
+    endpointParam?: string;
 }
 
 export declare interface HeadIfModifiedSinceOptionalParams extends OperationOptions {

@@ -74,7 +74,6 @@ export async function _analyzeWidgetDeserialize(
 
     throw error;
   }
-
   return analyzeResultDeserializer(result.body);
 }
 
@@ -113,7 +112,6 @@ export async function _deleteWidgetDeserialize(result: PathUncheckedResponse): P
 
     throw error;
   }
-
   return;
 }
 
@@ -159,7 +157,6 @@ export async function _updateWidgetDeserialize(result: PathUncheckedResponse): P
 
     throw error;
   }
-
   return widgetDeserializer(result.body);
 }
 
@@ -207,7 +204,6 @@ export async function _createOrReplaceDeserialize(result: PathUncheckedResponse)
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return sapUserDeserializer(result.body);
 }
 
@@ -251,7 +247,6 @@ export async function _createWidgetDeserialize(result: PathUncheckedResponse): P
 
     throw error;
   }
-
   return widgetDeserializer(result.body);
 }
 
@@ -301,7 +296,6 @@ export async function _getWidgetDeserialize(result: PathUncheckedResponse): Prom
 
     throw error;
   }
-
   return widgetDeserializer(result.body);
 }
 
@@ -349,7 +343,6 @@ export async function _queryWidgetsPagesDeserialize(
 
     throw error;
   }
-
   return _listWidgetsPagesResultsDeserializer(result.body);
 }
 
@@ -402,7 +395,6 @@ export async function _listWidgetsPagesDeserialize(
 
     throw error;
   }
-
   return _listWidgetsPagesResultsDeserializer(result.body);
 }
 
@@ -476,7 +468,6 @@ export async function _sapListWidgetsDeserialize(result: PathUncheckedResponse):
 
     throw error;
   }
-
   return widgetArrayDeserializer(result.body);
 }
 

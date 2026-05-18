@@ -39,7 +39,6 @@ export async function _$continueDeserialize(result: PathUncheckedResponse): Prom
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return;
 }
 
@@ -86,7 +85,6 @@ export async function _getBudgetsDeserialize(result: PathUncheckedResponse): Pro
 
     throw error;
   }
-
   return widgetArrayDeserializer(result.body);
 }
 
@@ -130,7 +128,6 @@ export async function _createOrReplaceDeserialize(result: PathUncheckedResponse)
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return sapUserDeserializer(result.body);
 }
 

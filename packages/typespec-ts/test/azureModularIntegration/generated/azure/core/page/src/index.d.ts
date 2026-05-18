@@ -54,6 +54,7 @@ export declare class PageClient {
 }
 
 export declare interface PageClientOptionalParams extends ClientOptions {
+    endpointParam?: string;
     apiVersion?: string;
 }
 

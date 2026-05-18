@@ -83,7 +83,6 @@ export async function _stopTestRunDeserialize(result: PathUncheckedResponse): Pr
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return testRunDeserializer(result.body);
 }
 
@@ -136,7 +135,6 @@ export async function _listTestRunsDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return _pagedTestRunDeserializer(result.body);
 }
 
@@ -196,7 +194,6 @@ export async function _listMetricsDeserialize(result: PathUncheckedResponse): Pr
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return _metricsDeserializer(result.body);
 }
 
@@ -252,7 +249,6 @@ export async function _listMetricNamespacesDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return metricNamespaceCollectionDeserializer(result.body);
 }
 
@@ -298,7 +294,6 @@ export async function _listMetricDefinitionsDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return metricDefinitionCollectionDeserializer(result.body);
 }
 
@@ -352,7 +347,6 @@ export async function _listMetricDimensionValuesDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return dimensionValueListDeserializer(result.body);
 }
 
@@ -410,7 +404,6 @@ export async function _getTestRunFileDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return testRunFileInfoDeserializer(result.body);
 }
 
@@ -453,7 +446,6 @@ export async function _getTestRunDeserialize(result: PathUncheckedResponse): Pro
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return testRunDeserializer(result.body);
 }
 
@@ -497,7 +489,6 @@ export async function _getServerMetricsConfigDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return testRunServerMetricConfigDeserializer(result.body);
 }
 
@@ -541,7 +532,6 @@ export async function _getAppComponentsDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return testRunAppComponentsDeserializer(result.body);
 }
 
@@ -581,7 +571,6 @@ export async function _deleteTestRunDeserialize(result: PathUncheckedResponse): 
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return;
 }
 
@@ -628,7 +617,6 @@ export async function _createOrUpdateServerMetricsConfigDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return testRunServerMetricConfigDeserializer(result.body);
 }
 
@@ -676,7 +664,6 @@ export async function _createOrUpdateAppComponentsDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return testRunAppComponentsDeserializer(result.body);
 }
 
@@ -725,7 +712,6 @@ export async function _createOrUpdateTestRunDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return testRunDeserializer(result.body);
 }
 

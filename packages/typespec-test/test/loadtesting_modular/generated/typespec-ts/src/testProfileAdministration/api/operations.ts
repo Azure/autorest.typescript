@@ -64,7 +64,6 @@ export async function _listTestProfilesDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return _pagedTestProfileDeserializer(result.body);
 }
 
@@ -116,7 +115,6 @@ export async function _getTestProfileDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return testProfileDeserializer(result.body);
 }
 
@@ -153,7 +151,6 @@ export async function _deleteTestProfileDeserialize(result: PathUncheckedRespons
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return;
 }
 
@@ -200,7 +197,6 @@ export async function _createOrUpdateTestProfileDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return testProfileDeserializer(result.body);
 }
 

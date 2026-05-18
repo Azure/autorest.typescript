@@ -19,6 +19,7 @@ export declare class NotDiscriminatedClient {
 }
 
 export declare interface NotDiscriminatedClientOptionalParams extends ClientOptions {
+    endpointParam?: string;
 }
 
 export declare interface Pet {

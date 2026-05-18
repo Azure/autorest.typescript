@@ -46,7 +46,7 @@ export declare interface ComplexPartsRequest {
     }>;
 }
 
-export declare type FileContents = string | NodeReadableStream | ReadableStream<Uint8Array> | Uint8Array | Blob;
+declare type FileContents = string | NodeReadableStream | ReadableStream<Uint8Array> | Uint8Array | Blob;
 
 export declare interface FileWithHttpPartOptionalContentTypeRequest {
     profileImage: File | {
@@ -72,19 +72,19 @@ export declare interface FileWithHttpPartSpecificContentTypeRequest {
     };
 }
 
-export declare interface FormDataAnonymousModelOptionalParams extends OperationOptions {
+declare interface FormDataAnonymousModelOptionalParams extends OperationOptions {
 }
 
-export declare interface FormDataBasicOptionalParams extends OperationOptions {
+declare interface FormDataBasicOptionalParams extends OperationOptions {
 }
 
-export declare interface FormDataBinaryArrayPartsOptionalParams extends OperationOptions {
+declare interface FormDataBinaryArrayPartsOptionalParams extends OperationOptions {
 }
 
-export declare interface FormDataCheckFileNameAndContentTypeOptionalParams extends OperationOptions {
+declare interface FormDataCheckFileNameAndContentTypeOptionalParams extends OperationOptions {
 }
 
-export declare interface FormDataFileArrayAndBasicOptionalParams extends OperationOptions {
+declare interface FormDataFileArrayAndBasicOptionalParams extends OperationOptions {
 }
 
 export declare interface FormDataFileOperations {
@@ -111,16 +111,16 @@ export declare interface FormDataFileOperations {
     }, options?: FormDataFileUploadFileSpecificContentTypeOptionalParams) => Promise<void>;
 }
 
-export declare interface FormDataFileUploadFileArrayOptionalParams extends OperationOptions {
+declare interface FormDataFileUploadFileArrayOptionalParams extends OperationOptions {
 }
 
-export declare interface FormDataFileUploadFileRequiredFilenameOptionalParams extends OperationOptions {
+declare interface FormDataFileUploadFileRequiredFilenameOptionalParams extends OperationOptions {
 }
 
-export declare interface FormDataFileUploadFileSpecificContentTypeOptionalParams extends OperationOptions {
+declare interface FormDataFileUploadFileSpecificContentTypeOptionalParams extends OperationOptions {
 }
 
-export declare interface FormDataHttpPartsContentTypeImageJpegContentTypeOptionalParams extends OperationOptions {
+declare interface FormDataHttpPartsContentTypeImageJpegContentTypeOptionalParams extends OperationOptions {
 }
 
 export declare interface FormDataHttpPartsContentTypeOperations {
@@ -129,16 +129,16 @@ export declare interface FormDataHttpPartsContentTypeOperations {
     imageJpegContentType: (body: FileWithHttpPartSpecificContentTypeRequest, options?: FormDataHttpPartsContentTypeImageJpegContentTypeOptionalParams) => Promise<void>;
 }
 
-export declare interface FormDataHttpPartsContentTypeOptionalContentTypeOptionalParams extends OperationOptions {
+declare interface FormDataHttpPartsContentTypeOptionalContentTypeOptionalParams extends OperationOptions {
 }
 
-export declare interface FormDataHttpPartsContentTypeRequiredContentTypeOptionalParams extends OperationOptions {
+declare interface FormDataHttpPartsContentTypeRequiredContentTypeOptionalParams extends OperationOptions {
 }
 
-export declare interface FormDataHttpPartsJsonArrayAndFileArrayOptionalParams extends OperationOptions {
+declare interface FormDataHttpPartsJsonArrayAndFileArrayOptionalParams extends OperationOptions {
 }
 
-export declare interface FormDataHttpPartsNonStringFloatOptionalParams extends OperationOptions {
+declare interface FormDataHttpPartsNonStringFloatOptionalParams extends OperationOptions {
 }
 
 export declare interface FormDataHttpPartsNonStringOperations {
@@ -148,18 +148,20 @@ export declare interface FormDataHttpPartsNonStringOperations {
 }
 
 export declare interface FormDataHttpPartsOperations {
-    jsonArrayAndFileArray: (body: ComplexHttpPartsModelRequest, options?: FormDataHttpPartsJsonArrayAndFileArrayOptionalParams) => Promise<void>;
-    nonString: FormDataHttpPartsNonStringOperations;
     contentType: FormDataHttpPartsContentTypeOperations;
+    nonString: FormDataHttpPartsNonStringOperations;
+    jsonArrayAndFileArray: (body: ComplexHttpPartsModelRequest, options?: FormDataHttpPartsJsonArrayAndFileArrayOptionalParams) => Promise<void>;
 }
 
-export declare interface FormDataJsonPartOptionalParams extends OperationOptions {
+declare interface FormDataJsonPartOptionalParams extends OperationOptions {
 }
 
-export declare interface FormDataMultiBinaryPartsOptionalParams extends OperationOptions {
+declare interface FormDataMultiBinaryPartsOptionalParams extends OperationOptions {
 }
 
 export declare interface FormDataOperations {
+    file: FormDataFileOperations;
+    httpParts: FormDataHttpPartsOperations;
     anonymousModel: (body: {
         profileImage: FileContents | {
             contents: FileContents;
@@ -175,14 +177,12 @@ export declare interface FormDataOperations {
     optionalParts: (body: MultiPartOptionalRequest, options?: FormDataOptionalPartsOptionalParams) => Promise<void>;
     withWireName: (body: MultiPartRequestWithWireName, options?: FormDataWithWireNameOptionalParams) => Promise<void>;
     basic: (body: MultiPartRequest, options?: FormDataBasicOptionalParams) => Promise<void>;
-    file: FormDataFileOperations;
-    httpParts: FormDataHttpPartsOperations;
 }
 
-export declare interface FormDataOptionalPartsOptionalParams extends OperationOptions {
+declare interface FormDataOptionalPartsOptionalParams extends OperationOptions {
 }
 
-export declare interface FormDataWithWireNameOptionalParams extends OperationOptions {
+declare interface FormDataWithWireNameOptionalParams extends OperationOptions {
 }
 
 export declare interface JsonPartRequest {
@@ -215,6 +215,7 @@ export declare class MultiPartClient {
 }
 
 export declare interface MultiPartClientOptionalParams extends ClientOptions {
+    endpointParam?: string;
 }
 
 export declare interface MultiPartOptionalRequest {
@@ -244,6 +245,6 @@ export declare interface MultiPartRequestWithWireName {
     };
 }
 
-export declare type NodeReadableStream = NodeJS.ReadableStream;
+declare type NodeReadableStream = NodeJS.ReadableStream;
 
 export { }

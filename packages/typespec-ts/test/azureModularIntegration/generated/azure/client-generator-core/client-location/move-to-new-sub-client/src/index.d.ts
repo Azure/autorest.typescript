@@ -4,7 +4,7 @@ import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 import { RestError } from '@azure/core-rest-pipeline';
 
-export declare interface ArchiveOperationsArchiveProductOptionalParams extends OperationOptions {
+declare interface ArchiveOperationsArchiveProductOptionalParams extends OperationOptions {
 }
 
 export declare interface ArchiveOperationsOperations {
@@ -22,9 +22,10 @@ export declare class MoveToNewSubClient {
 }
 
 export declare interface MoveToNewSubClientOptionalParams extends ClientOptions {
+    endpointParam?: string;
 }
 
-export declare interface ProductOperationsListProductsOptionalParams extends OperationOptions {
+declare interface ProductOperationsListProductsOptionalParams extends OperationOptions {
 }
 
 export declare interface ProductOperationsOperations {

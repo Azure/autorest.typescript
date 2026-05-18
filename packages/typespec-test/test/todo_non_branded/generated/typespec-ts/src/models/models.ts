@@ -256,6 +256,11 @@ export function _toDoItemMultipartRequestItemSerializer(item: _ToDoItemMultipart
   };
 }
 
+/** Alias for _TodoItemPatchAssignedTo */
+export type _TodoItemPatchAssignedTo = number | null;
+/** Alias for _TodoItemPatchDescription */
+export type _TodoItemPatchDescription = string | null;
+
 /** model interface FileAttachmentMultipartRequest */
 export interface FileAttachmentMultipartRequest {
   contents: FileContents | { contents: FileContents; contentType?: string; filename?: string };

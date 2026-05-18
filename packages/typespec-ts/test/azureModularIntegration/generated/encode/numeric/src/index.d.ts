@@ -14,6 +14,7 @@ export declare class NumericClient {
 }
 
 export declare interface NumericClientOptionalParams extends ClientOptions {
+    endpointParam?: string;
 }
 
 export declare interface PropertyOperations {
@@ -22,13 +23,13 @@ export declare interface PropertyOperations {
     safeintAsString: (value: SafeintAsStringProperty, options?: PropertySafeintAsStringOptionalParams) => Promise<SafeintAsStringProperty>;
 }
 
-export declare interface PropertySafeintAsStringOptionalParams extends OperationOptions {
+declare interface PropertySafeintAsStringOptionalParams extends OperationOptions {
 }
 
-export declare interface PropertyUint32AsStringOptionalOptionalParams extends OperationOptions {
+declare interface PropertyUint32AsStringOptionalOptionalParams extends OperationOptions {
 }
 
-export declare interface PropertyUint8AsStringOptionalParams extends OperationOptions {
+declare interface PropertyUint8AsStringOptionalParams extends OperationOptions {
 }
 
 export { RestError }

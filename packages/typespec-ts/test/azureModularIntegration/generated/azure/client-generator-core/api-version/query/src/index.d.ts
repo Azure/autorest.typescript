@@ -21,6 +21,7 @@ export declare class QueryClient {
 }
 
 export declare interface QueryClientOptionalParams extends ClientOptions {
+    endpointParam?: string;
     version?: string;
 }
 

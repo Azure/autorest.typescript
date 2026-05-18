@@ -23,9 +23,10 @@ export declare class ArrayClient {
 }
 
 export declare interface ArrayClientOptionalParams extends ClientOptions {
+    endpointParam?: string;
 }
 
-export declare interface BooleanValueGetOptionalParams extends OperationOptions {
+declare interface BooleanValueGetOptionalParams extends OperationOptions {
 }
 
 export declare interface BooleanValueOperations {
@@ -33,10 +34,10 @@ export declare interface BooleanValueOperations {
     get: (options?: BooleanValueGetOptionalParams) => Promise<boolean[]>;
 }
 
-export declare interface BooleanValuePutOptionalParams extends OperationOptions {
+declare interface BooleanValuePutOptionalParams extends OperationOptions {
 }
 
-export declare interface DatetimeValueGetOptionalParams extends OperationOptions {
+declare interface DatetimeValueGetOptionalParams extends OperationOptions {
 }
 
 export declare interface DatetimeValueOperations {
@@ -44,10 +45,10 @@ export declare interface DatetimeValueOperations {
     get: (options?: DatetimeValueGetOptionalParams) => Promise<Date[]>;
 }
 
-export declare interface DatetimeValuePutOptionalParams extends OperationOptions {
+declare interface DatetimeValuePutOptionalParams extends OperationOptions {
 }
 
-export declare interface DurationValueGetOptionalParams extends OperationOptions {
+declare interface DurationValueGetOptionalParams extends OperationOptions {
 }
 
 export declare interface DurationValueOperations {
@@ -55,10 +56,10 @@ export declare interface DurationValueOperations {
     get: (options?: DurationValueGetOptionalParams) => Promise<string[]>;
 }
 
-export declare interface DurationValuePutOptionalParams extends OperationOptions {
+declare interface DurationValuePutOptionalParams extends OperationOptions {
 }
 
-export declare interface Float32ValueGetOptionalParams extends OperationOptions {
+declare interface Float32ValueGetOptionalParams extends OperationOptions {
 }
 
 export declare interface Float32ValueOperations {
@@ -66,7 +67,7 @@ export declare interface Float32ValueOperations {
     get: (options?: Float32ValueGetOptionalParams) => Promise<number[]>;
 }
 
-export declare interface Float32ValuePutOptionalParams extends OperationOptions {
+declare interface Float32ValuePutOptionalParams extends OperationOptions {
 }
 
 export declare interface InnerModel {
@@ -74,7 +75,7 @@ export declare interface InnerModel {
     children?: InnerModel[];
 }
 
-export declare interface Int32ValueGetOptionalParams extends OperationOptions {
+declare interface Int32ValueGetOptionalParams extends OperationOptions {
 }
 
 export declare interface Int32ValueOperations {
@@ -82,10 +83,10 @@ export declare interface Int32ValueOperations {
     get: (options?: Int32ValueGetOptionalParams) => Promise<number[]>;
 }
 
-export declare interface Int32ValuePutOptionalParams extends OperationOptions {
+declare interface Int32ValuePutOptionalParams extends OperationOptions {
 }
 
-export declare interface Int64ValueGetOptionalParams extends OperationOptions {
+declare interface Int64ValueGetOptionalParams extends OperationOptions {
 }
 
 export declare interface Int64ValueOperations {
@@ -93,10 +94,10 @@ export declare interface Int64ValueOperations {
     get: (options?: Int64ValueGetOptionalParams) => Promise<number[]>;
 }
 
-export declare interface Int64ValuePutOptionalParams extends OperationOptions {
+declare interface Int64ValuePutOptionalParams extends OperationOptions {
 }
 
-export declare interface ModelValueGetOptionalParams extends OperationOptions {
+declare interface ModelValueGetOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelValueOperations {
@@ -104,10 +105,10 @@ export declare interface ModelValueOperations {
     get: (options?: ModelValueGetOptionalParams) => Promise<InnerModel[]>;
 }
 
-export declare interface ModelValuePutOptionalParams extends OperationOptions {
+declare interface ModelValuePutOptionalParams extends OperationOptions {
 }
 
-export declare interface NullableBooleanValueGetOptionalParams extends OperationOptions {
+declare interface NullableBooleanValueGetOptionalParams extends OperationOptions {
 }
 
 export declare interface NullableBooleanValueOperations {
@@ -115,10 +116,10 @@ export declare interface NullableBooleanValueOperations {
     get: (options?: NullableBooleanValueGetOptionalParams) => Promise<(boolean | null)[]>;
 }
 
-export declare interface NullableBooleanValuePutOptionalParams extends OperationOptions {
+declare interface NullableBooleanValuePutOptionalParams extends OperationOptions {
 }
 
-export declare interface NullableFloatValueGetOptionalParams extends OperationOptions {
+declare interface NullableFloatValueGetOptionalParams extends OperationOptions {
 }
 
 export declare interface NullableFloatValueOperations {
@@ -126,10 +127,10 @@ export declare interface NullableFloatValueOperations {
     get: (options?: NullableFloatValueGetOptionalParams) => Promise<(number | null)[]>;
 }
 
-export declare interface NullableFloatValuePutOptionalParams extends OperationOptions {
+declare interface NullableFloatValuePutOptionalParams extends OperationOptions {
 }
 
-export declare interface NullableInt32ValueGetOptionalParams extends OperationOptions {
+declare interface NullableInt32ValueGetOptionalParams extends OperationOptions {
 }
 
 export declare interface NullableInt32ValueOperations {
@@ -137,10 +138,10 @@ export declare interface NullableInt32ValueOperations {
     get: (options?: NullableInt32ValueGetOptionalParams) => Promise<(number | null)[]>;
 }
 
-export declare interface NullableInt32ValuePutOptionalParams extends OperationOptions {
+declare interface NullableInt32ValuePutOptionalParams extends OperationOptions {
 }
 
-export declare interface NullableModelValueGetOptionalParams extends OperationOptions {
+declare interface NullableModelValueGetOptionalParams extends OperationOptions {
 }
 
 export declare interface NullableModelValueOperations {
@@ -148,10 +149,10 @@ export declare interface NullableModelValueOperations {
     get: (options?: NullableModelValueGetOptionalParams) => Promise<(InnerModel | null)[]>;
 }
 
-export declare interface NullableModelValuePutOptionalParams extends OperationOptions {
+declare interface NullableModelValuePutOptionalParams extends OperationOptions {
 }
 
-export declare interface NullableStringValueGetOptionalParams extends OperationOptions {
+declare interface NullableStringValueGetOptionalParams extends OperationOptions {
 }
 
 export declare interface NullableStringValueOperations {
@@ -159,10 +160,10 @@ export declare interface NullableStringValueOperations {
     get: (options?: NullableStringValueGetOptionalParams) => Promise<(string | null)[]>;
 }
 
-export declare interface NullableStringValuePutOptionalParams extends OperationOptions {
+declare interface NullableStringValuePutOptionalParams extends OperationOptions {
 }
 
-export declare interface StringValueGetOptionalParams extends OperationOptions {
+declare interface StringValueGetOptionalParams extends OperationOptions {
 }
 
 export declare interface StringValueOperations {
@@ -170,10 +171,10 @@ export declare interface StringValueOperations {
     get: (options?: StringValueGetOptionalParams) => Promise<string[]>;
 }
 
-export declare interface StringValuePutOptionalParams extends OperationOptions {
+declare interface StringValuePutOptionalParams extends OperationOptions {
 }
 
-export declare interface UnknownValueGetOptionalParams extends OperationOptions {
+declare interface UnknownValueGetOptionalParams extends OperationOptions {
 }
 
 export declare interface UnknownValueOperations {
@@ -181,7 +182,7 @@ export declare interface UnknownValueOperations {
     get: (options?: UnknownValueGetOptionalParams) => Promise<any[]>;
 }
 
-export declare interface UnknownValuePutOptionalParams extends OperationOptions {
+declare interface UnknownValuePutOptionalParams extends OperationOptions {
 }
 
 export { }

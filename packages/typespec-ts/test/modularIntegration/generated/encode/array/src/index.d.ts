@@ -10,6 +10,7 @@ export declare class ArrayClient {
 }
 
 export declare interface ArrayClientOptionalParams extends ClientOptions {
+    endpointParam?: string;
 }
 
 export declare type Colors = "blue" | "red" | "green";
@@ -52,34 +53,34 @@ export declare interface PipeDelimitedExtensibleEnumArrayProperty {
     value: ColorsExtensibleEnum[];
 }
 
-export declare interface PropertyCommaDelimitedOptionalParams extends OperationOptions {
+declare interface PropertyCommaDelimitedOptionalParams extends OperationOptions {
 }
 
-export declare interface PropertyEnumCommaDelimitedOptionalParams extends OperationOptions {
+declare interface PropertyEnumCommaDelimitedOptionalParams extends OperationOptions {
 }
 
-export declare interface PropertyEnumNewlineDelimitedOptionalParams extends OperationOptions {
+declare interface PropertyEnumNewlineDelimitedOptionalParams extends OperationOptions {
 }
 
-export declare interface PropertyEnumPipeDelimitedOptionalParams extends OperationOptions {
+declare interface PropertyEnumPipeDelimitedOptionalParams extends OperationOptions {
 }
 
-export declare interface PropertyEnumSpaceDelimitedOptionalParams extends OperationOptions {
+declare interface PropertyEnumSpaceDelimitedOptionalParams extends OperationOptions {
 }
 
-export declare interface PropertyExtensibleEnumCommaDelimitedOptionalParams extends OperationOptions {
+declare interface PropertyExtensibleEnumCommaDelimitedOptionalParams extends OperationOptions {
 }
 
-export declare interface PropertyExtensibleEnumNewlineDelimitedOptionalParams extends OperationOptions {
+declare interface PropertyExtensibleEnumNewlineDelimitedOptionalParams extends OperationOptions {
 }
 
-export declare interface PropertyExtensibleEnumPipeDelimitedOptionalParams extends OperationOptions {
+declare interface PropertyExtensibleEnumPipeDelimitedOptionalParams extends OperationOptions {
 }
 
-export declare interface PropertyExtensibleEnumSpaceDelimitedOptionalParams extends OperationOptions {
+declare interface PropertyExtensibleEnumSpaceDelimitedOptionalParams extends OperationOptions {
 }
 
-export declare interface PropertyNewlineDelimitedOptionalParams extends OperationOptions {
+declare interface PropertyNewlineDelimitedOptionalParams extends OperationOptions {
 }
 
 export declare interface PropertyOperations {
@@ -97,10 +98,10 @@ export declare interface PropertyOperations {
     commaDelimited: (body: CommaDelimitedArrayProperty, options?: PropertyCommaDelimitedOptionalParams) => Promise<CommaDelimitedArrayProperty>;
 }
 
-export declare interface PropertyPipeDelimitedOptionalParams extends OperationOptions {
+declare interface PropertyPipeDelimitedOptionalParams extends OperationOptions {
 }
 
-export declare interface PropertySpaceDelimitedOptionalParams extends OperationOptions {
+declare interface PropertySpaceDelimitedOptionalParams extends OperationOptions {
 }
 
 export declare interface SpaceDelimitedArrayProperty {

@@ -94,7 +94,6 @@ export async function _listTextBlocklistItemsDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return _pagedTextBlocklistItemDeserializer(result.body);
 }
 
@@ -145,7 +144,6 @@ export async function _getTextBlocklistItemDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return textBlocklistItemDeserializer(result.body);
 }
 
@@ -192,7 +190,6 @@ export async function _removeBlocklistItemsDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return;
 }
 
@@ -240,7 +237,6 @@ export async function _addOrUpdateBlocklistItemsDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return addOrUpdateTextBlocklistItemsResultDeserializer(result.body);
 }
 
@@ -283,7 +279,6 @@ export async function _listTextBlocklistsDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return _pagedTextBlocklistDeserializer(result.body);
 }
 
@@ -326,7 +321,6 @@ export async function _deleteTextBlocklistDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return;
 }
 
@@ -373,7 +367,6 @@ export async function _createOrUpdateTextBlocklistDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return textBlocklistDeserializer(result.body);
 }
 
@@ -418,7 +411,6 @@ export async function _getTextBlocklistDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return textBlocklistDeserializer(result.body);
 }
 
@@ -463,7 +455,6 @@ export async function _analyzeImageDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return analyzeImageResultDeserializer(result.body);
 }
 
@@ -508,7 +499,6 @@ export async function _detectTextProtectedMaterialDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return detectTextProtectedMaterialResultDeserializer(result.body);
 }
 
@@ -553,7 +543,6 @@ export async function _shieldPromptDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return shieldPromptResultDeserializer(result.body);
 }
 
@@ -598,7 +587,6 @@ export async function _analyzeTextDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return analyzeTextResultDeserializer(result.body);
 }
 

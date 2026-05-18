@@ -12,9 +12,10 @@ export declare class ClientDocClient {
 }
 
 export declare interface ClientDocClientOptionalParams extends ClientOptions {
+    endpointParam?: string;
 }
 
-export declare interface DocumentationHarvestOptionalParams extends OperationOptions {
+declare interface DocumentationHarvestOptionalParams extends OperationOptions {
 }
 
 export declare interface DocumentationOperations {

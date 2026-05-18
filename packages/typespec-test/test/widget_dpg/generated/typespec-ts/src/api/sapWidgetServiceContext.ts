@@ -9,7 +9,7 @@ import { KeyCredential, isKeyCredential } from "@azure/core-auth";
 export interface SAPWidgetServiceContext extends Client {
   /** The API version to use for this operation. */
   /** Known values of {@link KnownVersions} that the service accepts. */
-  apiVersion?: string;
+  apiVersion: string;
 }
 
 /** Optional parameters for the client. */

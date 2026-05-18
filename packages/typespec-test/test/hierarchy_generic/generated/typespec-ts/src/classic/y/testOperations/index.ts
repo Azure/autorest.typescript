@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { FooContext } from "../../../api/fooContext.js";
+import { FooContext } from "../../../api/index.js";
 import { testDataverseV2, testDataverse } from "../../../api/y/testOperations/operations.js";
 import {
   YTestOperationsTestDataverseV2OptionalParams,

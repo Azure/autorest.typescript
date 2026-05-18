@@ -30,7 +30,6 @@ export async function _op1Deserialize(result: PathUncheckedResponse): Promise<vo
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return;
 }
 

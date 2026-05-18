@@ -2,10 +2,10 @@ import { ClientOptions } from '@typespec/ts-http-runtime';
 import { OperationOptions } from '@typespec/ts-http-runtime';
 import { Pipeline } from '@typespec/ts-http-runtime';
 
-export declare interface BooleanLiteralGetAllOptionalParams extends OperationOptions {
+declare interface BooleanLiteralGetAllOptionalParams extends OperationOptions {
 }
 
-export declare interface BooleanLiteralGetDefaultOptionalParams extends OperationOptions {
+declare interface BooleanLiteralGetDefaultOptionalParams extends OperationOptions {
 }
 
 export declare interface BooleanLiteralOperations {
@@ -19,16 +19,16 @@ export declare interface BooleanLiteralProperty {
     property?: true;
 }
 
-export declare interface BooleanLiteralPutAllOptionalParams extends OperationOptions {
+declare interface BooleanLiteralPutAllOptionalParams extends OperationOptions {
 }
 
-export declare interface BooleanLiteralPutDefaultOptionalParams extends OperationOptions {
+declare interface BooleanLiteralPutDefaultOptionalParams extends OperationOptions {
 }
 
-export declare interface BytesGetAllOptionalParams extends OperationOptions {
+declare interface BytesGetAllOptionalParams extends OperationOptions {
 }
 
-export declare interface BytesGetDefaultOptionalParams extends OperationOptions {
+declare interface BytesGetDefaultOptionalParams extends OperationOptions {
 }
 
 export declare interface BytesOperations {
@@ -42,16 +42,16 @@ export declare interface BytesProperty {
     property?: Uint8Array;
 }
 
-export declare interface BytesPutAllOptionalParams extends OperationOptions {
+declare interface BytesPutAllOptionalParams extends OperationOptions {
 }
 
-export declare interface BytesPutDefaultOptionalParams extends OperationOptions {
+declare interface BytesPutDefaultOptionalParams extends OperationOptions {
 }
 
-export declare interface CollectionsByteGetAllOptionalParams extends OperationOptions {
+declare interface CollectionsByteGetAllOptionalParams extends OperationOptions {
 }
 
-export declare interface CollectionsByteGetDefaultOptionalParams extends OperationOptions {
+declare interface CollectionsByteGetDefaultOptionalParams extends OperationOptions {
 }
 
 export declare interface CollectionsByteOperations {
@@ -65,16 +65,16 @@ export declare interface CollectionsByteProperty {
     property?: Uint8Array[];
 }
 
-export declare interface CollectionsBytePutAllOptionalParams extends OperationOptions {
+declare interface CollectionsBytePutAllOptionalParams extends OperationOptions {
 }
 
-export declare interface CollectionsBytePutDefaultOptionalParams extends OperationOptions {
+declare interface CollectionsBytePutDefaultOptionalParams extends OperationOptions {
 }
 
-export declare interface CollectionsModelGetAllOptionalParams extends OperationOptions {
+declare interface CollectionsModelGetAllOptionalParams extends OperationOptions {
 }
 
-export declare interface CollectionsModelGetDefaultOptionalParams extends OperationOptions {
+declare interface CollectionsModelGetDefaultOptionalParams extends OperationOptions {
 }
 
 export declare interface CollectionsModelOperations {
@@ -88,16 +88,16 @@ export declare interface CollectionsModelProperty {
     property?: StringProperty[];
 }
 
-export declare interface CollectionsModelPutAllOptionalParams extends OperationOptions {
+declare interface CollectionsModelPutAllOptionalParams extends OperationOptions {
 }
 
-export declare interface CollectionsModelPutDefaultOptionalParams extends OperationOptions {
+declare interface CollectionsModelPutDefaultOptionalParams extends OperationOptions {
 }
 
-export declare interface DatetimeGetAllOptionalParams extends OperationOptions {
+declare interface DatetimeGetAllOptionalParams extends OperationOptions {
 }
 
-export declare interface DatetimeGetDefaultOptionalParams extends OperationOptions {
+declare interface DatetimeGetDefaultOptionalParams extends OperationOptions {
 }
 
 export declare interface DatetimeOperations {
@@ -111,16 +111,16 @@ export declare interface DatetimeProperty {
     property?: Date;
 }
 
-export declare interface DatetimePutAllOptionalParams extends OperationOptions {
+declare interface DatetimePutAllOptionalParams extends OperationOptions {
 }
 
-export declare interface DatetimePutDefaultOptionalParams extends OperationOptions {
+declare interface DatetimePutDefaultOptionalParams extends OperationOptions {
 }
 
-export declare interface DurationGetAllOptionalParams extends OperationOptions {
+declare interface DurationGetAllOptionalParams extends OperationOptions {
 }
 
-export declare interface DurationGetDefaultOptionalParams extends OperationOptions {
+declare interface DurationGetDefaultOptionalParams extends OperationOptions {
 }
 
 export declare interface DurationOperations {
@@ -134,16 +134,16 @@ export declare interface DurationProperty {
     property?: string;
 }
 
-export declare interface DurationPutAllOptionalParams extends OperationOptions {
+declare interface DurationPutAllOptionalParams extends OperationOptions {
 }
 
-export declare interface DurationPutDefaultOptionalParams extends OperationOptions {
+declare interface DurationPutDefaultOptionalParams extends OperationOptions {
 }
 
-export declare interface FloatLiteralGetAllOptionalParams extends OperationOptions {
+declare interface FloatLiteralGetAllOptionalParams extends OperationOptions {
 }
 
-export declare interface FloatLiteralGetDefaultOptionalParams extends OperationOptions {
+declare interface FloatLiteralGetDefaultOptionalParams extends OperationOptions {
 }
 
 export declare interface FloatLiteralOperations {
@@ -157,16 +157,16 @@ export declare interface FloatLiteralProperty {
     property?: 1.25;
 }
 
-export declare interface FloatLiteralPutAllOptionalParams extends OperationOptions {
+declare interface FloatLiteralPutAllOptionalParams extends OperationOptions {
 }
 
-export declare interface FloatLiteralPutDefaultOptionalParams extends OperationOptions {
+declare interface FloatLiteralPutDefaultOptionalParams extends OperationOptions {
 }
 
-export declare interface IntLiteralGetAllOptionalParams extends OperationOptions {
+declare interface IntLiteralGetAllOptionalParams extends OperationOptions {
 }
 
-export declare interface IntLiteralGetDefaultOptionalParams extends OperationOptions {
+declare interface IntLiteralGetDefaultOptionalParams extends OperationOptions {
 }
 
 export declare interface IntLiteralOperations {
@@ -180,10 +180,10 @@ export declare interface IntLiteralProperty {
     property?: 1;
 }
 
-export declare interface IntLiteralPutAllOptionalParams extends OperationOptions {
+declare interface IntLiteralPutAllOptionalParams extends OperationOptions {
 }
 
-export declare interface IntLiteralPutDefaultOptionalParams extends OperationOptions {
+declare interface IntLiteralPutDefaultOptionalParams extends OperationOptions {
 }
 
 export declare class OptionalClient {
@@ -209,12 +209,13 @@ export declare class OptionalClient {
 }
 
 export declare interface OptionalClientOptionalParams extends ClientOptions {
+    endpointParam?: string;
 }
 
-export declare interface PlainDateGetAllOptionalParams extends OperationOptions {
+declare interface PlainDateGetAllOptionalParams extends OperationOptions {
 }
 
-export declare interface PlainDateGetDefaultOptionalParams extends OperationOptions {
+declare interface PlainDateGetDefaultOptionalParams extends OperationOptions {
 }
 
 export declare interface PlainDateOperations {
@@ -228,16 +229,16 @@ export declare interface PlainDateProperty {
     property?: Date;
 }
 
-export declare interface PlainDatePutAllOptionalParams extends OperationOptions {
+declare interface PlainDatePutAllOptionalParams extends OperationOptions {
 }
 
-export declare interface PlainDatePutDefaultOptionalParams extends OperationOptions {
+declare interface PlainDatePutDefaultOptionalParams extends OperationOptions {
 }
 
-export declare interface PlainTimeGetAllOptionalParams extends OperationOptions {
+declare interface PlainTimeGetAllOptionalParams extends OperationOptions {
 }
 
-export declare interface PlainTimeGetDefaultOptionalParams extends OperationOptions {
+declare interface PlainTimeGetDefaultOptionalParams extends OperationOptions {
 }
 
 export declare interface PlainTimeOperations {
@@ -251,16 +252,16 @@ export declare interface PlainTimeProperty {
     property?: string;
 }
 
-export declare interface PlainTimePutAllOptionalParams extends OperationOptions {
+declare interface PlainTimePutAllOptionalParams extends OperationOptions {
 }
 
-export declare interface PlainTimePutDefaultOptionalParams extends OperationOptions {
+declare interface PlainTimePutDefaultOptionalParams extends OperationOptions {
 }
 
-export declare interface RequiredAndOptionalGetAllOptionalParams extends OperationOptions {
+declare interface RequiredAndOptionalGetAllOptionalParams extends OperationOptions {
 }
 
-export declare interface RequiredAndOptionalGetRequiredOnlyOptionalParams extends OperationOptions {
+declare interface RequiredAndOptionalGetRequiredOnlyOptionalParams extends OperationOptions {
 }
 
 export declare interface RequiredAndOptionalOperations {
@@ -275,22 +276,22 @@ export declare interface RequiredAndOptionalProperty {
     requiredProperty: number;
 }
 
-export declare interface RequiredAndOptionalPutAllOptionalParams extends OperationOptions {
+declare interface RequiredAndOptionalPutAllOptionalParams extends OperationOptions {
 }
 
-export declare interface RequiredAndOptionalPutRequiredOnlyOptionalParams extends OperationOptions {
+declare interface RequiredAndOptionalPutRequiredOnlyOptionalParams extends OperationOptions {
 }
 
-export declare interface StringGetAllOptionalParams extends OperationOptions {
+declare interface StringGetAllOptionalParams extends OperationOptions {
 }
 
-export declare interface StringGetDefaultOptionalParams extends OperationOptions {
+declare interface StringGetDefaultOptionalParams extends OperationOptions {
 }
 
-export declare interface StringLiteralGetAllOptionalParams extends OperationOptions {
+declare interface StringLiteralGetAllOptionalParams extends OperationOptions {
 }
 
-export declare interface StringLiteralGetDefaultOptionalParams extends OperationOptions {
+declare interface StringLiteralGetDefaultOptionalParams extends OperationOptions {
 }
 
 export declare interface StringLiteralOperations {
@@ -304,10 +305,10 @@ export declare interface StringLiteralProperty {
     property?: "hello";
 }
 
-export declare interface StringLiteralPutAllOptionalParams extends OperationOptions {
+declare interface StringLiteralPutAllOptionalParams extends OperationOptions {
 }
 
-export declare interface StringLiteralPutDefaultOptionalParams extends OperationOptions {
+declare interface StringLiteralPutDefaultOptionalParams extends OperationOptions {
 }
 
 export declare interface StringOperations {
@@ -321,16 +322,16 @@ export declare interface StringProperty {
     property?: string;
 }
 
-export declare interface StringPutAllOptionalParams extends OperationOptions {
+declare interface StringPutAllOptionalParams extends OperationOptions {
 }
 
-export declare interface StringPutDefaultOptionalParams extends OperationOptions {
+declare interface StringPutDefaultOptionalParams extends OperationOptions {
 }
 
-export declare interface UnionFloatLiteralGetAllOptionalParams extends OperationOptions {
+declare interface UnionFloatLiteralGetAllOptionalParams extends OperationOptions {
 }
 
-export declare interface UnionFloatLiteralGetDefaultOptionalParams extends OperationOptions {
+declare interface UnionFloatLiteralGetDefaultOptionalParams extends OperationOptions {
 }
 
 export declare interface UnionFloatLiteralOperations {
@@ -344,16 +345,16 @@ export declare interface UnionFloatLiteralProperty {
     property?: 1.25 | 2.375;
 }
 
-export declare interface UnionFloatLiteralPutAllOptionalParams extends OperationOptions {
+declare interface UnionFloatLiteralPutAllOptionalParams extends OperationOptions {
 }
 
-export declare interface UnionFloatLiteralPutDefaultOptionalParams extends OperationOptions {
+declare interface UnionFloatLiteralPutDefaultOptionalParams extends OperationOptions {
 }
 
-export declare interface UnionIntLiteralGetAllOptionalParams extends OperationOptions {
+declare interface UnionIntLiteralGetAllOptionalParams extends OperationOptions {
 }
 
-export declare interface UnionIntLiteralGetDefaultOptionalParams extends OperationOptions {
+declare interface UnionIntLiteralGetDefaultOptionalParams extends OperationOptions {
 }
 
 export declare interface UnionIntLiteralOperations {
@@ -367,16 +368,16 @@ export declare interface UnionIntLiteralProperty {
     property?: 1 | 2;
 }
 
-export declare interface UnionIntLiteralPutAllOptionalParams extends OperationOptions {
+declare interface UnionIntLiteralPutAllOptionalParams extends OperationOptions {
 }
 
-export declare interface UnionIntLiteralPutDefaultOptionalParams extends OperationOptions {
+declare interface UnionIntLiteralPutDefaultOptionalParams extends OperationOptions {
 }
 
-export declare interface UnionStringLiteralGetAllOptionalParams extends OperationOptions {
+declare interface UnionStringLiteralGetAllOptionalParams extends OperationOptions {
 }
 
-export declare interface UnionStringLiteralGetDefaultOptionalParams extends OperationOptions {
+declare interface UnionStringLiteralGetDefaultOptionalParams extends OperationOptions {
 }
 
 export declare interface UnionStringLiteralOperations {
@@ -390,10 +391,10 @@ export declare interface UnionStringLiteralProperty {
     property?: "hello" | "world";
 }
 
-export declare interface UnionStringLiteralPutAllOptionalParams extends OperationOptions {
+declare interface UnionStringLiteralPutAllOptionalParams extends OperationOptions {
 }
 
-export declare interface UnionStringLiteralPutDefaultOptionalParams extends OperationOptions {
+declare interface UnionStringLiteralPutDefaultOptionalParams extends OperationOptions {
 }
 
 export { }

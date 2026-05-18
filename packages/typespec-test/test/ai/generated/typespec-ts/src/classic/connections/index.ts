@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { AIProjectContext } from "../../api/aiProjectContext.js";
+import { AIProjectContext } from "../../api/index.js";
 import {
   getConnectionWithSecrets,
   getConnection,

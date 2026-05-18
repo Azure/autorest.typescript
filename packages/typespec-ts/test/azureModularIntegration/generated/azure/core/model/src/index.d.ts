@@ -31,6 +31,7 @@ export declare class ModelClient {
 }
 
 export declare interface ModelClientOptionalParams extends ClientOptions {
+    endpointParam?: string;
 }
 
 export declare interface PostOptionalParams extends OperationOptions {

@@ -53,10 +53,10 @@ export declare interface NonResourceClientOptionalParams extends ClientOptions {
     cloudSetting?: AzureSupportedClouds;
 }
 
-export declare interface NonResourceOperationsCreateOptionalParams extends OperationOptions {
+declare interface NonResourceOperationsCreateOptionalParams extends OperationOptions {
 }
 
-export declare interface NonResourceOperationsGetOptionalParams extends OperationOptions {
+declare interface NonResourceOperationsGetOptionalParams extends OperationOptions {
 }
 
 export declare interface NonResourceOperationsOperations {

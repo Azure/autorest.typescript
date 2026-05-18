@@ -42,7 +42,6 @@ export async function _createDeserialize(
 
     throw error;
   }
-
   return createCompletionResponseDeserializer(result.body);
 }
 

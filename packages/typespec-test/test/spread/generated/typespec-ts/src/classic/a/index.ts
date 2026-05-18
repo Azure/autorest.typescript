@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { DemoServiceContext } from "../../api/demoServiceContext.js";
+import { DemoServiceContext } from "../../api/index.js";
 import { test4, test3, test2, test1 } from "../../api/a/operations.js";
 import {
   ATest4OptionalParams,

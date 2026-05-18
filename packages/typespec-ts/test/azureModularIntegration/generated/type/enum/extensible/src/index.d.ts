@@ -14,20 +14,21 @@ export declare class ExtensibleClient {
 }
 
 export declare interface ExtensibleClientOptionalParams extends ClientOptions {
+    endpointParam?: string;
 }
 
 export { isRestError }
 
 export { RestError }
 
-export declare interface StringGetKnownValueOptionalParams extends OperationOptions {
+declare interface StringGetKnownValueOptionalParams extends OperationOptions {
 }
 
 export declare type StringGetKnownValueResponse = {
     body: DaysOfWeekExtensibleEnum;
 };
 
-export declare interface StringGetUnknownValueOptionalParams extends OperationOptions {
+declare interface StringGetUnknownValueOptionalParams extends OperationOptions {
 }
 
 export declare type StringGetUnknownValueResponse = {
@@ -41,10 +42,10 @@ export declare interface StringOperations {
     getKnownValue: (options?: StringGetKnownValueOptionalParams) => Promise<StringGetKnownValueResponse>;
 }
 
-export declare interface StringPutKnownValueOptionalParams extends OperationOptions {
+declare interface StringPutKnownValueOptionalParams extends OperationOptions {
 }
 
-export declare interface StringPutUnknownValueOptionalParams extends OperationOptions {
+declare interface StringPutUnknownValueOptionalParams extends OperationOptions {
 }
 
 export { }

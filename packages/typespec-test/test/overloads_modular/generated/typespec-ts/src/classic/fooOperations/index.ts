@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { WidgetManagerContext } from "../../api/widgetManagerContext.js";
+import { WidgetManagerContext } from "../../api/index.js";
 import { getAvatarAsJpeg, getAvatarAsPng } from "../../api/fooOperations/operations.js";
 import {
   FooOperationsGetAvatarAsJpegOptionalParams,

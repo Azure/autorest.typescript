@@ -76,6 +76,7 @@ export declare class StandardClient {
 }
 
 export declare interface StandardClientOptionalParams extends ClientOptions {
+    endpointParam?: string;
     apiVersion?: string;
 }
 

@@ -86,7 +86,6 @@ export async function _getEmbeddingsDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return embeddingsDeserializer(result.body);
 }
 
@@ -134,7 +133,6 @@ export async function _generateSpeechFromTextDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return { blobBody: result.blobBody, readableStreamBody: result.readableStreamBody };
 }
 
@@ -183,7 +181,6 @@ export async function _getImageGenerationsDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return imageGenerationsDeserializer(result.body);
 }
 
@@ -231,7 +228,6 @@ export async function _getChatCompletionsDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return chatCompletionsDeserializer(result.body);
 }
 
@@ -283,7 +279,6 @@ export async function _getCompletionsDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return completionsDeserializer(result.body);
 }
 
@@ -335,7 +330,6 @@ export async function _getAudioTranslationAsResponseObjectDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return audioTranslationDeserializer(result.body);
 }
 
@@ -388,7 +382,6 @@ export async function _getAudioTranslationAsPlainTextDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return { body: result.body };
 }
 
@@ -436,7 +429,6 @@ export async function _getAudioTranscriptionAsResponseObjectDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return audioTranscriptionDeserializer(result.body);
 }
 
@@ -492,7 +484,6 @@ export async function _getAudioTranscriptionAsPlainTextDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
   return { body: result.body };
 }
 

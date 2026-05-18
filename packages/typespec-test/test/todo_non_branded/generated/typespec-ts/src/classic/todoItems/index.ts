@@ -1,6 +1,6 @@
 // Licensed under the MIT License.
 
-import { TodoContext } from "../../api/todoContext.js";
+import { TodoContext } from "../../api/index.js";
 import {
   $delete,
   update,
@@ -27,6 +27,7 @@ import {
 
 /** Interface representing a TodoItems operations. */
 export interface TodoItemsOperations {
+  attachments: TodoItemsAttachmentsOperations;
   /**
    *  @fixme delete is a reserved word that cannot be used as an operation name.
    *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
@@ -45,7 +46,6 @@ export interface TodoItemsOperations {
   ) => Promise<TodoItem>;
   createJson: (item: TodoItem, options?: TodoItemsCreateJsonOptionalParams) => Promise<TodoItem>;
   list: (options?: TodoItemsListOptionalParams) => PagedAsyncIterableIterator<TodoItem>;
-  attachments: TodoItemsAttachmentsOperations;
 }
 
 function _getTodoItems(context: TodoContext) {
@@ -64,7 +64,7 @@ function _getTodoItems(context: TodoContext) {
 
 export function _getTodoItemsOperations(context: TodoContext): TodoItemsOperations {
   return {
-    ..._getTodoItems(context),
     attachments: _getTodoItemsAttachmentsOperations(context),
+    ..._getTodoItems(context),
   };
 }

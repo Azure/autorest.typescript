@@ -19,22 +19,6 @@ export type {
 } from "./models/index.js";
 export { KnownVersions } from "./models/index.js";
 export type { SAPWidgetServiceClientOptionalParams } from "./api/index.js";
-export type {
-  BudgetsContinueOptionalParams,
-  BudgetsGetBudgetsOptionalParams,
-  BudgetsCreateOrReplaceOptionalParams,
-} from "./api/budgets/index.js";
-export type {
-  SAPWidgetsAnalyzeWidgetOptionalParams,
-  SAPWidgetsDeleteWidgetOptionalParams,
-  SAPWidgetsUpdateWidgetOptionalParams,
-  SAPWidgetsCreateOrReplaceOptionalParams,
-  SAPWidgetsCreateWidgetOptionalParams,
-  SAPWidgetsGetWidgetOptionalParams,
-  SAPWidgetsQueryWidgetsPagesOptionalParams,
-  SAPWidgetsListWidgetsPagesOptionalParams,
-  SAPWidgetsSAPListWidgetsOptionalParams,
-} from "./api/sapWidgets/index.js";
 export type { BudgetsOperations, SAPWidgetsOperations } from "./classic/index.js";
 export type { PageSettings, ContinuablePage, PagedAsyncIterableIterator };
 export { RestError, isRestError } from "@azure/core-rest-pipeline";

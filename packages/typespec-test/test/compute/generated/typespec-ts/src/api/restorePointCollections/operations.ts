@@ -59,7 +59,6 @@ export async function _createOrUpdateDeserialize(
 
     throw error;
   }
-
   return restorePointCollectionDeserializer(result.body);
 }
 
@@ -117,7 +116,6 @@ export async function _getDeserialize(
 
     throw error;
   }
-
   return restorePointCollectionDeserializer(result.body);
 }
 

@@ -52,7 +52,6 @@ export async function _detectUnivariateChangePointDeserialize(
 
     throw error;
   }
-
   return univariateUnivariateChangePointDetectionResultDeserializer(result.body);
 }
 
@@ -91,7 +90,6 @@ export async function _detectUnivariateLastPointDeserialize(
 
     throw error;
   }
-
   return univariateUnivariateLastDetectionResultDeserializer(result.body);
 }
 
@@ -133,7 +131,6 @@ export async function _detectUnivariateEntireSeriesDeserialize(
 
     throw error;
   }
-
   return univariateUnivariateEntireDetectionResultDeserializer(result.body);
 }
 

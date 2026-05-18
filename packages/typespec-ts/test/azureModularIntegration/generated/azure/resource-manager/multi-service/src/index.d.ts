@@ -38,11 +38,11 @@ export declare interface DiskProperties {
     readonly provisioningState?: ResourceProvisioningState;
 }
 
-export declare interface DisksCreateOrUpdateOptionalParams extends OperationOptions {
+declare interface DisksCreateOrUpdateOptionalParams extends OperationOptions {
     updateIntervalInMs?: number;
 }
 
-export declare interface DisksGetOptionalParams extends OperationOptions {
+declare interface DisksGetOptionalParams extends OperationOptions {
 }
 
 export declare interface DisksOperations {
@@ -110,11 +110,11 @@ export declare interface VirtualMachineProperties {
     readonly provisioningState?: ResourceProvisioningState;
 }
 
-export declare interface VirtualMachinesCreateOrUpdateOptionalParams extends OperationOptions {
+declare interface VirtualMachinesCreateOrUpdateOptionalParams extends OperationOptions {
     updateIntervalInMs?: number;
 }
 
-export declare interface VirtualMachinesGetOptionalParams extends OperationOptions {
+declare interface VirtualMachinesGetOptionalParams extends OperationOptions {
 }
 
 export declare interface VirtualMachinesOperations {

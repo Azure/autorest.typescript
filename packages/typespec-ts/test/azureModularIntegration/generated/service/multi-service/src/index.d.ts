@@ -8,7 +8,7 @@ export declare interface BarOperations {
     test: (options?: BarTestOptionalParams) => Promise<void>;
 }
 
-export declare interface BarTestOptionalParams extends OperationOptions {
+declare interface BarTestOptionalParams extends OperationOptions {
 }
 
 export declare class Combined {
@@ -20,13 +20,14 @@ export declare class Combined {
 }
 
 export declare interface CombinedOptionalParams extends ClientOptions {
+    endpointParam?: string;
 }
 
 export declare interface FooOperations {
     test: (options?: FooTestOptionalParams) => Promise<void>;
 }
 
-export declare interface FooTestOptionalParams extends OperationOptions {
+declare interface FooTestOptionalParams extends OperationOptions {
 }
 
 export { isRestError }

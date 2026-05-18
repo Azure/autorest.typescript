@@ -43,7 +43,6 @@ export async function _createVariationDeserialize(
 
     throw error;
   }
-
   return imagesResponseDeserializer(result.body);
 }
 
@@ -81,7 +80,6 @@ export async function _createEditDeserialize(
 
     throw error;
   }
-
   return imagesResponseDeserializer(result.body);
 }
 

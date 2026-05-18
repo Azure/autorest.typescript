@@ -11,12 +11,13 @@ export declare class ContentNegotiationClient {
 }
 
 export declare interface ContentNegotiationClientOptionalParams extends ClientOptions {
+    endpointParam?: string;
 }
 
-export declare interface DifferentBodyGetAvatarAsJsonOptionalParams extends OperationOptions {
+declare interface DifferentBodyGetAvatarAsJsonOptionalParams extends OperationOptions {
 }
 
-export declare interface DifferentBodyGetAvatarAsPngOptionalParams extends OperationOptions {
+declare interface DifferentBodyGetAvatarAsPngOptionalParams extends OperationOptions {
 }
 
 export declare interface DifferentBodyOperations {
@@ -28,10 +29,10 @@ export declare interface PngImageAsJson {
     content: Uint8Array;
 }
 
-export declare interface SameBodyGetAvatarAsJpegOptionalParams extends OperationOptions {
+declare interface SameBodyGetAvatarAsJpegOptionalParams extends OperationOptions {
 }
 
-export declare interface SameBodyGetAvatarAsPngOptionalParams extends OperationOptions {
+declare interface SameBodyGetAvatarAsPngOptionalParams extends OperationOptions {
 }
 
 export declare interface SameBodyOperations {

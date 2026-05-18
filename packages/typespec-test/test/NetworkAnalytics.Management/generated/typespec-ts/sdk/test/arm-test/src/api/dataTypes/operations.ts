@@ -76,7 +76,6 @@ export async function _listByDataProductDeserialize(
 
     throw error;
   }
-
   return _dataTypeListResultDeserializer(result.body);
 }
 
@@ -137,7 +136,6 @@ export async function _generateStorageContainerSasTokenDeserialize(
 
     throw error;
   }
-
   return containerSasTokenDeserializer(result.body);
 }
 
@@ -199,7 +197,6 @@ export async function _deleteDataDeserialize(result: PathUncheckedResponse): Pro
 
     throw error;
   }
-
   return;
 }
 
@@ -253,7 +250,6 @@ export async function _$deleteDeserialize(result: PathUncheckedResponse): Promis
 
     throw error;
   }
-
   return;
 }
 
@@ -314,7 +310,6 @@ export async function _updateDeserialize(result: PathUncheckedResponse): Promise
 
     throw error;
   }
-
   return dataTypeDeserializer(result.body);
 }
 
@@ -373,7 +368,6 @@ export async function _getDeserialize(result: PathUncheckedResponse): Promise<Da
 
     throw error;
   }
-
   return dataTypeDeserializer(result.body);
 }
 
@@ -428,7 +422,6 @@ export async function _createDeserialize(result: PathUncheckedResponse): Promise
 
     throw error;
   }
-
   return dataTypeDeserializer(result.body);
 }
 

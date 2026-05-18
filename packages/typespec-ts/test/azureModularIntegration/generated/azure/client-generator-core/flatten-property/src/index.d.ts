@@ -32,6 +32,7 @@ export declare class FlattenPropertyClient {
 }
 
 export declare interface FlattenPropertyClientOptionalParams extends ClientOptions {
+    endpointParam?: string;
 }
 
 export declare interface FlattenUnknownModel {

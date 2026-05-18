@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { BlobClient, BlobClientOptionalParams } from "./blob/blobClient.js";
 import { StorageContext, StorageClientOptionalParams, createStorage } from "./api/index.js";
+import { BlobClient, BlobClientOptionalParams } from "./blob/blobClient.js";
 import { download } from "./api/operations.js";
 import { DownloadOptionalParams } from "./api/options.js";
 import { Pipeline } from "@azure/core-rest-pipeline";

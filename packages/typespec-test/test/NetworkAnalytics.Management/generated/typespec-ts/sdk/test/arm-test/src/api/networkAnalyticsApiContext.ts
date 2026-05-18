@@ -8,11 +8,11 @@ import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 import { TokenCredential } from "@azure/core-auth";
 
 export interface NetworkAnalyticsApiContext extends Client {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
   /** The API version to use for this operation. */
   /** Known values of {@link KnownVersions} that the service accepts. */
-  apiVersion?: string;
+  apiVersion: string;
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
 }
 
 /** Optional parameters for the client. */
