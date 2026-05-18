@@ -314,4 +314,3 @@ export type {
 export type { PageSettings, ContinuablePage, PagedAsyncIterableIterator };
 export type { FileContents };
 export { RestError, isRestError } from "@azure/core-rest-pipeline";
-export type { FileContents };

@@ -110,4 +110,3 @@ export type {
 } from "./classic/index.js";
 export type { FileContents };
 export { RestError, isRestError } from "@azure/core-rest-pipeline";
-export type { FileContents };
