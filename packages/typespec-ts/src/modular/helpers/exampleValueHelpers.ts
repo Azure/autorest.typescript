@@ -508,10 +508,7 @@ export function prepareCommonParameters(
         // Wrap the example value with the intermediate property names
         let wrappedValue = serializeExampleValue(bodyExample.value);
         for (let i = path.length - 1; i >= 1; i--) {
-          const propName = normalizeName(
-            path[i]!.name,
-            NameType.Property
-          );
+          const propName = normalizeName(path[i]!.name, NameType.Property);
           wrappedValue = `{ ${propName}: ${wrappedValue} }`;
         }
         result.push(
