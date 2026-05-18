@@ -31,12 +31,14 @@
       "commonjs"
     ],
     "esmDialects": [
-      "browser"
+      "browser",
+      "react-native"
     ],
     "selfLink": false
   },
   "type": "module",
   "browser": "./dist/browser/index.js",
+  "react-native": "./dist/react-native/index.js",
   "keywords": [
     "node",
     "azure",
@@ -86,6 +88,10 @@
         "types": "./dist/browser/index.d.ts",
         "default": "./dist/browser/index.js"
       },
+      "react-native": {
+        "types": "./dist/react-native/index.d.ts",
+        "default": "./dist/react-native/index.js"
+      },
       "import": {
         "types": "./dist/esm/index.d.ts",
         "default": "./dist/esm/index.js"
@@ -99,6 +105,10 @@
       "browser": {
         "types": "./dist/browser/api/index.d.ts",
         "default": "./dist/browser/api/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/api/index.d.ts",
+        "default": "./dist/react-native/api/index.js"
       },
       "import": {
         "types": "./dist/esm/api/index.d.ts",
@@ -114,6 +124,10 @@
         "types": "./dist/browser/api/moderations/index.d.ts",
         "default": "./dist/browser/api/moderations/index.js"
       },
+      "react-native": {
+        "types": "./dist/react-native/api/moderations/index.d.ts",
+        "default": "./dist/react-native/api/moderations/index.js"
+      },
       "import": {
         "types": "./dist/esm/api/moderations/index.d.ts",
         "default": "./dist/esm/api/moderations/index.js"
@@ -127,6 +141,10 @@
       "browser": {
         "types": "./dist/browser/api/images/index.d.ts",
         "default": "./dist/browser/api/images/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/api/images/index.d.ts",
+        "default": "./dist/react-native/api/images/index.js"
       },
       "import": {
         "types": "./dist/esm/api/images/index.d.ts",
@@ -142,6 +160,10 @@
         "types": "./dist/browser/api/models/index.d.ts",
         "default": "./dist/browser/api/models/index.js"
       },
+      "react-native": {
+        "types": "./dist/react-native/api/models/index.d.ts",
+        "default": "./dist/react-native/api/models/index.js"
+      },
       "import": {
         "types": "./dist/esm/api/models/index.d.ts",
         "default": "./dist/esm/api/models/index.js"
@@ -155,6 +177,10 @@
       "browser": {
         "types": "./dist/browser/api/fineTunes/index.d.ts",
         "default": "./dist/browser/api/fineTunes/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/api/fineTunes/index.d.ts",
+        "default": "./dist/react-native/api/fineTunes/index.js"
       },
       "import": {
         "types": "./dist/esm/api/fineTunes/index.d.ts",
@@ -170,6 +196,10 @@
         "types": "./dist/browser/api/files/index.d.ts",
         "default": "./dist/browser/api/files/index.js"
       },
+      "react-native": {
+        "types": "./dist/react-native/api/files/index.d.ts",
+        "default": "./dist/react-native/api/files/index.js"
+      },
       "import": {
         "types": "./dist/esm/api/files/index.d.ts",
         "default": "./dist/esm/api/files/index.js"
@@ -183,6 +213,10 @@
       "browser": {
         "types": "./dist/browser/api/embeddings/index.d.ts",
         "default": "./dist/browser/api/embeddings/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/api/embeddings/index.d.ts",
+        "default": "./dist/react-native/api/embeddings/index.js"
       },
       "import": {
         "types": "./dist/esm/api/embeddings/index.d.ts",
@@ -198,6 +232,10 @@
         "types": "./dist/browser/api/edits/index.d.ts",
         "default": "./dist/browser/api/edits/index.js"
       },
+      "react-native": {
+        "types": "./dist/react-native/api/edits/index.d.ts",
+        "default": "./dist/react-native/api/edits/index.js"
+      },
       "import": {
         "types": "./dist/esm/api/edits/index.d.ts",
         "default": "./dist/esm/api/edits/index.js"
@@ -211,6 +249,10 @@
       "browser": {
         "types": "./dist/browser/api/completions/index.d.ts",
         "default": "./dist/browser/api/completions/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/api/completions/index.d.ts",
+        "default": "./dist/react-native/api/completions/index.js"
       },
       "import": {
         "types": "./dist/esm/api/completions/index.d.ts",
@@ -226,6 +268,10 @@
         "types": "./dist/browser/api/fineTuning/jobs/index.d.ts",
         "default": "./dist/browser/api/fineTuning/jobs/index.js"
       },
+      "react-native": {
+        "types": "./dist/react-native/api/fineTuning/jobs/index.d.ts",
+        "default": "./dist/react-native/api/fineTuning/jobs/index.js"
+      },
       "import": {
         "types": "./dist/esm/api/fineTuning/jobs/index.d.ts",
         "default": "./dist/esm/api/fineTuning/jobs/index.js"
@@ -239,6 +285,10 @@
       "browser": {
         "types": "./dist/browser/api/chat/completions/index.d.ts",
         "default": "./dist/browser/api/chat/completions/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/api/chat/completions/index.d.ts",
+        "default": "./dist/react-native/api/chat/completions/index.js"
       },
       "import": {
         "types": "./dist/esm/api/chat/completions/index.d.ts",
@@ -254,6 +304,10 @@
         "types": "./dist/browser/api/audio/translations/index.d.ts",
         "default": "./dist/browser/api/audio/translations/index.js"
       },
+      "react-native": {
+        "types": "./dist/react-native/api/audio/translations/index.d.ts",
+        "default": "./dist/react-native/api/audio/translations/index.js"
+      },
       "import": {
         "types": "./dist/esm/api/audio/translations/index.d.ts",
         "default": "./dist/esm/api/audio/translations/index.js"
@@ -268,6 +322,10 @@
         "types": "./dist/browser/api/audio/transcriptions/index.d.ts",
         "default": "./dist/browser/api/audio/transcriptions/index.js"
       },
+      "react-native": {
+        "types": "./dist/react-native/api/audio/transcriptions/index.d.ts",
+        "default": "./dist/react-native/api/audio/transcriptions/index.js"
+      },
       "import": {
         "types": "./dist/esm/api/audio/transcriptions/index.d.ts",
         "default": "./dist/esm/api/audio/transcriptions/index.js"
@@ -281,6 +339,10 @@
       "browser": {
         "types": "./dist/browser/models/index.d.ts",
         "default": "./dist/browser/models/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/models/index.d.ts",
+        "default": "./dist/react-native/models/index.js"
       },
       "import": {
         "types": "./dist/esm/models/index.d.ts",

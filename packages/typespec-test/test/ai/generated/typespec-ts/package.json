@@ -24,12 +24,14 @@
       "commonjs"
     ],
     "esmDialects": [
-      "browser"
+      "browser",
+      "react-native"
     ],
     "selfLink": false
   },
   "type": "module",
   "browser": "./dist/browser/index.js",
+  "react-native": "./dist/react-native/index.js",
   "keywords": [
     "node",
     "azure",
@@ -79,6 +81,10 @@
         "types": "./dist/browser/index.d.ts",
         "default": "./dist/browser/index.js"
       },
+      "react-native": {
+        "types": "./dist/react-native/index.d.ts",
+        "default": "./dist/react-native/index.js"
+      },
       "import": {
         "types": "./dist/esm/index.d.ts",
         "default": "./dist/esm/index.js"
@@ -92,6 +98,10 @@
       "browser": {
         "types": "./dist/browser/api/index.d.ts",
         "default": "./dist/browser/api/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/api/index.d.ts",
+        "default": "./dist/react-native/api/index.js"
       },
       "import": {
         "types": "./dist/esm/api/index.d.ts",
@@ -107,6 +117,10 @@
         "types": "./dist/browser/api/evaluations/index.d.ts",
         "default": "./dist/browser/api/evaluations/index.js"
       },
+      "react-native": {
+        "types": "./dist/react-native/api/evaluations/index.d.ts",
+        "default": "./dist/react-native/api/evaluations/index.js"
+      },
       "import": {
         "types": "./dist/esm/api/evaluations/index.d.ts",
         "default": "./dist/esm/api/evaluations/index.js"
@@ -120,6 +134,10 @@
       "browser": {
         "types": "./dist/browser/api/telemetry/index.d.ts",
         "default": "./dist/browser/api/telemetry/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/api/telemetry/index.d.ts",
+        "default": "./dist/react-native/api/telemetry/index.js"
       },
       "import": {
         "types": "./dist/esm/api/telemetry/index.d.ts",
@@ -135,6 +153,10 @@
         "types": "./dist/browser/api/connections/index.d.ts",
         "default": "./dist/browser/api/connections/index.js"
       },
+      "react-native": {
+        "types": "./dist/react-native/api/connections/index.d.ts",
+        "default": "./dist/react-native/api/connections/index.js"
+      },
       "import": {
         "types": "./dist/esm/api/connections/index.d.ts",
         "default": "./dist/esm/api/connections/index.js"
@@ -148,6 +170,10 @@
       "browser": {
         "types": "./dist/browser/api/agents/index.d.ts",
         "default": "./dist/browser/api/agents/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/api/agents/index.d.ts",
+        "default": "./dist/react-native/api/agents/index.js"
       },
       "import": {
         "types": "./dist/esm/api/agents/index.d.ts",
@@ -163,6 +189,10 @@
         "types": "./dist/browser/models/index.d.ts",
         "default": "./dist/browser/models/index.js"
       },
+      "react-native": {
+        "types": "./dist/react-native/models/index.d.ts",
+        "default": "./dist/react-native/models/index.js"
+      },
       "import": {
         "types": "./dist/esm/models/index.d.ts",
         "default": "./dist/esm/models/index.js"
@@ -176,6 +206,10 @@
       "browser": {
         "types": "./dist/browser/models/agents/index.d.ts",
         "default": "./dist/browser/models/agents/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/models/agents/index.d.ts",
+        "default": "./dist/react-native/models/agents/index.js"
       },
       "import": {
         "types": "./dist/esm/models/agents/index.d.ts",

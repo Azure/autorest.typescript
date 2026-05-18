@@ -14,8 +14,8 @@ const BASE_EXPORTS: Record<string, string> = {
   ".": "./src/index.ts"
 };
 
-/** Full inline warp config template with react-native target. */
-const WarpConfigTemplateWithReactNative = `# warp.config.yml — build configuration
+/** Full inline warp config template. */
+export const WarpConfigTemplate = `# warp.config.yml — build configuration
 
 exports:
 {{exports}}
@@ -37,35 +37,12 @@ targets:
     moduleType: commonjs
 `;
 
-/** Warp config template without react-native target (default). */
-const WarpConfigTemplateDefault = `# warp.config.yml — build configuration
-
-exports:
-{{exports}}
-
-targets:
-  - name: browser
-    tsconfig: "./config/tsconfig.src.browser.json"
-
-  - name: esm
-    condition: import
-    tsconfig: "./config/tsconfig.src.esm.json"
-
-  - name: commonjs
-    condition: require
-    tsconfig: "./config/tsconfig.src.cjs.json"
-    moduleType: commonjs
-`;
-
 /**
  * Builds a self-contained warp.config.yml file.
  *
  * Emits a full inline config with all exports and targets.
  * Polyfill resolution (browser/react-native file substitution) is handled
  * via package.json `imports` subpath imports (#platform/*).
- *
- * By default, react-native target is NOT included. Set `generateReactNativeTarget: true`
- * in options to include it.
  */
 export function buildWarpConfig(
   model: RLCModel,
@@ -84,11 +61,7 @@ export function buildWarpConfig(
     .map(([key, value]) => `  ${JSON.stringify(key)}: ${JSON.stringify(value)}`)
     .join("\n");
 
-  const template = model.options?.generateReactNativeTarget
-    ? WarpConfigTemplateWithReactNative
-    : WarpConfigTemplateDefault;
-
-  const content = template.replace("{{exports}}", exportsContent);
+  const content = WarpConfigTemplate.replace("{{exports}}", exportsContent);
 
   return { path: "warp.config.yml", content };
 }

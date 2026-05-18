@@ -24,7 +24,6 @@ export type TestModelConfig = {
   hasSubscriptionId?: boolean;
   addCredentials?: boolean;
   scopeName?: string;
-  generateReactNativeTarget?: boolean;
 };
 
 export function createMockModel(config: TestModelConfig = {}): RLCModel {
@@ -58,7 +57,6 @@ export function createMockModel(config: TestModelConfig = {}): RLCModel {
       azureArm: config.azureArm ?? false,
       hasSubscriptionId: config.hasSubscriptionId ?? false,
       addCredentials: config.addCredentials ?? false,
-      generateReactNativeTarget: config.generateReactNativeTarget ?? false
     },
     helperDetails: {
       hasPaging: config.hasPaging ?? false,

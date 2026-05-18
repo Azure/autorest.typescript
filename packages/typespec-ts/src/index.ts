@@ -572,9 +572,7 @@ export async function $onEmit(context: EmitContext) {
       if (option.azureSdkForJs) {
         commonBuilders.push(buildTsSrcEsmConfig);
         commonBuilders.push(buildTsSrcBrowserConfig);
-        if (option.generateReactNativeTarget) {
-          commonBuilders.push(buildTsSrcReactNativeConfig);
-        }
+        commonBuilders.push(buildTsSrcReactNativeConfig);
         commonBuilders.push(buildTsSrcCjsConfig);
         if (option.generateSample) {
           commonBuilders.push(buildTsSampleConfig);

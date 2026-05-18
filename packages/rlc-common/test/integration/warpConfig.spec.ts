@@ -8,7 +8,7 @@ import { createMockModel } from "./mockHelper.js";
 
 describe("warp.config.yml generation", () => {
   describe("azure monorepo", () => {
-    it("should generate a self-contained config without polyfillSuffix and without react-native by default", () => {
+    it("should generate a self-contained config without polyfillSuffix", () => {
       const model = createMockModel({
         moduleKind: "esm",
         isMonorepo: true,
@@ -22,31 +22,15 @@ describe("warp.config.yml generation", () => {
       // polyfillSuffix is no longer used — polyfill resolution is handled
       // via package.json subpath imports instead.
       expect(result!.content).not.toContain("polyfillSuffix");
-      // Default: three targets without react-native
+      // All four targets with tsconfig paths
       expect(result!.content).toContain("name: browser");
-      expect(result!.content).not.toContain("name: react-native");
+      expect(result!.content).toContain("name: react-native");
       expect(result!.content).toContain("name: esm");
       expect(result!.content).toContain("name: commonjs");
       expect(result!.content).toContain("tsconfig:");
       // Base exports should be included
       expect(result!.content).toContain('"./package.json"');
       expect(result!.content).toContain('"."');
-    });
-
-    it("should include react-native target when generateReactNativeTarget is true", () => {
-      const model = createMockModel({
-        moduleKind: "esm",
-        isMonorepo: true,
-        flavor: "azure",
-        generateReactNativeTarget: true
-      });
-
-      const result = buildWarpConfig(model);
-      expect(result).toBeDefined();
-      expect(result!.content).toContain("name: browser");
-      expect(result!.content).toContain("name: react-native");
-      expect(result!.content).toContain("name: esm");
-      expect(result!.content).toContain("name: commonjs");
     });
 
     it("should include custom exports alongside base exports", () => {
@@ -83,7 +67,7 @@ describe("warp.config.yml generation", () => {
   });
 
   describe("non-monorepo", () => {
-    it("should generate a self-contained config without polyfillSuffix and without react-native by default", () => {
+    it("should generate a self-contained config without polyfillSuffix", () => {
       const model = createMockModel({
         moduleKind: "esm",
         isMonorepo: false
@@ -94,29 +78,12 @@ describe("warp.config.yml generation", () => {
       expect(result!.path).toBe("warp.config.yml");
       expect(result!.content).not.toContain("extends:");
       expect(result!.content).not.toContain("polyfillSuffix");
-      // Default: no react-native target
-      expect(result!.content).not.toContain("name: react-native");
     });
 
-    it("should include three targets by default (browser, esm, commonjs)", () => {
+    it("should include all target definitions", () => {
       const model = createMockModel({
         moduleKind: "esm",
         isMonorepo: false
-      });
-
-      const result = buildWarpConfig(model);
-      expect(result).toBeDefined();
-      expect(result!.content).toContain("name: browser");
-      expect(result!.content).toContain("name: esm");
-      expect(result!.content).toContain("name: commonjs");
-      expect(result!.content).not.toContain("name: react-native");
-    });
-
-    it("should include all four targets when generateReactNativeTarget is true", () => {
-      const model = createMockModel({
-        moduleKind: "esm",
-        isMonorepo: false,
-        generateReactNativeTarget: true
       });
 
       const result = buildWarpConfig(model);

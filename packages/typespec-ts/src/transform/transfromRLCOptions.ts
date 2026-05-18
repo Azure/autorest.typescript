@@ -97,8 +97,6 @@ function extractRLCOptions(
     emitterOptions["treat-unknown-as-record"] === true;
   const headAsBoolean = emitterOptions["head-as-boolean"] === true;
   const typespecTitleMap = emitterOptions["typespec-title-map"];
-  const generateReactNativeTarget =
-    emitterOptions["generate-react-native-target"] === true;
   const hasSubscriptionId = getSubscriptionId(dpgContext);
   const ignoreNullableOnOptional = getIgnoreNullableOnOptional(
     emitterOptions,
@@ -145,8 +143,7 @@ function extractRLCOptions(
     isMultiService,
     enableStorageCompat,
     treatUnknownAsRecord,
-    headAsBoolean,
-    generateReactNativeTarget
+    headAsBoolean
   };
 }
 

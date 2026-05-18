@@ -44,10 +44,6 @@ export interface AutorestOptions {
   lenientModelDeduplication?: boolean;
   useLegacyLro?: boolean;
   flavor?: PackageFlavor;
-  /**
-   * When true, generates React Native build targets. Defaults to false.
-   */
-  generateReactNativeTarget?: boolean;
 }
 
 let host: AutorestExtensionHost;

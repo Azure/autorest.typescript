@@ -42,8 +42,7 @@ export function buildPackageFile(
     exports,
     azureArm: model.options?.azureArm,
     isModularLibrary: model.options?.isModularLibrary ?? false,
-    azureSdkForJs: model.options?.azureSdkForJs,
-    generateReactNativeTarget: model.options?.generateReactNativeTarget
+    azureSdkForJs: model.options?.azureSdkForJs
   };
 
   let packageInfo: Record<string, any> = buildFlavorlessPackage(config);
@@ -159,16 +158,12 @@ export function updatePackageFile(
   if (needsExportsUpdate) {
     if (model.options?.azureSdkForJs) {
       // Warp: update resolved exports in package.json
-      packageInfo.exports = resolveWarpExports(
-        exports,
-        model.options?.generateReactNativeTarget
-      );
+      packageInfo.exports = resolveWarpExports(exports);
     } else if (packageInfo.tshy) {
       // Tshy: update tshy.exports in package.json
       const newTshy = getTshyConfig({
         exports,
-        azureSdkForJs: model.options?.azureSdkForJs,
-        generateReactNativeTarget: model.options?.generateReactNativeTarget
+        azureSdkForJs: model.options?.azureSdkForJs
       } as PackageCommonInfoConfig);
       packageInfo.tshy.exports = newTshy.exports;
     }
