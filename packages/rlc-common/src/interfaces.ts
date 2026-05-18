@@ -285,6 +285,11 @@ export interface RLCOptions {
    * where `unknown` in swagger mapped to `Record<string, unknown>`.
    */
   treatUnknownAsRecord?: boolean;
+  /**
+   * When set to true, generates React Native build targets (tsconfig, warp target, package.json exports).
+   * Defaults to false. Only applicable when azureSdkForJs is true.
+   */
+  generateReactNativeTarget?: boolean;
 }
 
 export interface ServiceInfo {
