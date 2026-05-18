@@ -494,14 +494,41 @@ export function prepareCommonParameters(
         );
       }
     } else {
-      result.push(
-        prepareCommonValue(
-          bodyParam.name,
-          bodyExample.value,
-          bodyParam.optional,
-          bodyParam.onClient
-        )
-      );
+      // Check if the body parameter is nested inside a wrapper (e.g., @bodyRoot)
+      const segments = bodyParam.methodParameterSegments;
+      const isNestedBody =
+        segments.length === 1 &&
+        segments[0] !== undefined &&
+        segments[0].length > 1;
+      if (isNestedBody) {
+        const path = segments[0]!;
+        // The first segment is the method-level wrapper param (e.g., "body")
+        const methodParamName = path[0]!.name;
+        const methodParamOptional = path[0]!.optional;
+        // Wrap the example value with the intermediate property names
+        let wrappedValue = serializeExampleValue(bodyExample.value);
+        for (let i = path.length - 1; i >= 1; i--) {
+          const propName = normalizeName(path[i]!.name, NameType.Property);
+          wrappedValue = `{ ${propName}: ${wrappedValue} }`;
+        }
+        result.push(
+          prepareCommonValue(
+            methodParamName,
+            wrappedValue,
+            methodParamOptional,
+            bodyParam.onClient
+          )
+        );
+      } else {
+        result.push(
+          prepareCommonValue(
+            bodyParam.name,
+            bodyExample.value,
+            bodyParam.optional,
+            bodyParam.onClient
+          )
+        );
+      }
     }
   }
 
