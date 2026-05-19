@@ -1,3 +1,9 @@
+## 0.53.2 (2026-05-19)
+
+- [Feature] Add skill for bump emitter. Please refer to [#3977](https://github.com/Azure/autorest.typescript/pull/3977)
+- [Bugfix] Fix sample generation for nested @bodyRoot parameters. Please refer to [#3969](https://github.com/Azure/autorest.typescript/pull/3969)
+- [Bugfix] Do not generate React Native build targets by default. Please refer to [#3943](https://github.com/Azure/autorest.typescript/pull/3943)
+
 ## 0.53.1 (2026-05-14)
 
 - [Bugfix] Fix dependencies error. Please refer to [#3963](https://github.com/Azure/autorest.typescript/pull/3963)
