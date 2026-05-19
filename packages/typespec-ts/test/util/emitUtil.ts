@@ -431,9 +431,6 @@ export async function emitModularModelsFromTypeSpec(
     dpgContext.rlcOptions!.wrapNonModelReturn =
       options["wrap-non-model-return"] === true;
   }
-  if (options["head-as-boolean"] !== undefined) {
-    dpgContext.rlcOptions!.headAsBoolean = options["head-as-boolean"] === true;
-  }
   if (options["treat-unknown-as-record"] !== undefined) {
     dpgContext.rlcOptions!.treatUnknownAsRecord =
       options["treat-unknown-as-record"] === true;
@@ -592,9 +589,6 @@ export async function emitModularOperationsFromTypeSpec(
   if (options["wrap-non-model-return"] !== undefined) {
     dpgContext.rlcOptions!.wrapNonModelReturn =
       options["wrap-non-model-return"] === true;
-  }
-  if (options["head-as-boolean"] !== undefined) {
-    dpgContext.rlcOptions!.headAsBoolean = options["head-as-boolean"] === true;
   }
   dpgContext.rlcOptions!.enableStorageCompat =
     options["enable-storage-compat"] === true;

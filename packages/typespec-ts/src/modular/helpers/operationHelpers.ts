@@ -234,7 +234,7 @@ export function getDeserializePrivateFunction(
       name: (response as any).name ?? "",
       type: getTypeExpression(context, response.type)
     };
-  } else if (isHeadAsBooleanOperation(context, operation)) {
+  } else if (isHeadAsBooleanOperation(operation)) {
     returnType = { name: "", type: "boolean" };
   } else {
     returnType = { name: "", type: "void" };
@@ -413,7 +413,7 @@ export function getDeserializePrivateFunction(
           statements.push(
             `return { blobBody: result.blobBody, readableStreamBody: result.readableStreamBody };`
           );
-        } else if (isHeadAsBooleanOperation(context, operation)) {
+        } else if (isHeadAsBooleanOperation(operation)) {
           // HEAD has no body; derive boolean from status code
           statements.push(`return { body: result.status.startsWith("2") };`);
         } else {
@@ -442,7 +442,7 @@ export function getDeserializePrivateFunction(
         isAzureCoreErrorType(context.program, deserializedType.__raw)
       ) {
         statements.push(`return ${deserializedRoot}${multipartCastSuffix}`);
-      } else if (isHeadAsBooleanOperation(context, operation)) {
+      } else if (isHeadAsBooleanOperation(operation)) {
         // HEAD has no body; derive boolean from status code
         statements.push(`return result.status.startsWith("2");`);
       } else {
@@ -459,7 +459,7 @@ export function getDeserializePrivateFunction(
         );
       }
     }
-  } else if (isHeadAsBooleanOperation(context, operation)) {
+  } else if (isHeadAsBooleanOperation(operation)) {
     if (shouldWrap) {
       statements.push(`return { body: result.status.startsWith("2") };`);
     } else {
@@ -1053,7 +1053,7 @@ export function getOperationFunction(
       name: "",
       type: `${buildHeaderOnlyResponseType(context, responseHeaders)}`
     };
-  } else if (isHeadAsBooleanOperation(context, operation)) {
+  } else if (isHeadAsBooleanOperation(operation)) {
     returnType = { name: "", type: "boolean" };
   }
 
@@ -2983,10 +2983,10 @@ export function getExpectedStatuses(
   context?: SdkContext
 ): string {
   let statusCodes = operation.operation.responses.map((x) => x.statusCodes);
-  // For HEAD + @responseAsBool / head-as-boolean, 404 is a valid "false" response.
+  // For HEAD + @responseAsBool, 404 is a valid "false" response.
   if (
     context &&
-    isHeadAsBooleanOperation(context, operation) &&
+    isHeadAsBooleanOperation(operation) &&
     !statusCodes.includes(404)
   ) {
     statusCodes = [...statusCodes, 404];
@@ -3209,15 +3209,11 @@ function isHeadOperation(operation: ServiceOperation): boolean {
   return operation.operation.verb.toLowerCase() === "head";
 }
 
-function isHeadAsBooleanOperation(
-  context: SdkContext,
-  operation: ServiceOperation
-): boolean {
+function isHeadAsBooleanOperation(operation: ServiceOperation): boolean {
   if (!isHeadOperation(operation)) return false;
   // @responseAsBool: TCGC promotes response.type to SdkBuiltInType { kind: "boolean" }
   if ((operation.response.type as any)?.kind === "boolean") return true;
-  // Legacy head-as-boolean emitter option (response.type remains void)
-  return !!context.rlcOptions?.headAsBoolean;
+  return false;
 }
 
 /**
@@ -3254,9 +3250,8 @@ export function checkWrapNonModelReturn(
 
   const { type } = operation.response;
   if (!type) {
-    // Special case: HEAD operation with void response → wrap as boolean { body: boolean }
-    // Triggered by head-as-boolean emitter option.
-    if (isHeadAsBooleanOperation(context, operation)) {
+    // Special case: HEAD operation with @responseAsBool and void response → wrap as boolean { body: boolean }
+    if (isHeadAsBooleanOperation(operation)) {
       return { shouldWrap: true, isBinary: false };
     }
     return noWrap; // void return type - no wrap needed
@@ -3307,10 +3302,6 @@ export function buildNonModelResponseTypeDeclaration(
        */
       readableStreamBody?: ${nodeReadableStreamRef};
   }`;
-  } else if (!operation.response.type && isHeadOperation(operation)) {
-    // HEAD as boolean: the body property is a boolean indicating if the resource exists.
-    // true = resource exists (2xx response), false = resource not found (e.g., 404)
-    typeBody = `{ body: boolean }`;
   } else {
     const returnType = getTypeExpression(context, operation.response.type!);
     typeBody = `{ body: ${returnType} }`;
