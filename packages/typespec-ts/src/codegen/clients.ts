@@ -52,12 +52,7 @@ export function emitClientContext(
 
   // ── Client interface ──
   const requiredProperties = client.parameters
-    .filter(
-      (p) =>
-        !p.isEndpoint &&
-        !p.isCredential &&
-        (p.isApiVersion || (p.required && !p.hasDefaultValue))
-    )
+    .filter((p) => !p.isEndpoint && !p.isCredential && p.required)
     .map((p) => ({
       name: p.name,
       type: p.type,
@@ -331,7 +326,7 @@ function emitReturnStatement(
       !p.isEndpoint &&
       !p.isCredential &&
       p.name !== "options" &&
-      (p.isApiVersion || (p.required && !p.hasDefaultValue))
+      p.required
   );
 
   const requiredParamNames = new Set(

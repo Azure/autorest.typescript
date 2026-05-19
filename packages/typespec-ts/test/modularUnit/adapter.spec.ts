@@ -1,5 +1,8 @@
 import { describe, expect, it } from "vitest";
+import { Project } from "ts-morph";
 
+import { emitClientContext } from "../../src/codegen/clients.js";
+import { provideBinder } from "../../src/framework/hooks/binder.js";
 import { renameClientName } from "../../src/index.js";
 import { transformModularEmitterOptions } from "../../src/modular/buildModularOptions.js";
 import {
@@ -371,6 +374,44 @@ describe("tcgc adapter", () => {
     expect(client.parameters.some((parameter) => parameter.isApiVersion)).toBe(
       true
     );
+  });
+
+  it("keeps client-default api-version optional on emitted context interfaces", async () => {
+    const model = await adaptCodeModelFromTypeSpec(
+      buildServiceTypeSpec(
+        `
+          enum Versions {
+            v2026_05_15: "2026-05-15"
+          }
+
+          model ApiVersionParameter {
+            @query
+            "api-version": string;
+          }
+
+          @route("/widgets")
+          op ping(...ApiVersionParameter): void;
+        `,
+        `
+          @versioned(Versions)
+          @server("{endpoint}/widgets", "Widgets", {
+            endpoint: url
+          })
+        `
+      )
+    );
+
+    const client = model.clients[0]!;
+    const apiVersion = client.parameters.find((parameter) => parameter.isApiVersion);
+    expect(apiVersion).toMatchObject({ required: false, hasDefaultValue: true });
+
+    const project = new Project({ useInMemoryFileSystem: true });
+    const binder = provideBinder(project);
+    const file = emitClientContext(project, client, model.settings);
+    binder.resolveAllReferences("");
+
+    expect(file?.getFullText()).toContain("apiVersion?: string;");
+    expect(file?.getFullText()).not.toContain("apiVersion: string;");
   });
 
   it("groups nested operations when operation groups are enabled", async () => {
