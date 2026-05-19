@@ -1,3 +1,7 @@
+## 6.0.72 (2026-05-19)
+
+- [Feature] Version bump.
+
 ## 6.0.71 (2026-05-14)
 
 - [Bugfix] Fix dependencies error. Please refer to [#3963](https://github.com/Azure/autorest.typescript/pull/3963)
