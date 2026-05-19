@@ -1,7 +1,10 @@
 import { Project, SourceFile } from "ts-morph";
 import type { TSCodeModel } from "../codemodel/index.js";
 import type { SdkContext } from "../utils/interfaces.js";
-import { flattenPropertyModelMap } from "../framework/hooks/sdkTypes.js";
+import {
+  emitQueue,
+  flattenPropertyModelMap
+} from "../framework/hooks/sdkTypes.js";
 import {
   addSerializationFunctions,
   emitType,
@@ -81,6 +84,27 @@ export function emitModelFiles(
       unionType.namespace
     );
     emitType(sdkContext, rawUnion, sourceFile);
+  }
+
+  // Strategy A (B8 fix): emit array/dict serializer helpers that the serializer builders
+  // still reference via refkey(type, "serializer"/"deserializer"). The legacy emitTypes()
+  // in emitModels.ts handled this by walking the full emitQueue; the new filtered-IR
+  // renderer only walks codeModel.models/enums/unions, so those helpers were never
+  // registered with the binder — causing __PLACEHOLDER_*__ tokens to leak.
+  //
+  // TODO: migrate array/dict helper types into TSCodeModel IR so the renderer owns them
+  // explicitly rather than relying on the global emitQueue side-channel.
+  // See: .squad/decisions/inbox/dallas-models-helpers.md
+  for (const type of emitQueue) {
+    if (type.kind !== "array" && type.kind !== "dict") {
+      continue;
+    }
+    const sourceFile = getOrCreateModelsFile(
+      project,
+      codeModel.settings.sourceRoot,
+      getModelNamespaces(sdkContext, type)
+    );
+    emitType(sdkContext, type, sourceFile);
   }
 
   for (const [property, baseModel] of flattenPropertyModelMap) {
