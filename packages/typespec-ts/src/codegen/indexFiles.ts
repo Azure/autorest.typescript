@@ -179,7 +179,8 @@ export function emitRootIndex(
   exportModules(project, rootIndexFile, settings, clientName, "api", {
     subfolder,
     interfaceOnly: true,
-    isTopLevel: true
+    isTopLevel: true,
+    recursive: true
   });
   exportModules(project, rootIndexFile, settings, clientName, "classic", {
     subfolder,
