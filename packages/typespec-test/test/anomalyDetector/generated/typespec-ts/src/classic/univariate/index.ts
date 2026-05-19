@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { AnomalyDetectorContext } from "../../api/index.js";
+import { AnomalyDetectorContext } from "../../api/anomalyDetectorContext.js";
 import {
   detectUnivariateChangePoint,
   detectUnivariateLastPoint,

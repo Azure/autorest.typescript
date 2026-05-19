@@ -70,16 +70,11 @@ import {
   isDiscriminatedUnion
 } from "./serialization/serializeUtils.js";
 import { reportDiagnostic } from "../lib.js";
-import {
-  getDeprecationDetails,
-  getNamespaceFullName,
-  NoTarget
-} from "@typespec/compiler";
+import { getNamespaceFullName, NoTarget } from "@typespec/compiler";
 import {
   getTypeExpression,
   normalizeModelPropertyName
 } from "./type-expressions/get-type-expression.js";
-import { getDocsWithTags } from "./helpers/docsHelpers.js";
 import {
   emitQueue,
   flattenPropertyModelMap,
@@ -572,33 +567,6 @@ export function addSerializationFunctions(
   }
 }
 
-function getDeprecationMessage(
-  context: SdkContext,
-  target: { deprecation?: string; __raw?: unknown }
-): string | undefined {
-  if (target.deprecation && target.deprecation.trim().length > 0) {
-    return target.deprecation;
-  }
-
-  if (!target.__raw) {
-    return undefined;
-  }
-
-  return getDeprecationDetails(context.program, target.__raw as any)?.message;
-}
-
-function getTaggedDocs(
-  context: SdkContext,
-  target: { doc?: string; deprecation?: string; __raw?: unknown },
-  description?: string,
-  extraDocs: string[] = []
-): string[] {
-  return getDocsWithTags(description ?? target.doc, {
-    deprecation: getDeprecationMessage(context, target),
-    extraDocs
-  });
-}
-
 function buildUnionType(
   context: SdkContext,
   type: SdkUnionType
@@ -612,11 +580,7 @@ function buildUnionType(
       .join(" | ")
   };
 
-  unionDeclaration.docs = getTaggedDocs(
-    context,
-    type,
-    type.doc ?? `Alias for ${unionDeclaration.name}`
-  );
+  unionDeclaration.docs = [type.doc ?? `Alias for ${unionDeclaration.name}`];
 
   return unionDeclaration;
 }
@@ -628,11 +592,9 @@ function buildNullableType(context: SdkContext, type: SdkNullableType) {
     isExported: true,
     type: getTypeExpression(context, type.type) + " | null"
   };
-  nullableDeclaration.docs = getTaggedDocs(
-    context,
-    type,
+  nullableDeclaration.docs = [
     type.doc ?? `Alias for ${nullableDeclaration.name}`
-  );
+  ];
   return nullableDeclaration;
 }
 
@@ -661,18 +623,13 @@ export function buildEnumTypes(
   };
 
   const docs = type.doc ? type.doc : "Type of " + enumAsUnion.name;
-  enumAsUnion.docs = getTaggedDocs(
-    context,
-    type,
+  enumAsUnion.docs =
     isExtensibleEnum(context, type) && type.doc
-      ? (getExtensibleEnumDescription(context, type) ?? docs)
-      : docs
-  );
-  enumDeclaration.docs = getTaggedDocs(
-    context,
-    type,
-    type.doc ?? `Known values of {@link ${type.name}} that the service accepts.`
-  );
+      ? [getExtensibleEnumDescription(context, type) ?? docs]
+      : [docs];
+  enumDeclaration.docs = type.doc
+    ? [type.doc]
+    : [`Known values of {@link ${type.name}} that the service accepts.`];
 
   return [enumAsUnion, enumDeclaration];
 }
@@ -770,11 +727,12 @@ function emitEnumMember(
     value: member.value
   };
 
-  memberStructure.docs = getTaggedDocs(
-    context,
-    member,
-    member.doc ?? String(member.value)
-  );
+  if (member.doc) {
+    memberStructure.docs = [member.doc];
+  } else {
+    // Provide default documentation using the enum value when no explicit doc exists
+    memberStructure.docs = [String(member.value)];
+  }
 
   return memberStructure;
 }
@@ -872,11 +830,9 @@ function buildModelInterface(
     addExtendedDictInfo(context, type, interfaceStructure);
   }
 
-  interfaceStructure.docs = getTaggedDocs(
-    context,
-    type,
+  interfaceStructure.docs = [
     type.doc ?? "model interface " + interfaceStructure.name
-  );
+  ];
 
   return interfaceStructure;
 }
@@ -1030,11 +986,7 @@ function buildModelPolymorphicType(context: SdkContext, type: SdkModelType) {
       .map((t) => getTypeExpression(context, t))
       .join(" | ")
   };
-  typeDeclaration.docs = getTaggedDocs(
-    context,
-    type,
-    `Alias for ${typeDeclaration.name}`
-  );
+  typeDeclaration.docs = [`Alias for ${typeDeclaration.name}`];
 
   typeDeclaration.type += ` | ${getModelExpression(context, type, {
     skipPolymorphicUnion: true
@@ -1091,9 +1043,8 @@ function buildModelProperty(
     isReadonly: isReadOnly(property as SdkModelPropertyType)
   };
 
-  const propertyDocs = getTaggedDocs(context, property);
-  if (propertyDocs.length > 0) {
-    propertyStructure.docs = propertyDocs;
+  if (property.doc) {
+    propertyStructure.docs = [property.doc];
   }
 
   return propertyStructure;

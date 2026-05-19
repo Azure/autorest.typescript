@@ -19,18 +19,17 @@ export declare class DocumentationClient {
 }
 
 export declare interface DocumentationClientOptionalParams extends ClientOptions {
-    endpointParam?: string;
 }
 
 export { isRestError }
 
-declare interface ListsBulletPointsModelOptionalParams extends OperationOptions {
+export declare interface ListsBulletPointsModelOptionalParams extends OperationOptions {
 }
 
-declare interface ListsBulletPointsOpOptionalParams extends OperationOptions {
+export declare interface ListsBulletPointsOpOptionalParams extends OperationOptions {
 }
 
-declare interface ListsNumberedOptionalParams extends OperationOptions {
+export declare interface ListsNumberedOptionalParams extends OperationOptions {
 }
 
 export declare interface ListsOperations {
@@ -41,13 +40,13 @@ export declare interface ListsOperations {
 
 export { RestError }
 
-declare interface TextFormattingBoldTextOptionalParams extends OperationOptions {
+export declare interface TextFormattingBoldTextOptionalParams extends OperationOptions {
 }
 
-declare interface TextFormattingCombinedFormattingOptionalParams extends OperationOptions {
+export declare interface TextFormattingCombinedFormattingOptionalParams extends OperationOptions {
 }
 
-declare interface TextFormattingItalicTextOptionalParams extends OperationOptions {
+export declare interface TextFormattingItalicTextOptionalParams extends OperationOptions {
 }
 
 export declare interface TextFormattingOperations {

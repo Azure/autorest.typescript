@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { OpenAIContext } from "../../api/index.js";
+import { OpenAIContext } from "../../api/openAIContext.js";
 import { create } from "../../api/completions/operations.js";
 import { CompletionsCreateOptionalParams } from "../../api/completions/options.js";
 import { CreateCompletionRequest, CreateCompletionResponse } from "../../models/models.js";

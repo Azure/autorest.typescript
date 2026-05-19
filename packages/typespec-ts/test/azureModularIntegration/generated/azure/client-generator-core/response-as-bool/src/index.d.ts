@@ -4,14 +4,14 @@ import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 import { RestError } from '@azure/core-rest-pipeline';
 
-declare interface HeadAsBooleanExistsOptionalParams extends OperationOptions {
+export declare interface HeadAsBooleanExistsOptionalParams extends OperationOptions {
 }
 
 export declare type HeadAsBooleanExistsResponse = {
     body: boolean;
 };
 
-declare interface HeadAsBooleanNotExistsOptionalParams extends OperationOptions {
+export declare interface HeadAsBooleanNotExistsOptionalParams extends OperationOptions {
 }
 
 export declare type HeadAsBooleanNotExistsResponse = {
@@ -33,7 +33,6 @@ export declare class ResponseAsBoolClient {
 }
 
 export declare interface ResponseAsBoolClientOptionalParams extends ClientOptions {
-    endpointParam?: string;
 }
 
 export { RestError }

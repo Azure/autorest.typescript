@@ -11,20 +11,19 @@ export declare class CollectionFormatClient {
 }
 
 export declare interface CollectionFormatClientOptionalParams extends ClientOptions {
-    endpointParam?: string;
 }
 
-declare interface HeaderCsvOptionalParams extends OperationOptions {
+export declare interface HeaderCsvOptionalParams extends OperationOptions {
 }
 
 export declare interface HeaderOperations {
     csv: (colors: string[], options?: HeaderCsvOptionalParams) => Promise<void>;
 }
 
-declare interface QueryCsvOptionalParams extends OperationOptions {
+export declare interface QueryCsvOptionalParams extends OperationOptions {
 }
 
-declare interface QueryMultiOptionalParams extends OperationOptions {
+export declare interface QueryMultiOptionalParams extends OperationOptions {
 }
 
 export declare interface QueryOperations {
@@ -34,10 +33,10 @@ export declare interface QueryOperations {
     multi: (colors: string[], options?: QueryMultiOptionalParams) => Promise<void>;
 }
 
-declare interface QueryPipesOptionalParams extends OperationOptions {
+export declare interface QueryPipesOptionalParams extends OperationOptions {
 }
 
-declare interface QuerySsvOptionalParams extends OperationOptions {
+export declare interface QuerySsvOptionalParams extends OperationOptions {
 }
 
 export { }

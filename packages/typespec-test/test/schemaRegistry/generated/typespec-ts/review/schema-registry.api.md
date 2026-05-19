@@ -59,10 +59,18 @@ export interface SchemaGroup {
     readonly groupName: string;
 }
 
+// @public
+export interface SchemaOperationsGetSchemaByIdOptionalParams extends OperationOptions {
+}
+
 // @public (undocumented)
 export type SchemaOperationsGetSchemaByIdResponse = {
     body: Uint8Array;
 };
+
+// @public
+export interface SchemaOperationsGetSchemaByVersionOptionalParams extends OperationOptions {
+}
 
 // @public (undocumented)
 export type SchemaOperationsGetSchemaByVersionResponse = {
@@ -70,19 +78,29 @@ export type SchemaOperationsGetSchemaByVersionResponse = {
 };
 
 // @public
+export interface SchemaOperationsGetSchemaIdByContentOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface SchemaOperationsListSchemaGroupsOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface SchemaOperationsListSchemaVersionsOptionalParams extends OperationOptions {
+}
+
+// @public
 export interface SchemaOperationsOperations {
-    // Warning: (ae-forgotten-export) The symbol "SchemaOperationsGetSchemaByIdOptionalParams" needs to be exported by the entry point index.d.ts
     getSchemaById: (id: string, options?: SchemaOperationsGetSchemaByIdOptionalParams) => Promise<SchemaOperationsGetSchemaByIdResponse>;
-    // Warning: (ae-forgotten-export) The symbol "SchemaOperationsGetSchemaByVersionOptionalParams" needs to be exported by the entry point index.d.ts
     getSchemaByVersion: (groupName: string, name: string, schemaVersion: number, options?: SchemaOperationsGetSchemaByVersionOptionalParams) => Promise<SchemaOperationsGetSchemaByVersionResponse>;
-    // Warning: (ae-forgotten-export) The symbol "SchemaOperationsGetSchemaIdByContentOptionalParams" needs to be exported by the entry point index.d.ts
     getSchemaIdByContent: (groupName: string, name: string, contentType: SchemaContentTypeValues, schemaContent: Uint8Array, options?: SchemaOperationsGetSchemaIdByContentOptionalParams) => Promise<void>;
-    // Warning: (ae-forgotten-export) The symbol "SchemaOperationsListSchemaGroupsOptionalParams" needs to be exported by the entry point index.d.ts
     listSchemaGroups: (options?: SchemaOperationsListSchemaGroupsOptionalParams) => PagedAsyncIterableIterator<SchemaGroup>;
-    // Warning: (ae-forgotten-export) The symbol "SchemaOperationsListSchemaVersionsOptionalParams" needs to be exported by the entry point index.d.ts
     listSchemaVersions: (groupName: string, name: string, options?: SchemaOperationsListSchemaVersionsOptionalParams) => PagedAsyncIterableIterator<SchemaVersion>;
-    // Warning: (ae-forgotten-export) The symbol "SchemaOperationsRegisterSchemaOptionalParams" needs to be exported by the entry point index.d.ts
     registerSchema: (groupName: string, name: string, content: Uint8Array, contentType: SchemaContentTypeValues, options?: SchemaOperationsRegisterSchemaOptionalParams) => Promise<void>;
+}
+
+// @public
+export interface SchemaOperationsRegisterSchemaOptionalParams extends OperationOptions {
 }
 
 // @public

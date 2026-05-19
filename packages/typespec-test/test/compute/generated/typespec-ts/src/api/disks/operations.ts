@@ -52,6 +52,7 @@ export async function _createOrUpdateDeserialize(result: PathUncheckedResponse):
 
     throw error;
   }
+
   return diskDeserializer(result.body);
 }
 
@@ -107,6 +108,7 @@ export async function _getDeserialize(result: PathUncheckedResponse): Promise<Di
 
     throw error;
   }
+
   return diskDeserializer(result.body);
 }
 

@@ -68,6 +68,7 @@ export async function _deleteTestDeserialize(result: PathUncheckedResponse): Pro
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
+
   return;
 }
 
@@ -106,6 +107,7 @@ export async function _deleteTestFileDeserialize(result: PathUncheckedResponse):
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
+
   return;
 }
 
@@ -156,6 +158,7 @@ export async function _uploadTestFileDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
+
   return testFileInfoDeserializer(result.body);
 }
 
@@ -210,6 +213,7 @@ export async function _listTestsDeserialize(result: PathUncheckedResponse): Prom
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
+
   return _pagedTestDeserializer(result.body);
 }
 
@@ -264,6 +268,7 @@ export async function _listTestFilesDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
+
   return _pagedTestFileInfoDeserializer(result.body);
 }
 
@@ -318,6 +323,7 @@ export async function _getTestFileDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
+
   return testFileInfoDeserializer(result.body);
 }
 
@@ -360,6 +366,7 @@ export async function _getTestDeserialize(result: PathUncheckedResponse): Promis
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
+
   return testDeserializer(result.body);
 }
 
@@ -403,6 +410,7 @@ export async function _getServerMetricsConfigDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
+
   return testServerMetricConfigDeserializer(result.body);
 }
 
@@ -446,6 +454,7 @@ export async function _getAppComponentsDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
+
   return testAppComponentsDeserializer(result.body);
 }
 
@@ -492,6 +501,7 @@ export async function _createOrUpdateServerMetricsConfigDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
+
   return testServerMetricConfigDeserializer(result.body);
 }
 
@@ -539,6 +549,7 @@ export async function _createOrUpdateAppComponentsDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
+
   return testAppComponentsDeserializer(result.body);
 }
 
@@ -584,6 +595,7 @@ export async function _createOrUpdateTestDeserialize(result: PathUncheckedRespon
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
+
   return testDeserializer(result.body);
 }
 

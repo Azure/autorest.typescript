@@ -21,6 +21,14 @@ export type {
 } from "./models/index.js";
 export { KnownServiceApiVersions } from "./models/index.js";
 export type { SchemaRegistryClientOptionalParams } from "./api/index.js";
+export type {
+  SchemaOperationsRegisterSchemaOptionalParams,
+  SchemaOperationsGetSchemaIdByContentOptionalParams,
+  SchemaOperationsGetSchemaByVersionOptionalParams,
+  SchemaOperationsListSchemaVersionsOptionalParams,
+  SchemaOperationsGetSchemaByIdOptionalParams,
+  SchemaOperationsListSchemaGroupsOptionalParams,
+} from "./api/schemaOperations/index.js";
 export type { SchemaOperationsOperations } from "./classic/index.js";
 export type { PageSettings, ContinuablePage, PagedAsyncIterableIterator };
 export { RestError, isRestError } from "@azure/core-rest-pipeline";

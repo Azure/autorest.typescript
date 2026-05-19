@@ -40,6 +40,7 @@ export async function _testDataverseV2Deserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
+
   return yDataverseV2DataverseSourceConnectorV2PropertiesDeserializer(result.body);
 }
 
@@ -70,6 +71,7 @@ export async function _testDataverseDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
+
   return yDataverseDataverseSourceConnectorPropertiesDeserializer(result.body);
 }
 

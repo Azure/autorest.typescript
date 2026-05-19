@@ -41,6 +41,7 @@ export async function _createDeserialize(
 
     throw error;
   }
+
   return createChatCompletionResponseDeserializer(result.body);
 }
 

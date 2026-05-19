@@ -58,10 +58,10 @@ export async function _cancelDeserialize(result: PathUncheckedResponse): Promise
 
     throw error;
   }
+
   return fineTuneDeserializer(result.body);
 }
 
-/** @deprecated deprecated */
 export async function cancel(
   context: Client,
   fineTuneId: string,
@@ -104,10 +104,10 @@ export async function _listEventsDeserialize(
 
     throw error;
   }
+
   return listFineTuneEventsResponseDeserializer(result.body);
 }
 
-/** @deprecated deprecated */
 export async function listEvents(
   context: Client,
   fineTuneId: string,
@@ -147,10 +147,10 @@ export async function _retrieveDeserialize(result: PathUncheckedResponse): Promi
 
     throw error;
   }
+
   return fineTuneDeserializer(result.body);
 }
 
-/** @deprecated deprecated */
 export async function retrieve(
   context: Client,
   fineTuneId: string,
@@ -182,10 +182,10 @@ export async function _listDeserialize(
 
     throw error;
   }
+
   return listFineTunesResponseDeserializer(result.body);
 }
 
-/** @deprecated deprecated */
 export async function list(
   context: Client,
   options: FineTunesListOptionalParams = { requestOptions: {} },
@@ -217,10 +217,10 @@ export async function _createDeserialize(result: PathUncheckedResponse): Promise
 
     throw error;
   }
+
   return fineTuneDeserializer(result.body);
 }
 
-/** @deprecated deprecated */
 export async function create(
   context: Client,
   fineTune: CreateFineTuneRequest,

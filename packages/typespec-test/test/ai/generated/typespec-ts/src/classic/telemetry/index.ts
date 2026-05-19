@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { AIProjectContext } from "../../api/index.js";
+import { AIProjectContext } from "../../api/aiProjectContext.js";
 import { getAppInsights } from "../../api/telemetry/operations.js";
 import { TelemetryGetAppInsightsOptionalParams } from "../../api/telemetry/options.js";
 import { GetAppInsightsResponse } from "../../models/models.js";

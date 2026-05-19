@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { NetworkAnalyticsApiContext } from "../../api/index.js";
+import { NetworkAnalyticsApiContext } from "../../api/networkAnalyticsApiContext.js";
 import {
   read,
   listBySubscription,

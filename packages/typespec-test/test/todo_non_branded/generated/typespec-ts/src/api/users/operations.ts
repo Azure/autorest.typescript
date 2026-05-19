@@ -54,6 +54,7 @@ export async function _createDeserialize(
     }
     throw error;
   }
+
   return userCreatedResponseDeserializer(result.body);
 }
 

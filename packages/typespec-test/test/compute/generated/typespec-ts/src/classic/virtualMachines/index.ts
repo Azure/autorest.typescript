@@ -1,14 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { ComputeContext } from "../../api/index.js";
+import { ComputeContext } from "../../api/computeContext.js";
 import { createOrUpdate, get } from "../../api/virtualMachines/operations.js";
 import {
   VirtualMachinesCreateOrUpdateOptionalParams,
   VirtualMachinesGetOptionalParams,
 } from "../../api/virtualMachines/options.js";
 import { VirtualMachine } from "../../models/compute/models.js";
-import { getSimplePoller } from "../../static-helpers/simplePollerHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 
 /** Interface representing a VirtualMachines operations. */
@@ -36,24 +35,6 @@ function _getVirtualMachines(context: ComputeContext) {
       resource: VirtualMachine,
       options?: VirtualMachinesCreateOrUpdateOptionalParams,
     ) => createOrUpdate(context, resourceGroupName, vmName, resource, options),
-    beginCreateOrUpdate: async (
-      resourceGroupName: string,
-      vmName: string,
-      resource: VirtualMachine,
-      options?: VirtualMachinesCreateOrUpdateOptionalParams,
-    ) => {
-      const poller = createOrUpdate(context, resourceGroupName, vmName, resource, options);
-      await poller.submitted();
-      return getSimplePoller(poller);
-    },
-    beginCreateOrUpdateAndWait: async (
-      resourceGroupName: string,
-      vmName: string,
-      resource: VirtualMachine,
-      options?: VirtualMachinesCreateOrUpdateOptionalParams,
-    ) => {
-      return await createOrUpdate(context, resourceGroupName, vmName, resource, options);
-    },
     get: (resourceGroupName: string, vmName: string, options?: VirtualMachinesGetOptionalParams) =>
       get(context, resourceGroupName, vmName, options),
   };

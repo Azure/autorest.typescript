@@ -13,7 +13,6 @@ export declare class UnionClient {
 }
 
 export declare interface UnionClientOptionalParams extends ClientOptions {
-    endpointParam?: string;
 }
 
 export declare interface ValidKeyOptionalParams extends OperationOptions {

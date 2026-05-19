@@ -21,7 +21,6 @@ export declare class PathClient {
 }
 
 export declare interface PathClientOptionalParams extends ClientOptions {
-    endpointParam?: string;
     version?: string;
 }
 

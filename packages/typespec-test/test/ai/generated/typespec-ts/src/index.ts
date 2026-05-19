@@ -1,11 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import { FileContents } from "./static-helpers/multipartHelpers.js";
 import {
   PageSettings,
   ContinuablePage,
   PagedAsyncIterableIterator,
 } from "./static-helpers/pagingHelpers.js";
+import { NodeReadableStream } from "./static-helpers/platform-types.js";
 
 export { AIProjectClient } from "./aiProjectClient.js";
 export type {
@@ -246,10 +248,70 @@ export type {
 } from "./models/agents/index.js";
 export type { AIProjectClientOptionalParams } from "./api/index.js";
 export type {
+  AgentsListVectorStoreFileBatchFilesOptionalParams,
+  AgentsCancelVectorStoreFileBatchOptionalParams,
+  AgentsGetVectorStoreFileBatchOptionalParams,
+  AgentsCreateVectorStoreFileBatchOptionalParams,
+  AgentsDeleteVectorStoreFileOptionalParams,
+  AgentsGetVectorStoreFileOptionalParams,
+  AgentsCreateVectorStoreFileOptionalParams,
+  AgentsListVectorStoreFilesOptionalParams,
+  AgentsDeleteVectorStoreOptionalParams,
+  AgentsModifyVectorStoreOptionalParams,
+  AgentsGetVectorStoreOptionalParams,
+  AgentsCreateVectorStoreOptionalParams,
+  AgentsListVectorStoresOptionalParams,
+  AgentsGetFileContentOptionalParams,
+  AgentsGetFileOptionalParams,
+  AgentsDeleteFileOptionalParams,
+  AgentsUploadFileOptionalParams,
+  AgentsListFilesOptionalParams,
+  AgentsListRunStepsOptionalParams,
+  AgentsGetRunStepOptionalParams,
+  AgentsCreateThreadAndRunOptionalParams,
+  AgentsCancelRunOptionalParams,
+  AgentsSubmitToolOutputsToRunOptionalParams,
+  AgentsUpdateRunOptionalParams,
+  AgentsGetRunOptionalParams,
+  AgentsListRunsOptionalParams,
+  AgentsCreateRunOptionalParams,
+  AgentsUpdateMessageOptionalParams,
+  AgentsGetMessageOptionalParams,
+  AgentsListMessagesOptionalParams,
+  AgentsCreateMessageOptionalParams,
+  AgentsDeleteThreadOptionalParams,
+  AgentsUpdateThreadOptionalParams,
+  AgentsGetThreadOptionalParams,
+  AgentsCreateThreadOptionalParams,
+  AgentsDeleteAgentOptionalParams,
+  AgentsUpdateAgentOptionalParams,
+  AgentsGetAgentOptionalParams,
+  AgentsListAgentsOptionalParams,
+  AgentsCreateAgentOptionalParams,
+} from "./api/agents/index.js";
+export type {
+  ConnectionsGetConnectionWithSecretsOptionalParams,
+  ConnectionsGetConnectionOptionalParams,
+  ConnectionsListConnectionsOptionalParams,
+  ConnectionsGetWorkspaceOptionalParams,
+} from "./api/connections/index.js";
+export type {
+  EvaluationsDisableScheduleOptionalParams,
+  EvaluationsListScheduleOptionalParams,
+  EvaluationsCreateOrReplaceScheduleOptionalParams,
+  EvaluationsGetScheduleOptionalParams,
+  EvaluationsUpdateOptionalParams,
+  EvaluationsListOptionalParams,
+  EvaluationsCreateOptionalParams,
+  EvaluationsGetOptionalParams,
+} from "./api/evaluations/index.js";
+export type { TelemetryGetAppInsightsOptionalParams } from "./api/telemetry/index.js";
+export type {
   AgentsOperations,
   ConnectionsOperations,
   EvaluationsOperations,
   TelemetryOperations,
 } from "./classic/index.js";
 export type { PageSettings, ContinuablePage, PagedAsyncIterableIterator };
+export type { FileContents, NodeReadableStream };
 export { RestError, isRestError } from "@azure/core-rest-pipeline";

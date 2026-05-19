@@ -57,6 +57,7 @@ export async function _getConnectionWithSecretsDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
+
   return getConnectionResponseDeserializer(result.body);
 }
 
@@ -101,6 +102,7 @@ export async function _getConnectionDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
+
   return getConnectionResponseDeserializer(result.body);
 }
 
@@ -145,6 +147,7 @@ export async function _listConnectionsDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
+
   return listConnectionsResponseDeserializer(result.body);
 }
 
@@ -185,6 +188,7 @@ export async function _getWorkspaceDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
+
   return getWorkspaceResponseDeserializer(result.body);
 }
 

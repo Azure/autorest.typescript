@@ -28,10 +28,10 @@ export declare interface HeaderOperations {
     request: (clientName: string, options?: HeaderRequestOptionalParams) => Promise<void>;
 }
 
-declare interface HeaderRequestOptionalParams extends OperationOptions {
+export declare interface HeaderRequestOptionalParams extends OperationOptions {
 }
 
-declare interface HeaderResponseOptionalParams extends OperationOptions {
+export declare interface HeaderResponseOptionalParams extends OperationOptions {
 }
 
 export { isRestError }
@@ -40,10 +40,10 @@ export declare interface LanguageClientNameModel {
     tsName: boolean;
 }
 
-declare interface ModelClientClientOptionalParams extends OperationOptions {
+export declare interface ModelClientClientOptionalParams extends OperationOptions {
 }
 
-declare interface ModelClientLanguageOptionalParams extends OperationOptions {
+export declare interface ModelClientLanguageOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelClientOperations {
@@ -55,28 +55,27 @@ export declare class NamingClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: NamingClientOptionalParams);
+    parameter(clientName: string, options?: ParameterOptionalParams): Promise<void>;
+    clientName(options?: ClientNameOptionalParams): Promise<void>;
     readonly unionEnum: UnionEnumOperations;
     readonly modelClient: ModelClientOperations;
     readonly header: HeaderOperations;
     readonly property: PropertyOperations;
-    parameter(clientName: string, options?: ParameterOptionalParams): Promise<void>;
-    clientName(options?: ClientNameOptionalParams): Promise<void>;
 }
 
 export declare interface NamingClientOptionalParams extends ClientOptions {
-    endpointParam?: string;
 }
 
 export declare interface ParameterOptionalParams extends OperationOptions {
 }
 
-declare interface PropertyClientOptionalParams extends OperationOptions {
+export declare interface PropertyClientOptionalParams extends OperationOptions {
 }
 
-declare interface PropertyCompatibleWithEncodedNameOptionalParams extends OperationOptions {
+export declare interface PropertyCompatibleWithEncodedNameOptionalParams extends OperationOptions {
 }
 
-declare interface PropertyLanguageOptionalParams extends OperationOptions {
+export declare interface PropertyLanguageOptionalParams extends OperationOptions {
 }
 
 export declare interface PropertyOperations {
@@ -96,10 +95,10 @@ export declare interface UnionEnumOperations {
     unionEnumName: (body: ClientExtensibleEnum, options?: UnionEnumUnionEnumNameOptionalParams) => Promise<void>;
 }
 
-declare interface UnionEnumUnionEnumMemberNameOptionalParams extends OperationOptions {
+export declare interface UnionEnumUnionEnumMemberNameOptionalParams extends OperationOptions {
 }
 
-declare interface UnionEnumUnionEnumNameOptionalParams extends OperationOptions {
+export declare interface UnionEnumUnionEnumNameOptionalParams extends OperationOptions {
 }
 
 export { }

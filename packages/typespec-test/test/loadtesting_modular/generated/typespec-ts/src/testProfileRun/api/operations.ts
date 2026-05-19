@@ -58,6 +58,7 @@ export async function _stopTestProfileRunDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
+
   return testProfileRunDeserializer(result.body);
 }
 
@@ -121,6 +122,7 @@ export async function _listTestProfileRunsDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
+
   return _pagedTestProfileRunDeserializer(result.body);
 }
 
@@ -172,6 +174,7 @@ export async function _getTestProfileRunDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
+
   return testProfileRunDeserializer(result.body);
 }
 
@@ -210,6 +213,7 @@ export async function _deleteTestProfileRunDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
+
   return;
 }
 
@@ -256,6 +260,7 @@ export async function _createOrUpdateTestProfileRunDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
+
   return testProfileRunDeserializer(result.body);
 }
 

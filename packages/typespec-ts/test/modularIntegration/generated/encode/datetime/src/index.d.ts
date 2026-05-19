@@ -13,14 +13,13 @@ export declare class DatetimeClient {
 }
 
 export declare interface DatetimeClientOptionalParams extends ClientOptions {
-    endpointParam?: string;
 }
 
 export declare interface DefaultDatetimeProperty {
     value: Date;
 }
 
-declare interface HeaderDefaultOptionalParams extends OperationOptions {
+export declare interface HeaderDefaultOptionalParams extends OperationOptions {
 }
 
 export declare interface HeaderOperations {
@@ -31,19 +30,19 @@ export declare interface HeaderOperations {
     default: (value: Date, options?: HeaderDefaultOptionalParams) => Promise<void>;
 }
 
-declare interface HeaderRfc3339OptionalParams extends OperationOptions {
+export declare interface HeaderRfc3339OptionalParams extends OperationOptions {
 }
 
-declare interface HeaderRfc7231OptionalParams extends OperationOptions {
+export declare interface HeaderRfc7231OptionalParams extends OperationOptions {
 }
 
-declare interface HeaderUnixTimestampArrayOptionalParams extends OperationOptions {
+export declare interface HeaderUnixTimestampArrayOptionalParams extends OperationOptions {
 }
 
-declare interface HeaderUnixTimestampOptionalParams extends OperationOptions {
+export declare interface HeaderUnixTimestampOptionalParams extends OperationOptions {
 }
 
-declare interface PropertyDefaultOptionalParams extends OperationOptions {
+export declare interface PropertyDefaultOptionalParams extends OperationOptions {
 }
 
 export declare interface PropertyOperations {
@@ -54,19 +53,19 @@ export declare interface PropertyOperations {
     default: (body: DefaultDatetimeProperty, options?: PropertyDefaultOptionalParams) => Promise<DefaultDatetimeProperty>;
 }
 
-declare interface PropertyRfc3339OptionalParams extends OperationOptions {
+export declare interface PropertyRfc3339OptionalParams extends OperationOptions {
 }
 
-declare interface PropertyRfc7231OptionalParams extends OperationOptions {
+export declare interface PropertyRfc7231OptionalParams extends OperationOptions {
 }
 
-declare interface PropertyUnixTimestampArrayOptionalParams extends OperationOptions {
+export declare interface PropertyUnixTimestampArrayOptionalParams extends OperationOptions {
 }
 
-declare interface PropertyUnixTimestampOptionalParams extends OperationOptions {
+export declare interface PropertyUnixTimestampOptionalParams extends OperationOptions {
 }
 
-declare interface QueryDefaultOptionalParams extends OperationOptions {
+export declare interface QueryDefaultOptionalParams extends OperationOptions {
 }
 
 export declare interface QueryOperations {
@@ -77,19 +76,19 @@ export declare interface QueryOperations {
     default: (value: Date, options?: QueryDefaultOptionalParams) => Promise<void>;
 }
 
-declare interface QueryRfc3339OptionalParams extends OperationOptions {
+export declare interface QueryRfc3339OptionalParams extends OperationOptions {
 }
 
-declare interface QueryRfc7231OptionalParams extends OperationOptions {
+export declare interface QueryRfc7231OptionalParams extends OperationOptions {
 }
 
-declare interface QueryUnixTimestampArrayOptionalParams extends OperationOptions {
+export declare interface QueryUnixTimestampArrayOptionalParams extends OperationOptions {
 }
 
-declare interface QueryUnixTimestampOptionalParams extends OperationOptions {
+export declare interface QueryUnixTimestampOptionalParams extends OperationOptions {
 }
 
-declare interface ResponseHeaderDefaultOptionalParams extends OperationOptions {
+export declare interface ResponseHeaderDefaultOptionalParams extends OperationOptions {
 }
 
 export declare interface ResponseHeaderOperations {
@@ -99,13 +98,13 @@ export declare interface ResponseHeaderOperations {
     default: (options?: ResponseHeaderDefaultOptionalParams) => Promise<void>;
 }
 
-declare interface ResponseHeaderRfc3339OptionalParams extends OperationOptions {
+export declare interface ResponseHeaderRfc3339OptionalParams extends OperationOptions {
 }
 
-declare interface ResponseHeaderRfc7231OptionalParams extends OperationOptions {
+export declare interface ResponseHeaderRfc7231OptionalParams extends OperationOptions {
 }
 
-declare interface ResponseHeaderUnixTimestampOptionalParams extends OperationOptions {
+export declare interface ResponseHeaderUnixTimestampOptionalParams extends OperationOptions {
 }
 
 export declare interface Rfc3339DatetimeProperty {

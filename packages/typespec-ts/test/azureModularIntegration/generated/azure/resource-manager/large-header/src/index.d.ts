@@ -59,7 +59,7 @@ export declare interface LargeHeadersOperations {
     two6K: (resourceGroupName: string, largeHeaderName: string, options?: LargeHeadersTwo6KOptionalParams) => PollerLike<OperationState<CancelResult>, CancelResult>;
 }
 
-declare interface LargeHeadersTwo6KOptionalParams extends OperationOptions {
+export declare interface LargeHeadersTwo6KOptionalParams extends OperationOptions {
     updateIntervalInMs?: number;
 }
 

@@ -1,14 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { ComputeContext } from "../../api/index.js";
+import { ComputeContext } from "../../api/computeContext.js";
 import { createOrUpdate, get } from "../../api/virtualMachineScaleSetExtensions/operations.js";
 import {
   VirtualMachineScaleSetExtensionsCreateOrUpdateOptionalParams,
   VirtualMachineScaleSetExtensionsGetOptionalParams,
 } from "../../api/virtualMachineScaleSetExtensions/options.js";
 import { VirtualMachineScaleSetExtension } from "../../models/compute/models.js";
-import { getSimplePoller } from "../../static-helpers/simplePollerHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 
 /** Interface representing a VirtualMachineScaleSetExtensions operations. */
@@ -36,30 +35,6 @@ function _getVirtualMachineScaleSetExtensions(context: ComputeContext) {
       resource: VirtualMachineScaleSetExtension,
       options?: VirtualMachineScaleSetExtensionsCreateOrUpdateOptionalParams,
     ) => createOrUpdate(context, resourceGroupName, vmssExtensionName, resource, options),
-    beginCreateOrUpdate: async (
-      resourceGroupName: string,
-      vmssExtensionName: string,
-      resource: VirtualMachineScaleSetExtension,
-      options?: VirtualMachineScaleSetExtensionsCreateOrUpdateOptionalParams,
-    ) => {
-      const poller = createOrUpdate(
-        context,
-        resourceGroupName,
-        vmssExtensionName,
-        resource,
-        options,
-      );
-      await poller.submitted();
-      return getSimplePoller(poller);
-    },
-    beginCreateOrUpdateAndWait: async (
-      resourceGroupName: string,
-      vmssExtensionName: string,
-      resource: VirtualMachineScaleSetExtension,
-      options?: VirtualMachineScaleSetExtensionsCreateOrUpdateOptionalParams,
-    ) => {
-      return await createOrUpdate(context, resourceGroupName, vmssExtensionName, resource, options);
-    },
     get: (
       resourceGroupName: string,
       vmssExtensionName: string,

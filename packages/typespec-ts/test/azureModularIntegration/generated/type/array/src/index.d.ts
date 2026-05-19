@@ -25,10 +25,9 @@ export declare class ArrayClient {
 }
 
 export declare interface ArrayClientOptionalParams extends ClientOptions {
-    endpointParam?: string;
 }
 
-declare interface BooleanValueGetOptionalParams extends OperationOptions {
+export declare interface BooleanValueGetOptionalParams extends OperationOptions {
 }
 
 export declare type BooleanValueGetResponse = {
@@ -40,10 +39,10 @@ export declare interface BooleanValueOperations {
     get: (options?: BooleanValueGetOptionalParams) => Promise<BooleanValueGetResponse>;
 }
 
-declare interface BooleanValuePutOptionalParams extends OperationOptions {
+export declare interface BooleanValuePutOptionalParams extends OperationOptions {
 }
 
-declare interface DatetimeValueGetOptionalParams extends OperationOptions {
+export declare interface DatetimeValueGetOptionalParams extends OperationOptions {
 }
 
 export declare type DatetimeValueGetResponse = {
@@ -55,10 +54,10 @@ export declare interface DatetimeValueOperations {
     get: (options?: DatetimeValueGetOptionalParams) => Promise<DatetimeValueGetResponse>;
 }
 
-declare interface DatetimeValuePutOptionalParams extends OperationOptions {
+export declare interface DatetimeValuePutOptionalParams extends OperationOptions {
 }
 
-declare interface DurationValueGetOptionalParams extends OperationOptions {
+export declare interface DurationValueGetOptionalParams extends OperationOptions {
 }
 
 export declare type DurationValueGetResponse = {
@@ -70,10 +69,10 @@ export declare interface DurationValueOperations {
     get: (options?: DurationValueGetOptionalParams) => Promise<DurationValueGetResponse>;
 }
 
-declare interface DurationValuePutOptionalParams extends OperationOptions {
+export declare interface DurationValuePutOptionalParams extends OperationOptions {
 }
 
-declare interface Float32ValueGetOptionalParams extends OperationOptions {
+export declare interface Float32ValueGetOptionalParams extends OperationOptions {
 }
 
 export declare type Float32ValueGetResponse = {
@@ -85,7 +84,7 @@ export declare interface Float32ValueOperations {
     get: (options?: Float32ValueGetOptionalParams) => Promise<Float32ValueGetResponse>;
 }
 
-declare interface Float32ValuePutOptionalParams extends OperationOptions {
+export declare interface Float32ValuePutOptionalParams extends OperationOptions {
 }
 
 export declare interface InnerModel {
@@ -93,7 +92,7 @@ export declare interface InnerModel {
     children?: InnerModel[];
 }
 
-declare interface Int32ValueGetOptionalParams extends OperationOptions {
+export declare interface Int32ValueGetOptionalParams extends OperationOptions {
 }
 
 export declare type Int32ValueGetResponse = {
@@ -105,10 +104,10 @@ export declare interface Int32ValueOperations {
     get: (options?: Int32ValueGetOptionalParams) => Promise<Int32ValueGetResponse>;
 }
 
-declare interface Int32ValuePutOptionalParams extends OperationOptions {
+export declare interface Int32ValuePutOptionalParams extends OperationOptions {
 }
 
-declare interface Int64ValueGetOptionalParams extends OperationOptions {
+export declare interface Int64ValueGetOptionalParams extends OperationOptions {
 }
 
 export declare type Int64ValueGetResponse = {
@@ -120,12 +119,12 @@ export declare interface Int64ValueOperations {
     get: (options?: Int64ValueGetOptionalParams) => Promise<Int64ValueGetResponse>;
 }
 
-declare interface Int64ValuePutOptionalParams extends OperationOptions {
+export declare interface Int64ValuePutOptionalParams extends OperationOptions {
 }
 
 export { isRestError }
 
-declare interface ModelValueGetOptionalParams extends OperationOptions {
+export declare interface ModelValueGetOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelValueOperations {
@@ -133,10 +132,10 @@ export declare interface ModelValueOperations {
     get: (options?: ModelValueGetOptionalParams) => Promise<InnerModel[]>;
 }
 
-declare interface ModelValuePutOptionalParams extends OperationOptions {
+export declare interface ModelValuePutOptionalParams extends OperationOptions {
 }
 
-declare interface NullableBooleanValueGetOptionalParams extends OperationOptions {
+export declare interface NullableBooleanValueGetOptionalParams extends OperationOptions {
 }
 
 export declare type NullableBooleanValueGetResponse = {
@@ -148,10 +147,10 @@ export declare interface NullableBooleanValueOperations {
     get: (options?: NullableBooleanValueGetOptionalParams) => Promise<NullableBooleanValueGetResponse>;
 }
 
-declare interface NullableBooleanValuePutOptionalParams extends OperationOptions {
+export declare interface NullableBooleanValuePutOptionalParams extends OperationOptions {
 }
 
-declare interface NullableFloatValueGetOptionalParams extends OperationOptions {
+export declare interface NullableFloatValueGetOptionalParams extends OperationOptions {
 }
 
 export declare type NullableFloatValueGetResponse = {
@@ -163,10 +162,10 @@ export declare interface NullableFloatValueOperations {
     get: (options?: NullableFloatValueGetOptionalParams) => Promise<NullableFloatValueGetResponse>;
 }
 
-declare interface NullableFloatValuePutOptionalParams extends OperationOptions {
+export declare interface NullableFloatValuePutOptionalParams extends OperationOptions {
 }
 
-declare interface NullableInt32ValueGetOptionalParams extends OperationOptions {
+export declare interface NullableInt32ValueGetOptionalParams extends OperationOptions {
 }
 
 export declare type NullableInt32ValueGetResponse = {
@@ -178,10 +177,10 @@ export declare interface NullableInt32ValueOperations {
     get: (options?: NullableInt32ValueGetOptionalParams) => Promise<NullableInt32ValueGetResponse>;
 }
 
-declare interface NullableInt32ValuePutOptionalParams extends OperationOptions {
+export declare interface NullableInt32ValuePutOptionalParams extends OperationOptions {
 }
 
-declare interface NullableModelValueGetOptionalParams extends OperationOptions {
+export declare interface NullableModelValueGetOptionalParams extends OperationOptions {
 }
 
 export declare type NullableModelValueGetResponse = {
@@ -193,10 +192,10 @@ export declare interface NullableModelValueOperations {
     get: (options?: NullableModelValueGetOptionalParams) => Promise<NullableModelValueGetResponse>;
 }
 
-declare interface NullableModelValuePutOptionalParams extends OperationOptions {
+export declare interface NullableModelValuePutOptionalParams extends OperationOptions {
 }
 
-declare interface NullableStringValueGetOptionalParams extends OperationOptions {
+export declare interface NullableStringValueGetOptionalParams extends OperationOptions {
 }
 
 export declare type NullableStringValueGetResponse = {
@@ -208,12 +207,12 @@ export declare interface NullableStringValueOperations {
     get: (options?: NullableStringValueGetOptionalParams) => Promise<NullableStringValueGetResponse>;
 }
 
-declare interface NullableStringValuePutOptionalParams extends OperationOptions {
+export declare interface NullableStringValuePutOptionalParams extends OperationOptions {
 }
 
 export { RestError }
 
-declare interface StringValueGetOptionalParams extends OperationOptions {
+export declare interface StringValueGetOptionalParams extends OperationOptions {
 }
 
 export declare type StringValueGetResponse = {
@@ -225,10 +224,10 @@ export declare interface StringValueOperations {
     get: (options?: StringValueGetOptionalParams) => Promise<StringValueGetResponse>;
 }
 
-declare interface StringValuePutOptionalParams extends OperationOptions {
+export declare interface StringValuePutOptionalParams extends OperationOptions {
 }
 
-declare interface UnknownValueGetOptionalParams extends OperationOptions {
+export declare interface UnknownValueGetOptionalParams extends OperationOptions {
 }
 
 export declare type UnknownValueGetResponse = {
@@ -240,7 +239,7 @@ export declare interface UnknownValueOperations {
     get: (options?: UnknownValueGetOptionalParams) => Promise<UnknownValueGetResponse>;
 }
 
-declare interface UnknownValuePutOptionalParams extends OperationOptions {
+export declare interface UnknownValuePutOptionalParams extends OperationOptions {
 }
 
 export { }

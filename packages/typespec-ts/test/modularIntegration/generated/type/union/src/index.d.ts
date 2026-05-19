@@ -15,7 +15,7 @@ export declare interface EnumsOnlyCases {
     ud: "up" | "down";
 }
 
-declare interface EnumsOnlyGetOptionalParams extends OperationOptions {
+export declare interface EnumsOnlyGetOptionalParams extends OperationOptions {
 }
 
 export declare interface EnumsOnlyOperations {
@@ -25,10 +25,10 @@ export declare interface EnumsOnlyOperations {
     }>;
 }
 
-declare interface EnumsOnlySendOptionalParams extends OperationOptions {
+export declare interface EnumsOnlySendOptionalParams extends OperationOptions {
 }
 
-declare interface FloatsOnlyGetOptionalParams extends OperationOptions {
+export declare interface FloatsOnlyGetOptionalParams extends OperationOptions {
 }
 
 export declare interface FloatsOnlyOperations {
@@ -38,10 +38,10 @@ export declare interface FloatsOnlyOperations {
     }>;
 }
 
-declare interface FloatsOnlySendOptionalParams extends OperationOptions {
+export declare interface FloatsOnlySendOptionalParams extends OperationOptions {
 }
 
-declare interface IntsOnlyGetOptionalParams extends OperationOptions {
+export declare interface IntsOnlyGetOptionalParams extends OperationOptions {
 }
 
 export declare interface IntsOnlyOperations {
@@ -51,7 +51,7 @@ export declare interface IntsOnlyOperations {
     }>;
 }
 
-declare interface IntsOnlySendOptionalParams extends OperationOptions {
+export declare interface IntsOnlySendOptionalParams extends OperationOptions {
 }
 
 export declare enum KnownStringExtensibleNamedUnion {
@@ -66,7 +66,7 @@ export declare interface MixedLiteralsCases {
     booleanLiteral: "a" | 2 | 3.3 | true;
 }
 
-declare interface MixedLiteralsGetOptionalParams extends OperationOptions {
+export declare interface MixedLiteralsGetOptionalParams extends OperationOptions {
 }
 
 export declare interface MixedLiteralsOperations {
@@ -76,7 +76,7 @@ export declare interface MixedLiteralsOperations {
     }>;
 }
 
-declare interface MixedLiteralsSendOptionalParams extends OperationOptions {
+export declare interface MixedLiteralsSendOptionalParams extends OperationOptions {
 }
 
 export declare interface MixedTypesCases {
@@ -87,7 +87,7 @@ export declare interface MixedTypesCases {
     array: (Cat | "a" | number | boolean)[];
 }
 
-declare interface MixedTypesGetOptionalParams extends OperationOptions {
+export declare interface MixedTypesGetOptionalParams extends OperationOptions {
 }
 
 export declare interface MixedTypesOperations {
@@ -97,10 +97,10 @@ export declare interface MixedTypesOperations {
     }>;
 }
 
-declare interface MixedTypesSendOptionalParams extends OperationOptions {
+export declare interface MixedTypesSendOptionalParams extends OperationOptions {
 }
 
-declare interface ModelsOnlyGetOptionalParams extends OperationOptions {
+export declare interface ModelsOnlyGetOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelsOnlyOperations {
@@ -110,7 +110,7 @@ export declare interface ModelsOnlyOperations {
     }>;
 }
 
-declare interface ModelsOnlySendOptionalParams extends OperationOptions {
+export declare interface ModelsOnlySendOptionalParams extends OperationOptions {
 }
 
 export declare interface StringAndArrayCases {
@@ -118,7 +118,7 @@ export declare interface StringAndArrayCases {
     array: string | string[];
 }
 
-declare interface StringAndArrayGetOptionalParams extends OperationOptions {
+export declare interface StringAndArrayGetOptionalParams extends OperationOptions {
 }
 
 export declare interface StringAndArrayOperations {
@@ -128,13 +128,13 @@ export declare interface StringAndArrayOperations {
     }>;
 }
 
-declare interface StringAndArraySendOptionalParams extends OperationOptions {
+export declare interface StringAndArraySendOptionalParams extends OperationOptions {
 }
 
-declare interface StringExtensibleGetOptionalParams extends OperationOptions {
+export declare interface StringExtensibleGetOptionalParams extends OperationOptions {
 }
 
-declare interface StringExtensibleNamedGetOptionalParams extends OperationOptions {
+export declare interface StringExtensibleNamedGetOptionalParams extends OperationOptions {
 }
 
 export declare interface StringExtensibleNamedOperations {
@@ -144,7 +144,7 @@ export declare interface StringExtensibleNamedOperations {
     }>;
 }
 
-declare interface StringExtensibleNamedSendOptionalParams extends OperationOptions {
+export declare interface StringExtensibleNamedSendOptionalParams extends OperationOptions {
 }
 
 export declare type StringExtensibleNamedUnion = string;
@@ -156,10 +156,10 @@ export declare interface StringExtensibleOperations {
     }>;
 }
 
-declare interface StringExtensibleSendOptionalParams extends OperationOptions {
+export declare interface StringExtensibleSendOptionalParams extends OperationOptions {
 }
 
-declare interface StringsOnlyGetOptionalParams extends OperationOptions {
+export declare interface StringsOnlyGetOptionalParams extends OperationOptions {
 }
 
 export declare interface StringsOnlyOperations {
@@ -169,7 +169,7 @@ export declare interface StringsOnlyOperations {
     }>;
 }
 
-declare interface StringsOnlySendOptionalParams extends OperationOptions {
+export declare interface StringsOnlySendOptionalParams extends OperationOptions {
 }
 
 export declare class UnionClient {
@@ -189,7 +189,6 @@ export declare class UnionClient {
 }
 
 export declare interface UnionClientOptionalParams extends ClientOptions {
-    endpointParam?: string;
 }
 
 export { }

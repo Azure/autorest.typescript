@@ -18,8 +18,11 @@ export interface Collection {
 }
 
 // @public
+export interface ConfidentialLedgerListCollectionsOptionalParams extends OperationOptions {
+}
+
+// @public
 export interface ConfidentialLedgerOperations {
-    // Warning: (ae-forgotten-export) The symbol "ConfidentialLedgerListCollectionsOptionalParams" needs to be exported by the entry point index.d.ts
     listCollections: (options?: ConfidentialLedgerListCollectionsOptionalParams) => Promise<Collection[]>;
 }
 

@@ -2,10 +2,10 @@ import { ClientOptions } from '@typespec/ts-http-runtime';
 import { OperationOptions } from '@typespec/ts-http-runtime';
 import { Pipeline } from '@typespec/ts-http-runtime';
 
-declare interface BytesGetNonNullOptionalParams extends OperationOptions {
+export declare interface BytesGetNonNullOptionalParams extends OperationOptions {
 }
 
-declare interface BytesGetNullOptionalParams extends OperationOptions {
+export declare interface BytesGetNullOptionalParams extends OperationOptions {
 }
 
 export declare interface BytesOperations {
@@ -15,10 +15,10 @@ export declare interface BytesOperations {
     getNonNull: (options?: BytesGetNonNullOptionalParams) => Promise<BytesProperty>;
 }
 
-declare interface BytesPatchNonNullOptionalParams extends OperationOptions {
+export declare interface BytesPatchNonNullOptionalParams extends OperationOptions {
 }
 
-declare interface BytesPatchNullOptionalParams extends OperationOptions {
+export declare interface BytesPatchNullOptionalParams extends OperationOptions {
 }
 
 export declare interface BytesProperty {
@@ -26,10 +26,10 @@ export declare interface BytesProperty {
     nullableProperty: Uint8Array | null;
 }
 
-declare interface CollectionsByteGetNonNullOptionalParams extends OperationOptions {
+export declare interface CollectionsByteGetNonNullOptionalParams extends OperationOptions {
 }
 
-declare interface CollectionsByteGetNullOptionalParams extends OperationOptions {
+export declare interface CollectionsByteGetNullOptionalParams extends OperationOptions {
 }
 
 export declare interface CollectionsByteOperations {
@@ -39,10 +39,10 @@ export declare interface CollectionsByteOperations {
     getNonNull: (options?: CollectionsByteGetNonNullOptionalParams) => Promise<CollectionsByteProperty>;
 }
 
-declare interface CollectionsBytePatchNonNullOptionalParams extends OperationOptions {
+export declare interface CollectionsBytePatchNonNullOptionalParams extends OperationOptions {
 }
 
-declare interface CollectionsBytePatchNullOptionalParams extends OperationOptions {
+export declare interface CollectionsBytePatchNullOptionalParams extends OperationOptions {
 }
 
 export declare interface CollectionsByteProperty {
@@ -50,10 +50,10 @@ export declare interface CollectionsByteProperty {
     nullableProperty: Uint8Array[] | null;
 }
 
-declare interface CollectionsModelGetNonNullOptionalParams extends OperationOptions {
+export declare interface CollectionsModelGetNonNullOptionalParams extends OperationOptions {
 }
 
-declare interface CollectionsModelGetNullOptionalParams extends OperationOptions {
+export declare interface CollectionsModelGetNullOptionalParams extends OperationOptions {
 }
 
 export declare interface CollectionsModelOperations {
@@ -63,10 +63,10 @@ export declare interface CollectionsModelOperations {
     getNonNull: (options?: CollectionsModelGetNonNullOptionalParams) => Promise<CollectionsModelProperty>;
 }
 
-declare interface CollectionsModelPatchNonNullOptionalParams extends OperationOptions {
+export declare interface CollectionsModelPatchNonNullOptionalParams extends OperationOptions {
 }
 
-declare interface CollectionsModelPatchNullOptionalParams extends OperationOptions {
+export declare interface CollectionsModelPatchNullOptionalParams extends OperationOptions {
 }
 
 export declare interface CollectionsModelProperty {
@@ -74,10 +74,10 @@ export declare interface CollectionsModelProperty {
     nullableProperty: InnerModel[] | null;
 }
 
-declare interface CollectionsStringGetNonNullOptionalParams extends OperationOptions {
+export declare interface CollectionsStringGetNonNullOptionalParams extends OperationOptions {
 }
 
-declare interface CollectionsStringGetNullOptionalParams extends OperationOptions {
+export declare interface CollectionsStringGetNullOptionalParams extends OperationOptions {
 }
 
 export declare interface CollectionsStringOperations {
@@ -87,10 +87,10 @@ export declare interface CollectionsStringOperations {
     getNonNull: (options?: CollectionsStringGetNonNullOptionalParams) => Promise<CollectionsStringProperty>;
 }
 
-declare interface CollectionsStringPatchNonNullOptionalParams extends OperationOptions {
+export declare interface CollectionsStringPatchNonNullOptionalParams extends OperationOptions {
 }
 
-declare interface CollectionsStringPatchNullOptionalParams extends OperationOptions {
+export declare interface CollectionsStringPatchNullOptionalParams extends OperationOptions {
 }
 
 export declare interface CollectionsStringProperty {
@@ -98,10 +98,10 @@ export declare interface CollectionsStringProperty {
     nullableProperty: string[] | null;
 }
 
-declare interface DatetimeGetNonNullOptionalParams extends OperationOptions {
+export declare interface DatetimeGetNonNullOptionalParams extends OperationOptions {
 }
 
-declare interface DatetimeGetNullOptionalParams extends OperationOptions {
+export declare interface DatetimeGetNullOptionalParams extends OperationOptions {
 }
 
 export declare interface DatetimeOperations {
@@ -111,10 +111,10 @@ export declare interface DatetimeOperations {
     getNonNull: (options?: DatetimeGetNonNullOptionalParams) => Promise<DatetimeProperty>;
 }
 
-declare interface DatetimePatchNonNullOptionalParams extends OperationOptions {
+export declare interface DatetimePatchNonNullOptionalParams extends OperationOptions {
 }
 
-declare interface DatetimePatchNullOptionalParams extends OperationOptions {
+export declare interface DatetimePatchNullOptionalParams extends OperationOptions {
 }
 
 export declare interface DatetimeProperty {
@@ -122,10 +122,10 @@ export declare interface DatetimeProperty {
     nullableProperty: Date | null;
 }
 
-declare interface DurationGetNonNullOptionalParams extends OperationOptions {
+export declare interface DurationGetNonNullOptionalParams extends OperationOptions {
 }
 
-declare interface DurationGetNullOptionalParams extends OperationOptions {
+export declare interface DurationGetNullOptionalParams extends OperationOptions {
 }
 
 export declare interface DurationOperations {
@@ -135,10 +135,10 @@ export declare interface DurationOperations {
     getNonNull: (options?: DurationGetNonNullOptionalParams) => Promise<DurationProperty>;
 }
 
-declare interface DurationPatchNonNullOptionalParams extends OperationOptions {
+export declare interface DurationPatchNonNullOptionalParams extends OperationOptions {
 }
 
-declare interface DurationPatchNullOptionalParams extends OperationOptions {
+export declare interface DurationPatchNullOptionalParams extends OperationOptions {
 }
 
 export declare interface DurationProperty {
@@ -164,13 +164,12 @@ export declare class NullableClient {
 }
 
 export declare interface NullableClientOptionalParams extends ClientOptions {
-    endpointParam?: string;
 }
 
-declare interface StringGetNonNullOptionalParams extends OperationOptions {
+export declare interface StringGetNonNullOptionalParams extends OperationOptions {
 }
 
-declare interface StringGetNullOptionalParams extends OperationOptions {
+export declare interface StringGetNullOptionalParams extends OperationOptions {
 }
 
 export declare interface StringOperations {
@@ -180,10 +179,10 @@ export declare interface StringOperations {
     getNonNull: (options?: StringGetNonNullOptionalParams) => Promise<StringProperty>;
 }
 
-declare interface StringPatchNonNullOptionalParams extends OperationOptions {
+export declare interface StringPatchNonNullOptionalParams extends OperationOptions {
 }
 
-declare interface StringPatchNullOptionalParams extends OperationOptions {
+export declare interface StringPatchNullOptionalParams extends OperationOptions {
 }
 
 export declare interface StringProperty {

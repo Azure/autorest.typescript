@@ -14,10 +14,10 @@ export declare interface AnimalOperationsOperations {
     updatePetAsAnimal: (animal: AnimalUnion, options?: AnimalOperationsUpdatePetAsAnimalOptionalParams) => Promise<AnimalUnion>;
 }
 
-declare interface AnimalOperationsUpdateDogAsAnimalOptionalParams extends OperationOptions {
+export declare interface AnimalOperationsUpdateDogAsAnimalOptionalParams extends OperationOptions {
 }
 
-declare interface AnimalOperationsUpdatePetAsAnimalOptionalParams extends OperationOptions {
+export declare interface AnimalOperationsUpdatePetAsAnimalOptionalParams extends OperationOptions {
 }
 
 export declare type AnimalUnion = PetUnion | Animal;
@@ -31,7 +31,7 @@ export declare interface DogOperationsOperations {
     updateDogAsDog: (dog: Dog, options?: DogOperationsUpdateDogAsDogOptionalParams) => Promise<Dog>;
 }
 
-declare interface DogOperationsUpdateDogAsDogOptionalParams extends OperationOptions {
+export declare interface DogOperationsUpdateDogAsDogOptionalParams extends OperationOptions {
 }
 
 export declare class HierarchyBuildingClient {
@@ -44,7 +44,6 @@ export declare class HierarchyBuildingClient {
 }
 
 export declare interface HierarchyBuildingClientOptionalParams extends ClientOptions {
-    endpointParam?: string;
 }
 
 export { isRestError }
@@ -59,10 +58,10 @@ export declare interface PetOperationsOperations {
     updatePetAsPet: (pet: PetUnion, options?: PetOperationsUpdatePetAsPetOptionalParams) => Promise<PetUnion>;
 }
 
-declare interface PetOperationsUpdateDogAsPetOptionalParams extends OperationOptions {
+export declare interface PetOperationsUpdateDogAsPetOptionalParams extends OperationOptions {
 }
 
-declare interface PetOperationsUpdatePetAsPetOptionalParams extends OperationOptions {
+export declare interface PetOperationsUpdatePetAsPetOptionalParams extends OperationOptions {
 }
 
 export declare type PetUnion = Dog | Pet;

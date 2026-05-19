@@ -14,7 +14,6 @@ export declare class JsonClient {
 }
 
 export declare interface JsonClientOptionalParams extends ClientOptions {
-    endpointParam?: string;
 }
 
 export declare interface JsonEncodedNameModel {

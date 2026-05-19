@@ -71,6 +71,7 @@ export async function _createFileAttachmentDeserialize(
     }
     throw error;
   }
+
   return;
 }
 
@@ -124,6 +125,7 @@ export async function _createJsonAttachmentDeserialize(
     }
     throw error;
   }
+
   return;
 }
 
@@ -175,6 +177,7 @@ export async function _listDeserialize(
     }
     throw error;
   }
+
   return _pageTodoAttachmentDeserializer(result.body);
 }
 

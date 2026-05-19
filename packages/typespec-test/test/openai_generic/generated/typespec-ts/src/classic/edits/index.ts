@@ -1,14 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { OpenAIContext } from "../../api/index.js";
+import { OpenAIContext } from "../../api/openAIContext.js";
 import { create } from "../../api/edits/operations.js";
 import { EditsCreateOptionalParams } from "../../api/edits/options.js";
 import { CreateEditRequest, CreateEditResponse } from "../../models/models.js";
 
 /** Interface representing a Edits operations. */
 export interface EditsOperations {
-  /** @deprecated deprecated */
   create: (
     edit: CreateEditRequest,
     options?: EditsCreateOptionalParams,

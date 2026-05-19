@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { SchemaRegistryContext } from "../../api/index.js";
+import { SchemaRegistryContext } from "../../api/schemaRegistryContext.js";
 import {
   registerSchema,
   getSchemaIdByContent,

@@ -12,7 +12,6 @@ export declare class CustomClient {
 }
 
 export declare interface CustomClientOptionalParams extends ClientOptions {
-    endpointParam?: string;
 }
 
 export declare interface InvalidAuth {

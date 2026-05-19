@@ -1,6 +1,6 @@
 // Licensed under the MIT License.
 
-import { OpenAIContext } from "../../api/index.js";
+import { OpenAIContext } from "../../api/openAIContext.js";
 import { download, $delete, retrieve, create, list } from "../../api/files/operations.js";
 import {
   FilesDownloadOptionalParams,

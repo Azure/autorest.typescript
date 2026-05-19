@@ -17,7 +17,6 @@ export declare class RepeatabilityClient {
 }
 
 export declare interface RepeatabilityClientOptionalParams extends ClientOptions {
-    endpointParam?: string;
 }
 
 export { RestError }

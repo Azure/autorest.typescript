@@ -33,6 +33,7 @@ export async function _downloadDeserialize(result: PathUncheckedResponse): Promi
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
+
   return;
 }
 

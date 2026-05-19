@@ -8,7 +8,7 @@ export declare interface ConstantOperations {
     post: (options?: ConstantPostOptionalParams) => Promise<void>;
 }
 
-declare interface ConstantPostOptionalParams extends OperationOptions {
+export declare interface ConstantPostOptionalParams extends OperationOptions {
 }
 
 export { isRestError }
@@ -21,7 +21,6 @@ export declare class QueryClient {
 }
 
 export declare interface QueryClientOptionalParams extends ClientOptions {
-    endpointParam?: string;
 }
 
 export { RestError }

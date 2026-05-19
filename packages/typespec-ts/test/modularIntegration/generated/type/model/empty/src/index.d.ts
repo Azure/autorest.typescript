@@ -12,7 +12,6 @@ export declare class EmptyClient {
 }
 
 export declare interface EmptyClientOptionalParams extends ClientOptions {
-    endpointParam?: string;
 }
 
 export declare interface EmptyInput {

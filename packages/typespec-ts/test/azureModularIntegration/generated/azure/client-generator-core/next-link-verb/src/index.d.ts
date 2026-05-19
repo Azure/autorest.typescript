@@ -21,7 +21,6 @@ export declare class NextLinkVerbClient {
 }
 
 export declare interface NextLinkVerbClientOptionalParams extends ClientOptions {
-    endpointParam?: string;
 }
 
 export declare interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends PageSettings = PageSettings> {

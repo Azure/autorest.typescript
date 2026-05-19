@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { ParametrizedHostContext } from "../../api/index.js";
+import { ParametrizedHostContext } from "../../api/parametrizedHostContext.js";
 import { listCollections } from "../../api/confidentialLedger/operations.js";
 import { ConfidentialLedgerListCollectionsOptionalParams } from "../../api/confidentialLedger/options.js";
 import { Collection } from "../../models/models.js";

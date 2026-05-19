@@ -26,7 +26,6 @@ export declare class AzureExampleClient {
 }
 
 export declare interface AzureExampleClientOptionalParams extends ClientOptions {
-    endpointParam?: string;
     apiVersion?: string;
 }
 

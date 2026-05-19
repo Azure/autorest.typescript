@@ -12,19 +12,19 @@ export declare interface AliasOperations {
     spreadAsRequestBody: (name: string, options?: AliasSpreadAsRequestBodyOptionalParams) => Promise<void>;
 }
 
-declare interface AliasSpreadAsRequestBodyOptionalParams extends OperationOptions {
+export declare interface AliasSpreadAsRequestBodyOptionalParams extends OperationOptions {
 }
 
-declare interface AliasSpreadAsRequestParameterOptionalParams extends OperationOptions {
+export declare interface AliasSpreadAsRequestParameterOptionalParams extends OperationOptions {
 }
 
-declare interface AliasSpreadParameterWithInnerAliasOptionalParams extends OperationOptions {
+export declare interface AliasSpreadParameterWithInnerAliasOptionalParams extends OperationOptions {
 }
 
-declare interface AliasSpreadParameterWithInnerModelOptionalParams extends OperationOptions {
+export declare interface AliasSpreadParameterWithInnerModelOptionalParams extends OperationOptions {
 }
 
-declare interface AliasSpreadWithMultipleParametersOptionalParams extends OperationOptions {
+export declare interface AliasSpreadWithMultipleParametersOptionalParams extends OperationOptions {
     optionalInt?: number;
     optionalStringList?: string[];
 }
@@ -43,19 +43,19 @@ export declare interface ModelOperations {
     spreadAsRequestBody: (name: string, options?: ModelSpreadAsRequestBodyOptionalParams) => Promise<void>;
 }
 
-declare interface ModelSpreadAsRequestBodyOptionalParams extends OperationOptions {
+export declare interface ModelSpreadAsRequestBodyOptionalParams extends OperationOptions {
 }
 
-declare interface ModelSpreadCompositeRequestMixOptionalParams extends OperationOptions {
+export declare interface ModelSpreadCompositeRequestMixOptionalParams extends OperationOptions {
 }
 
-declare interface ModelSpreadCompositeRequestOnlyWithBodyOptionalParams extends OperationOptions {
+export declare interface ModelSpreadCompositeRequestOnlyWithBodyOptionalParams extends OperationOptions {
 }
 
-declare interface ModelSpreadCompositeRequestOptionalParams extends OperationOptions {
+export declare interface ModelSpreadCompositeRequestOptionalParams extends OperationOptions {
 }
 
-declare interface ModelSpreadCompositeRequestWithoutBodyOptionalParams extends OperationOptions {
+export declare interface ModelSpreadCompositeRequestWithoutBodyOptionalParams extends OperationOptions {
 }
 
 export { RestError }
@@ -69,7 +69,6 @@ export declare class SpreadClient {
 }
 
 export declare interface SpreadClientOptionalParams extends ClientOptions {
-    endpointParam?: string;
 }
 
 export { }

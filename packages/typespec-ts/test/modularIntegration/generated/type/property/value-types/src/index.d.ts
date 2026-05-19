@@ -2,10 +2,10 @@ import { ClientOptions } from '@typespec/ts-http-runtime';
 import { OperationOptions } from '@typespec/ts-http-runtime';
 import { Pipeline } from '@typespec/ts-http-runtime';
 
-declare interface BooleanGetOptionalParams extends OperationOptions {
+export declare interface BooleanGetOptionalParams extends OperationOptions {
 }
 
-declare interface BooleanLiteralGetOptionalParams extends OperationOptions {
+export declare interface BooleanLiteralGetOptionalParams extends OperationOptions {
 }
 
 export declare interface BooleanLiteralOperations {
@@ -17,7 +17,7 @@ export declare interface BooleanLiteralProperty {
     property: true;
 }
 
-declare interface BooleanLiteralPutOptionalParams extends OperationOptions {
+export declare interface BooleanLiteralPutOptionalParams extends OperationOptions {
 }
 
 export declare interface BooleanOperations {
@@ -29,10 +29,10 @@ export declare interface BooleanProperty {
     property: boolean;
 }
 
-declare interface BooleanPutOptionalParams extends OperationOptions {
+export declare interface BooleanPutOptionalParams extends OperationOptions {
 }
 
-declare interface BytesGetOptionalParams extends OperationOptions {
+export declare interface BytesGetOptionalParams extends OperationOptions {
 }
 
 export declare interface BytesOperations {
@@ -44,10 +44,10 @@ export declare interface BytesProperty {
     property: Uint8Array;
 }
 
-declare interface BytesPutOptionalParams extends OperationOptions {
+export declare interface BytesPutOptionalParams extends OperationOptions {
 }
 
-declare interface CollectionsIntGetOptionalParams extends OperationOptions {
+export declare interface CollectionsIntGetOptionalParams extends OperationOptions {
 }
 
 export declare interface CollectionsIntOperations {
@@ -59,10 +59,10 @@ export declare interface CollectionsIntProperty {
     property: number[];
 }
 
-declare interface CollectionsIntPutOptionalParams extends OperationOptions {
+export declare interface CollectionsIntPutOptionalParams extends OperationOptions {
 }
 
-declare interface CollectionsModelGetOptionalParams extends OperationOptions {
+export declare interface CollectionsModelGetOptionalParams extends OperationOptions {
 }
 
 export declare interface CollectionsModelOperations {
@@ -74,10 +74,10 @@ export declare interface CollectionsModelProperty {
     property: InnerModel[];
 }
 
-declare interface CollectionsModelPutOptionalParams extends OperationOptions {
+export declare interface CollectionsModelPutOptionalParams extends OperationOptions {
 }
 
-declare interface CollectionsStringGetOptionalParams extends OperationOptions {
+export declare interface CollectionsStringGetOptionalParams extends OperationOptions {
 }
 
 export declare interface CollectionsStringOperations {
@@ -89,10 +89,10 @@ export declare interface CollectionsStringProperty {
     property: string[];
 }
 
-declare interface CollectionsStringPutOptionalParams extends OperationOptions {
+export declare interface CollectionsStringPutOptionalParams extends OperationOptions {
 }
 
-declare interface DatetimeGetOptionalParams extends OperationOptions {
+export declare interface DatetimeGetOptionalParams extends OperationOptions {
 }
 
 export declare interface DatetimeOperations {
@@ -104,10 +104,10 @@ export declare interface DatetimeProperty {
     property: Date;
 }
 
-declare interface DatetimePutOptionalParams extends OperationOptions {
+export declare interface DatetimePutOptionalParams extends OperationOptions {
 }
 
-declare interface Decimal128GetOptionalParams extends OperationOptions {
+export declare interface Decimal128GetOptionalParams extends OperationOptions {
 }
 
 export declare interface Decimal128Operations {
@@ -119,10 +119,10 @@ export declare interface Decimal128Property {
     property: number;
 }
 
-declare interface Decimal128PutOptionalParams extends OperationOptions {
+export declare interface Decimal128PutOptionalParams extends OperationOptions {
 }
 
-declare interface DecimalGetOptionalParams extends OperationOptions {
+export declare interface DecimalGetOptionalParams extends OperationOptions {
 }
 
 export declare interface DecimalOperations {
@@ -134,10 +134,10 @@ export declare interface DecimalProperty {
     property: number;
 }
 
-declare interface DecimalPutOptionalParams extends OperationOptions {
+export declare interface DecimalPutOptionalParams extends OperationOptions {
 }
 
-declare interface DictionaryStringGetOptionalParams extends OperationOptions {
+export declare interface DictionaryStringGetOptionalParams extends OperationOptions {
 }
 
 export declare interface DictionaryStringOperations {
@@ -149,10 +149,10 @@ export declare interface DictionaryStringProperty {
     property: Record<string, string>;
 }
 
-declare interface DictionaryStringPutOptionalParams extends OperationOptions {
+export declare interface DictionaryStringPutOptionalParams extends OperationOptions {
 }
 
-declare interface DurationGetOptionalParams extends OperationOptions {
+export declare interface DurationGetOptionalParams extends OperationOptions {
 }
 
 export declare interface DurationOperations {
@@ -164,10 +164,10 @@ export declare interface DurationProperty {
     property: string;
 }
 
-declare interface DurationPutOptionalParams extends OperationOptions {
+export declare interface DurationPutOptionalParams extends OperationOptions {
 }
 
-declare interface EnumGetOptionalParams extends OperationOptions {
+export declare interface EnumGetOptionalParams extends OperationOptions {
 }
 
 export declare interface EnumOperations {
@@ -179,12 +179,12 @@ export declare interface EnumProperty {
     property: FixedInnerEnum;
 }
 
-declare interface EnumPutOptionalParams extends OperationOptions {
+export declare interface EnumPutOptionalParams extends OperationOptions {
 }
 
 export declare type ExtendedEnum = "value2";
 
-declare interface ExtensibleEnumGetOptionalParams extends OperationOptions {
+export declare interface ExtensibleEnumGetOptionalParams extends OperationOptions {
 }
 
 export declare interface ExtensibleEnumOperations {
@@ -196,15 +196,15 @@ export declare interface ExtensibleEnumProperty {
     property: InnerEnum;
 }
 
-declare interface ExtensibleEnumPutOptionalParams extends OperationOptions {
+export declare interface ExtensibleEnumPutOptionalParams extends OperationOptions {
 }
 
 export declare type FixedInnerEnum = "ValueOne" | "ValueTwo";
 
-declare interface FloatGetOptionalParams extends OperationOptions {
+export declare interface FloatGetOptionalParams extends OperationOptions {
 }
 
-declare interface FloatLiteralGetOptionalParams extends OperationOptions {
+export declare interface FloatLiteralGetOptionalParams extends OperationOptions {
 }
 
 export declare interface FloatLiteralOperations {
@@ -216,7 +216,7 @@ export declare interface FloatLiteralProperty {
     property: 43.125;
 }
 
-declare interface FloatLiteralPutOptionalParams extends OperationOptions {
+export declare interface FloatLiteralPutOptionalParams extends OperationOptions {
 }
 
 export declare interface FloatOperations {
@@ -228,7 +228,7 @@ export declare interface FloatProperty {
     property: number;
 }
 
-declare interface FloatPutOptionalParams extends OperationOptions {
+export declare interface FloatPutOptionalParams extends OperationOptions {
 }
 
 export declare type InnerEnum = "ValueOne" | "ValueTwo";
@@ -237,10 +237,10 @@ export declare interface InnerModel {
     property: string;
 }
 
-declare interface IntGetOptionalParams extends OperationOptions {
+export declare interface IntGetOptionalParams extends OperationOptions {
 }
 
-declare interface IntLiteralGetOptionalParams extends OperationOptions {
+export declare interface IntLiteralGetOptionalParams extends OperationOptions {
 }
 
 export declare interface IntLiteralOperations {
@@ -252,7 +252,7 @@ export declare interface IntLiteralProperty {
     property: 42;
 }
 
-declare interface IntLiteralPutOptionalParams extends OperationOptions {
+export declare interface IntLiteralPutOptionalParams extends OperationOptions {
 }
 
 export declare interface IntOperations {
@@ -264,10 +264,10 @@ export declare interface IntProperty {
     property: number;
 }
 
-declare interface IntPutOptionalParams extends OperationOptions {
+export declare interface IntPutOptionalParams extends OperationOptions {
 }
 
-declare interface ModelGetOptionalParams extends OperationOptions {
+export declare interface ModelGetOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelOperations {
@@ -279,10 +279,10 @@ export declare interface ModelProperty {
     property: InnerModel;
 }
 
-declare interface ModelPutOptionalParams extends OperationOptions {
+export declare interface ModelPutOptionalParams extends OperationOptions {
 }
 
-declare interface NeverGetOptionalParams extends OperationOptions {
+export declare interface NeverGetOptionalParams extends OperationOptions {
 }
 
 export declare interface NeverOperations {
@@ -293,13 +293,13 @@ export declare interface NeverOperations {
 export declare interface NeverProperty {
 }
 
-declare interface NeverPutOptionalParams extends OperationOptions {
+export declare interface NeverPutOptionalParams extends OperationOptions {
 }
 
-declare interface StringGetOptionalParams extends OperationOptions {
+export declare interface StringGetOptionalParams extends OperationOptions {
 }
 
-declare interface StringLiteralGetOptionalParams extends OperationOptions {
+export declare interface StringLiteralGetOptionalParams extends OperationOptions {
 }
 
 export declare interface StringLiteralOperations {
@@ -311,7 +311,7 @@ export declare interface StringLiteralProperty {
     property: "hello";
 }
 
-declare interface StringLiteralPutOptionalParams extends OperationOptions {
+export declare interface StringLiteralPutOptionalParams extends OperationOptions {
 }
 
 export declare interface StringOperations {
@@ -323,10 +323,10 @@ export declare interface StringProperty {
     property: string;
 }
 
-declare interface StringPutOptionalParams extends OperationOptions {
+export declare interface StringPutOptionalParams extends OperationOptions {
 }
 
-declare interface UnionEnumValueGetOptionalParams extends OperationOptions {
+export declare interface UnionEnumValueGetOptionalParams extends OperationOptions {
 }
 
 export declare interface UnionEnumValueOperations {
@@ -338,10 +338,10 @@ export declare interface UnionEnumValueProperty {
     property: "value2";
 }
 
-declare interface UnionEnumValuePutOptionalParams extends OperationOptions {
+export declare interface UnionEnumValuePutOptionalParams extends OperationOptions {
 }
 
-declare interface UnionFloatLiteralGetOptionalParams extends OperationOptions {
+export declare interface UnionFloatLiteralGetOptionalParams extends OperationOptions {
 }
 
 export declare interface UnionFloatLiteralOperations {
@@ -353,10 +353,10 @@ export declare interface UnionFloatLiteralProperty {
     property: 43.125 | 46.875;
 }
 
-declare interface UnionFloatLiteralPutOptionalParams extends OperationOptions {
+export declare interface UnionFloatLiteralPutOptionalParams extends OperationOptions {
 }
 
-declare interface UnionIntLiteralGetOptionalParams extends OperationOptions {
+export declare interface UnionIntLiteralGetOptionalParams extends OperationOptions {
 }
 
 export declare interface UnionIntLiteralOperations {
@@ -368,10 +368,10 @@ export declare interface UnionIntLiteralProperty {
     property: 42 | 43;
 }
 
-declare interface UnionIntLiteralPutOptionalParams extends OperationOptions {
+export declare interface UnionIntLiteralPutOptionalParams extends OperationOptions {
 }
 
-declare interface UnionStringLiteralGetOptionalParams extends OperationOptions {
+export declare interface UnionStringLiteralGetOptionalParams extends OperationOptions {
 }
 
 export declare interface UnionStringLiteralOperations {
@@ -383,10 +383,10 @@ export declare interface UnionStringLiteralProperty {
     property: "hello" | "world";
 }
 
-declare interface UnionStringLiteralPutOptionalParams extends OperationOptions {
+export declare interface UnionStringLiteralPutOptionalParams extends OperationOptions {
 }
 
-declare interface UnknownArrayGetOptionalParams extends OperationOptions {
+export declare interface UnknownArrayGetOptionalParams extends OperationOptions {
 }
 
 export declare interface UnknownArrayOperations {
@@ -398,10 +398,10 @@ export declare interface UnknownArrayProperty {
     property: any;
 }
 
-declare interface UnknownArrayPutOptionalParams extends OperationOptions {
+export declare interface UnknownArrayPutOptionalParams extends OperationOptions {
 }
 
-declare interface UnknownDictGetOptionalParams extends OperationOptions {
+export declare interface UnknownDictGetOptionalParams extends OperationOptions {
 }
 
 export declare interface UnknownDictOperations {
@@ -413,10 +413,10 @@ export declare interface UnknownDictProperty {
     property: any;
 }
 
-declare interface UnknownDictPutOptionalParams extends OperationOptions {
+export declare interface UnknownDictPutOptionalParams extends OperationOptions {
 }
 
-declare interface UnknownIntGetOptionalParams extends OperationOptions {
+export declare interface UnknownIntGetOptionalParams extends OperationOptions {
 }
 
 export declare interface UnknownIntOperations {
@@ -428,10 +428,10 @@ export declare interface UnknownIntProperty {
     property: any;
 }
 
-declare interface UnknownIntPutOptionalParams extends OperationOptions {
+export declare interface UnknownIntPutOptionalParams extends OperationOptions {
 }
 
-declare interface UnknownStringGetOptionalParams extends OperationOptions {
+export declare interface UnknownStringGetOptionalParams extends OperationOptions {
 }
 
 export declare interface UnknownStringOperations {
@@ -443,7 +443,7 @@ export declare interface UnknownStringProperty {
     property: any;
 }
 
-declare interface UnknownStringPutOptionalParams extends OperationOptions {
+export declare interface UnknownStringPutOptionalParams extends OperationOptions {
 }
 
 export declare class ValueTypesClient {
@@ -482,7 +482,6 @@ export declare class ValueTypesClient {
 }
 
 export declare interface ValueTypesClientOptionalParams extends ClientOptions {
-    endpointParam?: string;
 }
 
 export { }

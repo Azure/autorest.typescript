@@ -12,7 +12,6 @@ export declare class ClientNamespaceFirstClient {
 }
 
 export declare interface ClientNamespaceFirstClientOptionalParams extends ClientOptions {
-    endpointParam?: string;
 }
 
 export declare class ClientNamespaceSecondClient {
@@ -23,7 +22,6 @@ export declare class ClientNamespaceSecondClient {
 }
 
 export declare interface ClientNamespaceSecondClientOptionalParams extends ClientOptions {
-    endpointParam?: string;
 }
 
 export declare interface FirstClientResult {

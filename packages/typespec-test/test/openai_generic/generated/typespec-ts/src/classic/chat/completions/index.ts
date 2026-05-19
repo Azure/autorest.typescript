@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { OpenAIContext } from "../../../api/index.js";
+import { OpenAIContext } from "../../../api/openAIContext.js";
 import { create } from "../../../api/chat/completions/operations.js";
 import { ChatCompletionsCreateOptionalParams } from "../../../api/chat/completions/options.js";
 import {

@@ -251,6 +251,7 @@ export async function _listNodeFilesDeserialize(
 
     throw error;
   }
+
   return _nodeFileListResultDeserializer(result.body);
 }
 
@@ -337,6 +338,7 @@ export async function _getNodeFilePropertiesDeserialize(
 
     throw error;
   }
+
   return;
 }
 
@@ -417,6 +419,7 @@ export async function _getNodeFileDeserialize(
 
     throw error;
   }
+
   return { blobBody: result.blobBody, readableStreamBody: result.readableStreamBody };
 }
 
@@ -481,6 +484,7 @@ export async function _deleteNodeFileDeserialize(result: PathUncheckedResponse):
 
     throw error;
   }
+
   return;
 }
 
@@ -549,6 +553,7 @@ export async function _listNodeExtensionsDeserialize(
 
     throw error;
   }
+
   return _nodeVMExtensionListDeserializer(result.body);
 }
 
@@ -623,6 +628,7 @@ export async function _getNodeExtensionDeserialize(
 
     throw error;
   }
+
   return nodeVMExtensionDeserializer(result.body);
 }
 
@@ -691,6 +697,7 @@ export async function _listNodesDeserialize(
 
     throw error;
   }
+
   return _batchNodeListResultDeserializer(result.body);
 }
 
@@ -764,6 +771,7 @@ export async function _uploadNodeLogsDeserialize(
 
     throw error;
   }
+
   return uploadBatchServiceLogsResultDeserializer(result.body);
 }
 
@@ -832,6 +840,7 @@ export async function _getNodeRemoteDesktopFileDeserialize(
 
     throw error;
   }
+
   return { blobBody: result.blobBody, readableStreamBody: result.readableStreamBody };
 }
 
@@ -900,6 +909,7 @@ export async function _getNodeRemoteLoginSettingsDeserialize(
 
     throw error;
   }
+
   return batchNodeRemoteLoginSettingsResultDeserializer(result.body);
 }
 
@@ -967,6 +977,7 @@ export async function _enableNodeSchedulingDeserialize(
 
     throw error;
   }
+
   return;
 }
 
@@ -1033,6 +1044,7 @@ export async function _disableNodeSchedulingDeserialize(
 
     throw error;
   }
+
   return;
 }
 
@@ -1097,6 +1109,7 @@ export async function _reimageNodeDeserialize(result: PathUncheckedResponse): Pr
 
     throw error;
   }
+
   return;
 }
 
@@ -1162,6 +1175,7 @@ export async function _rebootNodeDeserialize(result: PathUncheckedResponse): Pro
 
     throw error;
   }
+
   return;
 }
 
@@ -1227,6 +1241,7 @@ export async function _getNodeDeserialize(result: PathUncheckedResponse): Promis
 
     throw error;
   }
+
   return batchNodeDeserializer(result.body);
 }
 
@@ -1291,6 +1306,7 @@ export async function _replaceNodeUserDeserialize(result: PathUncheckedResponse)
 
     throw error;
   }
+
   return;
 }
 
@@ -1359,6 +1375,7 @@ export async function _deleteNodeUserDeserialize(result: PathUncheckedResponse):
 
     throw error;
   }
+
   return;
 }
 
@@ -1425,6 +1442,7 @@ export async function _createNodeUserDeserialize(result: PathUncheckedResponse):
 
     throw error;
   }
+
   return;
 }
 
@@ -1494,6 +1512,7 @@ export async function _listTaskFilesDeserialize(
 
     throw error;
   }
+
   return _nodeFileListResultDeserializer(result.body);
 }
 
@@ -1580,6 +1599,7 @@ export async function _getTaskFilePropertiesDeserialize(
 
     throw error;
   }
+
   return;
 }
 
@@ -1660,6 +1680,7 @@ export async function _getTaskFileDeserialize(
 
     throw error;
   }
+
   return { blobBody: result.blobBody, readableStreamBody: result.readableStreamBody };
 }
 
@@ -1724,6 +1745,7 @@ export async function _deleteTaskFileDeserialize(result: PathUncheckedResponse):
 
     throw error;
   }
+
   return;
 }
 
@@ -1800,6 +1822,7 @@ export async function _reactivateTaskDeserialize(result: PathUncheckedResponse):
 
     throw error;
   }
+
   return;
 }
 
@@ -1883,6 +1906,7 @@ export async function _terminateTaskDeserialize(result: PathUncheckedResponse): 
 
     throw error;
   }
+
   return;
 }
 
@@ -1954,6 +1978,7 @@ export async function _listSubTasksDeserialize(
 
     throw error;
   }
+
   return batchTaskListSubtasksResultDeserializer(result.body);
 }
 
@@ -2032,6 +2057,7 @@ export async function _replaceTaskDeserialize(result: PathUncheckedResponse): Pr
 
     throw error;
   }
+
   return;
 }
 
@@ -2119,6 +2145,7 @@ export async function _getTaskDeserialize(result: PathUncheckedResponse): Promis
 
     throw error;
   }
+
   return batchTaskDeserializer(result.body);
 }
 
@@ -2198,6 +2225,7 @@ export async function _deleteTaskDeserialize(result: PathUncheckedResponse): Pro
 
     throw error;
   }
+
   return;
 }
 
@@ -2267,6 +2295,7 @@ export async function _createTaskCollectionDeserialize(
 
     throw error;
   }
+
   return taskAddCollectionResultDeserializer(result.body);
 }
 
@@ -2354,6 +2383,7 @@ export async function _listTasksDeserialize(
 
     throw error;
   }
+
   return _batchTaskListResultDeserializer(result.body);
 }
 
@@ -2426,6 +2456,7 @@ export async function _createTaskDeserialize(result: PathUncheckedResponse): Pro
 
     throw error;
   }
+
   return;
 }
 
@@ -2500,6 +2531,7 @@ export async function _listJobSchedulesDeserialize(
 
     throw error;
   }
+
   return _batchJobScheduleListResultDeserializer(result.body);
 }
 
@@ -2565,6 +2597,7 @@ export async function _createJobScheduleDeserialize(result: PathUncheckedRespons
 
     throw error;
   }
+
   return;
 }
 
@@ -2639,6 +2672,7 @@ export async function _terminateJobScheduleDeserialize(
 
     throw error;
   }
+
   return;
 }
 
@@ -2711,6 +2745,7 @@ export async function _enableJobScheduleDeserialize(result: PathUncheckedRespons
 
     throw error;
   }
+
   return;
 }
 
@@ -2783,6 +2818,7 @@ export async function _disableJobScheduleDeserialize(result: PathUncheckedRespon
 
     throw error;
   }
+
   return;
 }
 
@@ -2858,6 +2894,7 @@ export async function _replaceJobScheduleDeserialize(result: PathUncheckedRespon
 
     throw error;
   }
+
   return;
 }
 
@@ -2940,6 +2977,7 @@ export async function _updateJobScheduleDeserialize(result: PathUncheckedRespons
 
     throw error;
   }
+
   return;
 }
 
@@ -3032,6 +3070,7 @@ export async function _getJobScheduleDeserialize(
 
     throw error;
   }
+
   return batchJobScheduleDeserializer(result.body);
 }
 
@@ -3104,6 +3143,7 @@ export async function _deleteJobScheduleDeserialize(result: PathUncheckedRespons
 
     throw error;
   }
+
   return;
 }
 
@@ -3182,6 +3222,7 @@ export async function _jobScheduleExistsDeserialize(result: PathUncheckedRespons
 
     throw error;
   }
+
   return;
 }
 
@@ -3248,11 +3289,11 @@ export async function _getCertificateDeserialize(
 
     throw error;
   }
+
   return batchCertificateDeserializer(result.body);
 }
 
 /** Gets information about the specified Certificate. */
-/** @deprecated Warning: This operation is deprecated and will be removed after February, 2024. Please use the [Azure KeyVault Extension](https://learn.microsoft.com/azure/batch/batch-certificate-migration-guide) instead. */
 export async function getCertificate(
   context: Client,
   thumbprintAlgorithm: string,
@@ -3308,6 +3349,7 @@ export async function _deleteCertificateDeserialize(result: PathUncheckedRespons
 
     throw error;
   }
+
   return;
 }
 
@@ -3322,7 +3364,6 @@ export async function _deleteCertificateDeserialize(result: PathUncheckedRespons
  * deleteFailed. You can use Cancel Delete Certificate to set the status back to
  * active if you decide that you want to continue using the Certificate.
  */
-/** @deprecated Warning: This operation is deprecated and will be removed after February, 2024. Please use the [Azure KeyVault Extension](https://learn.microsoft.com/azure/batch/batch-certificate-migration-guide) instead. */
 export async function deleteCertificate(
   context: Client,
   thumbprintAlgorithm: string,
@@ -3380,6 +3421,7 @@ export async function _cancelCertificateDeletionDeserialize(
 
     throw error;
   }
+
   return;
 }
 
@@ -3392,7 +3434,6 @@ export async function _cancelCertificateDeletionDeserialize(
  * You must make sure that the Certificate is not being used by any resources, and
  * then you can try again to delete the Certificate.
  */
-/** @deprecated Warning: This operation is deprecated and will be removed after February, 2024. Please use the [Azure KeyVault Extension](https://learn.microsoft.com/azure/batch/batch-certificate-migration-guide) instead. */
 export async function cancelCertificateDeletion(
   context: Client,
   thumbprintAlgorithm: string,
@@ -3459,11 +3500,11 @@ export async function _listCertificatesDeserialize(
 
     throw error;
   }
+
   return _certificateListResultDeserializer(result.body);
 }
 
 /** Lists all of the Certificates that have been added to the specified Account. */
-/** @deprecated Warning: This operation is deprecated and will be removed after February, 2024. Please use the [Azure KeyVault Extension](https://learn.microsoft.com/azure/batch/batch-certificate-migration-guide) instead. */
 export function listCertificates(
   context: Client,
   options: ListCertificatesOptionalParams = { requestOptions: {} },
@@ -3525,11 +3566,11 @@ export async function _createCertificateDeserialize(result: PathUncheckedRespons
 
     throw error;
   }
+
   return;
 }
 
 /** Creates a Certificate to the specified Account. */
-/** @deprecated Warning: This operation is deprecated and will be removed after February, 2024. Please use the [Azure KeyVault Extension](https://learn.microsoft.com/azure/batch/batch-certificate-migration-guide) instead. */
 export async function createCertificate(
   context: Client,
   body: BatchCertificate,
@@ -3585,6 +3626,7 @@ export async function _getJobTaskCountsDeserialize(
 
     throw error;
   }
+
   return taskCountsResultDeserializer(result.body);
 }
 
@@ -3655,6 +3697,7 @@ export async function _listJobPreparationAndReleaseTaskStatusDeserialize(
 
     throw error;
   }
+
   return _batchJobListPreparationAndReleaseTaskStatusResultDeserializer(result.body);
 }
 
@@ -3738,6 +3781,7 @@ export async function _listJobsFromScheduleDeserialize(
 
     throw error;
   }
+
   return _batchJobListResultDeserializer(result.body);
 }
 
@@ -3816,6 +3860,7 @@ export async function _listJobsDeserialize(
 
     throw error;
   }
+
   return _batchJobListResultDeserializer(result.body);
 }
 
@@ -3881,6 +3926,7 @@ export async function _createJobDeserialize(result: PathUncheckedResponse): Prom
 
     throw error;
   }
+
   return;
 }
 
@@ -3965,6 +4011,7 @@ export async function _terminateJobDeserialize(result: PathUncheckedResponse): P
 
     throw error;
   }
+
   return;
 }
 
@@ -4044,6 +4091,7 @@ export async function _enableJobDeserialize(result: PathUncheckedResponse): Prom
 
     throw error;
   }
+
   return;
 }
 
@@ -4126,6 +4174,7 @@ export async function _disableJobDeserialize(result: PathUncheckedResponse): Pro
 
     throw error;
   }
+
   return;
 }
 
@@ -4211,6 +4260,7 @@ export async function _replaceJobDeserialize(result: PathUncheckedResponse): Pro
 
     throw error;
   }
+
   return;
 }
 
@@ -4291,6 +4341,7 @@ export async function _updateJobDeserialize(result: PathUncheckedResponse): Prom
 
     throw error;
   }
+
   return;
 }
 
@@ -4379,6 +4430,7 @@ export async function _getJobDeserialize(result: PathUncheckedResponse): Promise
 
     throw error;
   }
+
   return batchJobDeserializer(result.body);
 }
 
@@ -4451,6 +4503,7 @@ export async function _deleteJobDeserialize(result: PathUncheckedResponse): Prom
 
     throw error;
   }
+
   return;
 }
 
@@ -4519,6 +4572,7 @@ export async function _listPoolNodeCountsDeserialize(
 
     throw error;
   }
+
   return _poolNodeCountsListResultDeserializer(result.body);
 }
 
@@ -4589,6 +4643,7 @@ export async function _listSupportedImagesDeserialize(
 
     throw error;
   }
+
   return _accountListSupportedImagesResultDeserializer(result.body);
 }
 
@@ -4668,6 +4723,7 @@ export async function _removeNodesDeserialize(result: PathUncheckedResponse): Pr
 
     throw error;
   }
+
   return;
 }
 
@@ -4734,6 +4790,7 @@ export async function _replacePoolPropertiesDeserialize(
 
     throw error;
   }
+
   return;
 }
 
@@ -4811,6 +4868,7 @@ export async function _stopPoolResizeDeserialize(result: PathUncheckedResponse):
 
     throw error;
   }
+
   return;
 }
 
@@ -4894,6 +4952,7 @@ export async function _resizePoolDeserialize(result: PathUncheckedResponse): Pro
 
     throw error;
   }
+
   return;
 }
 
@@ -4965,6 +5024,7 @@ export async function _evaluatePoolAutoScaleDeserialize(
 
     throw error;
   }
+
   return autoScaleRunDeserializer(result.body);
 }
 
@@ -5047,6 +5107,7 @@ export async function _enablePoolAutoScaleDeserialize(
 
     throw error;
   }
+
   return;
 }
 
@@ -5113,6 +5174,7 @@ export async function _disablePoolAutoScaleDeserialize(
 
     throw error;
   }
+
   return;
 }
 
@@ -5188,6 +5250,7 @@ export async function _updatePoolDeserialize(result: PathUncheckedResponse): Pro
 
     throw error;
   }
+
   return;
 }
 
@@ -5276,6 +5339,7 @@ export async function _getPoolDeserialize(result: PathUncheckedResponse): Promis
 
     throw error;
   }
+
   return batchPoolDeserializer(result.body);
 }
 
@@ -5348,6 +5412,7 @@ export async function _poolExistsDeserialize(result: PathUncheckedResponse): Pro
 
     throw error;
   }
+
   return;
 }
 
@@ -5420,6 +5485,7 @@ export async function _deletePoolDeserialize(result: PathUncheckedResponse): Pro
 
     throw error;
   }
+
   return;
 }
 
@@ -5502,6 +5568,7 @@ export async function _listPoolsDeserialize(
 
     throw error;
   }
+
   return _batchPoolListResultDeserializer(result.body);
 }
 
@@ -5567,6 +5634,7 @@ export async function _createPoolDeserialize(result: PathUncheckedResponse): Pro
 
     throw error;
   }
+
   return;
 }
 
@@ -5632,6 +5700,7 @@ export async function _listPoolUsageMetricsDeserialize(
 
     throw error;
   }
+
   return _poolListUsageMetricsResultDeserializer(result.body);
 }
 
@@ -5706,6 +5775,7 @@ export async function _getApplicationDeserialize(
 
     throw error;
   }
+
   return batchApplicationDeserializer(result.body);
 }
 
@@ -5770,6 +5840,7 @@ export async function _listApplicationsDeserialize(
 
     throw error;
   }
+
   return _applicationListResultDeserializer(result.body);
 }
 

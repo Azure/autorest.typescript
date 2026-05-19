@@ -22,13 +22,22 @@ export interface AnalyzeResult {
 }
 
 // @public
+export interface BudgetsContinueOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface BudgetsCreateOrReplaceOptionalParams extends OperationOptions {
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface BudgetsGetBudgetsOptionalParams extends OperationOptions {
+}
+
+// @public
 export interface BudgetsOperations {
-    // Warning: (ae-forgotten-export) The symbol "BudgetsContinueOptionalParams" needs to be exported by the entry point index.d.ts
     continue: (options?: BudgetsContinueOptionalParams) => Promise<void>;
-    // Warning: (ae-forgotten-export) The symbol "BudgetsCreateOrReplaceOptionalParams" needs to be exported by the entry point index.d.ts
     createOrReplace: (name: string, resource: SAPUser, options?: BudgetsCreateOrReplaceOptionalParams) => PollerLike<OperationState<SAPUser>, SAPUser>;
-    // Warning: (ae-forgotten-export) The symbol "BudgetsGetBudgetsOptionalParams" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     getBudgets: (name: string, options?: BudgetsGetBudgetsOptionalParams) => Promise<Widget[]>;
 }
@@ -82,6 +91,23 @@ export interface SAPUser {
     role: string;
 }
 
+// @public
+export interface SAPWidgetsAnalyzeWidgetOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface SAPWidgetsCreateOrReplaceOptionalParams extends OperationOptions {
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface SAPWidgetsCreateWidgetOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface SAPWidgetsDeleteWidgetOptionalParams extends OperationOptions {
+}
+
 // @public (undocumented)
 export class SAPWidgetServiceClient {
     constructor(endpointParam: string, credential: KeyCredential, options?: SAPWidgetServiceClientOptionalParams);
@@ -96,29 +122,48 @@ export interface SAPWidgetServiceClientOptionalParams extends ClientOptions {
 }
 
 // @public
+export interface SAPWidgetsGetWidgetOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface SAPWidgetsListWidgetsPagesOptionalParams extends OperationOptions {
+}
+
+// @public
 export interface SAPWidgetsOperations {
-    // Warning: (ae-forgotten-export) The symbol "SAPWidgetsAnalyzeWidgetOptionalParams" needs to be exported by the entry point index.d.ts
     analyzeWidget: (id: string, options?: SAPWidgetsAnalyzeWidgetOptionalParams) => Promise<AnalyzeResult>;
-    // Warning: (ae-forgotten-export) The symbol "SAPWidgetsCreateOrReplaceOptionalParams" needs to be exported by the entry point index.d.ts
     createOrReplace: (name: string, resource: SAPUser, options?: SAPWidgetsCreateOrReplaceOptionalParams) => PollerLike<OperationState<SAPUser>, SAPUser>;
-    // Warning: (ae-forgotten-export) The symbol "SAPWidgetsCreateWidgetOptionalParams" needs to be exported by the entry point index.d.ts
     createWidget: (weight: number, color: "red" | "blue", options?: SAPWidgetsCreateWidgetOptionalParams) => Promise<Widget>;
-    // Warning: (ae-forgotten-export) The symbol "SAPWidgetsDeleteWidgetOptionalParams" needs to be exported by the entry point index.d.ts
     deleteWidget: (id: string, options?: SAPWidgetsDeleteWidgetOptionalParams) => Promise<void>;
-    // Warning: (ae-forgotten-export) The symbol "SAPWidgetsGetWidgetOptionalParams" needs to be exported by the entry point index.d.ts
     getWidget: (id: string, options?: SAPWidgetsGetWidgetOptionalParams) => Promise<Widget>;
-    // Warning: (ae-forgotten-export) The symbol "SAPWidgetsListWidgetsPagesOptionalParams" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     listWidgetsPages: (page: number, pageSize: number, options?: SAPWidgetsListWidgetsPagesOptionalParams) => PagedAsyncIterableIterator<Widget>;
-    // Warning: (ae-forgotten-export) The symbol "SAPWidgetsQueryWidgetsPagesOptionalParams" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     queryWidgetsPages: (page: number, pageSize: number, options?: SAPWidgetsQueryWidgetsPagesOptionalParams) => PagedAsyncIterableIterator<Widget>;
-    // Warning: (ae-forgotten-export) The symbol "SAPWidgetsSAPListWidgetsOptionalParams" needs to be exported by the entry point index.d.ts
     sapListWidgets: (requiredHeader: string, bytesHeader: Uint8Array, value: Uint8Array, csvArrayHeader: Uint8Array[], utcDateHeader: Date, options?: SAPWidgetsSAPListWidgetsOptionalParams) => Promise<Widget[]>;
-    // Warning: (ae-forgotten-export) The symbol "SAPWidgetsUpdateWidgetOptionalParams" needs to be exported by the entry point index.d.ts
     updateWidget: (id: string, options?: SAPWidgetsUpdateWidgetOptionalParams) => Promise<Widget>;
+}
+
+// @public
+export interface SAPWidgetsQueryWidgetsPagesOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface SAPWidgetsSAPListWidgetsOptionalParams extends OperationOptions {
+    // (undocumented)
+    nullableDateHeader?: Date;
+    // (undocumented)
+    nullableOptionalHeader?: string;
+    // (undocumented)
+    optionalDateHeader?: Date;
+    // (undocumented)
+    optionalHeader?: string;
+}
+
+// @public
+export interface SAPWidgetsUpdateWidgetOptionalParams extends OperationOptions {
+    color?: "red" | "blue";
+    weight?: number;
 }
 
 // @public

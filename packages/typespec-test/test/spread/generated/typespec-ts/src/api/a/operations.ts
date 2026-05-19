@@ -37,6 +37,7 @@ export async function _test4Deserialize(result: PathUncheckedResponse): Promise<
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
+
   return;
 }
 
@@ -72,6 +73,7 @@ export async function _test3Deserialize(result: PathUncheckedResponse): Promise<
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
+
   return;
 }
 
@@ -105,6 +107,7 @@ export async function _test2Deserialize(result: PathUncheckedResponse): Promise<
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
+
   return;
 }
 
@@ -138,6 +141,7 @@ export async function _test1Deserialize(result: PathUncheckedResponse): Promise<
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
+
   return;
 }
 

@@ -110,9 +110,7 @@ export interface BatchCertificate {
 // @public (undocumented)
 export class BatchClient {
     constructor(endpointParam: string, credential: TokenCredential, options?: BatchClientOptionalParams);
-    // @deprecated (undocumented)
     cancelCertificateDeletion(thumbprintAlgorithm: string, thumbprint: string, options?: CancelCertificateDeletionOptionalParams): Promise<void>;
-    // @deprecated (undocumented)
     createCertificate(body: BatchCertificate, options?: CreateCertificateOptionalParams): Promise<void>;
     createJob(body: BatchJobCreateOptions, options?: CreateJobOptionalParams): Promise<void>;
     createJobSchedule(body: BatchJobScheduleCreateOptions, options?: CreateJobScheduleOptionalParams): Promise<void>;
@@ -120,7 +118,6 @@ export class BatchClient {
     createPool(body: BatchPoolCreateOptions, options?: CreatePoolOptionalParams): Promise<void>;
     createTask(jobId: string, body: BatchTaskCreateOptions, options?: CreateTaskOptionalParams): Promise<void>;
     createTaskCollection(jobId: string, collection: BatchTaskCollection, options?: CreateTaskCollectionOptionalParams): Promise<TaskAddCollectionResult>;
-    // @deprecated (undocumented)
     deleteCertificate(thumbprintAlgorithm: string, thumbprint: string, options?: DeleteCertificateOptionalParams): Promise<void>;
     deleteJob(jobId: string, options?: DeleteJobOptionalParams): Promise<void>;
     deleteJobSchedule(jobScheduleId: string, options?: DeleteJobScheduleOptionalParams): Promise<void>;
@@ -139,7 +136,6 @@ export class BatchClient {
     enablePoolAutoScale(poolId: string, body: BatchPoolEnableAutoScaleOptions, options?: EnablePoolAutoScaleOptionalParams): Promise<void>;
     evaluatePoolAutoScale(poolId: string, body: BatchPoolEvaluateAutoScaleOptions, options?: EvaluatePoolAutoScaleOptionalParams): Promise<AutoScaleRun>;
     getApplication(applicationId: string, options?: GetApplicationOptionalParams): Promise<BatchApplication>;
-    // @deprecated (undocumented)
     getCertificate(thumbprintAlgorithm: string, thumbprint: string, options?: GetCertificateOptionalParams): Promise<BatchCertificate>;
     getJob(jobId: string, options?: GetJobOptionalParams): Promise<BatchJob>;
     getJobSchedule(jobScheduleId: string, options?: GetJobScheduleOptionalParams): Promise<BatchJobSchedule>;
@@ -156,7 +152,6 @@ export class BatchClient {
     getTaskFileProperties(jobId: string, taskId: string, filePath: string, options?: GetTaskFilePropertiesOptionalParams): Promise<void>;
     jobScheduleExists(jobScheduleId: string, options?: JobScheduleExistsOptionalParams): Promise<void>;
     listApplications(options?: ListApplicationsOptionalParams): PagedAsyncIterableIterator<BatchApplication>;
-    // @deprecated (undocumented)
     listCertificates(options?: ListCertificatesOptionalParams): PagedAsyncIterableIterator<BatchCertificate>;
     listJobPreparationAndReleaseTaskStatus(jobId: string, options?: ListJobPreparationAndReleaseTaskStatusOptionalParams): PagedAsyncIterableIterator<JobPreparationAndReleaseTaskExecutionInformation>;
     listJobs(options?: ListJobsOptionalParams): PagedAsyncIterableIterator<BatchJob>;

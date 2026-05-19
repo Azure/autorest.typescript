@@ -13,13 +13,12 @@ export declare class ContentNegotiationClient {
 }
 
 export declare interface ContentNegotiationClientOptionalParams extends ClientOptions {
-    endpointParam?: string;
 }
 
-declare interface DifferentBodyGetAvatarAsJsonOptionalParams extends OperationOptions {
+export declare interface DifferentBodyGetAvatarAsJsonOptionalParams extends OperationOptions {
 }
 
-declare interface DifferentBodyGetAvatarAsPngOptionalParams extends OperationOptions {
+export declare interface DifferentBodyGetAvatarAsPngOptionalParams extends OperationOptions {
 }
 
 export declare type DifferentBodyGetAvatarAsPngResponse = {
@@ -42,7 +41,7 @@ export declare interface PngImageAsJson {
 
 export { RestError }
 
-declare interface SameBodyGetAvatarAsJpegOptionalParams extends OperationOptions {
+export declare interface SameBodyGetAvatarAsJpegOptionalParams extends OperationOptions {
 }
 
 export declare type SameBodyGetAvatarAsJpegResponse = {
@@ -50,7 +49,7 @@ export declare type SameBodyGetAvatarAsJpegResponse = {
     readableStreamBody?: NodeReadableStream;
 };
 
-declare interface SameBodyGetAvatarAsPngOptionalParams extends OperationOptions {
+export declare interface SameBodyGetAvatarAsPngOptionalParams extends OperationOptions {
 }
 
 export declare type SameBodyGetAvatarAsPngResponse = {

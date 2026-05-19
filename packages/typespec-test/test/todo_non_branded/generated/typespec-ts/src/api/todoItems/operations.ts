@@ -70,6 +70,7 @@ export async function _$deleteDeserialize(result: PathUncheckedResponse): Promis
     }
     throw error;
   }
+
   return;
 }
 
@@ -117,6 +118,7 @@ export async function _updateDeserialize(result: PathUncheckedResponse): Promise
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
+
   return todoItemDeserializer(result.body);
 }
 
@@ -162,6 +164,7 @@ export async function _getDeserialize(result: PathUncheckedResponse): Promise<To
     }
     throw error;
   }
+
   return todoItemDeserializer(result.body);
 }
 
@@ -203,6 +206,7 @@ export async function _createFormDeserialize(result: PathUncheckedResponse): Pro
     }
     throw error;
   }
+
   return todoItemDeserializer(result.body);
 }
 
@@ -249,6 +253,7 @@ export async function _createJsonDeserialize(result: PathUncheckedResponse): Pro
     }
     throw error;
   }
+
   return todoItemDeserializer(result.body);
 }
 
@@ -295,6 +300,7 @@ export async function _listDeserialize(result: PathUncheckedResponse): Promise<_
     }
     throw error;
   }
+
   return _todoPageDeserializer(result.body);
 }
 

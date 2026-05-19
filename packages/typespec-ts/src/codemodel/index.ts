@@ -266,7 +266,6 @@ export interface TSParameter {
   optional: boolean;
   defaultValue?: unknown;
   httpLocation: TSParameterLocation;
-  docs?: string[];
 }
 
 export interface TSReturnType {
@@ -371,8 +370,6 @@ export interface TSProperty {
   name: string;
   /** Referenced TypeScript type */
   type: TSTypeReference;
-  /** Property documentation */
-  docs: string[];
   /** Whether the property is optional */
   optional: boolean;
   /** Whether the property is readonly */
@@ -418,7 +415,6 @@ export interface TSEnum {
 export interface TSEnumMember {
   name: string;
   value: string | number;
-  docs: string[];
 }
 
 export interface TSUnion {

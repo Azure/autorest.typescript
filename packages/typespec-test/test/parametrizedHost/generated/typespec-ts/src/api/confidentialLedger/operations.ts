@@ -40,6 +40,7 @@ export async function _listCollectionsDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
+
   return collectionArrayDeserializer(result.body);
 }
 

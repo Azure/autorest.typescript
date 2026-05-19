@@ -42,6 +42,7 @@ export async function _getAvatarAsJpegDeserialize(result: PathUncheckedResponse)
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
+
   return;
 }
 
@@ -83,6 +84,7 @@ export async function _getAvatarAsPngDeserialize(result: PathUncheckedResponse):
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
+
   return;
 }
 

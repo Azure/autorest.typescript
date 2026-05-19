@@ -158,16 +158,6 @@ export function _promptSerializer(item: _Prompt): any {
   return item;
 }
 
-/** Alias for _CreateCompletionRequestSuffix */
-export type _CreateCompletionRequestSuffix = string | null;
-/** Alias for _CreateCompletionRequestTemperature */
-export type _CreateCompletionRequestTemperature = number | null;
-/** Alias for _CreateCompletionRequestTopP */
-export type _CreateCompletionRequestTopP = number | null;
-/** Alias for _CreateCompletionRequestN */
-export type _CreateCompletionRequestN = number | null;
-/** Alias for _CreateCompletionRequestMaxTokens */
-export type _CreateCompletionRequestMaxTokens = number | null;
 /** Alias for Stop */
 export type Stop = (string | string[]) | null;
 /** Alias for _Stop */
@@ -176,21 +166,6 @@ export type _Stop = string | string[];
 export function _stopSerializer(item: _Stop): any {
   return item;
 }
-
-/** Alias for _CreateCompletionRequestPresencePenalty */
-export type _CreateCompletionRequestPresencePenalty = number | null;
-/** Alias for _CreateCompletionRequestFrequencyPenalty */
-export type _CreateCompletionRequestFrequencyPenalty = number | null;
-/** Alias for _CreateCompletionRequestLogitBias */
-export type _CreateCompletionRequestLogitBias = Record<string, number> | null;
-/** Alias for _CreateCompletionRequestStream */
-export type _CreateCompletionRequestStream = boolean | null;
-/** Alias for _CreateCompletionRequestLogprobs */
-export type _CreateCompletionRequestLogprobs = number | null;
-/** Alias for _CreateCompletionRequestEcho */
-export type _CreateCompletionRequestEcho = boolean | null;
-/** Alias for _CreateCompletionRequestBestOf */
-export type _CreateCompletionRequestBestOf = number | null;
 
 /**
  * Represents a completion response from the API. Note: both the streamed and non-streamed response
@@ -272,14 +247,6 @@ export function _createCompletionResponseChoiceDeserializer(
   };
 }
 
-/** Alias for _CreateCompletionResponseChoiceLogprobs */
-export type _CreateCompletionResponseChoiceLogprobs = {
-  tokens: string[];
-  tokenLogprobs: number[];
-  topLogprobs: Record<string, number>[];
-  textOffset: number[];
-} | null;
-
 /** model interface _CreateCompletionResponseChoiceLogprobs1 */
 export interface _CreateCompletionResponseChoiceLogprobs1 {
   tokens: string[];
@@ -353,11 +320,6 @@ export function errorDeserializer(item: any): ErrorModel {
   };
 }
 
-/** Alias for _ErrorParam */
-export type _ErrorParam = string | null;
-/** Alias for _ErrorCode */
-export type _ErrorCode = string | null;
-
 /** model interface CreateEditRequest */
 export interface CreateEditRequest {
   /**
@@ -399,17 +361,7 @@ export function createEditRequestSerializer(item: CreateEditRequest): any {
   };
 }
 
-/** Alias for _CreateEditRequestInput */
-export type _CreateEditRequestInput = string | null;
-/** Alias for _CreateEditRequestN */
-export type _CreateEditRequestN = number | null;
-/** Alias for _CreateEditRequestTemperature */
-export type _CreateEditRequestTemperature = number | null;
-/** Alias for _CreateEditRequestTopP */
-export type _CreateEditRequestTopP = number | null;
-
 /** model interface CreateEditResponse */
-/** @deprecated deprecated */
 export interface CreateEditResponse {
   /** The object type, which is always `edit`. */
   object: "edit";
@@ -621,9 +573,6 @@ export function openAIFileDeserializer(item: any): OpenAIFile {
   };
 }
 
-/** Alias for _OpenAIFileStatusDetails */
-export type _OpenAIFileStatusDetails = string | null;
-
 /** model interface CreateFileRequest */
 export interface CreateFileRequest {
   /**
@@ -794,31 +743,7 @@ export function createFineTuneRequestSerializer(item: CreateFineTuneRequest): an
   };
 }
 
-/** Alias for _CreateFineTuneRequestValidationFile */
-export type _CreateFineTuneRequestValidationFile = string | null;
-/** Alias for _CreateFineTuneRequestModel */
-export type _CreateFineTuneRequestModel = "ada" | "babbage" | "curie" | "davinci" | null;
-/** Alias for _CreateFineTuneRequestNEpochs */
-export type _CreateFineTuneRequestNEpochs = number | null;
-/** Alias for _CreateFineTuneRequestBatchSize */
-export type _CreateFineTuneRequestBatchSize = number | null;
-/** Alias for _CreateFineTuneRequestLearningRateMultiplier */
-export type _CreateFineTuneRequestLearningRateMultiplier = number | null;
-/** Alias for _CreateFineTuneRequestPromptLossRate */
-export type _CreateFineTuneRequestPromptLossRate = number | null;
-/** Alias for _CreateFineTuneRequestComputeClassificationMetrics */
-export type _CreateFineTuneRequestComputeClassificationMetrics = boolean | null;
-/** Alias for _CreateFineTuneRequestClassificationNClasses */
-export type _CreateFineTuneRequestClassificationNClasses = number | null;
-/** Alias for _CreateFineTuneRequestClassificationPositiveClass */
-export type _CreateFineTuneRequestClassificationPositiveClass = string | null;
-/** Alias for _CreateFineTuneRequestClassificationBetas */
-export type _CreateFineTuneRequestClassificationBetas = number[] | null;
-/** Alias for _CreateFineTuneRequestSuffix */
-export type _CreateFineTuneRequestSuffix = string | null;
-
 /** The `FineTune` object represents a legacy fine-tune job that has been created through the API. */
-/** @deprecated deprecated */
 export interface FineTune {
   /** The object identifier, which can be referenced in the API endpoints. */
   id: string;
@@ -879,9 +804,6 @@ export function fineTuneDeserializer(item: any): FineTune {
     events: !item["events"] ? item["events"] : fineTuneEventArrayDeserializer(item["events"]),
   };
 }
-
-/** Alias for _FineTuneFineTunedModel */
-export type _FineTuneFineTunedModel = string | null;
 
 /** model interface _FineTuneHyperparams */
 export interface _FineTuneHyperparams {
@@ -1068,13 +990,6 @@ export function createImageEditRequestSerializer(item: CreateImageEditRequest): 
     ...(item["user"] === undefined ? [] : [{ name: "user", body: item["user"] }]),
   ];
 }
-
-/** Alias for _CreateImageEditRequestN */
-export type _CreateImageEditRequestN = number | null;
-/** Alias for _CreateImageEditRequestSize */
-export type _CreateImageEditRequestSize = "256x256" | "512x512" | "1024x1024" | null;
-/** Alias for _CreateImageEditRequestResponseFormat */
-export type _CreateImageEditRequestResponseFormat = "url" | "b64_json" | null;
 
 /** model interface ImagesResponse */
 export interface ImagesResponse {
@@ -1654,9 +1569,6 @@ export function chatCompletionRequestMessageSerializer(item: ChatCompletionReque
   };
 }
 
-/** Alias for _ChatCompletionRequestMessageContent */
-export type _ChatCompletionRequestMessageContent = string | null;
-
 /** model interface _ChatCompletionRequestMessageFunctionCall */
 export interface _ChatCompletionRequestMessageFunctionCall {
   /** The name of the function to call. */
@@ -1836,9 +1748,6 @@ export function chatCompletionResponseMessageDeserializer(
   };
 }
 
-/** Alias for _ChatCompletionResponseMessageContent */
-export type _ChatCompletionResponseMessageContent = string | null;
-
 /** model interface _ChatCompletionResponseMessageFunctionCall */
 export interface _ChatCompletionResponseMessageFunctionCall {
   /** The name of the function to call. */
@@ -1916,9 +1825,6 @@ export function createFineTuningJobRequestSerializer(item: CreateFineTuningJobRe
   };
 }
 
-/** Alias for _CreateFineTuningJobRequestValidationFile */
-export type _CreateFineTuningJobRequestValidationFile = string | null;
-
 /** model interface _CreateFineTuningJobRequestHyperparameters */
 export interface _CreateFineTuningJobRequestHyperparameters {
   /**
@@ -1946,9 +1852,6 @@ export function _createFineTuningJobRequestHyperparametersNEpochsSerializer(
 ): any {
   return item;
 }
-
-/** Alias for _CreateFineTuningJobRequestSuffix */
-export type _CreateFineTuningJobRequestSuffix = string | null;
 
 /** model interface FineTuningJob */
 export interface FineTuningJob {
@@ -2036,11 +1939,6 @@ export function fineTuningJobDeserializer(item: any): FineTuningJob {
   };
 }
 
-/** Alias for _FineTuningJobFinishedAt */
-export type _FineTuningJobFinishedAt = Date | null;
-/** Alias for _FineTuningJobFineTunedModel */
-export type _FineTuningJobFineTunedModel = string | null;
-
 /** model interface _FineTuningJobHyperparameters */
 export interface _FineTuningJobHyperparameters {
   /**
@@ -2072,17 +1970,6 @@ export function _fineTuningJobHyperparametersNEpochsDeserializer(
   return item;
 }
 
-/** Alias for _FineTuningJobValidationFile */
-export type _FineTuningJobValidationFile = string | null;
-/** Alias for _FineTuningJobTrainedTokens */
-export type _FineTuningJobTrainedTokens = number | null;
-/** Alias for _FineTuningJobError */
-export type _FineTuningJobError = {
-  message?: string;
-  code?: string;
-  param?: string | null;
-} | null;
-
 /** model interface _FineTuningJobError1 */
 export interface _FineTuningJobError1 {
   /** A human-readable error message. */
@@ -2103,9 +1990,6 @@ export function _fineTuningJobError1Deserializer(item: any): _FineTuningJobError
     param: item["param"],
   };
 }
-
-/** Alias for _FineTuningJobErrorParam */
-export type _FineTuningJobErrorParam = string | null;
 
 /** model interface ListPaginatedFineTuningJobsResponse */
 export interface ListPaginatedFineTuningJobsResponse {

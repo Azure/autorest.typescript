@@ -52,6 +52,7 @@ export async function _listDeserialize(
 
     throw error;
   }
+
   return _operationListResultDeserializer(result.body);
 }
 

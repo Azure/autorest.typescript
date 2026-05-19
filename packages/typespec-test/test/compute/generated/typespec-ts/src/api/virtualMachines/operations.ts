@@ -61,6 +61,7 @@ export async function _createOrUpdateDeserialize(
 
     throw error;
   }
+
   return virtualMachineDeserializer(result.body);
 }
 
@@ -116,6 +117,7 @@ export async function _getDeserialize(result: PathUncheckedResponse): Promise<Vi
 
     throw error;
   }
+
   return virtualMachineDeserializer(result.body);
 }
 

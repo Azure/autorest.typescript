@@ -147,6 +147,10 @@ export interface DataProductProperties {
 }
 
 // @public
+export interface DataProductsAddUserRoleOptionalParams extends OperationOptions {
+}
+
+// @public
 export interface DataProductsCatalog extends ProxyResource {
     properties?: DataProductsCatalogProperties;
 }
@@ -158,18 +162,56 @@ export interface DataProductsCatalogProperties {
 }
 
 // @public
+export interface DataProductsCatalogsGetOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface DataProductsCatalogsListByResourceGroupOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface DataProductsCatalogsListBySubscriptionOptionalParams extends OperationOptions {
+}
+
+// @public
 export interface DataProductsCatalogsOperations {
-    // Warning: (ae-forgotten-export) The symbol "DataProductsCatalogsGetOptionalParams" needs to be exported by the entry point index.d.ts
     get: (resourceGroupName: string, options?: DataProductsCatalogsGetOptionalParams) => Promise<DataProductsCatalog>;
-    // Warning: (ae-forgotten-export) The symbol "DataProductsCatalogsListByResourceGroupOptionalParams" needs to be exported by the entry point index.d.ts
     listByResourceGroup: (resourceGroupName: string, options?: DataProductsCatalogsListByResourceGroupOptionalParams) => PagedAsyncIterableIterator<DataProductsCatalog>;
-    // Warning: (ae-forgotten-export) The symbol "DataProductsCatalogsListBySubscriptionOptionalParams" needs to be exported by the entry point index.d.ts
     listBySubscription: (options?: DataProductsCatalogsListBySubscriptionOptionalParams) => PagedAsyncIterableIterator<DataProductsCatalog>;
 }
 
 // @public
+export interface DataProductsCreateOptionalParams extends OperationOptions {
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface DataProductsDeleteOptionalParams extends OperationOptions {
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface DataProductsGenerateStorageAccountSasTokenOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface DataProductsGetOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface DataProductsListByResourceGroupOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface DataProductsListBySubscriptionOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface DataProductsListRolesAssignmentsOptionalParams extends OperationOptions {
+}
+
+// @public
 export interface DataProductsOperations {
-    // Warning: (ae-forgotten-export) The symbol "DataProductsAddUserRoleOptionalParams" needs to be exported by the entry point index.d.ts
     addUserRole: (resourceGroupName: string, dataProductName: string, body: RoleAssignmentCommonProperties, options?: DataProductsAddUserRoleOptionalParams) => Promise<RoleAssignmentDetail>;
     // @deprecated (undocumented)
     beginCreate: (resourceGroupName: string, dataProductName: string, resource: DataProduct, options?: DataProductsCreateOptionalParams) => Promise<SimplePollerLike<OperationState<DataProduct>, DataProduct>>;
@@ -183,30 +225,35 @@ export interface DataProductsOperations {
     beginUpdate: (resourceGroupName: string, dataProductName: string, properties: DataProductUpdate, options?: DataProductsUpdateOptionalParams) => Promise<SimplePollerLike<OperationState<DataProduct>, DataProduct>>;
     // @deprecated (undocumented)
     beginUpdateAndWait: (resourceGroupName: string, dataProductName: string, properties: DataProductUpdate, options?: DataProductsUpdateOptionalParams) => Promise<DataProduct>;
-    // Warning: (ae-forgotten-export) The symbol "DataProductsCreateOptionalParams" needs to be exported by the entry point index.d.ts
     create: (resourceGroupName: string, dataProductName: string, resource: DataProduct, options?: DataProductsCreateOptionalParams) => PollerLike<OperationState<DataProduct>, DataProduct>;
-    // Warning: (ae-forgotten-export) The symbol "DataProductsDeleteOptionalParams" needs to be exported by the entry point index.d.ts
     delete: (resourceGroupName: string, dataProductName: string, options?: DataProductsDeleteOptionalParams) => PollerLike<OperationState<void>, void>;
-    // Warning: (ae-forgotten-export) The symbol "DataProductsGenerateStorageAccountSasTokenOptionalParams" needs to be exported by the entry point index.d.ts
     generateStorageAccountSasToken: (resourceGroupName: string, dataProductName: string, body: AccountSas, options?: DataProductsGenerateStorageAccountSasTokenOptionalParams) => Promise<AccountSasToken>;
-    // Warning: (ae-forgotten-export) The symbol "DataProductsGetOptionalParams" needs to be exported by the entry point index.d.ts
     get: (resourceGroupName: string, dataProductName: string, options?: DataProductsGetOptionalParams) => Promise<DataProduct>;
-    // Warning: (ae-forgotten-export) The symbol "DataProductsListByResourceGroupOptionalParams" needs to be exported by the entry point index.d.ts
     listByResourceGroup: (resourceGroupName: string, options?: DataProductsListByResourceGroupOptionalParams) => PagedAsyncIterableIterator<DataProduct>;
-    // Warning: (ae-forgotten-export) The symbol "DataProductsListBySubscriptionOptionalParams" needs to be exported by the entry point index.d.ts
     listBySubscription: (options?: DataProductsListBySubscriptionOptionalParams) => PagedAsyncIterableIterator<DataProduct>;
-    // Warning: (ae-forgotten-export) The symbol "DataProductsListRolesAssignmentsOptionalParams" needs to be exported by the entry point index.d.ts
     listRolesAssignments: (resourceGroupName: string, dataProductName: string, body: Record<string, any>, options?: DataProductsListRolesAssignmentsOptionalParams) => Promise<ListRoleAssignments>;
-    // Warning: (ae-forgotten-export) The symbol "DataProductsReadOptionalParams" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     read: (body: Client, options?: DataProductsReadOptionalParams) => Promise<Client>;
-    // Warning: (ae-forgotten-export) The symbol "DataProductsRemoveUserRoleOptionalParams" needs to be exported by the entry point index.d.ts
     removeUserRole: (resourceGroupName: string, dataProductName: string, body: RoleAssignmentDetail, options?: DataProductsRemoveUserRoleOptionalParams) => Promise<void>;
-    // Warning: (ae-forgotten-export) The symbol "DataProductsRotateKeyOptionalParams" needs to be exported by the entry point index.d.ts
     rotateKey: (resourceGroupName: string, dataProductName: string, body: KeyVaultInfo, options?: DataProductsRotateKeyOptionalParams) => Promise<void>;
-    // Warning: (ae-forgotten-export) The symbol "DataProductsUpdateOptionalParams" needs to be exported by the entry point index.d.ts
     update: (resourceGroupName: string, dataProductName: string, properties: DataProductUpdate, options?: DataProductsUpdateOptionalParams) => PollerLike<OperationState<DataProduct>, DataProduct>;
+}
+
+// @public
+export interface DataProductsReadOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface DataProductsRemoveUserRoleOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface DataProductsRotateKeyOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface DataProductsUpdateOptionalParams extends OperationOptions {
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -256,6 +303,33 @@ export interface DataTypeProperties {
 }
 
 // @public
+export interface DataTypesCreateOptionalParams extends OperationOptions {
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface DataTypesDeleteDataOptionalParams extends OperationOptions {
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface DataTypesDeleteOptionalParams extends OperationOptions {
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface DataTypesGenerateStorageContainerSasTokenOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface DataTypesGetOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface DataTypesListByDataProductOptionalParams extends OperationOptions {
+}
+
+// @public
 export interface DataTypesOperations {
     // @deprecated (undocumented)
     beginCreate: (resourceGroupName: string, dataProductName: string, dataTypeName: string, resource: DataType, options?: DataTypesCreateOptionalParams) => Promise<SimplePollerLike<OperationState<DataType>, DataType>>;
@@ -273,24 +347,22 @@ export interface DataTypesOperations {
     beginUpdate: (resourceGroupName: string, dataProductName: string, dataTypeName: string, properties: DataTypeUpdate, options?: DataTypesUpdateOptionalParams) => Promise<SimplePollerLike<OperationState<DataType>, DataType>>;
     // @deprecated (undocumented)
     beginUpdateAndWait: (resourceGroupName: string, dataProductName: string, dataTypeName: string, properties: DataTypeUpdate, options?: DataTypesUpdateOptionalParams) => Promise<DataType>;
-    // Warning: (ae-forgotten-export) The symbol "DataTypesCreateOptionalParams" needs to be exported by the entry point index.d.ts
     create: (resourceGroupName: string, dataProductName: string, dataTypeName: string, resource: DataType, options?: DataTypesCreateOptionalParams) => PollerLike<OperationState<DataType>, DataType>;
-    // Warning: (ae-forgotten-export) The symbol "DataTypesDeleteOptionalParams" needs to be exported by the entry point index.d.ts
     delete: (resourceGroupName: string, dataProductName: string, dataTypeName: string, options?: DataTypesDeleteOptionalParams) => PollerLike<OperationState<void>, void>;
-    // Warning: (ae-forgotten-export) The symbol "DataTypesDeleteDataOptionalParams" needs to be exported by the entry point index.d.ts
     deleteData: (resourceGroupName: string, dataProductName: string, dataTypeName: string, body: Record<string, any>, options?: DataTypesDeleteDataOptionalParams) => PollerLike<OperationState<void>, void>;
-    // Warning: (ae-forgotten-export) The symbol "DataTypesGenerateStorageContainerSasTokenOptionalParams" needs to be exported by the entry point index.d.ts
     generateStorageContainerSasToken: (resourceGroupName: string, dataProductName: string, dataTypeName: string, body: ContainerSaS, options?: DataTypesGenerateStorageContainerSasTokenOptionalParams) => Promise<ContainerSasToken>;
-    // Warning: (ae-forgotten-export) The symbol "DataTypesGetOptionalParams" needs to be exported by the entry point index.d.ts
     get: (resourceGroupName: string, dataProductName: string, dataTypeName: string, options?: DataTypesGetOptionalParams) => Promise<DataType>;
-    // Warning: (ae-forgotten-export) The symbol "DataTypesListByDataProductOptionalParams" needs to be exported by the entry point index.d.ts
     listByDataProduct: (resourceGroupName: string, dataProductName: string, options?: DataTypesListByDataProductOptionalParams) => PagedAsyncIterableIterator<DataType>;
-    // Warning: (ae-forgotten-export) The symbol "DataTypesUpdateOptionalParams" needs to be exported by the entry point index.d.ts
     update: (resourceGroupName: string, dataProductName: string, dataTypeName: string, properties: DataTypeUpdate, options?: DataTypesUpdateOptionalParams) => PollerLike<OperationState<DataType>, DataType>;
 }
 
 // @public
 export type DataTypeState = string;
+
+// @public
+export interface DataTypesUpdateOptionalParams extends OperationOptions {
+    updateIntervalInMs?: number;
+}
 
 // @public
 export interface DataTypeUpdate {
@@ -474,8 +546,11 @@ export interface OperationDisplay {
 }
 
 // @public
+export interface OperationsListOptionalParams extends OperationOptions {
+}
+
+// @public
 export interface OperationsOperations {
-    // Warning: (ae-forgotten-export) The symbol "OperationsListOptionalParams" needs to be exported by the entry point index.d.ts
     list: (options?: OperationsListOptionalParams) => PagedAsyncIterableIterator<Operation>;
 }
 

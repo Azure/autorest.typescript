@@ -27,7 +27,6 @@ export declare class AccessClient {
 }
 
 export declare interface AccessClientOptionalParams extends ClientOptions {
-    endpointParam?: string;
 }
 
 export declare interface BaseModel {

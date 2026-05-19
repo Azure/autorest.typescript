@@ -40,10 +40,7 @@ import {
   getClassicalClientName,
   getOperationName
 } from "../modular/helpers/namingHelpers.js";
-import {
-  getDocsFromDescription,
-  getDocsWithTags
-} from "../modular/helpers/docsHelpers.js";
+import { getDocsFromDescription } from "../modular/helpers/docsHelpers.js";
 import { getTypeExpression } from "../modular/type-expressions/get-type-expression.js";
 import {
   getModularClientOptions,
@@ -83,7 +80,6 @@ import {
 } from "../modular/helpers/operationHelpers.js";
 import { isTypeNullable } from "../modular/helpers/typeHelpers.js";
 import { isExtensibleEnum } from "../modular/type-expressions/get-enum-expression.js";
-import { getDeprecationDetails } from "@typespec/compiler";
 import { isOrExtendsHttpFile } from "@typespec/http";
 import { isAzureCoreErrorType } from "../utils/modelUtils.js";
 import { refkey } from "../framework/refkey.js";
@@ -327,7 +323,7 @@ function adaptClientParameters(
       required: !p.optional && !hasDefaultValue,
       hasDefaultValue,
       defaultValue: p.clientDefaultValue,
-      docs: getTaggedDocs(sdkContext, p),
+      docs: getDocsFromDescription(p.doc),
       isApiVersion: !!p.isApiVersionParam,
       isEndpoint:
         getClientParameterName(p) === endpointParamName ||
@@ -544,7 +540,7 @@ function adaptApiOptionsProperties(
     properties.push({
       name: normalizeName(parameter.name, NameType.Parameter),
       type: getTypeExpression(sdkContext, parameter.type, { isOptional: true }),
-      docs: getTaggedDocs(sdkContext, parameter)
+      docs: getDocsFromDescription(parameter.doc)
     });
   }
 
@@ -665,9 +661,6 @@ function adaptMethod(
   const description =
     getDocsFromDescription(operation.doc).join("\n") || undefined;
 
-  const parameterDocs = getMethodFunctionParameterDocs(operation, sdkContext);
-  const deprecation = getDeprecationMessage(sdkContext, operation);
-
   return {
     id: `method:${methodName}`,
     name: methodName,
@@ -687,10 +680,7 @@ function adaptMethod(
       declaration.returnType?.toString()
     ),
     responseTypeAlias: adaptResponseTypeAlias(operation, sdkContext, prefixes),
-    apiFunction: adaptFunctionDeclaration(declaration, {
-      deprecation,
-      parameterDocs
-    }),
+    apiFunction: adaptFunctionDeclaration(declaration),
     sendFunction: adaptFunctionDeclaration(sendDeclaration),
     deserializeFunction: adaptFunctionDeclaration(deserializeDeclaration),
     deserializeHeadersFunction: deserializeHeadersDeclaration
@@ -793,8 +783,7 @@ function adaptMethodParameter(
     type: getTypeExpression(sdkContext, parameter.type),
     optional: !!parameter.optional || defaultValue !== undefined,
     defaultValue,
-    httpLocation,
-    docs: getTaggedDocs(sdkContext, parameter)
+    httpLocation
   };
 }
 
@@ -917,62 +906,7 @@ export function adaptOperationGroups(
   return groups;
 }
 
-function getDeprecationMessage(
-  sdkContext: SdkContext,
-  target: { deprecation?: string; __raw?: unknown }
-): string | undefined {
-  if (target.deprecation && target.deprecation.trim().length > 0) {
-    return target.deprecation;
-  }
-
-  if (!target.__raw) {
-    return undefined;
-  }
-
-  return getDeprecationDetails(sdkContext.program, target.__raw as any)
-    ?.message;
-}
-
-function getTaggedDocs(
-  sdkContext: SdkContext,
-  target: { doc?: string; deprecation?: string; __raw?: unknown },
-  extraDocs: string[] = []
-): string[] {
-  return getDocsWithTags(target.doc, {
-    deprecation: getDeprecationMessage(sdkContext, target),
-    extraDocs
-  });
-}
-
-function getMethodFunctionParameterDocs(
-  operation: ServiceOperation,
-  sdkContext: SdkContext
-): Map<string, string[]> {
-  const parameterDocs = new Map<string, string[]>();
-  const parameters: Array<SdkMethodParameter | SdkBodyParameter> = [
-    ...operation.parameters
-  ];
-  if (operation.operation.bodyParam) {
-    parameters.push(operation.operation.bodyParam);
-  }
-
-  for (const parameter of parameters) {
-    const docs = getTaggedDocs(sdkContext, parameter);
-    if (docs.length > 0) {
-      parameterDocs.set(parameter.name, docs);
-    }
-  }
-
-  return parameterDocs;
-}
-
-function adaptFunctionDeclaration(
-  declaration: any,
-  options: {
-    deprecation?: string;
-    parameterDocs?: Map<string, string[]>;
-  } = {}
-): TSFunctionDeclaration {
+function adaptFunctionDeclaration(declaration: any): TSFunctionDeclaration {
   const params = (declaration.parameters ?? []).map((parameter: any) => {
     const paramType =
       typeof parameter.type === "string"
@@ -984,18 +918,14 @@ function adaptFunctionDeclaration(
         : typeof parameter.initializer === "function"
           ? undefined
           : parameter.initializer?.toString?.();
-    const docs = [
-      ...(Array.isArray(parameter.docs)
-        ? parameter.docs.filter((d: any) => typeof d === "string")
-        : []),
-      ...(options.parameterDocs?.get(parameter.name ?? "") ?? [])
-    ];
     return {
       name: parameter.name ?? "",
       type: paramType,
       initializer: paramInitializer,
       hasQuestionToken: parameter.hasQuestionToken,
-      docs: docs.length > 0 ? docs : undefined
+      docs: Array.isArray(parameter.docs)
+        ? parameter.docs.filter((d: any) => typeof d === "string")
+        : undefined
     };
   });
 
@@ -1004,20 +934,9 @@ function adaptFunctionDeclaration(
       ? declaration.returnType
       : declaration.returnType?.toString?.();
 
-  const docsValue = [
-    ...(Array.isArray(declaration.docs)
-      ? declaration.docs.filter((d: any) => typeof d === "string")
-      : []),
-    ...(options.deprecation ? [`@deprecated ${options.deprecation}`] : []),
-    ...[...(options.parameterDocs?.entries() ?? [])].flatMap(([name, docs]) => {
-      const deprecation = docs.find((doc) => doc.startsWith("@deprecated "));
-      return deprecation
-        ? [
-            `@param ${name} Deprecated: ${deprecation.replace(/^@deprecated\s+/, "")}`
-          ]
-        : [];
-    })
-  ];
+  const docsValue = Array.isArray(declaration.docs)
+    ? declaration.docs.filter((d: any) => typeof d === "string")
+    : undefined;
 
   const statementsValue =
     typeof declaration.statements === "string"
@@ -1030,7 +949,7 @@ function adaptFunctionDeclaration(
 
   return {
     name: declaration.name ?? "",
-    docs: docsValue.length > 0 ? docsValue : undefined,
+    docs: docsValue,
     isAsync: declaration.isAsync,
     isExported: declaration.isExported,
     propertyName: declaration.propertyName,
@@ -1099,7 +1018,7 @@ function adaptModel(model: SdkModelType, sdkContext: SdkContext): TSModel {
     id: `model:${model.name}`,
     name: model.name,
     namespace: getModelNamespaces(sdkContext, model),
-    docs: getTaggedDocs(sdkContext, model),
+    docs: getDocsFromDescription(model.doc),
     properties: model.properties.map((property) =>
       adaptModelProperty(property, sdkContext)
     ),
@@ -1120,7 +1039,6 @@ function adaptModelProperty(
   return {
     name: adaptPropertyName(property, sdkContext),
     type: adaptTypeReference(sdkContext, property.type),
-    docs: getTaggedDocs(sdkContext, property),
     optional: property.optional,
     readonly: isReadOnly(property),
     serializedName: getPropertySerializedName(property),
@@ -1162,11 +1080,10 @@ function adaptEnum(enumType: SdkEnumType, sdkContext: SdkContext): TSEnum {
     id: `enum:${enumType.name}`,
     name: enumType.name,
     namespace: getModelNamespaces(sdkContext, enumType),
-    docs: getTaggedDocs(sdkContext, enumType),
+    docs: getDocsFromDescription(enumType.doc),
     members: enumType.values.map((member) => ({
       name: member.name,
-      value: member.value,
-      docs: getTaggedDocs(sdkContext, member)
+      value: member.value
     })),
     isFixed: enumType.isFixed,
     isExtensible: !enumType.isFixed,
@@ -1179,7 +1096,7 @@ function adaptUnion(unionType: SdkUnionType, sdkContext: SdkContext): TSUnion {
     id: `union:${unionType.name}`,
     name: unionType.name,
     namespace: getModelNamespaces(sdkContext, unionType),
-    docs: getTaggedDocs(sdkContext, unionType),
+    docs: getDocsFromDescription(unionType.doc),
     variants: adaptUnionVariants(unionType, sdkContext),
     discriminator: unionType.discriminatedOptions
       ? {

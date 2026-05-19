@@ -58,6 +58,7 @@ export async function _cancelDeserialize(result: PathUncheckedResponse): Promise
 
     throw error;
   }
+
   return fineTuningJobDeserializer(result.body);
 }
 
@@ -104,6 +105,7 @@ export async function _listEventsDeserialize(
 
     throw error;
   }
+
   return listFineTuningJobEventsResponseDeserializer(result.body);
 }
 
@@ -146,6 +148,7 @@ export async function _retrieveDeserialize(result: PathUncheckedResponse): Promi
 
     throw error;
   }
+
   return fineTuningJobDeserializer(result.body);
 }
 
@@ -190,6 +193,7 @@ export async function _listDeserialize(
 
     throw error;
   }
+
   return listPaginatedFineTuningJobsResponseDeserializer(result.body);
 }
 
@@ -224,6 +228,7 @@ export async function _createDeserialize(result: PathUncheckedResponse): Promise
 
     throw error;
   }
+
   return fineTuningJobDeserializer(result.body);
 }
 

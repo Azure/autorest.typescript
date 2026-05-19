@@ -4,7 +4,7 @@ import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 import { RestError } from '@azure/core-rest-pipeline';
 
-declare interface GroupParametersGroupOptionalParams extends OperationOptions {
+export declare interface GroupParametersGroupOptionalParams extends OperationOptions {
 }
 
 export declare interface GroupParametersOperations {
@@ -29,14 +29,13 @@ export declare class OverrideClient {
 }
 
 export declare interface OverrideClientOptionalParams extends ClientOptions {
-    endpointParam?: string;
 }
 
 export declare interface RemoveOptionalParameterOperations {
     removeOptional: (param1: string, options?: RemoveOptionalParameterRemoveOptionalOptionalParams) => Promise<void>;
 }
 
-declare interface RemoveOptionalParameterRemoveOptionalOptionalParams extends OperationOptions {
+export declare interface RemoveOptionalParameterRemoveOptionalOptionalParams extends OperationOptions {
     param2?: string;
 }
 
@@ -44,14 +43,14 @@ export declare interface ReorderParametersOperations {
     reorder: (param1: string, param2: string, options?: ReorderParametersReorderOptionalParams) => Promise<void>;
 }
 
-declare interface ReorderParametersReorderOptionalParams extends OperationOptions {
+export declare interface ReorderParametersReorderOptionalParams extends OperationOptions {
 }
 
 export declare interface RequireOptionalParameterOperations {
     requireOptional: (param1: string, param2: string, options?: RequireOptionalParameterRequireOptionalOptionalParams) => Promise<void>;
 }
 
-declare interface RequireOptionalParameterRequireOptionalOptionalParams extends OperationOptions {
+export declare interface RequireOptionalParameterRequireOptionalOptionalParams extends OperationOptions {
 }
 
 export { RestError }

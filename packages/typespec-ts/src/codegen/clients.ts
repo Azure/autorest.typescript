@@ -125,23 +125,20 @@ export function emitClientContext(
     .filter((p) => p.required && !p.hasDefaultValue && !p.isApiVersion)
     .map((p) => ({
       name: p.name,
-      type: p.type,
-      docs: buildParamDocs(p, client)
+      type: p.type
     }));
   factoryParams.push({
     name: "options",
-    type: `${client.name}OptionalParams`,
-    docs: []
+    type: `${client.name}OptionalParams`
   });
 
   const fn = file.addFunction({
-    docs: buildDocsWithDeprecatedParams(client.docs, factoryParams),
+    docs: client.docs,
     name: `create${client.modularName}`,
     returnType: client.contextTypeName,
     parameters: factoryParams.map((p) => ({
       name: p.name,
       type: p.type,
-      docs: p.docs.length > 0 ? p.docs : undefined,
       ...(p.name === "options" ? { initializer: "{}" } : {})
     })),
     isExported: true
@@ -390,23 +387,4 @@ function buildParamDocs(param: TSClientParameter, client: TSClient): string[] {
     );
   }
   return docs;
-}
-
-function buildDocsWithDeprecatedParams(
-  docs: string[],
-  parameters: Array<{ name: string; docs: string[] }>
-): string[] {
-  return [
-    ...docs,
-    ...parameters.flatMap((parameter) => {
-      const deprecation = parameter.docs.find((doc) =>
-        doc.startsWith("@deprecated ")
-      );
-      return deprecation
-        ? [
-            `@param ${parameter.name} Deprecated: ${deprecation.replace(/^@deprecated\s+/, "")}`
-          ]
-        : [];
-    })
-  ];
 }

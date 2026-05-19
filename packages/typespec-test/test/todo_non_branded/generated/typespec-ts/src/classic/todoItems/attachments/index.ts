@@ -1,6 +1,6 @@
 // Licensed under the MIT License.
 
-import { TodoContext } from "../../../api/index.js";
+import { TodoContext } from "../../../api/todoContext.js";
 import {
   createFileAttachment,
   createJsonAttachment,

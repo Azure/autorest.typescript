@@ -7,113 +7,6 @@
  */
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-/** Alias for _CreateAgentRequestName */
-export type _CreateAgentRequestName = string | null;
-/** Alias for _CreateAgentRequestDescription */
-export type _CreateAgentRequestDescription = string | null;
-/** Alias for _CreateAgentRequestInstructions */
-export type _CreateAgentRequestInstructions = string | null;
-/** Alias for _CreateAgentRequestTemperature */
-export type _CreateAgentRequestTemperature = number | null;
-/** Alias for _CreateAgentRequestTopP */
-export type _CreateAgentRequestTopP = number | null;
-/** Alias for _CreateAgentRequestMetadata */
-export type _CreateAgentRequestMetadata = Record<string, string> | null;
-/** Alias for _AgentName */
-export type _AgentName = string | null;
-/** Alias for _AgentDescription */
-export type _AgentDescription = string | null;
-/** Alias for _AgentInstructions */
-export type _AgentInstructions = string | null;
-/** Alias for _AgentTemperature */
-export type _AgentTemperature = number | null;
-/** Alias for _AgentTopP */
-export type _AgentTopP = number | null;
-/** Alias for _AgentMetadata */
-export type _AgentMetadata = Record<string, string> | null;
-/** Alias for _UpdateAgentRequestName */
-export type _UpdateAgentRequestName = string | null;
-/** Alias for _UpdateAgentRequestDescription */
-export type _UpdateAgentRequestDescription = string | null;
-/** Alias for _UpdateAgentRequestInstructions */
-export type _UpdateAgentRequestInstructions = string | null;
-/** Alias for _UpdateAgentRequestTemperature */
-export type _UpdateAgentRequestTemperature = number | null;
-/** Alias for _UpdateAgentRequestTopP */
-export type _UpdateAgentRequestTopP = number | null;
-/** Alias for _ThreadMessageCompletedAt */
-export type _ThreadMessageCompletedAt = Date | null;
-/** Alias for _ThreadMessageIncompleteAt */
-export type _ThreadMessageIncompleteAt = Date | null;
-/** Alias for _ThreadMessageAssistantId */
-export type _ThreadMessageAssistantId = string | null;
-/** Alias for _ThreadMessageRunId */
-export type _ThreadMessageRunId = string | null;
-/** Alias for _CreateRunRequestModel */
-export type _CreateRunRequestModel = string | null;
-/** Alias for _CreateRunRequestInstructions */
-export type _CreateRunRequestInstructions = string | null;
-/** Alias for _CreateRunRequestAdditionalInstructions */
-export type _CreateRunRequestAdditionalInstructions = string | null;
-/** Alias for _CreateRunRequestTemperature */
-export type _CreateRunRequestTemperature = number | null;
-/** Alias for _CreateRunRequestTopP */
-export type _CreateRunRequestTopP = number | null;
-/** Alias for _CreateRunRequestMaxPromptTokens */
-export type _CreateRunRequestMaxPromptTokens = number | null;
-/** Alias for _CreateRunRequestMaxCompletionTokens */
-export type _CreateRunRequestMaxCompletionTokens = number | null;
-/** Alias for _CreateRunRequestTruncationStrategyLastMessages */
-export type _CreateRunRequestTruncationStrategyLastMessages = number | null;
-/** Alias for _ThreadRunExpiresAt */
-export type _ThreadRunExpiresAt = Date | null;
-/** Alias for _ThreadRunStartedAt */
-export type _ThreadRunStartedAt = Date | null;
-/** Alias for _ThreadRunCompletedAt */
-export type _ThreadRunCompletedAt = Date | null;
-/** Alias for _ThreadRunCancelledAt */
-export type _ThreadRunCancelledAt = Date | null;
-/** Alias for _ThreadRunFailedAt */
-export type _ThreadRunFailedAt = Date | null;
-/** Alias for _ThreadRunTemperature */
-export type _ThreadRunTemperature = number | null;
-/** Alias for _ThreadRunTopP */
-export type _ThreadRunTopP = number | null;
-/** Alias for _ThreadRunMaxPromptTokens */
-export type _ThreadRunMaxPromptTokens = number | null;
-/** Alias for _ThreadRunMaxCompletionTokens */
-export type _ThreadRunMaxCompletionTokens = number | null;
-/** Alias for _SubmitToolOutputsToRunRequestStream */
-export type _SubmitToolOutputsToRunRequestStream = boolean | null;
-/** Alias for _CreateThreadAndRunRequestModel */
-export type _CreateThreadAndRunRequestModel = string | null;
-/** Alias for _CreateThreadAndRunRequestInstructions */
-export type _CreateThreadAndRunRequestInstructions = string | null;
-/** Alias for _CreateThreadAndRunRequestTemperature */
-export type _CreateThreadAndRunRequestTemperature = number | null;
-/** Alias for _CreateThreadAndRunRequestTopP */
-export type _CreateThreadAndRunRequestTopP = number | null;
-/** Alias for _CreateThreadAndRunRequestMaxPromptTokens */
-export type _CreateThreadAndRunRequestMaxPromptTokens = number | null;
-/** Alias for _CreateThreadAndRunRequestMaxCompletionTokens */
-export type _CreateThreadAndRunRequestMaxCompletionTokens = number | null;
-/** Alias for _RunStepFunctionToolCallDetailsOutput */
-export type _RunStepFunctionToolCallDetailsOutput = string | null;
-/** Alias for _RunStepExpiredAt */
-export type _RunStepExpiredAt = Date | null;
-/** Alias for _RunStepCompletedAt */
-export type _RunStepCompletedAt = Date | null;
-/** Alias for _RunStepCancelledAt */
-export type _RunStepCancelledAt = Date | null;
-/** Alias for _RunStepFailedAt */
-export type _RunStepFailedAt = Date | null;
-/** Alias for _VectorStoreExpiresAt */
-export type _VectorStoreExpiresAt = Date | null;
-/** Alias for _VectorStoreLastActiveAt */
-export type _VectorStoreLastActiveAt = Date | null;
-/** Alias for _ModifyVectorStoreRequestName */
-export type _ModifyVectorStoreRequestName = string | null;
-
 /** Response from the Workspace - Get operation */
 export interface GetWorkspaceResponse {
   /** A unique identifier for the resource */
@@ -850,9 +743,6 @@ export function evaluationScheduleArrayDeserializer(result: Array<EvaluationSche
     return evaluationScheduleDeserializer(item);
   });
 }
-
-/** Alias for _RunStepDeltaFunctionOutput */
-export type _RunStepDeltaFunctionOutput = string | null;
 
 /** Azure AI API versions */
 export enum KnownVersions {

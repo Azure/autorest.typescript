@@ -47,6 +47,20 @@ export type {
   UnivariateUnivariateChangePointDetectionResult,
 } from "./models/univariate/index.js";
 export type { AnomalyDetectorClientOptionalParams } from "./api/index.js";
+export type {
+  MultivariateDetectMultivariateLastAnomalyOptionalParams,
+  MultivariateDetectMultivariateBatchAnomalyOptionalParams,
+  MultivariateGetMultivariateModelOptionalParams,
+  MultivariateDeleteMultivariateModelOptionalParams,
+  MultivariateListMultivariateModelsOptionalParams,
+  MultivariateTrainMultivariateModelOptionalParams,
+  MultivariateGetMultivariateBatchDetectionResultOptionalParams,
+} from "./api/multivariate/index.js";
+export type {
+  UnivariateDetectUnivariateChangePointOptionalParams,
+  UnivariateDetectUnivariateLastPointOptionalParams,
+  UnivariateDetectUnivariateEntireSeriesOptionalParams,
+} from "./api/univariate/index.js";
 export type { MultivariateOperations, UnivariateOperations } from "./classic/index.js";
 export type { PageSettings, ContinuablePage, PagedAsyncIterableIterator };
 export { RestError, isRestError } from "@azure/core-rest-pipeline";

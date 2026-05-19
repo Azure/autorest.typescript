@@ -59,6 +59,7 @@ export async function _disableScheduleDeserialize(result: PathUncheckedResponse)
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
+
   return;
 }
 
@@ -109,6 +110,7 @@ export async function _listScheduleDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
+
   return _pagedEvaluationScheduleDeserializer(result.body);
 }
 
@@ -169,6 +171,7 @@ export async function _createOrReplaceScheduleDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
+
   return evaluationScheduleDeserializer(result.body);
 }
 
@@ -219,6 +222,7 @@ export async function _getScheduleDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
+
   return evaluationScheduleDeserializer(result.body);
 }
 
@@ -269,6 +273,7 @@ export async function _updateDeserialize(result: PathUncheckedResponse): Promise
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
+
   return evaluationDeserializer(result.body);
 }
 
@@ -318,6 +323,7 @@ export async function _listDeserialize(result: PathUncheckedResponse): Promise<_
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
+
   return _pagedEvaluationDeserializer(result.body);
 }
 
@@ -368,6 +374,7 @@ export async function _createDeserialize(result: PathUncheckedResponse): Promise
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
+
   return evaluationDeserializer(result.body);
 }
 
@@ -415,6 +422,7 @@ export async function _getDeserialize(result: PathUncheckedResponse): Promise<Ev
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
+
   return evaluationDeserializer(result.body);
 }
 

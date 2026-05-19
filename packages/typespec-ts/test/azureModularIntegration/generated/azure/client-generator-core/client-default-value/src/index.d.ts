@@ -15,7 +15,6 @@ export declare class ClientDefaultValueClient {
 }
 
 export declare interface ClientDefaultValueClientOptionalParams extends ClientOptions {
-    endpointParam?: string;
 }
 
 export declare interface GetHeaderParameterOptionalParams extends OperationOptions {

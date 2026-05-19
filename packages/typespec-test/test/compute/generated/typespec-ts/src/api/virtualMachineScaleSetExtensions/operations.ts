@@ -61,6 +61,7 @@ export async function _createOrUpdateDeserialize(
 
     throw error;
   }
+
   return virtualMachineScaleSetExtensionDeserializer(result.body);
 }
 
@@ -122,6 +123,7 @@ export async function _getDeserialize(
 
     throw error;
   }
+
   return virtualMachineScaleSetExtensionDeserializer(result.body);
 }
 

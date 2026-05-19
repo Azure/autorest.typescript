@@ -276,8 +276,7 @@ describe("tcgc adapter", () => {
         type: "string",
         optional: true,
         defaultValue: undefined,
-        httpLocation: "query",
-        docs: []
+        httpLocation: "query"
       }
     ]);
   });
@@ -648,24 +647,21 @@ describe("tcgc adapter", () => {
         type: "string",
         optional: false,
         defaultValue: undefined,
-        httpLocation: "path",
-        docs: []
+        httpLocation: "path"
       },
       {
         name: "force",
         type: "boolean",
         optional: true,
         defaultValue: undefined,
-        httpLocation: "query",
-        docs: []
+        httpLocation: "query"
       },
       {
         name: "requestId",
         type: "string",
         optional: true,
         defaultValue: undefined,
-        httpLocation: "header",
-        docs: []
+        httpLocation: "header"
       }
     ]);
   });
@@ -749,64 +745,5 @@ describe("tcgc adapter", () => {
       useArmCloudEndpoint: false
     });
     expect(client.apiVersion).toBeUndefined();
-  });
-
-  it("captures deprecation docs across modular emission shapes", async () => {
-    const model = await adaptCodeModelFromTypeSpec(
-      buildServiceTypeSpec(`
-        #deprecated "Use WidgetV2 instead."
-        model Widget {
-          #deprecated "Use displayName instead."
-          name: string;
-          mode?: Mode;
-        }
-
-        #deprecated "Use KnownModeV2 instead."
-        enum Mode {
-          #deprecated "Use current instead."
-          legacy: "legacy",
-          current: "current"
-        }
-
-        @route("/widgets")
-        #deprecated "Use listWidgetsV2 instead."
-        op listWidgets(
-          #deprecated "Use search instead."
-          @query filter: string,
-          #deprecated "Use options.includeDetails instead."
-          @query includeDetails?: string,
-        ): Widget;
-      `)
-    );
-
-    const client = model.clients[0]!;
-    const method = findMethod(client, "listWidgets");
-    expect(method.apiFunction.docs).toContain(
-      "@deprecated Use listWidgetsV2 instead."
-    );
-    expect(
-      method.apiFunction.parameters.find(
-        (parameter) => parameter.name === "filter"
-      )?.docs
-    ).toContain("@deprecated Use search instead.");
-    expect(findParameter(method, "filter").docs).toContain(
-      "@deprecated Use search instead."
-    );
-    expect(client.apiOptions[0]?.interfaces[0]?.properties[0]?.docs).toContain(
-      "@deprecated Use options.includeDetails instead."
-    );
-
-    expect(model.models[0]?.docs).toContain(
-      "@deprecated Use WidgetV2 instead."
-    );
-    expect(model.models[0]?.properties[0]?.docs).toContain(
-      "@deprecated Use displayName instead."
-    );
-    expect(model.enums[0]?.docs).toContain(
-      "@deprecated Use KnownModeV2 instead."
-    );
-    expect(model.enums[0]?.members[0]?.docs).toContain(
-      "@deprecated Use current instead."
-    );
   });
 });

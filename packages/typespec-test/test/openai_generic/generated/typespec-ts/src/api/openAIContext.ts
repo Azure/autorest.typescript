@@ -9,10 +9,7 @@ import { KeyCredential, isKeyCredential } from "@azure/core-auth";
 export interface OpenAIContext extends Client {}
 
 /** Optional parameters for the client. */
-export interface OpenAIClientOptionalParams extends ClientOptions {
-  /** Service host */
-  endpointParam?: string;
-}
+export interface OpenAIClientOptionalParams extends ClientOptions {}
 
 /** The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details. */
 export function createOpenAI(

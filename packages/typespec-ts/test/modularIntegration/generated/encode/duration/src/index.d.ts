@@ -16,7 +16,6 @@ export declare class DurationClient {
 }
 
 export declare interface DurationClientOptionalParams extends ClientOptions {
-    endpointParam?: string;
 }
 
 export declare interface Float64MillisecondsDurationProperty {
@@ -51,46 +50,46 @@ export declare interface FloatSecondsLargerUnitDurationProperty {
     value: number;
 }
 
-declare interface HeaderDefaultOptionalParams extends OperationOptions {
+export declare interface HeaderDefaultOptionalParams extends OperationOptions {
 }
 
-declare interface HeaderFloat64MillisecondsOptionalParams extends OperationOptions {
+export declare interface HeaderFloat64MillisecondsOptionalParams extends OperationOptions {
 }
 
-declare interface HeaderFloat64SecondsOptionalParams extends OperationOptions {
+export declare interface HeaderFloat64SecondsOptionalParams extends OperationOptions {
 }
 
-declare interface HeaderFloatMillisecondsLargerUnitOptionalParams extends OperationOptions {
+export declare interface HeaderFloatMillisecondsLargerUnitOptionalParams extends OperationOptions {
 }
 
-declare interface HeaderFloatMillisecondsOptionalParams extends OperationOptions {
+export declare interface HeaderFloatMillisecondsOptionalParams extends OperationOptions {
 }
 
-declare interface HeaderFloatSecondsLargerUnitOptionalParams extends OperationOptions {
+export declare interface HeaderFloatSecondsLargerUnitOptionalParams extends OperationOptions {
 }
 
-declare interface HeaderFloatSecondsOptionalParams extends OperationOptions {
+export declare interface HeaderFloatSecondsOptionalParams extends OperationOptions {
 }
 
-declare interface HeaderInt32MillisecondsArrayOptionalParams extends OperationOptions {
+export declare interface HeaderInt32MillisecondsArrayOptionalParams extends OperationOptions {
 }
 
-declare interface HeaderInt32MillisecondsLargerUnitOptionalParams extends OperationOptions {
+export declare interface HeaderInt32MillisecondsLargerUnitOptionalParams extends OperationOptions {
 }
 
-declare interface HeaderInt32MillisecondsOptionalParams extends OperationOptions {
+export declare interface HeaderInt32MillisecondsOptionalParams extends OperationOptions {
 }
 
-declare interface HeaderInt32SecondsLargerUnitOptionalParams extends OperationOptions {
+export declare interface HeaderInt32SecondsLargerUnitOptionalParams extends OperationOptions {
 }
 
-declare interface HeaderInt32SecondsOptionalParams extends OperationOptions {
+export declare interface HeaderInt32SecondsOptionalParams extends OperationOptions {
 }
 
-declare interface HeaderIso8601ArrayOptionalParams extends OperationOptions {
+export declare interface HeaderIso8601ArrayOptionalParams extends OperationOptions {
 }
 
-declare interface HeaderIso8601OptionalParams extends OperationOptions {
+export declare interface HeaderIso8601OptionalParams extends OperationOptions {
 }
 
 export declare interface HeaderOperations {
@@ -130,46 +129,46 @@ export declare interface ISO8601DurationProperty {
     value: string;
 }
 
-declare interface PropertyDefaultOptionalParams extends OperationOptions {
+export declare interface PropertyDefaultOptionalParams extends OperationOptions {
 }
 
-declare interface PropertyFloat64MillisecondsOptionalParams extends OperationOptions {
+export declare interface PropertyFloat64MillisecondsOptionalParams extends OperationOptions {
 }
 
-declare interface PropertyFloat64SecondsOptionalParams extends OperationOptions {
+export declare interface PropertyFloat64SecondsOptionalParams extends OperationOptions {
 }
 
-declare interface PropertyFloatMillisecondsArrayOptionalParams extends OperationOptions {
+export declare interface PropertyFloatMillisecondsArrayOptionalParams extends OperationOptions {
 }
 
-declare interface PropertyFloatMillisecondsLargerUnitOptionalParams extends OperationOptions {
+export declare interface PropertyFloatMillisecondsLargerUnitOptionalParams extends OperationOptions {
 }
 
-declare interface PropertyFloatMillisecondsOptionalParams extends OperationOptions {
+export declare interface PropertyFloatMillisecondsOptionalParams extends OperationOptions {
 }
 
-declare interface PropertyFloatSecondsArrayOptionalParams extends OperationOptions {
+export declare interface PropertyFloatSecondsArrayOptionalParams extends OperationOptions {
 }
 
-declare interface PropertyFloatSecondsLargerUnitOptionalParams extends OperationOptions {
+export declare interface PropertyFloatSecondsLargerUnitOptionalParams extends OperationOptions {
 }
 
-declare interface PropertyFloatSecondsOptionalParams extends OperationOptions {
+export declare interface PropertyFloatSecondsOptionalParams extends OperationOptions {
 }
 
-declare interface PropertyInt32MillisecondsLargerUnitOptionalParams extends OperationOptions {
+export declare interface PropertyInt32MillisecondsLargerUnitOptionalParams extends OperationOptions {
 }
 
-declare interface PropertyInt32MillisecondsOptionalParams extends OperationOptions {
+export declare interface PropertyInt32MillisecondsOptionalParams extends OperationOptions {
 }
 
-declare interface PropertyInt32SecondsLargerUnitOptionalParams extends OperationOptions {
+export declare interface PropertyInt32SecondsLargerUnitOptionalParams extends OperationOptions {
 }
 
-declare interface PropertyInt32SecondsOptionalParams extends OperationOptions {
+export declare interface PropertyInt32SecondsOptionalParams extends OperationOptions {
 }
 
-declare interface PropertyIso8601OptionalParams extends OperationOptions {
+export declare interface PropertyIso8601OptionalParams extends OperationOptions {
 }
 
 export declare interface PropertyOperations {
@@ -189,46 +188,46 @@ export declare interface PropertyOperations {
     default: (body: DefaultDurationProperty, options?: PropertyDefaultOptionalParams) => Promise<DefaultDurationProperty>;
 }
 
-declare interface QueryDefaultOptionalParams extends OperationOptions {
+export declare interface QueryDefaultOptionalParams extends OperationOptions {
 }
 
-declare interface QueryFloat64MillisecondsOptionalParams extends OperationOptions {
+export declare interface QueryFloat64MillisecondsOptionalParams extends OperationOptions {
 }
 
-declare interface QueryFloat64SecondsOptionalParams extends OperationOptions {
+export declare interface QueryFloat64SecondsOptionalParams extends OperationOptions {
 }
 
-declare interface QueryFloatMillisecondsLargerUnitOptionalParams extends OperationOptions {
+export declare interface QueryFloatMillisecondsLargerUnitOptionalParams extends OperationOptions {
 }
 
-declare interface QueryFloatMillisecondsOptionalParams extends OperationOptions {
+export declare interface QueryFloatMillisecondsOptionalParams extends OperationOptions {
 }
 
-declare interface QueryFloatSecondsLargerUnitOptionalParams extends OperationOptions {
+export declare interface QueryFloatSecondsLargerUnitOptionalParams extends OperationOptions {
 }
 
-declare interface QueryFloatSecondsOptionalParams extends OperationOptions {
+export declare interface QueryFloatSecondsOptionalParams extends OperationOptions {
 }
 
-declare interface QueryInt32MillisecondsArrayOptionalParams extends OperationOptions {
+export declare interface QueryInt32MillisecondsArrayOptionalParams extends OperationOptions {
 }
 
-declare interface QueryInt32MillisecondsLargerUnitOptionalParams extends OperationOptions {
+export declare interface QueryInt32MillisecondsLargerUnitOptionalParams extends OperationOptions {
 }
 
-declare interface QueryInt32MillisecondsOptionalParams extends OperationOptions {
+export declare interface QueryInt32MillisecondsOptionalParams extends OperationOptions {
 }
 
-declare interface QueryInt32SecondsArrayOptionalParams extends OperationOptions {
+export declare interface QueryInt32SecondsArrayOptionalParams extends OperationOptions {
 }
 
-declare interface QueryInt32SecondsLargerUnitOptionalParams extends OperationOptions {
+export declare interface QueryInt32SecondsLargerUnitOptionalParams extends OperationOptions {
 }
 
-declare interface QueryInt32SecondsOptionalParams extends OperationOptions {
+export declare interface QueryInt32SecondsOptionalParams extends OperationOptions {
 }
 
-declare interface QueryIso8601OptionalParams extends OperationOptions {
+export declare interface QueryIso8601OptionalParams extends OperationOptions {
 }
 
 export declare interface QueryOperations {

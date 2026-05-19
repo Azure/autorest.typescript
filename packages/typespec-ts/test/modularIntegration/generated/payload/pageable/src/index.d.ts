@@ -20,7 +20,6 @@ export declare class PageableClient {
 }
 
 export declare interface PageableClientOptionalParams extends ClientOptions {
-    endpointParam?: string;
 }
 
 export declare interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends PageSettings = PageSettings> {
@@ -33,10 +32,10 @@ export declare interface PageSettings {
     continuationToken?: string;
 }
 
-declare interface PageSizeListWithoutContinuationOptionalParams extends OperationOptions {
+export declare interface PageSizeListWithoutContinuationOptionalParams extends OperationOptions {
 }
 
-declare interface PageSizeListWithPageSizeOptionalParams extends OperationOptions {
+export declare interface PageSizeListWithPageSizeOptionalParams extends OperationOptions {
     pageSize?: number;
 }
 
@@ -54,7 +53,7 @@ export declare interface ServerDrivenPaginationAlternateInitialVerbOperations {
     post: (body: Filter, options?: ServerDrivenPaginationAlternateInitialVerbPostOptionalParams) => PagedAsyncIterableIterator<Pet>;
 }
 
-declare interface ServerDrivenPaginationAlternateInitialVerbPostOptionalParams extends OperationOptions {
+export declare interface ServerDrivenPaginationAlternateInitialVerbPostOptionalParams extends OperationOptions {
 }
 
 export declare interface ServerDrivenPaginationContinuationTokenOperations {
@@ -66,64 +65,64 @@ export declare interface ServerDrivenPaginationContinuationTokenOperations {
     requestQueryResponseBody: (options?: ServerDrivenPaginationContinuationTokenRequestQueryResponseBodyOptionalParams) => PagedAsyncIterableIterator<Pet>;
 }
 
-declare interface ServerDrivenPaginationContinuationTokenRequestHeaderNestedResponseBodyOptionalParams extends OperationOptions {
+export declare interface ServerDrivenPaginationContinuationTokenRequestHeaderNestedResponseBodyOptionalParams extends OperationOptions {
     token?: string;
     foo?: string;
     bar?: string;
 }
 
-declare interface ServerDrivenPaginationContinuationTokenRequestHeaderResponseBodyOptionalParams extends OperationOptions {
+export declare interface ServerDrivenPaginationContinuationTokenRequestHeaderResponseBodyOptionalParams extends OperationOptions {
     token?: string;
     foo?: string;
     bar?: string;
 }
 
-declare interface ServerDrivenPaginationContinuationTokenRequestHeaderResponseHeaderOptionalParams extends OperationOptions {
+export declare interface ServerDrivenPaginationContinuationTokenRequestHeaderResponseHeaderOptionalParams extends OperationOptions {
     token?: string;
     foo?: string;
     bar?: string;
 }
 
-declare interface ServerDrivenPaginationContinuationTokenRequestQueryNestedResponseBodyOptionalParams extends OperationOptions {
+export declare interface ServerDrivenPaginationContinuationTokenRequestQueryNestedResponseBodyOptionalParams extends OperationOptions {
     token?: string;
     foo?: string;
     bar?: string;
 }
 
-declare interface ServerDrivenPaginationContinuationTokenRequestQueryResponseBodyOptionalParams extends OperationOptions {
+export declare interface ServerDrivenPaginationContinuationTokenRequestQueryResponseBodyOptionalParams extends OperationOptions {
     token?: string;
     foo?: string;
     bar?: string;
 }
 
-declare interface ServerDrivenPaginationContinuationTokenRequestQueryResponseHeaderOptionalParams extends OperationOptions {
+export declare interface ServerDrivenPaginationContinuationTokenRequestQueryResponseHeaderOptionalParams extends OperationOptions {
     token?: string;
     foo?: string;
     bar?: string;
 }
 
-declare interface ServerDrivenPaginationLinkOptionalParams extends OperationOptions {
+export declare interface ServerDrivenPaginationLinkOptionalParams extends OperationOptions {
 }
 
-declare interface ServerDrivenPaginationLinkStringOptionalParams extends OperationOptions {
+export declare interface ServerDrivenPaginationLinkStringOptionalParams extends OperationOptions {
 }
 
-declare interface ServerDrivenPaginationNestedLinkOptionalParams extends OperationOptions {
+export declare interface ServerDrivenPaginationNestedLinkOptionalParams extends OperationOptions {
 }
 
 export declare interface ServerDrivenPaginationOperations {
-    alternateInitialVerb: ServerDrivenPaginationAlternateInitialVerbOperations;
-    continuationToken: ServerDrivenPaginationContinuationTokenOperations;
     nestedLink: (options?: ServerDrivenPaginationNestedLinkOptionalParams) => PagedAsyncIterableIterator<Pet>;
     linkString: (options?: ServerDrivenPaginationLinkStringOptionalParams) => PagedAsyncIterableIterator<Pet>;
     link: (options?: ServerDrivenPaginationLinkOptionalParams) => PagedAsyncIterableIterator<Pet>;
+    continuationToken: ServerDrivenPaginationContinuationTokenOperations;
+    alternateInitialVerb: ServerDrivenPaginationAlternateInitialVerbOperations;
 }
 
-declare interface XmlPaginationListWithContinuationOptionalParams extends OperationOptions {
+export declare interface XmlPaginationListWithContinuationOptionalParams extends OperationOptions {
     marker?: string;
 }
 
-declare interface XmlPaginationListWithNextLinkOptionalParams extends OperationOptions {
+export declare interface XmlPaginationListWithNextLinkOptionalParams extends OperationOptions {
 }
 
 export declare interface XmlPaginationOperations {

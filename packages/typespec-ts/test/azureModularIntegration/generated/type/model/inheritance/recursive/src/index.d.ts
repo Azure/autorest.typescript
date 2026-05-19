@@ -30,7 +30,6 @@ export declare class RecursiveClient {
 }
 
 export declare interface RecursiveClientOptionalParams extends ClientOptions {
-    endpointParam?: string;
 }
 
 export { RestError }

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { ComputeContext } from "../../api/index.js";
+import { ComputeContext } from "../../api/computeContext.js";
 import { createOrUpdate, get } from "../../api/restorePointCollections/operations.js";
 import {
   RestorePointCollectionsCreateOrUpdateOptionalParams,

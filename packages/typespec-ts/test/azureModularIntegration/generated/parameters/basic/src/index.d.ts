@@ -13,21 +13,20 @@ export declare class BasicClient {
 }
 
 export declare interface BasicClientOptionalParams extends ClientOptions {
-    endpointParam?: string;
 }
 
 export declare interface ExplicitBodyOperations {
     simple: (body: User, options?: ExplicitBodySimpleOptionalParams) => Promise<void>;
 }
 
-declare interface ExplicitBodySimpleOptionalParams extends OperationOptions {
+export declare interface ExplicitBodySimpleOptionalParams extends OperationOptions {
 }
 
 export declare interface ImplicitBodyOperations {
     simple: (name: string, options?: ImplicitBodySimpleOptionalParams) => Promise<void>;
 }
 
-declare interface ImplicitBodySimpleOptionalParams extends OperationOptions {
+export declare interface ImplicitBodySimpleOptionalParams extends OperationOptions {
 }
 
 export { isRestError }

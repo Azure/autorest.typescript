@@ -9,7 +9,7 @@ import { TokenCredential } from "@azure/core-auth";
 export interface TestProfileRunContext extends Client {
   /** The API version to use for this operation. */
   /** Known values of {@link KnownAPIVersions} that the service accepts. */
-  apiVersion: string;
+  apiVersion?: string;
 }
 
 /** Optional parameters for the client. */

@@ -20,17 +20,21 @@ export interface AudioOperations {
 }
 
 // @public
+export interface AudioTranscriptionsCreateOptionalParams extends OperationOptions {
+}
+
+// @public
 export interface AudioTranscriptionsOperations {
-    // Warning: (ae-forgotten-export) The symbol "AudioTranscriptionsCreateOptionalParams" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     create: (audio: CreateTranscriptionRequest, options?: AudioTranscriptionsCreateOptionalParams) => Promise<CreateTranscriptionResponse>;
 }
 
 // @public
+export interface AudioTranslationsCreateOptionalParams extends OperationOptions {
+}
+
+// @public
 export interface AudioTranslationsOperations {
-    // Warning: (ae-forgotten-export) The symbol "AudioTranslationsCreateOptionalParams" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     create: (audio: CreateTranslationRequest, options?: AudioTranslationsCreateOptionalParams) => Promise<CreateTranslationResponse>;
 }
@@ -74,9 +78,11 @@ export interface ChatCompletionResponseMessage {
 }
 
 // @public
+export interface ChatCompletionsCreateOptionalParams extends OperationOptions {
+}
+
+// @public
 export interface ChatCompletionsOperations {
-    // Warning: (ae-forgotten-export) The symbol "ChatCompletionsCreateOptionalParams" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     create: (body: CreateChatCompletionRequest, options?: ChatCompletionsCreateOptionalParams) => Promise<CreateChatCompletionResponse>;
 }
@@ -88,9 +94,11 @@ export interface ChatOperations {
 }
 
 // @public
+export interface CompletionsCreateOptionalParams extends OperationOptions {
+}
+
+// @public
 export interface CompletionsOperations {
-    // Warning: (ae-forgotten-export) The symbol "CompletionsCreateOptionalParams" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     create: (body: CreateCompletionRequest, options?: CompletionsCreateOptionalParams) => Promise<CreateCompletionResponse>;
 }
@@ -186,7 +194,7 @@ export interface CreateEditRequest {
     top_p?: number;
 }
 
-// @public @deprecated (undocumented)
+// @public
 export interface CreateEditResponse {
     choices: {
         text: string;
@@ -220,7 +228,6 @@ export interface CreateEmbeddingResponse {
 
 // @public
 export interface CreateFileRequest {
-    // Warning: (ae-forgotten-export) The symbol "FileContents" needs to be exported by the entry point index.d.ts
     file: FileContents | {
         contents: FileContents;
         contentType?: string;
@@ -391,10 +398,12 @@ export interface DeleteModelResponse {
 }
 
 // @public
+export interface EditsCreateOptionalParams extends OperationOptions {
+}
+
+// @public
 export interface EditsOperations {
-    // Warning: (ae-forgotten-export) The symbol "EditsCreateOptionalParams" needs to be exported by the entry point index.d.ts
-    //
-    // @deprecated (undocumented)
+    // (undocumented)
     create: (edit: CreateEditRequest, options?: EditsCreateOptionalParams) => Promise<CreateEditResponse>;
 }
 
@@ -406,9 +415,11 @@ export interface Embedding {
 }
 
 // @public
+export interface EmbeddingsCreateOptionalParams extends OperationOptions {
+}
+
+// @public
 export interface EmbeddingsOperations {
-    // Warning: (ae-forgotten-export) The symbol "EmbeddingsCreateOptionalParams" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     create: (embedding: CreateEmbeddingRequest, options?: EmbeddingsCreateOptionalParams) => Promise<CreateEmbeddingResponse>;
 }
@@ -431,34 +442,48 @@ export interface ErrorResponse {
     error: ErrorModel;
 }
 
+// @public
+export type FileContents = string | NodeReadableStream | ReadableStream<Uint8Array> | Uint8Array | Blob;
+
+// @public
+export interface FilesCreateOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface FilesDeleteOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface FilesDownloadOptionalParams extends OperationOptions {
+}
+
 // @public (undocumented)
 export type FilesDownloadResponse = {
     body: string;
 };
 
 // @public
+export interface FilesListOptionalParams extends OperationOptions {
+}
+
+// @public
 export interface FilesOperations {
-    // Warning: (ae-forgotten-export) The symbol "FilesCreateOptionalParams" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     create: (file: CreateFileRequest, options?: FilesCreateOptionalParams) => Promise<OpenAIFile>;
-    // Warning: (ae-forgotten-export) The symbol "FilesDeleteOptionalParams" needs to be exported by the entry point index.d.ts
     delete: (fileId: string, options?: FilesDeleteOptionalParams) => Promise<DeleteFileResponse>;
-    // Warning: (ae-forgotten-export) The symbol "FilesDownloadOptionalParams" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     download: (fileId: string, options?: FilesDownloadOptionalParams) => Promise<FilesDownloadResponse>;
-    // Warning: (ae-forgotten-export) The symbol "FilesListOptionalParams" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     list: (options?: FilesListOptionalParams) => Promise<ListFilesResponse>;
-    // Warning: (ae-forgotten-export) The symbol "FilesRetrieveOptionalParams" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     retrieve: (fileId: string, options?: FilesRetrieveOptionalParams) => Promise<OpenAIFile>;
 }
 
-// @public @deprecated (undocumented)
+// @public
+export interface FilesRetrieveOptionalParams extends OperationOptions {
+}
+
+// @public
 export interface FineTune {
     created_at: Date;
     events?: FineTuneEvent[];
@@ -496,27 +521,38 @@ export interface FineTuneEvent {
 }
 
 // @public
+export interface FineTunesCancelOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface FineTunesCreateOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface FineTunesListEventsOptionalParams extends OperationOptions {
+    stream?: boolean;
+}
+
+// @public
+export interface FineTunesListOptionalParams extends OperationOptions {
+}
+
+// @public
 export interface FineTunesOperations {
-    // Warning: (ae-forgotten-export) The symbol "FineTunesCancelOptionalParams" needs to be exported by the entry point index.d.ts
-    //
-    // @deprecated (undocumented)
+    // (undocumented)
     cancel: (fineTuneId: string, options?: FineTunesCancelOptionalParams) => Promise<FineTune>;
-    // Warning: (ae-forgotten-export) The symbol "FineTunesCreateOptionalParams" needs to be exported by the entry point index.d.ts
-    //
-    // @deprecated (undocumented)
+    // (undocumented)
     create: (fineTune: CreateFineTuneRequest, options?: FineTunesCreateOptionalParams) => Promise<FineTune>;
-    // Warning: (ae-forgotten-export) The symbol "FineTunesListOptionalParams" needs to be exported by the entry point index.d.ts
-    //
-    // @deprecated (undocumented)
+    // (undocumented)
     list: (options?: FineTunesListOptionalParams) => Promise<ListFineTunesResponse>;
-    // Warning: (ae-forgotten-export) The symbol "FineTunesListEventsOptionalParams" needs to be exported by the entry point index.d.ts
-    //
-    // @deprecated (undocumented)
+    // (undocumented)
     listEvents: (fineTuneId: string, options?: FineTunesListEventsOptionalParams) => Promise<ListFineTuneEventsResponse>;
-    // Warning: (ae-forgotten-export) The symbol "FineTunesRetrieveOptionalParams" needs to be exported by the entry point index.d.ts
-    //
-    // @deprecated (undocumented)
+    // (undocumented)
     retrieve: (fineTuneId: string, options?: FineTunesRetrieveOptionalParams) => Promise<FineTune>;
+}
+
+// @public
+export interface FineTunesRetrieveOptionalParams extends OperationOptions {
 }
 
 // @public
@@ -558,25 +594,40 @@ export interface FineTuningJobEvent {
 }
 
 // @public
+export interface FineTuningJobsCancelOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface FineTuningJobsCreateOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface FineTuningJobsListEventsOptionalParams extends OperationOptions {
+    after?: string;
+    limit?: number;
+}
+
+// @public
+export interface FineTuningJobsListOptionalParams extends OperationOptions {
+    after?: string;
+    limit?: number;
+}
+
+// @public
 export interface FineTuningJobsOperations {
-    // Warning: (ae-forgotten-export) The symbol "FineTuningJobsCancelOptionalParams" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     cancel: (fineTuningJobId: string, options?: FineTuningJobsCancelOptionalParams) => Promise<FineTuningJob>;
-    // Warning: (ae-forgotten-export) The symbol "FineTuningJobsCreateOptionalParams" needs to be exported by the entry point index.d.ts
     create: (job: CreateFineTuningJobRequest, options?: FineTuningJobsCreateOptionalParams) => Promise<FineTuningJob>;
-    // Warning: (ae-forgotten-export) The symbol "FineTuningJobsListOptionalParams" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     list: (options?: FineTuningJobsListOptionalParams) => Promise<ListPaginatedFineTuningJobsResponse>;
-    // Warning: (ae-forgotten-export) The symbol "FineTuningJobsListEventsOptionalParams" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     listEvents: (fineTuningJobId: string, options?: FineTuningJobsListEventsOptionalParams) => Promise<ListFineTuningJobEventsResponse>;
-    // Warning: (ae-forgotten-export) The symbol "FineTuningJobsRetrieveOptionalParams" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     retrieve: (fineTuningJobId: string, options?: FineTuningJobsRetrieveOptionalParams) => Promise<FineTuningJob>;
+}
+
+// @public
+export interface FineTuningJobsRetrieveOptionalParams extends OperationOptions {
 }
 
 // @public
@@ -592,13 +643,17 @@ export interface Image {
 }
 
 // @public
+export interface ImagesCreateEditOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface ImagesCreateVariationOptionalParams extends OperationOptions {
+}
+
+// @public
 export interface ImagesOperations {
-    // Warning: (ae-forgotten-export) The symbol "ImagesCreateEditOptionalParams" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     createEdit: (image: CreateImageEditRequest, options?: ImagesCreateEditOptionalParams) => Promise<ImagesResponse>;
-    // Warning: (ae-forgotten-export) The symbol "ImagesCreateVariationOptionalParams" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     createVariation: (image: CreateImageVariationRequest, options?: ImagesCreateVariationOptionalParams) => Promise<ImagesResponse>;
 }
@@ -672,26 +727,38 @@ export interface Model {
 }
 
 // @public
+export interface ModelsDeleteOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface ModelsListOptionalParams extends OperationOptions {
+}
+
+// @public
 export interface ModelsOperations {
-    // Warning: (ae-forgotten-export) The symbol "ModelsDeleteOptionalParams" needs to be exported by the entry point index.d.ts
     delete: (model: string, options?: ModelsDeleteOptionalParams) => Promise<DeleteModelResponse>;
-    // Warning: (ae-forgotten-export) The symbol "ModelsListOptionalParams" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     list: (options?: ModelsListOptionalParams) => Promise<ListModelsResponse>;
-    // Warning: (ae-forgotten-export) The symbol "ModelsRetrieveOptionalParams" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     retrieve: (model: string, options?: ModelsRetrieveOptionalParams) => Promise<Model>;
 }
 
 // @public
+export interface ModelsRetrieveOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface ModerationsCreateOptionalParams extends OperationOptions {
+}
+
+// @public
 export interface ModerationsOperations {
-    // Warning: (ae-forgotten-export) The symbol "ModerationsCreateOptionalParams" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     create: (content: CreateModerationRequest, options?: ModerationsCreateOptionalParams) => Promise<CreateModerationResponse>;
 }
+
+// @public
+export type NodeReadableStream = NodeJS.ReadableStream;
 
 // @public (undocumented)
 export class OpenAIClient {
@@ -712,7 +779,6 @@ export class OpenAIClient {
 
 // @public
 export interface OpenAIClientOptionalParams extends ClientOptions {
-    endpointParam?: string;
 }
 
 // @public

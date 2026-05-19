@@ -28,23 +28,22 @@ export declare class BytesClient {
 }
 
 export declare interface BytesClientOptionalParams extends ClientOptions {
-    endpointParam?: string;
 }
 
 export declare interface DefaultBytesProperty {
     value: Uint8Array;
 }
 
-declare interface HeaderBase64OptionalParams extends OperationOptions {
+export declare interface HeaderBase64OptionalParams extends OperationOptions {
 }
 
-declare interface HeaderBase64UrlArrayOptionalParams extends OperationOptions {
+export declare interface HeaderBase64UrlArrayOptionalParams extends OperationOptions {
 }
 
-declare interface HeaderBase64UrlOptionalParams extends OperationOptions {
+export declare interface HeaderBase64UrlOptionalParams extends OperationOptions {
 }
 
-declare interface HeaderDefaultOptionalParams extends OperationOptions {
+export declare interface HeaderDefaultOptionalParams extends OperationOptions {
 }
 
 export declare interface HeaderOperations {
@@ -58,16 +57,16 @@ export { isRestError }
 
 declare type NodeReadableStream = NodeJS.ReadableStream;
 
-declare interface PropertyBase64OptionalParams extends OperationOptions {
+export declare interface PropertyBase64OptionalParams extends OperationOptions {
 }
 
-declare interface PropertyBase64UrlArrayOptionalParams extends OperationOptions {
+export declare interface PropertyBase64UrlArrayOptionalParams extends OperationOptions {
 }
 
-declare interface PropertyBase64UrlOptionalParams extends OperationOptions {
+export declare interface PropertyBase64UrlOptionalParams extends OperationOptions {
 }
 
-declare interface PropertyDefaultOptionalParams extends OperationOptions {
+export declare interface PropertyDefaultOptionalParams extends OperationOptions {
 }
 
 export declare interface PropertyOperations {
@@ -77,16 +76,16 @@ export declare interface PropertyOperations {
     default: (body: DefaultBytesProperty, options?: PropertyDefaultOptionalParams) => Promise<DefaultBytesProperty>;
 }
 
-declare interface QueryBase64OptionalParams extends OperationOptions {
+export declare interface QueryBase64OptionalParams extends OperationOptions {
 }
 
-declare interface QueryBase64UrlArrayOptionalParams extends OperationOptions {
+export declare interface QueryBase64UrlArrayOptionalParams extends OperationOptions {
 }
 
-declare interface QueryBase64UrlOptionalParams extends OperationOptions {
+export declare interface QueryBase64UrlOptionalParams extends OperationOptions {
 }
 
-declare interface QueryDefaultOptionalParams extends OperationOptions {
+export declare interface QueryDefaultOptionalParams extends OperationOptions {
 }
 
 export declare interface QueryOperations {
@@ -96,19 +95,19 @@ export declare interface QueryOperations {
     default: (value: Uint8Array, options?: QueryDefaultOptionalParams) => Promise<void>;
 }
 
-declare interface RequestBodyBase64OptionalParams extends OperationOptions {
+export declare interface RequestBodyBase64OptionalParams extends OperationOptions {
 }
 
-declare interface RequestBodyBase64UrlOptionalParams extends OperationOptions {
+export declare interface RequestBodyBase64UrlOptionalParams extends OperationOptions {
 }
 
-declare interface RequestBodyCustomContentTypeOptionalParams extends OperationOptions {
+export declare interface RequestBodyCustomContentTypeOptionalParams extends OperationOptions {
 }
 
-declare interface RequestBodyDefaultOptionalParams extends OperationOptions {
+export declare interface RequestBodyDefaultOptionalParams extends OperationOptions {
 }
 
-declare interface RequestBodyOctetStreamOptionalParams extends OperationOptions {
+export declare interface RequestBodyOctetStreamOptionalParams extends OperationOptions {
 }
 
 export declare interface RequestBodyOperations {
@@ -119,21 +118,21 @@ export declare interface RequestBodyOperations {
     default: (value: Uint8Array, options?: RequestBodyDefaultOptionalParams) => Promise<void>;
 }
 
-declare interface ResponseBodyBase64OptionalParams extends OperationOptions {
+export declare interface ResponseBodyBase64OptionalParams extends OperationOptions {
 }
 
 export declare type ResponseBodyBase64Response = {
     body: Uint8Array;
 };
 
-declare interface ResponseBodyBase64UrlOptionalParams extends OperationOptions {
+export declare interface ResponseBodyBase64UrlOptionalParams extends OperationOptions {
 }
 
 export declare type ResponseBodyBase64UrlResponse = {
     body: Uint8Array;
 };
 
-declare interface ResponseBodyCustomContentTypeOptionalParams extends OperationOptions {
+export declare interface ResponseBodyCustomContentTypeOptionalParams extends OperationOptions {
 }
 
 export declare type ResponseBodyCustomContentTypeResponse = {
@@ -141,7 +140,7 @@ export declare type ResponseBodyCustomContentTypeResponse = {
     readableStreamBody?: NodeReadableStream;
 };
 
-declare interface ResponseBodyDefaultOptionalParams extends OperationOptions {
+export declare interface ResponseBodyDefaultOptionalParams extends OperationOptions {
 }
 
 export declare type ResponseBodyDefaultResponse = {
@@ -149,7 +148,7 @@ export declare type ResponseBodyDefaultResponse = {
     readableStreamBody?: NodeReadableStream;
 };
 
-declare interface ResponseBodyOctetStreamOptionalParams extends OperationOptions {
+export declare interface ResponseBodyOctetStreamOptionalParams extends OperationOptions {
 }
 
 export declare type ResponseBodyOctetStreamResponse = {

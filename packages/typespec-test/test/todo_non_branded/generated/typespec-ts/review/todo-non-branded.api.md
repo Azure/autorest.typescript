@@ -22,8 +22,6 @@ export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
 
 // @public
 export interface FileAttachmentMultipartRequest {
-    // Warning: (ae-forgotten-export) The symbol "FileContents" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     contents: FileContents | {
         contents: FileContents;
@@ -31,6 +29,9 @@ export interface FileAttachmentMultipartRequest {
         filename?: string;
     };
 }
+
+// @public
+export type FileContents = string | NodeReadableStream | ReadableStream<Uint8Array> | Uint8Array | Blob;
 
 // @public
 export interface InvalidTodoItem extends ApiError {
@@ -41,6 +42,9 @@ export interface InvalidUserResponse extends ApiError {
     // (undocumented)
     code: "invalid-user";
 }
+
+// @public
+export type NodeReadableStream = NodeJS.ReadableStream;
 
 // @public
 export interface NotFoundErrorResponse {
@@ -132,47 +136,70 @@ export interface TodoItemPatch {
 }
 
 // @public
+export interface TodoItemsAttachmentsCreateFileAttachmentOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface TodoItemsAttachmentsCreateJsonAttachmentOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface TodoItemsAttachmentsListOptionalParams extends OperationOptions {
+}
+
+// @public
 export interface TodoItemsAttachmentsOperations {
-    // Warning: (ae-forgotten-export) The symbol "TodoItemsAttachmentsCreateFileAttachmentOptionalParams" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     createFileAttachment: (itemId: number, body: FileAttachmentMultipartRequest, options?: TodoItemsAttachmentsCreateFileAttachmentOptionalParams) => Promise<void>;
-    // Warning: (ae-forgotten-export) The symbol "TodoItemsAttachmentsCreateJsonAttachmentOptionalParams" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     createJsonAttachment: (itemId: number, contents: TodoAttachment, options?: TodoItemsAttachmentsCreateJsonAttachmentOptionalParams) => Promise<void>;
-    // Warning: (ae-forgotten-export) The symbol "TodoItemsAttachmentsListOptionalParams" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     list: (itemId: number, options?: TodoItemsAttachmentsListOptionalParams) => PagedAsyncIterableIterator<TodoAttachment>;
+}
+
+// @public
+export interface TodoItemsCreateFormOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface TodoItemsCreateJsonOptionalParams extends OperationOptions {
+    // (undocumented)
+    attachments?: TodoAttachment[];
+}
+
+// @public
+export interface TodoItemsDeleteOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface TodoItemsGetOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface TodoItemsListOptionalParams extends OperationOptions {
+    limit?: number;
+    offset?: number;
 }
 
 // @public
 export interface TodoItemsOperations {
     // (undocumented)
     attachments: TodoItemsAttachmentsOperations;
-    // Warning: (ae-forgotten-export) The symbol "TodoItemsCreateFormOptionalParams" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     createForm: (body: ToDoItemMultipartRequest, options?: TodoItemsCreateFormOptionalParams) => Promise<TodoItem>;
-    // Warning: (ae-forgotten-export) The symbol "TodoItemsCreateJsonOptionalParams" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     createJson: (item: TodoItem, options?: TodoItemsCreateJsonOptionalParams) => Promise<TodoItem>;
-    // Warning: (ae-forgotten-export) The symbol "TodoItemsDeleteOptionalParams" needs to be exported by the entry point index.d.ts
     delete: (id: number, options?: TodoItemsDeleteOptionalParams) => Promise<void>;
-    // Warning: (ae-forgotten-export) The symbol "TodoItemsGetOptionalParams" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     get: (id: number, options?: TodoItemsGetOptionalParams) => Promise<TodoItem>;
-    // Warning: (ae-forgotten-export) The symbol "TodoItemsListOptionalParams" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     list: (options?: TodoItemsListOptionalParams) => PagedAsyncIterableIterator<TodoItem>;
-    // Warning: (ae-forgotten-export) The symbol "TodoItemsUpdateOptionalParams" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     update: (id: number, patch: TodoItemPatch, options?: TodoItemsUpdateOptionalParams) => Promise<TodoItem>;
+}
+
+// @public
+export interface TodoItemsUpdateOptionalParams extends OperationOptions {
 }
 
 // @public
@@ -210,9 +237,11 @@ export interface UserExistsResponse extends ApiError {
 }
 
 // @public
+export interface UsersCreateOptionalParams extends OperationOptions {
+}
+
+// @public
 export interface UsersOperations {
-    // Warning: (ae-forgotten-export) The symbol "UsersCreateOptionalParams" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     create: (user: User, options?: UsersCreateOptionalParams) => Promise<UserCreatedResponse>;
 }

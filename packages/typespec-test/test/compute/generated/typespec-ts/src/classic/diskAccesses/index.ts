@@ -1,14 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { ComputeContext } from "../../api/index.js";
+import { ComputeContext } from "../../api/computeContext.js";
 import { createOrUpdate, get } from "../../api/diskAccesses/operations.js";
 import {
   DiskAccessesCreateOrUpdateOptionalParams,
   DiskAccessesGetOptionalParams,
 } from "../../api/diskAccesses/options.js";
 import { DiskAccess } from "../../models/computeDisk/models.js";
-import { getSimplePoller } from "../../static-helpers/simplePollerHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 
 /** Interface representing a DiskAccesses operations. */
@@ -36,24 +35,6 @@ function _getDiskAccesses(context: ComputeContext) {
       resource: DiskAccess,
       options?: DiskAccessesCreateOrUpdateOptionalParams,
     ) => createOrUpdate(context, resourceGroupName, diskAccessName, resource, options),
-    beginCreateOrUpdate: async (
-      resourceGroupName: string,
-      diskAccessName: string,
-      resource: DiskAccess,
-      options?: DiskAccessesCreateOrUpdateOptionalParams,
-    ) => {
-      const poller = createOrUpdate(context, resourceGroupName, diskAccessName, resource, options);
-      await poller.submitted();
-      return getSimplePoller(poller);
-    },
-    beginCreateOrUpdateAndWait: async (
-      resourceGroupName: string,
-      diskAccessName: string,
-      resource: DiskAccess,
-      options?: DiskAccessesCreateOrUpdateOptionalParams,
-    ) => {
-      return await createOrUpdate(context, resourceGroupName, diskAccessName, resource, options);
-    },
     get: (
       resourceGroupName: string,
       diskAccessName: string,

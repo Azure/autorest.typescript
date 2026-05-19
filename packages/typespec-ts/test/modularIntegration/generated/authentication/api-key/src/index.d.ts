@@ -12,7 +12,6 @@ export declare class ApiKeyClient {
 }
 
 export declare interface ApiKeyClientOptionalParams extends ClientOptions {
-    endpointParam?: string;
 }
 
 export declare interface InvalidAuth {

@@ -4,10 +4,10 @@ import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 import { RestError } from '@azure/core-rest-pipeline';
 
-declare interface AdminOperationsDeleteUserOptionalParams extends OperationOptions {
+export declare interface AdminOperationsDeleteUserOptionalParams extends OperationOptions {
 }
 
-declare interface AdminOperationsGetAdminInfoOptionalParams extends OperationOptions {
+export declare interface AdminOperationsGetAdminInfoOptionalParams extends OperationOptions {
 }
 
 export declare interface AdminOperationsOperations {
@@ -26,12 +26,11 @@ export declare class MoveToExistingSubClient {
 }
 
 export declare interface MoveToExistingSubClientOptionalParams extends ClientOptions {
-    endpointParam?: string;
 }
 
 export { RestError }
 
-declare interface UserOperationsGetUserOptionalParams extends OperationOptions {
+export declare interface UserOperationsGetUserOptionalParams extends OperationOptions {
 }
 
 export declare interface UserOperationsOperations {

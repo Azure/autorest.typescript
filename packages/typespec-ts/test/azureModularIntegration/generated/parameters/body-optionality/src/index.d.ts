@@ -12,18 +12,17 @@ export declare class BodyOptionalityClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: BodyOptionalityClientOptionalParams);
-    readonly optionalExplicit: OptionalExplicitOperations;
     requiredImplicit(name: string, options?: RequiredImplicitOptionalParams): Promise<void>;
     requiredExplicit(body: BodyModel, options?: RequiredExplicitOptionalParams): Promise<void>;
+    readonly optionalExplicit: OptionalExplicitOperations;
 }
 
 export declare interface BodyOptionalityClientOptionalParams extends ClientOptions {
-    endpointParam?: string;
 }
 
 export { isRestError }
 
-declare interface OptionalExplicitOmitOptionalParams extends OperationOptions {
+export declare interface OptionalExplicitOmitOptionalParams extends OperationOptions {
     body?: BodyModel;
 }
 
@@ -32,7 +31,7 @@ export declare interface OptionalExplicitOperations {
     set: (options?: OptionalExplicitSetOptionalParams) => Promise<void>;
 }
 
-declare interface OptionalExplicitSetOptionalParams extends OperationOptions {
+export declare interface OptionalExplicitSetOptionalParams extends OperationOptions {
     body?: BodyModel;
 }
 

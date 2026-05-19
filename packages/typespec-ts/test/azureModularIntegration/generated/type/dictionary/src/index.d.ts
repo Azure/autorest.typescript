@@ -4,7 +4,7 @@ import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 import { RestError } from '@azure/core-rest-pipeline';
 
-declare interface BooleanValueGetOptionalParams extends OperationOptions {
+export declare interface BooleanValueGetOptionalParams extends OperationOptions {
 }
 
 export declare interface BooleanValueOperations {
@@ -12,10 +12,10 @@ export declare interface BooleanValueOperations {
     get: (options?: BooleanValueGetOptionalParams) => Promise<Record<string, boolean>>;
 }
 
-declare interface BooleanValuePutOptionalParams extends OperationOptions {
+export declare interface BooleanValuePutOptionalParams extends OperationOptions {
 }
 
-declare interface DatetimeValueGetOptionalParams extends OperationOptions {
+export declare interface DatetimeValueGetOptionalParams extends OperationOptions {
 }
 
 export declare interface DatetimeValueOperations {
@@ -23,7 +23,7 @@ export declare interface DatetimeValueOperations {
     get: (options?: DatetimeValueGetOptionalParams) => Promise<Record<string, Date>>;
 }
 
-declare interface DatetimeValuePutOptionalParams extends OperationOptions {
+export declare interface DatetimeValuePutOptionalParams extends OperationOptions {
 }
 
 export declare class DictionaryClient {
@@ -44,10 +44,9 @@ export declare class DictionaryClient {
 }
 
 export declare interface DictionaryClientOptionalParams extends ClientOptions {
-    endpointParam?: string;
 }
 
-declare interface DurationValueGetOptionalParams extends OperationOptions {
+export declare interface DurationValueGetOptionalParams extends OperationOptions {
 }
 
 export declare interface DurationValueOperations {
@@ -55,10 +54,10 @@ export declare interface DurationValueOperations {
     get: (options?: DurationValueGetOptionalParams) => Promise<Record<string, string>>;
 }
 
-declare interface DurationValuePutOptionalParams extends OperationOptions {
+export declare interface DurationValuePutOptionalParams extends OperationOptions {
 }
 
-declare interface Float32ValueGetOptionalParams extends OperationOptions {
+export declare interface Float32ValueGetOptionalParams extends OperationOptions {
 }
 
 export declare interface Float32ValueOperations {
@@ -66,7 +65,7 @@ export declare interface Float32ValueOperations {
     get: (options?: Float32ValueGetOptionalParams) => Promise<Record<string, number>>;
 }
 
-declare interface Float32ValuePutOptionalParams extends OperationOptions {
+export declare interface Float32ValuePutOptionalParams extends OperationOptions {
 }
 
 export declare interface InnerModel {
@@ -74,7 +73,7 @@ export declare interface InnerModel {
     children?: Record<string, InnerModel>;
 }
 
-declare interface Int32ValueGetOptionalParams extends OperationOptions {
+export declare interface Int32ValueGetOptionalParams extends OperationOptions {
 }
 
 export declare interface Int32ValueOperations {
@@ -82,10 +81,10 @@ export declare interface Int32ValueOperations {
     get: (options?: Int32ValueGetOptionalParams) => Promise<Record<string, number>>;
 }
 
-declare interface Int32ValuePutOptionalParams extends OperationOptions {
+export declare interface Int32ValuePutOptionalParams extends OperationOptions {
 }
 
-declare interface Int64ValueGetOptionalParams extends OperationOptions {
+export declare interface Int64ValueGetOptionalParams extends OperationOptions {
 }
 
 export declare interface Int64ValueOperations {
@@ -93,12 +92,12 @@ export declare interface Int64ValueOperations {
     get: (options?: Int64ValueGetOptionalParams) => Promise<Record<string, number>>;
 }
 
-declare interface Int64ValuePutOptionalParams extends OperationOptions {
+export declare interface Int64ValuePutOptionalParams extends OperationOptions {
 }
 
 export { isRestError }
 
-declare interface ModelValueGetOptionalParams extends OperationOptions {
+export declare interface ModelValueGetOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelValueOperations {
@@ -106,10 +105,10 @@ export declare interface ModelValueOperations {
     get: (options?: ModelValueGetOptionalParams) => Promise<Record<string, InnerModel>>;
 }
 
-declare interface ModelValuePutOptionalParams extends OperationOptions {
+export declare interface ModelValuePutOptionalParams extends OperationOptions {
 }
 
-declare interface NullableFloatValueGetOptionalParams extends OperationOptions {
+export declare interface NullableFloatValueGetOptionalParams extends OperationOptions {
 }
 
 export declare interface NullableFloatValueOperations {
@@ -117,10 +116,10 @@ export declare interface NullableFloatValueOperations {
     get: (options?: NullableFloatValueGetOptionalParams) => Promise<Record<string, number | null>>;
 }
 
-declare interface NullableFloatValuePutOptionalParams extends OperationOptions {
+export declare interface NullableFloatValuePutOptionalParams extends OperationOptions {
 }
 
-declare interface RecursiveModelValueGetOptionalParams extends OperationOptions {
+export declare interface RecursiveModelValueGetOptionalParams extends OperationOptions {
 }
 
 export declare interface RecursiveModelValueOperations {
@@ -128,12 +127,12 @@ export declare interface RecursiveModelValueOperations {
     get: (options?: RecursiveModelValueGetOptionalParams) => Promise<Record<string, InnerModel>>;
 }
 
-declare interface RecursiveModelValuePutOptionalParams extends OperationOptions {
+export declare interface RecursiveModelValuePutOptionalParams extends OperationOptions {
 }
 
 export { RestError }
 
-declare interface StringValueGetOptionalParams extends OperationOptions {
+export declare interface StringValueGetOptionalParams extends OperationOptions {
 }
 
 export declare interface StringValueOperations {
@@ -141,10 +140,10 @@ export declare interface StringValueOperations {
     get: (options?: StringValueGetOptionalParams) => Promise<Record<string, string>>;
 }
 
-declare interface StringValuePutOptionalParams extends OperationOptions {
+export declare interface StringValuePutOptionalParams extends OperationOptions {
 }
 
-declare interface UnknownValueGetOptionalParams extends OperationOptions {
+export declare interface UnknownValueGetOptionalParams extends OperationOptions {
 }
 
 export declare interface UnknownValueOperations {
@@ -152,7 +151,7 @@ export declare interface UnknownValueOperations {
     get: (options?: UnknownValueGetOptionalParams) => Promise<Record<string, any>>;
 }
 
-declare interface UnknownValuePutOptionalParams extends OperationOptions {
+export declare interface UnknownValuePutOptionalParams extends OperationOptions {
 }
 
 export { }

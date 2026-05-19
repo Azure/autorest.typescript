@@ -18,7 +18,7 @@ export declare interface ModelWithArrayOfModel {
     items: SimpleModel[];
 }
 
-declare interface ModelWithArrayOfModelValueGetOptionalParams extends OperationOptions {
+export declare interface ModelWithArrayOfModelValueGetOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelWithArrayOfModelValueOperations {
@@ -26,7 +26,7 @@ export declare interface ModelWithArrayOfModelValueOperations {
     get: (options?: ModelWithArrayOfModelValueGetOptionalParams) => Promise<ModelWithArrayOfModel>;
 }
 
-declare interface ModelWithArrayOfModelValuePutOptionalParams extends OperationOptions {
+export declare interface ModelWithArrayOfModelValuePutOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelWithAttributes {
@@ -35,7 +35,7 @@ export declare interface ModelWithAttributes {
     enabled: boolean;
 }
 
-declare interface ModelWithAttributesValueGetOptionalParams extends OperationOptions {
+export declare interface ModelWithAttributesValueGetOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelWithAttributesValueOperations {
@@ -43,7 +43,7 @@ export declare interface ModelWithAttributesValueOperations {
     get: (options?: ModelWithAttributesValueGetOptionalParams) => Promise<ModelWithAttributes>;
 }
 
-declare interface ModelWithAttributesValuePutOptionalParams extends OperationOptions {
+export declare interface ModelWithAttributesValuePutOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelWithDatetime {
@@ -51,7 +51,7 @@ export declare interface ModelWithDatetime {
     rfc7231: Date;
 }
 
-declare interface ModelWithDatetimeValueGetOptionalParams extends OperationOptions {
+export declare interface ModelWithDatetimeValueGetOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelWithDatetimeValueOperations {
@@ -59,14 +59,14 @@ export declare interface ModelWithDatetimeValueOperations {
     get: (options?: ModelWithDatetimeValueGetOptionalParams) => Promise<ModelWithDatetime>;
 }
 
-declare interface ModelWithDatetimeValuePutOptionalParams extends OperationOptions {
+export declare interface ModelWithDatetimeValuePutOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelWithDictionary {
     metadata: Record<string, string>;
 }
 
-declare interface ModelWithDictionaryValueGetOptionalParams extends OperationOptions {
+export declare interface ModelWithDictionaryValueGetOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelWithDictionaryValueOperations {
@@ -74,14 +74,14 @@ export declare interface ModelWithDictionaryValueOperations {
     get: (options?: ModelWithDictionaryValueGetOptionalParams) => Promise<ModelWithDictionary>;
 }
 
-declare interface ModelWithDictionaryValuePutOptionalParams extends OperationOptions {
+export declare interface ModelWithDictionaryValuePutOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelWithEmptyArray {
     items: SimpleModel[];
 }
 
-declare interface ModelWithEmptyArrayValueGetOptionalParams extends OperationOptions {
+export declare interface ModelWithEmptyArrayValueGetOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelWithEmptyArrayValueOperations {
@@ -89,7 +89,7 @@ export declare interface ModelWithEmptyArrayValueOperations {
     get: (options?: ModelWithEmptyArrayValueGetOptionalParams) => Promise<ModelWithEmptyArray>;
 }
 
-declare interface ModelWithEmptyArrayValuePutOptionalParams extends OperationOptions {
+export declare interface ModelWithEmptyArrayValuePutOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelWithEncodedNames {
@@ -97,7 +97,7 @@ export declare interface ModelWithEncodedNames {
     colors: string[];
 }
 
-declare interface ModelWithEncodedNamesValueGetOptionalParams extends OperationOptions {
+export declare interface ModelWithEncodedNamesValueGetOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelWithEncodedNamesValueOperations {
@@ -105,14 +105,14 @@ export declare interface ModelWithEncodedNamesValueOperations {
     get: (options?: ModelWithEncodedNamesValueGetOptionalParams) => Promise<ModelWithEncodedNames>;
 }
 
-declare interface ModelWithEncodedNamesValuePutOptionalParams extends OperationOptions {
+export declare interface ModelWithEncodedNamesValuePutOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelWithEnum {
     status: Status;
 }
 
-declare interface ModelWithEnumValueGetOptionalParams extends OperationOptions {
+export declare interface ModelWithEnumValueGetOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelWithEnumValueOperations {
@@ -120,7 +120,7 @@ export declare interface ModelWithEnumValueOperations {
     get: (options?: ModelWithEnumValueGetOptionalParams) => Promise<ModelWithEnum>;
 }
 
-declare interface ModelWithEnumValuePutOptionalParams extends OperationOptions {
+export declare interface ModelWithEnumValuePutOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelWithNamespace {
@@ -134,7 +134,7 @@ export declare interface ModelWithNamespaceOnProperties {
     author: string;
 }
 
-declare interface ModelWithNamespaceOnPropertiesValueGetOptionalParams extends OperationOptions {
+export declare interface ModelWithNamespaceOnPropertiesValueGetOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelWithNamespaceOnPropertiesValueOperations {
@@ -142,10 +142,10 @@ export declare interface ModelWithNamespaceOnPropertiesValueOperations {
     get: (options?: ModelWithNamespaceOnPropertiesValueGetOptionalParams) => Promise<ModelWithNamespaceOnProperties>;
 }
 
-declare interface ModelWithNamespaceOnPropertiesValuePutOptionalParams extends OperationOptions {
+export declare interface ModelWithNamespaceOnPropertiesValuePutOptionalParams extends OperationOptions {
 }
 
-declare interface ModelWithNamespaceValueGetOptionalParams extends OperationOptions {
+export declare interface ModelWithNamespaceValueGetOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelWithNamespaceValueOperations {
@@ -153,14 +153,14 @@ export declare interface ModelWithNamespaceValueOperations {
     get: (options?: ModelWithNamespaceValueGetOptionalParams) => Promise<ModelWithNamespace>;
 }
 
-declare interface ModelWithNamespaceValuePutOptionalParams extends OperationOptions {
+export declare interface ModelWithNamespaceValuePutOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelWithNestedModel {
     nested: SimpleModel;
 }
 
-declare interface ModelWithNestedModelValueGetOptionalParams extends OperationOptions {
+export declare interface ModelWithNestedModelValueGetOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelWithNestedModelValueOperations {
@@ -168,7 +168,7 @@ export declare interface ModelWithNestedModelValueOperations {
     get: (options?: ModelWithNestedModelValueGetOptionalParams) => Promise<ModelWithNestedModel>;
 }
 
-declare interface ModelWithNestedModelValuePutOptionalParams extends OperationOptions {
+export declare interface ModelWithNestedModelValuePutOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelWithOptionalField {
@@ -176,7 +176,7 @@ export declare interface ModelWithOptionalField {
     value?: number;
 }
 
-declare interface ModelWithOptionalFieldValueGetOptionalParams extends OperationOptions {
+export declare interface ModelWithOptionalFieldValueGetOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelWithOptionalFieldValueOperations {
@@ -184,7 +184,7 @@ export declare interface ModelWithOptionalFieldValueOperations {
     get: (options?: ModelWithOptionalFieldValueGetOptionalParams) => Promise<ModelWithOptionalField>;
 }
 
-declare interface ModelWithOptionalFieldValuePutOptionalParams extends OperationOptions {
+export declare interface ModelWithOptionalFieldValuePutOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelWithRenamedArrays {
@@ -192,7 +192,7 @@ export declare interface ModelWithRenamedArrays {
     counts: number[];
 }
 
-declare interface ModelWithRenamedArraysValueGetOptionalParams extends OperationOptions {
+export declare interface ModelWithRenamedArraysValueGetOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelWithRenamedArraysValueOperations {
@@ -200,7 +200,7 @@ export declare interface ModelWithRenamedArraysValueOperations {
     get: (options?: ModelWithRenamedArraysValueGetOptionalParams) => Promise<ModelWithRenamedArrays>;
 }
 
-declare interface ModelWithRenamedArraysValuePutOptionalParams extends OperationOptions {
+export declare interface ModelWithRenamedArraysValuePutOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelWithRenamedAttribute {
@@ -209,7 +209,7 @@ export declare interface ModelWithRenamedAttribute {
     author: string;
 }
 
-declare interface ModelWithRenamedAttributeValueGetOptionalParams extends OperationOptions {
+export declare interface ModelWithRenamedAttributeValueGetOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelWithRenamedAttributeValueOperations {
@@ -217,7 +217,7 @@ export declare interface ModelWithRenamedAttributeValueOperations {
     get: (options?: ModelWithRenamedAttributeValueGetOptionalParams) => Promise<ModelWithRenamedAttribute>;
 }
 
-declare interface ModelWithRenamedAttributeValuePutOptionalParams extends OperationOptions {
+export declare interface ModelWithRenamedAttributeValuePutOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelWithRenamedFields {
@@ -225,7 +225,7 @@ export declare interface ModelWithRenamedFields {
     outputData: SimpleModel;
 }
 
-declare interface ModelWithRenamedFieldsValueGetOptionalParams extends OperationOptions {
+export declare interface ModelWithRenamedFieldsValueGetOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelWithRenamedFieldsValueOperations {
@@ -233,14 +233,14 @@ export declare interface ModelWithRenamedFieldsValueOperations {
     get: (options?: ModelWithRenamedFieldsValueGetOptionalParams) => Promise<ModelWithRenamedFields>;
 }
 
-declare interface ModelWithRenamedFieldsValuePutOptionalParams extends OperationOptions {
+export declare interface ModelWithRenamedFieldsValuePutOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelWithRenamedNestedModel {
     author: Author;
 }
 
-declare interface ModelWithRenamedNestedModelValueGetOptionalParams extends OperationOptions {
+export declare interface ModelWithRenamedNestedModelValueGetOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelWithRenamedNestedModelValueOperations {
@@ -248,7 +248,7 @@ export declare interface ModelWithRenamedNestedModelValueOperations {
     get: (options?: ModelWithRenamedNestedModelValueGetOptionalParams) => Promise<ModelWithRenamedNestedModel>;
 }
 
-declare interface ModelWithRenamedNestedModelValuePutOptionalParams extends OperationOptions {
+export declare interface ModelWithRenamedNestedModelValuePutOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelWithRenamedProperty {
@@ -256,7 +256,7 @@ export declare interface ModelWithRenamedProperty {
     author: string;
 }
 
-declare interface ModelWithRenamedPropertyValueGetOptionalParams extends OperationOptions {
+export declare interface ModelWithRenamedPropertyValueGetOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelWithRenamedPropertyValueOperations {
@@ -264,14 +264,14 @@ export declare interface ModelWithRenamedPropertyValueOperations {
     get: (options?: ModelWithRenamedPropertyValueGetOptionalParams) => Promise<ModelWithRenamedProperty>;
 }
 
-declare interface ModelWithRenamedPropertyValuePutOptionalParams extends OperationOptions {
+export declare interface ModelWithRenamedPropertyValuePutOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelWithRenamedUnwrappedModelArray {
     items: SimpleModel[];
 }
 
-declare interface ModelWithRenamedUnwrappedModelArrayValueGetOptionalParams extends OperationOptions {
+export declare interface ModelWithRenamedUnwrappedModelArrayValueGetOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelWithRenamedUnwrappedModelArrayValueOperations {
@@ -279,14 +279,14 @@ export declare interface ModelWithRenamedUnwrappedModelArrayValueOperations {
     get: (options?: ModelWithRenamedUnwrappedModelArrayValueGetOptionalParams) => Promise<ModelWithRenamedUnwrappedModelArray>;
 }
 
-declare interface ModelWithRenamedUnwrappedModelArrayValuePutOptionalParams extends OperationOptions {
+export declare interface ModelWithRenamedUnwrappedModelArrayValuePutOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelWithRenamedWrappedAndItemModelArray {
     books: Book[];
 }
 
-declare interface ModelWithRenamedWrappedAndItemModelArrayValueGetOptionalParams extends OperationOptions {
+export declare interface ModelWithRenamedWrappedAndItemModelArrayValueGetOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelWithRenamedWrappedAndItemModelArrayValueOperations {
@@ -294,14 +294,14 @@ export declare interface ModelWithRenamedWrappedAndItemModelArrayValueOperations
     get: (options?: ModelWithRenamedWrappedAndItemModelArrayValueGetOptionalParams) => Promise<ModelWithRenamedWrappedAndItemModelArray>;
 }
 
-declare interface ModelWithRenamedWrappedAndItemModelArrayValuePutOptionalParams extends OperationOptions {
+export declare interface ModelWithRenamedWrappedAndItemModelArrayValuePutOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelWithRenamedWrappedModelArray {
     items: SimpleModel[];
 }
 
-declare interface ModelWithRenamedWrappedModelArrayValueGetOptionalParams extends OperationOptions {
+export declare interface ModelWithRenamedWrappedModelArrayValueGetOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelWithRenamedWrappedModelArrayValueOperations {
@@ -309,7 +309,7 @@ export declare interface ModelWithRenamedWrappedModelArrayValueOperations {
     get: (options?: ModelWithRenamedWrappedModelArrayValueGetOptionalParams) => Promise<ModelWithRenamedWrappedModelArray>;
 }
 
-declare interface ModelWithRenamedWrappedModelArrayValuePutOptionalParams extends OperationOptions {
+export declare interface ModelWithRenamedWrappedModelArrayValuePutOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelWithSimpleArrays {
@@ -317,7 +317,7 @@ export declare interface ModelWithSimpleArrays {
     counts: number[];
 }
 
-declare interface ModelWithSimpleArraysValueGetOptionalParams extends OperationOptions {
+export declare interface ModelWithSimpleArraysValueGetOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelWithSimpleArraysValueOperations {
@@ -325,7 +325,7 @@ export declare interface ModelWithSimpleArraysValueOperations {
     get: (options?: ModelWithSimpleArraysValueGetOptionalParams) => Promise<ModelWithSimpleArrays>;
 }
 
-declare interface ModelWithSimpleArraysValuePutOptionalParams extends OperationOptions {
+export declare interface ModelWithSimpleArraysValuePutOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelWithText {
@@ -333,7 +333,7 @@ export declare interface ModelWithText {
     content: string;
 }
 
-declare interface ModelWithTextValueGetOptionalParams extends OperationOptions {
+export declare interface ModelWithTextValueGetOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelWithTextValueOperations {
@@ -341,7 +341,7 @@ export declare interface ModelWithTextValueOperations {
     get: (options?: ModelWithTextValueGetOptionalParams) => Promise<ModelWithText>;
 }
 
-declare interface ModelWithTextValuePutOptionalParams extends OperationOptions {
+export declare interface ModelWithTextValuePutOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelWithUnwrappedArray {
@@ -349,7 +349,7 @@ export declare interface ModelWithUnwrappedArray {
     counts: number[];
 }
 
-declare interface ModelWithUnwrappedArrayValueGetOptionalParams extends OperationOptions {
+export declare interface ModelWithUnwrappedArrayValueGetOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelWithUnwrappedArrayValueOperations {
@@ -357,14 +357,14 @@ export declare interface ModelWithUnwrappedArrayValueOperations {
     get: (options?: ModelWithUnwrappedArrayValueGetOptionalParams) => Promise<ModelWithUnwrappedArray>;
 }
 
-declare interface ModelWithUnwrappedArrayValuePutOptionalParams extends OperationOptions {
+export declare interface ModelWithUnwrappedArrayValuePutOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelWithUnwrappedModelArray {
     items: SimpleModel[];
 }
 
-declare interface ModelWithUnwrappedModelArrayValueGetOptionalParams extends OperationOptions {
+export declare interface ModelWithUnwrappedModelArrayValueGetOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelWithUnwrappedModelArrayValueOperations {
@@ -372,14 +372,14 @@ export declare interface ModelWithUnwrappedModelArrayValueOperations {
     get: (options?: ModelWithUnwrappedModelArrayValueGetOptionalParams) => Promise<ModelWithUnwrappedModelArray>;
 }
 
-declare interface ModelWithUnwrappedModelArrayValuePutOptionalParams extends OperationOptions {
+export declare interface ModelWithUnwrappedModelArrayValuePutOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelWithWrappedPrimitiveCustomItemNames {
     tags: string[];
 }
 
-declare interface ModelWithWrappedPrimitiveCustomItemNamesValueGetOptionalParams extends OperationOptions {
+export declare interface ModelWithWrappedPrimitiveCustomItemNamesValueGetOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelWithWrappedPrimitiveCustomItemNamesValueOperations {
@@ -387,7 +387,7 @@ export declare interface ModelWithWrappedPrimitiveCustomItemNamesValueOperations
     get: (options?: ModelWithWrappedPrimitiveCustomItemNamesValueGetOptionalParams) => Promise<ModelWithWrappedPrimitiveCustomItemNames>;
 }
 
-declare interface ModelWithWrappedPrimitiveCustomItemNamesValuePutOptionalParams extends OperationOptions {
+export declare interface ModelWithWrappedPrimitiveCustomItemNamesValuePutOptionalParams extends OperationOptions {
 }
 
 export { RestError }
@@ -397,7 +397,7 @@ export declare interface SimpleModel {
     age: number;
 }
 
-declare interface SimpleModelValueGetOptionalParams extends OperationOptions {
+export declare interface SimpleModelValueGetOptionalParams extends OperationOptions {
 }
 
 export declare interface SimpleModelValueOperations {
@@ -405,7 +405,7 @@ export declare interface SimpleModelValueOperations {
     get: (options?: SimpleModelValueGetOptionalParams) => Promise<SimpleModel>;
 }
 
-declare interface SimpleModelValuePutOptionalParams extends OperationOptions {
+export declare interface SimpleModelValuePutOptionalParams extends OperationOptions {
 }
 
 export declare type Status = "pending" | "success" | "error";
@@ -443,7 +443,6 @@ export declare class XmlClient {
 }
 
 export declare interface XmlClientOptionalParams extends ClientOptions {
-    endpointParam?: string;
 }
 
 export declare interface XmlErrorBody {
@@ -451,7 +450,7 @@ export declare interface XmlErrorBody {
     code: number;
 }
 
-declare interface XmlErrorValueGetOptionalParams extends OperationOptions {
+export declare interface XmlErrorValueGetOptionalParams extends OperationOptions {
 }
 
 export declare interface XmlErrorValueOperations {

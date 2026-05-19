@@ -22,7 +22,6 @@ export declare class PageableClient {
 }
 
 export declare interface PageableClientOptionalParams extends ClientOptions {
-    endpointParam?: string;
 }
 
 export declare interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends PageSettings = PageSettings> {

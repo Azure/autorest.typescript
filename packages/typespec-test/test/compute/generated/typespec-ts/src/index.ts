@@ -54,6 +54,30 @@ export type {
 } from "./models/computeDisk/index.js";
 export type { ComputeClientOptionalParams } from "./api/index.js";
 export type {
+  ActionGroupsListOptionalParams,
+  ActionGroupsGetOptionalParams,
+} from "./api/actionGroups/index.js";
+export type {
+  DiskAccessesCreateOrUpdateOptionalParams,
+  DiskAccessesGetOptionalParams,
+} from "./api/diskAccesses/index.js";
+export type {
+  DisksCreateOrUpdateOptionalParams,
+  DisksGetOptionalParams,
+} from "./api/disks/index.js";
+export type {
+  RestorePointCollectionsCreateOrUpdateOptionalParams,
+  RestorePointCollectionsGetOptionalParams,
+} from "./api/restorePointCollections/index.js";
+export type {
+  VirtualMachinesCreateOrUpdateOptionalParams,
+  VirtualMachinesGetOptionalParams,
+} from "./api/virtualMachines/index.js";
+export type {
+  VirtualMachineScaleSetExtensionsCreateOrUpdateOptionalParams,
+  VirtualMachineScaleSetExtensionsGetOptionalParams,
+} from "./api/virtualMachineScaleSetExtensions/index.js";
+export type {
   ActionGroupsOperations,
   DiskAccessesOperations,
   DisksOperations,

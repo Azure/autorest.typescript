@@ -75,6 +75,7 @@ export async function _detectMultivariateLastAnomalyDeserialize(
 
     throw error;
   }
+
   return multivariateMultivariateLastDetectionResultDeserializer(result.body);
 }
 
@@ -134,6 +135,7 @@ export async function _detectMultivariateBatchAnomalyDeserialize(
 
     throw error;
   }
+
   return multivariateMultivariateDetectionResultDeserializer(result.body);
 }
 
@@ -192,6 +194,7 @@ export async function _getMultivariateModelDeserialize(
 
     throw error;
   }
+
   return multivariateAnomalyDetectionModelDeserializer(result.body);
 }
 
@@ -235,6 +238,7 @@ export async function _deleteMultivariateModelDeserialize(
 
     throw error;
   }
+
   return;
 }
 
@@ -280,6 +284,7 @@ export async function _listMultivariateModelsDeserialize(
 
     throw error;
   }
+
   return _multivariateModelListDeserializer(result.body);
 }
 
@@ -322,6 +327,7 @@ export async function _trainMultivariateModelDeserialize(
 
     throw error;
   }
+
   return multivariateAnomalyDetectionModelDeserializer(result.body);
 }
 
@@ -375,6 +381,7 @@ export async function _getMultivariateBatchDetectionResultDeserialize(
 
     throw error;
   }
+
   return multivariateMultivariateDetectionResultDeserializer(result.body);
 }
 

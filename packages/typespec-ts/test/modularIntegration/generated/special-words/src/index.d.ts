@@ -81,7 +81,7 @@ export declare interface ExtensibleStringsOperations {
     putExtensibleStringValue: (body: ExtensibleString, options?: ExtensibleStringsPutExtensibleStringValueOptionalParams) => Promise<ExtensibleString>;
 }
 
-declare interface ExtensibleStringsPutExtensibleStringValueOptionalParams extends OperationOptions {
+export declare interface ExtensibleStringsPutExtensibleStringValueOptionalParams extends OperationOptions {
 }
 
 export declare interface Finally {
@@ -120,7 +120,7 @@ export declare interface Lambda {
     name: string;
 }
 
-declare interface ModelPropertiesDictMethodsOptionalParams extends OperationOptions {
+export declare interface ModelPropertiesDictMethodsOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelPropertiesOperations {
@@ -129,10 +129,10 @@ export declare interface ModelPropertiesOperations {
     sameAsModel: (body: SameAsModel, options?: ModelPropertiesSameAsModelOptionalParams) => Promise<void>;
 }
 
-declare interface ModelPropertiesSameAsModelOptionalParams extends OperationOptions {
+export declare interface ModelPropertiesSameAsModelOptionalParams extends OperationOptions {
 }
 
-declare interface ModelPropertiesWithListOptionalParams extends OperationOptions {
+export declare interface ModelPropertiesWithListOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelsOperations {
@@ -171,103 +171,103 @@ export declare interface ModelsOperations {
     withAnd: (body: And, options?: ModelsWithAndOptionalParams) => Promise<void>;
 }
 
-declare interface ModelsWithAndOptionalParams extends OperationOptions {
+export declare interface ModelsWithAndOptionalParams extends OperationOptions {
 }
 
-declare interface ModelsWithAsOptionalParams extends OperationOptions {
+export declare interface ModelsWithAsOptionalParams extends OperationOptions {
 }
 
-declare interface ModelsWithAssertOptionalParams extends OperationOptions {
+export declare interface ModelsWithAssertOptionalParams extends OperationOptions {
 }
 
-declare interface ModelsWithAsyncOptionalParams extends OperationOptions {
+export declare interface ModelsWithAsyncOptionalParams extends OperationOptions {
 }
 
-declare interface ModelsWithAwaitOptionalParams extends OperationOptions {
+export declare interface ModelsWithAwaitOptionalParams extends OperationOptions {
 }
 
-declare interface ModelsWithBreakOptionalParams extends OperationOptions {
+export declare interface ModelsWithBreakOptionalParams extends OperationOptions {
 }
 
-declare interface ModelsWithClassOptionalParams extends OperationOptions {
+export declare interface ModelsWithClassOptionalParams extends OperationOptions {
 }
 
-declare interface ModelsWithConstructorOptionalParams extends OperationOptions {
+export declare interface ModelsWithConstructorOptionalParams extends OperationOptions {
 }
 
-declare interface ModelsWithContinueOptionalParams extends OperationOptions {
+export declare interface ModelsWithContinueOptionalParams extends OperationOptions {
 }
 
-declare interface ModelsWithDefOptionalParams extends OperationOptions {
+export declare interface ModelsWithDefOptionalParams extends OperationOptions {
 }
 
-declare interface ModelsWithDelOptionalParams extends OperationOptions {
+export declare interface ModelsWithDelOptionalParams extends OperationOptions {
 }
 
-declare interface ModelsWithElifOptionalParams extends OperationOptions {
+export declare interface ModelsWithElifOptionalParams extends OperationOptions {
 }
 
-declare interface ModelsWithElseOptionalParams extends OperationOptions {
+export declare interface ModelsWithElseOptionalParams extends OperationOptions {
 }
 
-declare interface ModelsWithExceptOptionalParams extends OperationOptions {
+export declare interface ModelsWithExceptOptionalParams extends OperationOptions {
 }
 
-declare interface ModelsWithExecOptionalParams extends OperationOptions {
+export declare interface ModelsWithExecOptionalParams extends OperationOptions {
 }
 
-declare interface ModelsWithFinallyOptionalParams extends OperationOptions {
+export declare interface ModelsWithFinallyOptionalParams extends OperationOptions {
 }
 
-declare interface ModelsWithForOptionalParams extends OperationOptions {
+export declare interface ModelsWithForOptionalParams extends OperationOptions {
 }
 
-declare interface ModelsWithFromOptionalParams extends OperationOptions {
+export declare interface ModelsWithFromOptionalParams extends OperationOptions {
 }
 
-declare interface ModelsWithGlobalOptionalParams extends OperationOptions {
+export declare interface ModelsWithGlobalOptionalParams extends OperationOptions {
 }
 
-declare interface ModelsWithIfOptionalParams extends OperationOptions {
+export declare interface ModelsWithIfOptionalParams extends OperationOptions {
 }
 
-declare interface ModelsWithImportOptionalParams extends OperationOptions {
+export declare interface ModelsWithImportOptionalParams extends OperationOptions {
 }
 
-declare interface ModelsWithInOptionalParams extends OperationOptions {
+export declare interface ModelsWithInOptionalParams extends OperationOptions {
 }
 
-declare interface ModelsWithIsOptionalParams extends OperationOptions {
+export declare interface ModelsWithIsOptionalParams extends OperationOptions {
 }
 
-declare interface ModelsWithLambdaOptionalParams extends OperationOptions {
+export declare interface ModelsWithLambdaOptionalParams extends OperationOptions {
 }
 
-declare interface ModelsWithNotOptionalParams extends OperationOptions {
+export declare interface ModelsWithNotOptionalParams extends OperationOptions {
 }
 
-declare interface ModelsWithOrOptionalParams extends OperationOptions {
+export declare interface ModelsWithOrOptionalParams extends OperationOptions {
 }
 
-declare interface ModelsWithPassOptionalParams extends OperationOptions {
+export declare interface ModelsWithPassOptionalParams extends OperationOptions {
 }
 
-declare interface ModelsWithRaiseOptionalParams extends OperationOptions {
+export declare interface ModelsWithRaiseOptionalParams extends OperationOptions {
 }
 
-declare interface ModelsWithReturnOptionalParams extends OperationOptions {
+export declare interface ModelsWithReturnOptionalParams extends OperationOptions {
 }
 
-declare interface ModelsWithTryOptionalParams extends OperationOptions {
+export declare interface ModelsWithTryOptionalParams extends OperationOptions {
 }
 
-declare interface ModelsWithWhileOptionalParams extends OperationOptions {
+export declare interface ModelsWithWhileOptionalParams extends OperationOptions {
 }
 
-declare interface ModelsWithWithOptionalParams extends OperationOptions {
+export declare interface ModelsWithWithOptionalParams extends OperationOptions {
 }
 
-declare interface ModelsWithYieldOptionalParams extends OperationOptions {
+export declare interface ModelsWithYieldOptionalParams extends OperationOptions {
 }
 
 export declare interface ModelWithList {
@@ -278,79 +278,79 @@ export declare interface Not {
     name: string;
 }
 
-declare interface OperationsAndOptionalParams extends OperationOptions {
+export declare interface OperationsAndOptionalParams extends OperationOptions {
 }
 
-declare interface OperationsAsOptionalParams extends OperationOptions {
+export declare interface OperationsAsOptionalParams extends OperationOptions {
 }
 
-declare interface OperationsAssertOptionalParams extends OperationOptions {
+export declare interface OperationsAssertOptionalParams extends OperationOptions {
 }
 
-declare interface OperationsAsyncOptionalParams extends OperationOptions {
+export declare interface OperationsAsyncOptionalParams extends OperationOptions {
 }
 
-declare interface OperationsAwaitOptionalParams extends OperationOptions {
+export declare interface OperationsAwaitOptionalParams extends OperationOptions {
 }
 
-declare interface OperationsBreakOptionalParams extends OperationOptions {
+export declare interface OperationsBreakOptionalParams extends OperationOptions {
 }
 
-declare interface OperationsClassOptionalParams extends OperationOptions {
+export declare interface OperationsClassOptionalParams extends OperationOptions {
 }
 
-declare interface OperationsConstructorOptionalParams extends OperationOptions {
+export declare interface OperationsConstructorOptionalParams extends OperationOptions {
 }
 
-declare interface OperationsContinueOptionalParams extends OperationOptions {
+export declare interface OperationsContinueOptionalParams extends OperationOptions {
 }
 
-declare interface OperationsDefOptionalParams extends OperationOptions {
+export declare interface OperationsDefOptionalParams extends OperationOptions {
 }
 
-declare interface OperationsDelOptionalParams extends OperationOptions {
+export declare interface OperationsDelOptionalParams extends OperationOptions {
 }
 
-declare interface OperationsElifOptionalParams extends OperationOptions {
+export declare interface OperationsElifOptionalParams extends OperationOptions {
 }
 
-declare interface OperationsElseOptionalParams extends OperationOptions {
+export declare interface OperationsElseOptionalParams extends OperationOptions {
 }
 
-declare interface OperationsExceptOptionalParams extends OperationOptions {
+export declare interface OperationsExceptOptionalParams extends OperationOptions {
 }
 
-declare interface OperationsExecOptionalParams extends OperationOptions {
+export declare interface OperationsExecOptionalParams extends OperationOptions {
 }
 
-declare interface OperationsFinallyOptionalParams extends OperationOptions {
+export declare interface OperationsFinallyOptionalParams extends OperationOptions {
 }
 
-declare interface OperationsForOptionalParams extends OperationOptions {
+export declare interface OperationsForOptionalParams extends OperationOptions {
 }
 
-declare interface OperationsFromOptionalParams extends OperationOptions {
+export declare interface OperationsFromOptionalParams extends OperationOptions {
 }
 
-declare interface OperationsGlobalOptionalParams extends OperationOptions {
+export declare interface OperationsGlobalOptionalParams extends OperationOptions {
 }
 
-declare interface OperationsIfOptionalParams extends OperationOptions {
+export declare interface OperationsIfOptionalParams extends OperationOptions {
 }
 
-declare interface OperationsImportOptionalParams extends OperationOptions {
+export declare interface OperationsImportOptionalParams extends OperationOptions {
 }
 
-declare interface OperationsInOptionalParams extends OperationOptions {
+export declare interface OperationsInOptionalParams extends OperationOptions {
 }
 
-declare interface OperationsIsOptionalParams extends OperationOptions {
+export declare interface OperationsIsOptionalParams extends OperationOptions {
 }
 
-declare interface OperationsLambdaOptionalParams extends OperationOptions {
+export declare interface OperationsLambdaOptionalParams extends OperationOptions {
 }
 
-declare interface OperationsNotOptionalParams extends OperationOptions {
+export declare interface OperationsNotOptionalParams extends OperationOptions {
 }
 
 export declare interface OperationsOperations {
@@ -389,28 +389,28 @@ export declare interface OperationsOperations {
     and: (options?: OperationsAndOptionalParams) => Promise<void>;
 }
 
-declare interface OperationsOrOptionalParams extends OperationOptions {
+export declare interface OperationsOrOptionalParams extends OperationOptions {
 }
 
-declare interface OperationsPassOptionalParams extends OperationOptions {
+export declare interface OperationsPassOptionalParams extends OperationOptions {
 }
 
-declare interface OperationsRaiseOptionalParams extends OperationOptions {
+export declare interface OperationsRaiseOptionalParams extends OperationOptions {
 }
 
-declare interface OperationsReturnOptionalParams extends OperationOptions {
+export declare interface OperationsReturnOptionalParams extends OperationOptions {
 }
 
-declare interface OperationsTryOptionalParams extends OperationOptions {
+export declare interface OperationsTryOptionalParams extends OperationOptions {
 }
 
-declare interface OperationsWhileOptionalParams extends OperationOptions {
+export declare interface OperationsWhileOptionalParams extends OperationOptions {
 }
 
-declare interface OperationsWithOptionalParams extends OperationOptions {
+export declare interface OperationsWithOptionalParams extends OperationOptions {
 }
 
-declare interface OperationsYieldOptionalParams extends OperationOptions {
+export declare interface OperationsYieldOptionalParams extends OperationOptions {
 }
 
 export declare interface Or {
@@ -454,106 +454,106 @@ export declare interface ParametersOperations {
     withAnd: (and: string, options?: ParametersWithAndOptionalParams) => Promise<void>;
 }
 
-declare interface ParametersWithAndOptionalParams extends OperationOptions {
+export declare interface ParametersWithAndOptionalParams extends OperationOptions {
 }
 
-declare interface ParametersWithAsOptionalParams extends OperationOptions {
+export declare interface ParametersWithAsOptionalParams extends OperationOptions {
 }
 
-declare interface ParametersWithAssertOptionalParams extends OperationOptions {
+export declare interface ParametersWithAssertOptionalParams extends OperationOptions {
 }
 
-declare interface ParametersWithAsyncOptionalParams extends OperationOptions {
+export declare interface ParametersWithAsyncOptionalParams extends OperationOptions {
 }
 
-declare interface ParametersWithAwaitOptionalParams extends OperationOptions {
+export declare interface ParametersWithAwaitOptionalParams extends OperationOptions {
 }
 
-declare interface ParametersWithBreakOptionalParams extends OperationOptions {
+export declare interface ParametersWithBreakOptionalParams extends OperationOptions {
 }
 
-declare interface ParametersWithCancellationTokenOptionalParams extends OperationOptions {
+export declare interface ParametersWithCancellationTokenOptionalParams extends OperationOptions {
 }
 
-declare interface ParametersWithClassOptionalParams extends OperationOptions {
+export declare interface ParametersWithClassOptionalParams extends OperationOptions {
 }
 
-declare interface ParametersWithConstructorOptionalParams extends OperationOptions {
+export declare interface ParametersWithConstructorOptionalParams extends OperationOptions {
 }
 
-declare interface ParametersWithContinueOptionalParams extends OperationOptions {
+export declare interface ParametersWithContinueOptionalParams extends OperationOptions {
 }
 
-declare interface ParametersWithDefOptionalParams extends OperationOptions {
+export declare interface ParametersWithDefOptionalParams extends OperationOptions {
 }
 
-declare interface ParametersWithDelOptionalParams extends OperationOptions {
+export declare interface ParametersWithDelOptionalParams extends OperationOptions {
 }
 
-declare interface ParametersWithElifOptionalParams extends OperationOptions {
+export declare interface ParametersWithElifOptionalParams extends OperationOptions {
 }
 
-declare interface ParametersWithElseOptionalParams extends OperationOptions {
+export declare interface ParametersWithElseOptionalParams extends OperationOptions {
 }
 
-declare interface ParametersWithExceptOptionalParams extends OperationOptions {
+export declare interface ParametersWithExceptOptionalParams extends OperationOptions {
 }
 
-declare interface ParametersWithExecOptionalParams extends OperationOptions {
+export declare interface ParametersWithExecOptionalParams extends OperationOptions {
 }
 
-declare interface ParametersWithFinallyOptionalParams extends OperationOptions {
+export declare interface ParametersWithFinallyOptionalParams extends OperationOptions {
 }
 
-declare interface ParametersWithForOptionalParams extends OperationOptions {
+export declare interface ParametersWithForOptionalParams extends OperationOptions {
 }
 
-declare interface ParametersWithFromOptionalParams extends OperationOptions {
+export declare interface ParametersWithFromOptionalParams extends OperationOptions {
 }
 
-declare interface ParametersWithGlobalOptionalParams extends OperationOptions {
+export declare interface ParametersWithGlobalOptionalParams extends OperationOptions {
 }
 
-declare interface ParametersWithIfOptionalParams extends OperationOptions {
+export declare interface ParametersWithIfOptionalParams extends OperationOptions {
 }
 
-declare interface ParametersWithImportOptionalParams extends OperationOptions {
+export declare interface ParametersWithImportOptionalParams extends OperationOptions {
 }
 
-declare interface ParametersWithInOptionalParams extends OperationOptions {
+export declare interface ParametersWithInOptionalParams extends OperationOptions {
 }
 
-declare interface ParametersWithIsOptionalParams extends OperationOptions {
+export declare interface ParametersWithIsOptionalParams extends OperationOptions {
 }
 
-declare interface ParametersWithLambdaOptionalParams extends OperationOptions {
+export declare interface ParametersWithLambdaOptionalParams extends OperationOptions {
 }
 
-declare interface ParametersWithNotOptionalParams extends OperationOptions {
+export declare interface ParametersWithNotOptionalParams extends OperationOptions {
 }
 
-declare interface ParametersWithOrOptionalParams extends OperationOptions {
+export declare interface ParametersWithOrOptionalParams extends OperationOptions {
 }
 
-declare interface ParametersWithPassOptionalParams extends OperationOptions {
+export declare interface ParametersWithPassOptionalParams extends OperationOptions {
 }
 
-declare interface ParametersWithRaiseOptionalParams extends OperationOptions {
+export declare interface ParametersWithRaiseOptionalParams extends OperationOptions {
 }
 
-declare interface ParametersWithReturnOptionalParams extends OperationOptions {
+export declare interface ParametersWithReturnOptionalParams extends OperationOptions {
 }
 
-declare interface ParametersWithTryOptionalParams extends OperationOptions {
+export declare interface ParametersWithTryOptionalParams extends OperationOptions {
 }
 
-declare interface ParametersWithWhileOptionalParams extends OperationOptions {
+export declare interface ParametersWithWhileOptionalParams extends OperationOptions {
 }
 
-declare interface ParametersWithWithOptionalParams extends OperationOptions {
+export declare interface ParametersWithWithOptionalParams extends OperationOptions {
 }
 
-declare interface ParametersWithYieldOptionalParams extends OperationOptions {
+export declare interface ParametersWithYieldOptionalParams extends OperationOptions {
 }
 
 export declare interface Pass {
@@ -568,7 +568,7 @@ export declare interface ReservedOperationBodyParamsOperations {
     withItems: (items: string[], options?: ReservedOperationBodyParamsWithItemsOptionalParams) => Promise<void>;
 }
 
-declare interface ReservedOperationBodyParamsWithItemsOptionalParams extends OperationOptions {
+export declare interface ReservedOperationBodyParamsWithItemsOptionalParams extends OperationOptions {
 }
 
 export declare interface Return {
@@ -592,7 +592,6 @@ export declare class SpecialWordsClient {
 }
 
 export declare interface SpecialWordsClientOptionalParams extends ClientOptions {
-    endpointParam?: string;
 }
 
 export declare interface Try {

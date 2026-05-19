@@ -7,7 +7,7 @@ import { RestError } from '@azure/core-rest-pipeline';
 export declare interface FixedOptionalParams extends OperationOptions {
 }
 
-declare interface InInterfaceFixedOptionalParams extends OperationOptions {
+export declare interface InInterfaceFixedOptionalParams extends OperationOptions {
 }
 
 export declare interface InInterfaceOperations {
@@ -16,13 +16,13 @@ export declare interface InInterfaceOperations {
 
 export { isRestError }
 
-declare interface PathParametersAnnotationOnlyOptionalParams extends OperationOptions {
+export declare interface PathParametersAnnotationOnlyOptionalParams extends OperationOptions {
 }
 
-declare interface PathParametersExplicitOptionalParams extends OperationOptions {
+export declare interface PathParametersExplicitOptionalParams extends OperationOptions {
 }
 
-declare interface PathParametersLabelExpansionExplodeArrayOptionalParams extends OperationOptions {
+export declare interface PathParametersLabelExpansionExplodeArrayOptionalParams extends OperationOptions {
 }
 
 export declare interface PathParametersLabelExpansionExplodeOperations {
@@ -31,10 +31,10 @@ export declare interface PathParametersLabelExpansionExplodeOperations {
     primitive: (param: string, options?: PathParametersLabelExpansionExplodePrimitiveOptionalParams) => Promise<void>;
 }
 
-declare interface PathParametersLabelExpansionExplodePrimitiveOptionalParams extends OperationOptions {
+export declare interface PathParametersLabelExpansionExplodePrimitiveOptionalParams extends OperationOptions {
 }
 
-declare interface PathParametersLabelExpansionExplodeRecordOptionalParams extends OperationOptions {
+export declare interface PathParametersLabelExpansionExplodeRecordOptionalParams extends OperationOptions {
 }
 
 export declare interface PathParametersLabelExpansionOperations {
@@ -42,7 +42,7 @@ export declare interface PathParametersLabelExpansionOperations {
     standard: PathParametersLabelExpansionStandardOperations;
 }
 
-declare interface PathParametersLabelExpansionStandardArrayOptionalParams extends OperationOptions {
+export declare interface PathParametersLabelExpansionStandardArrayOptionalParams extends OperationOptions {
 }
 
 export declare interface PathParametersLabelExpansionStandardOperations {
@@ -51,13 +51,13 @@ export declare interface PathParametersLabelExpansionStandardOperations {
     primitive: (param: string, options?: PathParametersLabelExpansionStandardPrimitiveOptionalParams) => Promise<void>;
 }
 
-declare interface PathParametersLabelExpansionStandardPrimitiveOptionalParams extends OperationOptions {
+export declare interface PathParametersLabelExpansionStandardPrimitiveOptionalParams extends OperationOptions {
 }
 
-declare interface PathParametersLabelExpansionStandardRecordOptionalParams extends OperationOptions {
+export declare interface PathParametersLabelExpansionStandardRecordOptionalParams extends OperationOptions {
 }
 
-declare interface PathParametersMatrixExpansionExplodeArrayOptionalParams extends OperationOptions {
+export declare interface PathParametersMatrixExpansionExplodeArrayOptionalParams extends OperationOptions {
 }
 
 export declare interface PathParametersMatrixExpansionExplodeOperations {
@@ -66,10 +66,10 @@ export declare interface PathParametersMatrixExpansionExplodeOperations {
     primitive: (param: string, options?: PathParametersMatrixExpansionExplodePrimitiveOptionalParams) => Promise<void>;
 }
 
-declare interface PathParametersMatrixExpansionExplodePrimitiveOptionalParams extends OperationOptions {
+export declare interface PathParametersMatrixExpansionExplodePrimitiveOptionalParams extends OperationOptions {
 }
 
-declare interface PathParametersMatrixExpansionExplodeRecordOptionalParams extends OperationOptions {
+export declare interface PathParametersMatrixExpansionExplodeRecordOptionalParams extends OperationOptions {
 }
 
 export declare interface PathParametersMatrixExpansionOperations {
@@ -77,7 +77,7 @@ export declare interface PathParametersMatrixExpansionOperations {
     standard: PathParametersMatrixExpansionStandardOperations;
 }
 
-declare interface PathParametersMatrixExpansionStandardArrayOptionalParams extends OperationOptions {
+export declare interface PathParametersMatrixExpansionStandardArrayOptionalParams extends OperationOptions {
 }
 
 export declare interface PathParametersMatrixExpansionStandardOperations {
@@ -86,24 +86,24 @@ export declare interface PathParametersMatrixExpansionStandardOperations {
     primitive: (param: string, options?: PathParametersMatrixExpansionStandardPrimitiveOptionalParams) => Promise<void>;
 }
 
-declare interface PathParametersMatrixExpansionStandardPrimitiveOptionalParams extends OperationOptions {
+export declare interface PathParametersMatrixExpansionStandardPrimitiveOptionalParams extends OperationOptions {
 }
 
-declare interface PathParametersMatrixExpansionStandardRecordOptionalParams extends OperationOptions {
+export declare interface PathParametersMatrixExpansionStandardRecordOptionalParams extends OperationOptions {
 }
 
 export declare interface PathParametersOperations {
-    labelExpansion: PathParametersLabelExpansionOperations;
-    matrixExpansion: PathParametersMatrixExpansionOperations;
-    pathExpansion: PathParametersPathExpansionOperations;
-    reservedExpansion: PathParametersReservedExpansionOperations;
-    simpleExpansion: PathParametersSimpleExpansionOperations;
     annotationOnly: (param: string, options?: PathParametersAnnotationOnlyOptionalParams) => Promise<void>;
     explicit: (param: string, options?: PathParametersExplicitOptionalParams) => Promise<void>;
     templateOnly: (param: string, options?: PathParametersTemplateOnlyOptionalParams) => Promise<void>;
+    matrixExpansion: PathParametersMatrixExpansionOperations;
+    labelExpansion: PathParametersLabelExpansionOperations;
+    pathExpansion: PathParametersPathExpansionOperations;
+    simpleExpansion: PathParametersSimpleExpansionOperations;
+    reservedExpansion: PathParametersReservedExpansionOperations;
 }
 
-declare interface PathParametersPathExpansionExplodeArrayOptionalParams extends OperationOptions {
+export declare interface PathParametersPathExpansionExplodeArrayOptionalParams extends OperationOptions {
 }
 
 export declare interface PathParametersPathExpansionExplodeOperations {
@@ -112,10 +112,10 @@ export declare interface PathParametersPathExpansionExplodeOperations {
     primitive: (param: string, options?: PathParametersPathExpansionExplodePrimitiveOptionalParams) => Promise<void>;
 }
 
-declare interface PathParametersPathExpansionExplodePrimitiveOptionalParams extends OperationOptions {
+export declare interface PathParametersPathExpansionExplodePrimitiveOptionalParams extends OperationOptions {
 }
 
-declare interface PathParametersPathExpansionExplodeRecordOptionalParams extends OperationOptions {
+export declare interface PathParametersPathExpansionExplodeRecordOptionalParams extends OperationOptions {
 }
 
 export declare interface PathParametersPathExpansionOperations {
@@ -123,7 +123,7 @@ export declare interface PathParametersPathExpansionOperations {
     standard: PathParametersPathExpansionStandardOperations;
 }
 
-declare interface PathParametersPathExpansionStandardArrayOptionalParams extends OperationOptions {
+export declare interface PathParametersPathExpansionStandardArrayOptionalParams extends OperationOptions {
 }
 
 export declare interface PathParametersPathExpansionStandardOperations {
@@ -132,13 +132,13 @@ export declare interface PathParametersPathExpansionStandardOperations {
     primitive: (param: string, options?: PathParametersPathExpansionStandardPrimitiveOptionalParams) => Promise<void>;
 }
 
-declare interface PathParametersPathExpansionStandardPrimitiveOptionalParams extends OperationOptions {
+export declare interface PathParametersPathExpansionStandardPrimitiveOptionalParams extends OperationOptions {
 }
 
-declare interface PathParametersPathExpansionStandardRecordOptionalParams extends OperationOptions {
+export declare interface PathParametersPathExpansionStandardRecordOptionalParams extends OperationOptions {
 }
 
-declare interface PathParametersReservedExpansionAnnotationOptionalParams extends OperationOptions {
+export declare interface PathParametersReservedExpansionAnnotationOptionalParams extends OperationOptions {
 }
 
 export declare interface PathParametersReservedExpansionOperations {
@@ -146,10 +146,10 @@ export declare interface PathParametersReservedExpansionOperations {
     template: (param: string, options?: PathParametersReservedExpansionTemplateOptionalParams) => Promise<void>;
 }
 
-declare interface PathParametersReservedExpansionTemplateOptionalParams extends OperationOptions {
+export declare interface PathParametersReservedExpansionTemplateOptionalParams extends OperationOptions {
 }
 
-declare interface PathParametersSimpleExpansionExplodeArrayOptionalParams extends OperationOptions {
+export declare interface PathParametersSimpleExpansionExplodeArrayOptionalParams extends OperationOptions {
 }
 
 export declare interface PathParametersSimpleExpansionExplodeOperations {
@@ -158,10 +158,10 @@ export declare interface PathParametersSimpleExpansionExplodeOperations {
     primitive: (param: string, options?: PathParametersSimpleExpansionExplodePrimitiveOptionalParams) => Promise<void>;
 }
 
-declare interface PathParametersSimpleExpansionExplodePrimitiveOptionalParams extends OperationOptions {
+export declare interface PathParametersSimpleExpansionExplodePrimitiveOptionalParams extends OperationOptions {
 }
 
-declare interface PathParametersSimpleExpansionExplodeRecordOptionalParams extends OperationOptions {
+export declare interface PathParametersSimpleExpansionExplodeRecordOptionalParams extends OperationOptions {
 }
 
 export declare interface PathParametersSimpleExpansionOperations {
@@ -169,7 +169,7 @@ export declare interface PathParametersSimpleExpansionOperations {
     standard: PathParametersSimpleExpansionStandardOperations;
 }
 
-declare interface PathParametersSimpleExpansionStandardArrayOptionalParams extends OperationOptions {
+export declare interface PathParametersSimpleExpansionStandardArrayOptionalParams extends OperationOptions {
 }
 
 export declare interface PathParametersSimpleExpansionStandardOperations {
@@ -178,30 +178,30 @@ export declare interface PathParametersSimpleExpansionStandardOperations {
     primitive: (param: string, options?: PathParametersSimpleExpansionStandardPrimitiveOptionalParams) => Promise<void>;
 }
 
-declare interface PathParametersSimpleExpansionStandardPrimitiveOptionalParams extends OperationOptions {
+export declare interface PathParametersSimpleExpansionStandardPrimitiveOptionalParams extends OperationOptions {
 }
 
-declare interface PathParametersSimpleExpansionStandardRecordOptionalParams extends OperationOptions {
+export declare interface PathParametersSimpleExpansionStandardRecordOptionalParams extends OperationOptions {
 }
 
-declare interface PathParametersTemplateOnlyOptionalParams extends OperationOptions {
+export declare interface PathParametersTemplateOnlyOptionalParams extends OperationOptions {
 }
 
-declare interface QueryParametersAnnotationOnlyOptionalParams extends OperationOptions {
+export declare interface QueryParametersAnnotationOnlyOptionalParams extends OperationOptions {
 }
 
-declare interface QueryParametersExplicitOptionalParams extends OperationOptions {
+export declare interface QueryParametersExplicitOptionalParams extends OperationOptions {
 }
 
 export declare interface QueryParametersOperations {
-    queryContinuation: QueryParametersQueryContinuationOperations;
-    queryExpansion: QueryParametersQueryExpansionOperations;
     annotationOnly: (param: string, options?: QueryParametersAnnotationOnlyOptionalParams) => Promise<void>;
     explicit: (param: string, options?: QueryParametersExplicitOptionalParams) => Promise<void>;
     templateOnly: (param: string, options?: QueryParametersTemplateOnlyOptionalParams) => Promise<void>;
+    queryContinuation: QueryParametersQueryContinuationOperations;
+    queryExpansion: QueryParametersQueryExpansionOperations;
 }
 
-declare interface QueryParametersQueryContinuationExplodeArrayOptionalParams extends OperationOptions {
+export declare interface QueryParametersQueryContinuationExplodeArrayOptionalParams extends OperationOptions {
 }
 
 export declare interface QueryParametersQueryContinuationExplodeOperations {
@@ -210,10 +210,10 @@ export declare interface QueryParametersQueryContinuationExplodeOperations {
     primitive: (param: string, options?: QueryParametersQueryContinuationExplodePrimitiveOptionalParams) => Promise<void>;
 }
 
-declare interface QueryParametersQueryContinuationExplodePrimitiveOptionalParams extends OperationOptions {
+export declare interface QueryParametersQueryContinuationExplodePrimitiveOptionalParams extends OperationOptions {
 }
 
-declare interface QueryParametersQueryContinuationExplodeRecordOptionalParams extends OperationOptions {
+export declare interface QueryParametersQueryContinuationExplodeRecordOptionalParams extends OperationOptions {
 }
 
 export declare interface QueryParametersQueryContinuationOperations {
@@ -221,7 +221,7 @@ export declare interface QueryParametersQueryContinuationOperations {
     standard: QueryParametersQueryContinuationStandardOperations;
 }
 
-declare interface QueryParametersQueryContinuationStandardArrayOptionalParams extends OperationOptions {
+export declare interface QueryParametersQueryContinuationStandardArrayOptionalParams extends OperationOptions {
 }
 
 export declare interface QueryParametersQueryContinuationStandardOperations {
@@ -230,13 +230,13 @@ export declare interface QueryParametersQueryContinuationStandardOperations {
     primitive: (param: string, options?: QueryParametersQueryContinuationStandardPrimitiveOptionalParams) => Promise<void>;
 }
 
-declare interface QueryParametersQueryContinuationStandardPrimitiveOptionalParams extends OperationOptions {
+export declare interface QueryParametersQueryContinuationStandardPrimitiveOptionalParams extends OperationOptions {
 }
 
-declare interface QueryParametersQueryContinuationStandardRecordOptionalParams extends OperationOptions {
+export declare interface QueryParametersQueryContinuationStandardRecordOptionalParams extends OperationOptions {
 }
 
-declare interface QueryParametersQueryExpansionExplodeArrayOptionalParams extends OperationOptions {
+export declare interface QueryParametersQueryExpansionExplodeArrayOptionalParams extends OperationOptions {
 }
 
 export declare interface QueryParametersQueryExpansionExplodeOperations {
@@ -245,10 +245,10 @@ export declare interface QueryParametersQueryExpansionExplodeOperations {
     primitive: (param: string, options?: QueryParametersQueryExpansionExplodePrimitiveOptionalParams) => Promise<void>;
 }
 
-declare interface QueryParametersQueryExpansionExplodePrimitiveOptionalParams extends OperationOptions {
+export declare interface QueryParametersQueryExpansionExplodePrimitiveOptionalParams extends OperationOptions {
 }
 
-declare interface QueryParametersQueryExpansionExplodeRecordOptionalParams extends OperationOptions {
+export declare interface QueryParametersQueryExpansionExplodeRecordOptionalParams extends OperationOptions {
 }
 
 export declare interface QueryParametersQueryExpansionOperations {
@@ -256,7 +256,7 @@ export declare interface QueryParametersQueryExpansionOperations {
     standard: QueryParametersQueryExpansionStandardOperations;
 }
 
-declare interface QueryParametersQueryExpansionStandardArrayOptionalParams extends OperationOptions {
+export declare interface QueryParametersQueryExpansionStandardArrayOptionalParams extends OperationOptions {
 }
 
 export declare interface QueryParametersQueryExpansionStandardOperations {
@@ -265,13 +265,13 @@ export declare interface QueryParametersQueryExpansionStandardOperations {
     primitive: (param: string, options?: QueryParametersQueryExpansionStandardPrimitiveOptionalParams) => Promise<void>;
 }
 
-declare interface QueryParametersQueryExpansionStandardPrimitiveOptionalParams extends OperationOptions {
+export declare interface QueryParametersQueryExpansionStandardPrimitiveOptionalParams extends OperationOptions {
 }
 
-declare interface QueryParametersQueryExpansionStandardRecordOptionalParams extends OperationOptions {
+export declare interface QueryParametersQueryExpansionStandardRecordOptionalParams extends OperationOptions {
 }
 
-declare interface QueryParametersTemplateOnlyOptionalParams extends OperationOptions {
+export declare interface QueryParametersTemplateOnlyOptionalParams extends OperationOptions {
 }
 
 export { RestError }
@@ -280,14 +280,13 @@ export declare class RoutesClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: RoutesClientOptionalParams);
+    fixed(options?: FixedOptionalParams): Promise<void>;
     readonly inInterface: InInterfaceOperations;
     readonly queryParameters: QueryParametersOperations;
     readonly pathParameters: PathParametersOperations;
-    fixed(options?: FixedOptionalParams): Promise<void>;
 }
 
 export declare interface RoutesClientOptionalParams extends ClientOptions {
-    endpointParam?: string;
 }
 
 export { }

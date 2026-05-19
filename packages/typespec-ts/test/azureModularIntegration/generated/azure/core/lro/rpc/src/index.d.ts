@@ -44,7 +44,6 @@ export declare class RpcClient {
 }
 
 export declare interface RpcClientOptionalParams extends ClientOptions {
-    endpointParam?: string;
     apiVersion?: string;
 }
 

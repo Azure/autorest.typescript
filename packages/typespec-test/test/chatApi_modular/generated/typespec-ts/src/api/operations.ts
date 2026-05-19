@@ -42,6 +42,7 @@ export async function _createDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
+
   return chatCompletionRecordDeserializer(result.body);
 }
 
@@ -77,6 +78,7 @@ export async function _createStreamingDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
+
   return chatCompletionChunkRecordDeserializer(result.body);
 }
 

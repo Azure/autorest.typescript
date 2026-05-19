@@ -57,6 +57,7 @@ export async function _downloadDeserialize(result: PathUncheckedResponse): Promi
 
     throw error;
   }
+
   return result.body;
 }
 
@@ -101,6 +102,7 @@ export async function _$deleteDeserialize(
 
     throw error;
   }
+
   return deleteFileResponseDeserializer(result.body);
 }
 
@@ -148,6 +150,7 @@ export async function _retrieveDeserialize(result: PathUncheckedResponse): Promi
 
     throw error;
   }
+
   return openAIFileDeserializer(result.body);
 }
 
@@ -183,6 +186,7 @@ export async function _createDeserialize(result: PathUncheckedResponse): Promise
 
     throw error;
   }
+
   return openAIFileDeserializer(result.body);
 }
 
@@ -215,6 +219,7 @@ export async function _listDeserialize(result: PathUncheckedResponse): Promise<L
 
     throw error;
   }
+
   return listFilesResponseDeserializer(result.body);
 }
 

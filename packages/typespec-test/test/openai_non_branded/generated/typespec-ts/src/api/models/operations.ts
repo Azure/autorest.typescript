@@ -55,6 +55,7 @@ export async function _$deleteDeserialize(
 
     throw error;
   }
+
   return deleteModelResponseDeserializer(result.body);
 }
 
@@ -102,6 +103,7 @@ export async function _retrieveDeserialize(result: PathUncheckedResponse): Promi
 
     throw error;
   }
+
   return modelDeserializer(result.body);
 }
 
@@ -134,6 +136,7 @@ export async function _listDeserialize(result: PathUncheckedResponse): Promise<L
 
     throw error;
   }
+
   return listModelsResponseDeserializer(result.body);
 }
 

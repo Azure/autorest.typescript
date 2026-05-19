@@ -58,6 +58,7 @@ export async function _listBySubscriptionDeserialize(
 
     throw error;
   }
+
   return _dataProductsCatalogListResultDeserializer(result.body);
 }
 
@@ -109,6 +110,7 @@ export async function _listByResourceGroupDeserialize(
 
     throw error;
   }
+
   return _dataProductsCatalogListResultDeserializer(result.body);
 }
 
@@ -159,6 +161,7 @@ export async function _getDeserialize(result: PathUncheckedResponse): Promise<Da
 
     throw error;
   }
+
   return dataProductsCatalogDeserializer(result.body);
 }
 

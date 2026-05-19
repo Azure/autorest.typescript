@@ -13,7 +13,6 @@ export declare class EnumConflictClient {
 }
 
 export declare interface EnumConflictClientOptionalParams extends ClientOptions {
-    endpointParam?: string;
 }
 
 export declare interface FirstModel {
@@ -21,7 +20,7 @@ export declare interface FirstModel {
     name: string;
 }
 
-declare interface FirstOperationsFirstOptionalParams extends OperationOptions {
+export declare interface FirstOperationsFirstOptionalParams extends OperationOptions {
 }
 
 export declare interface FirstOperationsOperations {
@@ -41,7 +40,7 @@ export declare interface SecondOperationsOperations {
     second: (body: SecondModel, options?: SecondOperationsSecondOptionalParams) => Promise<SecondModel>;
 }
 
-declare interface SecondOperationsSecondOptionalParams extends OperationOptions {
+export declare interface SecondOperationsSecondOptionalParams extends OperationOptions {
 }
 
 export declare type SecondStatus = "running" | "stopped";

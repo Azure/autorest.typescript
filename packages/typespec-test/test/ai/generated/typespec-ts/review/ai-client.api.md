@@ -53,6 +53,236 @@ export type AgentsApiToolChoiceOption = string | AgentsApiToolChoiceOptionMode |
 export type AgentsApiToolChoiceOptionMode = "none" | "auto";
 
 // @public
+export interface AgentsCancelRunOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface AgentsCancelVectorStoreFileBatchOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface AgentsCreateAgentOptionalParams extends OperationOptions {
+    description?: string;
+    instructions?: string;
+    metadata?: Record<string, string>;
+    name?: string;
+    responseFormat?: AgentsApiResponseFormatOption;
+    temperature?: number;
+    toolResources?: ToolResources;
+    tools?: ToolDefinitionUnion[];
+    topP?: number;
+}
+
+// @public
+export interface AgentsCreateMessageOptionalParams extends OperationOptions {
+    attachments?: MessageAttachment[];
+    metadata?: Record<string, string>;
+}
+
+// @public
+export interface AgentsCreateRunOptionalParams extends OperationOptions {
+    additionalInstructions?: string;
+    additionalMessages?: ThreadMessageOptions[];
+    include?: RunAdditionalFieldList[];
+    instructions?: string;
+    maxCompletionTokens?: number;
+    maxPromptTokens?: number;
+    metadata?: Record<string, string>;
+    model?: string;
+    parallelToolCalls?: boolean;
+    responseFormat?: AgentsApiResponseFormatOption;
+    stream?: boolean;
+    temperature?: number;
+    toolChoice?: AgentsApiToolChoiceOption;
+    tools?: ToolDefinitionUnion[];
+    topP?: number;
+    truncationStrategy?: TruncationObject;
+}
+
+// @public
+export interface AgentsCreateThreadAndRunOptionalParams extends OperationOptions {
+    instructions?: string;
+    maxCompletionTokens?: number;
+    maxPromptTokens?: number;
+    metadata?: Record<string, string>;
+    model?: string;
+    parallelToolCalls?: boolean;
+    responseFormat?: AgentsApiResponseFormatOption;
+    stream?: boolean;
+    temperature?: number;
+    thread?: AgentThreadCreationOptions;
+    toolChoice?: AgentsApiToolChoiceOption;
+    toolResources?: UpdateToolResourcesOptions;
+    tools?: ToolDefinitionUnion[];
+    topP?: number;
+    truncationStrategy?: TruncationObject;
+}
+
+// @public
+export interface AgentsCreateThreadOptionalParams extends OperationOptions {
+    messages?: ThreadMessageOptions[];
+    metadata?: Record<string, string>;
+    toolResources?: ToolResources;
+}
+
+// @public
+export interface AgentsCreateVectorStoreFileBatchOptionalParams extends OperationOptions {
+    chunkingStrategy?: VectorStoreChunkingStrategyRequestUnion;
+    dataSources?: VectorStoreDataSource[];
+    fileIds?: string[];
+}
+
+// @public
+export interface AgentsCreateVectorStoreFileOptionalParams extends OperationOptions {
+    chunkingStrategy?: VectorStoreChunkingStrategyRequestUnion;
+    dataSources?: VectorStoreDataSource[];
+    fileId?: string;
+}
+
+// @public
+export interface AgentsCreateVectorStoreOptionalParams extends OperationOptions {
+    chunkingStrategy?: VectorStoreChunkingStrategyRequestUnion;
+    expiresAfter?: VectorStoreExpirationPolicy;
+    fileIds?: string[];
+    metadata?: Record<string, string>;
+    name?: string;
+    storeConfiguration?: VectorStoreConfiguration;
+}
+
+// @public
+export interface AgentsDeleteAgentOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface AgentsDeleteFileOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface AgentsDeleteThreadOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface AgentsDeleteVectorStoreFileOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface AgentsDeleteVectorStoreOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface AgentsGetAgentOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface AgentsGetFileContentOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface AgentsGetFileOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface AgentsGetMessageOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface AgentsGetRunOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface AgentsGetRunStepOptionalParams extends OperationOptions {
+    include?: RunAdditionalFieldList[];
+}
+
+// @public
+export interface AgentsGetThreadOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface AgentsGetVectorStoreFileBatchOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface AgentsGetVectorStoreFileOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface AgentsGetVectorStoreOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface AgentsListAgentsOptionalParams extends OperationOptions {
+    after?: string;
+    before?: string;
+    limit?: number;
+    order?: ListSortOrder;
+}
+
+// @public
+export interface AgentsListFilesOptionalParams extends OperationOptions {
+    purpose?: FilePurpose;
+}
+
+// @public
+export interface AgentsListMessagesOptionalParams extends OperationOptions {
+    after?: string;
+    before?: string;
+    limit?: number;
+    order?: ListSortOrder;
+    runId?: string;
+}
+
+// @public
+export interface AgentsListRunsOptionalParams extends OperationOptions {
+    after?: string;
+    before?: string;
+    limit?: number;
+    order?: ListSortOrder;
+}
+
+// @public
+export interface AgentsListRunStepsOptionalParams extends OperationOptions {
+    after?: string;
+    before?: string;
+    include?: RunAdditionalFieldList[];
+    limit?: number;
+    order?: ListSortOrder;
+}
+
+// @public
+export interface AgentsListVectorStoreFileBatchFilesOptionalParams extends OperationOptions {
+    after?: string;
+    before?: string;
+    filter?: VectorStoreFileStatusFilter;
+    limit?: number;
+    order?: ListSortOrder;
+}
+
+// @public
+export interface AgentsListVectorStoreFilesOptionalParams extends OperationOptions {
+    after?: string;
+    before?: string;
+    filter?: VectorStoreFileStatusFilter;
+    limit?: number;
+    order?: ListSortOrder;
+}
+
+// @public
+export interface AgentsListVectorStoresOptionalParams extends OperationOptions {
+    after?: string;
+    before?: string;
+    limit?: number;
+    order?: ListSortOrder;
+}
+
+// @public
+export interface AgentsModifyVectorStoreOptionalParams extends OperationOptions {
+    expiresAfter?: VectorStoreExpirationPolicy;
+    metadata?: Record<string, string>;
+    name?: string;
+}
+
+// @public
 export interface AgentsNamedToolChoice {
     function?: FunctionName;
     type: AgentsNamedToolChoiceType;
@@ -63,85 +293,45 @@ export type AgentsNamedToolChoiceType = "function" | "code_interpreter" | "file_
 
 // @public
 export interface AgentsOperations {
-    // Warning: (ae-forgotten-export) The symbol "AgentsCancelRunOptionalParams" needs to be exported by the entry point index.d.ts
     cancelRun: (threadId: string, runId: string, options?: AgentsCancelRunOptionalParams) => Promise<ThreadRun>;
-    // Warning: (ae-forgotten-export) The symbol "AgentsCancelVectorStoreFileBatchOptionalParams" needs to be exported by the entry point index.d.ts
     cancelVectorStoreFileBatch: (vectorStoreId: string, batchId: string, options?: AgentsCancelVectorStoreFileBatchOptionalParams) => Promise<VectorStoreFileBatch>;
-    // Warning: (ae-forgotten-export) The symbol "AgentsCreateAgentOptionalParams" needs to be exported by the entry point index.d.ts
     createAgent: (model: string, options?: AgentsCreateAgentOptionalParams) => Promise<Agent>;
-    // Warning: (ae-forgotten-export) The symbol "AgentsCreateMessageOptionalParams" needs to be exported by the entry point index.d.ts
     createMessage: (threadId: string, role: MessageRole, content: string, options?: AgentsCreateMessageOptionalParams) => Promise<ThreadMessage>;
-    // Warning: (ae-forgotten-export) The symbol "AgentsCreateRunOptionalParams" needs to be exported by the entry point index.d.ts
     createRun: (threadId: string, assistantId: string, options?: AgentsCreateRunOptionalParams) => Promise<ThreadRun>;
-    // Warning: (ae-forgotten-export) The symbol "AgentsCreateThreadOptionalParams" needs to be exported by the entry point index.d.ts
     createThread: (options?: AgentsCreateThreadOptionalParams) => Promise<AgentThread>;
-    // Warning: (ae-forgotten-export) The symbol "AgentsCreateThreadAndRunOptionalParams" needs to be exported by the entry point index.d.ts
     createThreadAndRun: (assistantId: string, options?: AgentsCreateThreadAndRunOptionalParams) => Promise<ThreadRun>;
-    // Warning: (ae-forgotten-export) The symbol "AgentsCreateVectorStoreOptionalParams" needs to be exported by the entry point index.d.ts
     createVectorStore: (options?: AgentsCreateVectorStoreOptionalParams) => Promise<VectorStore>;
-    // Warning: (ae-forgotten-export) The symbol "AgentsCreateVectorStoreFileOptionalParams" needs to be exported by the entry point index.d.ts
     createVectorStoreFile: (vectorStoreId: string, options?: AgentsCreateVectorStoreFileOptionalParams) => Promise<VectorStoreFile>;
-    // Warning: (ae-forgotten-export) The symbol "AgentsCreateVectorStoreFileBatchOptionalParams" needs to be exported by the entry point index.d.ts
     createVectorStoreFileBatch: (vectorStoreId: string, options?: AgentsCreateVectorStoreFileBatchOptionalParams) => Promise<VectorStoreFileBatch>;
-    // Warning: (ae-forgotten-export) The symbol "AgentsDeleteAgentOptionalParams" needs to be exported by the entry point index.d.ts
     deleteAgent: (assistantId: string, options?: AgentsDeleteAgentOptionalParams) => Promise<AgentDeletionStatus>;
-    // Warning: (ae-forgotten-export) The symbol "AgentsDeleteFileOptionalParams" needs to be exported by the entry point index.d.ts
     deleteFile: (fileId: string, options?: AgentsDeleteFileOptionalParams) => Promise<FileDeletionStatus>;
-    // Warning: (ae-forgotten-export) The symbol "AgentsDeleteThreadOptionalParams" needs to be exported by the entry point index.d.ts
     deleteThread: (threadId: string, options?: AgentsDeleteThreadOptionalParams) => Promise<ThreadDeletionStatus>;
-    // Warning: (ae-forgotten-export) The symbol "AgentsDeleteVectorStoreOptionalParams" needs to be exported by the entry point index.d.ts
     deleteVectorStore: (vectorStoreId: string, options?: AgentsDeleteVectorStoreOptionalParams) => Promise<VectorStoreDeletionStatus>;
-    // Warning: (ae-forgotten-export) The symbol "AgentsDeleteVectorStoreFileOptionalParams" needs to be exported by the entry point index.d.ts
     deleteVectorStoreFile: (vectorStoreId: string, fileId: string, options?: AgentsDeleteVectorStoreFileOptionalParams) => Promise<VectorStoreFileDeletionStatus>;
-    // Warning: (ae-forgotten-export) The symbol "AgentsGetAgentOptionalParams" needs to be exported by the entry point index.d.ts
     getAgent: (assistantId: string, options?: AgentsGetAgentOptionalParams) => Promise<Agent>;
-    // Warning: (ae-forgotten-export) The symbol "AgentsGetFileOptionalParams" needs to be exported by the entry point index.d.ts
     getFile: (fileId: string, options?: AgentsGetFileOptionalParams) => Promise<OpenAIFile>;
-    // Warning: (ae-forgotten-export) The symbol "AgentsGetFileContentOptionalParams" needs to be exported by the entry point index.d.ts
     getFileContent: (fileId: string, options?: AgentsGetFileContentOptionalParams) => Promise<Uint8Array>;
-    // Warning: (ae-forgotten-export) The symbol "AgentsGetMessageOptionalParams" needs to be exported by the entry point index.d.ts
     getMessage: (threadId: string, messageId: string, options?: AgentsGetMessageOptionalParams) => Promise<ThreadMessage>;
-    // Warning: (ae-forgotten-export) The symbol "AgentsGetRunOptionalParams" needs to be exported by the entry point index.d.ts
     getRun: (threadId: string, runId: string, options?: AgentsGetRunOptionalParams) => Promise<ThreadRun>;
-    // Warning: (ae-forgotten-export) The symbol "AgentsGetRunStepOptionalParams" needs to be exported by the entry point index.d.ts
     getRunStep: (threadId: string, runId: string, stepId: string, options?: AgentsGetRunStepOptionalParams) => Promise<RunStep>;
-    // Warning: (ae-forgotten-export) The symbol "AgentsGetThreadOptionalParams" needs to be exported by the entry point index.d.ts
     getThread: (threadId: string, options?: AgentsGetThreadOptionalParams) => Promise<AgentThread>;
-    // Warning: (ae-forgotten-export) The symbol "AgentsGetVectorStoreOptionalParams" needs to be exported by the entry point index.d.ts
     getVectorStore: (vectorStoreId: string, options?: AgentsGetVectorStoreOptionalParams) => Promise<VectorStore>;
-    // Warning: (ae-forgotten-export) The symbol "AgentsGetVectorStoreFileOptionalParams" needs to be exported by the entry point index.d.ts
     getVectorStoreFile: (vectorStoreId: string, fileId: string, options?: AgentsGetVectorStoreFileOptionalParams) => Promise<VectorStoreFile>;
-    // Warning: (ae-forgotten-export) The symbol "AgentsGetVectorStoreFileBatchOptionalParams" needs to be exported by the entry point index.d.ts
     getVectorStoreFileBatch: (vectorStoreId: string, batchId: string, options?: AgentsGetVectorStoreFileBatchOptionalParams) => Promise<VectorStoreFileBatch>;
-    // Warning: (ae-forgotten-export) The symbol "AgentsListAgentsOptionalParams" needs to be exported by the entry point index.d.ts
     listAgents: (options?: AgentsListAgentsOptionalParams) => Promise<OpenAIPageableListOfAgent>;
-    // Warning: (ae-forgotten-export) The symbol "AgentsListFilesOptionalParams" needs to be exported by the entry point index.d.ts
     listFiles: (options?: AgentsListFilesOptionalParams) => Promise<FileListResponse>;
-    // Warning: (ae-forgotten-export) The symbol "AgentsListMessagesOptionalParams" needs to be exported by the entry point index.d.ts
     listMessages: (threadId: string, options?: AgentsListMessagesOptionalParams) => Promise<OpenAIPageableListOfThreadMessage>;
-    // Warning: (ae-forgotten-export) The symbol "AgentsListRunsOptionalParams" needs to be exported by the entry point index.d.ts
     listRuns: (threadId: string, options?: AgentsListRunsOptionalParams) => Promise<OpenAIPageableListOfThreadRun>;
-    // Warning: (ae-forgotten-export) The symbol "AgentsListRunStepsOptionalParams" needs to be exported by the entry point index.d.ts
     listRunSteps: (threadId: string, runId: string, options?: AgentsListRunStepsOptionalParams) => Promise<OpenAIPageableListOfRunStep>;
-    // Warning: (ae-forgotten-export) The symbol "AgentsListVectorStoreFileBatchFilesOptionalParams" needs to be exported by the entry point index.d.ts
     listVectorStoreFileBatchFiles: (vectorStoreId: string, batchId: string, options?: AgentsListVectorStoreFileBatchFilesOptionalParams) => Promise<OpenAIPageableListOfVectorStoreFile>;
-    // Warning: (ae-forgotten-export) The symbol "AgentsListVectorStoreFilesOptionalParams" needs to be exported by the entry point index.d.ts
     listVectorStoreFiles: (vectorStoreId: string, options?: AgentsListVectorStoreFilesOptionalParams) => Promise<OpenAIPageableListOfVectorStoreFile>;
-    // Warning: (ae-forgotten-export) The symbol "AgentsListVectorStoresOptionalParams" needs to be exported by the entry point index.d.ts
     listVectorStores: (options?: AgentsListVectorStoresOptionalParams) => Promise<OpenAIPageableListOfVectorStore>;
-    // Warning: (ae-forgotten-export) The symbol "AgentsModifyVectorStoreOptionalParams" needs to be exported by the entry point index.d.ts
     modifyVectorStore: (vectorStoreId: string, options?: AgentsModifyVectorStoreOptionalParams) => Promise<VectorStore>;
-    // Warning: (ae-forgotten-export) The symbol "AgentsSubmitToolOutputsToRunOptionalParams" needs to be exported by the entry point index.d.ts
     submitToolOutputsToRun: (threadId: string, runId: string, toolOutputs: ToolOutput[], options?: AgentsSubmitToolOutputsToRunOptionalParams) => Promise<ThreadRun>;
-    // Warning: (ae-forgotten-export) The symbol "AgentsUpdateAgentOptionalParams" needs to be exported by the entry point index.d.ts
     updateAgent: (assistantId: string, options?: AgentsUpdateAgentOptionalParams) => Promise<Agent>;
-    // Warning: (ae-forgotten-export) The symbol "AgentsUpdateMessageOptionalParams" needs to be exported by the entry point index.d.ts
     updateMessage: (threadId: string, messageId: string, options?: AgentsUpdateMessageOptionalParams) => Promise<ThreadMessage>;
-    // Warning: (ae-forgotten-export) The symbol "AgentsUpdateRunOptionalParams" needs to be exported by the entry point index.d.ts
     updateRun: (threadId: string, runId: string, options?: AgentsUpdateRunOptionalParams) => Promise<ThreadRun>;
-    // Warning: (ae-forgotten-export) The symbol "AgentsUpdateThreadOptionalParams" needs to be exported by the entry point index.d.ts
     updateThread: (threadId: string, options?: AgentsUpdateThreadOptionalParams) => Promise<AgentThread>;
-    // Warning: (ae-forgotten-export) The symbol "AgentsUploadFileOptionalParams" needs to be exported by the entry point index.d.ts
     uploadFile: (body: {
         file: FileContents | {
             contents: FileContents;
@@ -154,7 +344,46 @@ export interface AgentsOperations {
 }
 
 // @public
+export interface AgentsSubmitToolOutputsToRunOptionalParams extends OperationOptions {
+    stream?: boolean;
+}
+
+// @public
 export type AgentStreamEvent = string | ThreadStreamEvent | RunStreamEvent | RunStepStreamEvent | MessageStreamEvent | ErrorEvent | DoneEvent;
+
+// @public
+export interface AgentsUpdateAgentOptionalParams extends OperationOptions {
+    description?: string;
+    instructions?: string;
+    metadata?: Record<string, string>;
+    model?: string;
+    name?: string;
+    responseFormat?: AgentsApiResponseFormatOption;
+    temperature?: number;
+    toolResources?: ToolResources;
+    tools?: ToolDefinitionUnion[];
+    topP?: number;
+}
+
+// @public
+export interface AgentsUpdateMessageOptionalParams extends OperationOptions {
+    metadata?: Record<string, string>;
+}
+
+// @public
+export interface AgentsUpdateRunOptionalParams extends OperationOptions {
+    metadata?: Record<string, string>;
+}
+
+// @public
+export interface AgentsUpdateThreadOptionalParams extends OperationOptions {
+    metadata?: Record<string, string>;
+    toolResources?: ToolResources;
+}
+
+// @public
+export interface AgentsUploadFileOptionalParams extends OperationOptions {
+}
 
 // @public
 export interface AgentThread {
@@ -258,14 +487,29 @@ export interface CodeInterpreterToolResource {
 }
 
 // @public
+export interface ConnectionsGetConnectionOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface ConnectionsGetConnectionWithSecretsOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface ConnectionsGetWorkspaceOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface ConnectionsListConnectionsOptionalParams extends OperationOptions {
+    category?: ConnectionType;
+    includeAll?: boolean;
+    target?: string;
+}
+
+// @public
 export interface ConnectionsOperations {
-    // Warning: (ae-forgotten-export) The symbol "ConnectionsGetConnectionOptionalParams" needs to be exported by the entry point index.d.ts
     getConnection: (connectionName: string, options?: ConnectionsGetConnectionOptionalParams) => Promise<GetConnectionResponse>;
-    // Warning: (ae-forgotten-export) The symbol "ConnectionsGetConnectionWithSecretsOptionalParams" needs to be exported by the entry point index.d.ts
     getConnectionWithSecrets: (connectionName: string, ignored: string, options?: ConnectionsGetConnectionWithSecretsOptionalParams) => Promise<GetConnectionResponse>;
-    // Warning: (ae-forgotten-export) The symbol "ConnectionsGetWorkspaceOptionalParams" needs to be exported by the entry point index.d.ts
     getWorkspace: (options?: ConnectionsGetWorkspaceOptionalParams) => Promise<GetWorkspaceResponse>;
-    // Warning: (ae-forgotten-export) The symbol "ConnectionsListConnectionsOptionalParams" needs to be exported by the entry point index.d.ts
     listConnections: (options?: ConnectionsListConnectionsOptionalParams) => Promise<ListConnectionsResponse>;
 }
 
@@ -335,23 +579,59 @@ export interface EvaluationSchedule {
 }
 
 // @public
+export interface EvaluationsCreateOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface EvaluationsCreateOrReplaceScheduleOptionalParams extends OperationOptions {
+    clientRequestId?: string;
+}
+
+// @public
+export interface EvaluationsDisableScheduleOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface EvaluationsGetOptionalParams extends OperationOptions {
+    clientRequestId?: string;
+}
+
+// @public
+export interface EvaluationsGetScheduleOptionalParams extends OperationOptions {
+    clientRequestId?: string;
+}
+
+// @public
+export interface EvaluationsListOptionalParams extends OperationOptions {
+    clientRequestId?: string;
+    maxpagesize?: number;
+    skip?: number;
+    top?: number;
+}
+
+// @public
+export interface EvaluationsListScheduleOptionalParams extends OperationOptions {
+    clientRequestId?: string;
+    maxpagesize?: number;
+    skip?: number;
+    top?: number;
+}
+
+// @public
 export interface EvaluationsOperations {
-    // Warning: (ae-forgotten-export) The symbol "EvaluationsCreateOptionalParams" needs to be exported by the entry point index.d.ts
     create: (evaluation: Evaluation, options?: EvaluationsCreateOptionalParams) => Promise<Evaluation>;
-    // Warning: (ae-forgotten-export) The symbol "EvaluationsCreateOrReplaceScheduleOptionalParams" needs to be exported by the entry point index.d.ts
     createOrReplaceSchedule: (name: string, resource: EvaluationSchedule, options?: EvaluationsCreateOrReplaceScheduleOptionalParams) => Promise<EvaluationSchedule>;
-    // Warning: (ae-forgotten-export) The symbol "EvaluationsDisableScheduleOptionalParams" needs to be exported by the entry point index.d.ts
     disableSchedule: (name: string, options?: EvaluationsDisableScheduleOptionalParams) => Promise<void>;
-    // Warning: (ae-forgotten-export) The symbol "EvaluationsGetOptionalParams" needs to be exported by the entry point index.d.ts
     get: (id: string, options?: EvaluationsGetOptionalParams) => Promise<Evaluation>;
-    // Warning: (ae-forgotten-export) The symbol "EvaluationsGetScheduleOptionalParams" needs to be exported by the entry point index.d.ts
     getSchedule: (name: string, options?: EvaluationsGetScheduleOptionalParams) => Promise<EvaluationSchedule>;
-    // Warning: (ae-forgotten-export) The symbol "EvaluationsListOptionalParams" needs to be exported by the entry point index.d.ts
     list: (options?: EvaluationsListOptionalParams) => PagedAsyncIterableIterator<Evaluation>;
-    // Warning: (ae-forgotten-export) The symbol "EvaluationsListScheduleOptionalParams" needs to be exported by the entry point index.d.ts
     listSchedule: (options?: EvaluationsListScheduleOptionalParams) => PagedAsyncIterableIterator<EvaluationSchedule>;
-    // Warning: (ae-forgotten-export) The symbol "EvaluationsUpdateOptionalParams" needs to be exported by the entry point index.d.ts
     update: (id: string, resource: Evaluation, options?: EvaluationsUpdateOptionalParams) => Promise<Evaluation>;
+}
+
+// @public
+export interface EvaluationsUpdateOptionalParams extends OperationOptions {
+    clientRequestId?: string;
 }
 
 // @public
@@ -360,6 +640,9 @@ export interface EvaluatorConfiguration {
     id: string;
     initParams?: Record<string, any>;
 }
+
+// @public
+export type FileContents = string | NodeReadableStream | ReadableStream<Uint8Array> | Uint8Array | Blob;
 
 // @public
 export interface FileDeletionStatus {
@@ -698,6 +981,9 @@ export interface MicrosoftFabricToolDefinition extends ToolDefinition {
     fabricAiskill: ToolConnectionList;
     type: "fabric_aiskill";
 }
+
+// @public
+export type NodeReadableStream = NodeJS.ReadableStream;
 
 // @public
 export interface OpenAIFile {
@@ -1219,8 +1505,11 @@ export interface SystemData {
 }
 
 // @public
+export interface TelemetryGetAppInsightsOptionalParams extends OperationOptions {
+}
+
+// @public
 export interface TelemetryOperations {
-    // Warning: (ae-forgotten-export) The symbol "TelemetryGetAppInsightsOptionalParams" needs to be exported by the entry point index.d.ts
     getAppInsights: (appInsightsResourceUrl: string, options?: TelemetryGetAppInsightsOptionalParams) => Promise<GetAppInsightsResponse>;
 }
 
@@ -1524,10 +1813,6 @@ export type WeekDays = "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday
 export interface WorkspaceProperties {
     applicationInsights: string;
 }
-
-// Warnings were encountered during analysis:
-//
-// src/classic/agents/index.ts:203:7 - (ae-forgotten-export) The symbol "FileContents" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

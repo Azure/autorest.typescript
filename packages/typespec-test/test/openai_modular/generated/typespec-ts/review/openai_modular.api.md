@@ -31,7 +31,6 @@ export type AudioTranscriptionFormat = "json" | "verbose_json" | "text" | "srt" 
 
 // @public
 export interface AudioTranscriptionOptions {
-    // Warning: (ae-forgotten-export) The symbol "FileContents" needs to be exported by the entry point index.d.ts
     file: FileContents | {
         contents: FileContents;
         contentType?: string;
@@ -717,6 +716,9 @@ export interface EmbeddingsUsage {
 }
 
 // @public
+export type FileContents = string | NodeReadableStream | ReadableStream<Uint8Array> | Uint8Array | Blob;
+
+// @public
 export interface FunctionCall {
     arguments: string;
     name: string;
@@ -861,6 +863,9 @@ export enum KnownServiceApiVersions {
 export interface MaxTokensFinishDetails extends ChatFinishDetails {
     type: "max_tokens";
 }
+
+// @public
+export type NodeReadableStream = NodeJS.ReadableStream;
 
 // @public
 export interface OnYourDataAccessTokenAuthenticationOptions extends OnYourDataAuthenticationOptions {
@@ -1045,10 +1050,6 @@ export interface StopFinishDetails extends ChatFinishDetails {
     stop: string;
     type: "stop";
 }
-
-// Warnings were encountered during analysis:
-//
-// src/models/models.ts:3696:3 - (ae-forgotten-export) The symbol "NodeReadableStream" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

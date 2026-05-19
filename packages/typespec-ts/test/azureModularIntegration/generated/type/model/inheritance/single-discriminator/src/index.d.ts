@@ -72,7 +72,6 @@ export declare class SingleDiscriminatorClient {
 }
 
 export declare interface SingleDiscriminatorClientOptionalParams extends ClientOptions {
-    endpointParam?: string;
 }
 
 export declare interface Sparrow extends Bird {

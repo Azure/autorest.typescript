@@ -31,7 +31,6 @@ export declare class IndividuallyParentClient {
 }
 
 export declare interface IndividuallyParentClientOptionalParams extends ClientOptions {
-    endpointParam?: string;
 }
 
 export declare class IndividuallyParentNestedWithHeaderClient {
@@ -50,7 +49,6 @@ export declare interface IndividuallyParentNestedWithHeaderClientGetStandaloneOp
 }
 
 export declare interface IndividuallyParentNestedWithHeaderClientOptionalParams extends ClientOptions {
-    endpointParam?: string;
 }
 
 export declare interface IndividuallyParentNestedWithHeaderClientWithQueryOptionalParams extends OperationOptions {
@@ -73,7 +71,6 @@ export declare interface IndividuallyParentNestedWithMixedClientGetStandaloneOpt
 }
 
 export declare interface IndividuallyParentNestedWithMixedClientOptionalParams extends ClientOptions {
-    endpointParam?: string;
 }
 
 export declare interface IndividuallyParentNestedWithMixedClientWithQueryOptionalParams extends OperationOptions {
@@ -96,7 +93,6 @@ export declare interface IndividuallyParentNestedWithMultipleClientGetStandalone
 }
 
 export declare interface IndividuallyParentNestedWithMultipleClientOptionalParams extends ClientOptions {
-    endpointParam?: string;
 }
 
 export declare interface IndividuallyParentNestedWithMultipleClientWithQueryOptionalParams extends OperationOptions {
@@ -112,7 +108,6 @@ export declare class IndividuallyParentNestedWithParamAliasClient {
 }
 
 export declare interface IndividuallyParentNestedWithParamAliasClientOptionalParams extends ClientOptions {
-    endpointParam?: string;
 }
 
 export declare class IndividuallyParentNestedWithPathClient {
@@ -125,7 +120,6 @@ export declare class IndividuallyParentNestedWithPathClient {
 }
 
 export declare interface IndividuallyParentNestedWithPathClientOptionalParams extends ClientOptions {
-    endpointParam?: string;
 }
 
 export declare class IndividuallyParentNestedWithQueryClient {
@@ -144,7 +138,6 @@ export declare interface IndividuallyParentNestedWithQueryClientGetStandaloneOpt
 }
 
 export declare interface IndividuallyParentNestedWithQueryClientOptionalParams extends ClientOptions {
-    endpointParam?: string;
 }
 
 export declare interface IndividuallyParentNestedWithQueryClientWithQueryOptionalParams extends OperationOptions {

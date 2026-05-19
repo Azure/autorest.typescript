@@ -83,6 +83,18 @@ export interface MultivariateCorrelationChanges {
 export type MultivariateDataSchema = "OneTable" | "MultiTable";
 
 // @public
+export interface MultivariateDeleteMultivariateModelOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface MultivariateDetectMultivariateBatchAnomalyOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface MultivariateDetectMultivariateLastAnomalyOptionalParams extends OperationOptions {
+}
+
+// @public
 export interface MultivariateDiagnosticsInfo {
     modelState?: MultivariateModelState;
     variableStates?: MultivariateVariableState[];
@@ -96,6 +108,20 @@ export interface MultivariateErrorResponse {
 
 // @public
 export type MultivariateFillNAMethod = "Previous" | "Subsequent" | "Linear" | "Zero" | "Fixed";
+
+// @public
+export interface MultivariateGetMultivariateBatchDetectionResultOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface MultivariateGetMultivariateModelOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface MultivariateListMultivariateModelsOptionalParams extends OperationOptions {
+    skip?: number;
+    top?: number;
+}
 
 // @public
 export interface MultivariateModelInfo {
@@ -162,19 +188,12 @@ export interface MultivariateMultivariateLastDetectionResult {
 
 // @public
 export interface MultivariateOperations {
-    // Warning: (ae-forgotten-export) The symbol "MultivariateDeleteMultivariateModelOptionalParams" needs to be exported by the entry point index.d.ts
     deleteMultivariateModel: (modelId: string, options?: MultivariateDeleteMultivariateModelOptionalParams) => Promise<void>;
-    // Warning: (ae-forgotten-export) The symbol "MultivariateDetectMultivariateBatchAnomalyOptionalParams" needs to be exported by the entry point index.d.ts
     detectMultivariateBatchAnomaly: (modelId: string, options: MultivariateMultivariateBatchDetectionOptions, optionalParams?: MultivariateDetectMultivariateBatchAnomalyOptionalParams) => Promise<MultivariateMultivariateDetectionResult>;
-    // Warning: (ae-forgotten-export) The symbol "MultivariateDetectMultivariateLastAnomalyOptionalParams" needs to be exported by the entry point index.d.ts
     detectMultivariateLastAnomaly: (modelId: string, options: MultivariateMultivariateLastDetectionOptions, optionalParams?: MultivariateDetectMultivariateLastAnomalyOptionalParams) => Promise<MultivariateMultivariateLastDetectionResult>;
-    // Warning: (ae-forgotten-export) The symbol "MultivariateGetMultivariateBatchDetectionResultOptionalParams" needs to be exported by the entry point index.d.ts
     getMultivariateBatchDetectionResult: (resultId: string, options?: MultivariateGetMultivariateBatchDetectionResultOptionalParams) => Promise<MultivariateMultivariateDetectionResult>;
-    // Warning: (ae-forgotten-export) The symbol "MultivariateGetMultivariateModelOptionalParams" needs to be exported by the entry point index.d.ts
     getMultivariateModel: (modelId: string, options?: MultivariateGetMultivariateModelOptionalParams) => Promise<MultivariateAnomalyDetectionModel>;
-    // Warning: (ae-forgotten-export) The symbol "MultivariateListMultivariateModelsOptionalParams" needs to be exported by the entry point index.d.ts
     listMultivariateModels: (options?: MultivariateListMultivariateModelsOptionalParams) => PagedAsyncIterableIterator<MultivariateAnomalyDetectionModel>;
-    // Warning: (ae-forgotten-export) The symbol "MultivariateTrainMultivariateModelOptionalParams" needs to be exported by the entry point index.d.ts
     trainMultivariateModel: (modelInfo: MultivariateModelInfo, options?: MultivariateTrainMultivariateModelOptionalParams) => Promise<MultivariateAnomalyDetectionModel>;
 }
 
@@ -182,6 +201,10 @@ export interface MultivariateOperations {
 export interface MultivariateResponseError {
     code: string;
     message: string;
+}
+
+// @public
+export interface MultivariateTrainMultivariateModelOptionalParams extends OperationOptions {
 }
 
 // @public
@@ -224,15 +247,24 @@ export interface UnivariateAnomalyDetectorError {
 export type UnivariateAnomalyDetectorErrorCodes = "InvalidCustomInterval" | "BadArgument" | "InvalidGranularity" | "InvalidPeriod" | "InvalidModelArgument" | "InvalidSeries" | "InvalidJsonFormat" | "RequiredGranularity" | "RequiredSeries" | "InvalidImputeMode" | "InvalidImputeFixedValue";
 
 // @public
+export interface UnivariateDetectUnivariateChangePointOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface UnivariateDetectUnivariateEntireSeriesOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface UnivariateDetectUnivariateLastPointOptionalParams extends OperationOptions {
+}
+
+// @public
 export type UnivariateImputeMode = "auto" | "previous" | "linear" | "fixed" | "zero" | "notFill";
 
 // @public
 export interface UnivariateOperations {
-    // Warning: (ae-forgotten-export) The symbol "UnivariateDetectUnivariateChangePointOptionalParams" needs to be exported by the entry point index.d.ts
     detectUnivariateChangePoint: (options: UnivariateUnivariateChangePointDetectionOptions, optionalParams?: UnivariateDetectUnivariateChangePointOptionalParams) => Promise<UnivariateUnivariateChangePointDetectionResult>;
-    // Warning: (ae-forgotten-export) The symbol "UnivariateDetectUnivariateEntireSeriesOptionalParams" needs to be exported by the entry point index.d.ts
     detectUnivariateEntireSeries: (options: UnivariateUnivariateDetectionOptions, optionalParams?: UnivariateDetectUnivariateEntireSeriesOptionalParams) => Promise<UnivariateUnivariateEntireDetectionResult>;
-    // Warning: (ae-forgotten-export) The symbol "UnivariateDetectUnivariateLastPointOptionalParams" needs to be exported by the entry point index.d.ts
     detectUnivariateLastPoint: (options: UnivariateUnivariateDetectionOptions, optionalParams?: UnivariateDetectUnivariateLastPointOptionalParams) => Promise<UnivariateUnivariateLastDetectionResult>;
 }
 

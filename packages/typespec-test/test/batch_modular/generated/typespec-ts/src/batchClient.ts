@@ -699,7 +699,6 @@ export class BatchClient {
   }
 
   /** Gets information about the specified Certificate. */
-  /** @deprecated Warning: This operation is deprecated and will be removed after February, 2024. Please use the [Azure KeyVault Extension](https://learn.microsoft.com/azure/batch/batch-certificate-migration-guide) instead. */
   getCertificate(
     thumbprintAlgorithm: string,
     thumbprint: string,
@@ -719,7 +718,6 @@ export class BatchClient {
    * deleteFailed. You can use Cancel Delete Certificate to set the status back to
    * active if you decide that you want to continue using the Certificate.
    */
-  /** @deprecated Warning: This operation is deprecated and will be removed after February, 2024. Please use the [Azure KeyVault Extension](https://learn.microsoft.com/azure/batch/batch-certificate-migration-guide) instead. */
   deleteCertificate(
     thumbprintAlgorithm: string,
     thumbprint: string,
@@ -737,7 +735,6 @@ export class BatchClient {
    * You must make sure that the Certificate is not being used by any resources, and
    * then you can try again to delete the Certificate.
    */
-  /** @deprecated Warning: This operation is deprecated and will be removed after February, 2024. Please use the [Azure KeyVault Extension](https://learn.microsoft.com/azure/batch/batch-certificate-migration-guide) instead. */
   cancelCertificateDeletion(
     thumbprintAlgorithm: string,
     thumbprint: string,
@@ -747,7 +744,6 @@ export class BatchClient {
   }
 
   /** Lists all of the Certificates that have been added to the specified Account. */
-  /** @deprecated Warning: This operation is deprecated and will be removed after February, 2024. Please use the [Azure KeyVault Extension](https://learn.microsoft.com/azure/batch/batch-certificate-migration-guide) instead. */
   listCertificates(
     options: ListCertificatesOptionalParams = { requestOptions: {} },
   ): PagedAsyncIterableIterator<BatchCertificate> {
@@ -755,7 +751,6 @@ export class BatchClient {
   }
 
   /** Creates a Certificate to the specified Account. */
-  /** @deprecated Warning: This operation is deprecated and will be removed after February, 2024. Please use the [Azure KeyVault Extension](https://learn.microsoft.com/azure/batch/batch-certificate-migration-guide) instead. */
   createCertificate(
     body: BatchCertificate,
     options: CreateCertificateOptionalParams = { requestOptions: {} },

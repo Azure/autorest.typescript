@@ -15,7 +15,6 @@ export declare class HeaderClient {
 }
 
 export declare interface HeaderClientOptionalParams extends ClientOptions {
-    endpointParam?: string;
     version?: string;
 }
 

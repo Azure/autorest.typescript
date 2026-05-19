@@ -1,14 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { ComputeContext } from "../../api/index.js";
+import { ComputeContext } from "../../api/computeContext.js";
 import { createOrUpdate, get } from "../../api/disks/operations.js";
 import {
   DisksCreateOrUpdateOptionalParams,
   DisksGetOptionalParams,
 } from "../../api/disks/options.js";
 import { Disk } from "../../models/computeDisk/models.js";
-import { getSimplePoller } from "../../static-helpers/simplePollerHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 
 /** Interface representing a Disks operations. */
@@ -36,24 +35,6 @@ function _getDisks(context: ComputeContext) {
       resource: Disk,
       options?: DisksCreateOrUpdateOptionalParams,
     ) => createOrUpdate(context, resourceGroupName, diskName, resource, options),
-    beginCreateOrUpdate: async (
-      resourceGroupName: string,
-      diskName: string,
-      resource: Disk,
-      options?: DisksCreateOrUpdateOptionalParams,
-    ) => {
-      const poller = createOrUpdate(context, resourceGroupName, diskName, resource, options);
-      await poller.submitted();
-      return getSimplePoller(poller);
-    },
-    beginCreateOrUpdateAndWait: async (
-      resourceGroupName: string,
-      diskName: string,
-      resource: Disk,
-      options?: DisksCreateOrUpdateOptionalParams,
-    ) => {
-      return await createOrUpdate(context, resourceGroupName, diskName, resource, options);
-    },
     get: (resourceGroupName: string, diskName: string, options?: DisksGetOptionalParams) =>
       get(context, resourceGroupName, diskName, options),
   };
