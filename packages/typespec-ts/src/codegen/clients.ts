@@ -323,10 +323,7 @@ function emitReturnStatement(
 ): void {
   const contextRequiredParams = client.parameters.filter(
     (p) =>
-      !p.isEndpoint &&
-      !p.isCredential &&
-      p.name !== "options" &&
-      p.required
+      !p.isEndpoint && !p.isCredential && p.name !== "options" && p.required
   );
 
   const requiredParamNames = new Set(

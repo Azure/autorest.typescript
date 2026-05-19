@@ -402,8 +402,13 @@ describe("tcgc adapter", () => {
     );
 
     const client = model.clients[0]!;
-    const apiVersion = client.parameters.find((parameter) => parameter.isApiVersion);
-    expect(apiVersion).toMatchObject({ required: false, hasDefaultValue: true });
+    const apiVersion = client.parameters.find(
+      (parameter) => parameter.isApiVersion
+    );
+    expect(apiVersion).toMatchObject({
+      required: false,
+      hasDefaultValue: true
+    });
 
     const project = new Project({ useInMemoryFileSystem: true });
     const binder = provideBinder(project);

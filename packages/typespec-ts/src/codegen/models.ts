@@ -20,13 +20,24 @@ export function emitModelFiles(
   codeModel: TSCodeModel,
   sdkContext: SdkContext
 ): SourceFile[] {
-  const rawModelLookup = buildRawTypeLookup(sdkContext.sdkPackage.models, sdkContext);
-  const rawEnumLookup = buildRawTypeLookup(sdkContext.sdkPackage.enums, sdkContext);
-  const rawUnionLookup = buildRawTypeLookup(sdkContext.sdkPackage.unions, sdkContext);
+  const rawModelLookup = buildRawTypeLookup(
+    sdkContext.sdkPackage.models,
+    sdkContext
+  );
+  const rawEnumLookup = buildRawTypeLookup(
+    sdkContext.sdkPackage.enums,
+    sdkContext
+  );
+  const rawUnionLookup = buildRawTypeLookup(
+    sdkContext.sdkPackage.unions,
+    sdkContext
+  );
   const includedModelKeys = new Set<string>();
 
   for (const model of codeModel.models) {
-    const rawModel = rawModelLookup.get(getTypeKey(model.name, model.namespace));
+    const rawModel = rawModelLookup.get(
+      getTypeKey(model.name, model.namespace)
+    );
     if (!rawModel) {
       continue;
     }
@@ -41,7 +52,9 @@ export function emitModelFiles(
   }
 
   for (const enumType of codeModel.enums) {
-    const rawEnum = rawEnumLookup.get(getTypeKey(enumType.name, enumType.namespace));
+    const rawEnum = rawEnumLookup.get(
+      getTypeKey(enumType.name, enumType.namespace)
+    );
     if (!rawEnum) {
       continue;
     }
