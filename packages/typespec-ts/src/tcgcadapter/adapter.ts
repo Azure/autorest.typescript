@@ -1203,9 +1203,6 @@ function hasModelUsage(usage: UsageFlags | undefined): boolean {
   );
 }
 
-// TODO(strategy-b/U1): extensible enum filtering is a separate adaptEnums fix.
-// Keep this migration scoped to helper-type registration so U1 can land in a
-// focused follow-up.
 function shouldAdaptEnum(
   sdkContext: SdkContext,
   enumType: SdkEnumType

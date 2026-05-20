@@ -1,9 +1,12 @@
 import { Project, SourceFile } from "ts-morph";
-import type { TSCodeModel } from "../codemodel/index.js";
+import type { TSCodeModel, TSEnum } from "../codemodel/index.js";
 import type { SdkContext } from "../utils/interfaces.js";
+import { addDeclaration } from "../framework/declaration.js";
+import { refkey } from "../framework/refkey.js";
 import { buildHelperTypeLookup } from "../tcgcadapter/helperTypes.js";
 import {
   addSerializationFunctions,
+  buildEnumTypes,
   emitType,
   getModelNamespaces,
   getModelsPath
@@ -65,7 +68,7 @@ export function emitModelFiles(
       codeModel.settings.sourceRoot,
       enumType.namespace
     );
-    emitType(sdkContext, rawEnum, sourceFile);
+    emitEnumFromCodeModel(sdkContext, enumType, rawEnum as any, sourceFile);
   }
 
   for (const unionType of codeModel.unions) {
@@ -131,6 +134,30 @@ function getRawTypeKey(type: { name: string }, sdkContext: SdkContext): string {
 
 function getTypeKey(name: string, namespace: string[]): string {
   return `${namespace.join("/")}:${name}`;
+}
+
+function emitEnumFromCodeModel(
+  sdkContext: SdkContext,
+  enumType: TSEnum,
+  rawEnum: any,
+  sourceFile: SourceFile
+): void {
+  const [enumDeclaration, knownValuesEnum] = buildEnumTypes(
+    sdkContext,
+    rawEnum,
+    false,
+    enumType.isExtensible
+  );
+
+  if (enumDeclaration.name.startsWith("_")) {
+    return;
+  }
+
+  if (enumType.isExtensible) {
+    addDeclaration(sourceFile, knownValuesEnum, refkey(rawEnum, "knownValues"));
+  }
+
+  addDeclaration(sourceFile, enumDeclaration, rawEnum);
 }
 
 function getOrCreateModelsFile(
