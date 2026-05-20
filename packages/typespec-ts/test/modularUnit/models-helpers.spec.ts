@@ -1,10 +1,3 @@
-/**
- * Regression test for B8: array/dict serializer helper refkeys must be registered
- * by src/codegen/models.ts so the binder can resolve them.
- *
- * Before the fix (commit e8b5a8022), emitModelFiles only walked codeModel.models/enums/unions
- * and skipped array/dict helper types, leaving __PLACEHOLDER_*__ tokens in the emitted file.
- */
 import { describe, expect, it } from "vitest";
 import { Project } from "ts-morph";
 import { useContext } from "../../src/contextManager.js";
@@ -39,14 +32,51 @@ function buildAzureTypeSpec(body: string): string {
   `;
 }
 
-describe("models-helpers (B8 regression lock)", () => {
-  /**
-   * Regression: array-of-complex-model serializer helpers must resolve cleanly.
-   * If emitModelFiles doesn't emit the array helper declarations, the binder
-   * leaves __PLACEHOLDER_*serializer__ / __PLACEHOLDER_*deserializer__ tokens.
-   */
-  it("registers array serializer/deserializer refkeys — no placeholders after resolve", async () => {
-    const typeSpec = buildAzureTypeSpec(`
+async function emitModels(body: string): Promise<string[]> {
+  const host = await rlcEmitterFor(buildAzureTypeSpec(body), {
+    withRawContent: true
+  });
+  const sdkContext = await createDpgContextTestHelper(host.program, false, {
+    isModularLibrary: true
+  });
+  sdkContext.rlcOptions!.isModularLibrary = true;
+
+  const emitterOptions = transformModularEmitterOptions(sdkContext, "", {
+    casing: "camel"
+  });
+  for (const client of sdkContext.sdkPackage.clients) {
+    await renameClientName(client, emitterOptions);
+  }
+
+  const codeModel = adaptToCodeModel({ sdkContext, emitterOptions });
+  const project = useContext("outputProject") as Project;
+  const binder = useBinder();
+  const sourceRoot = codeModel.settings.sourceRoot;
+
+  emitModelFiles(project, codeModel, sdkContext);
+  binder.resolveAllReferences(sourceRoot);
+
+  return project
+    .getSourceFiles(`${sourceRoot}/models/**/*.ts`)
+    .map((file) => file.getFullText());
+}
+
+function expectResolvedHelpers(
+  modelTexts: string[],
+  expectedDeclaration: RegExp
+): void {
+  expect(modelTexts.length).toBeGreaterThan(0);
+
+  for (const text of modelTexts) {
+    expect(text).not.toMatch(PLACEHOLDER_PATTERN);
+  }
+
+  expect(modelTexts.join("\n")).toMatch(expectedDeclaration);
+}
+
+describe("models-helpers (Strategy B regression lock)", () => {
+  it("emits array-of-model helpers from IR without placeholders", async () => {
+    const modelTexts = await emitModels(`
       model Item {
         id: string;
         value: int32;
@@ -61,44 +91,14 @@ describe("models-helpers (B8 regression lock)", () => {
       op listItems(): ItemCollection;
     `);
 
-    const host = await rlcEmitterFor(typeSpec, { withRawContent: true });
-    const sdkContext = await createDpgContextTestHelper(host.program, false, {
-      isModularLibrary: true
-    });
-    sdkContext.rlcOptions!.isModularLibrary = true;
-
-    const emitterOptions = transformModularEmitterOptions(sdkContext, "", {
-      casing: "camel"
-    });
-    for (const client of sdkContext.sdkPackage.clients) {
-      await renameClientName(client, emitterOptions);
-    }
-
-    const codeModel = adaptToCodeModel({ sdkContext, emitterOptions });
-    const project = useContext("outputProject") as Project;
-    const binder = useBinder();
-    const sourceRoot = codeModel.settings.sourceRoot;
-
-    emitModelFiles(project, codeModel, sdkContext);
-    binder.resolveAllReferences(sourceRoot);
-
-    const modelsFiles = project.getSourceFiles(`${sourceRoot}/models/**/*.ts`);
-    expect(modelsFiles.length).toBeGreaterThan(0);
-
-    for (const file of modelsFiles) {
-      const text = file.getFullText();
-      expect(
-        PLACEHOLDER_PATTERN.test(text),
-        `Found unresolved __PLACEHOLDER__ in ${file.getFilePath()}:\n${text}`
-      ).toBe(false);
-    }
+    expectResolvedHelpers(
+      modelTexts,
+      /export function itemArrayDeserializer\(/
+    );
   });
 
-  /**
-   * Regression: dict-of-complex-model serializer helpers must resolve cleanly.
-   */
-  it("registers dict serializer/deserializer refkeys — no placeholders after resolve", async () => {
-    const typeSpec = buildAzureTypeSpec(`
+  it("emits dict-of-model helpers from IR without placeholders", async () => {
+    const modelTexts = await emitModels(`
       model Widget {
         name: string;
         weight: float32;
@@ -113,36 +113,53 @@ describe("models-helpers (B8 regression lock)", () => {
       op getWidgets(): WidgetMap;
     `);
 
-    const host = await rlcEmitterFor(typeSpec, { withRawContent: true });
-    const sdkContext = await createDpgContextTestHelper(host.program, false, {
-      isModularLibrary: true
-    });
-    sdkContext.rlcOptions!.isModularLibrary = true;
+    expectResolvedHelpers(
+      modelTexts,
+      /export function widgetRecordDeserializer\(/
+    );
+  });
 
-    const emitterOptions = transformModularEmitterOptions(sdkContext, "", {
-      casing: "camel"
-    });
-    for (const client of sdkContext.sdkPackage.clients) {
-      await renameClientName(client, emitterOptions);
-    }
+  it("emits named nullable aliases from IR without placeholders", async () => {
+    const modelTexts = await emitModels(`
+      union Prompt {
+        string,
+        string[],
+        null,
+      }
 
-    const codeModel = adaptToCodeModel({ sdkContext, emitterOptions });
-    const project = useContext("outputProject") as Project;
-    const binder = useBinder();
-    const sourceRoot = codeModel.settings.sourceRoot;
+      @route("/prompts")
+      @get
+      op getPrompt(): Prompt;
+    `);
 
-    emitModelFiles(project, codeModel, sdkContext);
-    binder.resolveAllReferences(sourceRoot);
+    expectResolvedHelpers(
+      modelTexts,
+      /export type Prompt = \(string \| \(string\)\[\]\) \| null;/
+    );
+  });
 
-    const modelsFiles = project.getSourceFiles(`${sourceRoot}/models/**/*.ts`);
-    expect(modelsFiles.length).toBeGreaterThan(0);
+  it("emits paged array-of-model helpers from IR without placeholders", async () => {
+    const modelTexts = await emitModels(`
+      model Entry {
+        id: string;
+      }
 
-    for (const file of modelsFiles) {
-      const text = file.getFullText();
-      expect(
-        PLACEHOLDER_PATTERN.test(text),
-        `Found unresolved __PLACEHOLDER__ in ${file.getFilePath()}:\n${text}`
-      ).toBe(false);
-    }
+      model EntryPage {
+        @pageItems items: Entry[];
+
+        @nextLink
+        nextLink?: string;
+      }
+
+      @route("/entries")
+      @get
+      @list
+      op listEntries(): EntryPage;
+    `);
+
+    expectResolvedHelpers(
+      modelTexts,
+      /export function entryArrayDeserializer\(/
+    );
   });
 });

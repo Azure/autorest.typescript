@@ -1,10 +1,7 @@
 import { Project, SourceFile } from "ts-morph";
 import type { TSCodeModel } from "../codemodel/index.js";
 import type { SdkContext } from "../utils/interfaces.js";
-import {
-  emitQueue,
-  flattenPropertyModelMap
-} from "../framework/hooks/sdkTypes.js";
+import { buildHelperTypeLookup } from "../tcgcadapter/helperTypes.js";
 import {
   addSerializationFunctions,
   emitType,
@@ -35,7 +32,8 @@ export function emitModelFiles(
     sdkContext.sdkPackage.unions,
     sdkContext
   );
-  const includedModelKeys = new Set<string>();
+  const rawHelperLookup = buildHelperTypeLookup(sdkContext);
+  const includedModels: Array<{ properties: any[] }> = [];
 
   for (const model of codeModel.models) {
     const rawModel = rawModelLookup.get(
@@ -45,7 +43,7 @@ export function emitModelFiles(
       continue;
     }
 
-    includedModelKeys.add(getRawTypeKey(rawModel, sdkContext));
+    includedModels.push(rawModel as { properties: any[] });
     const sourceFile = getOrCreateModelsFile(
       project,
       codeModel.settings.sourceRoot,
@@ -86,38 +84,33 @@ export function emitModelFiles(
     emitType(sdkContext, rawUnion, sourceFile);
   }
 
-  // Strategy A (B8 fix): emit array/dict serializer helpers that the serializer builders
-  // still reference via refkey(type, "serializer"/"deserializer"). The legacy emitTypes()
-  // in emitModels.ts handled this by walking the full emitQueue; the new filtered-IR
-  // renderer only walks codeModel.models/enums/unions, so those helpers were never
-  // registered with the binder — causing __PLACEHOLDER_*__ tokens to leak.
-  //
-  // TODO: migrate array/dict helper types into TSCodeModel IR so the renderer owns them
-  // explicitly rather than relying on the global emitQueue side-channel.
-  // See: .squad/decisions/inbox/dallas-models-helpers.md
-  for (const type of emitQueue) {
-    if (type.kind !== "array" && type.kind !== "dict") {
+  for (const helperType of codeModel.helperTypes) {
+    const rawHelperType = rawHelperLookup.get(helperType.id);
+    if (!rawHelperType) {
       continue;
     }
+
     const sourceFile = getOrCreateModelsFile(
       project,
       codeModel.settings.sourceRoot,
-      getModelNamespaces(sdkContext, type)
+      helperType.namespace
     );
-    emitType(sdkContext, type, sourceFile);
+    emitType(sdkContext, rawHelperType, sourceFile);
   }
 
-  for (const [property, baseModel] of flattenPropertyModelMap) {
-    if (!includedModelKeys.has(getRawTypeKey(baseModel, sdkContext))) {
-      continue;
-    }
+  for (const rawModel of includedModels) {
+    for (const property of rawModel.properties) {
+      if (!property.flatten || property.type.kind !== "model") {
+        continue;
+      }
 
-    const sourceFile = getOrCreateModelsFile(
-      project,
-      codeModel.settings.sourceRoot,
-      getModelNamespaces(sdkContext, property.type)
-    );
-    addSerializationFunctions(sdkContext, property, sourceFile);
+      const sourceFile = getOrCreateModelsFile(
+        project,
+        codeModel.settings.sourceRoot,
+        getModelNamespaces(sdkContext, property.type)
+      );
+      addSerializationFunctions(sdkContext, property, sourceFile);
+    }
   }
 
   return cleanupEmptyModelFiles(project, codeModel.settings.sourceRoot);

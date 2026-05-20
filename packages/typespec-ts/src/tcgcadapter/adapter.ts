@@ -57,6 +57,7 @@ import {
   buildEnumTypes,
   getModelNamespaces
 } from "../modular/emitModels.js";
+import { adaptHelperTypes } from "./helperTypes.js";
 import {
   getMethodHierarchiesMap,
   hasDualFormatSupport,
@@ -140,8 +141,9 @@ export function adaptToCodeModel(input: AdapterInput): TSCodeModel {
   const models = adaptModels(sdkContext);
   const enums = adaptEnums(sdkContext);
   const unions = adaptUnions(sdkContext);
+  const helperTypes = adaptHelperTypes(sdkContext);
 
-  return { clients, models, enums, unions, settings };
+  return { clients, models, enums, unions, helperTypes, settings };
 }
 
 /**
@@ -1201,6 +1203,9 @@ function hasModelUsage(usage: UsageFlags | undefined): boolean {
   );
 }
 
+// TODO(strategy-b/U1): extensible enum filtering is a separate adaptEnums fix.
+// Keep this migration scoped to helper-type registration so U1 can land in a
+// focused follow-up.
 function shouldAdaptEnum(
   sdkContext: SdkContext,
   enumType: SdkEnumType

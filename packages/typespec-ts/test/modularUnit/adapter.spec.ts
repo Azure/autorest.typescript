@@ -176,6 +176,7 @@ describe("tcgc adapter", () => {
     expect(Object.keys(model).sort()).toEqual([
       "clients",
       "enums",
+      "helperTypes",
       "models",
       "settings",
       "unions"
@@ -184,6 +185,7 @@ describe("tcgc adapter", () => {
     expect(model.models).toEqual([]);
     expect(model.enums).toEqual([]);
     expect(model.unions).toEqual([]);
+    expect(model.helperTypes).toEqual([]);
     expect(model.settings.flavor).toBe("azure");
     expect(model.settings.sourceRoot).toBe("");
 

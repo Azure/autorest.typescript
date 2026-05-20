@@ -37,8 +37,43 @@ export interface TSCodeModel {
   /** Named union declarations */
   unions: TSUnion[];
 
+  /** Helper wrapper types that still need legacy addDeclaration registration */
+  helperTypes: TSHelperType[];
+
   /** Generation settings derived from emitter options */
   settings: TSGenerationSettings;
+}
+
+export type TSHelperTypeKind = "array" | "dict" | "nullable";
+
+export interface TSHelperType {
+  /** Stable semantic ID used to recover the raw helper type during transition */
+  id: string;
+  /** Helper kind — determines how the legacy renderer registers declarations */
+  kind: TSHelperTypeKind;
+  /** Display name for diagnostics/debugging */
+  name: string;
+  /** Namespace segments for file placement */
+  namespace: string[];
+  /** Wrapped element/value type */
+  elementType: TSTypeReference;
+  /** Whether this helper is a named nullable alias */
+  isNamedAlias: boolean;
+}
+
+export function buildHelperTypeId(
+  helperType: Pick<
+    TSHelperType,
+    "kind" | "name" | "namespace" | "elementType" | "isNamedAlias"
+  >
+): string {
+  return [
+    helperType.namespace.join("/"),
+    helperType.kind,
+    helperType.name,
+    helperType.elementType,
+    helperType.isNamedAlias ? "named" : "generated"
+  ].join(":");
 }
 
 /** Normalized generation settings (not raw emitter options) */
