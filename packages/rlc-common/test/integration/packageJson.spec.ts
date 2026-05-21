@@ -769,6 +769,36 @@ describe("Package file generation", () => {
       expect(packageFileContent).to.be.undefined;
     });
 
+    it("should merge provided dependencies when updating package.json", () => {
+      const model = createMockModel({
+        moduleKind: "esm",
+        flavor: "azure",
+        isMonorepo: true,
+        hasLro: false
+      });
+
+      const initialPackageInfo = {
+        name: "@azure/test-package",
+        version: "1.0.0",
+        dependencies: {
+          "@azure-rest/core-client": "^2.3.1"
+        }
+      };
+
+      const packageFileContent = updatePackageFile(model, initialPackageInfo, {
+        dependencies: {
+          "@azure/core-util": "^1.9.2"
+        }
+      });
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      expect(packageFile.dependencies).to.have.property(
+        "@azure-rest/core-client",
+        "^2.3.1"
+      );
+      expect(packageFile.dependencies).to.have.property("@azure/core-util", "^1.9.2");
+    });
+
     it("should use standard version for LRO dependencies", () => {
       const model = createMockModel({
         moduleKind: "esm",

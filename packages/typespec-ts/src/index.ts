@@ -617,6 +617,9 @@ export async function $onEmit(context: EmitContext) {
         // Additional format-specific dependencies to merge when migrating
         // (e.g. fast-xml-parser when XML serialization is used)
         const additionalDependencies: Record<string, string> = {};
+        if (isAzureFlavor) {
+          additionalDependencies["@azure/core-util"] = "^1.9.2";
+        }
         if (packageUsesXmlSerialization(dpgContext.sdkPackage)) {
           additionalDependencies["fast-xml-parser"] = "^4.5.0";
         }

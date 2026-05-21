@@ -98,7 +98,7 @@ export function buildPackageFile(
 export function updatePackageFile(
   model: RLCModel,
   existingFilePathOrContent: string | Record<string, any>,
-  { exports, clientContextPaths }: PackageFileOptions = {}
+  { exports, dependencies, clientContextPaths }: PackageFileOptions = {}
 ) {
   const hasLro = hasPollingOperations(model);
   const isAzure = isAzurePackage(model);
@@ -106,6 +106,8 @@ export function updatePackageFile(
   const needsExportsUpdate = exports;
   const needsConstantPathsUpdate =
     clientContextPaths && clientContextPaths.length > 0;
+  const needsDependenciesUpdate =
+    dependencies && Object.keys(dependencies).length > 0;
   const needsPlatformImportsUpdate =
     model.options?.azureSdkForJs && model.options?.moduleKind === "esm";
 
@@ -138,6 +140,7 @@ export function updatePackageFile(
     !needsLroUpdate &&
     !needsExportsUpdate &&
     !needsConstantPathsUpdate &&
+    !needsDependenciesUpdate &&
     !needsPlatformImportsUpdate &&
     !needsCoreClientUpdate
   ) {
@@ -189,6 +192,13 @@ export function updatePackageFile(
       ...packageInfo.dependencies,
       "@azure/core-lro": "^3.1.0",
       "@azure/abort-controller": "^2.1.2"
+    };
+  }
+
+  if (needsDependenciesUpdate) {
+    packageInfo.dependencies = {
+      ...packageInfo.dependencies,
+      ...dependencies
     };
   }
 
