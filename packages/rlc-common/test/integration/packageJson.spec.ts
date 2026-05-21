@@ -278,6 +278,13 @@ describe("Package file generation", () => {
       // Default: no react-native entrypoint
       expect(packageFile).to.not.have.property("react-native");
       expect(packageFile).to.have.property("exports");
+      expect(packageFile).to.have.property("imports");
+      expect(packageFile.imports).to.deep.equal({
+        "#platform/*": {
+          browser: "./src/*-browser.mts",
+          default: "./src/*.ts"
+        }
+      });
       expect(packageFile.exports["./package.json"]).to.equal("./package.json");
       expect(packageFile.exports["."]).to.have.property("browser");
       // Default: no react-native in exports
@@ -304,6 +311,14 @@ describe("Package file generation", () => {
         "react-native",
         "./dist/react-native/index.js"
       );
+      expect(packageFile).to.have.property("imports");
+      expect(packageFile.imports).to.deep.equal({
+        "#platform/*": {
+          browser: "./src/*-browser.mts",
+          "react-native": "./src/*-react-native.mts",
+          default: "./src/*.ts"
+        }
+      });
       expect(packageFile.exports["."]).to.have.property("react-native");
       expect(packageFile.exports["."]["react-native"]).to.deep.equal({
         types: "./dist/react-native/index.d.ts",
@@ -1089,7 +1104,13 @@ describe("Package file generation", () => {
 
       // Platform imports should be added for Azure monorepo ESM packages
       expect(packageFile).to.have.property("imports");
-      expect(packageFile.imports).to.have.property("#platform/*.js");
+      expect(packageFile.imports).to.deep.equal({
+        "#platform/*": {
+          browser: "./src/*-browser.mts",
+          "react-native": "./src/*-react-native.mts",
+          default: "./src/*.ts"
+        }
+      });
     });
 
     it("should migrate @azure/core-client for non-monorepo Azure packages", () => {

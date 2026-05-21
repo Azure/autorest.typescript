@@ -147,10 +147,10 @@ export function updatePackageFile(
   // Ensure warp packages have #platform/* imports for polyfill resolution
   if (needsPlatformImportsUpdate) {
     packageInfo.imports = {
-      "#platform/*.js": {
-        browser: "./src/*-browser.mjs",
-        "react-native": "./src/*-react-native.mjs",
-        default: "./src/*.js"
+      "#platform/*": {
+        browser: "./src/*-browser.mts",
+        "react-native": "./src/*-react-native.mts",
+        default: "./src/*.ts"
       }
     };
   }
