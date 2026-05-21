@@ -30,7 +30,7 @@ describe("bytes", () => {
               | string
               | Uint8Array
               | ReadableStream<Uint8Array>
-              | NodeJS.ReadableStream;
+              | AsyncIterable<Uint8Array>;
             }
             
             export interface UploadFileViaBodyMediaTypesParam {
@@ -66,7 +66,7 @@ describe("bytes", () => {
               | string
               | Uint8Array
               | ReadableStream<Uint8Array>
-              | NodeJS.ReadableStream;
+              | AsyncIterable<Uint8Array>;
             }
             
             export interface UploadFileViaBodyMediaTypesParam {
@@ -125,7 +125,7 @@ describe("bytes", () => {
               | string
               | Uint8Array
               | ReadableStream<Uint8Array>
-              | NodeJS.ReadableStream;
+              | AsyncIterable<Uint8Array>;
           }
           
           export type ReadParameters = ReadBodyParam & RequestParameters;
@@ -201,7 +201,7 @@ describe("bytes", () => {
                           | string
                           | Uint8Array
                           | ReadableStream<Uint8Array>
-                          | NodeJS.ReadableStream
+                          | AsyncIterable<Uint8Array>
                           | File;
                         filename?: string;
                         contentType?: string;
@@ -212,7 +212,7 @@ describe("bytes", () => {
                           | string
                           | Uint8Array
                           | ReadableStream<Uint8Array>
-                          | NodeJS.ReadableStream
+                          | AsyncIterable<Uint8Array>
                           | File;
                         filename?: string;
                         contentType?: string;
@@ -263,7 +263,7 @@ describe("bytes", () => {
                           | string
                           | Uint8Array
                           | ReadableStream<Uint8Array>
-                          | NodeJS.ReadableStream
+                          | AsyncIterable<Uint8Array>
                           | File;
                         filename?: string;
                         contentType?: string;
@@ -274,7 +274,7 @@ describe("bytes", () => {
                           | string
                           | Uint8Array
                           | ReadableStream<Uint8Array>
-                          | NodeJS.ReadableStream
+                          | AsyncIterable<Uint8Array>
                           | File;
                         filename?: string;
                         contentType?: string;
@@ -370,7 +370,7 @@ describe("bytes", () => {
               | string
               | Uint8Array
               | ReadableStream<Uint8Array>
-              | NodeJS.ReadableStream
+              | AsyncIterable<Uint8Array>
               | File;
             filename?: string;
             contentType?: string;
@@ -382,7 +382,7 @@ describe("bytes", () => {
               | string
               | Uint8Array
               | ReadableStream<Uint8Array>
-              | NodeJS.ReadableStream
+              | AsyncIterable<Uint8Array>
               | File;
             filename?: string;
             contentType?: string;
@@ -391,11 +391,13 @@ describe("bytes", () => {
           export interface FooFilesPartDescriptor {
             name: "files";
             body:
-              | string
-              | Uint8Array
-              | ReadableStream<Uint8Array>
-              | NodeJS.ReadableStream
-              | File;
+              | (
+                  | string
+                  | Uint8Array
+                  | ReadableStream<Uint8Array>
+                  | AsyncIterable<Uint8Array>
+                  | File
+                )[];
             filename?: string;
             contentType?: string;
           }
@@ -406,7 +408,7 @@ describe("bytes", () => {
               | string
               | Uint8Array
               | ReadableStream<Uint8Array>
-              | NodeJS.ReadableStream
+              | AsyncIterable<Uint8Array>
               | File
               | number;
             filename?: string;
@@ -528,7 +530,7 @@ describe("bytes", () => {
 
       export interface ReadBodyParam {
         /** Value may contain any sequence of octets */
-        body: string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream;
+        body: string | Uint8Array | ReadableStream<Uint8Array> | AsyncIterable<Uint8Array>;
       }
 
       export interface ReadMediaTypesParam {
@@ -559,7 +561,7 @@ describe("bytes", () => {
           | string
           | Uint8Array
           | ReadableStream<Uint8Array>
-          | NodeJS.ReadableStream;
+          | AsyncIterable<Uint8Array>;
         }
         
         export interface ReadMediaTypesParam {

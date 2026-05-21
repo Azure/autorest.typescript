@@ -85,7 +85,7 @@ import { getModelNamespaceName } from "./namespaceUtils.js";
 import { reportDiagnostic } from "../lib.js";
 
 export const BINARY_TYPE_UNION =
-  "string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream";
+  "string | Uint8Array | ReadableStream<Uint8Array> | AsyncIterable<Uint8Array>";
 
 export const BINARY_AND_FILE_TYPE_UNION = `${BINARY_TYPE_UNION} | File`;
 
