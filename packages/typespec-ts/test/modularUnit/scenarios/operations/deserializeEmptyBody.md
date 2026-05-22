@@ -164,3 +164,96 @@ export async function getResource(
   return _getResourceDeserialize(result);
 }
 ```
+
+# Both empty body response and error response
+
+When an operation can return either a body response (200), an empty body response (204),
+or an error response (ServiceError), the generated deserializer must guard both the
+success-path body (for 204) and the error-path body deserialization.
+
+## TypeSpec
+
+```tsp
+@error
+model ServiceError {
+  code: string;
+  message: string;
+}
+
+model KeyValue {
+  key: string;
+  value: string;
+}
+
+@route("/keys/{key}")
+@delete
+op deleteKeyValue(@path key: string): { @statusCode statusCode: 200; @body body: KeyValue; } | {
+  @statusCode statusCode: 204;
+} | ServiceError;
+```
+
+## Operations
+
+```ts operations
+import { TestingContext as Client } from "./index.js";
+import { KeyValue, keyValueDeserializer, serviceErrorDeserializer } from "../models/models.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import { DeleteKeyValueOptionalParams } from "./options.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+
+export function _deleteKeyValueSend(
+  context: Client,
+  key: string,
+  options: DeleteKeyValueOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/keys/{key}",
+    {
+      key: key,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context
+    .path(path)
+    .delete({
+      ...operationOptionsToRequestParameters(options),
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
+    });
+}
+
+export async function _deleteKeyValueDeserialize(
+  result: PathUncheckedResponse,
+): Promise<KeyValue | undefined> {
+  const expectedStatuses = ["200", "204"];
+  if (!expectedStatuses.includes(result.status)) {
+    const error = createRestError(result);
+    if (result.body) {
+      error.details = serviceErrorDeserializer(result.body);
+    }
+
+    throw error;
+  }
+
+  if (!result.body) {
+    return result.body as KeyValue | undefined;
+  }
+
+  return keyValueDeserializer(result.body);
+}
+
+export async function deleteKeyValue(
+  context: Client,
+  key: string,
+  options: DeleteKeyValueOptionalParams = { requestOptions: {} },
+): Promise<KeyValue | undefined> {
+  const result = await _deleteKeyValueSend(context, key, options);
+  return _deleteKeyValueDeserialize(result);
+}
+```
