@@ -12,7 +12,8 @@ import { RLCModel } from "../interfaces.js";
  */
 export function buildTsConfig(model: RLCModel) {
   const { packageDetails, azureSdkForJs } = model.options || {};
-  const { generateTest, generateSample } = model.options || {};
+  const { generateTest, generateSample, generateReactNativeTarget } =
+    model.options || {};
   const clientPackageName = packageDetails?.name ?? "";
   const project = new Project();
 
@@ -21,10 +22,14 @@ export function buildTsConfig(model: RLCModel) {
   if (azureSdkForJs) {
     const references: { path: string }[] = [
       { path: "./config/tsconfig.src.esm.json" },
-      { path: "./config/tsconfig.src.browser.json" },
-      { path: "./config/tsconfig.src.react-native.json" },
-      { path: "./config/tsconfig.src.cjs.json" }
+      { path: "./config/tsconfig.src.browser.json" }
     ];
+
+    if (generateReactNativeTarget) {
+      references.push({ path: "./config/tsconfig.src.react-native.json" });
+    }
+
+    references.push({ path: "./config/tsconfig.src.cjs.json" });
 
     if (generateTest) {
       references.push(
