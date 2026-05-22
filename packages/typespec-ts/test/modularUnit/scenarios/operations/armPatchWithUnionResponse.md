@@ -122,11 +122,7 @@ export async function _updateDeserialize(
     throw error;
   }
 
-  if (!result.body) {
-    return result.body as PartnerTopic | undefined;
-  }
-
-  return partnerTopicDeserializer(result.body);
+  return result.body ? partnerTopicDeserializer(result.body) : undefined;
 }
 
 /** Update a PartnerTopic */

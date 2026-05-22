@@ -308,13 +308,8 @@ export function getDeserializePrivateFunction(
     // guard all body deserialization so we return undefined instead of throwing.
     // This only applies to non-LRO, non-paging operations where the deserialized type
     // comes from response.type (not from LRO metadata or paging).
-    if (response.optional && !isLroOnly && !isLroAndPaging && !isPagingOnly) {
-      statements.push(
-        `if (!result.body) {
-          return result.body as ${returnType.type};
-        }`
-      );
-    }
+    const needsBodyGuard =
+      response.optional && !isLroOnly && !isLroAndPaging && !isPagingOnly;
 
     const contentTypes = operation.operation.responses[0]?.contentTypes ?? [];
     const isXml = isXmlPayload(contentTypes);
@@ -334,6 +329,13 @@ export function getDeserializePrivateFunction(
       deserializedType.kind === "model" &&
       hasXmlSerialization(deserializedType)
     ) {
+      if (needsBodyGuard) {
+        statements.push(
+          `if (!result.body) {
+            return result.body as ${returnType.type};
+          }`
+        );
+      }
       const xmlDeserializerName = buildXmlModelDeserializer(
         context,
         deserializedType,
@@ -380,6 +382,13 @@ export function getDeserializePrivateFunction(
       }
     } else if (useXmlDeserialization) {
       // XML-only response
+      if (needsBodyGuard) {
+        statements.push(
+          `if (!result.body) {
+            return result.body as ${returnType.type};
+          }`
+        );
+      }
       const xmlDeserializerName = buildXmlModelDeserializer(
         context,
         deserializedType,
@@ -450,9 +459,16 @@ export function getDeserializePrivateFunction(
         };
       }
       if (deserializeFunctionName) {
-        statements.push(
-          `return ${deserializeFunctionName}(${deserializedRoot})${multipartCastSuffix}`
-        );
+        if (needsBodyGuard) {
+          // Use ternary form: return result.body ? deserializer(result.body) : undefined
+          statements.push(
+            `return ${deserializedRoot} ? ${deserializeFunctionName}(${deserializedRoot})${multipartCastSuffix} : undefined`
+          );
+        } else {
+          statements.push(
+            `return ${deserializeFunctionName}(${deserializedRoot})${multipartCastSuffix}`
+          );
+        }
       } else if (
         isAzureCoreErrorType(context.program, deserializedType.__raw)
       ) {
