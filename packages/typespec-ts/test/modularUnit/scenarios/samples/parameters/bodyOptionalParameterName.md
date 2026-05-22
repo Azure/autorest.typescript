@@ -181,9 +181,9 @@ export function _backupSend(
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
       headers: { accept: "application/json", ...options.requestOptions?.headers },
-      body: !options["backupRequestProperties"]
-        ? options["backupRequestProperties"]
-        : backupRequestPropertiesSerializer(options["backupRequestProperties"]),
+      body: !options?.backupRequestProperties
+        ? options?.backupRequestProperties
+        : backupRequestPropertiesSerializer(options?.backupRequestProperties),
     });
 }
 

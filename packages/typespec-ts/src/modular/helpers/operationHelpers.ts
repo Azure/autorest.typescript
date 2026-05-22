@@ -1725,14 +1725,7 @@ function buildBodyParameter(
     }) as string | undefined;
   }
 
-  const bodyParamName = normalizeName(
-    bodyParameter.name,
-    NameType.Parameter,
-    true
-  );
-  let bodyNameExpression = bodyParameter.optional
-    ? `${optionalParamName}["${bodyParamName}"]`
-    : bodyParamName;
+  let bodyNameExpression = getParamAccessor(bodyParameter, optionalParamName);
 
   // Check if body parameter has a client default value with matching type
   const hasClientDefault =
@@ -1746,15 +1739,17 @@ function buildBodyParameter(
     bodyNameExpression = `(${bodyNameExpression} ?? ${formattedDefault})`;
   }
 
-  // Only apply nullOrUndefinedPrefix if there's no client default value
-  // because the default value already handles null/undefined cases
-  const nullOrUndefinedPrefix = hasClientDefault
-    ? ""
-    : getPropertySerializationPrefix(
-        context,
-        bodyParameter,
-        bodyParameter.optional ? optionalParamName : undefined
-      );
+  // Build null guard using bodyNameExpression so it stays consistent with the
+  // accessor path (especially for nested body parameters like options?.body?.x).
+  // Skip when there's a client default value since it already handles null/undefined.
+  const needsNullGuard =
+    !hasClientDefault &&
+    (bodyParameter.optional ||
+      isTypeNullable(bodyParameter.type) ||
+      bodyNameExpression.includes("?."));
+  const nullOrUndefinedPrefix = needsNullGuard
+    ? `!${bodyNameExpression}? ${bodyNameExpression}:`
+    : "";
 
   // For dual-format operations, check the contentType option at runtime
   if (
@@ -2135,6 +2130,9 @@ function getParamAccessor(
   param: SdkHttpParameter,
   optionalParamName: string = "options"
 ): string {
+  if (param.isGeneratedName) {
+    return param.name;
+  }
   const methodParamExpr = getMethodParamExpr(param, optionalParamName);
   const clientPrefix = "context.";
   if (methodParamExpr) {
@@ -2162,6 +2160,11 @@ function getMethodParamExpr(
 ): string | undefined {
   const segments = param.methodParameterSegments;
   if (segments.length === 0) {
+    return undefined;
+  }
+  // When there are multiple paths (e.g., a composite body from multiple method
+  // params), we cannot resolve a single accessor — fall back to the caller's logic.
+  if (segments.length > 1) {
     return undefined;
   }
   const path = segments[0];
