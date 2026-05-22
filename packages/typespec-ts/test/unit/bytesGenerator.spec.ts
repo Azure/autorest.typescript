@@ -23,6 +23,7 @@ describe("bytes", () => {
         parameters?.content!,
         `
             import type { RequestParameters } from "@azure-rest/core-client";
+            import type { NodeReadableStream } from "./static-helpers/platform-types.js";
             
             export interface UploadFileViaBodyBodyParam {
               /** Value may contain any sequence of octets */
@@ -30,7 +31,7 @@ describe("bytes", () => {
               | string
               | Uint8Array
               | ReadableStream<Uint8Array>
-              | NodeJS.ReadableStream;
+              | NodeReadableStream;
             }
             
             export interface UploadFileViaBodyMediaTypesParam {
@@ -59,6 +60,7 @@ describe("bytes", () => {
         parameters?.content!,
         `
             import type { RequestParameters } from "@azure-rest/core-client";
+            import type { NodeReadableStream } from "./static-helpers/platform-types.js";
             
             export interface UploadFileViaBodyBodyParam {
               /** Value may contain any sequence of octets */
@@ -66,7 +68,7 @@ describe("bytes", () => {
               | string
               | Uint8Array
               | ReadableStream<Uint8Array>
-              | NodeJS.ReadableStream;
+              | NodeReadableStream;
             }
             
             export interface UploadFileViaBodyMediaTypesParam {
@@ -118,6 +120,7 @@ describe("bytes", () => {
       await assertEqualContent(
         parameters?.content!,
         `import type { RequestParameters } from "@azure-rest/core-client";
+            import type { NodeReadableStream } from "./static-helpers/platform-types.js";
                   
           export interface ReadBodyParam {
             /** Value may contain any sequence of octets */
@@ -125,7 +128,7 @@ describe("bytes", () => {
               | string
               | Uint8Array
               | ReadableStream<Uint8Array>
-              | NodeJS.ReadableStream;
+              | NodeReadableStream;
           }
           
           export type ReadParameters = ReadBodyParam & RequestParameters;
@@ -188,6 +191,7 @@ describe("bytes", () => {
           parameters?.content!,
           `
             import type { RequestParameters } from "@azure-rest/core-client";
+            import type { NodeReadableStream } from "./static-helpers/platform-types.js";
             
             export interface UploadFileBodyParam {
               /** Value may contain any sequence of octets */
@@ -201,7 +205,7 @@ describe("bytes", () => {
                           | string
                           | Uint8Array
                           | ReadableStream<Uint8Array>
-                          | NodeJS.ReadableStream
+                          | NodeReadableStream
                           | File;
                         filename?: string;
                         contentType?: string;
@@ -212,7 +216,7 @@ describe("bytes", () => {
                           | string
                           | Uint8Array
                           | ReadableStream<Uint8Array>
-                          | NodeJS.ReadableStream
+                          | NodeReadableStream
                           | File;
                         filename?: string;
                         contentType?: string;
@@ -250,6 +254,7 @@ describe("bytes", () => {
           parameters?.content!,
           `
             import type { RequestParameters } from "@azure-rest/core-client";
+            import type { NodeReadableStream } from "./static-helpers/platform-types.js";
             
             export interface UploadFileBodyParam {
               /** Value may contain any sequence of octets */
@@ -263,7 +268,7 @@ describe("bytes", () => {
                           | string
                           | Uint8Array
                           | ReadableStream<Uint8Array>
-                          | NodeJS.ReadableStream
+                          | NodeReadableStream
                           | File;
                         filename?: string;
                         contentType?: string;
@@ -274,7 +279,7 @@ describe("bytes", () => {
                           | string
                           | Uint8Array
                           | ReadableStream<Uint8Array>
-                          | NodeJS.ReadableStream
+                          | NodeReadableStream
                           | File;
                         filename?: string;
                         contentType?: string;
@@ -359,6 +364,8 @@ describe("bytes", () => {
         await assertEqualContent(
           models.inputModelFile?.content!,
           `
+          import type { NodeReadableStream } from "./static-helpers/platform-types.js";
+
           export interface FooNamePartDescriptor {
             name: "name";
             body: string;
@@ -370,7 +377,7 @@ describe("bytes", () => {
               | string
               | Uint8Array
               | ReadableStream<Uint8Array>
-              | NodeJS.ReadableStream
+              | NodeReadableStream
               | File;
             filename?: string;
             contentType?: string;
@@ -382,7 +389,7 @@ describe("bytes", () => {
               | string
               | Uint8Array
               | ReadableStream<Uint8Array>
-              | NodeJS.ReadableStream
+              | NodeReadableStream
               | File;
             filename?: string;
             contentType?: string;
@@ -394,7 +401,7 @@ describe("bytes", () => {
               | string
               | Uint8Array
               | ReadableStream<Uint8Array>
-              | NodeJS.ReadableStream
+              | NodeReadableStream
               | File;
             filename?: string;
             contentType?: string;
@@ -406,7 +413,7 @@ describe("bytes", () => {
               | string
               | Uint8Array
               | ReadableStream<Uint8Array>
-              | NodeJS.ReadableStream
+              | NodeReadableStream
               | File
               | number;
             filename?: string;
@@ -525,10 +532,11 @@ describe("bytes", () => {
         `
       import type { RequestParameters } from "@azure-rest/core-client";
       import type { SchemaContentTypeValues } from "./models.js";
+      import type { NodeReadableStream } from "./static-helpers/platform-types.js";
 
       export interface ReadBodyParam {
         /** Value may contain any sequence of octets */
-        body: string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream;
+        body: string | Uint8Array | ReadableStream<Uint8Array> | NodeReadableStream;
       }
 
       export interface ReadMediaTypesParam {
@@ -552,6 +560,7 @@ describe("bytes", () => {
         parameters?.content!,
         `
         import type { RequestParameters } from "@azure-rest/core-client";
+        import type { NodeReadableStream } from "./static-helpers/platform-types.js";
 
         export interface ReadBodyParam {
           /** Value may contain any sequence of octets */
@@ -559,7 +568,7 @@ describe("bytes", () => {
           | string
           | Uint8Array
           | ReadableStream<Uint8Array>
-          | NodeJS.ReadableStream;
+          | NodeReadableStream;
         }
         
         export interface ReadMediaTypesParam {
