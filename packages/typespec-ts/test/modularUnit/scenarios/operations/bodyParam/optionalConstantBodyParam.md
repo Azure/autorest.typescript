@@ -28,7 +28,7 @@ export function _readSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "text/plain",
-      body: !options["parameters"] ? options["parameters"] : "constantBody",
+      body: !options?.parameters ? options?.parameters : "constantBody",
     });
 }
 

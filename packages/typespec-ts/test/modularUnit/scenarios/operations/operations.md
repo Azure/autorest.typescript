@@ -328,7 +328,7 @@ export function _readSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      body: !options["bars"] ? options["bars"] : barArraySerializer(options["bars"]),
+      body: !options?.bars ? options?.bars : barArraySerializer(options?.bars),
     });
 }
 
@@ -506,7 +506,7 @@ export function _readSend(
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
       headers: { accept: "application/json", ...options.requestOptions?.headers },
-      body: !options["bars"] ? options["bars"] : barArraySerializer(options["bars"]),
+      body: !options?.bars ? options?.bars : barArraySerializer(options?.bars),
     });
 }
 
@@ -653,7 +653,7 @@ export async function read(
 }
 ```
 
-# skip: should generate paging if @items defined
+# should generate paging if @items defined
 
 ## TypeSpec
 
@@ -683,7 +683,7 @@ needAzureCore: true
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { _Bar, _barDeserializer, errorDeserializer} from "../models/models.js";
+import { _Bar, _barDeserializer, errorDeserializer } from "../models/models.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
@@ -734,7 +734,7 @@ export function test(
 }
 ```
 
-# skip: should generate paging if have extend model
+# should generate paging if have extend model
 
 ## TypeSpec
 

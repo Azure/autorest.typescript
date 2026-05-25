@@ -40,7 +40,9 @@ export function createNetworkAnalyticsApi(
     ...options,
     userAgentOptions: { userAgentPrefix },
     loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
-    credentials: { scopes: options.credentials?.scopes ?? [`${endpointUrl}/.default`] },
+    credentials: {
+      scopes: options.credentials?.scopes ?? ["https://management.azure.com/.default"],
+    },
   };
   const clientContext = getClient(endpointUrl, credential, updatedOptions);
   const apiVersion = options.apiVersion;

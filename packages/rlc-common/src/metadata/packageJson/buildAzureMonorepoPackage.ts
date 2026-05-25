@@ -95,12 +95,17 @@ export function getAzureMonorepoPackageInfo(
   config: AzureMonorepoInfoConfig
 ): Record<string, any> {
   const commonPackageInfo = getPackageCommonInfo(config);
+  const repositoryDirectory = config.monorepoPackageDirectory ?? "sdk/";
 
   return {
     ...commonPackageInfo,
     ...getAzureCommonPackageInfo(config),
     "sdk-type": `${config.azureArm ? "mgmt" : "client"}`,
-    repository: "github:Azure/azure-sdk-for-js",
+    repository: {
+      type: "git",
+      url: "git+https://github.com/Azure/azure-sdk-for-js",
+      directory: repositoryDirectory
+    },
     bugs: {
       url: "https://github.com/Azure/azure-sdk-for-js/issues"
     },

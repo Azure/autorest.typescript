@@ -108,6 +108,12 @@ export interface EmitterOptions {
    * (Modular SDK only) Defaults to `false`.
    */
   "treat-unknown-as-record"?: boolean;
+  /**
+   * When set to true, generates React Native build targets (tsconfig, warp target,
+   * package.json exports). Defaults to `false`.
+   * Only applicable when `azure-sdk-for-js` is `true`.
+   */
+  "generate-react-native-target"?: boolean;
 }
 
 export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
@@ -416,6 +422,12 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
       nullable: true,
       description:
         "When set to true, TypeSpec `unknown` type will be translated to `Record<string, unknown>` instead of `any` in the generated Modular SDK. This is useful when migrating from HLC where `unknown` in swagger mapped to `Record<string, unknown>`. (Modular SDK only) Defaults to `false`."
+    },
+    "generate-react-native-target": {
+      type: "boolean",
+      nullable: true,
+      description:
+        "When set to true, generates React Native build targets (tsconfig, warp target, package.json exports). Only applicable when azure-sdk-for-js is true. Defaults to `false`."
     }
   },
   required: []
