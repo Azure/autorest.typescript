@@ -1102,7 +1102,44 @@ describe("Package file generation", () => {
         "^2.3.1"
       );
 
-      // Platform imports should be added for Azure monorepo ESM packages
+      // Platform imports should be added for Azure monorepo ESM packages.
+      // By default (generateReactNativeTarget=false) the `react-native`
+      // condition must NOT be emitted, matching the fresh-generation path.
+      expect(packageFile).to.have.property("imports");
+      expect(packageFile.imports).to.deep.equal({
+        "#platform/*": {
+          browser: "./src/*-browser.mts",
+          default: "./src/*.ts"
+        }
+      });
+    });
+
+    it("should include react-native in platform imports when generateReactNativeTarget is true", () => {
+      const model = createMockModel({
+        moduleKind: "esm",
+        flavor: "azure",
+        isMonorepo: true,
+        hasLro: false,
+        generateReactNativeTarget: true
+      });
+
+      const initialPackageInfo = {
+        name: "@azure/test-package",
+        version: "1.0.0",
+        dependencies: {
+          "@azure-rest/core-client": "^2.3.1",
+          "@azure/core-rest-pipeline": "^1.20.0",
+          "tslib": "^2.8.1"
+        }
+      };
+
+      const packageFileContent = updatePackageFile(model, initialPackageInfo);
+      expect(packageFileContent).to.not.be.undefined;
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      // When opted-in, the `react-native` condition is added and must be
+      // positioned before `default` so Node's conditional resolution order
+      // matches the fresh-generation output in packageCommon.ts.
       expect(packageFile).to.have.property("imports");
       expect(packageFile.imports).to.deep.equal({
         "#platform/*": {
@@ -1111,6 +1148,37 @@ describe("Package file generation", () => {
           default: "./src/*.ts"
         }
       });
+      expect(
+        Object.keys(packageFile.imports["#platform/*"])
+      ).to.deep.equal(["browser", "react-native", "default"]);
+    });
+
+    it("should NOT add react-native to platform imports for non-monorepo packages even if generateReactNativeTarget is true", () => {
+      // needsPlatformImportsUpdate requires azureSdkForJs (isMonorepo) to be true.
+      // For non-monorepo packages, the platform imports block must be skipped
+      // entirely regardless of generateReactNativeTarget.
+      const model = createMockModel({
+        moduleKind: "esm",
+        flavor: "azure",
+        isMonorepo: false,
+        hasLro: false,
+        generateReactNativeTarget: true
+      });
+
+      const initialPackageInfo = {
+        name: "@azure/test-package",
+        version: "1.0.0",
+        dependencies: {
+          "@azure/core-client": "^1.9.3",
+          "tslib": "^2.6.2"
+        }
+      };
+
+      const packageFileContent = updatePackageFile(model, initialPackageInfo);
+      expect(packageFileContent).to.not.be.undefined;
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      expect(packageFile).to.not.have.property("imports");
     });
 
     it("should migrate @azure/core-client for non-monorepo Azure packages", () => {
