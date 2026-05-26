@@ -452,7 +452,12 @@ export function getDeserializePrivateFunction(
             deserializedType,
             deserializedRoot,
             true,
-            isBinaryPayload(context, response.type!.__raw!, contentTypes)
+            isBinaryPayload(
+              context,
+              response.type!.__raw!,
+              contentTypes,
+              getEncodeForType(response.type!)
+            )
               ? "binary"
               : getEncodeForType(deserializedType)
           )}${multipartCastSuffix}`
@@ -1702,14 +1707,7 @@ function buildBodyParameter(
     }) as string | undefined;
   }
 
-  const bodyParamName = normalizeName(
-    bodyParameter.name,
-    NameType.Parameter,
-    true
-  );
-  let bodyNameExpression = bodyParameter.optional
-    ? `${optionalParamName}["${bodyParamName}"]`
-    : bodyParamName;
+  let bodyNameExpression = getParamAccessor(bodyParameter, optionalParamName);
 
   // Check if body parameter has a client default value with matching type
   const hasClientDefault =
@@ -1723,15 +1721,17 @@ function buildBodyParameter(
     bodyNameExpression = `(${bodyNameExpression} ?? ${formattedDefault})`;
   }
 
-  // Only apply nullOrUndefinedPrefix if there's no client default value
-  // because the default value already handles null/undefined cases
-  const nullOrUndefinedPrefix = hasClientDefault
-    ? ""
-    : getPropertySerializationPrefix(
-        context,
-        bodyParameter,
-        bodyParameter.optional ? optionalParamName : undefined
-      );
+  // Build null guard using bodyNameExpression so it stays consistent with the
+  // accessor path (especially for nested body parameters like options?.body?.x).
+  // Skip when there's a client default value since it already handles null/undefined.
+  const needsNullGuard =
+    !hasClientDefault &&
+    (bodyParameter.optional ||
+      isTypeNullable(bodyParameter.type) ||
+      bodyNameExpression.includes("?."));
+  const nullOrUndefinedPrefix = needsNullGuard
+    ? `!${bodyNameExpression}? ${bodyNameExpression}:`
+    : "";
 
   // For dual-format operations, check the contentType option at runtime
   if (
@@ -1765,7 +1765,12 @@ function buildBodyParameter(
     bodyParameter.type,
     bodyNameExpression,
     !bodyParameter.optional,
-    isBinaryPayload(context, bodyParameter.__raw!, bodyParameter.contentTypes)
+    isBinaryPayload(
+      context,
+      bodyParameter.__raw!,
+      bodyParameter.contentTypes,
+      getEncodeForType(bodyParameter.type)
+    )
       ? "binary"
       : getEncodeForType(bodyParameter.type),
     undefined,
@@ -2112,6 +2117,9 @@ function getParamAccessor(
   param: SdkHttpParameter,
   optionalParamName: string = "options"
 ): string {
+  if (param.isGeneratedName) {
+    return param.name;
+  }
   const methodParamExpr = getMethodParamExpr(param, optionalParamName);
   const clientPrefix = "context.";
   if (methodParamExpr) {
@@ -2139,6 +2147,11 @@ function getMethodParamExpr(
 ): string | undefined {
   const segments = param.methodParameterSegments;
   if (segments.length === 0) {
+    return undefined;
+  }
+  // When there are multiple paths (e.g., a composite body from multiple method
+  // params), we cannot resolve a single accessor — fall back to the caller's logic.
+  if (segments.length > 1) {
     return undefined;
   }
   const path = segments[0];
@@ -2997,11 +3010,13 @@ export function getExpectedStatuses(
     // POST/PUT/PATCH: Add 200, 201, 202 for polling
     const verb = operation.operation.verb.toLowerCase();
     if (verb === "delete") {
-      statusCodes = Array.from(new Set([...statusCodes, 200, 202]));
+      statusCodes = [...statusCodes, 200, 202];
     } else {
-      statusCodes = Array.from(new Set([...statusCodes, 200, 201, 202]));
+      statusCodes = [...statusCodes, 200, 201, 202];
     }
   }
+
+  statusCodes = Array.from(new Set(statusCodes));
 
   return `[${statusCodes.map((x) => `"${x}"`).join(", ")}]`;
 }
@@ -3261,7 +3276,10 @@ export function checkWrapNonModelReturn(
 
   // bytes with binary content type → binary wrap (isBinary=true)
   //   HLC: bytes → binary payload → separate binary handling
-  if (type.__raw && isBinaryPayload(context, type.__raw, contentTypes)) {
+  if (
+    type.__raw &&
+    isBinaryPayload(context, type.__raw, contentTypes, getEncodeForType(type))
+  ) {
     return { shouldWrap: true, isBinary: true };
   }
 

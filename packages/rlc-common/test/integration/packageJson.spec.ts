@@ -132,10 +132,12 @@ describe("Package file generation", () => {
       const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
 
       expect(packageFile).to.have.property("sdk-type", "client");
-      expect(packageFile).to.have.property(
-        "repository",
-        "github:Azure/azure-sdk-for-js"
-      );
+      expect(packageFile).to.have.property("repository");
+      expect(packageFile.repository).to.deep.equal({
+        type: "git",
+        url: "git+https://github.com/Azure/azure-sdk-for-js",
+        directory: "test"
+      });
       expect(packageFile).to.have.property("bugs");
       expect(packageFile.bugs).to.have.property(
         "url",
@@ -149,6 +151,21 @@ describe("Package file generation", () => {
         "prettier",
         "@azure/eslint-plugin-azure-sdk/prettier.json"
       );
+    });
+
+    it("should set a default repository directory when package directory is unavailable", () => {
+      const model = createMockModel({
+        ...baseConfig
+      });
+      const packageFileContent = buildPackageFile(model);
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      expect(packageFile).to.have.property("repository");
+      expect(packageFile.repository).to.deep.equal({
+        type: "git",
+        url: "git+https://github.com/Azure/azure-sdk-for-js",
+        directory: "sdk/"
+      });
     });
 
     it("should have monorepo metadata", () => {
@@ -236,7 +253,7 @@ describe("Package file generation", () => {
       );
     });
 
-    it("[esm] should include correct entrypoints", () => {
+    it("[esm] should include correct entrypoints (without react-native by default)", () => {
       const model = createMockModel({
         ...baseConfig,
         withSamples: true,
@@ -258,15 +275,54 @@ describe("Package file generation", () => {
         "browser",
         "./dist/browser/index.js"
       );
+      // Default: no react-native entrypoint
+      expect(packageFile).to.not.have.property("react-native");
       expect(packageFile).to.have.property("exports");
+      expect(packageFile).to.have.property("imports");
+      expect(packageFile.imports).to.deep.equal({
+        "#platform/*": {
+          browser: "./src/*-browser.mts",
+          default: "./src/*.ts"
+        }
+      });
       expect(packageFile.exports["./package.json"]).to.equal("./package.json");
       expect(packageFile.exports["."]).to.have.property("browser");
-      expect(packageFile.exports["."]).to.have.property("react-native");
+      // Default: no react-native in exports
+      expect(packageFile.exports["."]).to.not.have.property("react-native");
       expect(packageFile.exports["."]).to.have.property("import");
       expect(packageFile.exports["."]).to.have.property("require");
       expect(packageFile.exports["."]["import"]).to.deep.equal({
         types: "./dist/esm/index.d.ts",
         default: "./dist/esm/index.js"
+      });
+    });
+
+    it("[esm] should include react-native entrypoints when generateReactNativeTarget is true", () => {
+      const model = createMockModel({
+        ...baseConfig,
+        withSamples: true,
+        moduleKind: "esm",
+        generateReactNativeTarget: true
+      });
+      const packageFileContent = buildPackageFile(model);
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      expect(packageFile).to.have.property(
+        "react-native",
+        "./dist/react-native/index.js"
+      );
+      expect(packageFile).to.have.property("imports");
+      expect(packageFile.imports).to.deep.equal({
+        "#platform/*": {
+          browser: "./src/*-browser.mts",
+          "react-native": "./src/*-react-native.mts",
+          default: "./src/*.ts"
+        }
+      });
+      expect(packageFile.exports["."]).to.have.property("react-native");
+      expect(packageFile.exports["."]["react-native"]).to.deep.equal({
+        types: "./dist/react-native/index.d.ts",
+        default: "./dist/react-native/index.js"
       });
     });
 
@@ -444,11 +500,28 @@ describe("Package file generation", () => {
       );
     });
 
-    it("should include browser and react-native entrypoints in package.json", () => {
+    it("should include browser but not react-native entrypoints by default", () => {
       const model = createMockModel({
         ...baseConfig,
         azureArm: true,
         isModularLibrary: true
+      });
+      const packageFileContent = buildPackageFile(model);
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      expect(packageFile).to.have.property(
+        "browser", "./dist/browser/index.js",
+      );
+      // Default: no react-native entrypoint
+      expect(packageFile).to.not.have.property("react-native");
+    });
+
+    it("should include react-native entrypoint when generateReactNativeTarget is true", () => {
+      const model = createMockModel({
+        ...baseConfig,
+        azureArm: true,
+        isModularLibrary: true,
+        generateReactNativeTarget: true
       });
       const packageFileContent = buildPackageFile(model);
       const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
@@ -1029,9 +1102,83 @@ describe("Package file generation", () => {
         "^2.3.1"
       );
 
-      // Platform imports should be added for Azure monorepo ESM packages
+      // Platform imports should be added for Azure monorepo ESM packages.
+      // By default (generateReactNativeTarget=false) the `react-native`
+      // condition must NOT be emitted, matching the fresh-generation path.
       expect(packageFile).to.have.property("imports");
-      expect(packageFile.imports).to.have.property("#platform/*.js");
+      expect(packageFile.imports).to.deep.equal({
+        "#platform/*": {
+          browser: "./src/*-browser.mts",
+          default: "./src/*.ts"
+        }
+      });
+    });
+
+    it("should include react-native in platform imports when generateReactNativeTarget is true", () => {
+      const model = createMockModel({
+        moduleKind: "esm",
+        flavor: "azure",
+        isMonorepo: true,
+        hasLro: false,
+        generateReactNativeTarget: true
+      });
+
+      const initialPackageInfo = {
+        name: "@azure/test-package",
+        version: "1.0.0",
+        dependencies: {
+          "@azure-rest/core-client": "^2.3.1",
+          "@azure/core-rest-pipeline": "^1.20.0",
+          "tslib": "^2.8.1"
+        }
+      };
+
+      const packageFileContent = updatePackageFile(model, initialPackageInfo);
+      expect(packageFileContent).to.not.be.undefined;
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      // When opted-in, the `react-native` condition is added and must be
+      // positioned before `default` so Node's conditional resolution order
+      // matches the fresh-generation output in packageCommon.ts.
+      expect(packageFile).to.have.property("imports");
+      expect(packageFile.imports).to.deep.equal({
+        "#platform/*": {
+          browser: "./src/*-browser.mts",
+          "react-native": "./src/*-react-native.mts",
+          default: "./src/*.ts"
+        }
+      });
+      expect(
+        Object.keys(packageFile.imports["#platform/*"])
+      ).to.deep.equal(["browser", "react-native", "default"]);
+    });
+
+    it("should NOT add react-native to platform imports for non-monorepo packages even if generateReactNativeTarget is true", () => {
+      // needsPlatformImportsUpdate requires azureSdkForJs (isMonorepo) to be true.
+      // For non-monorepo packages, the platform imports block must be skipped
+      // entirely regardless of generateReactNativeTarget.
+      const model = createMockModel({
+        moduleKind: "esm",
+        flavor: "azure",
+        isMonorepo: false,
+        hasLro: false,
+        generateReactNativeTarget: true
+      });
+
+      const initialPackageInfo = {
+        name: "@azure/test-package",
+        version: "1.0.0",
+        dependencies: {
+          "@azure/core-client": "^1.9.3",
+          "tslib": "^2.6.2"
+        }
+      };
+
+      const packageFileContent = updatePackageFile(model, initialPackageInfo);
+      expect(packageFileContent).to.not.be.undefined;
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      expect(packageFile).to.not.have.property("imports");
     });
 
     it("should migrate @azure/core-client for non-monorepo Azure packages", () => {

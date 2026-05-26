@@ -403,6 +403,12 @@ describe("Special Words Client", () => {
     });
   });
 
+  describe("ReservedOperationBodyParams", () => {
+    it("should post withItems", async () => {
+      await client.reservedOperationBodyParams.withItems(["item"]);
+    });
+  });
+
   describe("ExtensibleStrings", () => {
     it("should put extensible string value", async () => {
       const result =

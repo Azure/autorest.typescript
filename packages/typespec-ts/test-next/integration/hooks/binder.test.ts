@@ -393,6 +393,45 @@ describe("Binder", () => {
       //
       // buildCsvCollection();
     });
+
+    it("should use #platform subpath imports without extension for helpers with platform variants", () => {
+      binder = provideBinder(project, { useSubpathImports: true });
+      const helperFile = project.createSourceFile(
+        "src/static-helpers/serialization/get-binary-response.ts",
+        "",
+        {
+          overwrite: true
+        }
+      );
+      project.createSourceFile(
+        "src/static-helpers/serialization/get-binary-response-browser.mts",
+        "export {};",
+        {
+          overwrite: true
+        }
+      );
+      addDeclaration(
+        helperFile,
+        {
+          kind: StructureKind.Function,
+          name: "getBinaryResponse"
+        },
+        "getBinaryResponse"
+      );
+
+      const sourceFile = project.createSourceFile("src/test-platform.ts", "", {
+        overwrite: true
+      });
+      sourceFile.addStatements(`${resolveReference("getBinaryResponse")}();`);
+
+      binder.resolveAllReferences("/modularPackageFolder/src");
+
+      assertGetImportStatements(
+        sourceFile,
+        "#platform/static-helpers/serialization/get-binary-response"
+      );
+      assertGetStatement(sourceFile, "getBinaryResponse();");
+    });
   });
 
   describe("External Dependencies Override", () => {
