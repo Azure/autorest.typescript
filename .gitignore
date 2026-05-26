@@ -33,3 +33,13 @@ vitest.config.ts.timestamp*
 .turbo/
 packages/typespec-ts/submodules
 .gitmodules
+# Squad: local-only team state (never committed)
+.squad/
+.squad-workstream
+.copilot/
+plan.md
+.github/agents/squad.agent.md
+.github/workflows/squad-heartbeat.yml
+.github/workflows/squad-issue-assign.yml
+.github/workflows/squad-triage.yml
+.github/workflows/sync-squad-labels.yml

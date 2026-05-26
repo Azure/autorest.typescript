@@ -211,7 +211,11 @@ export function emitNonModelResponseTypes(
   }
 }
 
-function emitType(context: SdkContext, type: SdkType, sourceFile: SourceFile) {
+export function emitType(
+  context: SdkContext,
+  type: SdkType,
+  sourceFile: SourceFile
+) {
   if (type.kind === "model") {
     if (isAzureCoreErrorType(context.program, type.__raw)) {
       return;
@@ -441,7 +445,7 @@ function getModelAndAncestorProperties(
   return properties;
 }
 
-function addSerializationFunctions(
+export function addSerializationFunctions(
   context: SdkContext,
   typeOrProperty: SdkType | SdkModelPropertyType,
   sourceFile: SourceFile,
@@ -597,7 +601,8 @@ function buildNullableType(context: SdkContext, type: SdkNullableType) {
 export function buildEnumTypes(
   context: SdkContext,
   type: SdkEnumType,
-  reportMemberNameDiagnostic = false // if reportMemberNameDiagnostic is true, it will report diagnostic for enum member name
+  reportMemberNameDiagnostic = false, // if reportMemberNameDiagnostic is true, it will report diagnostic for enum member name
+  treatAsExtensible = isExtensibleEnum(context, type)
 ): [TypeAliasDeclarationStructure, EnumDeclarationStructure] {
   const rawMembers = type.values.map((value) =>
     emitEnumMember(context, value, reportMemberNameDiagnostic)
@@ -613,14 +618,14 @@ export function buildEnumTypes(
     kind: StructureKind.TypeAlias,
     name: normalizeModelName(context, type),
     isExported: true,
-    type: !isExtensibleEnum(context, type)
+    type: !treatAsExtensible
       ? type.values.map((v) => getTypeExpression(context, v)).join(" | ")
       : getTypeExpression(context, type.valueType)
   };
 
   const docs = type.doc ? type.doc : "Type of " + enumAsUnion.name;
   enumAsUnion.docs =
-    isExtensibleEnum(context, type) && type.doc
+    treatAsExtensible && type.doc
       ? [getExtensibleEnumDescription(context, type) ?? docs]
       : [docs];
   enumDeclaration.docs = type.doc

@@ -69,26 +69,28 @@ import {
   buildSnippets,
   buildTsSampleConfig
 } from "@azure-tools/rlc-common";
-import {
-  buildRootIndex,
-  buildSubClientIndexFile
-} from "./modular/buildRootIndex.js";
 import { emitContentByBuilder, emitModels } from "./utils/emitUtil.js";
 import { provideContext, useContext } from "./contextManager.js";
 
 import { EmitterOptions } from "./lib.js";
 import { ModularEmitterOptions } from "./modular/interfaces.js";
 import { Project } from "ts-morph";
-import { buildClassicOperationFiles } from "./modular/buildClassicalOperationGroups.js";
-import { buildClassicalClient } from "./modular/buildClassicalClient.js";
+import { getClientContextPath } from "./modular/buildClientContext.js";
+import { adaptSingleClient, adaptToCodeModel } from "./tcgcadapter/adapter.js";
+import { emitClassicalClient } from "./codegen/classicalClient.js";
+import { emitClassicalOperationFiles } from "./codegen/classicalOperations.js";
+import { emitClientContext } from "./codegen/clients.js";
 import {
-  getClientContextPath,
-  buildClientContext
-} from "./modular/buildClientContext.js";
+  emitRootIndex,
+  emitSubClientIndex,
+  emitSubpathIndexFiles
+} from "./codegen/indexFiles.js";
+import { emitOperations } from "./codegen/operations.js";
+import { emitModelFiles } from "./codegen/models.js";
+import { emitResponseTypes } from "./codegen/responseTypes.js";
+import { dedupePagedAsyncIterableIteratorImports } from "./codegen/pagingImports.js";
 import { buildApiOptions } from "./modular/emitModelsOptions.js";
-import { buildOperationFiles } from "./modular/buildOperations.js";
 import { buildRestorePoller } from "./modular/buildRestorePoller.js";
-import { buildSubpathIndexFile } from "./modular/buildSubpathIndex.js";
 import {
   createSdkContext,
   listAllServiceNamespaces,
@@ -97,7 +99,6 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import { transformModularEmitterOptions } from "./modular/buildModularOptions.js";
 import { emitLoggerFile } from "./modular/emitLoggerFile.js";
-import { emitTypes, emitNonModelResponseTypes } from "./modular/emitModels.js";
 import { existsSync } from "fs";
 import { getModuleExports } from "./modular/buildProjectFiles.js";
 import {
@@ -336,6 +337,12 @@ export async function $onEmit(context: EmitContext) {
 
     emitLoggerFile(modularEmitterOptions, modularSourcesRoot);
 
+    const codeModel = adaptToCodeModel({
+      sdkContext: dpgContext,
+      emitterOptions: modularEmitterOptions
+    });
+    const generationSettings = codeModel.settings;
+
     const rootIndexFile = project.createSourceFile(
       `${modularSourcesRoot}/index.ts`,
       "",
@@ -344,51 +351,51 @@ export async function $onEmit(context: EmitContext) {
       }
     );
 
-    emitTypes(dpgContext, { sourceRoot: modularSourcesRoot });
-    emitNonModelResponseTypes(dpgContext, { sourceRoot: modularSourcesRoot });
-    buildSubpathIndexFile(modularEmitterOptions, "models", undefined, {
+    emitModelFiles(project, codeModel, dpgContext);
+    emitResponseTypes(project, codeModel.clients, generationSettings);
+    const clientMap = getClientHierarchyMap(dpgContext);
+    emitSubpathIndexFiles(project, generationSettings, "models", undefined, {
       recursive: true
     });
-    const clientMap = getClientHierarchyMap(dpgContext);
     if (clientMap.length === 0) {
       // If no clients, we still need to build the root index file
-      buildRootIndex(dpgContext, modularEmitterOptions, rootIndexFile);
+      emitRootIndex(project, generationSettings, rootIndexFile);
     }
     for (const subClient of clientMap) {
       await renameClientName(subClient[1], modularEmitterOptions);
       buildApiOptions(dpgContext, subClient, modularEmitterOptions);
-      buildOperationFiles(dpgContext, subClient, modularEmitterOptions);
-      buildClientContext(dpgContext, subClient, modularEmitterOptions);
+      const tsClient = adaptSingleClient(
+        subClient,
+        dpgContext,
+        modularEmitterOptions
+      );
+      emitOperations(project, tsClient, generationSettings);
+      emitClientContext(project, tsClient, generationSettings);
       buildRestorePoller(dpgContext, subClient, modularEmitterOptions);
       if (dpgContext.rlcOptions?.hierarchyClient) {
-        buildSubpathIndexFile(modularEmitterOptions, "api", subClient, {
+        emitSubpathIndexFiles(project, generationSettings, "api", tsClient, {
           exportIndex: false,
           recursive: true
         });
       } else {
-        buildSubpathIndexFile(modularEmitterOptions, "api", subClient, {
+        emitSubpathIndexFiles(project, generationSettings, "api", tsClient, {
           recursive: true,
           exportIndex: true
         });
       }
 
-      buildClassicalClient(dpgContext, subClient, modularEmitterOptions);
-      buildClassicOperationFiles(dpgContext, subClient, modularEmitterOptions);
-      buildSubpathIndexFile(modularEmitterOptions, "classic", subClient, {
+      emitClassicalClient(project, tsClient, generationSettings);
+      emitClassicalOperationFiles(project, tsClient, generationSettings);
+      emitSubpathIndexFiles(project, generationSettings, "classic", tsClient, {
         exportIndex: true,
         interfaceOnly: true
       });
       const { subfolder } = getModularClientOptions(subClient);
       // Generate index file for clients with subfolders (multi-client scenarios and nested clients)
       if (subfolder) {
-        buildSubClientIndexFile(dpgContext, subClient, modularEmitterOptions);
+        emitSubClientIndex(project, generationSettings, tsClient);
       }
-      buildRootIndex(
-        dpgContext,
-        modularEmitterOptions,
-        rootIndexFile,
-        subClient
-      );
+      emitRootIndex(project, generationSettings, rootIndexFile, tsClient);
     }
     // Enable modular sample generation when explicitly set to true or MPG
     if (emitterOptions["generate-sample"] === true) {
@@ -406,6 +413,10 @@ export async function $onEmit(context: EmitContext) {
     );
     if (program.compilerOptions.noEmit || program.hasError()) {
       return;
+    }
+
+    for (const file of project.getSourceFiles()) {
+      dedupePagedAsyncIterableIteratorImports(file);
     }
 
     for (const file of project.getSourceFiles()) {
