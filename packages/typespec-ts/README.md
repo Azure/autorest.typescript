@@ -190,8 +190,6 @@ Internal option, the value is default for TypeSpec generation
 
 Whether to generate a Modular library. Defaults to `false`. Arm packages default to `true`.
 
-> **Note:** "Modular library" is the legacy term for TypeSpec-generated libraries.
-
 ### `enable-operation-group`
 
 **Type:** `boolean`
@@ -232,7 +230,7 @@ Internal option for test.
 
 **Type:** `boolean`
 
-Whether to affect the generation of the additional property feature for the client. Defaults to `false`.
+Whether to affect the generation of the additional property feature for the Modular client. Defaults to `false`.
 
 ### `experimental-extensible-enums`
 
@@ -274,8 +272,8 @@ Deprecated option for RLC legacy generation.
 
 **Type:** `object`
 
-Only for TypeSpec-generated SDK.
-By default, code generation uses the titles specified in the `@client` and `@service` decorators in TypeSpec to name clients. If you need to override these names, you can configure the `typespec-title-map`. The map's keys represent the original client names from TypeSpec, and the values are the desired client names. This configuration supports renaming multiple clients.
+Only for Modular generation
+By default, code generation uses the titles specified in the `@client` and `@service` decorators in TypeSpec to name modular clients. If you need to override these names, you can configure the `typespec-title-map`. The map's keys represent the original client names from TypeSpec, and the values are the desired client names. This configuration supports renaming multiple clients.
 
       ```yaml
       typespec-title-map:
