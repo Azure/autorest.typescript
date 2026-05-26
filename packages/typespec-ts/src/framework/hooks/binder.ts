@@ -249,9 +249,54 @@ class BinderImp implements Binder {
    * Applies all tracked imports to their respective source files.
    */
   resolveAllReferences(sourceRoot: string, testRoot?: string): void {
+    // Pre-compute placeholder -> declaration/dependency maps
+    const declarationByPlaceholder = new Map<
+      string,
+      [unknown, DeclarationInfo | StaticHelperMetadata]
+    >();
+    for (const [key, value] of this.declarations) {
+      declarationByPlaceholder.set(this.serializePlaceholder(key), [
+        key,
+        value
+      ]);
+    }
+    for (const [key, value] of this.staticHelpers) {
+      declarationByPlaceholder.set(this.serializePlaceholder(key), [
+        key,
+        value
+      ]);
+    }
+    const dependencyByPlaceholder = new Map<string, ReferenceableSymbol>();
+    for (const dependency of Object.values(this.dependencies)) {
+      dependencyByPlaceholder.set(
+        this.serializePlaceholder(refkey(dependency)),
+        dependency
+      );
+    }
+
     this.project.getSourceFiles().map((file) => {
-      this.resolveDeclarationReferences(file);
-      this.resolveDependencyReferences(file);
+      // Scan each file's text once to find placeholders that are actually
+      // present, then build one placeholder -> replacement map per file and
+      // apply it in a single pass.
+      const presentPlaceholders = collectPlaceholders(file);
+      if (presentPlaceholders.size > 0) {
+        const replacementMap = new Map<string, string>();
+        this.resolveDeclarationReferences(
+          file,
+          declarationByPlaceholder,
+          presentPlaceholders,
+          replacementMap
+        );
+        this.resolveDependencyReferences(
+          file,
+          dependencyByPlaceholder,
+          presentPlaceholders,
+          replacementMap
+        );
+        if (replacementMap.size > 0) {
+          applyReplacements(file, replacementMap);
+        }
+      }
       const importStructures = this.imports.get(file);
       if (importStructures) {
         // Sort imports in place by module specifier to ensure consistent ordering
@@ -267,34 +312,54 @@ class BinderImp implements Binder {
     this.cleanUnreferencedHelpers(sourceRoot, testRoot);
   }
 
-  private resolveDependencyReferences(file: SourceFile) {
-    if (!hasAnyPlaceholders(file)) {
-      return;
-    }
-    for (const dependency of Object.values(this.dependencies)) {
-      const placeholder = this.serializePlaceholder(refkey(dependency));
-      const { name, module } = dependency;
-      const occurences = countPlaceholderOccurrences(file, placeholder);
-      if (occurences > 0) {
-        const importDec = this.addImport(file, module, name);
-        const uniqueName = importDec.alias ?? name;
-        replacePlaceholder(file, placeholder, uniqueName);
+  /**
+   * Resolves placeholders that refer to external dependencies by registering
+   * the matching imports and recording the local names in `replacementMap`.
+   * @param file - The source file currently being processed.
+   * @param dependencyByPlaceholder - Map from placeholder string to its dependency descriptor.
+   * @param presentPlaceholders - The set of placeholders actually present in the file's text.
+   * @param replacementMap - The per-file map that receives placeholder -> local-name entries.
+   */
+  private resolveDependencyReferences(
+    file: SourceFile,
+    dependencyByPlaceholder: Map<string, ReferenceableSymbol>,
+    presentPlaceholders: Set<string>,
+    replacementMap: Map<string, string>
+  ) {
+    for (const [placeholder, dependency] of dependencyByPlaceholder) {
+      if (!presentPlaceholders.has(placeholder)) {
+        continue;
       }
+      const { name, module } = dependency;
+      const importDec = this.addImport(file, module, name);
+      const uniqueName = importDec.alias ?? name;
+      replacementMap.set(placeholder, uniqueName);
     }
   }
 
-  private resolveDeclarationReferences(file: SourceFile) {
-    if (!hasAnyPlaceholders(file)) {
-      return;
-    }
-
-    for (const [declarationKey, declaration] of [
-      ...this.declarations,
-      ...this.staticHelpers
-    ]) {
-      const placeholderKey = this.serializePlaceholder(declarationKey);
-      const occurences = countPlaceholderOccurrences(file, placeholderKey);
-      if (!occurences) {
+  /**
+   * Resolves placeholders that refer to in-project declarations, registering
+   * cross-file imports as needed and recording the local names in
+   * `replacementMap`.
+   * @param file - The source file currently being processed.
+   * @param declarationByPlaceholder - Map from placeholder string to its declaration key and metadata.
+   * @param presentPlaceholders - The set of placeholders actually present in the file's text.
+   * @param replacementMap - The per-file map that receives placeholder -> local-name entries.
+   */
+  private resolveDeclarationReferences(
+    file: SourceFile,
+    declarationByPlaceholder: Map<
+      string,
+      [unknown, DeclarationInfo | StaticHelperMetadata]
+    >,
+    presentPlaceholders: Set<string>,
+    replacementMap: Map<string, string>
+  ) {
+    for (const [
+      placeholderKey,
+      [declarationKey, declaration]
+    ] of declarationByPlaceholder) {
+      if (!presentPlaceholders.has(placeholderKey)) {
         continue;
       }
 
@@ -317,7 +382,7 @@ class BinderImp implements Binder {
         const importDec = this.addImport(file, importTarget, name);
         name = importDec.alias ?? name;
       }
-      replacePlaceholder(file, placeholderKey, name);
+      replacementMap.set(placeholderKey, name);
     }
   }
 
@@ -410,27 +475,59 @@ export function useBinder(): Binder {
 }
 
 /**
- * Replaces all instances of a placeholder in a source file with a given value.
- * @param sourceFile - The source file where the replacement occurs.
- * @param placeholder - The placeholder string to replace.
- * @param value - The value to replace the placeholder with.
+ * Replaces every placeholder in a source file in one bulk text.replace
+ * followed by a single replaceWithText call.
+ * @param sourceFile - The source file to mutate.
+ * @param replacementMap - A map from each placeholder string to its replacement value.
  */
-function replacePlaceholder(
+function applyReplacements(
   sourceFile: SourceFile,
-  placeholder: string,
-  value: string
+  replacementMap: Map<string, string>
 ): void {
-  const fileText = sourceFile.getFullText();
-  const regex = new RegExp(escapeRegExp(placeholder), "g");
-  const updatedText = fileText.replace(regex, value);
-  sourceFile.replaceWithText(updatedText);
+  if (replacementMap.size === 0) {
+    return;
+  }
+  const text = sourceFile.getFullText();
+  const placeholderRegex = new RegExp(
+    `${escapeRegExp(PLACEHOLDER_PREFIX)}.+?__`,
+    "g"
+  );
+  let changed = false;
+  const updatedText = text.replace(placeholderRegex, (match) => {
+    const replacement = replacementMap.get(match);
+    if (replacement === undefined) {
+      return match;
+    }
+    changed = true;
+    return replacement;
+  });
+  if (changed) {
+    sourceFile.replaceWithText(updatedText);
+  }
 }
 
-function countPlaceholderOccurrences(
-  sourceFile: SourceFile,
-  placeholder: string
-): number {
-  return sourceFile.getFullText().split(placeholder).length - 1;
+/**
+ * Returns the set of distinct `__PLACEHOLDER_<refkey>__` strings present in
+ * the file, after a single text scan.
+ * @param sourceFile - The source file to scan.
+ * @returns The set of placeholder strings found in the file's text.
+ */
+function collectPlaceholders(sourceFile: SourceFile): Set<string> {
+  const result = new Set<string>();
+  const text = sourceFile.getFullText();
+  if (!text.includes(PLACEHOLDER_PREFIX)) {
+    return result;
+  }
+  // Refkeys are alphanumeric (see refkey.ts), so `.+?` safely stops at `__`.
+  const placeholderRegex = new RegExp(
+    `${escapeRegExp(PLACEHOLDER_PREFIX)}.+?__`,
+    "g"
+  );
+  let match: RegExpExecArray | null;
+  while ((match = placeholderRegex.exec(text)) !== null) {
+    result.add(match[0]);
+  }
+  return result;
 }
 
 /**
@@ -440,8 +537,4 @@ function countPlaceholderOccurrences(
  */
 function escapeRegExp(string: string): string {
   return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-}
-
-function hasAnyPlaceholders(sourceFile: SourceFile): boolean {
-  return sourceFile.getFullText().includes(PLACEHOLDER_PREFIX);
 }
