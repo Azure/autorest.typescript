@@ -3,12 +3,17 @@
 
 import { RLCModel } from "../interfaces.js";
 
-const nodeConfig = `import viteConfig from "../../../vitest.shared.config.ts";
+const copyrightHeader = `// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
+`;
+
+const nodeConfig = `${copyrightHeader}import viteConfig from "../../../vitest.shared.config.ts";
 
 export default viteConfig;
 `;
 
-const browserConfig = `export { default } from "../../../eng/vitestconfigs/browser.config.ts";
+const browserConfig = `${copyrightHeader}export { default } from "../../../eng/vitestconfigs/browser.config.ts";
 `;
 
 export function buildVitestConfig(

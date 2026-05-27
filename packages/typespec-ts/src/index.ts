@@ -53,6 +53,7 @@ import {
   buildTopLevelIndex,
   buildTsConfig,
   buildTsSnippetsConfig,
+  buildTsLintConfig,
   buildTsSrcEsmConfig,
   buildTsSrcBrowserConfig,
   buildTsSrcReactNativeConfig,
@@ -576,6 +577,7 @@ export async function $onEmit(context: EmitContext) {
           commonBuilders.push(buildTsSrcReactNativeConfig);
         }
         commonBuilders.push(buildTsSrcCjsConfig);
+        commonBuilders.push(buildTsLintConfig);
         if (option.generateSample) {
           commonBuilders.push(buildTsSampleConfig);
         }
@@ -676,6 +678,13 @@ export async function $onEmit(context: EmitContext) {
       }
 
       // update metadata relevant files
+      const existingVitestEsmConfigPath = join(
+        dpgContext.generationPathDetail?.metadataDir ?? "",
+        "vitest.esm.config.ts"
+      );
+      if (existsSync(existingVitestEsmConfigPath)) {
+        await fsextra.remove(existingVitestEsmConfigPath);
+      }
       await emitContentByBuilder(
         program,
         updateBuilders,

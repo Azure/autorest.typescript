@@ -177,8 +177,7 @@ function getAzureMonorepoScripts(config: AzureMonorepoInfoConfig) {
       config.withSamples ? '"samples-dev/*.ts"' : ""
     }`,
     "generate:client": "echo skipped",
-    "test:browser":
-      "dev-tool run build-test && dev-tool run test:vitest --browser",
+    "test:browser": "dev-tool run test:vitest --browser",
     "lint:fix": skipLinting
       ? "echo skipped"
       : "eslint package.json src test --fix --fix-type [problem,suggestion]",
@@ -198,8 +197,7 @@ function getEsmScripts({ moduleKind }: AzureMonorepoInfoConfig) {
     build:
       "npm run clean && dev-tool run build-package && dev-tool run extract-api",
     "test:node": "dev-tool run test:vitest",
-    "test:node:esm": "dev-tool run test:vitest --esm",
-    test: "npm run test:node && npm run test:browser"
+    test: "tsc -b --noEmit && npm run test:node && npm run test:browser"
   };
 }
 
