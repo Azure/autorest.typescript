@@ -12,7 +12,7 @@ import {
   Paths,
   ResponseMetadata,
   ResponseTypes
-} from "@azure-tools/rlc-common";
+} from "../rlc-common/index.js";
 import { getLroMetadata } from "@azure-tools/typespec-azure-core";
 import {
   getDisablePageable,
@@ -193,11 +193,18 @@ export function isDefinedStatusCode(statusCodes: HttpStatusCodesEntry) {
 export function isBinaryPayload(
   dpgContext: SdkContext,
   body: Type,
-  contentType: string | string[]
+  contentType: string | string[],
+  encode?: string
 ) {
   const knownMediaTypes: KnownMediaType[] = (
     Array.isArray(contentType) ? contentType : [contentType]
   ).map((ct) => knownMediaType(ct));
+
+  // When encode is "bytes" treat as binary.
+  if (encode === "bytes") {
+    return true;
+  }
+
   for (const type of knownMediaTypes) {
     if (type === KnownMediaType.Binary && isByteOrByteUnion(dpgContext, body)) {
       return true;

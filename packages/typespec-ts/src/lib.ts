@@ -6,7 +6,7 @@ import {
   DependencyInfo,
   ServiceInfo,
   PackageFlavor
-} from "@azure-tools/rlc-common";
+} from "./rlc-common/index.js";
 import {
   createTypeSpecLibrary,
   JSONSchemaType,

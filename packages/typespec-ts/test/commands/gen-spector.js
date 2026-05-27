@@ -3,7 +3,7 @@ import {
   azureModularTsps,
   azureRlcTsps,
   rlcTsps
-} from "./cadl-ranch-list.js";
+} from "./spector-list.js";
 import { runTypespec } from "./run.js";
 
 async function generateTypeSpecs(tag = "rlc", isDebugging, pathFilter) {
@@ -68,12 +68,12 @@ async function main() {
 
 let exitCode = 0;
 try {
-  console.time("generate-cadl-ranch");
+  console.time("generate-spector");
   await main();
 } catch (e) {
   console.error(e);
   exitCode = 1;
 } finally {
-  console.timeEnd("generate-cadl-ranch");
+  console.timeEnd("generate-spector");
   process.exit(exitCode);
 }

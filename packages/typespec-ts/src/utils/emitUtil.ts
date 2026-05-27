@@ -4,7 +4,7 @@ import {
   File,
   isAzurePackage,
   RLCModel
-} from "@azure-tools/rlc-common";
+} from "../rlc-common/index.js";
 import { CompilerHost, Program, NoTarget } from "@typespec/compiler";
 import { dirname, join } from "path";
 import { format } from "prettier";

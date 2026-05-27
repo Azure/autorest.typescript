@@ -3458,45 +3458,36 @@ export function vectorStoreFileBatchDeserializer(item: any): VectorStoreFileBatc
 /** The status of the vector store file batch. */
 export type VectorStoreFileBatchStatus = "in_progress" | "completed" | "cancelled" | "failed";
 
-/** Represents a message delta i.e. any changed fields on a message during streaming. */
-export interface MessageDeltaChunk {
-  /** The identifier of the message, which can be referenced in API endpoints. */
-  id: string;
-  /** The object type, which is always `thread.message.delta`. */
-  object: "thread.message.delta";
-  /** The delta containing the fields that have changed on the Message. */
-  delta: MessageDelta;
+/** Represents the 'image_file' payload within streaming image file content. */
+export interface MessageDeltaImageFileContentObject {
+  /** The file ID of the image in the message content. */
+  fileId?: string;
 }
 
-export function messageDeltaChunkDeserializer(item: any): MessageDeltaChunk {
+export function messageDeltaImageFileContentObjectDeserializer(
+  item: any,
+): MessageDeltaImageFileContentObject {
   return {
-    id: item["id"],
-    object: item["object"],
-    delta: messageDeltaDeserializer(item["delta"]),
+    fileId: item["file_id"],
   };
 }
 
-/** Represents the typed 'delta' payload within a streaming message delta chunk. */
-export interface MessageDelta {
-  /** The entity that produced the message. */
-  role: MessageRole;
-  /** The content of the message as an array of text and/or images. */
-  content: MessageDeltaContentUnion[];
+/** Represents a streamed image file content part within a streaming message delta chunk. */
+export interface MessageDeltaImageFileContent extends MessageDeltaContent {
+  /** The type of content for this content part, which is always "image_file." */
+  type: "image_file";
+  /** The image_file data. */
+  imageFile?: MessageDeltaImageFileContentObject;
 }
 
-export function messageDeltaDeserializer(item: any): MessageDelta {
+export function messageDeltaImageFileContentDeserializer(item: any): MessageDeltaImageFileContent {
   return {
-    role: item["role"],
-    content: messageDeltaContentUnionArrayDeserializer(item["content"]),
+    index: item["index"],
+    type: item["type"],
+    imageFile: !item["image_file"]
+      ? item["image_file"]
+      : messageDeltaImageFileContentObjectDeserializer(item["image_file"]),
   };
-}
-
-export function messageDeltaContentUnionArrayDeserializer(
-  result: Array<MessageDeltaContentUnion>,
-): any[] {
-  return result.map((item) => {
-    return messageDeltaContentUnionDeserializer(item);
-  });
 }
 
 /** The abstract base representation of a partial streamed message content payload. */
@@ -3532,38 +3523,6 @@ export function messageDeltaContentUnionDeserializer(item: any): MessageDeltaCon
     default:
       return messageDeltaContentDeserializer(item);
   }
-}
-
-/** Represents a streamed image file content part within a streaming message delta chunk. */
-export interface MessageDeltaImageFileContent extends MessageDeltaContent {
-  /** The type of content for this content part, which is always "image_file." */
-  type: "image_file";
-  /** The image_file data. */
-  imageFile?: MessageDeltaImageFileContentObject;
-}
-
-export function messageDeltaImageFileContentDeserializer(item: any): MessageDeltaImageFileContent {
-  return {
-    index: item["index"],
-    type: item["type"],
-    imageFile: !item["image_file"]
-      ? item["image_file"]
-      : messageDeltaImageFileContentObjectDeserializer(item["image_file"]),
-  };
-}
-
-/** Represents the 'image_file' payload within streaming image file content. */
-export interface MessageDeltaImageFileContentObject {
-  /** The file ID of the image in the message content. */
-  fileId?: string;
-}
-
-export function messageDeltaImageFileContentObjectDeserializer(
-  item: any,
-): MessageDeltaImageFileContentObject {
-  return {
-    fileId: item["file_id"],
-  };
 }
 
 /** Represents a streamed text content part within a streaming message delta chunk. */
@@ -3739,6 +3698,174 @@ export function messageDeltaTextFilePathAnnotationObjectDeserializer(
   };
 }
 
+/** Represents the typed 'delta' payload within a streaming message delta chunk. */
+export interface MessageDelta {
+  /** The entity that produced the message. */
+  role: MessageRole;
+  /** The content of the message as an array of text and/or images. */
+  content: MessageDeltaContentUnion[];
+}
+
+export function messageDeltaDeserializer(item: any): MessageDelta {
+  return {
+    role: item["role"],
+    content: messageDeltaContentUnionArrayDeserializer(item["content"]),
+  };
+}
+
+export function messageDeltaContentUnionArrayDeserializer(
+  result: Array<MessageDeltaContentUnion>,
+): any[] {
+  return result.map((item) => {
+    return messageDeltaContentUnionDeserializer(item);
+  });
+}
+
+/** Represents a message delta i.e. any changed fields on a message during streaming. */
+export interface MessageDeltaChunk {
+  /** The identifier of the message, which can be referenced in API endpoints. */
+  id: string;
+  /** The object type, which is always `thread.message.delta`. */
+  object: "thread.message.delta";
+  /** The delta containing the fields that have changed on the Message. */
+  delta: MessageDelta;
+}
+
+export function messageDeltaChunkDeserializer(item: any): MessageDeltaChunk {
+  return {
+    id: item["id"],
+    object: item["object"],
+    delta: messageDeltaDeserializer(item["delta"]),
+  };
+}
+
+/** Represents the data within a streaming run step message creation response object. */
+export interface RunStepDeltaMessageCreationObject {
+  /** The ID of the newly-created message. */
+  messageId?: string;
+}
+
+export function runStepDeltaMessageCreationObjectDeserializer(
+  item: any,
+): RunStepDeltaMessageCreationObject {
+  return {
+    messageId: item["message_id"],
+  };
+}
+
+/** Represents the function data in a streaming run step delta's function tool call. */
+export interface RunStepDeltaFunction {
+  /** The name of the function. */
+  name?: string;
+  /** The arguments passed to the function as input. */
+  arguments?: string;
+  /** The output of the function, null if outputs have not yet been submitted. */
+  output?: string;
+}
+
+export function runStepDeltaFunctionDeserializer(item: any): RunStepDeltaFunction {
+  return {
+    name: item["name"],
+    arguments: item["arguments"],
+    output: item["output"],
+  };
+}
+
+/** Represents a log output as produced by the Code Interpreter tool and as represented in a streaming run step's delta tool calls collection. */
+export interface RunStepDeltaCodeInterpreterLogOutput extends RunStepDeltaCodeInterpreterOutput {
+  /** The type of the object, which is always "logs." */
+  type: "logs";
+  /** The text output from the Code Interpreter tool call. */
+  logs?: string;
+}
+
+export function runStepDeltaCodeInterpreterLogOutputDeserializer(
+  item: any,
+): RunStepDeltaCodeInterpreterLogOutput {
+  return {
+    index: item["index"],
+    type: item["type"],
+    logs: item["logs"],
+  };
+}
+
+/** The abstract base representation of a streaming run step tool call's Code Interpreter tool output. */
+export interface RunStepDeltaCodeInterpreterOutput {
+  /** The index of the output in the streaming run step tool call's Code Interpreter outputs array. */
+  index: number;
+  /** The type of the streaming run step tool call's Code Interpreter output. */
+  /** The discriminator possible values: logs, image */
+  type: string;
+}
+
+export function runStepDeltaCodeInterpreterOutputDeserializer(
+  item: any,
+): RunStepDeltaCodeInterpreterOutput {
+  return {
+    index: item["index"],
+    type: item["type"],
+  };
+}
+
+/** Alias for RunStepDeltaCodeInterpreterOutputUnion */
+export type RunStepDeltaCodeInterpreterOutputUnion =
+  | RunStepDeltaCodeInterpreterLogOutput
+  | RunStepDeltaCodeInterpreterImageOutput
+  | RunStepDeltaCodeInterpreterOutput;
+
+export function runStepDeltaCodeInterpreterOutputUnionDeserializer(
+  item: any,
+): RunStepDeltaCodeInterpreterOutputUnion {
+  switch (item["type"]) {
+    case "logs":
+      return runStepDeltaCodeInterpreterLogOutputDeserializer(
+        item as RunStepDeltaCodeInterpreterLogOutput,
+      );
+
+    case "image":
+      return runStepDeltaCodeInterpreterImageOutputDeserializer(
+        item as RunStepDeltaCodeInterpreterImageOutput,
+      );
+
+    default:
+      return runStepDeltaCodeInterpreterOutputDeserializer(item);
+  }
+}
+
+/** Represents an image output as produced the Code interpreter tool and as represented in a streaming run step's delta tool calls collection. */
+export interface RunStepDeltaCodeInterpreterImageOutput extends RunStepDeltaCodeInterpreterOutput {
+  /** The object type, which is always "image." */
+  type: "image";
+  /** The image data for the Code Interpreter tool call output. */
+  image?: RunStepDeltaCodeInterpreterImageOutputObject;
+}
+
+export function runStepDeltaCodeInterpreterImageOutputDeserializer(
+  item: any,
+): RunStepDeltaCodeInterpreterImageOutput {
+  return {
+    index: item["index"],
+    type: item["type"],
+    image: !item["image"]
+      ? item["image"]
+      : runStepDeltaCodeInterpreterImageOutputObjectDeserializer(item["image"]),
+  };
+}
+
+/** Represents the data for a streaming run step's Code Interpreter tool call image output. */
+export interface RunStepDeltaCodeInterpreterImageOutputObject {
+  /** The file ID for the image. */
+  fileId?: string;
+}
+
+export function runStepDeltaCodeInterpreterImageOutputObjectDeserializer(
+  item: any,
+): RunStepDeltaCodeInterpreterImageOutputObject {
+  return {
+    fileId: item["file_id"],
+  };
+}
+
 /** Represents a run step delta i.e. any changed fields on a run step during streaming. */
 export interface RunStepDeltaChunk {
   /** The identifier of the run step, which can be referenced in API endpoints. */
@@ -3817,20 +3944,6 @@ export function runStepDeltaMessageCreationDeserializer(item: any): RunStepDelta
     messageCreation: !item["message_creation"]
       ? item["message_creation"]
       : runStepDeltaMessageCreationObjectDeserializer(item["message_creation"]),
-  };
-}
-
-/** Represents the data within a streaming run step message creation response object. */
-export interface RunStepDeltaMessageCreationObject {
-  /** The ID of the newly-created message. */
-  messageId?: string;
-}
-
-export function runStepDeltaMessageCreationObjectDeserializer(
-  item: any,
-): RunStepDeltaMessageCreationObject {
-  return {
-    messageId: item["message_id"],
   };
 }
 
@@ -3922,24 +4035,6 @@ export function runStepDeltaFunctionToolCallDeserializer(item: any): RunStepDelt
   };
 }
 
-/** Represents the function data in a streaming run step delta's function tool call. */
-export interface RunStepDeltaFunction {
-  /** The name of the function. */
-  name?: string;
-  /** The arguments passed to the function as input. */
-  arguments?: string;
-  /** The output of the function, null if outputs have not yet been submitted. */
-  output?: string;
-}
-
-export function runStepDeltaFunctionDeserializer(item: any): RunStepDeltaFunction {
-  return {
-    name: item["name"],
-    arguments: item["arguments"],
-    output: item["output"],
-  };
-}
-
 /** Represents a file search tool call within a streaming run step's tool call details. */
 export interface RunStepDeltaFileSearchToolCall extends RunStepDeltaToolCall {
   /** The object type, which is always "file_search." */
@@ -4013,101 +4108,6 @@ export function runStepDeltaCodeInterpreterOutputUnionArrayDeserializer(
   return result.map((item) => {
     return runStepDeltaCodeInterpreterOutputUnionDeserializer(item);
   });
-}
-
-/** The abstract base representation of a streaming run step tool call's Code Interpreter tool output. */
-export interface RunStepDeltaCodeInterpreterOutput {
-  /** The index of the output in the streaming run step tool call's Code Interpreter outputs array. */
-  index: number;
-  /** The type of the streaming run step tool call's Code Interpreter output. */
-  /** The discriminator possible values: logs, image */
-  type: string;
-}
-
-export function runStepDeltaCodeInterpreterOutputDeserializer(
-  item: any,
-): RunStepDeltaCodeInterpreterOutput {
-  return {
-    index: item["index"],
-    type: item["type"],
-  };
-}
-
-/** Alias for RunStepDeltaCodeInterpreterOutputUnion */
-export type RunStepDeltaCodeInterpreterOutputUnion =
-  | RunStepDeltaCodeInterpreterLogOutput
-  | RunStepDeltaCodeInterpreterImageOutput
-  | RunStepDeltaCodeInterpreterOutput;
-
-export function runStepDeltaCodeInterpreterOutputUnionDeserializer(
-  item: any,
-): RunStepDeltaCodeInterpreterOutputUnion {
-  switch (item["type"]) {
-    case "logs":
-      return runStepDeltaCodeInterpreterLogOutputDeserializer(
-        item as RunStepDeltaCodeInterpreterLogOutput,
-      );
-
-    case "image":
-      return runStepDeltaCodeInterpreterImageOutputDeserializer(
-        item as RunStepDeltaCodeInterpreterImageOutput,
-      );
-
-    default:
-      return runStepDeltaCodeInterpreterOutputDeserializer(item);
-  }
-}
-
-/** Represents a log output as produced by the Code Interpreter tool and as represented in a streaming run step's delta tool calls collection. */
-export interface RunStepDeltaCodeInterpreterLogOutput extends RunStepDeltaCodeInterpreterOutput {
-  /** The type of the object, which is always "logs." */
-  type: "logs";
-  /** The text output from the Code Interpreter tool call. */
-  logs?: string;
-}
-
-export function runStepDeltaCodeInterpreterLogOutputDeserializer(
-  item: any,
-): RunStepDeltaCodeInterpreterLogOutput {
-  return {
-    index: item["index"],
-    type: item["type"],
-    logs: item["logs"],
-  };
-}
-
-/** Represents an image output as produced the Code interpreter tool and as represented in a streaming run step's delta tool calls collection. */
-export interface RunStepDeltaCodeInterpreterImageOutput extends RunStepDeltaCodeInterpreterOutput {
-  /** The object type, which is always "image." */
-  type: "image";
-  /** The image data for the Code Interpreter tool call output. */
-  image?: RunStepDeltaCodeInterpreterImageOutputObject;
-}
-
-export function runStepDeltaCodeInterpreterImageOutputDeserializer(
-  item: any,
-): RunStepDeltaCodeInterpreterImageOutput {
-  return {
-    index: item["index"],
-    type: item["type"],
-    image: !item["image"]
-      ? item["image"]
-      : runStepDeltaCodeInterpreterImageOutputObjectDeserializer(item["image"]),
-  };
-}
-
-/** Represents the data for a streaming run step's Code Interpreter tool call image output. */
-export interface RunStepDeltaCodeInterpreterImageOutputObject {
-  /** The file ID for the image. */
-  fileId?: string;
-}
-
-export function runStepDeltaCodeInterpreterImageOutputObjectDeserializer(
-  item: any,
-): RunStepDeltaCodeInterpreterImageOutputObject {
-  return {
-    fileId: item["file_id"],
-  };
 }
 
 /**

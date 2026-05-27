@@ -1,6 +1,6 @@
 ---
 name: bump-emitter-version
-description: Bumps the emitter package versions and updates changelogs. Upgrades @azure-tools/typespec-ts and @azure-tools/rlc-common to a user-specified version, auto-increments @autorest/typescript patch version, synchronizes all cross-package dependency references, runs pnpm install to refresh the lockfile, prepends changelog entries for all three packages, then commits all changes and opens a PR to main.
+description: Bumps the emitter package versions and updates changelogs. Uses a user-specified target version when provided, otherwise auto-computes @azure-tools/typespec-ts and @azure-tools/rlc-common from monthly rules (minor once per month, patch afterwards), auto-increments @autorest/typescript patch version, synchronizes all cross-package dependency references, runs pnpm install to refresh the lockfile, prepends changelog entries for all three packages, then commits all changes and opens a PR to main.
 ---
 
 # Bump Emitter Version
@@ -9,10 +9,17 @@ Bump the three emitter packages to new versions, synchronize all internal depend
 
 ## Input
 
-The user provides a **target version** for `@azure-tools/typespec-ts` and `@azure-tools/rlc-common` (e.g., `0.54.0`).  
+The user may optionally provide a **target version** for `@azure-tools/typespec-ts` and `@azure-tools/rlc-common` (e.g., `0.54.0`).
+
+If the user does not provide a target version, compute it automatically with the monthly rule:
+- If a **minor bump** has already happened in the current month, bump **patch**.
+- Otherwise, bump **minor** (set patch to `0`).
+
+Example: if `0.53.0` was already released in May, all later bumps in May should be patch bumps (`0.53.1`, `0.53.2`, ...).
+
 `@autorest/typescript` is always bumped by one **patch** increment automatically.
 
-## Step 1: Read Current Versions
+## Step 1: Read Current Versions and Resolve Target Version
 
 Read the `version` field from each package's `package.json`:
 
@@ -24,26 +31,42 @@ packages/autorest.typescript/package.json → current @autorest/typescript versi
 
 Compute the new `@autorest/typescript` version by splitting the current version on `.` and incrementing the last segment by 1 (e.g., `6.0.71` → `6.0.72`).
 
+Resolve the target version for both `@azure-tools/typespec-ts` and `@azure-tools/rlc-common`:
+- If user provided a target version, use it directly.
+- If user did not provide a target version, compute it from the current `@azure-tools/typespec-ts` version and current month changelog history:
+  1. Read today's month in `YYYY-MM`.
+  2. Read `packages/typespec-ts/CHANGELOG.md` and find entries for the same `YYYY-MM`.
+  3. If there is already an entry in this month with patch `0` (for example `0.53.0`), treat this month as already having a minor bump and compute next version as patch bump from current version (e.g., `0.53.1` → `0.53.2`).
+  4. If not, compute next version as minor bump from current version (e.g., `0.53.2` → `0.54.0`).
+
+When current versions are inconsistent between `@azure-tools/typespec-ts` and `@azure-tools/rlc-common`, always use `@azure-tools/typespec-ts` as the source of truth for auto-computing the resolved target version.
+
+Use the resolved value as `<target>` in all following steps.
+
 Display a summary table for the user to confirm before proceeding:
 
 | Package | Old Version | New Version |
 |---------|-------------|-------------|
-| @azure-tools/typespec-ts | `<old>` | `<target>` |
-| @azure-tools/rlc-common | `<old>` | `<target>` |
+| @azure-tools/typespec-ts | `<old>` | `<resolved-target>` |
+| @azure-tools/rlc-common | `<old>` | `<resolved-target>` |
 | @autorest/typescript | `<old>` | `<old-major>.<old-minor>.<old-patch+1>` |
+
+Also show target source in one line:
+- `Target source: user-provided` or `Target source: auto-computed (monthly rule)`.
+- If current package versions are inconsistent, also show: `Version baseline: @azure-tools/typespec-ts`.
 
 ## Step 2: Update package.json Files
 
-Update all four `package.json` files. Make all changes as file edits (do NOT use terminal sed/awk):
+Update all four `package.json` files using the resolved target version from Step 1. Make all changes as file edits (do NOT use terminal sed/awk):
 
 ### `packages/typespec-ts/package.json`
 
-1. Update `"version"` to the target version.
+1. Update `"version"` to the resolved target version.
 2. Update the `@azure-tools/rlc-common` entry (under `dependencies`) from `"workspace:^<old>"` to `"workspace:^<target>"`.
 
 ### `packages/rlc-common/package.json`
 
-1. Update `"version"` to the target version.
+1. Update `"version"` to the resolved target version.
 
 ### `packages/autorest.typescript/package.json`
 
@@ -67,17 +90,31 @@ PUPPETEER_SKIP_DOWNLOAD=true pnpm install
 
 Wait for the command to complete (allow up to 5 minutes). Confirm the lockfile was updated with no errors.
 
-## Step 4: Collect Merged PRs for Changelog
+## Step 4: Collect PRs for Changelog
 
 Find the date of the **last release** in `packages/typespec-ts/CHANGELOG.md` — it is the date in the first `## X.Y.Z (YYYY-MM-DD)` heading.
 
-Run the following command from the repo root to list merged PRs since that date:
+First, sync remote history to avoid missing upstream commits:
 
 ```bash
-git log --oneline --merges --since="<last-release-date>" --format="%s %H"
+git fetch origin main
 ```
 
-Parse the output. Each line that looks like `Merge pull request #NNNN` is a PR. Extract the PR number and use the commit subject line as a description hint.
+Then list commits from `origin/main` since that date (do not use `--merges`, because this repo often uses squash/rebase merges):
+
+```bash
+git log origin/main --since="<last-release-date>" --format="%s %H"
+```
+
+Parse the output and collect PR numbers using either pattern below:
+- `Merge pull request #NNNN`
+- `... (#NNNN)`
+
+If a commit message has no PR number, skip it.
+
+Use the commit subject line as the description hint, and remove merge/pattern noise when generating the brief description (for example, strip `Merge pull request #NNNN`, leading repo path fragments, and trailing `(#NNNN)`).
+
+Deduplicate PRs by PR number while preserving first-seen order.
 
 For each PR collected, categorize it as `[Feature]` or `[Bugfix]` based on keywords in the commit message:
 - Keywords suggesting a feature: `add`, `support`, `implement`, `generate`, `enable`, `introduce`, `bump`, `upgrade`, `update`
@@ -101,7 +138,7 @@ Prepend a new section to the **top** of each of the three changelog files. Use t
 ### `packages/typespec-ts/CHANGELOG.md`
 
 ```md
-## <target-version> (<today-date>)
+## <resolved-target-version> (<today-date>)
 
 <changelog-entries>
 
@@ -110,7 +147,7 @@ Prepend a new section to the **top** of each of the three changelog files. Use t
 ### `packages/rlc-common/CHANGELOG.md`
 
 ```md
-## <target-version> (<today-date>)
+## <resolved-target-version> (<today-date>)
 
 <changelog-entries>
 
@@ -145,13 +182,13 @@ Verify:
 
 ### 7.1 Create a branch
 
-Create a new branch from the current HEAD named after the target version:
+Create a new branch from the current HEAD named after the resolved target version:
 
 ```bash
-git checkout -b bump-version-<target-version>
+git checkout -b bump-version-<resolved-target-version>
 ```
 
-If the branch already exists, append a short timestamp suffix: `bump-version-<target-version>-<YYYYMMDD>`.
+If the branch already exists, append a short timestamp suffix: `bump-version-<resolved-target-version>-<YYYYMMDD>`.
 
 ### 7.2 Stage and commit
 
@@ -168,13 +205,13 @@ git add \
   packages/autorest.typescript/CHANGELOG.md \
   pnpm-lock.yaml
 
-git commit -m "Bump emitter version to <target-version>"
+git commit -m "Bump emitter version to <resolved-target-version>"
 ```
 
 ### 7.3 Push the branch
 
 ```bash
-git push origin bump-version-<target-version>
+git push origin bump-version-<resolved-target-version>
 ```
 
 If `origin` is not configured or the push fails due to auth, report the error to the user and stop — do not attempt force-push or alternative remotes.
@@ -186,13 +223,13 @@ Use the GitHub CLI to create a PR targeting `main`:
 ```bash
 gh pr create \
   --base main \
-  --title "Bump emitter version to <target-version>" \
-  --body "## Version Bump\n\nBumps the following packages:\n\n| Package | Old Version | New Version |\n|---------|-------------|-------------|\n| @azure-tools/typespec-ts | <old-typespec-ts> | <target-version> |\n| @azure-tools/rlc-common | <old-rlc-common> | <target-version> |\n| @autorest/typescript | <old-autorest> | <new-autorest-version> |\n\n## Changes included\n\n<changelog-entries>"
+  --title "Bump emitter version to <resolved-target-version>" \
+  --body "## Version Bump\n\nBumps the following packages:\n\n| Package | Old Version | New Version |\n|---------|-------------|-------------|\n| @azure-tools/typespec-ts | <old-typespec-ts> | <resolved-target-version> |\n| @azure-tools/rlc-common | <old-rlc-common> | <resolved-target-version> |\n| @autorest/typescript | <old-autorest> | <new-autorest-version> |\n\n## Changes included\n\n<changelog-entries>"
 ```
 
 If `gh` is not installed or not authenticated, print the PR URL template and instruct the user to open it manually:
 ```
-https://github.com/Azure/autorest.typescript/compare/main...bump-version-<target-version>
+https://github.com/Azure/autorest.typescript/compare/main...bump-version-<resolved-target-version>
 ```
 
 ## Step 8: Report

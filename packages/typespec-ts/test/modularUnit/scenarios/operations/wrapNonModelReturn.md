@@ -1,6 +1,6 @@
 # wrap-non-model-return wraps string scalar response with body property
 
-When `wrap-non-model-return` is enabled, scalar/non-model responses are wrapped with a `body` property to maintain HLC compatibility.
+When `wrap-non-model-return` is enabled, scalar/non-model responses are wrapped with a `body` property to maintain AutoRest backward compatibility.
 
 ## TypeSpec
 
@@ -281,7 +281,7 @@ export async function get(
 
 # wrap-non-model-return does not wrap array-of-models response
 
-Array-of-models responses (Composite kind) are not wrapped — they are returned as `Resource[]` directly (matching HLC behavior where PropertyKind.Composite means no body wrapper).
+Array-of-models responses (Composite kind) are not wrapped — they are returned as `Resource[]` directly (matching AutoRest behavior where PropertyKind.Composite means no body wrapper).
 
 ## TypeSpec
 
@@ -442,7 +442,9 @@ export async function _getLogsDeserialize(
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
-    error.details = apiErrorDeserializer(result.body);
+    if (result.body) {
+      error.details = apiErrorDeserializer(result.body);
+    }
 
     throw error;
   }
@@ -497,7 +499,9 @@ export async function _getBlobDeserialize(
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
-    error.details = storageErrorDeserializer(result.body);
+    if (result.body) {
+      error.details = storageErrorDeserializer(result.body);
+    }
     error.details = { ...(error.details as any), ..._getBlobDeserializeExceptionHeaders(result) };
     throw error;
   }
@@ -854,7 +858,7 @@ export async function getString(
 # wrap-non-model-return wraps LRO string response with body property
 
 When `wrap-non-model-return` is enabled, LRO operations with non-model final result types
-(e.g., string) should also be wrapped in a response type alias for HLC compatibility.
+(e.g., string) should also be wrapped in a response type alias for AutoRest backward compatibility.
 
 ## TypeSpec
 
@@ -921,7 +925,9 @@ export async function _getIkeSasDeserialize(
   const expectedStatuses = ["202", "200", "201"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
-    error.details = errorResponseDeserializer(result.body);
+    if (result.body) {
+      error.details = errorResponseDeserializer(result.body);
+    }
 
     throw error;
   }

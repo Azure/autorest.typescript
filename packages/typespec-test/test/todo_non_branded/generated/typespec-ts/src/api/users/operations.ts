@@ -44,13 +44,21 @@ export async function _createDeserialize(
     const error = createRestError(result);
     const statusCode = Number.parseInt(result.status);
     if (statusCode === 409) {
-      error.details = userExistsResponseDeserializer(result.body);
+      if (result.body) {
+        error.details = userExistsResponseDeserializer(result.body);
+      }
     } else if (statusCode === 422) {
-      error.details = invalidUserResponseDeserializer(result.body);
+      if (result.body) {
+        error.details = invalidUserResponseDeserializer(result.body);
+      }
     } else if (statusCode >= 400 && statusCode <= 499) {
-      error.details = standard4XXResponseDeserializer(result.body);
+      if (result.body) {
+        error.details = standard4XXResponseDeserializer(result.body);
+      }
     } else if (statusCode >= 500 && statusCode <= 599) {
-      error.details = standard5XXResponseDeserializer(result.body);
+      if (result.body) {
+        error.details = standard5XXResponseDeserializer(result.body);
+      }
     }
     throw error;
   }

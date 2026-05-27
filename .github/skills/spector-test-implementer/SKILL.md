@@ -35,9 +35,9 @@ Read `temp/specs/<path>/mockapi.ts`. Extract all scenario names (the `Scenarios.
 
 ### Step 3: Check Existing Implementation
 
-Check whether the path already exists in the `azureModularTsps` array in `test/commands/cadl-ranch-list.js`, and whether a `.spec.ts` file already exists in `test/azureModularIntegration/`.
+Check whether the path already exists in the `azureModularTsps` array in `test/commands/spector-list.js`, and whether a `.spec.ts` file already exists in `test/azureModularIntegration/`.
 
-**Important:** `cadl-ranch-list.js` has four arrays in order: `azureRlcTsps`, `rlcTsps`, `azureModularTsps`, `modularTsps`. Verify a match is inside `azureModularTsps` by checking line numbers:
+**Important:** `spector-list.js` has four arrays in order: `azureRlcTsps`, `rlcTsps`, `azureModularTsps`, `modularTsps`. Verify a match is inside `azureModularTsps` by checking line numbers:
 
 1. Find the line of `export const azureModularTsps = [` (start)
 2. Find the line of `export const modularTsps = [` (end boundary)
@@ -53,7 +53,7 @@ Then branch:
 
 **Case C -- Entry exists but no .spec.ts:** Skip Step 4, go to Step 5.
 
-### Step 4: Add Entry to cadl-ranch-list.js
+### Step 4: Add Entry to spector-list.js
 
 Add to the `azureModularTsps` array:
 
@@ -78,9 +78,9 @@ This step has two phases: first create the config and generate the client, then 
 2. Create `test/azureModularIntegration/generated/<path>/.gitignore` with the content shown in [.gitignore template](references/naming-and-templates.md#gitignore-template)
 3. Generate the client by running:
    ```bash
-   npx tsx ./test/commands/gen-cadl-ranch.js --tag=azure-modular --filter=<path>
+   npx tsx ./test/commands/gen-spector.js --tag=azure-modular --filter=<path>
    ```
-4. **Verify generation succeeded:** Check that `test/azureModularIntegration/generated/<path>/src/index.ts` exists and contains actual client class exports (not empty or placeholder). If the file is missing or empty, **stop** — remove the entry from `cadl-ranch-list.js`, delete the generated directory, and report that generation is not supported for this path.
+4. **Verify generation succeeded:** Check that `test/azureModularIntegration/generated/<path>/src/index.ts` exists and contains actual client class exports (not empty or placeholder). If the file is missing or empty, **stop** — remove the entry from `spector-list.js`, delete the generated directory, and report that generation is not supported for this path.
 5. Read `test/azureModularIntegration/generated/<path>/src/index.ts` to discover the client class name, method signatures, and operation groups.
 
 **Phase 2 -- .spec.ts file:**
@@ -157,10 +157,10 @@ For each new test path, these are the files that should be committed:
 
 | File                                                           | Action                                     |
 | -------------------------------------------------------------- | ------------------------------------------ |
-| `test/commands/cadl-ranch-list.js`                             | Modified (new entry in `azureModularTsps`) |
+| `test/commands/spector-list.js`                                | Modified (new entry in `azureModularTsps`) |
 | `test/azureModularIntegration/generated/<path>/.gitignore`     | Created                                    |
 | `test/azureModularIntegration/generated/<path>/tspconfig.yaml` | Created                                    |
-| `test/azureModularIntegration/generated/<path>/src/index.d.ts` | Generated (by gen-cadl-ranch.js)           |
+| `test/azureModularIntegration/generated/<path>/src/index.d.ts` | Generated (by gen-spector.js)              |
 | `test/azureModularIntegration/<camelCaseName>.spec.ts`         | Created                                    |
 
 Do **not** commit these files:
@@ -177,5 +177,5 @@ Do **not** commit these files:
 | Constructor mismatch                      | Read the generated client's `index.ts` for the actual signature                   |
 | Assertion mismatch                        | Re-read `mockapi.ts` for exact expected values                                    |
 | Formatting CI fails                       | Run `pnpm format` at repo root before committing                                  |
-| Generation produces no output             | Remove path from `cadl-ranch-list.js`; emitter doesn't support it                 |
+| Generation produces no output             | Remove path from `spector-list.js`; emitter doesn't support it                    |
 | Test passes locally but body is undefined | Check generated code for placeholder types like `__PLACEHOLDER_*__` — emitter bug |

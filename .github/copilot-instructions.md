@@ -144,7 +144,7 @@ To regenerate a specific integration test client (faster than regenerating all):
 
 ```bash
 cd packages/typespec-ts
-npx tsx ./test/commands/gen-cadl-ranch.js --tag=azure-modular --filter=payload/xml
+npx tsx ./test/commands/gen-spector.js --tag=azure-modular --filter=payload/xml
 ```
 
 Replace `payload/xml` with the path of the specific test you want to regenerate.

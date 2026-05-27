@@ -223,7 +223,7 @@ class BinderImp implements Binder {
    * that has a polyfill variant (-browser.mts or -react-native.mts sibling),
    * or undefined if subpath imports are disabled or no variant exists.
    * e.g. "src/static-helpers/serialization/get-binary-response.ts"
-   *   -> "#platform/static-helpers/serialization/get-binary-response.js"
+   *   -> "#platform/static-helpers/serialization/get-binary-response"
    */
   private getPlatformImportSpecifier(
     declarationSourceFile: SourceFile
@@ -242,7 +242,7 @@ class BinderImp implements Binder {
     );
     if (!hasBrowserVariant && !hasReactNativeVariant) return undefined;
     const relativePath = filePath.substring(srcIndex + "/src/".length);
-    return "#platform/" + relativePath.replace(/\.ts$/, ".js");
+    return "#platform/" + relativePath.replace(/\.ts$/, "");
   }
 
   /**
