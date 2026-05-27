@@ -679,17 +679,6 @@ export async function $onEmit(context: EmitContext) {
         }
       }
 
-      // Delete stale vitest.esm.config.ts if it exists (it was removed in favor of vitest.config.ts)
-      if (option.azureSdkForJs) {
-        const vitestEsmConfigPath = join(
-          dpgContext.generationPathDetail?.metadataDir ?? "",
-          "vitest.esm.config.ts"
-        );
-        if (await existsSync(vitestEsmConfigPath)) {
-          await fsextra.remove(vitestEsmConfigPath);
-        }
-      }
-
       // update metadata relevant files
       await emitContentByBuilder(
         program,
