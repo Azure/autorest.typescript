@@ -57,6 +57,7 @@ import {
   buildTsSrcBrowserConfig,
   buildTsSrcReactNativeConfig,
   buildTsSrcCjsConfig,
+  buildTsLintConfig,
   buildTestBrowserTsConfig,
   buildTestNodeTsConfig,
   buildVitestConfig,
@@ -579,6 +580,9 @@ export async function $onEmit(context: EmitContext) {
         if (option.generateSample) {
           commonBuilders.push(buildTsSampleConfig);
         }
+        if (isAzureFlavor) {
+          commonBuilders.push(buildTsLintConfig);
+        }
       }
 
       // TODO: need support snippets generation for multi-client cases. https://github.com/Azure/autorest.typescript/issues/3048
@@ -672,6 +676,17 @@ export async function $onEmit(context: EmitContext) {
               )
             );
           }
+        }
+      }
+
+      // Delete stale vitest.esm.config.ts if it exists (it was removed in favor of vitest.config.ts)
+      if (option.azureSdkForJs) {
+        const vitestEsmConfigPath = join(
+          dpgContext.generationPathDetail?.metadataDir ?? "",
+          "vitest.esm.config.ts"
+        );
+        if (await existsSync(vitestEsmConfigPath)) {
+          await fsextra.remove(vitestEsmConfigPath);
         }
       }
 
