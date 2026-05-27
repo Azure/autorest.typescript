@@ -48,7 +48,7 @@ importers:
         specifier: ^2.9.1
         version: 2.10.1
       '@azure-tools/rlc-common':
-        specifier: workspace:^0.53.2
+        specifier: workspace:^0.53.3
         version: link:../rlc-common
       '@azure/core-auth':
         specifier: ^1.6.0
@@ -276,7 +276,7 @@ importers:
     dependencies:
       '@azure-tools/typespec-autorest':
         specifier: ^0.68.0
-        version: 0.68.0(92e067992ec7d39e2984604dd59f0688)
+        version: 0.68.0(5adc798027f24c77da5623498f23ccd9)
       '@azure-tools/typespec-azure-core':
         specifier: ^0.68.0
         version: 0.68.0(@typespec/compiler@1.12.0(@types/node@25.3.5))(@typespec/http@1.12.0(@typespec/compiler@1.12.0(@types/node@25.3.5))(@typespec/streams@0.82.0(@typespec/compiler@1.12.0(@types/node@25.3.5))))(@typespec/rest@0.82.0(@typespec/compiler@1.12.0(@types/node@25.3.5))(@typespec/http@1.12.0(@typespec/compiler@1.12.0(@types/node@25.3.5))(@typespec/streams@0.82.0(@typespec/compiler@1.12.0(@types/node@25.3.5)))))
@@ -285,12 +285,12 @@ importers:
         version: 0.68.0(f862b68e177ebc169f8eaba06224398f)
       '@azure-tools/typespec-azure-rulesets':
         specifier: ^0.68.0
-        version: 0.68.0(@azure-tools/typespec-azure-core@0.68.0(@typespec/compiler@1.12.0(@types/node@25.3.5))(@typespec/http@1.12.0(@typespec/compiler@1.12.0(@types/node@25.3.5))(@typespec/streams@0.82.0(@typespec/compiler@1.12.0(@types/node@25.3.5))))(@typespec/rest@0.82.0(@typespec/compiler@1.12.0(@types/node@25.3.5))(@typespec/http@1.12.0(@typespec/compiler@1.12.0(@types/node@25.3.5))(@typespec/streams@0.82.0(@typespec/compiler@1.12.0(@types/node@25.3.5))))))(@azure-tools/typespec-azure-resource-manager@0.68.0(f862b68e177ebc169f8eaba06224398f))(@azure-tools/typespec-client-generator-core@0.68.0(c90cd83acd0ea02e752c62bdfeeead80))(@typespec/compiler@1.12.0(@types/node@25.3.5))
+        version: 0.68.0(@azure-tools/typespec-azure-core@0.68.0(@typespec/compiler@1.12.0(@types/node@25.3.5))(@typespec/http@1.12.0(@typespec/compiler@1.12.0(@types/node@25.3.5))(@typespec/streams@0.82.0(@typespec/compiler@1.12.0(@types/node@25.3.5))))(@typespec/rest@0.82.0(@typespec/compiler@1.12.0(@types/node@25.3.5))(@typespec/http@1.12.0(@typespec/compiler@1.12.0(@types/node@25.3.5))(@typespec/streams@0.82.0(@typespec/compiler@1.12.0(@types/node@25.3.5))))))(@azure-tools/typespec-azure-resource-manager@0.68.0(f862b68e177ebc169f8eaba06224398f))(@azure-tools/typespec-client-generator-core@0.68.2(c90cd83acd0ea02e752c62bdfeeead80))(@typespec/compiler@1.12.0(@types/node@25.3.5))
       '@azure-tools/typespec-client-generator-core':
-        specifier: ^0.68.0
-        version: 0.68.0(c90cd83acd0ea02e752c62bdfeeead80)
+        specifier: ^0.68.2
+        version: 0.68.2(c90cd83acd0ea02e752c62bdfeeead80)
       '@azure-tools/typespec-ts':
-        specifier: workspace:^0.53.2
+        specifier: workspace:^0.53.3
         version: link:../typespec-ts
       '@typespec/compiler':
         specifier: ^1.12.0
@@ -323,15 +323,15 @@ importers:
 
   packages/typespec-ts:
     dependencies:
-      '@azure-tools/rlc-common':
-        specifier: workspace:^0.53.2
-        version: link:../rlc-common
       fast-xml-parser:
         specifier: ^4.5.0
         version: 4.5.3
       fs-extra:
         specifier: ^11.1.0
         version: 11.3.2
+      handlebars:
+        specifier: ^4.7.7
+        version: 4.7.8
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -349,11 +349,11 @@ importers:
         specifier: ^2.3.1
         version: 2.5.1
       '@azure-tools/azure-http-specs':
-        specifier: 0.1.0-alpha.41-dev.0
-        version: 0.1.0-alpha.41-dev.0(8e0cc86ac4828e94477d5cd2d8a23d68)
+        specifier: 0.1.0-alpha.41-dev.1
+        version: 0.1.0-alpha.41-dev.1(8e0cc86ac4828e94477d5cd2d8a23d68)
       '@azure-tools/typespec-autorest':
         specifier: ^0.68.0
-        version: 0.68.0(92e067992ec7d39e2984604dd59f0688)
+        version: 0.68.0(5adc798027f24c77da5623498f23ccd9)
       '@azure-tools/typespec-azure-core':
         specifier: ^0.68.0
         version: 0.68.0(@typespec/compiler@1.12.0(@types/node@25.3.5))(@typespec/http@1.12.0(@typespec/compiler@1.12.0(@types/node@25.3.5))(@typespec/streams@0.82.0(@typespec/compiler@1.12.0(@types/node@25.3.5))))(@typespec/rest@0.82.0(@typespec/compiler@1.12.0(@types/node@25.3.5))(@typespec/http@1.12.0(@typespec/compiler@1.12.0(@types/node@25.3.5))(@typespec/streams@0.82.0(@typespec/compiler@1.12.0(@types/node@25.3.5)))))
@@ -361,8 +361,8 @@ importers:
         specifier: ^0.68.0
         version: 0.68.0(f862b68e177ebc169f8eaba06224398f)
       '@azure-tools/typespec-client-generator-core':
-        specifier: ^0.68.0
-        version: 0.68.0(c90cd83acd0ea02e752c62bdfeeead80)
+        specifier: ^0.68.2
+        version: 0.68.2(c90cd83acd0ea02e752c62bdfeeead80)
       '@azure/abort-controller':
         specifier: ^2.1.2
         version: 2.1.2
@@ -515,8 +515,8 @@ packages:
     resolution: {integrity: sha512-X1C7XdyCuo50ch9FzKtTvmK18FgDxxf1Bbt3cSoknQqeDaRegHSSCO+zByq2YA4NvUzKXeZ1engh29IDxZXgpQ==}
     engines: {node: '>=10.12.0'}
 
-  '@azure-tools/azure-http-specs@0.1.0-alpha.41-dev.0':
-    resolution: {integrity: sha512-LXmZM7I1OGZXwuoeJVYHbvW8XHP3wJALqq1ZwXPJoUMuJA/wv/VX06dKf4plbySRf+ftKQQhQQ9PKKI1THF0Gw==}
+  '@azure-tools/azure-http-specs@0.1.0-alpha.41-dev.1':
+    resolution: {integrity: sha512-GaFmm7KP19YtxgdE2eyA37XusQCqoxo7UA6Lj9iLnXE77XPeDppE1pKstWFAbMcv/Jrc/EGqkl+TOGApej/JoA==}
     engines: {node: '>=22.0.0'}
     peerDependencies:
       '@azure-tools/typespec-azure-core': ^0.68.0 || >=0.69.0-dev <0.69.0
@@ -587,8 +587,8 @@ packages:
       '@azure-tools/typespec-client-generator-core': ^0.68.0
       '@typespec/compiler': ^1.12.0
 
-  '@azure-tools/typespec-client-generator-core@0.68.0':
-    resolution: {integrity: sha512-QDEAaT/9STiteTPH4qEKuwlIaLvWyAPf/+0XWyqj3vge6Zi7YdWBwB4PqaCMFptHRGAeWC2a14PDGY6kKyc2MQ==}
+  '@azure-tools/typespec-client-generator-core@0.68.2':
+    resolution: {integrity: sha512-i6McruyTzeP+CQ1klyEbFfz0gn/ERxkQf8qcrWASPz/ARMneUtZ1hCAmHcv22QuurA3eohn3QZI5r58BgwW87Q==}
     engines: {node: '>=22.0.0'}
     peerDependencies:
       '@azure-tools/typespec-azure-core': ^0.68.0
@@ -5596,7 +5596,7 @@ snapshots:
       fs-extra: 11.3.2
       handlebars: 4.7.8
       lodash: 4.17.21
-      prettier: 3.7.4
+      prettier: 3.8.1
       source-map-support: 0.5.21
       ts-morph: 23.0.0
     transitivePeerDependencies:
@@ -5630,7 +5630,7 @@ snapshots:
       '@azure-tools/tasks': 3.0.255
       proper-lockfile: 2.0.1
 
-  '@azure-tools/azure-http-specs@0.1.0-alpha.41-dev.0(8e0cc86ac4828e94477d5cd2d8a23d68)':
+  '@azure-tools/azure-http-specs@0.1.0-alpha.41-dev.1(8e0cc86ac4828e94477d5cd2d8a23d68)':
     dependencies:
       '@azure-tools/typespec-azure-core': 0.68.0(@typespec/compiler@1.12.0(@types/node@25.3.5))(@typespec/http@1.12.0(@typespec/compiler@1.12.0(@types/node@25.3.5))(@typespec/streams@0.82.0(@typespec/compiler@1.12.0(@types/node@25.3.5))))(@typespec/rest@0.82.0(@typespec/compiler@1.12.0(@types/node@25.3.5))(@typespec/http@1.12.0(@typespec/compiler@1.12.0(@types/node@25.3.5))(@typespec/streams@0.82.0(@typespec/compiler@1.12.0(@types/node@25.3.5)))))
       '@typespec/compiler': 1.12.0(@types/node@25.3.5)
@@ -5668,11 +5668,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@azure-tools/typespec-autorest@0.68.0(92e067992ec7d39e2984604dd59f0688)':
+  '@azure-tools/typespec-autorest@0.68.0(5adc798027f24c77da5623498f23ccd9)':
     dependencies:
       '@azure-tools/typespec-azure-core': 0.68.0(@typespec/compiler@1.12.0(@types/node@25.3.5))(@typespec/http@1.12.0(@typespec/compiler@1.12.0(@types/node@25.3.5))(@typespec/streams@0.82.0(@typespec/compiler@1.12.0(@types/node@25.3.5))))(@typespec/rest@0.82.0(@typespec/compiler@1.12.0(@types/node@25.3.5))(@typespec/http@1.12.0(@typespec/compiler@1.12.0(@types/node@25.3.5))(@typespec/streams@0.82.0(@typespec/compiler@1.12.0(@types/node@25.3.5)))))
       '@azure-tools/typespec-azure-resource-manager': 0.68.0(f862b68e177ebc169f8eaba06224398f)
-      '@azure-tools/typespec-client-generator-core': 0.68.0(c90cd83acd0ea02e752c62bdfeeead80)
+      '@azure-tools/typespec-client-generator-core': 0.68.2(c90cd83acd0ea02e752c62bdfeeead80)
       '@typespec/compiler': 1.12.0(@types/node@25.3.5)
       '@typespec/http': 1.12.0(@typespec/compiler@1.12.0(@types/node@25.3.5))(@typespec/streams@0.82.0(@typespec/compiler@1.12.0(@types/node@25.3.5)))
       '@typespec/openapi': 1.12.0(@typespec/compiler@1.12.0(@types/node@25.3.5))(@typespec/http@1.12.0(@typespec/compiler@1.12.0(@types/node@25.3.5))(@typespec/streams@0.82.0(@typespec/compiler@1.12.0(@types/node@25.3.5))))
@@ -5698,14 +5698,14 @@ snapshots:
       change-case: 5.4.4
       pluralize: 8.0.0
 
-  '@azure-tools/typespec-azure-rulesets@0.68.0(@azure-tools/typespec-azure-core@0.68.0(@typespec/compiler@1.12.0(@types/node@25.3.5))(@typespec/http@1.12.0(@typespec/compiler@1.12.0(@types/node@25.3.5))(@typespec/streams@0.82.0(@typespec/compiler@1.12.0(@types/node@25.3.5))))(@typespec/rest@0.82.0(@typespec/compiler@1.12.0(@types/node@25.3.5))(@typespec/http@1.12.0(@typespec/compiler@1.12.0(@types/node@25.3.5))(@typespec/streams@0.82.0(@typespec/compiler@1.12.0(@types/node@25.3.5))))))(@azure-tools/typespec-azure-resource-manager@0.68.0(f862b68e177ebc169f8eaba06224398f))(@azure-tools/typespec-client-generator-core@0.68.0(c90cd83acd0ea02e752c62bdfeeead80))(@typespec/compiler@1.12.0(@types/node@25.3.5))':
+  '@azure-tools/typespec-azure-rulesets@0.68.0(@azure-tools/typespec-azure-core@0.68.0(@typespec/compiler@1.12.0(@types/node@25.3.5))(@typespec/http@1.12.0(@typespec/compiler@1.12.0(@types/node@25.3.5))(@typespec/streams@0.82.0(@typespec/compiler@1.12.0(@types/node@25.3.5))))(@typespec/rest@0.82.0(@typespec/compiler@1.12.0(@types/node@25.3.5))(@typespec/http@1.12.0(@typespec/compiler@1.12.0(@types/node@25.3.5))(@typespec/streams@0.82.0(@typespec/compiler@1.12.0(@types/node@25.3.5))))))(@azure-tools/typespec-azure-resource-manager@0.68.0(f862b68e177ebc169f8eaba06224398f))(@azure-tools/typespec-client-generator-core@0.68.2(c90cd83acd0ea02e752c62bdfeeead80))(@typespec/compiler@1.12.0(@types/node@25.3.5))':
     dependencies:
       '@azure-tools/typespec-azure-core': 0.68.0(@typespec/compiler@1.12.0(@types/node@25.3.5))(@typespec/http@1.12.0(@typespec/compiler@1.12.0(@types/node@25.3.5))(@typespec/streams@0.82.0(@typespec/compiler@1.12.0(@types/node@25.3.5))))(@typespec/rest@0.82.0(@typespec/compiler@1.12.0(@types/node@25.3.5))(@typespec/http@1.12.0(@typespec/compiler@1.12.0(@types/node@25.3.5))(@typespec/streams@0.82.0(@typespec/compiler@1.12.0(@types/node@25.3.5)))))
       '@azure-tools/typespec-azure-resource-manager': 0.68.0(f862b68e177ebc169f8eaba06224398f)
-      '@azure-tools/typespec-client-generator-core': 0.68.0(c90cd83acd0ea02e752c62bdfeeead80)
+      '@azure-tools/typespec-client-generator-core': 0.68.2(c90cd83acd0ea02e752c62bdfeeead80)
       '@typespec/compiler': 1.12.0(@types/node@25.3.5)
 
-  '@azure-tools/typespec-client-generator-core@0.68.0(c90cd83acd0ea02e752c62bdfeeead80)':
+  '@azure-tools/typespec-client-generator-core@0.68.2(c90cd83acd0ea02e752c62bdfeeead80)':
     dependencies:
       '@azure-tools/typespec-azure-core': 0.68.0(@typespec/compiler@1.12.0(@types/node@25.3.5))(@typespec/http@1.12.0(@typespec/compiler@1.12.0(@types/node@25.3.5))(@typespec/streams@0.82.0(@typespec/compiler@1.12.0(@types/node@25.3.5))))(@typespec/rest@0.82.0(@typespec/compiler@1.12.0(@types/node@25.3.5))(@typespec/http@1.12.0(@typespec/compiler@1.12.0(@types/node@25.3.5))(@typespec/streams@0.82.0(@typespec/compiler@1.12.0(@types/node@25.3.5)))))
       '@typespec/compiler': 1.12.0(@types/node@25.3.5)

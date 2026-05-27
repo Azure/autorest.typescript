@@ -4,7 +4,7 @@ import { ModularEmitterOptions } from "./interfaces.js";
 import path from "path";
 import { buildLroDeserDetailMap } from "./buildOperations.js";
 import { getClassicalClientName } from "./helpers/namingHelpers.js";
-import { NameType, normalizeName } from "@azure-tools/rlc-common";
+import { NameType, normalizeName } from "../rlc-common/index.js";
 import { resolveReference } from "../framework/reference.js";
 import { AzurePollingDependencies } from "./external-dependencies.js";
 import { PollingHelpers } from "./static-helpers-metadata.js";
