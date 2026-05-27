@@ -366,10 +366,6 @@ describe("Package file generation", () => {
         "npm run clean && dev-tool run build-package && dev-tool run extract-api"
       );
       expect(packageFile.scripts).to.have.property(
-        "test:node:esm",
-        "dev-tool run test:vitest --esm"
-      );
-      expect(packageFile.scripts).to.have.property(
         "test:node",
         "dev-tool run test:vitest"
       );
@@ -383,12 +379,12 @@ describe("Package file generation", () => {
       );
       expect(packageFile.scripts).to.have.property(
         "test:browser",
-        "dev-tool run build-test && dev-tool run test:vitest --browser"
+        "dev-tool run test:vitest --browser"
       );
       expect(packageFile.scripts).to.have.property("pack", "pnpm pack 2>&1");
       expect(packageFile.scripts).to.have.property(
         "test",
-        "npm run test:node && npm run test:browser"
+        "tsc -b --noEmit && npm run test:node && npm run test:browser"
       );
       expect(packageFile.scripts).to.have.property(
         "format",

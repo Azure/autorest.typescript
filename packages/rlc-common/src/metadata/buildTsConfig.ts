@@ -203,20 +203,3 @@ export function buildTsSnippetsConfig() {
     )
   };
 }
-
-/**
- * Builds config/tsconfig.lint.json — extends the repository root tsconfig.
- */
-export function buildTsLintConfig() {
-  return {
-    path: "config/tsconfig.lint.json",
-    content: JSON.stringify(
-      {
-        extends: "../../../../tsconfig.json",
-        include: ["../src", "../test"]
-      },
-      null,
-      2
-    )
-  };
-}
