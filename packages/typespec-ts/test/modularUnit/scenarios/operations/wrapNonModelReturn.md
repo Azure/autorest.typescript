@@ -442,7 +442,9 @@ export async function _getLogsDeserialize(
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
-    error.details = apiErrorDeserializer(result.body);
+    if (result.body) {
+      error.details = apiErrorDeserializer(result.body);
+    }
 
     throw error;
   }
@@ -497,7 +499,9 @@ export async function _getBlobDeserialize(
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
-    error.details = storageErrorDeserializer(result.body);
+    if (result.body) {
+      error.details = storageErrorDeserializer(result.body);
+    }
     error.details = { ...(error.details as any), ..._getBlobDeserializeExceptionHeaders(result) };
     throw error;
   }
@@ -921,7 +925,9 @@ export async function _getIkeSasDeserialize(
   const expectedStatuses = ["202", "200", "201"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
-    error.details = errorResponseDeserializer(result.body);
+    if (result.body) {
+      error.details = errorResponseDeserializer(result.body);
+    }
 
     throw error;
   }

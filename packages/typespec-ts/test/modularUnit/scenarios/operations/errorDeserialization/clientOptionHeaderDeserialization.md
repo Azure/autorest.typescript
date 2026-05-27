@@ -58,7 +58,9 @@ export async function _getWidgetDeserialize(result: PathUncheckedResponse): Prom
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
-    error.details = apiErrorDeserializer(result.body);
+    if (result.body) {
+      error.details = apiErrorDeserializer(result.body);
+    }
     error.details = { ...(error.details as any), errorCode: result.headers["x-ms-error-code"] };
     throw error;
   }
@@ -128,7 +130,9 @@ export async function _getItemDeserialize(result: PathUncheckedResponse): Promis
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
-    error.details = serviceErrorDeserializer(result.body);
+    if (result.body) {
+      error.details = serviceErrorDeserializer(result.body);
+    }
     error.details = {
       ...(error.details as any),
       requestId: result.headers["x-ms-request-id"],
@@ -203,7 +207,9 @@ export async function _getWidgetDeserialize(result: PathUncheckedResponse): Prom
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
-    error.details = apiErrorDeserializer(result.body);
+    if (result.body) {
+      error.details = apiErrorDeserializer(result.body);
+    }
     error.details = { ...(error.details as any), errorCode: result.headers["x-ms-error-code"] };
     throw error;
   }

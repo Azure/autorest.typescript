@@ -230,9 +230,12 @@ export function getDeserializePrivateFunction(
       type: resolveReference(refkey(operation, "response"))
     };
   } else if (response.type) {
+    // When response.optional is true, some HTTP responses have no body (e.g. 204), so
+    // the return type must include undefined to reflect that possibility.
+    const baseType = getTypeExpression(context, response.type);
     returnType = {
       name: (response as any).name ?? "",
-      type: getTypeExpression(context, response.type)
+      type: response.optional ? `${baseType} | undefined` : baseType
     };
   } else if (isHeadAsBooleanOperation(context, operation)) {
     returnType = { name: "", type: "boolean" };
@@ -301,6 +304,13 @@ export function getDeserializePrivateFunction(
   }
 
   if (deserializedType) {
+    // When the method response is optional (some HTTP responses have no body, e.g. 204),
+    // guard all body deserialization so we return undefined instead of throwing.
+    // This only applies to non-LRO, non-paging operations where the deserialized type
+    // comes from response.type (not from LRO metadata or paging).
+    const needsBodyGuard =
+      response.optional && !isLroOnly && !isLroAndPaging && !isPagingOnly;
+
     const contentTypes = operation.operation.responses[0]?.contentTypes ?? [];
     const isXml = isXmlPayload(contentTypes);
     const isDualFormat = hasDualFormatSupport(contentTypes);
@@ -319,6 +329,13 @@ export function getDeserializePrivateFunction(
       deserializedType.kind === "model" &&
       hasXmlSerialization(deserializedType)
     ) {
+      if (needsBodyGuard) {
+        statements.push(
+          `if (!result.body) {
+            return result.body as ${returnType.type};
+          }`
+        );
+      }
       const xmlDeserializerName = buildXmlModelDeserializer(
         context,
         deserializedType,
@@ -365,6 +382,13 @@ export function getDeserializePrivateFunction(
       }
     } else if (useXmlDeserialization) {
       // XML-only response
+      if (needsBodyGuard) {
+        statements.push(
+          `if (!result.body) {
+            return result.body as ${returnType.type};
+          }`
+        );
+      }
       const xmlDeserializerName = buildXmlModelDeserializer(
         context,
         deserializedType,
@@ -435,9 +459,16 @@ export function getDeserializePrivateFunction(
         };
       }
       if (deserializeFunctionName) {
-        statements.push(
-          `return ${deserializeFunctionName}(${deserializedRoot})${multipartCastSuffix}`
-        );
+        if (needsBodyGuard) {
+          // Use ternary form: return result.body ? deserializer(result.body) : undefined
+          statements.push(
+            `return ${deserializedRoot} ? ${deserializeFunctionName}(${deserializedRoot})${multipartCastSuffix} : undefined`
+          );
+        } else {
+          statements.push(
+            `return ${deserializeFunctionName}(${deserializedRoot})${multipartCastSuffix}`
+          );
+        }
       } else if (
         isAzureCoreErrorType(context.program, deserializedType.__raw)
       ) {
@@ -789,12 +820,12 @@ function getExceptionThrowStatement(
       const headerStmt = allHeaderCalls;
       if (exception.end) {
         return `if(statusCode >= ${exception.start} && statusCode <= ${exception.end}) {
-              error.details = ${deserializeExpr};
+              if(result.body) { error.details = ${deserializeExpr}; }
               ${headerStmt}
           }`;
       } else {
         return `if(statusCode === ${exception.start}) {
-             error.details = ${deserializeExpr};
+             if(result.body) { error.details = ${deserializeExpr}; }
              ${headerStmt}
           }`;
       }
@@ -807,7 +838,7 @@ function getExceptionThrowStatement(
           ? `${defaultXmlDeserializer}(result.body)`
           : `isXml ? ${defaultXmlDeserializer}(result.body) : ${defaultDeserializer}(result.body)`;
       statements.push(`else {
-        error.details = ${defaultDeserializeExpr};
+        if(result.body) { error.details = ${defaultDeserializeExpr}; }
         ${allHeaderCalls}
       }`);
     }
@@ -817,7 +848,7 @@ function getExceptionThrowStatement(
       if (defaultXmlDeserializer) {
         if (defaultIsXmlOnly) {
           statements.push(`const error = ${createRestErrorReference}(result);
-          error.details = ${defaultXmlDeserializer}(result.body);
+          if(result.body) { error.details = ${defaultXmlDeserializer}(result.body); }
           ${allHeaderCalls}`);
         } else {
           const isXmlContentTypeRef = resolveReference(
@@ -825,12 +856,12 @@ function getExceptionThrowStatement(
           );
           statements.push(`const error = ${createRestErrorReference}(result);
           const responseContentType = result.headers?.["content-type"] ?? "";
-          error.details = ${isXmlContentTypeRef}(responseContentType) ? ${defaultXmlDeserializer}(result.body) : ${defaultDeserializer}(result.body);
+          if(result.body) { error.details = ${isXmlContentTypeRef}(responseContentType) ? ${defaultXmlDeserializer}(result.body) : ${defaultDeserializer}(result.body); }
           ${allHeaderCalls}`);
         }
       } else {
         statements.push(`const error = ${createRestErrorReference}(result);
-        error.details = ${defaultDeserializer}(result.body);
+        if(result.body) { error.details = ${defaultDeserializer}(result.body); }
         ${allHeaderCalls}`);
       }
       statements.push("throw error;");
@@ -1042,14 +1073,22 @@ export function getOperationFunction(
       isResponseHeadersEnabled
     ) {
       // Build a composite type that includes both model and additional header properties
+      const baseCompositeType = buildCompositeResponseType(
+        context,
+        type,
+        responseHeaders
+      );
       returnType = {
         name: (type as any).name ?? "",
-        type: `${buildCompositeResponseType(context, type, responseHeaders)}`
+        type: response.optional
+          ? `${baseCompositeType} | undefined`
+          : baseCompositeType
       };
     } else {
+      const baseType = getTypeExpression(context, type!);
       returnType = {
         name: (type as any).name ?? "",
-        type: getTypeExpression(context, type!)
+        type: response.optional ? `${baseType} | undefined` : baseType
       };
     }
   } else if (hasHeaderOnlyResponse && isResponseHeadersEnabled) {
