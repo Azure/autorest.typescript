@@ -76,13 +76,9 @@ export function buildEsLintConfig(model: RLCModel) {
   } else {
     template = eslintConfig;
   }
-  const configFile = project.createSourceFile(
-    "eslint.config.mjs",
-    template,
-    {
-      overwrite: true
-    }
-  );
+  const configFile = project.createSourceFile("eslint.config.mjs", template, {
+    overwrite: true
+  });
   return {
     path: filePath,
     content: configFile.getFullText()
