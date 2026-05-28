@@ -167,6 +167,10 @@ export interface TSOperation {
   returnType: TSReturnType;
   /** Options interface for this operation */
   optionsType: TSOptionsType;
+  /** Request body emission style. */
+  bodyShape: "inline" | "named-with-serializer";
+  /** HTTP success status codes accepted by the deserializer. */
+  expectedStatuses: string[];
 }
 
 /** A parameter on an operation. */
@@ -340,7 +344,14 @@ export interface TSHelperFile {
   /** Output path relative to source root */
   outputPath: string;
   /** Helper category for organizational purposes */
-  category: "paging" | "polling" | "serialization" | "auth" | "logging" | "url" | "multipart";
+  category:
+    | "paging"
+    | "polling"
+    | "serialization"
+    | "auth"
+    | "logging"
+    | "url"
+    | "multipart";
 }
 
 // ─── Paging ───────────────────────────────────────────────────────────

@@ -22,10 +22,12 @@ import type {
   TSEnum,
   TSUnion,
   TSOperation,
+  TSOperationGroup,
+  TSOperationParameter,
   TSSerializerGroup,
   TSHelperFile,
   TSPackageInfo,
-  TSProperty
+  TSProperty,
 } from "../codemodel/index.js";
 
 /** A rendered output file. */
@@ -48,9 +50,10 @@ export function render(codeModel: TSCodeModel): RenderedFile[] {
   return [
     ...renderModels(codeModel),
     ...renderClients(codeModel),
+    ...renderOperationFiles(codeModel),
     renderLogger(codeModel.packageInfo),
     ...renderIndexFiles(codeModel),
-    ...renderPackageFiles(codeModel)
+    ...renderPackageFiles(codeModel),
   ];
 }
 
@@ -60,14 +63,18 @@ export function render(codeModel: TSCodeModel): RenderedFile[] {
  * Consumes: `TSCodeModel.models`, `TSCodeModel.enums`
  * Produces: `src/models/models.ts`
  */
-export function renderModels(codeModel: Pick<TSCodeModel, "models" | "enums">): RenderedFile[] {
+export function renderModels(
+  codeModel: Pick<TSCodeModel, "models" | "enums">,
+): RenderedFile[] {
   const project = new Project({
     manipulationSettings: {
       quoteKind: QuoteKind.Double,
-      useTrailingCommas: true
-    }
+      useTrailingCommas: true,
+    },
   });
-  const sourceFile = project.createSourceFile("models.ts", "", { overwrite: true });
+  const sourceFile = project.createSourceFile("models.ts", "", {
+    overwrite: true,
+  });
 
   sourceFile.addStatements(`// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -90,40 +97,50 @@ export function renderModels(codeModel: Pick<TSCodeModel, "models" | "enums">): 
   }
 
   sourceFile.formatText({ indentSize: 2 });
-  const content = sourceFile.getFullText().replace(/}\n\/\*\* model interface/g, "}\n\n/** model interface");
+  const content = sourceFile
+    .getFullText()
+    .replace(/}\n\/\*\* model interface/g, "}\n\n/** model interface");
   return [{ path: "src/models/models.ts", content }];
 }
 
-function renderModel(sourceFile: import("ts-morph").SourceFile, model: TSModel): void {
+function renderModel(
+  sourceFile: import("ts-morph").SourceFile,
+  model: TSModel,
+): void {
   addModelDocs(sourceFile, model);
   const declaration = sourceFile.addInterface({
     name: model.name,
     isExported: true,
     extends: model.baseModel ? [model.baseModel] : undefined,
-    properties: model.properties.map(getPropertyStructure)
+    properties: model.properties.map(getPropertyStructure),
   });
 
   if (model.additionalPropertiesType) {
     declaration.addIndexSignature({
       keyName: "propertyName",
       keyType: "string",
-      returnType: model.additionalPropertiesType
+      returnType: model.additionalPropertiesType,
     });
   }
 }
 
-function getPropertyStructure(property: TSProperty): import("ts-morph").PropertySignatureStructure {
+function getPropertyStructure(
+  property: TSProperty,
+): import("ts-morph").PropertySignatureStructure {
   return {
     kind: StructureKind.PropertySignature,
     name: property.name,
     type: property.type,
     hasQuestionToken: property.optional,
     isReadonly: property.readonly,
-    docs: property.docs.map((doc) => ({ description: doc }))
+    docs: property.docs.map((doc) => ({ description: doc })),
   };
 }
 
-function renderModelSerializer(sourceFile: import("ts-morph").SourceFile, model: TSModel): void {
+function renderModelSerializer(
+  sourceFile: import("ts-morph").SourceFile,
+  model: TSModel,
+): void {
   if (!model.needsSerializer || !model.serializerName) {
     return;
   }
@@ -133,11 +150,16 @@ function renderModelSerializer(sourceFile: import("ts-morph").SourceFile, model:
     isExported: true,
     parameters: [{ name: "item", type: model.name }],
     returnType: "any",
-    statements: [`return { ${getSerializerMappings(model.properties).join(", ")} };`]
+    statements: [
+      `return { ${getSerializerMappings(model.properties).join(", ")} };`,
+    ],
   });
 }
 
-function renderModelDeserializer(sourceFile: import("ts-morph").SourceFile, model: TSModel): void {
+function renderModelDeserializer(
+  sourceFile: import("ts-morph").SourceFile,
+  model: TSModel,
+): void {
   if (!model.needsDeserializer || !model.deserializerName) {
     return;
   }
@@ -147,23 +169,33 @@ function renderModelDeserializer(sourceFile: import("ts-morph").SourceFile, mode
     isExported: true,
     parameters: [{ name: "item", type: "any" }],
     returnType: model.name,
-    statements: [`return { ${getDeserializerMappings(model.properties).join(", ")} };`]
+    statements: [
+      `return { ${getDeserializerMappings(model.properties).join(", ")} };`,
+    ],
   });
 }
 
 function getSerializerMappings(properties: TSProperty[]): string[] {
   return properties
     .filter((property) => !property.readonly)
-    .map((property) => getObjectMapping(property, `item[${JSON.stringify(property.name)}]`));
+    .map((property) =>
+      getObjectMapping(property, `item[${JSON.stringify(property.name)}]`),
+    );
 }
 
 function getDeserializerMappings(properties: TSProperty[]): string[] {
   return properties.map((property) =>
-    getObjectMapping(property, `item[${JSON.stringify(property.serializedName ?? property.name)}]`)
+    getObjectMapping(
+      property,
+      `item[${JSON.stringify(property.serializedName ?? property.name)}]`,
+    ),
   );
 }
 
-function getObjectMapping(property: TSProperty, valueExpression: string): string {
+function getObjectMapping(
+  property: TSProperty,
+  valueExpression: string,
+): string {
   const wireName = property.serializedName ?? property.name;
   const key = isIdentifier(wireName) ? wireName : JSON.stringify(wireName);
   if (!property.optional) {
@@ -176,18 +208,24 @@ function isIdentifier(name: string): boolean {
   return /^[$A-Z_a-z][$\w]*$/.test(name);
 }
 
-function renderEnum(sourceFile: import("ts-morph").SourceFile, enumType: TSEnum): void {
+function renderEnum(
+  sourceFile: import("ts-morph").SourceFile,
+  enumType: TSEnum,
+): void {
   addDocs(sourceFile, enumType.docs);
   if (enumType.isExtensible) {
     sourceFile.addEnum({
       name: `Known${enumType.name}`,
       isExported: true,
-      members: enumType.members.map((member) => ({ name: member.name, value: member.value }))
+      members: enumType.members.map((member) => ({
+        name: member.name,
+        value: member.value,
+      })),
     });
     sourceFile.addTypeAlias({
       name: enumType.name,
       isExported: true,
-      type: `string`
+      type: `string`,
     });
     return;
   }
@@ -195,11 +233,16 @@ function renderEnum(sourceFile: import("ts-morph").SourceFile, enumType: TSEnum)
   sourceFile.addTypeAlias({
     name: enumType.name,
     isExported: true,
-    type: enumType.members.map((member) => JSON.stringify(member.value)).join(" | ")
+    type: enumType.members
+      .map((member) => JSON.stringify(member.value))
+      .join(" | "),
   });
 }
 
-function addModelDocs(sourceFile: import("ts-morph").SourceFile, model: TSModel): void {
+function addModelDocs(
+  sourceFile: import("ts-morph").SourceFile,
+  model: TSModel,
+): void {
   if (model.docs.length === 0) {
     sourceFile.addStatements(`/** model interface ${model.name} */`);
     return;
@@ -208,7 +251,10 @@ function addModelDocs(sourceFile: import("ts-morph").SourceFile, model: TSModel)
   addDocs(sourceFile, model.docs);
 }
 
-function addDocs(sourceFile: import("ts-morph").SourceFile, docs: string[]): void {
+function addDocs(
+  sourceFile: import("ts-morph").SourceFile,
+  docs: string[],
+): void {
   if (docs.length === 0) {
     return;
   }
@@ -243,18 +289,29 @@ export function renderUnions(_unions: TSUnion[]): RenderedFile[] {
  * Consumes: `TSCodeModel.clients`, `TSCodeModel.packageInfo`
  * Produces: `src/api/{clientName}Context.ts`
  */
-export function renderClients(codeModel: Pick<TSCodeModel, "clients" | "packageInfo">): RenderedFile[] {
-  return codeModel.clients.map((client) => renderClientContext(client, codeModel.packageInfo));
+export function renderClients(
+  codeModel: Pick<TSCodeModel, "clients" | "packageInfo">,
+): RenderedFile[] {
+  return codeModel.clients.map((client) =>
+    renderClientContext(client, codeModel.packageInfo),
+  );
 }
 
-export function renderClientContext(client: TSClient, packageInfo: TSPackageInfo): RenderedFile {
+export function renderClientContext(
+  client: TSClient,
+  packageInfo: TSPackageInfo,
+): RenderedFile {
   const clientBaseName = getClientBaseName(client.name);
   const endpointParameter = getEndpointParameter(client);
   const contextName = `${clientBaseName}Context`;
   const optionsName = `${clientBaseName}ClientOptionalParams`;
   const factoryName = `create${clientBaseName}`;
-  const endpointExpression = endpointParameter ? `String(${endpointParameter.name})` : JSON.stringify(client.endpoint.urlTemplate);
-  const parameters = endpointParameter ? `${endpointParameter.name}: ${endpointParameter.type},\n  ` : "";
+  const endpointExpression = endpointParameter
+    ? `String(${endpointParameter.name})`
+    : JSON.stringify(client.endpoint.urlTemplate);
+  const parameters = endpointParameter
+    ? `${endpointParameter.name}: ${endpointParameter.type},\n  `
+    : "";
   const content = `${copyrightHeader()}
 
 import { logger } from "../logger.js";
@@ -298,8 +355,24 @@ export function ${factoryName}(
  * Consumes: `TSClient.methods` and `TSClient.operationGroups[].operations`
  * Produces: `src/api/{group}/{operation}.ts`
  */
-export function renderOperations(_clients: TSClient[]): RenderedFile[] {
-  throw new Error("renderOperations: not yet implemented");
+export function renderOperations(
+  client: TSClient,
+  group: TSOperationGroup,
+): RenderedFile {
+  const operations = group.operations;
+  const clientBaseName = getClientBaseName(client.name);
+  const serializerNames = operations
+    .filter((operation) => operation.bodyShape === "named-with-serializer")
+    .map((operation) => getOperationBodySerializerName(operation))
+    .sort();
+  const optionNames = operations.map((operation) => operation.optionsType.name);
+  const content = `${copyrightHeader()}
+
+${renderOperationImports(clientBaseName, serializerNames, optionNames)}
+
+${operations.map((operation) => renderOperation(operation)).join("\n\n")}
+`;
+  return { path: `src/api/${group.name}/operations.ts`, content };
 }
 
 /**
@@ -308,8 +381,169 @@ export function renderOperations(_clients: TSClient[]): RenderedFile[] {
  * Consumes: `TSOperation.optionsType` across all clients
  * Produces: `src/api/{group}/options.ts`
  */
-export function renderOptions(_operations: TSOperation[]): RenderedFile[] {
-  throw new Error("renderOptions: not yet implemented");
+export function renderOptions(
+  _client: TSClient,
+  group: TSOperationGroup,
+): RenderedFile {
+  const content = `${copyrightHeader()}
+
+import { OperationOptions } from "@azure-rest/core-client";
+
+${group.operations
+  .map((operation) => renderOptionsInterface(operation))
+  .join("\n\n")}
+`;
+  return { path: `src/api/${group.name}/options.ts`, content };
+}
+
+export function renderOperationGroupBarrel(
+  _client: TSClient,
+  group: TSOperationGroup,
+): RenderedFile {
+  const operationNames = group.operations
+    .map((operation) => operation.name)
+    .join(", ");
+  const optionNames = group.operations
+    .map((operation) => operation.optionsType.name)
+    .join(",\n  ");
+  const content = `${copyrightHeader()}
+
+export { ${operationNames} } from "./operations.js";
+export type {
+  ${optionNames},
+} from "./options.js";
+`;
+  return { path: `src/api/${group.name}/index.ts`, content };
+}
+
+export function renderOperationFiles(
+  codeModel: Pick<TSCodeModel, "clients">,
+): RenderedFile[] {
+  return codeModel.clients.flatMap((client) =>
+    client.operationGroups.flatMap((group) => [
+      renderOperations(client, group),
+      renderOptions(client, group),
+      renderOperationGroupBarrel(client, group),
+    ]),
+  );
+}
+
+function renderOperationImports(
+  clientBaseName: string,
+  serializerNames: string[],
+  optionNames: string[],
+): string {
+  const serializersImport =
+    serializerNames.length > 0
+      ? `import { ${serializerNames.join(", ")} } from "../../models/models.js";\n`
+      : "";
+  return `import { ${clientBaseName}Context as Client } from "../index.js";
+${serializersImport}import {
+  ${optionNames.join(",\n  ")},
+} from "./options.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";`;
+}
+
+function renderOperation(operation: TSOperation): string {
+  return `${renderSendFunction(operation)}
+
+${renderDeserializeFunction(operation)}
+
+${renderPublicOperationFunction(operation)}`;
+}
+
+function renderSendFunction(operation: TSOperation): string {
+  const parameters = renderOperationSignatureParameters(operation);
+  return `export function _${operation.name}Send(
+  context: Client,
+${parameters}
+  options: ${operation.optionsType.name} = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("${operation.path}")
+    .${operation.httpMethod.toLowerCase()}({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      ${renderBodyExpression(operation)}
+    });
+}`;
+}
+
+function renderDeserializeFunction(operation: TSOperation): string {
+  return `export async function _${operation.name}Deserialize(result: PathUncheckedResponse): Promise<${operation.returnType.type}> {
+  const expectedStatuses = ${JSON.stringify(operation.expectedStatuses)};
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return${operation.returnType.isVoid ? "" : " result.body as " + operation.returnType.type};
+}`;
+}
+
+function renderPublicOperationFunction(operation: TSOperation): string {
+  const parameters = renderOperationSignatureParameters(operation);
+  const argumentNames = operation.parameters
+    .map((parameter) => parameter.name)
+    .join(", ");
+  const sendArguments = argumentNames ? `${argumentNames}, options` : "options";
+  return `export async function ${operation.name}(
+  context: Client,
+${parameters}
+  options: ${operation.optionsType.name} = { requestOptions: {} },
+): Promise<${operation.returnType.type}> {
+  const result = await _${operation.name}Send(context, ${sendArguments});
+  return _${operation.name}Deserialize(result);
+}`;
+}
+
+function renderOperationSignatureParameters(operation: TSOperation): string {
+  return operation.parameters
+    .map((parameter) => renderOperationParameter(parameter))
+    .join("\n");
+}
+
+function renderOperationParameter(parameter: TSOperationParameter): string {
+  return `  ${parameter.name}: ${indentInlineType(parameter.type)},`;
+}
+
+function indentInlineType(type: string): string {
+  return type;
+}
+
+function renderBodyExpression(operation: TSOperation): string {
+  if (
+    operation.parameters.every((parameter) => parameter.location !== "body")
+  ) {
+    return "";
+  }
+  if (operation.bodyShape === "named-with-serializer") {
+    const bodyParameter = operation.parameters.find(
+      (parameter) => parameter.location === "body",
+    );
+    return `body: ${getOperationBodySerializerName(operation)}(${bodyParameter?.name ?? "body"}),`;
+  }
+  const bodyProperties = operation.parameters
+    .filter((parameter) => parameter.location === "body")
+    .map((parameter) => `${parameter.name}: ${parameter.name}`)
+    .join(", ");
+  return `body: { ${bodyProperties} },`;
+}
+
+function getOperationBodySerializerName(operation: TSOperation): string {
+  return `_${operation.name}RequestSerializer`;
+}
+
+function renderOptionsInterface(operation: TSOperation): string {
+  const properties = operation.optionsType.properties
+    .map((property) => `  ${property.name}?: ${property.type};`)
+    .join("\n");
+  return `/** Optional parameters. */
+export interface ${operation.optionsType.name} extends OperationOptions {${properties ? `\n${properties}\n` : ""}}`;
 }
 
 /**
@@ -320,7 +554,7 @@ export function renderOptions(_operations: TSOperation[]): RenderedFile[] {
  */
 export function renderSerializers(
   _serializers: TSSerializerGroup[],
-  _models: TSModel[]
+  _models: TSModel[],
 ): RenderedFile[] {
   throw new Error("renderSerializers: not yet implemented");
 }
@@ -349,12 +583,12 @@ export function renderIndexFiles(codeModel: TSCodeModel): RenderedFile[] {
   return [
     {
       path: "src/models/index.ts",
-      content: `${copyrightHeader()}\n\nexport * from "./models.js";\n`
+      content: `${copyrightHeader()}\n\nexport * from "./models.js";\n`,
     },
     {
       path: "src/index.ts",
-      content: `${copyrightHeader()}\n\nexport * from "./models/index.js";\n`
-    }
+      content: `${copyrightHeader()}\n\nexport * from "./models/index.js";\n`,
+    },
   ];
 }
 
@@ -366,9 +600,12 @@ export function renderIndexFiles(codeModel: TSCodeModel): RenderedFile[] {
  */
 export function renderPackageFiles(codeModel: TSCodeModel): RenderedFile[] {
   return [
-    { path: "package.json", content: `${renderPackageJson(codeModel.packageInfo)}\n` },
+    {
+      path: "package.json",
+      content: `${renderPackageJson(codeModel.packageInfo)}\n`,
+    },
     { path: "tsconfig.json", content: `${renderTsconfig()}\n` },
-    { path: "README.md", content: renderReadme(codeModel.packageInfo) }
+    { path: "README.md", content: renderReadme(codeModel.packageInfo) },
   ];
 }
 
@@ -379,7 +616,7 @@ function copyrightHeader(): string {
 function renderPackageJson(packageInfo: TSPackageInfo): string {
   const tshyExports = Object.fromEntries([
     ["./package.json", "./package.json"],
-    ...packageInfo.exports.map((item) => [item.subpath, item.source])
+    ...packageInfo.exports.map((item) => [item.subpath, item.source]),
   ]);
   const packageJson = {
     name: packageInfo.name,
@@ -392,7 +629,7 @@ function renderPackageJson(packageInfo: TSPackageInfo): string {
       exports: tshyExports,
       dialects: ["esm", "commonjs"],
       esmDialects: ["browser"],
-      selfLink: false
+      selfLink: false,
     },
     type: "module",
     browser: "./dist/browser/index.js",
@@ -406,7 +643,7 @@ function renderPackageJson(packageInfo: TSPackageInfo): string {
       "@azure/core-auth": "^1.6.0",
       "@azure/core-rest-pipeline": "^1.5.0",
       "@azure/logger": "^1.0.0",
-      tslib: "^2.6.2"
+      tslib: "^2.6.2",
     },
     devDependencies: {
       dotenv: "^16.0.0",
@@ -416,47 +653,56 @@ function renderPackageJson(packageInfo: TSPackageInfo): string {
       tshy: "^2.0.0",
       "@microsoft/api-extractor": "^7.40.3",
       rimraf: "^5.0.5",
-      mkdirp: "^3.0.1"
+      mkdirp: "^3.0.1",
     },
     scripts: {
-      clean: "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
-      "extract-api": "rimraf review && mkdirp ./review && api-extractor run --local",
+      clean:
+        "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
+      "extract-api":
+        "rimraf review && mkdirp ./review && api-extractor run --local",
       pack: "npm pack 2>&1",
       lint: "eslint package.json api-extractor.json src",
-      "lint:fix": "eslint package.json api-extractor.json src --fix --fix-type [problem,suggestion]",
-      build: "npm run clean && tshy && npm run extract-api"
+      "lint:fix":
+        "eslint package.json api-extractor.json src --fix --fix-type [problem,suggestion]",
+      build: "npm run clean && tshy && npm run extract-api",
     },
     exports: renderPackageExports(packageInfo.exports),
     main: "./dist/commonjs/index.js",
     types: "./dist/commonjs/index.d.ts",
-    module: "./dist/esm/index.js"
+    module: "./dist/esm/index.js",
   };
   return JSON.stringify(packageJson, undefined, 2);
 }
 
-function renderPackageExports(exports: TSPackageInfo["exports"]): Record<string, unknown> {
+function renderPackageExports(
+  exports: TSPackageInfo["exports"],
+): Record<string, unknown> {
   return Object.fromEntries([
     ["./package.json", "./package.json"],
-    ...exports.map((item) => [item.subpath, renderPackageExport(item.source)])
+    ...exports.map((item) => [item.subpath, renderPackageExport(item.source)]),
   ]);
 }
 
-function renderPackageExport(source: string): Record<string, Record<string, string>> {
-  const distPath = source.replace(/^\.\/src\//, "./dist/{dialect}/").replace(/\.ts$/, ".js");
+function renderPackageExport(
+  source: string,
+): Record<string, Record<string, string>> {
+  const distPath = source
+    .replace(/^\.\/src\//, "./dist/{dialect}/")
+    .replace(/\.ts$/, ".js");
   const typesPath = distPath.replace(/\.js$/, ".d.ts");
   return {
     browser: {
       types: typesPath.replace("{dialect}", "browser"),
-      default: distPath.replace("{dialect}", "browser")
+      default: distPath.replace("{dialect}", "browser"),
     },
     import: {
       types: typesPath.replace("{dialect}", "esm"),
-      default: distPath.replace("{dialect}", "esm")
+      default: distPath.replace("{dialect}", "esm"),
     },
     require: {
       types: typesPath.replace("{dialect}", "commonjs"),
-      default: distPath.replace("{dialect}", "commonjs")
-    }
+      default: distPath.replace("{dialect}", "commonjs"),
+    },
   };
 }
 
@@ -481,12 +727,12 @@ function renderTsconfig(): string {
         forceConsistentCasingInFileNames: true,
         moduleResolution: "NodeNext",
         allowSyntheticDefaultImports: true,
-        esModuleInterop: true
+        esModuleInterop: true,
       },
-      include: ["src/**/*.ts"]
+      include: ["src/**/*.ts"],
     },
     undefined,
-    2
+    2,
   );
 }
 
@@ -541,16 +787,22 @@ To use this client library in the browser, first you need to use a bundler. For 
 export function renderLogger(packageInfo: TSPackageInfo): RenderedFile {
   return {
     path: "src/logger.ts",
-    content: `${copyrightHeader()}\n\nimport { createClientLogger } from "@azure/logger";\nexport const logger = createClientLogger("${getPackageShortName(packageInfo.name)}");\n`
+    content: `${copyrightHeader()}\n\nimport { createClientLogger } from "@azure/logger";\nexport const logger = createClientLogger("${getPackageShortName(packageInfo.name)}");\n`,
   };
 }
 
 function getClientBaseName(clientName: string): string {
-  return clientName.endsWith("Client") ? clientName.slice(0, -"Client".length) : clientName;
+  return clientName.endsWith("Client")
+    ? clientName.slice(0, -"Client".length)
+    : clientName;
 }
 
-function getEndpointParameter(client: TSClient): TSClient["parameters"][number] | undefined {
-  return client.parameters.find((parameter) => parameter.name.toLowerCase().includes("endpoint"));
+function getEndpointParameter(
+  client: TSClient,
+): TSClient["parameters"][number] | undefined {
+  return client.parameters.find((parameter) =>
+    parameter.name.toLowerCase().includes("endpoint"),
+  );
 }
 
 function getPackageShortName(packageName: string): string {

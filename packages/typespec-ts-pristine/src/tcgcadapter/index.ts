@@ -28,15 +28,18 @@ import {
   type SdkEndpointParameter,
   type SdkEndpointType,
   type SdkEnumType,
+  type SdkHttpOperation,
+  type SdkHttpParameter,
   type SdkMethodParameter,
   type SdkModelPropertyType,
   type SdkPathParameter,
   type SdkModelType,
   type SdkNullableType,
+  type SdkServiceMethod,
   type SdkServiceOperation,
   type SdkTupleType,
   type SdkType,
-  type SdkUnionType
+  type SdkUnionType,
 } from "@azure-tools/typespec-client-generator-core";
 import type {
   TSClient,
@@ -45,9 +48,14 @@ import type {
   TSEnum,
   TSGenerationSettings,
   TSModel,
+  TSOperation,
+  TSOperationGroup,
+  TSOperationParameter,
+  TSOptionsType,
   TSParameter,
   TSProperty,
-  TSUnion
+  TSReturnType,
+  TSUnion,
 } from "../codemodel/index.js";
 
 /**
@@ -59,7 +67,9 @@ import type {
  * @param context - TypeSpec emit context
  * @returns Complete code model ready for rendering
  */
-export async function adaptSdkContext(context: EmitContext<Record<string, any>>): Promise<TSCodeModel> {
+export async function adaptSdkContext(
+  context: EmitContext<Record<string, any>>,
+): Promise<TSCodeModel> {
   const sdkContext = await createPristineSdkContext(context);
 
   const models = _adaptModels(sdkContext);
@@ -77,16 +87,18 @@ export async function adaptSdkContext(context: EmitContext<Record<string, any>>)
         contentType: "application/json",
         models: models
           .filter((model) => model.needsSerializer || model.needsDeserializer)
-          .map((model) => model.name)
-      }
+          .map((model) => model.name),
+      },
     ],
     helpers: [],
     pagingInfo: { hasPaging: false },
-    pollingInfo: { hasLro: false, emitRestorePoller: false }
+    pollingInfo: { hasLro: false, emitRestorePoller: false },
   };
 }
 
-async function createPristineSdkContext(context: EmitContext<Record<string, any>>): Promise<SdkContext> {
+async function createPristineSdkContext(
+  context: EmitContext<Record<string, any>>,
+): Promise<SdkContext> {
   context.options = {
     ...context.options,
     "generate-protocol-methods": true,
@@ -94,13 +106,13 @@ async function createPristineSdkContext(context: EmitContext<Record<string, any>
     emitters: [
       {
         main: "@azure-tools/typespec-ts-pristine",
-        metadata: { name: "@azure-tools/typespec-ts-pristine" }
-      }
-    ]
+        metadata: { name: "@azure-tools/typespec-ts-pristine" },
+      },
+    ],
   };
 
   return createSdkContext(context, "@azure-tools/typespec-ts-pristine", {
-    flattenUnionAsEnum: false
+    flattenUnionAsEnum: false,
   });
 }
 
@@ -116,30 +128,222 @@ function adaptClient(client: SdkClientType<SdkServiceOperation>): TSClient {
   return {
     name: client.name,
     docs: getDocs(client),
-    parameters: client.clientInitialization.parameters.map(adaptClientParameter),
+    parameters:
+      client.clientInitialization.parameters.map(adaptClientParameter),
     endpoint: adaptEndpoint(client),
     apiVersion: adaptApiVersion(client),
-    operationGroups: getClientOperationGroupNames(client).map((name) => ({ name, operations: [] })),
-    methods: [],
-    children: (client.children ?? []).map(adaptClient)
+    operationGroups: _adaptOperations(client),
+    methods: client.methods.map(adaptOperation).reverse(),
+    children: (client.children ?? []).map(adaptClient),
   };
 }
 
+/**
+ * Adapts operation groups and operations from a TCGC client.
+ */
+export function _adaptOperations(
+  sdkClient: SdkClientType<SdkServiceOperation>,
+  _sdkContext?: SdkContext,
+): TSOperationGroup[] {
+  return (sdkClient.children ?? [])
+    .filter((child) => child.methods.length > 0)
+    .map((child) => ({
+      name: lowerFirst(child.name),
+      operations: child.methods.map(adaptOperation).reverse(),
+    }));
+}
+
+function adaptOperation(
+  sdkMethod: SdkServiceMethod<SdkHttpOperation>,
+): TSOperation {
+  const bodyType = sdkMethod.operation.bodyParam?.type;
+  return {
+    name: lowerFirst(sdkMethod.name),
+    docs: getDocs(sdkMethod),
+    kind: sdkMethod.kind === "lropaging" ? "lroPaging" : sdkMethod.kind,
+    httpMethod: sdkMethod.operation.verb.toUpperCase(),
+    path: sdkMethod.operation.path,
+    parameters: _adaptOperationParameters(sdkMethod),
+    returnType: adaptReturnType(sdkMethod),
+    optionsType: _adaptOptionsType(sdkMethod),
+    bodyShape:
+      bodyType?.kind === "model" && shouldEmitModel(bodyType as SdkModelType)
+        ? "named-with-serializer"
+        : "inline",
+    expectedStatuses: getExpectedStatuses(sdkMethod),
+  };
+}
+
+export function _adaptOperationParameters(
+  sdkMethod: SdkServiceMethod<SdkHttpOperation>,
+): TSOperationParameter[] {
+  return sdkMethod.parameters
+    .filter((parameter) => !shouldSkipGeneratedMethodParameter(parameter))
+    .filter(
+      (parameter) =>
+        !parameter.onClient &&
+        !(parameter.optional || parameter.clientDefaultValue !== undefined),
+    )
+    .map((parameter) => ({
+      name: parameter.name,
+      location: getOperationParameterLocation(sdkMethod, parameter),
+      type: getOperationParameterType(parameter),
+      required: !parameter.optional,
+      defaultValue:
+        parameter.clientDefaultValue === undefined
+          ? undefined
+          : JSON.stringify(parameter.clientDefaultValue),
+      docs: getDocs(parameter),
+    }));
+}
+
+export function _adaptOptionsType(
+  sdkMethod: SdkServiceMethod<SdkHttpOperation>,
+): TSOptionsType {
+  return {
+    name: `${toPascalCase(getOperationGroupName(sdkMethod))}${toPascalCase(sdkMethod.name)}OptionalParams`,
+    properties: sdkMethod.parameters
+      .filter((parameter) => !shouldSkipGeneratedMethodParameter(parameter))
+      .filter(
+        (parameter) =>
+          !parameter.onClient &&
+          (parameter.optional || parameter.clientDefaultValue !== undefined),
+      )
+      .map((parameter) => ({
+        name: parameter.name,
+        type: getTypeExpression(parameter.type),
+        optional: true,
+        readonly: false,
+        docs: getDocs(parameter),
+      })),
+  };
+}
+
+function adaptReturnType(
+  sdkMethod: SdkServiceMethod<SdkHttpOperation>,
+): TSReturnType {
+  const type = sdkMethod.response.type;
+  return {
+    type: type ? getTypeExpression(type) : "void",
+    isVoid: type === undefined,
+    nullable: sdkMethod.response.optional === true,
+  };
+}
+
+function getExpectedStatuses(
+  sdkMethod: SdkServiceMethod<SdkHttpOperation>,
+): string[] {
+  return sdkMethod.operation.responses.flatMap((response) => {
+    const statusCodes = response.statusCodes;
+    if (typeof statusCodes === "number") {
+      return [String(statusCodes)];
+    }
+    return [`${statusCodes.start}-${statusCodes.end}`];
+  });
+}
+
+function getOperationParameterLocation(
+  sdkMethod: SdkServiceMethod<SdkHttpOperation>,
+  parameter: SdkMethodParameter,
+): TSOperationParameter["location"] {
+  if (isMappedFromBody(sdkMethod.operation.bodyParam, parameter)) {
+    return "body";
+  }
+
+  const httpParameter = sdkMethod.operation.parameters.find((item) =>
+    isMappedFromHttpParameter(item, parameter),
+  );
+  if (
+    httpParameter?.kind === "query" ||
+    httpParameter?.kind === "path" ||
+    httpParameter?.kind === "header"
+  ) {
+    return httpParameter.kind;
+  }
+
+  return "body";
+}
+
+function getOperationParameterType(parameter: SdkMethodParameter): string {
+  if (
+    parameter.type.kind === "model" &&
+    (parameter.type as SdkModelType).isGeneratedName
+  ) {
+    return getInlineModelType(parameter.type as SdkModelType);
+  }
+  return getTypeExpression(parameter.type);
+}
+
+function getInlineModelType(model: SdkModelType): string {
+  if (model.properties.length === 0) {
+    return "Record<string, unknown>";
+  }
+  const properties = model.properties
+    .map(
+      (property) =>
+        `    ${property.name}${property.optional ? "?" : ""}: ${getTypeExpression(property.type)};`,
+    )
+    .join("\n");
+  return `{\n${properties}\n  }`;
+}
+
+function isMappedFromBody(
+  bodyParameter: SdkHttpOperation["bodyParam"],
+  parameter: SdkMethodParameter,
+): boolean {
+  return (
+    bodyParameter?.methodParameterSegments.some(
+      (segments) => segments[0]?.name === parameter.name,
+    ) === true
+  );
+}
+
+function isMappedFromHttpParameter(
+  httpParameter: SdkHttpParameter,
+  parameter: SdkMethodParameter,
+): boolean {
+  return httpParameter.methodParameterSegments.some(
+    (segments) => segments[0]?.name === parameter.name,
+  );
+}
+
+function shouldSkipGeneratedMethodParameter(
+  parameter: SdkMethodParameter,
+): boolean {
+  return (
+    parameter.isGeneratedName &&
+    (parameter.name === "contentType" || parameter.name !== "accept")
+  );
+}
+
+function getOperationGroupName(
+  sdkMethod: SdkServiceMethod<SdkHttpOperation>,
+): string {
+  const parent = sdkMethod.__raw?.interface?.name;
+  return parent ?? "";
+}
+
 function adaptClientParameter(
-  parameter: SdkCredentialParameter | SdkEndpointParameter | SdkMethodParameter
+  parameter: SdkCredentialParameter | SdkEndpointParameter | SdkMethodParameter,
 ): TSParameter {
-  const name = parameter.kind === "endpoint" && parameter.name === "endpoint" ? "endpointParam" : parameter.name;
+  const name =
+    parameter.kind === "endpoint" && parameter.name === "endpoint"
+      ? "endpointParam"
+      : parameter.name;
   return {
     name,
     type: getClientParameterType(parameter),
     required: !parameter.optional,
-    defaultValue: parameter.clientDefaultValue === undefined ? undefined : JSON.stringify(parameter.clientDefaultValue),
-    docs: getDocs(parameter)
+    defaultValue:
+      parameter.clientDefaultValue === undefined
+        ? undefined
+        : JSON.stringify(parameter.clientDefaultValue),
+    docs: getDocs(parameter),
   };
 }
 
 function getClientParameterType(
-  parameter: SdkCredentialParameter | SdkEndpointParameter | SdkMethodParameter
+  parameter: SdkCredentialParameter | SdkEndpointParameter | SdkMethodParameter,
 ): string {
   if (parameter.kind === "endpoint") {
     return "string";
@@ -149,52 +353,67 @@ function getClientParameterType(
 
 function adaptEndpoint(client: SdkClientType<SdkServiceOperation>): TSEndpoint {
   const endpointParameter = client.clientInitialization.parameters.find(
-    (parameter): parameter is SdkEndpointParameter => parameter.kind === "endpoint"
+    (parameter): parameter is SdkEndpointParameter =>
+      parameter.kind === "endpoint",
   );
-  const endpointType = endpointParameter ? getEndpointType(endpointParameter) : undefined;
+  const endpointType = endpointParameter
+    ? getEndpointType(endpointParameter)
+    : undefined;
   return {
     urlTemplate: endpointType?.serverUrl ?? "{endpoint}",
     isParameterized: (endpointType?.templateArguments.length ?? 0) > 0,
-    templateParams: (endpointType?.templateArguments ?? []).map(adaptEndpointTemplateParameter)
+    templateParams: (endpointType?.templateArguments ?? []).map(
+      adaptEndpointTemplateParameter,
+    ),
   };
 }
 
-function adaptEndpointTemplateParameter(parameter: SdkPathParameter): TSParameter {
+function adaptEndpointTemplateParameter(
+  parameter: SdkPathParameter,
+): TSParameter {
   return {
     name: parameter.name,
     type: getTypeExpression(parameter.type),
     required: !parameter.optional,
-    defaultValue: parameter.clientDefaultValue === undefined ? undefined : JSON.stringify(parameter.clientDefaultValue),
-    docs: getDocs(parameter)
+    defaultValue:
+      parameter.clientDefaultValue === undefined
+        ? undefined
+        : JSON.stringify(parameter.clientDefaultValue),
+    docs: getDocs(parameter),
   };
 }
 
-function getEndpointType(parameter: SdkEndpointParameter): SdkEndpointType | undefined {
+function getEndpointType(
+  parameter: SdkEndpointParameter,
+): SdkEndpointType | undefined {
   if (parameter.type.kind === "endpoint") {
     return parameter.type;
   }
   if (parameter.type.kind === "union") {
-    return parameter.type.variantTypes.find((variant): variant is SdkEndpointType => variant.kind === "endpoint");
+    return parameter.type.variantTypes.find(
+      (variant): variant is SdkEndpointType => variant.kind === "endpoint",
+    );
   }
   return undefined;
 }
 
-function adaptApiVersion(client: SdkClientType<SdkServiceOperation>): TSClient["apiVersion"] {
-  const parameter = client.clientInitialization.parameters.find((item) => item.isApiVersionParam);
+function adaptApiVersion(
+  client: SdkClientType<SdkServiceOperation>,
+): TSClient["apiVersion"] {
+  const parameter = client.clientInitialization.parameters.find(
+    (item) => item.isApiVersionParam,
+  );
   if (!parameter) {
     return undefined;
   }
   return {
     paramName: parameter.name,
-    defaultValue: parameter.clientDefaultValue === undefined ? undefined : String(parameter.clientDefaultValue),
-    isInEndpoint: false
+    defaultValue:
+      parameter.clientDefaultValue === undefined
+        ? undefined
+        : String(parameter.clientDefaultValue),
+    isInEndpoint: false,
   };
-}
-
-function getClientOperationGroupNames(client: SdkClientType<SdkServiceOperation>): string[] {
-  return (client.children ?? [])
-    .filter((child) => child.methods.length > 0)
-    .map((child) => lowerFirst(child.name));
 }
 
 /**
@@ -221,13 +440,19 @@ function adaptModel(model: SdkModelType): TSModel {
       ? {
           propertyName: model.discriminatorProperty.name,
           value: model.discriminatorValue,
-          variants: Object.values(model.discriminatedSubtypes ?? {}).map(getModelName)
+          variants: Object.values(model.discriminatedSubtypes ?? {}).map(
+            getModelName,
+          ),
         }
       : undefined,
     needsSerializer,
-    serializerName: needsSerializer ? `${lowerFirst(name)}Serializer` : undefined,
+    serializerName: needsSerializer
+      ? `${lowerFirst(name)}Serializer`
+      : undefined,
     needsDeserializer,
-    deserializerName: needsDeserializer ? `${lowerFirst(name)}Deserializer` : undefined
+    deserializerName: needsDeserializer
+      ? `${lowerFirst(name)}Deserializer`
+      : undefined,
   };
 }
 
@@ -238,8 +463,9 @@ function adaptProperty(property: SdkModelPropertyType): TSProperty {
     type: getTypeExpression(property.type),
     optional: property.optional,
     readonly: isReadonly(property),
-    serializedName: serializedName === property.name ? undefined : serializedName,
-    docs: getDocs(property)
+    serializedName:
+      serializedName === property.name ? undefined : serializedName,
+    docs: getDocs(property),
   };
 }
 
@@ -255,9 +481,12 @@ function adaptEnum(enumType: SdkEnumType): TSEnum {
   return {
     name: enumType.name,
     docs: getDocs(enumType),
-    members: enumType.values.map((member) => ({ name: member.name, value: member.value })),
+    members: enumType.values.map((member) => ({
+      name: member.name,
+      value: member.value,
+    })),
     isExtensible: !enumType.isFixed,
-    valueType: enumType.valueType.kind === "numeric" ? "number" : "string"
+    valueType: enumType.valueType.kind === "numeric" ? "number" : "string",
   };
 }
 
@@ -272,10 +501,15 @@ export function _adaptUnions(): TSUnion[] {
 /**
  * Resolves emitter options and program metadata into TSGenerationSettings.
  */
-export function _resolveSettings(context: EmitContext<Record<string, any>>): TSGenerationSettings {
+export function _resolveSettings(
+  context: EmitContext<Record<string, any>>,
+): TSGenerationSettings {
   const packageDetails = getRecordOption(context.options, "package-details");
-  const packageName = getStringOption(packageDetails, "name") ?? "@azure-tools/typespec-ts-pristine";
-  const packageVersion = getStringOption(packageDetails, "version") ?? "1.0.0-beta.1";
+  const packageName =
+    getStringOption(packageDetails, "name") ??
+    "@azure-tools/typespec-ts-pristine";
+  const packageVersion =
+    getStringOption(packageDetails, "version") ?? "1.0.0-beta.1";
 
   return {
     packageName,
@@ -286,13 +520,20 @@ export function _resolveSettings(context: EmitContext<Record<string, any>>): TSG
     addCredentials: false,
     credentialScopes: [],
     isMultiClient: false,
-    hierarchyClient: false
+    hierarchyClient: false,
   };
 }
 
-function _resolvePackageInfo(settings: TSGenerationSettings, sdkContext: SdkContext): TSCodeModel["packageInfo"] {
-  const clientName = sdkContext.sdkPackage.clients[0]?.name ?? `${toPascalCase(getPackageShortName(settings.packageName))}Client`;
-  const serviceName = clientName.endsWith("Client") ? clientName.slice(0, -"Client".length) : clientName;
+function _resolvePackageInfo(
+  settings: TSGenerationSettings,
+  sdkContext: SdkContext,
+): TSCodeModel["packageInfo"] {
+  const clientName =
+    sdkContext.sdkPackage.clients[0]?.name ??
+    `${toPascalCase(getPackageShortName(settings.packageName))}Client`;
+  const serviceName = clientName.endsWith("Client")
+    ? clientName.slice(0, -"Client".length)
+    : clientName;
   return {
     name: settings.packageName,
     version: settings.packageVersion,
@@ -300,8 +541,8 @@ function _resolvePackageInfo(settings: TSGenerationSettings, sdkContext: SdkCont
     clientName,
     exports: [
       { subpath: ".", source: "./src/index.ts" },
-      { subpath: "./models", source: "./src/models/index.ts" }
-    ]
+      { subpath: "./models", source: "./src/models/index.ts" },
+    ],
   };
 }
 
@@ -324,7 +565,9 @@ function getTypeExpression(type: SdkType): string {
     case "constant":
       return JSON.stringify((type as SdkConstantType).value);
     case "union":
-      return (type as SdkUnionType).variantTypes.map(getTypeExpression).join(" | ");
+      return (type as SdkUnionType).variantTypes
+        .map(getTypeExpression)
+        .join(" | ");
     case "utcDateTime":
     case "offsetDateTime":
       return "Date";
@@ -411,26 +654,39 @@ function getDocs(type: { doc?: string; summary?: string }): string[] {
 }
 
 function getSerializedName(property: SdkModelPropertyType): string {
-  return property.serializationOptions.json?.name ?? property.serializedName ?? property.name;
+  return (
+    property.serializationOptions.json?.name ??
+    property.serializedName ??
+    property.name
+  );
 }
 
 function isReadonly(property: SdkModelPropertyType): boolean {
   return (
-    property.visibility?.some((visibility) => getVisibilityName(visibility) === "read") === true &&
-    property.visibility.length === 1
+    property.visibility?.some(
+      (visibility) => getVisibilityName(visibility) === "read",
+    ) === true && property.visibility.length === 1
   );
 }
 
 function getVisibilityName(visibility: unknown): string | undefined {
-  return isRecord(visibility) && typeof visibility["name"] === "string" ? visibility["name"] : undefined;
+  return isRecord(visibility) && typeof visibility["name"] === "string"
+    ? visibility["name"]
+    : undefined;
 }
 
-function getRecordOption(options: object, key: string): Record<string, unknown> {
+function getRecordOption(
+  options: object,
+  key: string,
+): Record<string, unknown> {
   const value = (options as Record<string, unknown>)[key];
   return isRecord(value) ? value : {};
 }
 
-function getStringOption(options: Record<string, unknown>, key: string): string | undefined {
+function getStringOption(
+  options: Record<string, unknown>,
+  key: string,
+): string | undefined {
   const value = options[key];
   return typeof value === "string" ? value : undefined;
 }
