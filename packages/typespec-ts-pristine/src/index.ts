@@ -14,6 +14,7 @@
  */
 
 import type { EmitContext } from "@typespec/compiler";
+import { createTypeSpecLibrary } from "@typespec/compiler";
 import { adaptSdkContext } from "./tcgcadapter/index.js";
 import type { TSCodeModel } from "./codemodel/index.js";
 import { render } from "./codegen/index.js";
@@ -25,6 +26,22 @@ export interface OutputFile {
   /** File content as a string */
   content: string;
 }
+
+const EmitterOptionsSchema = {
+  type: "object",
+  additionalProperties: true
+} as const;
+
+export const $lib = createTypeSpecLibrary({
+  name: "@azure-tools/typespec-ts-pristine",
+  capabilities: {
+    dryRun: true
+  },
+  diagnostics: {},
+  emitter: {
+    options: EmitterOptionsSchema
+  }
+});
 
 /**
  * Main emitter entry point. Called by the TypeSpec compiler via $onEmit.

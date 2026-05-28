@@ -54,8 +54,10 @@ export async function adaptSdkContext(context: EmitContext<Record<string, any>>)
 
   const models = _adaptModels(sdkContext);
 
+  const settings = _resolveSettings(context);
   return {
-    settings: _resolveSettings(context),
+    settings,
+    packageInfo: _resolvePackageInfo(settings, sdkContext),
     clients: [],
     models,
     enums: _adaptEnums(sdkContext),
@@ -178,7 +180,7 @@ export function _adaptUnions(): TSUnion[] {
 export function _resolveSettings(context: EmitContext<Record<string, any>>): TSGenerationSettings {
   const packageDetails = getRecordOption(context.options, "package-details");
   const packageName = getStringOption(packageDetails, "name") ?? "@azure-tools/typespec-ts-pristine";
-  const packageVersion = getStringOption(packageDetails, "version") ?? "1.0.0";
+  const packageVersion = getStringOption(packageDetails, "version") ?? "1.0.0-beta.1";
 
   return {
     packageName,
@@ -190,6 +192,21 @@ export function _resolveSettings(context: EmitContext<Record<string, any>>): TSG
     credentialScopes: [],
     isMultiClient: false,
     hierarchyClient: false
+  };
+}
+
+function _resolvePackageInfo(settings: TSGenerationSettings, sdkContext: SdkContext): TSCodeModel["packageInfo"] {
+  const clientName = sdkContext.sdkPackage.clients[0]?.name ?? `${toPascalCase(getPackageShortName(settings.packageName))}Client`;
+  const serviceName = clientName.endsWith("Client") ? clientName.slice(0, -"Client".length) : clientName;
+  return {
+    name: settings.packageName,
+    version: settings.packageVersion,
+    serviceName,
+    clientName,
+    exports: [
+      { subpath: ".", source: "./src/index.ts" },
+      { subpath: "./models", source: "./src/models/index.ts" }
+    ]
   };
 }
 
@@ -279,6 +296,18 @@ function lowerFirst(name: string): string {
 
 function wrapArrayElementType(type: string): string {
   return type.includes(" | ") ? `(${type})` : type;
+}
+
+function getPackageShortName(packageName: string): string {
+  return packageName.split("/").at(-1) ?? packageName;
+}
+
+function toPascalCase(value: string): string {
+  return value
+    .split(/[^A-Za-z0-9]+/)
+    .filter((part) => part.length > 0)
+    .map((part) => `${part.charAt(0).toUpperCase()}${part.slice(1)}`)
+    .join("");
 }
 
 function getDocs(type: { doc?: string; summary?: string }): string[] {

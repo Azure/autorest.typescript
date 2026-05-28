@@ -24,6 +24,7 @@ import type {
   TSOperation,
   TSSerializerGroup,
   TSHelperFile,
+  TSPackageInfo,
   TSProperty
 } from "../codemodel/index.js";
 
@@ -44,7 +45,7 @@ export interface RenderedFile {
  * @returns All files to write
  */
 export function render(codeModel: TSCodeModel): RenderedFile[] {
-  return renderModels(codeModel);
+  return [...renderModels(codeModel), ...renderIndexFiles(codeModel), ...renderPackageFiles(codeModel)];
 }
 
 /**
@@ -289,18 +290,195 @@ export function renderHelpers(_helpers: TSHelperFile[]): RenderedFile[] {
  * Consumes: full `TSCodeModel` (needs to know all exported symbols)
  * Produces: `src/index.ts`, `src/models/index.ts`, `src/api/index.ts`, etc.
  */
-export function renderIndexFiles(_codeModel: TSCodeModel): RenderedFile[] {
-  throw new Error("renderIndexFiles: not yet implemented");
+export function renderIndexFiles(codeModel: TSCodeModel): RenderedFile[] {
+  if (codeModel.models.length === 0 && codeModel.enums.length === 0) {
+    return [];
+  }
+
+  return [
+    {
+      path: "src/models/index.ts",
+      content: `${copyrightHeader()}\n\nexport * from "./models.js";\n`
+    },
+    {
+      path: "src/index.ts",
+      content: `${copyrightHeader()}\n\nexport * from "./models/index.js";\n`
+    }
+  ];
 }
 
 /**
  * Renders package infrastructure files (package.json, tsconfig, etc.).
  *
- * Consumes: `TSCodeModel.settings`
- * Produces: `package.json`, `tsconfig.json`, `api-extractor.json`, etc.
+ * Consumes: `TSCodeModel.packageInfo`
+ * Produces: `package.json`, `tsconfig.json`, `README.md`
  */
-export function renderPackageFiles(_codeModel: TSCodeModel): RenderedFile[] {
-  throw new Error("renderPackageFiles: not yet implemented");
+export function renderPackageFiles(codeModel: TSCodeModel): RenderedFile[] {
+  return [
+    { path: "package.json", content: `${renderPackageJson(codeModel.packageInfo)}\n` },
+    { path: "tsconfig.json", content: `${renderTsconfig()}\n` },
+    { path: "README.md", content: renderReadme(codeModel.packageInfo) }
+  ];
+}
+
+function copyrightHeader(): string {
+  return `// Copyright (c) Microsoft Corporation.\n// Licensed under the MIT License.`;
+}
+
+function renderPackageJson(packageInfo: TSPackageInfo): string {
+  const tshyExports = Object.fromEntries([
+    ["./package.json", "./package.json"],
+    ...packageInfo.exports.map((item) => [item.subpath, item.source])
+  ]);
+  const packageJson = {
+    name: packageInfo.name,
+    version: packageInfo.version,
+    description: `A generated SDK for ${packageInfo.clientName}.`,
+    engines: { node: ">=20.0.0" },
+    sideEffects: false,
+    autoPublish: false,
+    tshy: {
+      exports: tshyExports,
+      dialects: ["esm", "commonjs"],
+      esmDialects: ["browser"],
+      selfLink: false
+    },
+    type: "module",
+    browser: "./dist/browser/index.js",
+    keywords: ["node", "azure", "cloud", "typescript", "browser", "isomorphic"],
+    author: "Microsoft Corporation",
+    license: "MIT",
+    files: ["dist/", "!dist/**/*.d.*ts.map", "README.md", "LICENSE"],
+    dependencies: {
+      "@azure/core-util": "^1.9.2",
+      "@azure-rest/core-client": "^2.3.1",
+      "@azure/core-auth": "^1.6.0",
+      "@azure/core-rest-pipeline": "^1.5.0",
+      "@azure/logger": "^1.0.0",
+      tslib: "^2.6.2"
+    },
+    devDependencies: {
+      dotenv: "^16.0.0",
+      "@types/node": "^20.0.0",
+      eslint: "^9.9.0",
+      typescript: "~5.8.2",
+      tshy: "^2.0.0",
+      "@microsoft/api-extractor": "^7.40.3",
+      rimraf: "^5.0.5",
+      mkdirp: "^3.0.1"
+    },
+    scripts: {
+      clean: "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
+      "extract-api": "rimraf review && mkdirp ./review && api-extractor run --local",
+      pack: "npm pack 2>&1",
+      lint: "eslint package.json api-extractor.json src",
+      "lint:fix": "eslint package.json api-extractor.json src --fix --fix-type [problem,suggestion]",
+      build: "npm run clean && tshy && npm run extract-api"
+    },
+    exports: renderPackageExports(packageInfo.exports),
+    main: "./dist/commonjs/index.js",
+    types: "./dist/commonjs/index.d.ts",
+    module: "./dist/esm/index.js"
+  };
+  return JSON.stringify(packageJson, undefined, 2);
+}
+
+function renderPackageExports(exports: TSPackageInfo["exports"]): Record<string, unknown> {
+  return Object.fromEntries([
+    ["./package.json", "./package.json"],
+    ...exports.map((item) => [item.subpath, renderPackageExport(item.source)])
+  ]);
+}
+
+function renderPackageExport(source: string): Record<string, Record<string, string>> {
+  const distPath = source.replace(/^\.\/src\//, "./dist/{dialect}/").replace(/\.ts$/, ".js");
+  const typesPath = distPath.replace(/\.js$/, ".d.ts");
+  return {
+    browser: {
+      types: typesPath.replace("{dialect}", "browser"),
+      default: distPath.replace("{dialect}", "browser")
+    },
+    import: {
+      types: typesPath.replace("{dialect}", "esm"),
+      default: distPath.replace("{dialect}", "esm")
+    },
+    require: {
+      types: typesPath.replace("{dialect}", "commonjs"),
+      default: distPath.replace("{dialect}", "commonjs")
+    }
+  };
+}
+
+function renderTsconfig(): string {
+  return JSON.stringify(
+    {
+      compilerOptions: {
+        target: "ES2017",
+        module: "NodeNext",
+        lib: [],
+        declaration: true,
+        declarationMap: true,
+        inlineSources: true,
+        sourceMap: true,
+        importHelpers: true,
+        strict: true,
+        alwaysStrict: true,
+        noUnusedLocals: true,
+        noUnusedParameters: true,
+        noImplicitReturns: true,
+        noFallthroughCasesInSwitch: true,
+        forceConsistentCasingInFileNames: true,
+        moduleResolution: "NodeNext",
+        allowSyntheticDefaultImports: true,
+        esModuleInterop: true
+      },
+      include: ["src/**/*.ts"]
+    },
+    undefined,
+    2
+  );
+}
+
+function renderReadme(packageInfo: TSPackageInfo): string {
+  return `# ${packageInfo.serviceName} client library for JavaScript
+
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for ${packageInfo.serviceName} client.
+
+
+
+Key links:
+
+- [Package (NPM)](https://www.npmjs.com/package/${packageInfo.name})
+
+## Getting started
+
+### Currently supported environments
+
+- [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
+- Latest versions of Safari, Chrome, Edge and Firefox.
+
+See our [support policy](https://github.com/Azure/azure-sdk-for-js/blob/main/SUPPORT.md) for more details.
+
+
+### Install the \`${packageInfo.name}\` package
+
+Install the ${packageInfo.serviceName} client library for JavaScript with \`npm\`:
+
+\`\`\`bash
+npm install ${packageInfo.name}
+\`\`\`
+
+
+
+### JavaScript Bundle
+To use this client library in the browser, first you need to use a bundler. For details on how to do this, please refer to our [bundling documentation](https://aka.ms/AzureSDKBundling).
+
+## Key concepts
+
+### ${packageInfo.clientName}
+
+\`${packageInfo.clientName}\` is the primary interface for developers using the ${packageInfo.serviceName} client library. Explore the methods on this client object to understand the different features of the ${packageInfo.serviceName} service that you can access.
+`;
 }
 
 /**

@@ -24,7 +24,7 @@
  */
 
 import { compile, logDiagnostics, NodeHost, type EmitContext } from "@typespec/compiler";
-import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync } from "node:fs";
 import { dirname, join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { emit } from "../index.js";
@@ -80,31 +80,32 @@ export function compare(
   baselineOutput: string,
   candidateOutput: string
 ): CompareResult {
-  const modelFile = "src/models/models.ts";
   const fixture = fixturesDir.split(/[\\/]/).filter(Boolean).at(-1) ?? fixturesDir;
-  const baselinePath = join(baselineOutput, modelFile);
-  const candidatePath = join(candidateOutput, modelFile);
-  const filesOnlyInBaseline = existsSync(baselinePath) && !existsSync(candidatePath) ? [modelFile] : [];
-  const filesOnlyInCandidate = existsSync(candidatePath) && !existsSync(baselinePath) ? [modelFile] : [];
+  const baselineFiles = listFiles(baselineOutput);
+  const candidateFiles = listFiles(candidateOutput);
+  const baselineSet = new Set(baselineFiles);
+  const candidateSet = new Set(candidateFiles);
+  const filesOnlyInBaseline = baselineFiles.filter((file) => !candidateSet.has(file));
+  const filesOnlyInCandidate = candidateFiles.filter((file) => !baselineSet.has(file));
   const filesIdentical: string[] = [];
   const filesWithDiffs: FileDiff[] = [];
 
-  if (existsSync(baselinePath) && existsSync(candidatePath)) {
-    const baseline = readFileSync(baselinePath, "utf-8");
-    const candidate = readFileSync(candidatePath, "utf-8");
+  for (const file of baselineFiles.filter((item) => candidateSet.has(item))) {
+    const baseline = readFileSync(join(baselineOutput, file), "utf-8");
+    const candidate = readFileSync(join(candidateOutput, file), "utf-8");
     if (baseline === candidate) {
-      filesIdentical.push(modelFile);
+      filesIdentical.push(file);
     } else {
       filesWithDiffs.push({
-        path: modelFile,
-        diff: makeUnifiedDiff(modelFile, baseline, candidate),
+        path: file,
+        diff: makeUnifiedDiff(file, baseline, candidate),
         matchRate: getLineMatchRate(baseline, candidate)
       });
     }
   }
 
   const totalFiles = filesOnlyInBaseline.length + filesOnlyInCandidate.length + filesIdentical.length + filesWithDiffs.length;
-  const score = filesWithDiffs[0]?.matchRate ?? (totalFiles === 0 ? 100 : (filesIdentical.length / totalFiles) * 100);
+  const score = totalFiles === 0 ? 100 : (filesIdentical.length / totalFiles) * 100;
   const fixtureResult: FixtureCompareResult = {
     fixture,
     filesOnlyInBaseline,
@@ -167,6 +168,26 @@ async function runPristineEmitter(fixtureDir: string, outputDir: string): Promis
     mkdirSync(dirname(path), { recursive: true });
     writeFileSync(path, file.content);
   }
+}
+
+function listFiles(root: string, current = ""): string[] {
+  const directory = join(root, current);
+  if (!existsSync(directory)) {
+    return [];
+  }
+
+  return readdirSync(directory)
+    .filter((entry) => !shouldSkipEntry(entry))
+    .flatMap((entry) => {
+      const relativePath = current ? `${current}/${entry}` : entry;
+      const fullPath = join(root, relativePath);
+      return statSync(fullPath).isDirectory() ? listFiles(root, relativePath) : [relativePath];
+    })
+    .sort();
+}
+
+function shouldSkipEntry(entry: string): boolean {
+  return [".tshy", "dist", "dist-browser", "dist-esm", "node_modules", "review", "temp", "metadata.json", "package-lock.json"].includes(entry);
 }
 
 function readTypespecTsOptions(configPath: string): Record<string, unknown> {
@@ -247,18 +268,28 @@ function findFirstDifferentLine(left: string[], right: string[]): number {
 
 function printResult(result: CompareResult): void {
   for (const fixture of result.fixtures) {
-    const firstDiff = fixture.filesWithDiffs[0];
+    const candidateCount = fixture.filesIdentical.length + fixture.filesWithDiffs.length + fixture.filesOnlyInCandidate.length;
     console.log(`Fixture: ${fixture.fixture}`);
-    console.log(`  Score: ${fixture.score.toFixed(1)}% model-file line match`);
+    console.log(`  Candidate emitted files: ${candidateCount}`);
+    console.log(`  Score: ${fixture.score.toFixed(1)}% identical files`);
+    if (fixture.filesIdentical.length > 0) {
+      console.log(`  Identical: ${fixture.filesIdentical.join(", ")}`);
+    }
+    if (fixture.filesWithDiffs.length > 0) {
+      console.log("  Per-file match rates:");
+      for (const diff of fixture.filesWithDiffs) {
+        console.log(`    ${diff.path}: ${diff.matchRate.toFixed(1)}%`);
+      }
+    }
     if (fixture.filesOnlyInBaseline.length > 0) {
       console.log(`  Missing in candidate: ${fixture.filesOnlyInBaseline.join(", ")}`);
     }
     if (fixture.filesOnlyInCandidate.length > 0) {
       console.log(`  Extra in candidate: ${fixture.filesOnlyInCandidate.join(", ")}`);
     }
-    if (firstDiff) {
-      console.log(`  First diff: ${firstDiff.path}`);
-      console.log(firstDiff.diff);
+    for (const diff of fixture.filesWithDiffs.slice(0, 3)) {
+      console.log(`  Diff: ${diff.path}`);
+      console.log(diff.diff);
     }
   }
 }

@@ -21,6 +21,9 @@ export interface TSCodeModel {
   /** Package-level metadata and generation settings. */
   settings: TSGenerationSettings;
 
+  /** Generated SDK package metadata. */
+  packageInfo: TSPackageInfo;
+
   /** All top-level clients in the package. May contain nested children. */
   clients: TSClient[];
 
@@ -68,6 +71,30 @@ export interface TSGenerationSettings {
   isMultiClient: boolean;
   /** Whether hierarchical client pattern is used */
   hierarchyClient: boolean;
+}
+
+// ─── Package Info ─────────────────────────────────────────────────────
+
+/** Generated SDK package.json and README metadata. */
+export interface TSPackageInfo {
+  /** Package name (e.g., "@azure/storage-blob") */
+  name: string;
+  /** Package version (e.g., "1.0.0") */
+  version: string;
+  /** Human-readable service/client name used in metadata docs. */
+  serviceName: string;
+  /** Primary client class name. */
+  clientName: string;
+  /** Package subpath exports backed by emitted source files. */
+  exports: TSPackageExport[];
+}
+
+/** A package subpath export. */
+export interface TSPackageExport {
+  /** Package export path (e.g., "." or "./models") */
+  subpath: string;
+  /** Source TypeScript entry point (e.g., "./src/index.ts") */
+  source: string;
 }
 
 // ─── Client ───────────────────────────────────────────────────────────
