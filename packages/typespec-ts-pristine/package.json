@@ -1,0 +1,35 @@
+{
+  "name": "@azure-tools/typespec-ts-pristine",
+  "version": "0.1.0",
+  "description": "North-star TypeScript emitter for TypeSpec — clean three-layer pipeline architecture",
+  "main": "dist/src/index.js",
+  "type": "module",
+  "exports": {
+    ".": {
+      "default": "./dist/src/index.js",
+      "types": "./dist/src/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p .",
+    "clean": "rimraf ./dist",
+    "compare": "echo 'comparator not yet implemented' && exit 1"
+  },
+  "author": "Microsoft Corporation",
+  "license": "MIT",
+  "devDependencies": {
+    "@azure-tools/typespec-client-generator-core": "^0.68.0",
+    "@typespec/compiler": "^1.12.0",
+    "@typespec/http": "^1.12.0",
+    "@typespec/rest": "^0.82.0",
+    "@typespec/versioning": "^0.82.0",
+    "typescript": "~5.6.3"
+  },
+  "peerDependencies": {
+    "@azure-tools/typespec-client-generator-core": "^0.68.0",
+    "@typespec/compiler": "^1.12.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.1"
+  }
+}
