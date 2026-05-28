@@ -265,7 +265,7 @@ export function getDeserializePrivateFunction(
     dependencies.createRestError
   );
   statements.push(
-    `const expectedStatuses = ${getExpectedStatuses(operation, context)};`
+    `const expectedStatuses = ${getExpectedStatuses(operation)};`
   );
   statements.push(
     `if(!expectedStatuses.includes(result.status)){`,
@@ -3027,17 +3027,10 @@ export function getPropertyFullName(
  * Get an expression representing an array of expected status codes for the operation
  * @param operation The operation
  */
-export function getExpectedStatuses(
-  operation: ServiceOperation,
-  context?: SdkContext
-): string {
+export function getExpectedStatuses(operation: ServiceOperation): string {
   let statusCodes = operation.operation.responses.map((x) => x.statusCodes);
   // For HEAD + @responseAsBool, 404 is a valid "false" response.
-  if (
-    context &&
-    isHeadAsBooleanOperation(operation) &&
-    !statusCodes.includes(404)
-  ) {
+  if (isHeadAsBooleanOperation(operation) && !statusCodes.includes(404)) {
     statusCodes = [...statusCodes, 404];
   }
   // LROs may call the same path but with GET to get the operation status.
