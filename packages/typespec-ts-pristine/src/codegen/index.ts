@@ -547,7 +547,6 @@ function renderOptionsInterface(operation: TSOperation): string {
 export interface ${operation.optionsType.name} extends OperationOptions {${properties ? `\n${properties}\n` : ""}}`;
 }
 
-
 /**
  * Renders classical client class and operation group wrappers.
  *
@@ -771,7 +770,9 @@ function renderClassicalParameter(
 }
 
 function hasMultilineParameter(operation: TSOperation): boolean {
-  return operation.parameters.some((parameter) => parameter.type.includes("\n"));
+  return operation.parameters.some((parameter) =>
+    parameter.type.includes("\n"),
+  );
 }
 
 /**
@@ -804,20 +805,119 @@ export function renderHelpers(_helpers: TSHelperFile[]): RenderedFile[] {
  * Produces: `src/index.ts`, `src/models/index.ts`, `src/api/index.ts`, etc.
  */
 export function renderIndexFiles(codeModel: TSCodeModel): RenderedFile[] {
-  if (codeModel.models.length === 0 && codeModel.enums.length === 0) {
-    return [];
+  return [
+    renderRootBarrel(codeModel),
+    ...codeModel.clients.map((client) => renderApiBarrel(client)),
+    renderModelsBarrel(codeModel),
+  ];
+}
+
+export function renderRootBarrel(
+  codeModel: Pick<TSCodeModel, "clients">,
+): RenderedFile {
+  const clientExports = codeModel.clients
+    .map((client) => getClientBaseName(client.name))
+    .sort()
+    .map(
+      (clientBaseName) =>
+        `export { ${clientBaseName}Client } from "./${lowerFirst(clientBaseName)}Client.js";`,
+    )
+    .join("\n");
+  const clientOptionNames = codeModel.clients
+    .map((client) => `${getClientBaseName(client.name)}ClientOptionalParams`)
+    .sort();
+  const operationOptionExports = collectOperationOptionExports(
+    codeModel.clients,
+  );
+  const groupInterfaceNames = codeModel.clients
+    .flatMap((client) => client.operationGroups)
+    .map((group) => `${upperFirst(group.name)}Operations`)
+    .sort();
+
+  const sections = [
+    clientExports,
+    clientOptionNames.length > 0
+      ? `export type { ${clientOptionNames.join(", ")} } from "./api/index.js";`
+      : "",
+    ...operationOptionExports,
+    groupInterfaceNames.length > 0
+      ? `export type { ${groupInterfaceNames.join(", ")} } from "./classic/index.js";`
+      : "",
+    `export { RestError, isRestError } from "@azure/core-rest-pipeline";`,
+  ].filter((section) => section.length > 0);
+
+  return {
+    path: "src/index.ts",
+    content: `${copyrightHeader()}\n\n${sections.join("\n")}\n`,
+  };
+}
+
+export function renderApiBarrel(client: TSClient): RenderedFile {
+  const clientBaseName = getClientBaseName(client.name);
+  const contextModule = `./${lowerFirst(clientBaseName)}Context.js`;
+  const contextTypeNames = [
+    `${clientBaseName}Context`,
+    `${clientBaseName}ClientOptionalParams`,
+  ];
+  const factoryName = `create${clientBaseName}`;
+
+  return {
+    path: "src/api/index.ts",
+    content: `${copyrightHeader()}\n\nexport type { ${contextTypeNames.join(", ")} } from "${contextModule}";\nexport { ${factoryName} } from "${contextModule}";\n`,
+  };
+}
+
+export function renderModelsBarrel(
+  codeModel: Pick<TSCodeModel, "models" | "enums" | "unions">,
+): RenderedFile {
+  const publicModelNames = [
+    ...codeModel.models.map((model) => model.name),
+    ...codeModel.enums.map((enumType) => enumType.name),
+    ...codeModel.unions.map((union) => union.name),
+  ]
+    .filter((name) => !name.startsWith("_"))
+    .sort();
+  const content =
+    publicModelNames.length > 0
+      ? `${copyrightHeader()}\n\nexport type { ${publicModelNames.join(", ")} } from "./models.js";\n`
+      : `${copyrightHeader()}\n`;
+
+  return {
+    path: "src/models/index.ts",
+    content,
+  };
+}
+
+function collectOperationOptionExports(clients: TSClient[]): string[] {
+  const optionsByGroup = new Map<string, Set<string>>();
+  for (const client of clients) {
+    for (const group of client.operationGroups) {
+      const groupOptions = optionsByGroup.get(group.name) ?? new Set<string>();
+      for (const operation of group.operations) {
+        groupOptions.add(operation.optionsType.name);
+      }
+      optionsByGroup.set(group.name, groupOptions);
+    }
   }
 
-  return [
-    {
-      path: "src/models/index.ts",
-      content: `${copyrightHeader()}\n\nexport * from "./models.js";\n`,
-    },
-    {
-      path: "src/index.ts",
-      content: `${copyrightHeader()}\n\nexport * from "./models/index.js";\n`,
-    },
-  ];
+  return [...optionsByGroup.entries()]
+    .sort(([left], [right]) => left.localeCompare(right))
+    .map(([groupName, optionNames]) =>
+      renderTypeExport(
+        [...optionNames].sort((left, right) => right.localeCompare(left)),
+        `./api/${groupName}/index.js`,
+      ),
+    );
+}
+
+function renderTypeExport(typeNames: string[], modulePath: string): string {
+  if (typeNames.length === 0) {
+    return "";
+  }
+  if (typeNames.length === 1) {
+    return `export type { ${typeNames[0]} } from "${modulePath}";`;
+  }
+  return `export type {\n  ${typeNames.join(",\n  ")},\n} from "${modulePath}";`;
 }
 
 /**
