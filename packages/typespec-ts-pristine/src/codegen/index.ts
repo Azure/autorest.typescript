@@ -51,6 +51,7 @@ export function render(codeModel: TSCodeModel): RenderedFile[] {
     ...renderModels(codeModel),
     ...renderClients(codeModel),
     ...renderOperationFiles(codeModel),
+    ...renderClassicalFiles(codeModel),
     renderLogger(codeModel.packageInfo),
     ...renderIndexFiles(codeModel),
     ...renderPackageFiles(codeModel),
@@ -546,6 +547,233 @@ function renderOptionsInterface(operation: TSOperation): string {
 export interface ${operation.optionsType.name} extends OperationOptions {${properties ? `\n${properties}\n` : ""}}`;
 }
 
+
+/**
+ * Renders classical client class and operation group wrappers.
+ *
+ * Consumes: `TSCodeModel.clients` with operation groups and operations
+ * Produces: `src/{clientName}.ts`, `src/classic/{group}/index.ts`, `src/classic/index.ts`
+ */
+export function renderClassicalFiles(
+  codeModel: Pick<TSCodeModel, "clients">,
+): RenderedFile[] {
+  return codeModel.clients.flatMap((client) => [
+    renderClassicalClient(client),
+    ...client.operationGroups.map((group) =>
+      renderClassicalOperationGroup(client, group),
+    ),
+    renderClassicalBarrel(client),
+  ]);
+}
+
+export function renderClassicalClient(client: TSClient): RenderedFile {
+  const clientBaseName = getClientBaseName(client.name);
+  const contextName = `${clientBaseName}Context`;
+  const optionsName = `${clientBaseName}ClientOptionalParams`;
+  const factoryName = `create${clientBaseName}`;
+  const clientClassName = `${clientBaseName}Client`;
+  const endpointParameter = getEndpointParameter(client);
+  const constructorParameters = [
+    ...(endpointParameter
+      ? [`${endpointParameter.name}: ${endpointParameter.type}`]
+      : []),
+    `options: ${optionsName} = {}`,
+  ].join(", ");
+  const factoryOptions = `{
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    }`;
+  const factoryArguments = [
+    ...(endpointParameter ? [endpointParameter.name] : []),
+    factoryOptions,
+  ].join(", ");
+  const groupImports = client.operationGroups
+    .map((group) => {
+      const groupType = `${upperFirst(group.name)}Operations`;
+      return `import { ${groupType}, _get${upperFirst(
+        group.name,
+      )}Operations } from "./classic/${group.name}/index.js";`;
+    })
+    .join("\n");
+  const groupInitializers = client.operationGroups
+    .map(
+      (group) =>
+        `    this.${group.name} = _get${upperFirst(group.name)}Operations(this._client);`,
+    )
+    .join("\n");
+  const groupProperties = client.operationGroups
+    .map(
+      (group) =>
+        `  /** The operation groups for ${group.name} */\n  public readonly ${group.name}: ${upperFirst(group.name)}Operations;`,
+    )
+    .join("\n\n");
+
+  const content = `${copyrightHeader()}
+
+import {
+  ${contextName},
+  ${optionsName},
+  ${factoryName},
+} from "./api/index.js";
+${groupImports}
+import { Pipeline } from "@azure/core-rest-pipeline";
+
+export type { ${optionsName} } from "./api/${lowerFirst(clientBaseName)}Context.js";
+
+export class ${clientClassName} {
+  private _client: ${contextName};
+  /** The pipeline used by this client to make requests */
+  public readonly pipeline: Pipeline;
+
+  constructor(${constructorParameters}) {
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? \`${"${prefixFromOptions}"} azsdk-js-client\`
+      : \`azsdk-js-client\`;
+    this._client = ${factoryName}(${factoryArguments});
+    this.pipeline = this._client.pipeline;
+${groupInitializers}
+  }
+
+${groupProperties}
+}
+`;
+  return { path: `src/${lowerFirst(clientClassName)}.ts`, content };
+}
+
+export function renderClassicalOperationGroup(
+  client: TSClient,
+  group: TSOperationGroup,
+): RenderedFile {
+  const clientBaseName = getClientBaseName(client.name);
+  const contextName = `${clientBaseName}Context`;
+  const groupName = upperFirst(group.name);
+  const operationNames = group.operations
+    .map((operation) => operation.name)
+    .join(", ");
+  const optionNames = group.operations
+    .map((operation) => operation.optionsType.name)
+    .join(",\n  ");
+  const content = `${copyrightHeader()}
+
+import { ${contextName} } from "../../api/${lowerFirst(clientBaseName)}Context.js";
+import { ${operationNames} } from "../../api/${group.name}/operations.js";
+import {
+  ${optionNames},
+} from "../../api/${group.name}/options.js";
+
+/** Interface representing a ${groupName} operations. */
+export interface ${groupName}Operations {
+${group.operations.map(renderClassicalMethodSignature).join("\n")}
+}
+
+function _get${groupName}(context: ${contextName}) {
+  return {
+${group.operations.map(renderClassicalMethodDelegate).join("\n")}
+  };
+}
+
+export function _get${groupName}Operations(context: ${contextName}): ${groupName}Operations {
+  return {
+    ..._get${groupName}(context),
+  };
+}
+`;
+  return { path: `src/classic/${group.name}/index.ts`, content };
+}
+
+export function renderClassicalBarrel(client: TSClient): RenderedFile {
+  const exports = client.operationGroups
+    .map(
+      (group) =>
+        `export type { ${upperFirst(group.name)}Operations } from "./${group.name}/index.js";`,
+    )
+    .join("\n");
+  return {
+    path: "src/classic/index.ts",
+    content: `${copyrightHeader()}\n\n${exports}\n`,
+  };
+}
+
+function renderClassicalMethodSignature(operation: TSOperation): string {
+  if (hasMultilineParameter(operation)) {
+    return `  ${operation.name}: (\n${renderClassicalSignatureParameters(
+      operation,
+      4,
+    )}\n  ) => Promise<${operation.returnType.type}>;`;
+  }
+  return `  ${operation.name}: (${renderClassicalSignatureParameters(
+    operation,
+  )}) => Promise<${operation.returnType.type}>;`;
+}
+
+function renderClassicalMethodDelegate(operation: TSOperation): string {
+  const parameterNames = operation.parameters
+    .map((parameter) => parameter.name)
+    .join(", ");
+  const argumentsList = parameterNames
+    ? `${parameterNames}, options`
+    : "options";
+  if (hasMultilineParameter(operation)) {
+    return `    ${operation.name}: (\n${renderClassicalSignatureParameters(
+      operation,
+      6,
+    )}\n    ) => ${operation.name}(context, ${argumentsList}),`;
+  }
+  const line = `    ${operation.name}: (${renderClassicalSignatureParameters(
+    operation,
+  )}) => ${operation.name}(context, ${argumentsList}),`;
+  if (line.length <= 100) {
+    return line;
+  }
+  return `    ${operation.name}: (${renderClassicalSignatureParameters(
+    operation,
+  )}) =>\n      ${operation.name}(context, ${argumentsList}),`;
+}
+
+function renderClassicalSignatureParameters(
+  operation: TSOperation,
+  indent?: number,
+): string {
+  if (indent === undefined) {
+    return [
+      ...operation.parameters.map(
+        (parameter) => `${parameter.name}: ${parameter.type}`,
+      ),
+      `options?: ${operation.optionsType.name}`,
+    ].join(", ");
+  }
+
+  const spaces = " ".repeat(indent);
+  return [
+    ...operation.parameters.map((parameter) =>
+      renderClassicalParameter(parameter, indent),
+    ),
+    `${spaces}options?: ${operation.optionsType.name},`,
+  ].join("\n");
+}
+
+function renderClassicalParameter(
+  parameter: TSOperationParameter,
+  indent: number,
+): string {
+  const spaces = " ".repeat(indent);
+  const lines = parameter.type.split("\n");
+  return [
+    `${spaces}${parameter.name}: ${(lines[0] ?? "").trimEnd()}`,
+    ...lines.slice(1).map((line, index, rest) => {
+      const trimmed = line.trim();
+      const lineIndent = trimmed === "}" ? spaces : `${spaces}  `;
+      const suffix = index === rest.length - 1 ? "," : "";
+      return `${lineIndent}${trimmed}${suffix}`;
+    }),
+  ].join("\n");
+}
+
+function hasMultilineParameter(operation: TSOperation): boolean {
+  return operation.parameters.some((parameter) => parameter.type.includes("\n"));
+}
+
 /**
  * Renders serialization/deserialization helpers.
  *
@@ -811,4 +1039,8 @@ function getPackageShortName(packageName: string): string {
 
 function lowerFirst(name: string): string {
   return `${name.charAt(0).toLowerCase()}${name.slice(1)}`;
+}
+
+function upperFirst(name: string): string {
+  return `${name.charAt(0).toUpperCase()}${name.slice(1)}`;
 }
