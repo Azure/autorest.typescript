@@ -194,10 +194,12 @@ function readTypespecTsOptions(configPath: string): Record<string, unknown> {
   const content = readFileSync(configPath, "utf-8");
   const packageName = content.match(/name:\s*["']?([^\s"']+)/)?.[1];
   const packageVersion = content.match(/version:\s*["']?([^\s"']+)/)?.[1];
+  const packageDescription = content.match(/description:\s*["']?([^\n"']+)/)?.[1]?.trim();
   return {
     "package-details": {
       ...(packageName ? { name: packageName } : {}),
-      ...(packageVersion ? { version: packageVersion } : {})
+      ...(packageVersion ? { version: packageVersion } : {}),
+      ...(packageDescription ? { description: packageDescription } : {})
     }
   };
 }

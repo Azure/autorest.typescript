@@ -57,6 +57,8 @@ export interface TSGenerationSettings {
   packageName: string;
   /** Package version (e.g., "1.0.0") */
   packageVersion: string;
+  /** Package description. */
+  packageDescription?: string;
   /** Azure-flavored or unbranded */
   flavor: "azure" | "unbranded";
   /** Whether this is an ARM management-plane SDK */
@@ -73,6 +75,18 @@ export interface TSGenerationSettings {
   hierarchyClient: boolean;
 }
 
+/** Credential configuration for Azure or API-key authenticated clients. */
+export interface TSCredentialInfo {
+  /** Constructor parameter name. */
+  paramName: string;
+  /** TypeScript type expression for the credential parameter. */
+  type: string;
+  /** OAuth scopes, when token credentials are supported. */
+  scopes: string[];
+  /** API-key header name, when key credentials are supported. */
+  apiKeyHeaderName?: string;
+}
+
 // ─── Package Info ─────────────────────────────────────────────────────
 
 /** Generated SDK package.json and README metadata. */
@@ -81,6 +95,8 @@ export interface TSPackageInfo {
   name: string;
   /** Package version (e.g., "1.0.0") */
   version: string;
+  /** Package description. */
+  description?: string;
   /** Human-readable service/client name used in metadata docs. */
   serviceName: string;
   /** Primary client class name. */
@@ -111,6 +127,8 @@ export interface TSClient {
   endpoint: TSEndpoint;
   /** API version info (if versioned) */
   apiVersion?: TSApiVersion;
+  /** Credential configuration, when authentication is required. */
+  credential?: TSCredentialInfo;
   /** Operation groups on this client */
   operationGroups: TSOperationGroup[];
   /** Direct methods (ungrouped operations) */
@@ -137,6 +155,16 @@ export interface TSApiVersion {
   defaultValue?: string;
   /** Whether version is embedded in endpoint template */
   isInEndpoint: boolean;
+}
+
+/** Operation-level query parameter backed by the client apiVersion option. */
+export interface TSApiVersionQuery {
+  /** Serialized query name, e.g. api-version. */
+  serializedName: string;
+  /** Percent-encoded URI-template variable name. */
+  encodedName: string;
+  /** Default API version. */
+  defaultValue: string;
 }
 
 // ─── Operations ───────────────────────────────────────────────────────
@@ -168,7 +196,11 @@ export interface TSOperation {
   /** Options interface for this operation */
   optionsType: TSOptionsType;
   /** Request body emission style. */
-  bodyShape: "inline" | "named-with-serializer";
+  bodyShape: "inline" | "named-with-serializer" | "raw";
+  /** Request content type, when known. */
+  contentType?: string;
+  /** Client api-version query parameter metadata, when the operation uses it. */
+  apiVersionQuery?: TSApiVersionQuery;
   /** HTTP success status codes accepted by the deserializer. */
   expectedStatuses: string[];
 }
@@ -287,6 +319,8 @@ export interface TSEnum {
   members: TSEnumMember[];
   /** Whether the enum is extensible (allows unknown values) */
   isExtensible: boolean;
+  /** Whether to emit only the Known* enum value container. */
+  knownValuesOnly?: boolean;
   /** Underlying value type ("string" or "number") */
   valueType: "string" | "number";
 }
@@ -297,6 +331,8 @@ export interface TSEnumMember {
   name: string;
   /** Member value */
   value: string | number;
+  /** Documentation */
+  docs?: string[];
 }
 
 // ─── Unions ───────────────────────────────────────────────────────────

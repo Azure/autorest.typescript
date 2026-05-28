@@ -54,6 +54,7 @@ export function render(codeModel: TSCodeModel): RenderedFile[] {
     ...renderClassicalFiles(codeModel),
     renderLogger(codeModel.packageInfo),
     ...renderIndexFiles(codeModel),
+    ...renderHelpers(codeModel.helpers),
     ...renderPackageFiles(codeModel),
   ];
 }
@@ -213,6 +214,19 @@ function renderEnum(
   sourceFile: import("ts-morph").SourceFile,
   enumType: TSEnum,
 ): void {
+  if (enumType.knownValuesOnly) {
+    addDocs(sourceFile, enumType.docs);
+    sourceFile.addEnum({
+      name: enumType.name,
+      isExported: true,
+      members: enumType.members.map((member) => ({
+        name: member.name,
+        value: member.value,
+      })),
+    });
+    return;
+  }
+
   addDocs(sourceFile, enumType.docs);
   if (enumType.isExtensible) {
     sourceFile.addEnum({
@@ -298,6 +312,47 @@ export function renderClients(
   );
 }
 
+function getCredentialParameter(client: TSClient): { name: string; type: string } | undefined {
+  return client.credential
+    ? { name: client.credential.paramName, type: client.credential.type }
+    : undefined;
+}
+
+function renderEndpointExpression(client: TSClient, endpointParameterName: string): string {
+  if (client.endpoint.urlTemplate === "{endpoint}") {
+    return `String(${endpointParameterName})`;
+  }
+  return `\`${client.endpoint.urlTemplate.replace(/\{[^}]+\}/g, `\${${endpointParameterName}}`)}\``;
+}
+
+function renderApiVersionInterfaceProperty(client: TSClient): string {
+  if (!client.apiVersion) {
+    return "";
+  }
+  return `
+  /** The API version to use for this operation. */
+  /** Known values of {@link KnownVersions} that the service accepts. */
+  apiVersion?: string;
+`;
+}
+
+function renderCredentialOptions(client: TSClient): string {
+  if (!client.credential) {
+    return "";
+  }
+  const scopes = client.credential.scopes.length > 0 ? client.credential.scopes : [];
+  const apiKeyHeaderName = client.credential.apiKeyHeaderName;
+  return `
+    credentials: {
+      scopes: options.credentials?.scopes ?? ${JSON.stringify(scopes)},${
+        apiKeyHeaderName
+          ? `
+      apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? ${JSON.stringify(apiKeyHeaderName)},`
+          : ""
+      }
+    },`;
+}
+
 export function renderClientContext(
   client: TSClient,
   packageInfo: TSPackageInfo,
@@ -307,24 +362,26 @@ export function renderClientContext(
   const contextName = `${clientBaseName}Context`;
   const optionsName = `${clientBaseName}ClientOptionalParams`;
   const factoryName = `create${clientBaseName}`;
+  const credentialParameter = getCredentialParameter(client);
   const endpointExpression = endpointParameter
-    ? `String(${endpointParameter.name})`
+    ? renderEndpointExpression(client, endpointParameter.name)
     : JSON.stringify(client.endpoint.urlTemplate);
-  const parameters = endpointParameter
-    ? `${endpointParameter.name}: ${endpointParameter.type},\n  `
-    : "";
+  const parameters = [
+    ...(endpointParameter ? [`${endpointParameter.name}: ${endpointParameter.type}`] : []),
+    ...(credentialParameter ? [`${credentialParameter.name}: ${credentialParameter.type}`] : []),
+  ];
   const content = `${copyrightHeader()}
 
 import { logger } from "../logger.js";
-import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
-
-export interface ${contextName} extends Client {}
+${client.apiVersion ? `import { KnownVersions } from "../models/models.js";\n` : ""}import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
+${credentialParameter ? `import { KeyCredential, TokenCredential } from "@azure/core-auth";\n` : ""}
+export interface ${contextName} extends Client {${renderApiVersionInterfaceProperty(client)}}
 
 /** Optional parameters for the client. */
-export interface ${optionsName} extends ClientOptions {}
+export interface ${optionsName} extends ClientOptions {${renderApiVersionInterfaceProperty(client)}}
 
 export function ${factoryName}(
-  ${parameters}options: ${optionsName} = {},
+  ${parameters.length > 0 ? `${parameters.join(",\n  ")},\n  ` : ""}options: ${optionsName} = {},
 ): ${contextName} {
   const endpointUrl = options.endpoint ?? ${endpointExpression};
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
@@ -335,16 +392,15 @@ export function ${factoryName}(
   const { apiVersion: _, ...updatedOptions } = {
     ...options,
     userAgentOptions: { userAgentPrefix },
-    loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
+    loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },${renderCredentialOptions(client)}
   };
-  const clientContext = getClient(endpointUrl, undefined, updatedOptions);
-
-  if (options.apiVersion) {
+  const clientContext = getClient(endpointUrl, ${credentialParameter?.name ?? "undefined"}, updatedOptions);
+${client.apiVersion ? `  const apiVersion = options.apiVersion;\n  return { ...clientContext, apiVersion } as ${contextName};` : `\n  if (options.apiVersion) {
     logger.warning(
       "This client does not support client api-version, please change it at the operation level",
     );
   }
-  return clientContext;
+  return clientContext;`}
 }
 `;
   return { path: `src/api/${lowerFirst(clientBaseName)}Context.ts`, content };
@@ -369,7 +425,12 @@ export function renderOperations(
   const optionNames = operations.map((operation) => operation.optionsType.name);
   const content = `${copyrightHeader()}
 
-${renderOperationImports(clientBaseName, serializerNames, optionNames)}
+${renderOperationImports(
+  clientBaseName,
+  serializerNames,
+  optionNames,
+  operations.some((operation) => operation.apiVersionQuery),
+)}
 
 ${operations.map((operation) => renderOperation(operation)).join("\n\n")}
 `;
@@ -433,13 +494,17 @@ function renderOperationImports(
   clientBaseName: string,
   serializerNames: string[],
   optionNames: string[],
+  needsUrlTemplate: boolean,
 ): string {
   const serializersImport =
     serializerNames.length > 0
       ? `import { ${serializerNames.join(", ")} } from "../../models/models.js";\n`
       : "";
+  const urlTemplateImport = needsUrlTemplate
+    ? `import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";\n`
+    : "";
   return `import { ${clientBaseName}Context as Client } from "../index.js";
-${serializersImport}import {
+${urlTemplateImport}${serializersImport}import {
   ${optionNames.join(",\n  ")},
 } from "./options.js";
 import {
@@ -458,6 +523,34 @@ ${renderDeserializeFunction(operation)}
 ${renderPublicOperationFunction(operation)}`;
 }
 
+function renderOperationDocs(operation: TSOperation, indent = ""): string {
+  if (operation.docs.length === 0) {
+    return "";
+  }
+  if (operation.docs.length === 1) {
+    return `${indent}/** ${operation.docs[0]} */\n`;
+  }
+  const lines = operation.docs.map((line) => `${indent} * ${line}`).join("\n");
+  return `${indent}/**\n${lines}\n${indent} */\n`;
+}
+
+function renderPathExpression(operation: TSOperation): string {
+  if (!operation.apiVersionQuery) {
+    return "";
+  }
+  const query = operation.apiVersionQuery;
+  return `  const path = expandUrlTemplate(
+    "${operation.path}{?${query.encodedName}}",
+    {
+      "${query.encodedName}": context.apiVersion ?? "${query.defaultValue}",
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+`;
+}
+
 function renderSendFunction(operation: TSOperation): string {
   const parameters = renderOperationSignatureParameters(operation);
   return `export function _${operation.name}Send(
@@ -465,11 +558,11 @@ function renderSendFunction(operation: TSOperation): string {
 ${parameters}
   options: ${operation.optionsType.name} = { requestOptions: {} },
 ): StreamableMethod {
-  return context
-    .path("${operation.path}")
+${renderPathExpression(operation)}  return context
+    .path(${operation.apiVersionQuery ? "path" : JSON.stringify(operation.path)})
     .${operation.httpMethod.toLowerCase()}({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: ${JSON.stringify(operation.contentType ?? "application/json")},
       ${renderBodyExpression(operation)}
     });
 }`;
@@ -492,7 +585,7 @@ function renderPublicOperationFunction(operation: TSOperation): string {
     .map((parameter) => parameter.name)
     .join(", ");
   const sendArguments = argumentNames ? `${argumentNames}, options` : "options";
-  return `export async function ${operation.name}(
+  return `${renderOperationDocs(operation)}export async function ${operation.name}(
   context: Client,
 ${parameters}
   options: ${operation.optionsType.name} = { requestOptions: {} },
@@ -522,10 +615,13 @@ function renderBodyExpression(operation: TSOperation): string {
   ) {
     return "";
   }
+  const bodyParameter = operation.parameters.find(
+    (parameter) => parameter.location === "body",
+  );
+  if (operation.bodyShape === "raw") {
+    return `body: ${bodyParameter?.name ?? "body"},`;
+  }
   if (operation.bodyShape === "named-with-serializer") {
-    const bodyParameter = operation.parameters.find(
-      (parameter) => parameter.location === "body",
-    );
     return `body: ${getOperationBodySerializerName(operation)}(${bodyParameter?.name ?? "body"}),`;
   }
   const bodyProperties = operation.parameters
@@ -572,10 +668,12 @@ export function renderClassicalClient(client: TSClient): RenderedFile {
   const factoryName = `create${clientBaseName}`;
   const clientClassName = `${clientBaseName}Client`;
   const endpointParameter = getEndpointParameter(client);
+  const credentialParameter = getCredentialParameter(client);
   const constructorParameters = [
     ...(endpointParameter
       ? [`${endpointParameter.name}: ${endpointParameter.type}`]
       : []),
+    ...(credentialParameter ? [`${credentialParameter.name}: ${credentialParameter.type}`] : []),
     `options: ${optionsName} = {}`,
   ].join(", ");
   const factoryOptions = `{
@@ -584,6 +682,7 @@ export function renderClassicalClient(client: TSClient): RenderedFile {
     }`;
   const factoryArguments = [
     ...(endpointParameter ? [endpointParameter.name] : []),
+    ...(credentialParameter ? [credentialParameter.name] : []),
     factoryOptions,
   ].join(", ");
   const groupImports = client.operationGroups
@@ -615,7 +714,7 @@ import {
   ${factoryName},
 } from "./api/index.js";
 ${groupImports}
-import { Pipeline } from "@azure/core-rest-pipeline";
+${credentialParameter ? `import { KeyCredential, TokenCredential } from "@azure/core-auth";\n` : ""}import { Pipeline } from "@azure/core-rest-pipeline";
 
 export type { ${optionsName} } from "./api/${lowerFirst(clientBaseName)}Context.js";
 
@@ -672,7 +771,7 @@ ${group.operations.map(renderClassicalMethodDelegate).join("\n")}
   };
 }
 
-export function _get${groupName}Operations(context: ${contextName}): ${groupName}Operations {
+${renderGetOperationsFunctionDeclaration(groupName, contextName)} {
   return {
     ..._get${groupName}(context),
   };
@@ -694,14 +793,26 @@ export function renderClassicalBarrel(client: TSClient): RenderedFile {
   };
 }
 
+function renderGetOperationsFunctionDeclaration(
+  groupName: string,
+  contextName: string,
+): string {
+  const oneLine = `export function _get${groupName}Operations(context: ${contextName}): ${groupName}Operations`;
+  if (oneLine.length <= 100) {
+    return oneLine;
+  }
+  return `export function _get${groupName}Operations(\n  context: ${contextName},\n): ${groupName}Operations`;
+}
+
 function renderClassicalMethodSignature(operation: TSOperation): string {
-  if (hasMultilineParameter(operation)) {
-    return `  ${operation.name}: (\n${renderClassicalSignatureParameters(
+  const docs = renderOperationDocs(operation, "  ");
+  if (shouldRenderMultilineSignature(operation)) {
+    return `${docs}  ${operation.name}: (\n${renderClassicalSignatureParameters(
       operation,
       4,
     )}\n  ) => Promise<${operation.returnType.type}>;`;
   }
-  return `  ${operation.name}: (${renderClassicalSignatureParameters(
+  return `${docs}  ${operation.name}: (${renderClassicalSignatureParameters(
     operation,
   )}) => Promise<${operation.returnType.type}>;`;
 }
@@ -758,6 +869,9 @@ function renderClassicalParameter(
 ): string {
   const spaces = " ".repeat(indent);
   const lines = parameter.type.split("\n");
+  if (lines.length === 1) {
+    return `${spaces}${parameter.name}: ${parameter.type},`;
+  }
   return [
     `${spaces}${parameter.name}: ${(lines[0] ?? "").trimEnd()}`,
     ...lines.slice(1).map((line, index, rest) => {
@@ -772,6 +886,13 @@ function renderClassicalParameter(
 function hasMultilineParameter(operation: TSOperation): boolean {
   return operation.parameters.some((parameter) =>
     parameter.type.includes("\n"),
+  );
+}
+
+function shouldRenderMultilineSignature(operation: TSOperation): boolean {
+  return (
+    hasMultilineParameter(operation) ||
+    `  ${operation.name}: (${renderClassicalSignatureParameters(operation)}) => Promise<${operation.returnType.type}>;`.length > 100
   );
 }
 
@@ -794,8 +915,13 @@ export function renderSerializers(
  * Consumes: `TSCodeModel.helpers`
  * Produces: `src/helpers/{category}.ts`
  */
-export function renderHelpers(_helpers: TSHelperFile[]): RenderedFile[] {
-  throw new Error("renderHelpers: not yet implemented");
+export function renderHelpers(helpers: TSHelperFile[]): RenderedFile[] {
+  return helpers.map((helper) => {
+    if (helper.outputPath === "static-helpers/urlTemplate.ts") {
+      return { path: "src/static-helpers/urlTemplate.ts", content: urlTemplateHelperContent() };
+    }
+    throw new Error(`Unsupported helper: ${helper.outputPath}`);
+  });
 }
 
 /**
@@ -813,7 +939,7 @@ export function renderIndexFiles(codeModel: TSCodeModel): RenderedFile[] {
 }
 
 export function renderRootBarrel(
-  codeModel: Pick<TSCodeModel, "clients">,
+  codeModel: Pick<TSCodeModel, "clients" | "enums">,
 ): RenderedFile {
   const clientExports = codeModel.clients
     .map((client) => getClientBaseName(client.name))
@@ -834,8 +960,16 @@ export function renderRootBarrel(
     .map((group) => `${upperFirst(group.name)}Operations`)
     .sort();
 
+  const enumValueExports = codeModel.enums
+    .filter((enumType) => enumType.knownValuesOnly)
+    .map((enumType) => enumType.name)
+    .sort();
+
   const sections = [
     clientExports,
+    enumValueExports.length > 0
+      ? `export { ${enumValueExports.join(", ")} } from "./models/index.js";`
+      : "",
     clientOptionNames.length > 0
       ? `export type { ${clientOptionNames.join(", ")} } from "./api/index.js";`
       : "",
@@ -861,25 +995,39 @@ export function renderApiBarrel(client: TSClient): RenderedFile {
   ];
   const factoryName = `create${clientBaseName}`;
 
+  const contextTypeExport =
+    contextTypeNames.length > 1 && (client.credential || client.apiVersion)
+      ? `export type {\n  ${contextTypeNames.join(",\n  ")},\n} from "${contextModule}";`
+      : `export type { ${contextTypeNames.join(", ")} } from "${contextModule}";`;
   return {
     path: "src/api/index.ts",
-    content: `${copyrightHeader()}\n\nexport type { ${contextTypeNames.join(", ")} } from "${contextModule}";\nexport { ${factoryName} } from "${contextModule}";\n`,
+    content: `${copyrightHeader()}\n\n${contextTypeExport}\nexport { ${factoryName} } from "${contextModule}";\n`,
   };
 }
 
 export function renderModelsBarrel(
   codeModel: Pick<TSCodeModel, "models" | "enums" | "unions">,
 ): RenderedFile {
-  const publicModelNames = [
+  const valueNames = codeModel.enums
+    .filter((enumType) => enumType.knownValuesOnly)
+    .map((enumType) => enumType.name)
+    .sort();
+  const typeNames = [
     ...codeModel.models.map((model) => model.name),
-    ...codeModel.enums.map((enumType) => enumType.name),
+    ...codeModel.enums
+      .filter((enumType) => !enumType.knownValuesOnly)
+      .map((enumType) => enumType.name),
     ...codeModel.unions.map((union) => union.name),
   ]
     .filter((name) => !name.startsWith("_"))
     .sort();
+  const sections = [
+    valueNames.length > 0 ? `export { ${valueNames.join(", ")} } from "./models.js";` : "",
+    typeNames.length > 0 ? `export type { ${typeNames.join(", ")} } from "./models.js";` : "",
+  ].filter((section) => section.length > 0);
   const content =
-    publicModelNames.length > 0
-      ? `${copyrightHeader()}\n\nexport type { ${publicModelNames.join(", ")} } from "./models.js";\n`
+    sections.length > 0
+      ? `${copyrightHeader()}\n\n${sections.join("\n")}\n`
       : `${copyrightHeader()}\n`;
 
   return {
@@ -903,10 +1051,7 @@ function collectOperationOptionExports(clients: TSClient[]): string[] {
   return [...optionsByGroup.entries()]
     .sort(([left], [right]) => left.localeCompare(right))
     .map(([groupName, optionNames]) =>
-      renderTypeExport(
-        [...optionNames].sort((left, right) => right.localeCompare(left)),
-        `./api/${groupName}/index.js`,
-      ),
+      renderTypeExport([...optionNames], `./api/${groupName}/index.js`),
     );
 }
 
@@ -934,7 +1079,205 @@ export function renderPackageFiles(codeModel: TSCodeModel): RenderedFile[] {
     },
     { path: "tsconfig.json", content: `${renderTsconfig()}\n` },
     { path: "README.md", content: renderReadme(codeModel.packageInfo) },
+    { path: "CHANGELOG.md", content: renderChangelog(codeModel.packageInfo) },
+    { path: "LICENSE", content: renderLicense() },
+    { path: "api-extractor.json", content: `${renderApiExtractorJson(codeModel.packageInfo)}\n` },
+    { path: "eslint.config.mjs", content: renderEslintConfig() },
+    { path: "rollup.config.js", content: renderRollupConfig() },
   ];
+}
+
+function renderLicense(): string {
+  return `Copyright (c) Microsoft Corporation.
+
+MIT License
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED *AS IS*, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.`;
+}
+
+function renderEslintConfig(): string {
+  return `import azsdkEslint from "@azure/eslint-plugin-azure-sdk";
+
+export default azsdkEslint.config([
+  {
+    rules: {
+      "@azure/azure-sdk/ts-modules-only-named": "warn",
+      "@azure/azure-sdk/ts-package-json-types": "warn",
+      "@azure/azure-sdk/ts-package-json-engine-is-present": "warn",
+      "@azure/azure-sdk/ts-package-json-files-required": "off",
+      "@azure/azure-sdk/ts-package-json-main-is-cjs": "off",
+      "tsdoc/syntax": "warn"
+    }
+  }
+]);
+`;
+}
+
+function renderRollupConfig(): string {
+  return `// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
+import nodeResolve from "@rollup/plugin-node-resolve";
+import cjs from "@rollup/plugin-commonjs";
+import sourcemaps from "rollup-plugin-sourcemaps";
+import multiEntry from "@rollup/plugin-multi-entry";
+import json from "@rollup/plugin-json";
+
+import nodeBuiltins from "builtin-modules";
+
+// #region Warning Handler
+
+/**
+ * A function that can determine whether a rollup warning should be ignored. If
+ * the function returns \`true\`, then the warning will not be displayed.
+ */
+
+function ignoreNiseSinonEval(warning) {
+  return (
+    warning.code === "EVAL" &&
+    warning.id &&
+    (warning.id.includes("node_modules/nise") || warning.id.includes("node_modules/sinon")) === true
+  );
+}
+
+function ignoreChaiCircularDependency(warning) {
+  return (
+    warning.code === "CIRCULAR_DEPENDENCY" &&
+    warning.importer &&
+    warning.importer.includes("node_modules/chai") === true
+  );
+}
+
+const warningInhibitors = [ignoreChaiCircularDependency, ignoreNiseSinonEval];
+
+/**
+ * Construct a warning handler for the shared rollup configuration
+ * that ignores certain warnings that are not relevant to testing.
+ */
+function makeOnWarnForTesting() {
+  return (warning, warn) => {
+    // If every inhibitor returns false (i.e. no inhibitors), then show the warning
+    if (warningInhibitors.every((inhib) => !inhib(warning))) {
+      warn(warning);
+    }
+  };
+}
+
+// #endregion
+
+function makeBrowserTestConfig() {
+  const config = {
+    input: {
+      include: ["dist-esm/test/**/*.spec.js"],
+      exclude: ["dist-esm/test/**/node/**"],
+    },
+    output: {
+      file: \`dist-test/index.browser.js\`,
+      format: "umd",
+      sourcemap: true,
+    },
+    preserveSymlinks: false,
+    plugins: [
+      multiEntry({ exports: false }),
+      nodeResolve({
+        mainFields: ["module", "browser"],
+      }),
+      cjs(),
+      json(),
+      sourcemaps(),
+      //viz({ filename: "dist-test/browser-stats.html", sourcemap: true })
+    ],
+    onwarn: makeOnWarnForTesting(),
+    // Disable tree-shaking of test code.  In rollup-plugin-node-resolve@5.0.0,
+    // rollup started respecting the "sideEffects" field in package.json.  Since
+    // our package.json sets "sideEffects=false", this also applies to test
+    // code, which causes all tests to be removed by tree-shaking.
+    treeshake: false,
+  };
+
+  return config;
+}
+
+const defaultConfigurationOptions = {
+  disableBrowserBundle: false,
+};
+
+export function makeConfig(pkg, options) {
+  options = {
+    ...defaultConfigurationOptions,
+    ...(options || {}),
+  };
+
+  const baseConfig = {
+    // Use the package's module field if it has one
+    input: pkg["module"] || "dist-esm/src/index.js",
+    external: [
+      ...nodeBuiltins,
+      ...Object.keys(pkg.dependencies),
+      ...Object.keys(pkg.devDependencies),
+    ],
+    output: { file: "dist/index.js", format: "cjs", sourcemap: true },
+    preserveSymlinks: false,
+    plugins: [sourcemaps(), nodeResolve()],
+  };
+
+  const config = [baseConfig];
+
+  if (!options.disableBrowserBundle) {
+    config.push(makeBrowserTestConfig());
+  }
+
+  return config;
+}
+
+export default makeConfig(require("./package.json"));
+`;
+}
+
+function renderChangelog(packageInfo: TSPackageInfo): string {
+  return `# Release History\n\n## ${packageInfo.version} (Unreleased)\n\n### Features Added\n\n### Breaking Changes\n\n### Bugs Fixed\n\n### Other Changes\n`;
+}
+
+function renderApiExtractorJson(packageInfo: TSPackageInfo): string {
+  const shortName = getPackageShortName(packageInfo.name);
+  return `{
+  "$schema": "https://developer.microsoft.com/json-schemas/api-extractor/v7/api-extractor.schema.json",
+  "mainEntryPointFilePath": "dist/esm/index.d.ts",
+  "docModel": { "enabled": true },
+  "apiReport": { "enabled": true, "reportFolder": "./review" },
+  "dtsRollup": {
+    "enabled": true,
+    "untrimmedFilePath": "",
+    "publicTrimmedFilePath": "dist/${shortName}.d.ts"
+  },
+  "messages": {
+    "tsdocMessageReporting": { "default": { "logLevel": "none" } },
+    "extractorMessageReporting": {
+      "ae-missing-release-tag": { "logLevel": "none" },
+      "ae-unresolved-link": { "logLevel": "none" }
+    }
+  }
+}`;
+}
+
+function urlTemplateHelperContent(): string {
+  return "// Copyright (c) Microsoft Corporation.\n// Licensed under the MIT License.\n\n// ---------------------\n// interfaces\n// ---------------------\ninterface ValueOptions {\n  isFirst: boolean; // is first value in the expression\n  op?: string; // operator\n  varValue?: any; // variable value\n  varName?: string; // variable name\n  modifier?: string; // modifier e.g *\n  reserved?: boolean; // if true we'll keep reserved words with not encoding\n}\n\nexport interface UrlTemplateOptions {\n  // if set to true, reserved characters will not be encoded\n  allowReserved?: boolean;\n}\n\n// ---------------------\n// helpers\n// ---------------------\nfunction encodeComponent(val: string, reserved?: boolean, op?: string): string {\n  return (reserved ?? op === \"+\") || op === \"#\"\n    ? encodeReservedComponent(val)\n    : encodeRFC3986URIComponent(val);\n}\n\nfunction encodeReservedComponent(str: string): string {\n  return str\n    .split(/(%[0-9A-Fa-f]{2})/g)\n    .map((part) => (!/%[0-9A-Fa-f]/.test(part) ? encodeURI(part) : part))\n    .join(\"\");\n}\n\nfunction encodeRFC3986URIComponent(str: string): string {\n  return encodeURIComponent(str).replace(\n    /[!'()*]/g,\n    (c) => `%${c.charCodeAt(0).toString(16).toUpperCase()}`,\n  );\n}\n\nfunction isDefined(val: any): boolean {\n  return val !== undefined && val !== null;\n}\n\nfunction getNamedAndIfEmpty(op?: string): [boolean, string] {\n  return [!!op && [\";\", \"?\", \"&\"].includes(op), !!op && [\"?\", \"&\"].includes(op) ? \"=\" : \"\"];\n}\n\nfunction getFirstOrSep(op?: string, isFirst = false): string {\n  if (isFirst) {\n    return !op || op === \"+\" ? \"\" : op;\n  } else if (!op || op === \"+\" || op === \"#\") {\n    return \",\";\n  } else if (op === \"?\") {\n    return \"&\";\n  } else {\n    return op;\n  }\n}\n\nfunction getExpandedValue(option: ValueOptions): string {\n  let isFirst = option.isFirst;\n  const { op, varName, varValue: value, reserved } = option;\n  const vals: string[] = [];\n  const [named, ifEmpty] = getNamedAndIfEmpty(op);\n\n  if (Array.isArray(value)) {\n    for (const val of value.filter(isDefined)) {\n      // prepare the following parts: separator, varName, value\n      vals.push(`${getFirstOrSep(op, isFirst)}`);\n      if (named && varName) {\n        vals.push(`${encodeURIComponent(varName)}`);\n        if (val === \"\") {\n          vals.push(ifEmpty);\n        } else {\n          vals.push(\"=\");\n        }\n      }\n      vals.push(encodeComponent(val, reserved, op));\n      isFirst = false;\n    }\n  } else if (typeof value === \"object\") {\n    for (const key of Object.keys(value)) {\n      const val = value[key];\n      if (!isDefined(val)) {\n        continue;\n      }\n      // prepare the following parts: separator, key, value\n      vals.push(`${getFirstOrSep(op, isFirst)}`);\n      if (key) {\n        vals.push(`${encodeURIComponent(key)}`);\n        if (named && val === \"\") {\n          vals.push(ifEmpty);\n        } else {\n          vals.push(\"=\");\n        }\n      }\n      vals.push(encodeComponent(val, reserved, op));\n      isFirst = false;\n    }\n  }\n  return vals.join(\"\");\n}\n\nfunction getNonExpandedValue(option: ValueOptions): string | undefined {\n  const { op, varName, varValue: value, isFirst, reserved } = option;\n  const vals: string[] = [];\n  const first = getFirstOrSep(op, isFirst);\n  const [named, ifEmpty] = getNamedAndIfEmpty(op);\n  if (named && varName) {\n    vals.push(encodeComponent(varName, reserved, op));\n    if (value === \"\") {\n      if (!ifEmpty) {\n        vals.push(ifEmpty);\n      }\n      return !vals.join(\"\") ? undefined : `${first}${vals.join(\"\")}`;\n    }\n    vals.push(\"=\");\n  }\n\n  const items = [];\n  if (Array.isArray(value)) {\n    for (const val of value.filter(isDefined)) {\n      items.push(encodeComponent(val, reserved, op));\n    }\n  } else if (typeof value === \"object\") {\n    for (const key of Object.keys(value)) {\n      if (!isDefined(value[key])) {\n        continue;\n      }\n      items.push(encodeRFC3986URIComponent(key));\n      items.push(encodeComponent(value[key], reserved, op));\n    }\n  }\n  vals.push(items.join(\",\"));\n  return !vals.join(\",\") ? undefined : `${first}${vals.join(\"\")}`;\n}\n\nfunction getVarValue(option: ValueOptions): string | undefined {\n  const { op, varName, modifier, isFirst, reserved, varValue: value } = option;\n\n  if (!isDefined(value)) {\n    return undefined;\n  } else if ([\"string\", \"number\", \"boolean\"].includes(typeof value)) {\n    let val = value.toString();\n    const [named, ifEmpty] = getNamedAndIfEmpty(op);\n    const vals: string[] = [getFirstOrSep(op, isFirst)];\n    if (named && varName) {\n      // No need to encode varName considering it is already encoded\n      vals.push(varName);\n      if (val === \"\") {\n        vals.push(ifEmpty);\n      } else {\n        vals.push(\"=\");\n      }\n    }\n    if (modifier && modifier !== \"*\") {\n      val = val.substring(0, parseInt(modifier, 10));\n    }\n    vals.push(encodeComponent(val, reserved, op));\n    return vals.join(\"\");\n  } else if (modifier === \"*\") {\n    return getExpandedValue(option);\n  } else {\n    return getNonExpandedValue(option);\n  }\n}\n\n// ---------------------------------------------------------------------------------------------------\n// This is an implementation of RFC 6570 URI Template: https://datatracker.ietf.org/doc/html/rfc6570.\n// ---------------------------------------------------------------------------------------------------\nexport function expandUrlTemplate(\n  template: string,\n  context: Record<string, any>,\n  option?: UrlTemplateOptions,\n): string {\n  const result = template.replace(/\\{([^{}]+)\\}|([^{}]+)/g, (_, expr, text) => {\n    if (!expr) {\n      return encodeReservedComponent(text);\n    }\n    let op;\n    if ([\"+\", \"#\", \".\", \"/\", \";\", \"?\", \"&\"].includes(expr[0])) {\n      op = expr[0];\n      expr = expr.slice(1);\n    }\n    const varList = expr.split(/,/g);\n    const innerResult = [];\n    for (const varSpec of varList) {\n      const varMatch = /([^:*]*)(?::(\\d+)|(\\*))?/.exec(varSpec);\n      if (!varMatch || !varMatch[1]) {\n        continue;\n      }\n      const varValue = getVarValue({\n        isFirst: innerResult.length === 0,\n        op,\n        varValue: context[varMatch[1]],\n        varName: varMatch[1],\n        modifier: varMatch[2] || varMatch[3],\n        reserved: option?.allowReserved,\n      });\n      if (varValue) {\n        innerResult.push(varValue);\n      }\n    }\n    return innerResult.join(\"\");\n  });\n\n  return normalizeUnreserved(result);\n}\n\n/**\n * Normalize an expanded URI by decoding percent-encoded unreserved characters.\n * RFC 3986 unreserved: \"-\" / \".\" / \"~\"\n */\nfunction normalizeUnreserved(uri: string): string {\n  return uri.replace(/%([0-9A-Fa-f]{2})/g, (match, hex) => {\n    const char = String.fromCharCode(parseInt(hex, 16));\n    // Decode only if it's unreserved\n    if (/[.~-]/.test(char)) {\n      return char;\n    }\n    return match; // leave other encodings intact\n  });\n}\n";
 }
 
 function copyrightHeader(): string {
@@ -949,7 +1292,7 @@ function renderPackageJson(packageInfo: TSPackageInfo): string {
   const packageJson = {
     name: packageInfo.name,
     version: packageInfo.version,
-    description: `A generated SDK for ${packageInfo.clientName}.`,
+    description: packageInfo.description ?? `A generated SDK for ${packageInfo.clientName}.`,
     engines: { node: ">=20.0.0" },
     sideEffects: false,
     autoPublish: false,
@@ -1035,33 +1378,29 @@ function renderPackageExport(
 }
 
 function renderTsconfig(): string {
-  return JSON.stringify(
-    {
-      compilerOptions: {
-        target: "ES2017",
-        module: "NodeNext",
-        lib: [],
-        declaration: true,
-        declarationMap: true,
-        inlineSources: true,
-        sourceMap: true,
-        importHelpers: true,
-        strict: true,
-        alwaysStrict: true,
-        noUnusedLocals: true,
-        noUnusedParameters: true,
-        noImplicitReturns: true,
-        noFallthroughCasesInSwitch: true,
-        forceConsistentCasingInFileNames: true,
-        moduleResolution: "NodeNext",
-        allowSyntheticDefaultImports: true,
-        esModuleInterop: true,
-      },
-      include: ["src/**/*.ts"],
-    },
-    undefined,
-    2,
-  );
+  return `{
+  "compilerOptions": {
+    "target": "ES2017",
+    "module": "NodeNext",
+    "lib": [],
+    "declaration": true,
+    "declarationMap": true,
+    "inlineSources": true,
+    "sourceMap": true,
+    "importHelpers": true,
+    "strict": true,
+    "alwaysStrict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "NodeNext",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true
+  },
+  "include": ["src/**/*.ts"]
+}`;
 }
 
 function renderReadme(packageInfo: TSPackageInfo): string {
@@ -1069,7 +1408,7 @@ function renderReadme(packageInfo: TSPackageInfo): string {
 
 This package contains an isomorphic SDK (runs both in Node.js and in browsers) for ${packageInfo.serviceName} client.
 
-
+${packageInfo.description ?? ""}
 
 Key links:
 
@@ -1103,6 +1442,7 @@ To use this client library in the browser, first you need to use a bundler. For 
 ### ${packageInfo.clientName}
 
 \`${packageInfo.clientName}\` is the primary interface for developers using the ${packageInfo.serviceName} client library. Explore the methods on this client object to understand the different features of the ${packageInfo.serviceName} service that you can access.
+
 `;
 }
 

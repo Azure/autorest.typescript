@@ -90,7 +90,7 @@ export async function adaptSdkContext(
           .map((model) => model.name),
       },
     ],
-    helpers: [],
+    helpers: _adaptHelpers(sdkContext),
     pagingInfo: { hasPaging: false },
     pollingInfo: { hasLro: false, emitRestorePoller: false },
   };
@@ -132,6 +132,7 @@ function adaptClient(client: SdkClientType<SdkServiceOperation>): TSClient {
       client.clientInitialization.parameters.map(adaptClientParameter),
     endpoint: adaptEndpoint(client),
     apiVersion: adaptApiVersion(client),
+    credential: adaptCredential(client),
     operationGroups: _adaptOperations(client),
     methods: client.methods.map(adaptOperation).reverse(),
     children: (client.children ?? []).map(adaptClient),
@@ -166,10 +167,9 @@ function adaptOperation(
     parameters: _adaptOperationParameters(sdkMethod),
     returnType: adaptReturnType(sdkMethod),
     optionsType: _adaptOptionsType(sdkMethod),
-    bodyShape:
-      bodyType?.kind === "model" && shouldEmitModel(bodyType as SdkModelType)
-        ? "named-with-serializer"
-        : "inline",
+    bodyShape: getBodyShape(bodyType),
+    contentType: getOperationContentType(sdkMethod),
+    apiVersionQuery: getOperationApiVersionQuery(sdkMethod),
     expectedStatuses: getExpectedStatuses(sdkMethod),
   };
 }
@@ -182,6 +182,7 @@ export function _adaptOperationParameters(
     .filter(
       (parameter) =>
         !parameter.onClient &&
+        !isConstantContentTypeParameter(parameter) &&
         !(parameter.optional || parameter.clientDefaultValue !== undefined),
     )
     .map((parameter) => ({
@@ -242,6 +243,54 @@ function getExpectedStatuses(
   });
 }
 
+function getBodyShape(bodyType: SdkHttpOperation["bodyParam"] extends infer Body ? Body extends { type?: infer Type } ? Type : SdkType | undefined : SdkType | undefined): TSOperation["bodyShape"] {
+  if (!bodyType) {
+    return "inline";
+  }
+  if (bodyType.kind === "bytes") {
+    return "raw";
+  }
+  return bodyType.kind === "model" && shouldEmitModel(bodyType as SdkModelType)
+    ? "named-with-serializer"
+    : "inline";
+}
+
+function getOperationContentType(
+  sdkMethod: SdkServiceMethod<SdkHttpOperation>,
+): string | undefined {
+  const bodyContentType = sdkMethod.operation.bodyParam?.contentTypes?.[0];
+  if (bodyContentType) {
+    return bodyContentType;
+  }
+  const contentTypeParam = sdkMethod.operation.parameters.find(
+    (parameter) => parameter.kind === "header" && parameter.serializedName?.toLowerCase() === "content-type",
+  );
+  return contentTypeParam?.type.kind === "constant"
+    ? String((contentTypeParam.type as SdkConstantType).value)
+    : undefined;
+}
+
+function getOperationApiVersionQuery(
+  sdkMethod: SdkServiceMethod<SdkHttpOperation>,
+): TSOperation["apiVersionQuery"] {
+  const parameter = sdkMethod.operation.parameters.find(
+    (item) => item.kind === "query" && item.isApiVersionParam,
+  );
+  if (!parameter) {
+    return undefined;
+  }
+  const serializedName = parameter.serializedName ?? parameter.name;
+  return {
+    serializedName,
+    encodedName: encodeUriTemplateVariableName(serializedName),
+    defaultValue: String(parameter.clientDefaultValue),
+  };
+}
+
+function encodeUriTemplateVariableName(name: string): string {
+  return encodeURIComponent(name).replace(/-/g, "%2D");
+}
+
 function getOperationParameterLocation(
   sdkMethod: SdkServiceMethod<SdkHttpOperation>,
   parameter: SdkMethodParameter,
@@ -265,6 +314,9 @@ function getOperationParameterLocation(
 }
 
 function getOperationParameterType(parameter: SdkMethodParameter): string {
+  if (parameter.type.kind === "bytes") {
+    return "Uint8Array";
+  }
   if (
     parameter.type.kind === "model" &&
     (parameter.type as SdkModelType).isGeneratedName
@@ -316,6 +368,10 @@ function shouldSkipGeneratedMethodParameter(
   );
 }
 
+function isConstantContentTypeParameter(parameter: SdkMethodParameter): boolean {
+  return parameter.name === "contentType" && parameter.type.kind === "constant";
+}
+
 function getOperationGroupName(
   sdkMethod: SdkServiceMethod<SdkHttpOperation>,
 ): string {
@@ -347,6 +403,9 @@ function getClientParameterType(
 ): string {
   if (parameter.kind === "endpoint") {
     return "string";
+  }
+  if (parameter.kind === "credential") {
+    return getCredentialType(parameter);
   }
   return getTypeExpression(parameter.type);
 }
@@ -416,6 +475,52 @@ function adaptApiVersion(
   };
 }
 
+function adaptCredential(
+  client: SdkClientType<SdkServiceOperation>,
+): TSClient["credential"] {
+  const parameter = client.clientInitialization.parameters.find(
+    (item): item is SdkCredentialParameter => item.kind === "credential",
+  );
+  if (!parameter) {
+    return undefined;
+  }
+  const credentialSchemes = getCredentialSchemes(parameter.type);
+  return {
+    paramName: parameter.name,
+    type: getCredentialType(parameter),
+    scopes: credentialSchemes.flatMap((scheme) =>
+      (scheme.flows ?? []).flatMap((flow) =>
+        (flow.scopes ?? []).map((scope) =>
+          typeof scope === "string" ? scope : String(scope.value),
+        ),
+      ),
+    ),
+    apiKeyHeaderName: credentialSchemes.find((scheme) => scheme.type === "apiKey")?.name,
+  };
+}
+
+function getCredentialType(parameter: SdkCredentialParameter): string {
+  return getCredentialSchemes(parameter.type)
+    .map((scheme) => (scheme.type === "apiKey" ? "KeyCredential" : "TokenCredential"))
+    .filter((value, index, array) => array.indexOf(value) === index)
+    .join(" | ");
+}
+
+function getCredentialVariantType(type: SdkType): string {
+  const scheme = (type as unknown as { scheme?: { type?: string } }).scheme;
+  return scheme?.type === "apiKey" ? "KeyCredential" : "TokenCredential";
+}
+
+function getCredentialSchemes(
+  type: SdkType,
+): Array<{ type?: string; name?: string; flows?: Array<{ scopes?: Array<{ value?: string } | string> }> }> {
+  if (type.kind === "union") {
+    return (type as SdkUnionType).variantTypes.flatMap(getCredentialSchemes);
+  }
+  const scheme = (type as unknown as { scheme?: { type?: string; name?: string; flows?: Array<{ scopes?: Array<{ value?: string } | string> }> } }).scheme;
+  return scheme ? [scheme] : [];
+}
+
 /**
  * Adapts TCGC model types into TSModel IR nodes.
  * Maps properties, inheritance, discriminators, and additional properties.
@@ -474,18 +579,23 @@ function adaptProperty(property: SdkModelPropertyType): TSProperty {
  * Maps members, fixed/extensible semantics, and value types.
  */
 export function _adaptEnums(sdkContext: SdkContext): TSEnum[] {
-  return sdkContext.sdkPackage.enums.map(adaptEnum);
+  const hasPackageVersions = (sdkContext.getPackageVersions?.().size ?? 0) > 0;
+  return sdkContext.sdkPackage.enums.map((enumType) =>
+    adaptEnum(enumType, hasPackageVersions && enumType.name === "Versions"),
+  );
 }
 
-function adaptEnum(enumType: SdkEnumType): TSEnum {
+function adaptEnum(enumType: SdkEnumType, knownValuesOnly = false): TSEnum {
   return {
-    name: enumType.name,
     docs: getDocs(enumType),
     members: enumType.values.map((member) => ({
-      name: member.name,
+      name: getEnumMemberName(member.name),
       value: member.value,
+      docs: getDocs(member),
     })),
+    name: knownValuesOnly ? `Known${enumType.name}` : enumType.name,
     isExtensible: !enumType.isFixed,
+    knownValuesOnly,
     valueType: enumType.valueType.kind === "numeric" ? "number" : "string",
   };
 }
@@ -496,6 +606,17 @@ function adaptEnum(enumType: SdkEnumType): TSEnum {
  */
 export function _adaptUnions(): TSUnion[] {
   return [];
+}
+
+function _adaptHelpers(sdkContext: SdkContext): TSCodeModel["helpers"] {
+  const needsUrlTemplate = sdkContext.sdkPackage.clients.some((client) =>
+    (client.children ?? []).some((child) =>
+      child.methods.some((method) => getOperationApiVersionQuery(method) !== undefined),
+    ),
+  );
+  return needsUrlTemplate
+    ? [{ outputPath: "static-helpers/urlTemplate.ts", category: "url" }]
+    : [];
 }
 
 /**
@@ -510,10 +631,12 @@ export function _resolveSettings(
     "@azure-tools/typespec-ts-pristine";
   const packageVersion =
     getStringOption(packageDetails, "version") ?? "1.0.0-beta.1";
+  const packageDescription = getStringOption(packageDetails, "description");
 
   return {
     packageName,
     packageVersion,
+    packageDescription,
     flavor: packageName.startsWith("@azure/") ? "azure" : "unbranded",
     isArm: packageName.startsWith("@azure/arm-"),
     outputDir: context.emitterOutputDir,
@@ -537,10 +660,20 @@ function _resolvePackageInfo(
   return {
     name: settings.packageName,
     version: settings.packageVersion,
+    description: settings.packageDescription,
     serviceName,
     clientName,
     exports: [
       { subpath: ".", source: "./src/index.ts" },
+      { subpath: "./api", source: "./src/api/index.ts" },
+      ...sdkContext.sdkPackage.clients.flatMap((client) =>
+        (client.children ?? [])
+          .filter((child) => child.methods.length > 0)
+          .map((child) => ({
+            subpath: `./api/${lowerFirst(child.name)}`,
+            source: `./src/api/${lowerFirst(child.name)}/index.ts`,
+          })),
+      ),
       { subpath: "./models", source: "./src/models/index.ts" },
     ],
   };
@@ -573,6 +706,8 @@ function getTypeExpression(type: SdkType): string {
       return "Date";
     case "duration":
       return "string";
+    case "credential":
+      return getCredentialVariantType(type);
     default:
       return getBuiltInTypeExpression(type as SdkBuiltInType);
   }
@@ -624,6 +759,13 @@ function hasUsage(model: SdkModelType, usage: UsageFlags): boolean {
 
 function getModelName(model: SdkModelType): string {
   return `${model.isGeneratedName ? "_" : ""}${model.name}`;
+}
+
+function getEnumMemberName(name: string): string {
+  if (/^\d{4}-\d{2}-\d{2}$/.test(name)) {
+    return `V${name.replace(/-/g, "")}`;
+  }
+  return toPascalCase(name);
 }
 
 function lowerFirst(name: string): string {
