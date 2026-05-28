@@ -17,6 +17,7 @@
 import type { EmitContext } from "@typespec/compiler";
 import {
   createSdkContext,
+  UsageFlags,
   type SdkArrayType,
   type SdkBuiltInType,
   type SdkConstantType,
@@ -51,13 +52,22 @@ import type {
 export async function adaptSdkContext(context: EmitContext<Record<string, any>>): Promise<TSCodeModel> {
   const sdkContext = await createPristineSdkContext(context);
 
+  const models = _adaptModels(sdkContext);
+
   return {
     settings: _resolveSettings(context),
     clients: [],
-    models: _adaptModels(sdkContext),
+    models,
     enums: _adaptEnums(sdkContext),
     unions: [],
-    serializers: [],
+    serializers: [
+      {
+        contentType: "application/json",
+        models: models
+          .filter((model) => model.needsSerializer || model.needsDeserializer)
+          .map((model) => model.name)
+      }
+    ],
     helpers: [],
     pagingInfo: { hasPaging: false },
     pollingInfo: { hasLro: false, emitRestorePoller: false }
@@ -95,15 +105,18 @@ export function _adaptClients(): [] {
  * Maps properties, inheritance, discriminators, and additional properties.
  */
 export function _adaptModels(sdkContext: SdkContext): TSModel[] {
-  return sdkContext.sdkPackage.models.map(adaptModel);
+  return sdkContext.sdkPackage.models.filter(shouldEmitModel).map(adaptModel);
 }
 
 function adaptModel(model: SdkModelType): TSModel {
+  const name = getModelName(model);
+  const needsSerializer = hasUsage(model, UsageFlags.Input);
+  const needsDeserializer = hasUsage(model, UsageFlags.Output);
   return {
-    name: model.name,
+    name,
     docs: getDocs(model),
     properties: model.properties.map(adaptProperty),
-    baseModel: model.baseModel?.name,
+    baseModel: model.baseModel ? getModelName(model.baseModel) : undefined,
     additionalPropertiesType: model.additionalProperties
       ? getTypeExpression(model.additionalProperties)
       : undefined,
@@ -111,11 +124,13 @@ function adaptModel(model: SdkModelType): TSModel {
       ? {
           propertyName: model.discriminatorProperty.name,
           value: model.discriminatorValue,
-          variants: Object.values(model.discriminatedSubtypes ?? {}).map((subtype) => subtype.name)
+          variants: Object.values(model.discriminatedSubtypes ?? {}).map(getModelName)
         }
       : undefined,
-    needsSerializer: false,
-    needsDeserializer: false
+    needsSerializer,
+    serializerName: needsSerializer ? `${lowerFirst(name)}Serializer` : undefined,
+    needsDeserializer,
+    deserializerName: needsDeserializer ? `${lowerFirst(name)}Deserializer` : undefined
   };
 }
 
@@ -189,8 +204,9 @@ function getTypeExpression(type: SdkType): string {
     case "nullable":
       return `${getTypeExpression((type as SdkNullableType).type)} | null`;
     case "enum":
-    case "model":
       return type.name;
+    case "model":
+      return getModelName(type as SdkModelType);
     case "enumvalue":
       return JSON.stringify(type.value);
     case "constant":
@@ -238,6 +254,27 @@ function getBuiltInTypeExpression(type: SdkBuiltInType): string {
     default:
       return "any";
   }
+}
+
+function shouldEmitModel(model: SdkModelType): boolean {
+  return (
+    !hasUsage(model, UsageFlags.Spread) &&
+    (hasUsage(model, UsageFlags.Input) || hasUsage(model, UsageFlags.Output))
+  );
+}
+
+function hasUsage(model: SdkModelType, usage: UsageFlags): boolean {
+  return (model.usage & usage) === usage;
+}
+
+function getModelName(model: SdkModelType): string {
+  return `${model.isGeneratedName ? "_" : ""}${model.name}`;
+}
+
+function lowerFirst(name: string): string {
+  const prefix = name.startsWith("_") ? "_" : "";
+  const body = prefix ? name.slice(1) : name;
+  return `${prefix}${body.charAt(0).toLowerCase()}${body.slice(1)}`;
 }
 
 function wrapArrayElementType(type: string): string {

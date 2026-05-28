@@ -74,6 +74,8 @@ export function renderModels(codeModel: Pick<TSCodeModel, "models" | "enums">): 
 
   for (const model of codeModel.models) {
     renderModel(sourceFile, model);
+    renderModelSerializer(sourceFile, model);
+    renderModelDeserializer(sourceFile, model);
   }
 
   for (const enumType of codeModel.enums) {
@@ -81,11 +83,12 @@ export function renderModels(codeModel: Pick<TSCodeModel, "models" | "enums">): 
   }
 
   sourceFile.formatText({ indentSize: 2 });
-  return [{ path: "src/models/models.ts", content: sourceFile.getFullText() }];
+  const content = sourceFile.getFullText().replace(/}\n\/\*\* model interface/g, "}\n\n/** model interface");
+  return [{ path: "src/models/models.ts", content }];
 }
 
 function renderModel(sourceFile: import("ts-morph").SourceFile, model: TSModel): void {
-  addDocs(sourceFile, model.docs);
+  addModelDocs(sourceFile, model);
   const declaration = sourceFile.addInterface({
     name: model.name,
     isExported: true,
@@ -113,6 +116,59 @@ function getPropertyStructure(property: TSProperty): import("ts-morph").Property
   };
 }
 
+function renderModelSerializer(sourceFile: import("ts-morph").SourceFile, model: TSModel): void {
+  if (!model.needsSerializer || !model.serializerName) {
+    return;
+  }
+
+  sourceFile.addFunction({
+    name: model.serializerName,
+    isExported: true,
+    parameters: [{ name: "item", type: model.name }],
+    returnType: "any",
+    statements: [`return { ${getSerializerMappings(model.properties).join(", ")} };`]
+  });
+}
+
+function renderModelDeserializer(sourceFile: import("ts-morph").SourceFile, model: TSModel): void {
+  if (!model.needsDeserializer || !model.deserializerName) {
+    return;
+  }
+
+  sourceFile.addFunction({
+    name: model.deserializerName,
+    isExported: true,
+    parameters: [{ name: "item", type: "any" }],
+    returnType: model.name,
+    statements: [`return { ${getDeserializerMappings(model.properties).join(", ")} };`]
+  });
+}
+
+function getSerializerMappings(properties: TSProperty[]): string[] {
+  return properties
+    .filter((property) => !property.readonly)
+    .map((property) => getObjectMapping(property, `item[${JSON.stringify(property.name)}]`));
+}
+
+function getDeserializerMappings(properties: TSProperty[]): string[] {
+  return properties.map((property) =>
+    getObjectMapping(property, `item[${JSON.stringify(property.serializedName ?? property.name)}]`)
+  );
+}
+
+function getObjectMapping(property: TSProperty, valueExpression: string): string {
+  const wireName = property.serializedName ?? property.name;
+  const key = isIdentifier(wireName) ? wireName : JSON.stringify(wireName);
+  if (!property.optional) {
+    return `${key}: ${valueExpression}`;
+  }
+  return `...(${valueExpression} === undefined ? {} : { ${key}: ${valueExpression} })`;
+}
+
+function isIdentifier(name: string): boolean {
+  return /^[$A-Z_a-z][$\w]*$/.test(name);
+}
+
 function renderEnum(sourceFile: import("ts-morph").SourceFile, enumType: TSEnum): void {
   addDocs(sourceFile, enumType.docs);
   if (enumType.isExtensible) {
@@ -134,6 +190,15 @@ function renderEnum(sourceFile: import("ts-morph").SourceFile, enumType: TSEnum)
     isExported: true,
     type: enumType.members.map((member) => JSON.stringify(member.value)).join(" | ")
   });
+}
+
+function addModelDocs(sourceFile: import("ts-morph").SourceFile, model: TSModel): void {
+  if (model.docs.length === 0) {
+    sourceFile.addStatements(`/** model interface ${model.name} */`);
+    return;
+  }
+
+  addDocs(sourceFile, model.docs);
 }
 
 function addDocs(sourceFile: import("ts-morph").SourceFile, docs: string[]): void {

@@ -210,8 +210,12 @@ export interface TSModel {
   discriminator?: TSDiscriminator;
   /** Whether this model needs a serializer */
   needsSerializer: boolean;
+  /** Serializer function name, when emitted */
+  serializerName?: string;
   /** Whether this model needs a deserializer */
   needsDeserializer: boolean;
+  /** Deserializer function name, when emitted */
+  deserializerName?: string;
 }
 
 /** A property on a model or options interface. */
