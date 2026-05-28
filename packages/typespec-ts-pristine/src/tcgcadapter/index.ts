@@ -20,22 +20,32 @@ import {
   UsageFlags,
   type SdkArrayType,
   type SdkBuiltInType,
+  type SdkClientType,
   type SdkConstantType,
   type SdkContext,
+  type SdkCredentialParameter,
   type SdkDictionaryType,
+  type SdkEndpointParameter,
+  type SdkEndpointType,
   type SdkEnumType,
+  type SdkMethodParameter,
   type SdkModelPropertyType,
+  type SdkPathParameter,
   type SdkModelType,
   type SdkNullableType,
+  type SdkServiceOperation,
   type SdkTupleType,
   type SdkType,
   type SdkUnionType
 } from "@azure-tools/typespec-client-generator-core";
 import type {
+  TSClient,
   TSCodeModel,
+  TSEndpoint,
   TSEnum,
   TSGenerationSettings,
   TSModel,
+  TSParameter,
   TSProperty,
   TSUnion
 } from "../codemodel/index.js";
@@ -58,7 +68,7 @@ export async function adaptSdkContext(context: EmitContext<Record<string, any>>)
   return {
     settings,
     packageInfo: _resolvePackageInfo(settings, sdkContext),
-    clients: [],
+    clients: _adaptClients(sdkContext),
     models,
     enums: _adaptEnums(sdkContext),
     unions: [],
@@ -98,8 +108,93 @@ async function createPristineSdkContext(context: EmitContext<Record<string, any>
  * Adapts TCGC clients into TSClient IR nodes.
  * Maps client hierarchy, parameters, methods, and operation groups.
  */
-export function _adaptClients(): [] {
-  return [];
+export function _adaptClients(sdkContext: SdkContext): TSClient[] {
+  return sdkContext.sdkPackage.clients.map(adaptClient);
+}
+
+function adaptClient(client: SdkClientType<SdkServiceOperation>): TSClient {
+  return {
+    name: client.name,
+    docs: getDocs(client),
+    parameters: client.clientInitialization.parameters.map(adaptClientParameter),
+    endpoint: adaptEndpoint(client),
+    apiVersion: adaptApiVersion(client),
+    operationGroups: getClientOperationGroupNames(client).map((name) => ({ name, operations: [] })),
+    methods: [],
+    children: (client.children ?? []).map(adaptClient)
+  };
+}
+
+function adaptClientParameter(
+  parameter: SdkCredentialParameter | SdkEndpointParameter | SdkMethodParameter
+): TSParameter {
+  const name = parameter.kind === "endpoint" && parameter.name === "endpoint" ? "endpointParam" : parameter.name;
+  return {
+    name,
+    type: getClientParameterType(parameter),
+    required: !parameter.optional,
+    defaultValue: parameter.clientDefaultValue === undefined ? undefined : JSON.stringify(parameter.clientDefaultValue),
+    docs: getDocs(parameter)
+  };
+}
+
+function getClientParameterType(
+  parameter: SdkCredentialParameter | SdkEndpointParameter | SdkMethodParameter
+): string {
+  if (parameter.kind === "endpoint") {
+    return "string";
+  }
+  return getTypeExpression(parameter.type);
+}
+
+function adaptEndpoint(client: SdkClientType<SdkServiceOperation>): TSEndpoint {
+  const endpointParameter = client.clientInitialization.parameters.find(
+    (parameter): parameter is SdkEndpointParameter => parameter.kind === "endpoint"
+  );
+  const endpointType = endpointParameter ? getEndpointType(endpointParameter) : undefined;
+  return {
+    urlTemplate: endpointType?.serverUrl ?? "{endpoint}",
+    isParameterized: (endpointType?.templateArguments.length ?? 0) > 0,
+    templateParams: (endpointType?.templateArguments ?? []).map(adaptEndpointTemplateParameter)
+  };
+}
+
+function adaptEndpointTemplateParameter(parameter: SdkPathParameter): TSParameter {
+  return {
+    name: parameter.name,
+    type: getTypeExpression(parameter.type),
+    required: !parameter.optional,
+    defaultValue: parameter.clientDefaultValue === undefined ? undefined : JSON.stringify(parameter.clientDefaultValue),
+    docs: getDocs(parameter)
+  };
+}
+
+function getEndpointType(parameter: SdkEndpointParameter): SdkEndpointType | undefined {
+  if (parameter.type.kind === "endpoint") {
+    return parameter.type;
+  }
+  if (parameter.type.kind === "union") {
+    return parameter.type.variantTypes.find((variant): variant is SdkEndpointType => variant.kind === "endpoint");
+  }
+  return undefined;
+}
+
+function adaptApiVersion(client: SdkClientType<SdkServiceOperation>): TSClient["apiVersion"] {
+  const parameter = client.clientInitialization.parameters.find((item) => item.isApiVersionParam);
+  if (!parameter) {
+    return undefined;
+  }
+  return {
+    paramName: parameter.name,
+    defaultValue: parameter.clientDefaultValue === undefined ? undefined : String(parameter.clientDefaultValue),
+    isInEndpoint: false
+  };
+}
+
+function getClientOperationGroupNames(client: SdkClientType<SdkServiceOperation>): string[] {
+  return (client.children ?? [])
+    .filter((child) => child.methods.length > 0)
+    .map((child) => lowerFirst(child.name));
 }
 
 /**

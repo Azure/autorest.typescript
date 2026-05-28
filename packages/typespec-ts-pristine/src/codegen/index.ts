@@ -45,7 +45,13 @@ export interface RenderedFile {
  * @returns All files to write
  */
 export function render(codeModel: TSCodeModel): RenderedFile[] {
-  return [...renderModels(codeModel), ...renderIndexFiles(codeModel), ...renderPackageFiles(codeModel)];
+  return [
+    ...renderModels(codeModel),
+    ...renderClients(codeModel),
+    renderLogger(codeModel.packageInfo),
+    ...renderIndexFiles(codeModel),
+    ...renderPackageFiles(codeModel)
+  ];
 }
 
 /**
@@ -232,13 +238,58 @@ export function renderUnions(_unions: TSUnion[]): RenderedFile[] {
 }
 
 /**
- * Renders client context factories and classical client classes.
+ * Renders client context factories.
  *
- * Consumes: `TSCodeModel.clients` (recursively, including children)
- * Produces: `src/{clientName}Context.ts`, `src/{clientName}.ts`
+ * Consumes: `TSCodeModel.clients`, `TSCodeModel.packageInfo`
+ * Produces: `src/api/{clientName}Context.ts`
  */
-export function renderClients(_clients: TSClient[]): RenderedFile[] {
-  throw new Error("renderClients: not yet implemented");
+export function renderClients(codeModel: Pick<TSCodeModel, "clients" | "packageInfo">): RenderedFile[] {
+  return codeModel.clients.map((client) => renderClientContext(client, codeModel.packageInfo));
+}
+
+export function renderClientContext(client: TSClient, packageInfo: TSPackageInfo): RenderedFile {
+  const clientBaseName = getClientBaseName(client.name);
+  const endpointParameter = getEndpointParameter(client);
+  const contextName = `${clientBaseName}Context`;
+  const optionsName = `${clientBaseName}ClientOptionalParams`;
+  const factoryName = `create${clientBaseName}`;
+  const endpointExpression = endpointParameter ? `String(${endpointParameter.name})` : JSON.stringify(client.endpoint.urlTemplate);
+  const parameters = endpointParameter ? `${endpointParameter.name}: ${endpointParameter.type},\n  ` : "";
+  const content = `${copyrightHeader()}
+
+import { logger } from "../logger.js";
+import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
+
+export interface ${contextName} extends Client {}
+
+/** Optional parameters for the client. */
+export interface ${optionsName} extends ClientOptions {}
+
+export function ${factoryName}(
+  ${parameters}options: ${optionsName} = {},
+): ${contextName} {
+  const endpointUrl = options.endpoint ?? ${endpointExpression};
+  const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+  const userAgentInfo = \`azsdk-js-${getPackageShortName(packageInfo.name)}/${packageInfo.version}\`;
+  const userAgentPrefix = prefixFromOptions
+    ? \`${"${prefixFromOptions}"} azsdk-js-api ${"${userAgentInfo}"}\`
+    : \`azsdk-js-api ${"${userAgentInfo}"}\`;
+  const { apiVersion: _, ...updatedOptions } = {
+    ...options,
+    userAgentOptions: { userAgentPrefix },
+    loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
+  };
+  const clientContext = getClient(endpointUrl, undefined, updatedOptions);
+
+  if (options.apiVersion) {
+    logger.warning(
+      "This client does not support client api-version, please change it at the operation level",
+    );
+  }
+  return clientContext;
+}
+`;
+  return { path: `src/api/${lowerFirst(clientBaseName)}Context.ts`, content };
 }
 
 /**
@@ -487,6 +538,25 @@ To use this client library in the browser, first you need to use a bundler. For 
  * Consumes: `TSCodeModel.settings.packageName`
  * Produces: `src/logger.ts`
  */
-export function renderLogger(_packageName: string): RenderedFile {
-  throw new Error("renderLogger: not yet implemented");
+export function renderLogger(packageInfo: TSPackageInfo): RenderedFile {
+  return {
+    path: "src/logger.ts",
+    content: `${copyrightHeader()}\n\nimport { createClientLogger } from "@azure/logger";\nexport const logger = createClientLogger("${getPackageShortName(packageInfo.name)}");\n`
+  };
+}
+
+function getClientBaseName(clientName: string): string {
+  return clientName.endsWith("Client") ? clientName.slice(0, -"Client".length) : clientName;
+}
+
+function getEndpointParameter(client: TSClient): TSClient["parameters"][number] | undefined {
+  return client.parameters.find((parameter) => parameter.name.toLowerCase().includes("endpoint"));
+}
+
+function getPackageShortName(packageName: string): string {
+  return packageName.split("/").at(-1) ?? packageName;
+}
+
+function lowerFirst(name: string): string {
+  return `${name.charAt(0).toLowerCase()}${name.slice(1)}`;
 }
