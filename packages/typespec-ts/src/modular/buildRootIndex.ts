@@ -2,7 +2,7 @@ import {
   NameType,
   normalizeName,
   isAzurePackage
-} from "@azure-tools/rlc-common";
+} from "../rlc-common/index.js";
 import { Project, SourceFile } from "ts-morph";
 import { getClassicalClientName } from "./helpers/namingHelpers.js";
 import { ModularEmitterOptions } from "./interfaces.js";

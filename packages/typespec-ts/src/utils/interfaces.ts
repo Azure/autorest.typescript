@@ -1,4 +1,4 @@
-import { RLCOptions, SchemaContext } from "@azure-tools/rlc-common";
+import { RLCOptions, SchemaContext } from "../rlc-common/index.js";
 import { SdkContext as TCGCSdkContext } from "@azure-tools/typespec-client-generator-core";
 import { ModelProperty, Namespace } from "@typespec/compiler";
 import { KnownMediaType } from "./mediaTypes.js";

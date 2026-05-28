@@ -9,7 +9,7 @@ import {
   ResponseMetadata,
   Schema,
   SchemaContext
-} from "@azure-tools/rlc-common";
+} from "../rlc-common/index.js";
 import {
   getHttpOperationWithCache,
   SdkClient

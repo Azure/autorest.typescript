@@ -4,7 +4,7 @@ import {
   RLCModel,
   buildSchemaObjectMap,
   generateParameterTypeValue
-} from "@azure-tools/rlc-common";
+} from "../../../src/rlc-common/index.js";
 import { emitSchemasFromTypeSpec } from "../../util/emitUtil.js";
 
 describe("Integration test for mocking sample", () => {

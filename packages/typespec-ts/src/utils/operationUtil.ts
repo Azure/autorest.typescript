@@ -12,7 +12,7 @@ import {
   Paths,
   ResponseMetadata,
   ResponseTypes
-} from "@azure-tools/rlc-common";
+} from "../rlc-common/index.js";
 import { getLroMetadata } from "@azure-tools/typespec-azure-core";
 import {
   getDisablePageable,
