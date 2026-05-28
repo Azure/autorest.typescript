@@ -20,6 +20,22 @@ export default azsdkEslint.config([
 
 const esLintConfigEsm = `import azsdkEslint from "@azure/eslint-plugin-azure-sdk";
 
+export default azsdkEslint.config([
+  {
+    rules: {
+      "@azure/azure-sdk/ts-modules-only-named": "warn",
+      "@azure/azure-sdk/ts-package-json-types": "warn",
+      "@azure/azure-sdk/ts-package-json-engine-is-present": "warn",
+      "@azure/azure-sdk/ts-package-json-files-required": "off",
+      "@azure/azure-sdk/ts-package-json-main-is-cjs": "off",
+      "tsdoc/syntax": "warn"
+    }
+  }
+]);
+`;
+
+const esLintConfigEsmAzureSdk = `import azsdkEslint from "@azure/eslint-plugin-azure-sdk";
+
 export default [
   ...azsdkEslint.config([
     {
@@ -52,9 +68,17 @@ export function buildEsLintConfig(model: RLCModel) {
   const project = new Project();
   const filePath = "eslint.config.mjs";
 
+  let template: string;
+  if (model.options?.moduleKind === "esm") {
+    template = model.options?.azureSdkForJs
+      ? esLintConfigEsmAzureSdk
+      : esLintConfigEsm;
+  } else {
+    template = eslintConfig;
+  }
   const configFile = project.createSourceFile(
     "eslint.config.mjs",
-    model.options?.moduleKind === "esm" ? esLintConfigEsm : eslintConfig,
+    template,
     {
       overwrite: true
     }
