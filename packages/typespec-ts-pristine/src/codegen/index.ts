@@ -14,6 +14,7 @@
  * Pattern: same as Go's `codegen.go/` recursive emit and Rust's `codegen/`.
  */
 
+import { Project, QuoteKind, StructureKind } from "ts-morph";
 import type {
   TSCodeModel,
   TSClient,
@@ -22,7 +23,8 @@ import type {
   TSUnion,
   TSOperation,
   TSSerializerGroup,
-  TSHelperFile
+  TSHelperFile,
+  TSProperty
 } from "../codemodel/index.js";
 
 /** A rendered output file. */
@@ -41,28 +43,106 @@ export interface RenderedFile {
  * @param codeModel - The fully-resolved code model
  * @returns All files to write
  */
-export function render(_codeModel: TSCodeModel): RenderedFile[] {
-  // TODO: Wire up all renderers. Order doesn't matter — each is independent.
-  // renderModels(codeModel.models)
-  // renderEnums(codeModel.enums)
-  // renderUnions(codeModel.unions)
-  // renderClients(codeModel.clients)
-  // renderOperations(codeModel.clients)
-  // renderSerializers(codeModel.serializers, codeModel.models)
-  // renderHelpers(codeModel.helpers)
-  // renderIndexFiles(codeModel)
-  // renderPackageFiles(codeModel.settings)
-  throw new Error("render: not yet implemented");
+export function render(codeModel: TSCodeModel): RenderedFile[] {
+  return renderModels(codeModel);
 }
 
 /**
- * Renders model interface declarations.
+ * Renders model interfaces and enum type aliases.
  *
- * Consumes: `TSCodeModel.models`
- * Produces: `src/models/models.ts` (or split per-namespace)
+ * Consumes: `TSCodeModel.models`, `TSCodeModel.enums`
+ * Produces: `src/models/models.ts`
  */
-export function renderModels(_models: TSModel[]): RenderedFile[] {
-  throw new Error("renderModels: not yet implemented");
+export function renderModels(codeModel: Pick<TSCodeModel, "models" | "enums">): RenderedFile[] {
+  const project = new Project({
+    manipulationSettings: {
+      quoteKind: QuoteKind.Double,
+      useTrailingCommas: true
+    }
+  });
+  const sourceFile = project.createSourceFile("models.ts", "", { overwrite: true });
+
+  sourceFile.addStatements(`// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */`);
+
+  for (const model of codeModel.models) {
+    renderModel(sourceFile, model);
+  }
+
+  for (const enumType of codeModel.enums) {
+    renderEnum(sourceFile, enumType);
+  }
+
+  sourceFile.formatText({ indentSize: 2 });
+  return [{ path: "src/models/models.ts", content: sourceFile.getFullText() }];
+}
+
+function renderModel(sourceFile: import("ts-morph").SourceFile, model: TSModel): void {
+  addDocs(sourceFile, model.docs);
+  const declaration = sourceFile.addInterface({
+    name: model.name,
+    isExported: true,
+    extends: model.baseModel ? [model.baseModel] : undefined,
+    properties: model.properties.map(getPropertyStructure)
+  });
+
+  if (model.additionalPropertiesType) {
+    declaration.addIndexSignature({
+      keyName: "propertyName",
+      keyType: "string",
+      returnType: model.additionalPropertiesType
+    });
+  }
+}
+
+function getPropertyStructure(property: TSProperty): import("ts-morph").PropertySignatureStructure {
+  return {
+    kind: StructureKind.PropertySignature,
+    name: property.name,
+    type: property.type,
+    hasQuestionToken: property.optional,
+    isReadonly: property.readonly,
+    docs: property.docs.map((doc) => ({ description: doc }))
+  };
+}
+
+function renderEnum(sourceFile: import("ts-morph").SourceFile, enumType: TSEnum): void {
+  addDocs(sourceFile, enumType.docs);
+  if (enumType.isExtensible) {
+    sourceFile.addEnum({
+      name: `Known${enumType.name}`,
+      isExported: true,
+      members: enumType.members.map((member) => ({ name: member.name, value: member.value }))
+    });
+    sourceFile.addTypeAlias({
+      name: enumType.name,
+      isExported: true,
+      type: `string`
+    });
+    return;
+  }
+
+  sourceFile.addTypeAlias({
+    name: enumType.name,
+    isExported: true,
+    type: enumType.members.map((member) => JSON.stringify(member.value)).join(" | ")
+  });
+}
+
+function addDocs(sourceFile: import("ts-morph").SourceFile, docs: string[]): void {
+  if (docs.length === 0) {
+    return;
+  }
+
+  const lines = docs.map((line) => (line.length === 0 ? " *" : ` * ${line}`));
+  sourceFile.addStatements(`/**\n${lines.join("\n")}\n */`);
 }
 
 /**

@@ -32,9 +32,9 @@ export interface OutputFile {
  * @param context - TypeSpec emit context (contains program + options)
  * @returns Array of output files to write to disk
  */
-export async function emit(context: EmitContext): Promise<OutputFile[]> {
+export async function emit(context: EmitContext<Record<string, any>>): Promise<OutputFile[]> {
   // Phase 1: Adapt TCGC output into our language-specific IR
-  const codeModel: TSCodeModel = adaptSdkContext(context);
+  const codeModel: TSCodeModel = await adaptSdkContext(context);
 
   // Phase 2: (Reserved) IR-level transforms — none needed yet.
   // No dedupe passes, no fixup loops. If you're adding one, fix the adapter instead.
@@ -45,6 +45,13 @@ export async function emit(context: EmitContext): Promise<OutputFile[]> {
   return files;
 }
 
+export async function $onEmit(context: EmitContext<Record<string, any>>): Promise<void> {
+  const files = await emit(context);
+  for (const file of files) {
+    await context.program.host.writeFile(`${context.emitterOutputDir}/${file.path}`, file.content);
+  }
+}
+
 export { adaptSdkContext } from "./tcgcadapter/index.js";
 export type { TSCodeModel } from "./codemodel/index.js";
-export { render } from "./codegen/index.js";
+export { render, renderModels } from "./codegen/index.js";

@@ -23,6 +23,12 @@
  * CLI entry: `pnpm compare`
  */
 
+import { compile, logDiagnostics, NodeHost, type EmitContext } from "@typespec/compiler";
+import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { dirname, join, relative, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
+import { emit } from "../index.js";
+
 /** Result of comparing two emitter outputs for a single fixture. */
 export interface FixtureCompareResult {
   /** Fixture name/path */
@@ -45,6 +51,8 @@ export interface FileDiff {
   path: string;
   /** Unified diff string */
   diff: string;
+  /** Line-level match percentage for this file (0-100). */
+  matchRate: number;
 }
 
 /** Aggregate result across all fixtures. */
@@ -60,23 +68,207 @@ export interface CompareResult {
 }
 
 /**
- * Runs the comparator over a set of TypeSpec fixtures.
+ * Runs the comparator over one fixture output tree.
  *
- * @param fixturesDir - Path to directory containing TypeSpec fixture projects
+ * @param fixturesDir - Path to the TypeSpec fixture project
  * @param baselineOutput - Path to baseline emitter's generated output
  * @param candidateOutput - Path to candidate (pristine) emitter's generated output
  * @returns Comparison results with diffs and scores
  */
 export function compare(
-  _fixturesDir: string,
-  _baselineOutput: string,
-  _candidateOutput: string
+  fixturesDir: string,
+  baselineOutput: string,
+  candidateOutput: string
 ): CompareResult {
-  // TODO: Implementation steps:
-  //   1. Enumerate fixture directories
-  //   2. For each fixture, glob all .ts files in both output trees
-  //   3. Compute set difference (added/removed files)
-  //   4. For shared files, compute unified diff
-  //   5. Calculate per-fixture and aggregate scores
-  throw new Error("compare: not yet implemented");
+  const modelFile = "src/models/models.ts";
+  const fixture = fixturesDir.split(/[\\/]/).filter(Boolean).at(-1) ?? fixturesDir;
+  const baselinePath = join(baselineOutput, modelFile);
+  const candidatePath = join(candidateOutput, modelFile);
+  const filesOnlyInBaseline = existsSync(baselinePath) && !existsSync(candidatePath) ? [modelFile] : [];
+  const filesOnlyInCandidate = existsSync(candidatePath) && !existsSync(baselinePath) ? [modelFile] : [];
+  const filesIdentical: string[] = [];
+  const filesWithDiffs: FileDiff[] = [];
+
+  if (existsSync(baselinePath) && existsSync(candidatePath)) {
+    const baseline = readFileSync(baselinePath, "utf-8");
+    const candidate = readFileSync(candidatePath, "utf-8");
+    if (baseline === candidate) {
+      filesIdentical.push(modelFile);
+    } else {
+      filesWithDiffs.push({
+        path: modelFile,
+        diff: makeUnifiedDiff(modelFile, baseline, candidate),
+        matchRate: getLineMatchRate(baseline, candidate)
+      });
+    }
+  }
+
+  const totalFiles = filesOnlyInBaseline.length + filesOnlyInCandidate.length + filesIdentical.length + filesWithDiffs.length;
+  const score = filesWithDiffs[0]?.matchRate ?? (totalFiles === 0 ? 100 : (filesIdentical.length / totalFiles) * 100);
+  const fixtureResult: FixtureCompareResult = {
+    fixture,
+    filesOnlyInBaseline,
+    filesOnlyInCandidate,
+    filesWithDiffs,
+    filesIdentical,
+    score
+  };
+
+  return {
+    fixtures: [fixtureResult],
+    overallScore: fixtureResult.score,
+    totalFiles,
+    totalIdentical: filesIdentical.length
+  };
+}
+
+export async function compareFixture(fixtureName = "spread"): Promise<CompareResult> {
+  const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), "../../../../..");
+  const fixtureDir = join(repoRoot, "packages/typespec-test/test", fixtureName);
+  const baselineOutput = join(fixtureDir, "generated/typespec-ts");
+  const candidateOutput = join(repoRoot, "packages/typespec-ts-pristine/dist/compare", fixtureName);
+
+  rmSync(candidateOutput, { recursive: true, force: true });
+  await runPristineEmitter(fixtureDir, candidateOutput);
+
+  return compare(fixtureDir, baselineOutput, candidateOutput);
+}
+
+async function runPristineEmitter(fixtureDir: string, outputDir: string): Promise<void> {
+  const mainFile = join(fixtureDir, "spec/main.tsp");
+  const config = join(fixtureDir, "tspconfig.yaml");
+  const program = await compile(NodeHost, mainFile, {
+    config,
+    noEmit: true
+  });
+
+  if (program.diagnostics.length > 0) {
+    logDiagnostics(program.diagnostics, NodeHost.logSink);
+  }
+  if (program.hasError()) {
+    throw new Error(`TypeSpec compilation failed for ${fixtureDir}`);
+  }
+
+  const context: EmitContext<Record<string, any>> = {
+    program,
+    emitterOutputDir: outputDir,
+    options: readTypespecTsOptions(config),
+    perf: {
+      startTimer: () => ({ end: () => 0 }),
+      time: (_label, callback) => callback(),
+      timeAsync: (_label, callback) => callback(),
+      report: () => undefined
+    }
+  };
+
+  const files = await emit(context);
+  for (const file of files) {
+    const path = join(outputDir, file.path);
+    mkdirSync(dirname(path), { recursive: true });
+    writeFileSync(path, file.content);
+  }
+}
+
+function readTypespecTsOptions(configPath: string): Record<string, unknown> {
+  const content = readFileSync(configPath, "utf-8");
+  const packageName = content.match(/name:\s*["']?([^\s"']+)/)?.[1];
+  const packageVersion = content.match(/version:\s*["']?([^\s"']+)/)?.[1];
+  return {
+    "package-details": {
+      ...(packageName ? { name: packageName } : {}),
+      ...(packageVersion ? { version: packageVersion } : {})
+    }
+  };
+}
+
+function makeUnifiedDiff(path: string, baseline: string, candidate: string): string {
+  const baselineLines = baseline.split(/\r?\n/);
+  const candidateLines = candidate.split(/\r?\n/);
+  const firstDifferentLine = findFirstDifferentLine(baselineLines, candidateLines);
+  const start = Math.max(firstDifferentLine - 3, 0);
+  const end = Math.min(Math.max(baselineLines.length, candidateLines.length), firstDifferentLine + 8);
+  const lines = [`--- baseline/${path}`, `+++ candidate/${path}`, `@@ -${start + 1},${end - start} +${start + 1},${end - start} @@`];
+
+  for (let index = start; index < end; index++) {
+    const baselineLine = baselineLines[index];
+    const candidateLine = candidateLines[index];
+    if (baselineLine === candidateLine) {
+      lines.push(` ${baselineLine ?? ""}`);
+    } else {
+      if (baselineLine !== undefined) {
+        lines.push(`-${baselineLine}`);
+      }
+      if (candidateLine !== undefined) {
+        lines.push(`+${candidateLine}`);
+      }
+    }
+  }
+
+  return lines.join("\n");
+}
+
+function getLineMatchRate(baseline: string, candidate: string): number {
+  const baselineLines = baseline.split(/\r?\n/);
+  const candidateLines = candidate.split(/\r?\n/);
+  const denominator = Math.max(baselineLines.length, candidateLines.length);
+  if (denominator === 0) {
+    return 100;
+  }
+  return (getCommonLineCount(baselineLines, candidateLines) / denominator) * 100;
+}
+
+function getCommonLineCount(left: string[], right: string[]): number {
+  const previous = Array.from({ length: right.length + 1 }, () => 0);
+  const current = Array.from({ length: right.length + 1 }, () => 0);
+
+  for (const leftLine of left) {
+    for (let index = 0; index < right.length; index++) {
+      current[index + 1] =
+        leftLine === right[index]
+          ? previous[index]! + 1
+          : Math.max(previous[index + 1]!, current[index]!);
+    }
+    previous.splice(0, previous.length, ...current);
+    current.fill(0);
+  }
+
+  return previous[right.length] ?? 0;
+}
+
+function findFirstDifferentLine(left: string[], right: string[]): number {
+  const length = Math.max(left.length, right.length);
+  for (let index = 0; index < length; index++) {
+    if (left[index] !== right[index]) {
+      return index;
+    }
+  }
+  return 0;
+}
+
+function printResult(result: CompareResult): void {
+  for (const fixture of result.fixtures) {
+    const firstDiff = fixture.filesWithDiffs[0];
+    console.log(`Fixture: ${fixture.fixture}`);
+    console.log(`  Score: ${fixture.score.toFixed(1)}% model-file line match`);
+    if (fixture.filesOnlyInBaseline.length > 0) {
+      console.log(`  Missing in candidate: ${fixture.filesOnlyInBaseline.join(", ")}`);
+    }
+    if (fixture.filesOnlyInCandidate.length > 0) {
+      console.log(`  Extra in candidate: ${fixture.filesOnlyInCandidate.join(", ")}`);
+    }
+    if (firstDiff) {
+      console.log(`  First diff: ${firstDiff.path}`);
+      console.log(firstDiff.diff);
+    }
+  }
+}
+
+if (process.argv[1] && relative(process.argv[1], fileURLToPath(import.meta.url)) === "") {
+  const fixtureName = process.argv[2] ?? "spread";
+  compareFixture(fixtureName)
+    .then(printResult)
+    .catch((error: unknown) => {
+      console.error(error instanceof Error ? error.message : String(error));
+      process.exitCode = 1;
+    });
 }

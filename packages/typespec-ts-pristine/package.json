@@ -13,7 +13,7 @@
   "scripts": {
     "build": "tsc -p .",
     "clean": "rimraf ./dist",
-    "compare": "echo 'comparator not yet implemented' && exit 1"
+    "compare": "node dist/src/comparator/index.js"
   },
   "author": "Microsoft Corporation",
   "license": "MIT",
@@ -30,6 +30,7 @@
     "@typespec/compiler": "^1.12.0"
   },
   "dependencies": {
+    "ts-morph": "^23.0.0",
     "tslib": "^2.3.1"
   }
 }
