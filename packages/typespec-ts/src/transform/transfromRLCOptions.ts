@@ -6,7 +6,7 @@ import {
   PackageFlavor,
   RLCOptions,
   ServiceInfo
-} from "@azure-tools/rlc-common";
+} from "../rlc-common/index.js";
 import { getHttpOperationWithCache } from "@azure-tools/typespec-client-generator-core";
 import { getDoc, NoTarget, Program } from "@typespec/compiler";
 import { getAuthentication } from "@typespec/http";
@@ -95,7 +95,6 @@ function extractRLCOptions(
   const enableStorageCompat = emitterOptions["enable-storage-compat"] === true;
   const treatUnknownAsRecord =
     emitterOptions["treat-unknown-as-record"] === true;
-  const headAsBoolean = emitterOptions["head-as-boolean"] === true;
   const typespecTitleMap = emitterOptions["typespec-title-map"];
   const generateReactNativeTarget =
     emitterOptions["generate-react-native-target"] === true;
@@ -145,7 +144,6 @@ function extractRLCOptions(
     isMultiService,
     enableStorageCompat,
     treatUnknownAsRecord,
-    headAsBoolean,
     generateReactNativeTarget
   };
 }

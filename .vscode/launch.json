@@ -124,7 +124,7 @@
       "name": "[TypeSpec] Debug generate integration code",
       "request": "launch",
       "cwd": "${workspaceFolder}/packages/typespec-ts",
-      "runtimeArgs": ["tsx", "./test/commands/gen-cadl-ranch.js", "--tag=rlc"],
+      "runtimeArgs": ["tsx", "./test/commands/gen-spector.js", "--tag=rlc"],
       "runtimeExecutable": "npx",
       "skipFiles": ["<node_internals>/**"],
       "type": "pwa-node",

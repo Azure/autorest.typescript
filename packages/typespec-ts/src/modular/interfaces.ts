@@ -1,4 +1,4 @@
-import { RLCOptions } from "@azure-tools/rlc-common";
+import { RLCOptions } from "../rlc-common/index.js";
 
 export interface ModularOptions {
   sourceRoot: string;

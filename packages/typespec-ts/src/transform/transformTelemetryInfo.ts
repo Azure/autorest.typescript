@@ -1,4 +1,4 @@
-import { TelemetryInfo } from "@azure-tools/rlc-common";
+import { TelemetryInfo } from "../rlc-common/index.js";
 import {
   getHttpOperationWithCache,
   SdkClient,
