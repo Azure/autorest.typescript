@@ -298,14 +298,12 @@ class BinderImp implements Binder {
         }
       }
       const importStructures = this.imports.get(file);
-      if (importStructures) {
+      if (importStructures && importStructures.length > 0) {
         // Sort imports in place by module specifier to ensure consistent ordering
         importStructures.sort((a, b) =>
           a.moduleSpecifier < b.moduleSpecifier ? -1 : 1
         );
-        for (const importStructure of importStructures) {
-          file.addImportDeclaration(importStructure);
-        }
+        file.addImportDeclarations(importStructures);
       }
     });
 
