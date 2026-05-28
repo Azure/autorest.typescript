@@ -63,11 +63,17 @@ export async function _createFileAttachmentDeserialize(
     const error = createRestError(result);
     const statusCode = Number.parseInt(result.status);
     if (statusCode === 404) {
-      error.details = notFoundErrorResponseDeserializer(result.body);
+      if (result.body) {
+        error.details = notFoundErrorResponseDeserializer(result.body);
+      }
     } else if (statusCode >= 400 && statusCode <= 499) {
-      error.details = standard4XXResponseDeserializer(result.body);
+      if (result.body) {
+        error.details = standard4XXResponseDeserializer(result.body);
+      }
     } else if (statusCode >= 500 && statusCode <= 599) {
-      error.details = standard5XXResponseDeserializer(result.body);
+      if (result.body) {
+        error.details = standard5XXResponseDeserializer(result.body);
+      }
     }
     throw error;
   }
@@ -117,11 +123,17 @@ export async function _createJsonAttachmentDeserialize(
     const error = createRestError(result);
     const statusCode = Number.parseInt(result.status);
     if (statusCode === 404) {
-      error.details = notFoundErrorResponseDeserializer(result.body);
+      if (result.body) {
+        error.details = notFoundErrorResponseDeserializer(result.body);
+      }
     } else if (statusCode >= 400 && statusCode <= 499) {
-      error.details = standard4XXResponseDeserializer(result.body);
+      if (result.body) {
+        error.details = standard4XXResponseDeserializer(result.body);
+      }
     } else if (statusCode >= 500 && statusCode <= 599) {
-      error.details = standard5XXResponseDeserializer(result.body);
+      if (result.body) {
+        error.details = standard5XXResponseDeserializer(result.body);
+      }
     }
     throw error;
   }
@@ -169,11 +181,17 @@ export async function _listDeserialize(
     const error = createRestError(result);
     const statusCode = Number.parseInt(result.status);
     if (statusCode === 404) {
-      error.details = notFoundErrorResponseDeserializer(result.body);
+      if (result.body) {
+        error.details = notFoundErrorResponseDeserializer(result.body);
+      }
     } else if (statusCode >= 400 && statusCode <= 499) {
-      error.details = standard4XXResponseDeserializer(result.body);
+      if (result.body) {
+        error.details = standard4XXResponseDeserializer(result.body);
+      }
     } else if (statusCode >= 500 && statusCode <= 599) {
-      error.details = standard5XXResponseDeserializer(result.body);
+      if (result.body) {
+        error.details = standard5XXResponseDeserializer(result.body);
+      }
     }
     throw error;
   }

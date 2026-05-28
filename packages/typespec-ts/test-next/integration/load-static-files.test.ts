@@ -26,7 +26,11 @@ describe("loadStaticHelpers", () => {
     const helperDeclarations = await loadStaticHelpers(project, helpers, {
       helpersAssetDirectory
     });
-    expect(project.getSourceFiles()).to.toHaveLength(1);
+    expect(
+      project
+        .getSourceFiles()
+        .some((file) => file.getFilePath().endsWith("/static-helpers/utils.ts"))
+    ).toBe(true);
     const buildCsvCollectionDeclaration = helperDeclarations.get(
       refkey(helpers.buildCsvCollection)
     );
@@ -63,5 +67,34 @@ describe("loadStaticHelpers", () => {
         helpersAssetDirectory
       })
     ).rejects.toThrowError(/invalid helper kind/);
+  });
+
+  it("should rewrite platform-types imports to #platform subpath without extension for azure monorepo", async () => {
+    const helpers = {
+      usesPlatformImport: {
+        kind: "function",
+        name: "usesPlatformImport",
+        location: "platform-import.ts"
+      }
+    } as const;
+
+    await loadStaticHelpers(project, helpers, {
+      helpersAssetDirectory,
+      options: {
+        flavor: "azure",
+        azureSdkForJs: true
+      } as any
+    });
+
+    const sourceFile = project
+      .getSourceFiles()
+      .find((file) =>
+        file.getFilePath().endsWith("/static-helpers/platform-import.ts")
+      );
+    assert(sourceFile);
+    const importDecl = sourceFile.getImportDeclaration(
+      "#platform/static-helpers/platform-types"
+    );
+    expect(importDecl).toBeDefined();
   });
 });
