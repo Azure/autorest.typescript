@@ -62,7 +62,7 @@ To use a [Microsoft Entra token credential](https://github.com/Azure/azure-sdk-f
 provide an instance of the desired credential type obtained from the
 [@azure/identity](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/identity/identity#credentials) library.
 
-To authenticate with Microsoft Entra, you must first \`npm\` install [\`@azure/identity\`](https://www.npmjs.com/package/@azure/identity) {{#if dependencyLink}}and
+To authenticate with Microsoft Entra ID, you must first \`npm\` install [\`@azure/identity\`](https://www.npmjs.com/package/@azure/identity) {{#if dependencyLink}}and
 [{{dependencyDescription }}]({{ dependencyLink }}){{/if}}
 
 After setup, you can choose which type of [credential](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/identity/identity#credentials) from \`@azure/identity\` to use.
