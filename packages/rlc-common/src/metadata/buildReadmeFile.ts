@@ -58,11 +58,11 @@ npm install {{ clientPackageName }}
 
 ### Create and authenticate a \`{{ clientClassName }}\`
 
-To use an [Azure Active Directory (AAD) token credential](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/identity/identity/samples/AzureIdentityExamples.md#authenticating-with-a-pre-fetched-access-token),
+To use a [Microsoft Entra token credential](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/identity/identity/samples/AzureIdentityExamples.md#authenticating-with-a-pre-fetched-access-token),
 provide an instance of the desired credential type obtained from the
 [@azure/identity](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/identity/identity#credentials) library.
 
-To authenticate with AAD, you must first \`npm\` install [\`@azure/identity\`](https://www.npmjs.com/package/@azure/identity) {{#if dependencyLink}}and
+To authenticate with Microsoft Entra, you must first \`npm\` install [\`@azure/identity\`](https://www.npmjs.com/package/@azure/identity) {{#if dependencyLink}}and
 [{{dependencyDescription }}]({{ dependencyLink }}){{/if}}
 
 After setup, you can choose which type of [credential](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/identity/identity#credentials) from \`@azure/identity\` to use.
@@ -134,10 +134,10 @@ npm install {{ clientPackageName }}
 {{#if addCredentials}}
 ### Create and authenticate a \`{{ clientClassName}}\`
 
-To create a client object to access the {{ serviceName }} API, you will need the \`endpoint\` of your {{ serviceName }} resource and a \`credential\`. The {{ clientDescriptiveName }} can use Azure Active Directory credentials to authenticate.
+To create a client object to access the {{ serviceName }} API, you will need the \`endpoint\` of your {{ serviceName }} resource and a \`credential\`. The {{ clientDescriptiveName }} can use Microsoft Entra credentials to authenticate.
 You can find the endpoint for your {{ serviceName }} resource in the [Azure Portal][azure_portal].
 
-You can authenticate with Azure Active Directory using a credential from the [@azure/identity][azure_identity] library or [an existing AAD Token](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/identity/identity/samples/AzureIdentityExamples.md#authenticating-with-a-pre-fetched-access-token).
+You can authenticate with Microsoft Entra using a credential from the [@azure/identity][azure_identity] library or [an existing Microsoft Entra token](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/identity/identity/samples/AzureIdentityExamples.md#authenticating-with-a-pre-fetched-access-token).
 
 To use the [DefaultAzureCredential][defaultazurecredential] provider shown below, or other credential providers provided with the Azure SDK, please install the \`@azure/identity\` package:
 
@@ -145,9 +145,9 @@ To use the [DefaultAzureCredential][defaultazurecredential] provider shown below
 npm install @azure/identity
 \`\`\`
 
-You will also need to **register a new AAD application and grant access to {{ serviceName}}** by assigning the suitable role to your service principal (note: roles such as \`"Owner"\` will not grant the necessary permissions).
+You will also need to **register a new Microsoft Entra application and grant access to {{ serviceName}}** by assigning the suitable role to your service principal (note: roles such as \`"Owner"\` will not grant the necessary permissions).
 
-For more information about how to create an Azure AD Application check out [this guide](https://learn.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal).
+For more information about how to create a Microsoft Entra application check out [this guide](https://learn.microsoft.com/entra/identity-platform/howto-create-service-principal-portal).
 
 {{#if azureArm}}
 Using Node.js and Node-like environments, you can use the \`DefaultAzureCredential\` class to authenticate the client.
