@@ -15,6 +15,10 @@ describe("Payload Head Client", () => {
   });
 
   it("should call contentTypeHeaderInResponse", async () => {
+    // The generated client returns void for HEAD operations; response headers
+    // (Content-Type and x-ms-meta) are validated by the mock server (returns 200
+    // only when the request is correct). No header assertions can be made here
+    // because the emitter does not expose response headers in the return type.
     await client.contentTypeHeaderInResponse();
   });
 });

@@ -46,6 +46,10 @@ describe("Payload JsonMergePatch Client", () => {
   });
 
   it("should updateResource", async () => {
+    // null values are intentional: JSON merge-patch semantics require null to
+    // signal field removal. The generated ResourcePatch type uses optional (?)
+    // fields without null, so 'as any' is needed to pass the null values while
+    // still exercising the correct serialization path.
     const body = {
       description: null,
       map: {
@@ -64,6 +68,10 @@ describe("Payload JsonMergePatch Client", () => {
   });
 
   it("should updateOptionalResource", async () => {
+    // null values are intentional: JSON merge-patch semantics require null to
+    // signal field removal. The generated ResourcePatch type uses optional (?)
+    // fields without null, so 'as any' is needed to pass the null values while
+    // still exercising the correct serialization path.
     const body = {
       description: null,
       map: {
