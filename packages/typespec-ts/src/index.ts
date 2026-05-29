@@ -57,6 +57,7 @@ import {
   buildTsSrcBrowserConfig,
   buildTsSrcReactNativeConfig,
   buildTsSrcCjsConfig,
+  buildTsLintConfig,
   buildTestBrowserTsConfig,
   buildTestNodeTsConfig,
   buildVitestConfig,
@@ -578,6 +579,9 @@ export async function $onEmit(context: EmitContext) {
         commonBuilders.push(buildTsSrcCjsConfig);
         if (option.generateSample) {
           commonBuilders.push(buildTsSampleConfig);
+        }
+        if (isAzureFlavor) {
+          commonBuilders.push(buildTsLintConfig);
         }
       }
 

@@ -189,6 +189,23 @@ export function buildTsSampleConfig(model: RLCModel) {
 }
 
 /**
+ * Builds config/tsconfig.lint.json — used by eslint.config.mjs for type-aware linting
+ */
+export function buildTsLintConfig() {
+  return {
+    path: "config/tsconfig.lint.json",
+    content: JSON.stringify(
+      {
+        extends: "../../../../tsconfig.json",
+        include: ["../src", "../test"]
+      },
+      null,
+      2
+    )
+  };
+}
+
+/**
  * Builds config/tsconfig.snippets.json — extends eng/tsconfigs/snippets.json
  */
 export function buildTsSnippetsConfig() {
