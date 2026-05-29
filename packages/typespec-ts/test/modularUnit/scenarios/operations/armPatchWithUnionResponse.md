@@ -109,16 +109,20 @@ export function _updateSend(
     });
 }
 
-export async function _updateDeserialize(result: PathUncheckedResponse): Promise<PartnerTopic> {
+export async function _updateDeserialize(
+  result: PathUncheckedResponse,
+): Promise<PartnerTopic | undefined> {
   const expectedStatuses = ["200", "201"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
-    error.details = errorResponseDeserializer(result.body);
+    if (result.body) {
+      error.details = errorResponseDeserializer(result.body);
+    }
 
     throw error;
   }
 
-  return partnerTopicDeserializer(result.body);
+  return result.body ? partnerTopicDeserializer(result.body) : undefined;
 }
 
 /** Update a PartnerTopic */
@@ -129,7 +133,7 @@ export async function update(
   partnerTopicName: string,
   properties: PartnerTopicUpdateParameters,
   options: UpdateOptionalParams = { requestOptions: {} },
-): Promise<PartnerTopic> {
+): Promise<PartnerTopic | undefined> {
   const result = await _updateSend(
     context,
     apiVersion,

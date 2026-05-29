@@ -1,3 +1,18 @@
+## 0.53.3 (2026-05-25)
+
+- [Feature] Bump TypeSpec dependencies to latest stable. Please refer to [#4002](https://github.com/Azure/autorest.typescript/pull/4002)
+- [Bugfix] Correct `#platform` subpath mappings in generated package metadata and emitted helper imports. Please refer to [#3997](https://github.com/Azure/autorest.typescript/pull/3997)
+- [Bugfix] Simplify isBinaryPayload to use encode="bytes" as binary signal. Please refer to [#3958](https://github.com/Azure/autorest.typescript/pull/3958)
+- [Feature] Add spector test for SpecialWords_ReservedOperationBodyParams withItems scenario. Please refer to [#3976](https://github.com/Azure/autorest.typescript/pull/3976)
+- [Feature] Bump ws from 8.17.1 to 8.20.1. Please refer to [#3984](https://github.com/Azure/autorest.typescript/pull/3984)
+- [Feature] Update bump emitter version skill. Please refer to [#3985](https://github.com/Azure/autorest.typescript/pull/3985)
+
+## 0.53.2 (2026-05-19)
+
+- [Feature] Add skill for bump emitter. Please refer to [#3977](https://github.com/Azure/autorest.typescript/pull/3977)
+- [Bugfix] Fix sample generation for nested @bodyRoot parameters. Please refer to [#3969](https://github.com/Azure/autorest.typescript/pull/3969)
+- [Bugfix] Do not generate React Native build targets by default. Please refer to [#3943](https://github.com/Azure/autorest.typescript/pull/3943)
+
 ## 0.53.1 (2026-05-14)
 
 - [Bugfix] Fix dependencies error. Please refer to [#3963](https://github.com/Azure/autorest.typescript/pull/3963)

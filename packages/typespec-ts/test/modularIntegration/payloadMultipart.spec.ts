@@ -25,7 +25,7 @@ describe("Multipart Client", () => {
       id: "123",
       profileImage: {
         contents: fs.createReadStream(imgPath),
-        // must specify a filename due to cadl-ranch limitations
+        // must specify a filename due to spector limitations
         filename: "test.jpg"
       }
     });

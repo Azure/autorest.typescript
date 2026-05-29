@@ -1,4 +1,4 @@
-import { HelperFunctionDetails, PackageFlavor } from "@azure-tools/rlc-common";
+import { HelperFunctionDetails, PackageFlavor } from "../rlc-common/index.js";
 import {
   getHttpOperationWithCache,
   SdkClient

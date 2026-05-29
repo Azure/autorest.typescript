@@ -42,7 +42,9 @@ export async function _getWidgetDeserialize(result: PathUncheckedResponse): Prom
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
-    error.details = apiErrorDeserializer(result.body);
+    if (result.body) {
+      error.details = apiErrorDeserializer(result.body);
+    }
     error.details = { ...(error.details as any), ..._getWidgetDeserializeExceptionHeaders(result) };
     throw error;
   }
@@ -82,7 +84,9 @@ export async function _getWidgetDeserialize(result: PathUncheckedResponse): Prom
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
-    error.details = apiErrorDeserializer(result.body);
+    if (result.body) {
+      error.details = apiErrorDeserializer(result.body);
+    }
 
     throw error;
   }
@@ -149,7 +153,9 @@ export async function _getItemDeserialize(result: PathUncheckedResponse): Promis
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
-    error.details = storageErrorDeserializer(result.body);
+    if (result.body) {
+      error.details = storageErrorDeserializer(result.body);
+    }
     error.details = { ...(error.details as any), ..._getItemDeserializeExceptionHeaders(result) };
     throw error;
   }
@@ -202,7 +208,9 @@ export async function _getWidgetDeserialize(result: PathUncheckedResponse): Prom
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
-    error.details = storageErrorXmlDeserializer(result.body);
+    if (result.body) {
+      error.details = storageErrorXmlDeserializer(result.body);
+    }
     error.details = { ...(error.details as any), ..._getWidgetDeserializeExceptionHeaders(result) };
     throw error;
   }
