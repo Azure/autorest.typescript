@@ -95,7 +95,6 @@ function extractRLCOptions(
   const enableStorageCompat = emitterOptions["enable-storage-compat"] === true;
   const treatUnknownAsRecord =
     emitterOptions["treat-unknown-as-record"] === true;
-  const headAsBoolean = emitterOptions["head-as-boolean"] === true;
   const typespecTitleMap = emitterOptions["typespec-title-map"];
   const generateReactNativeTarget =
     emitterOptions["generate-react-native-target"] === true;
@@ -145,7 +144,6 @@ function extractRLCOptions(
     isMultiService,
     enableStorageCompat,
     treatUnknownAsRecord,
-    headAsBoolean,
     generateReactNativeTarget
   };
 }
