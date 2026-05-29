@@ -1,7 +1,7 @@
 # @azure-tools/typespec-ts-pristine
 
-North-star TypeScript emitter for TypeSpec. Clean-room implementation of the
-three-layer pipeline architecture proven by `typespec-rust` and `autorest.go`.
+North-star TypeScript emitter for TypeSpec. Clean-room implementation of a
+three-layer pipeline architecture.
 
 ## Architecture
 

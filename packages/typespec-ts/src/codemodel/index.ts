@@ -96,8 +96,7 @@ export interface TSGenerationSettings {
 // ─── Client ───────────────────────────────────────────────────────────
 
 /**
- * A client in the TypeScript SDK. Maps to Go's `go.Client` and
- * Rust's `rust.Client`.
+ * A client in the TypeScript SDK.
  *
  * Represents both the "modular client context" (factory function +
  * context interface) and the "classical client" (class wrapper).

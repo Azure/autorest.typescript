@@ -7,9 +7,9 @@
 
 This document describes how the emitter turns a compiled TypeSpec program into
 a TypeScript client package. It focuses on the **Modular** generation path,
-which received a three-layer rewrite to match the structure used by
-`typespec-rust` and `autorest.go`. The **RLC** path is documented at a higher
-level because its shape has been stable.
+which received a three-layer rewrite to enforce clean separation of concerns.
+The **RLC** path is documented at a higher level because its shape has been
+stable.
 
 ---
 
@@ -108,10 +108,8 @@ The layering rule is mechanical:
 (\*) See §13 — `src/codegen/models.ts` still imports TCGC and is on the
 follow-up list.
 
-The pipeline mirrors `tcgcadapter → codemodel → codegen` in `typespec-rust`
-and `tcgcadapter → codemodel → codegen` in `autorest.go`. Cross-references
-to those repos are inlined in the source headers (e.g.,
-`src/tcgcadapter/adapter.ts:7-10`).
+This three-layer pattern—adapter, code model, codegen—cleanly separates
+concerns and is used in other language emitters.
 
 ---
 
@@ -404,8 +402,8 @@ These are *known* gaps. Adding to this list is encouraged.
 
 1. **`ContextManager` singleton.** Modular emission still relies on a
    process-global context manager for the active `Project` and emitter
-   options. Match `typespec-rust`'s explicit-context pattern by threading
-   the context through `emit*` calls.
+   options. Make context explicit by threading it through `emit*` calls
+   instead of relying on a global.
 
 2. **Adapter still imports from `src/modular/helpers/`.** See `src/tcgcadapter/adapter.ts:38-78`
    (`namingHelpers`, `docsHelpers`, `clientHelpers`, `operationHelpers`,

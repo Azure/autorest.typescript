@@ -2,8 +2,8 @@
 
 ## What & Why
 
-This package is a clean-room TypeScript emitter for TypeSpec. It follows the
-three-layer pipeline architecture proven by `typespec-rust` and `autorest.go`:
+This package is a clean-room TypeScript emitter for TypeSpec. It follows a
+three-layer pipeline architecture:
 
 ```
 ┌─────────────┐     ┌──────────────┐     ┌──────────────┐     ┌──────────────┐
@@ -94,7 +94,7 @@ Each surface is driven by specific IR types. These are defined in
    pass.
 
 4. **No clever metaprogramming.** No code that generates code that generates
-   code. String builders or template literals, same as Go and Rust.
+    code. Stick to string builders or template literals: boring and predictable.
 
 5. **File-per-concern.** Each renderer function produces one logical file kind.
    No 500-line functions that emit three different file types.

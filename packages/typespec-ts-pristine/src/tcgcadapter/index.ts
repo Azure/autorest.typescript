@@ -10,8 +10,6 @@
  *
  * Downstream modules (codemodel, codegen) MUST NOT import TCGC types.
  * If you need data from TCGC in the renderer, add it to the code model here.
- *
- * Pattern: same as typespec-rust's `tcgcadapter/` and autorest.go's `TypeAdapter`.
  */
 
 import type { EmitContext } from "@typespec/compiler";
