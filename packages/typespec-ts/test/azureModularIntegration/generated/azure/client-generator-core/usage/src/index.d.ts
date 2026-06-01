@@ -16,6 +16,17 @@ export { isRestError }
 export declare interface ModelInReadOnlyPropertyOptionalParams extends OperationOptions {
 }
 
+export declare interface NamespaceModel {
+    name: string;
+}
+
+export declare interface NamespaceModelSerializableOptionalParams extends OperationOptions {
+}
+
+export declare interface NestedNamespaceModel {
+    value: string;
+}
+
 export declare interface OrphanModel {
     modelName: string;
     description: string;
@@ -45,6 +56,7 @@ export declare class UsageClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: UsageClientOptionalParams);
+    namespaceModelSerializable(body: any, options?: NamespaceModelSerializableOptionalParams): Promise<void>;
     orphanModelSerializable(body: any, options?: OrphanModelSerializableOptionalParams): Promise<void>;
     modelInReadOnlyProperty(body: RoundTripModel, options?: ModelInReadOnlyPropertyOptionalParams): Promise<RoundTripModel>;
     outputToInputOutput(options?: OutputToInputOutputOptionalParams): Promise<OutputModel>;

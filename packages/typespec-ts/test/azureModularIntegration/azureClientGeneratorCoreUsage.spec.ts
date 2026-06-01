@@ -38,4 +38,11 @@ describe("Azure ClientGeneratorCore Usage Client", () => {
     });
     assert.isUndefined(result);
   });
+
+  it("should put namespace model in operation", async () => {
+    const result = await client.namespaceModelSerializable({
+      name: "test"
+    });
+    assert.isUndefined(result);
+  });
 });
