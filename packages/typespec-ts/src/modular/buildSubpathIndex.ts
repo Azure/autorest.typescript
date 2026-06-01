@@ -7,7 +7,12 @@ import { ModularEmitterOptions } from "./interfaces.js";
 import { join } from "path";
 import { getModularClientOptions } from "../utils/clientUtils.js";
 import { useContext } from "../contextManager.js";
-import { Node, SourceFile } from "ts-morph";
+import { Node, SourceFile, StructureKind } from "ts-morph";
+import {
+  beginSourceFileBatch,
+  enqueueStatement,
+  flushSourceFileBatch
+} from "../framework/sourceFileBatch.js";
 
 export interface buildSubpathIndexFileOptions {
   exportIndex?: boolean;
@@ -16,6 +21,20 @@ export interface buildSubpathIndexFileOptions {
 }
 
 export function buildSubpathIndexFile(
+  emitterOptions: ModularEmitterOptions,
+  subpath: string,
+  clientMap?: [string[], SdkClientType<SdkServiceOperation>],
+  options: buildSubpathIndexFileOptions = {}
+) {
+  beginSourceFileBatch();
+  try {
+    buildSubpathIndexFileImpl(emitterOptions, subpath, clientMap, options);
+  } finally {
+    flushSourceFileBatch();
+  }
+}
+
+function buildSubpathIndexFileImpl(
   emitterOptions: ModularEmitterOptions,
   subpath: string,
   clientMap?: [string[], SdkClientType<SdkServiceOperation>],
@@ -160,14 +179,16 @@ export function partitionAndEmitExports(
     }
   }
   if (typeOnlyExports.length > 0) {
-    indexFile.addExportDeclaration({
+    enqueueStatement(indexFile, {
+      kind: StructureKind.ExportDeclaration,
       isTypeOnly: true,
       moduleSpecifier,
       namedExports: typeOnlyExports
     });
   }
   if (valueExports.length > 0) {
-    indexFile.addExportDeclaration({
+    enqueueStatement(indexFile, {
+      kind: StructureKind.ExportDeclaration,
       moduleSpecifier,
       namedExports: valueExports
     });

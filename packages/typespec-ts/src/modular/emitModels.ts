@@ -43,6 +43,10 @@ import {
 import { SdkContext } from "../utils/interfaces.js";
 import { addDeclaration } from "../framework/declaration.js";
 import {
+  beginSourceFileBatch,
+  flushSourceFileBatch
+} from "../framework/sourceFileBatch.js";
+import {
   buildModelDeserializer,
   buildPropertyDeserializer
 } from "./serialization/buildDeserializerFunction.js";
@@ -125,32 +129,37 @@ export function emitTypes(
 
   let sourceFile;
 
-  for (const type of emitQueue) {
-    if (!isGenerableType(type)) {
-      continue;
-    }
+  beginSourceFileBatch();
+  try {
+    for (const type of emitQueue) {
+      if (!isGenerableType(type)) {
+        continue;
+      }
 
-    const namespaces = getModelNamespaces(context, type);
-    const filepath = getModelsPath(sourceRoot, namespaces);
-    sourceFile = outputProject.getSourceFile(filepath);
-    if (!sourceFile) {
-      sourceFile = outputProject.createSourceFile(filepath);
-      sourceFile.addStatements(`/**
+      const namespaces = getModelNamespaces(context, type);
+      const filepath = getModelsPath(sourceRoot, namespaces);
+      sourceFile = outputProject.getSourceFile(filepath);
+      if (!sourceFile) {
+        sourceFile = outputProject.createSourceFile(filepath);
+        sourceFile.addStatements(`/**
 * This file contains only generated model types and their (de)serializers.
 * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
 */
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */`);
+      }
+      emitType(context, type, sourceFile);
     }
-    emitType(context, type, sourceFile);
-  }
 
-  // Emit serialization/deserialization functions for flattened properties
-  for (const [property, _] of flattenPropertyModelMap) {
-    const namespaces = getModelNamespaces(context, property.type);
-    const filepath = getModelsPath(sourceRoot, namespaces);
-    sourceFile = outputProject.getSourceFile(filepath);
-    addSerializationFunctions(context, property, sourceFile!);
+    // Emit serialization/deserialization functions for flattened properties
+    for (const [property, _] of flattenPropertyModelMap) {
+      const namespaces = getModelNamespaces(context, property.type);
+      const filepath = getModelsPath(sourceRoot, namespaces);
+      sourceFile = outputProject.getSourceFile(filepath);
+      addSerializationFunctions(context, property, sourceFile!);
+    }
+  } finally {
+    flushSourceFileBatch();
   }
 
   const modelFiles = outputProject.getSourceFiles(

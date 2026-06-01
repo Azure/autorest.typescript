@@ -3,10 +3,17 @@ import {
   normalizeName,
   isAzurePackage
 } from "../rlc-common/index.js";
-import { Project, SourceFile } from "ts-morph";
+import { Project, SourceFile, StructureKind } from "ts-morph";
 import { getClassicalClientName } from "./helpers/namingHelpers.js";
 import { ModularEmitterOptions } from "./interfaces.js";
 import { resolveReference } from "../framework/reference.js";
+import {
+  beginSourceFileBatch,
+  enqueueStatement,
+  flushSourceFileBatch,
+  getEffectiveExportedNames,
+  getQueuedExportNames
+} from "../framework/sourceFileBatch.js";
 import {
   CloudSettingHelpers,
   MultipartHelpers,
@@ -28,6 +35,20 @@ import { SdkContext } from "../utils/interfaces.js";
 import { partitionAndEmitExports } from "./buildSubpathIndex.js";
 
 export function buildRootIndex(
+  context: SdkContext,
+  emitterOptions: ModularEmitterOptions,
+  rootIndexFile: SourceFile,
+  clientMap?: [string[], SdkClientType<SdkServiceOperation>]
+) {
+  beginSourceFileBatch();
+  try {
+    buildRootIndexImpl(context, emitterOptions, rootIndexFile, clientMap);
+  } finally {
+    flushSourceFileBatch();
+  }
+}
+
+function buildRootIndexImpl(
   context: SdkContext,
   emitterOptions: ModularEmitterOptions,
   rootIndexFile: SourceFile,
@@ -140,7 +161,8 @@ function exportRestErrorTypes(context: SdkContext, rootIndexFile: SourceFile) {
     (name) => !existingExports.has(name)
   );
   if (namedExports.length > 0) {
-    rootIndexFile.addExportDeclaration({
+    enqueueStatement(rootIndexFile, {
+      kind: StructureKind.ExportDeclaration,
       moduleSpecifier: "@azure/core-rest-pipeline",
       namedExports
     });
@@ -204,13 +226,7 @@ function exportFileContentsType(
 }
 
 function getExistingExports(rootIndexFile: SourceFile): Set<string> {
-  return new Set(
-    rootIndexFile
-      .getExportDeclarations()
-      .flatMap((exportDecl) =>
-        exportDecl.getNamedExports().map((namedExport) => namedExport.getName())
-      )
-  );
+  return getEffectiveExportedNames(rootIndexFile);
 }
 
 function getNewNamedExports(
@@ -230,7 +246,8 @@ function addExportsToRootIndexFile(
   const existingExports = getExistingExports(rootIndexFile);
   const newNamedExports = getNewNamedExports(namedExports, existingExports);
   if (newNamedExports.length > 0) {
-    rootIndexFile.addExportDeclaration({
+    enqueueStatement(rootIndexFile, {
+      kind: StructureKind.ExportDeclaration,
       isTypeOnly,
       namedExports: newNamedExports
     });
@@ -266,7 +283,8 @@ function exportSimplePollerLike(
   const moduleSpecifier = `./${
     isTopLevel && subfolder && subfolder !== "" ? subfolder + "/" : ""
   }static-helpers/simplePollerHelpers.js`;
-  indexFile.addExportDeclaration({
+  enqueueStatement(indexFile, {
+    kind: StructureKind.ExportDeclaration,
     isTypeOnly: true,
     moduleSpecifier,
     namedExports: ["SimplePollerLike"]
@@ -289,7 +307,10 @@ function exportRestoreHelpers(
   if (!helperFile) {
     return;
   }
-  const exported = new Set(indexFile.getExportedDeclarations().keys());
+  const exported = new Set([
+    ...indexFile.getExportedDeclarations().keys(),
+    ...getQueuedExportNames(indexFile)
+  ]);
   const allEntries = [...helperFile.getExportedDeclarations().entries()];
   const moduleSpecifier = `./${
     isTopLevel && subfolder && subfolder !== "" ? subfolder + "/" : ""
@@ -306,7 +327,8 @@ function exportClassicalClient(
   isSubClient: boolean = false
 ) {
   const clientName = client.name;
-  indexFile.addExportDeclaration({
+  enqueueStatement(indexFile, {
+    kind: StructureKind.ExportDeclaration,
     namedExports: [clientName],
     moduleSpecifier: `./${
       subfolder && subfolder !== "" && !isSubClient ? subfolder + "/" : ""
@@ -374,7 +396,10 @@ function exportModules(
       continue;
     }
 
-    const exported = new Set(indexFile.getExportedDeclarations().keys());
+    const exported = new Set([
+      ...indexFile.getExportedDeclarations().keys(),
+      ...getQueuedExportNames(indexFile)
+    ]);
     const serializerOrDeserializerRegex = /.*(Serializer|Deserializer)(_\d+)?$/;
     const filteredEntries = [
       ...modelsFile.getExportedDeclarations().entries()
@@ -424,6 +449,19 @@ function exportModules(
 }
 
 export function buildSubClientIndexFile(
+  context: SdkContext,
+  clientMap: [string[], SdkClientType<SdkServiceOperation>],
+  emitterOptions: ModularEmitterOptions
+) {
+  beginSourceFileBatch();
+  try {
+    buildSubClientIndexFileImpl(context, clientMap, emitterOptions);
+  } finally {
+    flushSourceFileBatch();
+  }
+}
+
+function buildSubClientIndexFileImpl(
   context: SdkContext,
   clientMap: [string[], SdkClientType<SdkServiceOperation>],
   emitterOptions: ModularEmitterOptions
