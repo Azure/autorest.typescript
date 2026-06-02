@@ -1,3 +1,14 @@
+## 0.54.0 (2026-06-01)
+
+- [Feature] Bump TypeSpec dependencies to latest stable and next pre-release versions. Please refer to [#4012](https://github.com/Azure/autorest.typescript/pull/4012)
+- [Bugfix] Fix config/script gaps between JS emitter and SDK libraries. Please refer to [#4006](https://github.com/Azure/autorest.typescript/pull/4006)
+- [Feature] Bump turbo from 2.6.3 to 2.9.14. Please refer to [#3989](https://github.com/Azure/autorest.typescript/pull/3989)
+- [Feature] Remove `head-as-boolean` emitter flag (superseded by TCGC `@responseAsBool`). Please refer to [#3986](https://github.com/Azure/autorest.typescript/pull/3986)
+- [Feature] Improve resolveReferences performance. Please refer to [#4004](https://github.com/Azure/autorest.typescript/pull/4004)
+- [Bugfix] Fix deserializer throwing on empty response body (success and error paths). Please refer to [#3948](https://github.com/Azure/autorest.typescript/pull/3948)
+- [Feature] Decouple typespec-ts from rlc-common. Please refer to [#3926](https://github.com/Azure/autorest.typescript/pull/3926)
+- [Feature] Update naming terminology: cadl-ranch → spector, HLC → AutoRest. Please refer to [#3957](https://github.com/Azure/autorest.typescript/pull/3957)
+
 ## 0.53.3 (2026-05-25)
 
 - [Feature] Bump TypeSpec dependencies to latest stable. Please refer to [#4002](https://github.com/Azure/autorest.typescript/pull/4002)
