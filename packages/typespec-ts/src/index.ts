@@ -321,6 +321,36 @@ export async function $onEmit(context: EmitContext) {
         dpgContext.generationPathDetail?.metadataDir
       );
     }
+    // The binder is not invoked in the RLC path, so static helper files
+    // loaded into outputProject are never written to disk automatically.
+    // Emit them here unconditionally.
+    await emitRLCStaticHelpers();
+  }
+
+  async function emitRLCStaticHelpers() {
+    if (
+      program.compilerOptions.noEmit ||
+      program.hasError() ||
+      !rlcCodeModels[0]
+    ) {
+      return;
+    }
+    const project = useContext("outputProject");
+    for (const helperFile of project.getSourceFiles()) {
+      const filePath = helperFile.getFilePath();
+      // RLC builders (buildParameterTypes / buildSchemaType) only import
+      // platform-types from static-helpers; all other helpers (paging,
+      // polling, serialize) are generated directly by their own builders
+      // and do not live under static-helpers/.
+      if (!filePath.includes("platform-types")) {
+        continue;
+      }
+      await emitContentByBuilder(
+        program,
+        () => ({ content: helperFile.getFullText(), path: filePath }),
+        rlcCodeModels[0]
+      );
+    }
   }
 
   async function generateModularSources() {
