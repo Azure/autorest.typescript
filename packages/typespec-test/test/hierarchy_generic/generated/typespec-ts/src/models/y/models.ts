@@ -27,12 +27,6 @@ export function yDataSourcePropertiesDeserializer(item: any): YDataSourcePropert
   };
 }
 
-/** Alias for YDataSourcePropertiesUnion */
-export type YDataSourcePropertiesUnion =
-  | YDataverseDataverseSourceConnectorProperties
-  | YDataverseV2DataverseSourceConnectorV2Properties
-  | YDataSourceProperties;
-
 export function yDataSourcePropertiesUnionDeserializer(item: any): YDataSourcePropertiesUnion {
   switch (item["connectorType"]) {
     case "EventHubSource":
@@ -50,5 +44,10 @@ export function yDataSourcePropertiesUnionDeserializer(item: any): YDataSourcePr
   }
 }
 
+/** Alias for YDataSourcePropertiesUnion */
+export type YDataSourcePropertiesUnion =
+  | YDataverseDataverseSourceConnectorProperties
+  | YDataverseV2DataverseSourceConnectorV2Properties
+  | YDataSourceProperties;
 /** Type of YConnectorType */
 export type YConnectorType = "EventHubSource" | "IoTHubSource";

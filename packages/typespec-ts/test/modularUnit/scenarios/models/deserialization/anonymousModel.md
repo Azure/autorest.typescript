@@ -44,12 +44,6 @@ export interface SimpleModel {
   };
 }
 
-export function simpleModelDeserializer(item: any): SimpleModel {
-  return {
-    prop: _simpleModelPropDeserializer(item["prop"]),
-  };
-}
-
 /** model interface _SimpleModelProp */
 export interface _SimpleModelProp {
   propA: string;
@@ -59,17 +53,23 @@ export interface _SimpleModelProp {
   };
 }
 
+/** model interface _SimpleModelPropPropB */
+export interface _SimpleModelPropPropB {
+  propAA: string;
+  propBB: boolean;
+}
+
+export function simpleModelDeserializer(item: any): SimpleModel {
+  return {
+    prop: _simpleModelPropDeserializer(item["prop"]),
+  };
+}
+
 export function _simpleModelPropDeserializer(item: any): _SimpleModelProp {
   return {
     propA: item["propA"],
     propB: _simpleModelPropPropBDeserializer(item["propB"]),
   };
-}
-
-/** model interface _SimpleModelPropPropB */
-export interface _SimpleModelPropPropB {
-  propAA: string;
-  propBB: boolean;
 }
 
 export function _simpleModelPropPropBDeserializer(item: any): _SimpleModelPropPropB {

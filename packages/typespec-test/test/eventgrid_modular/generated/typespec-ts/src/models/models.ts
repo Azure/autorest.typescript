@@ -34,6 +34,71 @@ export interface CloudEvent {
   subject?: string;
 }
 
+/** The result of the Publish operation. */
+export interface PublishResult {}
+
+/** Details of the Receive operation response. */
+export interface ReceiveResult {
+  /** Array of receive responses, one per cloud event. */
+  value: ReceiveDetails[];
+}
+
+/** Receive operation details per Cloud Event. */
+export interface ReceiveDetails {
+  /** The Event Broker details. */
+  brokerProperties: BrokerProperties;
+  /** Cloud Event details. */
+  event: CloudEvent;
+}
+
+/** Properties of the Event Broker operation. */
+export interface BrokerProperties {
+  /** The token of the lock on the event. */
+  lockToken: string;
+  /** The attempt count for delivering the event. */
+  deliveryCount: number;
+}
+
+/** The result of the Acknowledge operation. */
+export interface AcknowledgeResult {
+  /** Array of FailedLockToken for failed cloud events. Each FailedLockToken includes the lock token along with the related error information (namely, the error code and description). */
+  failedLockTokens: FailedLockToken[];
+  /** Array of lock tokens for the successfully acknowledged cloud events. */
+  succeededLockTokens: string[];
+}
+
+/** Failed LockToken information. */
+export interface FailedLockToken {
+  /** The lock token of an entry in the request. */
+  lockToken: string;
+  /** Error information of the failed operation result for the lock token in the request. */
+  error: ErrorModel;
+}
+
+/** The result of the Release operation. */
+export interface ReleaseResult {
+  /** Array of FailedLockToken for failed cloud events. Each FailedLockToken includes the lock token along with the related error information (namely, the error code and description). */
+  failedLockTokens: FailedLockToken[];
+  /** Array of lock tokens for the successfully released cloud events. */
+  succeededLockTokens: string[];
+}
+
+/** The result of the Reject operation. */
+export interface RejectResult {
+  /** Array of FailedLockToken for failed cloud events. Each FailedLockToken includes the lock token along with the related error information (namely, the error code and description). */
+  failedLockTokens: FailedLockToken[];
+  /** Array of lock tokens for the successfully rejected cloud events. */
+  succeededLockTokens: string[];
+}
+
+/** The result of the RenewLock operation. */
+export interface RenewCloudEventLocksResult {
+  /** Array of FailedLockToken for failed cloud events. Each FailedLockToken includes the lock token along with the related error information (namely, the error code and description). */
+  failedLockTokens: FailedLockToken[];
+  /** Array of lock tokens for the successfully renewed locks. */
+  succeededLockTokens: string[];
+}
+
 export function cloudEventSerializer(item: CloudEvent): any {
   return {
     id: item["id"],
@@ -70,17 +135,8 @@ export function cloudEventDeserializer(item: any): CloudEvent {
   };
 }
 
-/** The result of the Publish operation. */
-export interface PublishResult {}
-
 export function publishResultDeserializer(item: any): PublishResult {
   return item;
-}
-
-/** Details of the Receive operation response. */
-export interface ReceiveResult {
-  /** Array of receive responses, one per cloud event. */
-  value: ReceiveDetails[];
 }
 
 export function receiveResultDeserializer(item: any): ReceiveResult {
@@ -95,14 +151,6 @@ export function receiveDetailsArrayDeserializer(result: Array<ReceiveDetails>): 
   });
 }
 
-/** Receive operation details per Cloud Event. */
-export interface ReceiveDetails {
-  /** The Event Broker details. */
-  brokerProperties: BrokerProperties;
-  /** Cloud Event details. */
-  event: CloudEvent;
-}
-
 export function receiveDetailsDeserializer(item: any): ReceiveDetails {
   return {
     brokerProperties: brokerPropertiesDeserializer(item["brokerProperties"]),
@@ -110,27 +158,11 @@ export function receiveDetailsDeserializer(item: any): ReceiveDetails {
   };
 }
 
-/** Properties of the Event Broker operation. */
-export interface BrokerProperties {
-  /** The token of the lock on the event. */
-  lockToken: string;
-  /** The attempt count for delivering the event. */
-  deliveryCount: number;
-}
-
 export function brokerPropertiesDeserializer(item: any): BrokerProperties {
   return {
     lockToken: item["lockToken"],
     deliveryCount: item["deliveryCount"],
   };
-}
-
-/** The result of the Acknowledge operation. */
-export interface AcknowledgeResult {
-  /** Array of FailedLockToken for failed cloud events. Each FailedLockToken includes the lock token along with the related error information (namely, the error code and description). */
-  failedLockTokens: FailedLockToken[];
-  /** Array of lock tokens for the successfully acknowledged cloud events. */
-  succeededLockTokens: string[];
 }
 
 export function acknowledgeResultDeserializer(item: any): AcknowledgeResult {
@@ -148,27 +180,11 @@ export function failedLockTokenArrayDeserializer(result: Array<FailedLockToken>)
   });
 }
 
-/** Failed LockToken information. */
-export interface FailedLockToken {
-  /** The lock token of an entry in the request. */
-  lockToken: string;
-  /** Error information of the failed operation result for the lock token in the request. */
-  error: ErrorModel;
-}
-
 export function failedLockTokenDeserializer(item: any): FailedLockToken {
   return {
     lockToken: item["lockToken"],
     error: item["error"],
   };
-}
-
-/** The result of the Release operation. */
-export interface ReleaseResult {
-  /** Array of FailedLockToken for failed cloud events. Each FailedLockToken includes the lock token along with the related error information (namely, the error code and description). */
-  failedLockTokens: FailedLockToken[];
-  /** Array of lock tokens for the successfully released cloud events. */
-  succeededLockTokens: string[];
 }
 
 export function releaseResultDeserializer(item: any): ReleaseResult {
@@ -180,14 +196,6 @@ export function releaseResultDeserializer(item: any): ReleaseResult {
   };
 }
 
-/** The result of the Reject operation. */
-export interface RejectResult {
-  /** Array of FailedLockToken for failed cloud events. Each FailedLockToken includes the lock token along with the related error information (namely, the error code and description). */
-  failedLockTokens: FailedLockToken[];
-  /** Array of lock tokens for the successfully rejected cloud events. */
-  succeededLockTokens: string[];
-}
-
 export function rejectResultDeserializer(item: any): RejectResult {
   return {
     failedLockTokens: failedLockTokenArrayDeserializer(item["failedLockTokens"]),
@@ -197,14 +205,6 @@ export function rejectResultDeserializer(item: any): RejectResult {
   };
 }
 
-/** The result of the RenewLock operation. */
-export interface RenewCloudEventLocksResult {
-  /** Array of FailedLockToken for failed cloud events. Each FailedLockToken includes the lock token along with the related error information (namely, the error code and description). */
-  failedLockTokens: FailedLockToken[];
-  /** Array of lock tokens for the successfully renewed locks. */
-  succeededLockTokens: string[];
-}
-
 export function renewCloudEventLocksResultDeserializer(item: any): RenewCloudEventLocksResult {
   return {
     failedLockTokens: failedLockTokenArrayDeserializer(item["failedLockTokens"]),
@@ -212,17 +212,6 @@ export function renewCloudEventLocksResultDeserializer(item: any): RenewCloudEve
       return p;
     }),
   };
-}
-
-/** Supported delays for release operation. */
-export type ReleaseDelay = "0" | "10" | "60" | "600" | "3600";
-
-/** Known values of {@link ServiceApiVersions} that the service accepts. */
-export enum KnownServiceApiVersions {
-  /** 2023-11-01 */
-  V20231101 = "2023-11-01",
-  /** 2024-06-01 */
-  V20240601 = "2024-06-01",
 }
 
 export function cloudEventArraySerializer(result: Array<CloudEvent>): any[] {
@@ -236,3 +225,14 @@ export function cloudEventArrayDeserializer(result: Array<CloudEvent>): any[] {
     return cloudEventDeserializer(item);
   });
 }
+
+/** Known values of {@link ServiceApiVersions} that the service accepts. */
+export enum KnownServiceApiVersions {
+  /** 2023-11-01 */
+  V20231101 = "2023-11-01",
+  /** 2024-06-01 */
+  V20240601 = "2024-06-01",
+}
+
+/** Supported delays for release operation. */
+export type ReleaseDelay = "0" | "10" | "60" | "600" | "3600";

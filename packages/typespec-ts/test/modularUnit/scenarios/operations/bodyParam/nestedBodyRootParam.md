@@ -36,17 +36,17 @@ export interface StopParameters {
   wasSuccessful?: boolean;
 }
 
+/** model interface _StopTestParameterBody */
+export interface _StopTestParameterBody {
+  stopParameters: StopParameters;
+}
+
 export function stopParametersSerializer(item: StopParameters): any {
   return {
     category: item["category"],
     linkType: item["linkType"],
     wasSuccessful: item["wasSuccessful"],
   };
-}
-
-/** model interface _StopTestParameterBody */
-export interface _StopTestParameterBody {
-  stopParameters: StopParameters;
 }
 
 export function _stopTestParameterBodySerializer(item: _StopTestParameterBody): any {

@@ -53,29 +53,6 @@ export interface UnivariateUnivariateDetectionOptions {
   imputeFixedValue?: number;
 }
 
-export function univariateUnivariateDetectionOptionsSerializer(
-  item: UnivariateUnivariateDetectionOptions,
-): any {
-  return {
-    series: univariateTimeSeriesPointArraySerializer(item["series"]),
-    granularity: item["granularity"],
-    customInterval: item["customInterval"],
-    period: item["period"],
-    maxAnomalyRatio: item["maxAnomalyRatio"],
-    sensitivity: item["sensitivity"],
-    imputeMode: item["imputeMode"],
-    imputeFixedValue: item["imputeFixedValue"],
-  };
-}
-
-export function univariateTimeSeriesPointArraySerializer(
-  result: Array<UnivariateTimeSeriesPoint>,
-): any[] {
-  return result.map((item) => {
-    return univariateTimeSeriesPointSerializer(item);
-  });
-}
-
 /** Definition of input time series points. */
 export interface UnivariateTimeSeriesPoint {
   /** Argument that indicates the time stamp of a data point (ISO8601 format). */
@@ -83,27 +60,6 @@ export interface UnivariateTimeSeriesPoint {
   /** Measurement of that point. */
   value: number;
 }
-
-export function univariateTimeSeriesPointSerializer(item: UnivariateTimeSeriesPoint): any {
-  return {
-    timestamp: !item["timestamp"] ? item["timestamp"] : item["timestamp"].toISOString(),
-    value: item["value"],
-  };
-}
-
-/** Type of UnivariateTimeGranularity */
-export type UnivariateTimeGranularity =
-  | "yearly"
-  | "monthly"
-  | "weekly"
-  | "daily"
-  | "hourly"
-  | "minutely"
-  | "secondly"
-  | "microsecond"
-  | "none";
-/** Type of UnivariateImputeMode */
-export type UnivariateImputeMode = "auto" | "previous" | "linear" | "fixed" | "zero" | "notFill";
 
 /** Response of the entire anomaly detection. */
 export interface UnivariateUnivariateEntireDetectionResult {
@@ -161,37 +117,6 @@ export interface UnivariateUnivariateEntireDetectionResult {
   severity?: number[];
 }
 
-export function univariateUnivariateEntireDetectionResultDeserializer(
-  item: any,
-): UnivariateUnivariateEntireDetectionResult {
-  return {
-    period: item["period"],
-    expectedValues: item["expectedValues"].map((p: any) => {
-      return p;
-    }),
-    upperMargins: item["upperMargins"].map((p: any) => {
-      return p;
-    }),
-    lowerMargins: item["lowerMargins"].map((p: any) => {
-      return p;
-    }),
-    isAnomaly: item["isAnomaly"].map((p: any) => {
-      return p;
-    }),
-    isNegativeAnomaly: item["isNegativeAnomaly"].map((p: any) => {
-      return p;
-    }),
-    isPositiveAnomaly: item["isPositiveAnomaly"].map((p: any) => {
-      return p;
-    }),
-    severity: !item["severity"]
-      ? item["severity"]
-      : item["severity"].map((p: any) => {
-          return p;
-        }),
-  };
-}
-
 /** Error information that the API returned. */
 export interface UnivariateAnomalyDetectorError {
   /** Error code. */
@@ -199,29 +124,6 @@ export interface UnivariateAnomalyDetectorError {
   /** Message that explains the error that the service reported. */
   message: string;
 }
-
-export function univariateAnomalyDetectorErrorDeserializer(
-  item: any,
-): UnivariateAnomalyDetectorError {
-  return {
-    code: item["code"],
-    message: item["message"],
-  };
-}
-
-/** Type of UnivariateAnomalyDetectorErrorCodes */
-export type UnivariateAnomalyDetectorErrorCodes =
-  | "InvalidCustomInterval"
-  | "BadArgument"
-  | "InvalidGranularity"
-  | "InvalidPeriod"
-  | "InvalidModelArgument"
-  | "InvalidSeries"
-  | "InvalidJsonFormat"
-  | "RequiredGranularity"
-  | "RequiredSeries"
-  | "InvalidImputeMode"
-  | "InvalidImputeFixedValue";
 
 /** Response of the last anomaly detection. */
 export interface UnivariateUnivariateLastDetectionResult {
@@ -269,22 +171,6 @@ export interface UnivariateUnivariateLastDetectionResult {
   severity?: number;
 }
 
-export function univariateUnivariateLastDetectionResultDeserializer(
-  item: any,
-): UnivariateUnivariateLastDetectionResult {
-  return {
-    period: item["period"],
-    suggestedWindow: item["suggestedWindow"],
-    expectedValue: item["expectedValue"],
-    upperMargin: item["upperMargin"],
-    lowerMargin: item["lowerMargin"],
-    isAnomaly: item["isAnomaly"],
-    isNegativeAnomaly: item["isNegativeAnomaly"],
-    isPositiveAnomaly: item["isPositiveAnomaly"],
-    severity: item["severity"],
-  };
-}
-
 /** Request of change point detection. */
 export interface UnivariateUnivariateChangePointDetectionOptions {
   /**
@@ -318,19 +204,6 @@ export interface UnivariateUnivariateChangePointDetectionOptions {
   threshold?: number;
 }
 
-export function univariateUnivariateChangePointDetectionOptionsSerializer(
-  item: UnivariateUnivariateChangePointDetectionOptions,
-): any {
-  return {
-    series: univariateTimeSeriesPointArraySerializer(item["series"]),
-    granularity: item["granularity"],
-    customInterval: item["customInterval"],
-    period: item["period"],
-    stableTrendWindow: item["stableTrendWindow"],
-    threshold: item["threshold"],
-  };
-}
-
 /** Response of change point detection. */
 export interface UnivariateUnivariateChangePointDetectionResult {
   /**
@@ -346,6 +219,105 @@ export interface UnivariateUnivariateChangePointDetectionResult {
   isChangePoint?: boolean[];
   /** Change point confidence of each point. */
   confidenceScores?: number[];
+}
+
+export function univariateUnivariateDetectionOptionsSerializer(
+  item: UnivariateUnivariateDetectionOptions,
+): any {
+  return {
+    series: univariateTimeSeriesPointArraySerializer(item["series"]),
+    granularity: item["granularity"],
+    customInterval: item["customInterval"],
+    period: item["period"],
+    maxAnomalyRatio: item["maxAnomalyRatio"],
+    sensitivity: item["sensitivity"],
+    imputeMode: item["imputeMode"],
+    imputeFixedValue: item["imputeFixedValue"],
+  };
+}
+
+export function univariateTimeSeriesPointArraySerializer(
+  result: Array<UnivariateTimeSeriesPoint>,
+): any[] {
+  return result.map((item) => {
+    return univariateTimeSeriesPointSerializer(item);
+  });
+}
+
+export function univariateTimeSeriesPointSerializer(item: UnivariateTimeSeriesPoint): any {
+  return {
+    timestamp: !item["timestamp"] ? item["timestamp"] : item["timestamp"].toISOString(),
+    value: item["value"],
+  };
+}
+
+export function univariateUnivariateEntireDetectionResultDeserializer(
+  item: any,
+): UnivariateUnivariateEntireDetectionResult {
+  return {
+    period: item["period"],
+    expectedValues: item["expectedValues"].map((p: any) => {
+      return p;
+    }),
+    upperMargins: item["upperMargins"].map((p: any) => {
+      return p;
+    }),
+    lowerMargins: item["lowerMargins"].map((p: any) => {
+      return p;
+    }),
+    isAnomaly: item["isAnomaly"].map((p: any) => {
+      return p;
+    }),
+    isNegativeAnomaly: item["isNegativeAnomaly"].map((p: any) => {
+      return p;
+    }),
+    isPositiveAnomaly: item["isPositiveAnomaly"].map((p: any) => {
+      return p;
+    }),
+    severity: !item["severity"]
+      ? item["severity"]
+      : item["severity"].map((p: any) => {
+          return p;
+        }),
+  };
+}
+
+export function univariateAnomalyDetectorErrorDeserializer(
+  item: any,
+): UnivariateAnomalyDetectorError {
+  return {
+    code: item["code"],
+    message: item["message"],
+  };
+}
+
+export function univariateUnivariateLastDetectionResultDeserializer(
+  item: any,
+): UnivariateUnivariateLastDetectionResult {
+  return {
+    period: item["period"],
+    suggestedWindow: item["suggestedWindow"],
+    expectedValue: item["expectedValue"],
+    upperMargin: item["upperMargin"],
+    lowerMargin: item["lowerMargin"],
+    isAnomaly: item["isAnomaly"],
+    isNegativeAnomaly: item["isNegativeAnomaly"],
+    isPositiveAnomaly: item["isPositiveAnomaly"],
+    severity: item["severity"],
+  };
+}
+
+export function univariateUnivariateChangePointDetectionOptionsSerializer(
+  item: UnivariateUnivariateChangePointDetectionOptions,
+): any {
+  return {
+    series: univariateTimeSeriesPointArraySerializer(item["series"]),
+    granularity: item["granularity"],
+    customInterval: item["customInterval"],
+    period: item["period"],
+    stableTrendWindow: item["stableTrendWindow"],
+    threshold: item["threshold"],
+  };
 }
 
 export function univariateUnivariateChangePointDetectionResultDeserializer(
@@ -365,3 +337,30 @@ export function univariateUnivariateChangePointDetectionResultDeserializer(
         }),
   };
 }
+
+/** Type of UnivariateTimeGranularity */
+export type UnivariateTimeGranularity =
+  | "yearly"
+  | "monthly"
+  | "weekly"
+  | "daily"
+  | "hourly"
+  | "minutely"
+  | "secondly"
+  | "microsecond"
+  | "none";
+/** Type of UnivariateImputeMode */
+export type UnivariateImputeMode = "auto" | "previous" | "linear" | "fixed" | "zero" | "notFill";
+/** Type of UnivariateAnomalyDetectorErrorCodes */
+export type UnivariateAnomalyDetectorErrorCodes =
+  | "InvalidCustomInterval"
+  | "BadArgument"
+  | "InvalidGranularity"
+  | "InvalidPeriod"
+  | "InvalidModelArgument"
+  | "InvalidSeries"
+  | "InvalidJsonFormat"
+  | "RequiredGranularity"
+  | "RequiredSeries"
+  | "InvalidImputeMode"
+  | "InvalidImputeFixedValue";

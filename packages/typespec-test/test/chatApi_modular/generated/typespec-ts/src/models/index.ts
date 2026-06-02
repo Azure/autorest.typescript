@@ -4,13 +4,13 @@
 export type {
   StreamingChatCompletionOptionsRecord,
   ChatMessage,
-  ChatRole,
   ChatCompletionChunkRecord,
   ChoiceDeltaRecord,
   ChatMessageDelta,
-  FinishReason,
   ChatCompletionOptionsRecord,
   ChatCompletionRecord,
   ChatChoiceRecord,
+  ChatRole,
+  FinishReason,
 } from "./models.js";
 export { KnownAPIVersion } from "./models.js";

@@ -2,8 +2,6 @@
 
 export type {
   CreateCompletionRequest,
-  Prompt,
-  Stop,
   CreateCompletionResponse,
   CompletionUsage,
   ErrorResponse,
@@ -47,4 +45,6 @@ export type {
   ListPaginatedFineTuningJobsResponse,
   ListFineTuningJobEventsResponse,
   FineTuningJobEvent,
+  Prompt,
+  Stop,
 } from "./models.js";

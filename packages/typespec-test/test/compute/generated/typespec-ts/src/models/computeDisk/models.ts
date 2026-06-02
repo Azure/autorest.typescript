@@ -15,18 +15,50 @@ import {
  */
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/** Concrete tracked resource types can be created by aliasing this type using a specific property type. */
+export interface ComputeDiskActionGroup extends TrackedResource {
+  /** The resource-specific properties for this resource. */
+  properties?: ComputeDiskActionGroupsProperties;
+}
+
+/** model interface ComputeDiskActionGroupsProperties */
+export interface ComputeDiskActionGroupsProperties {
+  readonly provisioningState?: string;
+}
+
+/** Disk resource. */
+export interface Disk extends TrackedResource {
+  /** The resource-specific properties for this resource. */
+  properties?: DiskProperties;
+}
+
+/** Disk resource properties. */
+export interface DiskProperties {
+  readonly provisioningState?: ResourceProvisioningState;
+}
+
+/** Concrete tracked resource types can be created by aliasing this type using a specific property type. */
+export interface DiskAccess extends TrackedResource {
+  /** The resource-specific properties for this resource. */
+  properties?: DiskAccessProperties;
+}
+
+/** model interface DiskAccessProperties */
+export interface DiskAccessProperties {
+  /** A readonly collection of private endpoint connections created on the disk. Currently only one endpoint connection is supported. */
+  readonly privateEndpointConnections?: PrivateEndpointConnection[];
+  /** The disk access resource provisioning state. */
+  readonly provisioningState?: string;
+  /** The time when the disk access was created. */
+  readonly timeCreated?: Date;
+}
+
 export function computeDiskActionGroupArrayDeserializer(
   result: Array<ComputeDiskActionGroup>,
 ): any[] {
   return result.map((item) => {
     return computeDiskActionGroupDeserializer(item);
   });
-}
-
-/** Concrete tracked resource types can be created by aliasing this type using a specific property type. */
-export interface ComputeDiskActionGroup extends TrackedResource {
-  /** The resource-specific properties for this resource. */
-  properties?: ComputeDiskActionGroupsProperties;
 }
 
 export function computeDiskActionGroupDeserializer(item: any): ComputeDiskActionGroup {
@@ -47,23 +79,12 @@ export function computeDiskActionGroupDeserializer(item: any): ComputeDiskAction
   };
 }
 
-/** model interface ComputeDiskActionGroupsProperties */
-export interface ComputeDiskActionGroupsProperties {
-  readonly provisioningState?: string;
-}
-
 export function computeDiskActionGroupsPropertiesDeserializer(
   item: any,
 ): ComputeDiskActionGroupsProperties {
   return {
     provisioningState: item["provisioningState"],
   };
-}
-
-/** Disk resource. */
-export interface Disk extends TrackedResource {
-  /** The resource-specific properties for this resource. */
-  properties?: DiskProperties;
 }
 
 export function diskSerializer(item: Disk): any {
@@ -94,11 +115,6 @@ export function diskDeserializer(item: any): Disk {
   };
 }
 
-/** Disk resource properties. */
-export interface DiskProperties {
-  readonly provisioningState?: ResourceProvisioningState;
-}
-
 export function diskPropertiesSerializer(_item: DiskProperties): any {
   return {};
 }
@@ -107,12 +123,6 @@ export function diskPropertiesDeserializer(item: any): DiskProperties {
   return {
     provisioningState: item["provisioningState"],
   };
-}
-
-/** Concrete tracked resource types can be created by aliasing this type using a specific property type. */
-export interface DiskAccess extends TrackedResource {
-  /** The resource-specific properties for this resource. */
-  properties?: DiskAccessProperties;
 }
 
 export function diskAccessSerializer(item: DiskAccess): any {
@@ -141,16 +151,6 @@ export function diskAccessDeserializer(item: any): DiskAccess {
       ? item["properties"]
       : diskAccessPropertiesDeserializer(item["properties"]),
   };
-}
-
-/** model interface DiskAccessProperties */
-export interface DiskAccessProperties {
-  /** A readonly collection of private endpoint connections created on the disk. Currently only one endpoint connection is supported. */
-  readonly privateEndpointConnections?: PrivateEndpointConnection[];
-  /** The disk access resource provisioning state. */
-  readonly provisioningState?: string;
-  /** The time when the disk access was created. */
-  readonly timeCreated?: Date;
 }
 
 export function diskAccessPropertiesSerializer(_item: DiskAccessProperties): any {

@@ -81,6 +81,16 @@ export function _fooRequestBodySerializer(item: _FooRequestBody): any {
   return { status: provisioningStateSerializer(item["status"]) };
 }
 
+export function provisioningStateSerializer(item: ProvisioningState): any {
+  return item;
+}
+
+/** The available API versions. */
+export enum KnownVersions {
+  /** 2021-10-01-preview version */
+  V20211001Preview = "2021-10-01-preview",
+}
+
 /** The resource provisioning state. */
 export type ProvisioningState =
   | ResourceProvisioningState
@@ -89,17 +99,6 @@ export type ProvisioningState =
   | "Deleting"
   | "Accepted"
   | string;
-
-export function provisioningStateSerializer(item: ProvisioningState): any {
-  return item;
-}
-
 /** The provisioning state of a resource type. */
 export type ResourceProvisioningState = "Succeeded" | "Failed" | "Canceled";
-
-/** The available API versions. */
-export enum KnownVersions {
-  /** 2021-10-01-preview version */
-  V20211001Preview = "2021-10-01-preview",
-}
 ```

@@ -28,35 +28,12 @@ export interface _TodoPage {
   nextLink?: string;
 }
 
-export function _todoPageDeserializer(item: any): _TodoPage {
-  return {
-    items: todoItemArrayDeserializer(item["items"]),
-    pageSize: item["pageSize"],
-    totalSize: item["totalSize"],
-    prevLink: item["prevLink"],
-    nextLink: item["nextLink"],
-  };
-}
-
 /** model interface InvalidTodoItem */
 export interface InvalidTodoItem extends ApiError {}
-
-export function invalidTodoItemDeserializer(item: any): InvalidTodoItem {
-  return {
-    code: item["code"],
-    message: item["message"],
-  };
-}
 
 /** model interface NotFoundErrorResponse */
 export interface NotFoundErrorResponse {
   code: "not-found";
-}
-
-export function notFoundErrorResponseDeserializer(item: any): NotFoundErrorResponse {
-  return {
-    code: item["code"],
-  };
 }
 
 /** model interface TodoItemPatch */
@@ -71,6 +48,34 @@ export interface TodoItemPatch {
   status?: "NotStarted" | "InProgress" | "Completed";
 }
 
+/** model interface _PageTodoAttachment */
+export interface _PageTodoAttachment {
+  items: TodoAttachment[];
+}
+
+export function _todoPageDeserializer(item: any): _TodoPage {
+  return {
+    items: todoItemArrayDeserializer(item["items"]),
+    pageSize: item["pageSize"],
+    totalSize: item["totalSize"],
+    prevLink: item["prevLink"],
+    nextLink: item["nextLink"],
+  };
+}
+
+export function invalidTodoItemDeserializer(item: any): InvalidTodoItem {
+  return {
+    code: item["code"],
+    message: item["message"],
+  };
+}
+
+export function notFoundErrorResponseDeserializer(item: any): NotFoundErrorResponse {
+  return {
+    code: item["code"],
+  };
+}
+
 export function todoItemPatchSerializer(item: TodoItemPatch): any {
   return {
     title: item["title"],
@@ -78,11 +83,6 @@ export function todoItemPatchSerializer(item: TodoItemPatch): any {
     description: item["description"],
     status: item["status"],
   };
-}
-
-/** model interface _PageTodoAttachment */
-export interface _PageTodoAttachment {
-  items: TodoAttachment[];
 }
 
 export function _pageTodoAttachmentDeserializer(item: any): _PageTodoAttachment {

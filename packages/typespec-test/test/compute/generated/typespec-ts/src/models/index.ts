@@ -2,11 +2,9 @@
 // Licensed under the MIT License.
 
 export type {
-  ResourceProvisioningState,
   TrackedResource,
   Resource,
   SystemData,
-  CreatedByType,
   ErrorResponse,
   ErrorDetail,
   ErrorAdditionalInfo,
@@ -14,6 +12,8 @@ export type {
   PrivateEndpointConnectionProperties,
   PrivateEndpoint,
   PrivateLinkServiceConnectionState,
+  ResourceProvisioningState,
+  CreatedByType,
   PrivateEndpointServiceConnectionStatus,
   PrivateEndpointConnectionProvisioningState,
 } from "./models.js";

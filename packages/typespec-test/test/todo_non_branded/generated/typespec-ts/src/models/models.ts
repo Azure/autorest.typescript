@@ -24,10 +24,6 @@ export interface User {
   password: string;
 }
 
-export function userSerializer(item: User): any {
-  return { username: item["username"], email: item["email"], password: item["password"] };
-}
-
 /** model interface ApiError */
 export interface ApiError {
   /** A machine readable error code */
@@ -36,44 +32,11 @@ export interface ApiError {
   message: string;
 }
 
-export function apiErrorDeserializer(item: any): ApiError {
-  return {
-    code: item["code"],
-    message: item["message"],
-  };
-}
-
 /** Something is wrong with you. */
 export interface Standard4XXResponse extends ApiError {}
 
-export function standard4XXResponseDeserializer(item: any): Standard4XXResponse {
-  return {
-    code: item["code"],
-    message: item["message"],
-  };
-}
-
 /** Something is wrong with me. */
 export interface Standard5XXResponse extends ApiError {}
-
-export function standard5XXResponseDeserializer(item: any): Standard5XXResponse {
-  return {
-    code: item["code"],
-    message: item["message"],
-  };
-}
-
-export function todoItemArraySerializer(result: Array<TodoItem>): any[] {
-  return result.map((item) => {
-    return todoItemSerializer(item);
-  });
-}
-
-export function todoItemArrayDeserializer(result: Array<TodoItem>): any[] {
-  return result.map((item) => {
-    return todoItemDeserializer(item);
-  });
-}
 
 /** model interface TodoItem */
 export interface TodoItem {
@@ -97,6 +60,93 @@ export interface TodoItem {
   readonly completedAt?: Date;
   labels?: TodoLabels;
   dummy?: string;
+}
+
+/** model interface TodoLabelRecord */
+export interface TodoLabelRecord {
+  name: string;
+  color?: string;
+}
+
+/** model interface TodoAttachment */
+export interface TodoAttachment {
+  /** The file name of the attachment */
+  filename: string;
+  /** The media type of the attachment */
+  mediaType: string;
+  /** The contents of the file */
+  contents: Uint8Array;
+}
+
+/** model interface ToDoItemMultipartRequest */
+export interface ToDoItemMultipartRequest {
+  item: {
+    title: string;
+    assignedTo?: number;
+    description?: string;
+    status: "NotStarted" | "InProgress" | "Completed";
+    labels?: TodoLabels;
+    dummy?: string;
+  };
+  attachments?: Array<
+    FileContents | { contents: FileContents; contentType?: string; filename?: string }
+  >;
+}
+
+/** model interface _ToDoItemMultipartRequestItem */
+export interface _ToDoItemMultipartRequestItem {
+  /** The item's title */
+  title: string;
+  /** User that the todo is assigned to */
+  assignedTo?: number;
+  /** A longer description of the todo item in markdown format */
+  description?: string;
+  /** The status of the todo item */
+  status: "NotStarted" | "InProgress" | "Completed";
+  labels?: TodoLabels;
+  dummy?: string;
+}
+
+/** model interface FileAttachmentMultipartRequest */
+export interface FileAttachmentMultipartRequest {
+  contents: FileContents | { contents: FileContents; contentType?: string; filename?: string };
+}
+
+export function userSerializer(item: User): any {
+  return { username: item["username"], email: item["email"], password: item["password"] };
+}
+
+export function apiErrorDeserializer(item: any): ApiError {
+  return {
+    code: item["code"],
+    message: item["message"],
+  };
+}
+
+export function standard4XXResponseDeserializer(item: any): Standard4XXResponse {
+  return {
+    code: item["code"],
+    message: item["message"],
+  };
+}
+
+export function standard5XXResponseDeserializer(item: any): Standard5XXResponse {
+  return {
+    code: item["code"],
+    message: item["message"],
+  };
+}
+
+export function todoItemArraySerializer(result: Array<TodoItem>): any[] {
+  return result.map((item) => {
+    return todoItemSerializer(item);
+  });
+}
+
+export function todoItemArrayDeserializer(result: Array<TodoItem>): any[] {
+  return result.map((item) => {
+    return todoItemDeserializer(item);
+  });
 }
 
 export function todoItemSerializer(item: TodoItem): any {
@@ -126,21 +176,12 @@ export function todoItemDeserializer(item: any): TodoItem {
   };
 }
 
-/** Alias for TodoLabels */
-export type TodoLabels = string | string[] | TodoLabelRecord | TodoLabelRecord[];
-
 export function todoLabelsSerializer(item: TodoLabels): any {
   return item;
 }
 
 export function todoLabelsDeserializer(item: any): TodoLabels {
   return item;
-}
-
-/** model interface TodoLabelRecord */
-export interface TodoLabelRecord {
-  name: string;
-  color?: string;
 }
 
 export function todoLabelRecordSerializer(item: TodoLabelRecord): any {
@@ -178,16 +219,6 @@ export function todoAttachmentArrayDeserializer(result: Array<TodoAttachment>): 
   });
 }
 
-/** model interface TodoAttachment */
-export interface TodoAttachment {
-  /** The file name of the attachment */
-  filename: string;
-  /** The media type of the attachment */
-  mediaType: string;
-  /** The contents of the file */
-  contents: Uint8Array;
-}
-
 export function todoAttachmentSerializer(item: TodoAttachment): any {
   return {
     filename: item["filename"],
@@ -207,21 +238,6 @@ export function todoAttachmentDeserializer(item: any): TodoAttachment {
   };
 }
 
-/** model interface ToDoItemMultipartRequest */
-export interface ToDoItemMultipartRequest {
-  item: {
-    title: string;
-    assignedTo?: number;
-    description?: string;
-    status: "NotStarted" | "InProgress" | "Completed";
-    labels?: TodoLabels;
-    dummy?: string;
-  };
-  attachments?: Array<
-    FileContents | { contents: FileContents; contentType?: string; filename?: string }
-  >;
-}
-
 export function toDoItemMultipartRequestSerializer(item: ToDoItemMultipartRequest): any {
   return [
     { name: "item", body: _toDoItemMultipartRequestItemSerializer(item["item"]) },
@@ -229,20 +245,6 @@ export function toDoItemMultipartRequestSerializer(item: ToDoItemMultipartReques
       ? []
       : [...item["attachments"].map((x: unknown) => createFilePartDescriptor("attachments", x))]),
   ];
-}
-
-/** model interface _ToDoItemMultipartRequestItem */
-export interface _ToDoItemMultipartRequestItem {
-  /** The item's title */
-  title: string;
-  /** User that the todo is assigned to */
-  assignedTo?: number;
-  /** A longer description of the todo item in markdown format */
-  description?: string;
-  /** The status of the todo item */
-  status: "NotStarted" | "InProgress" | "Completed";
-  labels?: TodoLabels;
-  dummy?: string;
 }
 
 export function _toDoItemMultipartRequestItemSerializer(item: _ToDoItemMultipartRequestItem): any {
@@ -256,13 +258,11 @@ export function _toDoItemMultipartRequestItemSerializer(item: _ToDoItemMultipart
   };
 }
 
-/** model interface FileAttachmentMultipartRequest */
-export interface FileAttachmentMultipartRequest {
-  contents: FileContents | { contents: FileContents; contentType?: string; filename?: string };
-}
-
 export function fileAttachmentMultipartRequestSerializer(
   item: FileAttachmentMultipartRequest,
 ): any {
   return [createFilePartDescriptor("contents", item["contents"])];
 }
+
+/** Alias for TodoLabels */
+export type TodoLabels = string | string[] | TodoLabelRecord | TodoLabelRecord[];

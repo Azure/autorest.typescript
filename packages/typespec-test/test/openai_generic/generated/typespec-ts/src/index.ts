@@ -7,8 +7,6 @@ import { NodeReadableStream } from "./static-helpers/platform-types.js";
 export { OpenAIClient } from "./openAIClient.js";
 export type {
   CreateCompletionRequest,
-  Prompt,
-  Stop,
   CreateCompletionResponse,
   CompletionUsage,
   ErrorResponse,
@@ -52,6 +50,8 @@ export type {
   ListPaginatedFineTuningJobsResponse,
   ListFineTuningJobEventsResponse,
   FineTuningJobEvent,
+  Prompt,
+  Stop,
   FilesDownloadResponse,
 } from "./models/index.js";
 export type { OpenAIClientOptionalParams } from "./api/index.js";

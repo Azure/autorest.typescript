@@ -46,13 +46,12 @@ Model generated.
  */
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-/** Alias for Foo */
-export type Foo = "bar" | Baz | string;
-
 export function fooSerializer(item: Foo): any {
   return item;
 }
 
+/** Alias for Foo */
+export type Foo = "bar" | Baz | string;
 /** Type of Baz */
 export type Baz = "test" | "foo";
 ```

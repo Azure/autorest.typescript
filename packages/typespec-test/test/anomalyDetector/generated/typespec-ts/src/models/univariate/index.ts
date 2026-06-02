@@ -4,12 +4,12 @@
 export type {
   UnivariateUnivariateDetectionOptions,
   UnivariateTimeSeriesPoint,
-  UnivariateTimeGranularity,
-  UnivariateImputeMode,
   UnivariateUnivariateEntireDetectionResult,
   UnivariateAnomalyDetectorError,
-  UnivariateAnomalyDetectorErrorCodes,
   UnivariateUnivariateLastDetectionResult,
   UnivariateUnivariateChangePointDetectionOptions,
   UnivariateUnivariateChangePointDetectionResult,
+  UnivariateTimeGranularity,
+  UnivariateImputeMode,
+  UnivariateAnomalyDetectorErrorCodes,
 } from "./models.js";

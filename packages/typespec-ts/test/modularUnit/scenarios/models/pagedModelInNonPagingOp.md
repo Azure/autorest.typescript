@@ -88,40 +88,15 @@ export interface UsageListResult {
   value?: Usage[];
 }
 
-export function usageListResultDeserializer(item: any): UsageListResult {
-  return {
-    nextLink: item["nextLink"],
-    value: !item["value"] ? item["value"] : usageArrayDeserializer(item["value"]),
-  };
-}
-
-export function usageArrayDeserializer(result: Array<Usage>): any[] {
-  return result.map((item) => {
-    return usageDeserializer(item);
-  });
-}
-
 /** model interface Usage */
 export interface Usage {
   test?: string;
-}
-
-export function usageDeserializer(item: any): Usage {
-  return {
-    test: item["test"],
-  };
 }
 
 /** Common error response for all Azure Resource Manager APIs to return error details for failed operations. */
 export interface ErrorResponse {
   /** The error object. */
   error?: ErrorDetail;
-}
-
-export function errorResponseDeserializer(item: any): ErrorResponse {
-  return {
-    error: !item["error"] ? item["error"] : errorDetailDeserializer(item["error"]),
-  };
 }
 
 /** The error detail. */
@@ -136,6 +111,39 @@ export interface ErrorDetail {
   readonly details?: ErrorDetail[];
   /** The error additional info. */
   readonly additionalInfo?: ErrorAdditionalInfo[];
+}
+
+/** The resource management error additional info. */
+export interface ErrorAdditionalInfo {
+  /** The additional info type. */
+  readonly type?: string;
+  /** The additional info. */
+  readonly info?: any;
+}
+
+export function usageListResultDeserializer(item: any): UsageListResult {
+  return {
+    nextLink: item["nextLink"],
+    value: !item["value"] ? item["value"] : usageArrayDeserializer(item["value"]),
+  };
+}
+
+export function usageArrayDeserializer(result: Array<Usage>): any[] {
+  return result.map((item) => {
+    return usageDeserializer(item);
+  });
+}
+
+export function usageDeserializer(item: any): Usage {
+  return {
+    test: item["test"],
+  };
+}
+
+export function errorResponseDeserializer(item: any): ErrorResponse {
+  return {
+    error: !item["error"] ? item["error"] : errorDetailDeserializer(item["error"]),
+  };
 }
 
 export function errorDetailDeserializer(item: any): ErrorDetail {
@@ -160,14 +168,6 @@ export function errorAdditionalInfoArrayDeserializer(result: Array<ErrorAddition
   return result.map((item) => {
     return errorAdditionalInfoDeserializer(item);
   });
-}
-
-/** The resource management error additional info. */
-export interface ErrorAdditionalInfo {
-  /** The additional info type. */
-  readonly type?: string;
-  /** The additional info. */
-  readonly info?: any;
 }
 
 export function errorAdditionalInfoDeserializer(item: any): ErrorAdditionalInfo {

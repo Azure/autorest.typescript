@@ -50,6 +50,12 @@ export interface Test {
   bazPropertiesBaz: string;
 }
 
+/** model interface FooProperties */
+export interface FooProperties {
+  bar?: string;
+  baz: string;
+}
+
 export function testSerializer(item: Test): any {
   return { bar: item["bar"], baz: item["baz"], properties: _testPropertiesSerializer(item) };
 }
@@ -60,12 +66,6 @@ export function testDeserializer(item: any): Test {
     baz: item["baz"],
     ..._testPropertiesDeserializer(item["properties"]),
   };
-}
-
-/** model interface FooProperties */
-export interface FooProperties {
-  bar?: string;
-  baz: string;
 }
 
 export function fooPropertiesSerializer(item: FooProperties): any {
@@ -79,12 +79,6 @@ export function fooPropertiesDeserializer(item: any): FooProperties {
   };
 }
 
-/** Known values of {@link Versions} that the service accepts. */
-export enum KnownVersions {
-  /** 2022-05-15-preview */
-  V20220515Preview = "2022-05-15-preview",
-}
-
 export function _testPropertiesSerializer(item: Test): any {
   return { bar: item["barPropertiesBar"], baz: item["bazPropertiesBaz"] };
 }
@@ -94,6 +88,12 @@ export function _testPropertiesDeserializer(item: any) {
     barPropertiesBar: item["bar"],
     bazPropertiesBaz: item["baz"],
   };
+}
+
+/** Known values of {@link Versions} that the service accepts. */
+export enum KnownVersions {
+  /** 2022-05-15-preview */
+  V20220515Preview = "2022-05-15-preview",
 }
 ```
 
@@ -161,6 +161,19 @@ export interface Test {
   x?: string;
 }
 
+/** model interface FooProperties */
+export interface FooProperties {
+  bar?: string;
+  baz: string;
+}
+
+/** model interface XProperties */
+export interface XProperties {
+  bar?: string;
+  baz: string;
+  x: string;
+}
+
 export function testSerializer(item: Test): any {
   return {
     result: item["result"],
@@ -181,12 +194,6 @@ export function testDeserializer(item: any): Test {
   };
 }
 
-/** model interface FooProperties */
-export interface FooProperties {
-  bar?: string;
-  baz: string;
-}
-
 export function fooPropertiesSerializer(item: FooProperties): any {
   return { bar: item["bar"], baz: item["baz"] };
 }
@@ -196,13 +203,6 @@ export function fooPropertiesDeserializer(item: any): FooProperties {
     bar: item["bar"],
     baz: item["baz"],
   };
-}
-
-/** model interface XProperties */
-export interface XProperties {
-  bar?: string;
-  baz: string;
-  x: string;
 }
 
 export function xPropertiesSerializer(item: XProperties): any {
@@ -215,12 +215,6 @@ export function xPropertiesDeserializer(item: any): XProperties {
     baz: item["baz"],
     x: item["x"],
   };
-}
-
-/** Known values of {@link Versions} that the service accepts. */
-export enum KnownVersions {
-  /** 2022-05-15-preview */
-  V20220515Preview = "2022-05-15-preview",
 }
 
 export function _testPropertiesSerializer(item: Test): any {
@@ -248,6 +242,12 @@ export function _testAnotherPropertiesDeserializer(item: any) {
     bazAnotherPropertiesBaz: item["baz"],
     x: item["x"],
   };
+}
+
+/** Known values of {@link Versions} that the service accepts. */
+export enum KnownVersions {
+  /** 2022-05-15-preview */
+  V20220515Preview = "2022-05-15-preview",
 }
 ```
 
@@ -319,6 +319,19 @@ export interface Test {
   resultAnotherPropertiesResult?: string;
 }
 
+/** model interface FooProperties */
+export interface FooProperties {
+  bar?: string;
+  baz: string;
+}
+
+/** model interface XProperties */
+export interface XProperties {
+  bar?: string;
+  baz: string;
+  result: string;
+}
+
 export function testSerializer(item: Test): any {
   return {
     result: item["result"],
@@ -343,12 +356,6 @@ export function testDeserializer(item: any): Test {
   };
 }
 
-/** model interface FooProperties */
-export interface FooProperties {
-  bar?: string;
-  baz: string;
-}
-
 export function fooPropertiesSerializer(item: FooProperties): any {
   return { bar: item["bar"], baz: item["baz"] };
 }
@@ -358,13 +365,6 @@ export function fooPropertiesDeserializer(item: any): FooProperties {
     bar: item["bar"],
     baz: item["baz"],
   };
-}
-
-/** model interface XProperties */
-export interface XProperties {
-  bar?: string;
-  baz: string;
-  result: string;
 }
 
 export function xPropertiesSerializer(item: XProperties): any {
@@ -377,12 +377,6 @@ export function xPropertiesDeserializer(item: any): XProperties {
     baz: item["baz"],
     result: item["result"],
   };
-}
-
-/** Known values of {@link Versions} that the service accepts. */
-export enum KnownVersions {
-  /** 2022-05-15-preview */
-  V20220515Preview = "2022-05-15-preview",
 }
 
 export function _testPropertiesSerializer(item: Test): any {
@@ -410,6 +404,12 @@ export function _testAnotherPropertiesDeserializer(item: any) {
     bazAnotherPropertiesBaz: item["baz"],
     resultAnotherPropertiesResult: item["result"],
   };
+}
+
+/** Known values of {@link Versions} that the service accepts. */
+export enum KnownVersions {
+  /** 2022-05-15-preview */
+  V20220515Preview = "2022-05-15-preview",
 }
 ```
 
@@ -470,6 +470,13 @@ export interface Test {
   prop2: string;
 }
 
+/** model interface FooProperties */
+export interface FooProperties {
+  name: string;
+  prop1: string;
+  prop2: string;
+}
+
 export function testSerializer(item: Test): any {
   return {
     result: item["result"],
@@ -486,13 +493,6 @@ export function testDeserializer(item: any): Test {
   };
 }
 
-/** model interface FooProperties */
-export interface FooProperties {
-  name: string;
-  prop1: string;
-  prop2: string;
-}
-
 export function fooPropertiesSerializer(item: FooProperties): any {
   return { name: item["name"], prop1: item["prop1"], prop2: item["prop2"] };
 }
@@ -505,12 +505,6 @@ export function fooPropertiesDeserializer(item: any): FooProperties {
   };
 }
 
-/** Known values of {@link Versions} that the service accepts. */
-export enum KnownVersions {
-  /** 2022-05-15-preview */
-  V20220515Preview = "2022-05-15-preview",
-}
-
 export function _testPropertiesSerializer(item: Test): any {
   return { name: item["namePropertiesName"], prop1: item["prop1"], prop2: item["prop2"] };
 }
@@ -521,5 +515,11 @@ export function _testPropertiesDeserializer(item: any) {
     prop1: item["prop1"],
     prop2: item["prop2"],
   };
+}
+
+/** Known values of {@link Versions} that the service accepts. */
+export enum KnownVersions {
+  /** 2022-05-15-preview */
+  V20220515Preview = "2022-05-15-preview",
 }
 ```

@@ -3,8 +3,6 @@
 
 export type {
   AnalyzeTextOptions,
-  TextCategory,
-  AnalyzeTextOutputType,
   AnalyzeTextResult,
   TextBlocklistMatch,
   TextCategoriesAnalysis,
@@ -17,8 +15,6 @@ export type {
   TextProtectedMaterialAnalysisResult,
   AnalyzeImageOptions,
   ImageData,
-  ImageCategory,
-  AnalyzeImageOutputType,
   AnalyzeImageResult,
   ImageCategoriesAnalysis,
   TextBlocklist,
@@ -26,5 +22,9 @@ export type {
   TextBlocklistItem,
   AddOrUpdateTextBlocklistItemsResult,
   RemoveTextBlocklistItemsOptions,
+  TextCategory,
+  AnalyzeTextOutputType,
+  ImageCategory,
+  AnalyzeImageOutputType,
 } from "./models.js";
 export { KnownVersions } from "./models.js";

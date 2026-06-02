@@ -141,6 +141,34 @@ export interface SimpleModel {
   propRecordOfUnionNotNormalize: Record<string, NFVIsUnion>;
 }
 
+/** model interface FOO */
+export interface FOO {
+  param?: Foobar;
+}
+
+/** model interface Foobar */
+export interface Foobar {
+  name?: Record<string, NFVIsUnion[]>;
+}
+
+/** model interface NFVIs */
+export interface NFVIs {
+  name?: string;
+  nfviType: string;
+}
+
+/** model interface AzureCoreNfviDetails */
+export interface AzureCoreNfviDetails extends NFVIs {
+  location?: string;
+  nfviType: "AzureCore";
+}
+
+/** model interface AzureArcK8SClusterNfviDetails */
+export interface AzureArcK8SClusterNfviDetails extends NFVIs {
+  customLocationId?: string;
+  nfviType: "AzureArcKubernetes";
+}
+
 export function simpleModelSerializer(item: SimpleModel): any {
   return {
     propString: item["propString"],
@@ -232,24 +260,15 @@ export function simpleModelSerializer(item: SimpleModel): any {
   };
 }
 
-/** Alias for _SimpleModelPropSimpleUnion */
-export type _SimpleModelPropSimpleUnion = string | boolean | number;
-
 export function _simpleModelPropSimpleUnionSerializer(item: _SimpleModelPropSimpleUnion): any {
   return item;
 }
-
-/** Alias for _SimpleModelPropSimpleUnionOptional */
-export type _SimpleModelPropSimpleUnionOptional = string | boolean | number;
 
 export function _simpleModelPropSimpleUnionOptionalSerializer(
   item: _SimpleModelPropSimpleUnionOptional,
 ): any {
   return item;
 }
-
-/** Alias for _SimpleModelPropMixedTypeLiteral */
-export type _SimpleModelPropMixedTypeLiteral = "A" | false | 1;
 
 export function _simpleModelPropMixedTypeLiteralSerializer(
   item: _SimpleModelPropMixedTypeLiteral,
@@ -265,9 +284,6 @@ export function _simpleModelPropSimpleUnionArrayArraySerializer(
   });
 }
 
-/** Alias for _SimpleModelPropSimpleUnionArray */
-export type _SimpleModelPropSimpleUnionArray = string | boolean | number;
-
 export function _simpleModelPropSimpleUnionArraySerializer(
   item: _SimpleModelPropSimpleUnionArray,
 ): any {
@@ -281,9 +297,6 @@ export function _simpleModelPropSimpleUnionArrayOptionalArraySerializer(
     return _simpleModelPropSimpleUnionArrayOptionalSerializer(item);
   });
 }
-
-/** Alias for _SimpleModelPropSimpleUnionArrayOptional */
-export type _SimpleModelPropSimpleUnionArrayOptional = string | boolean | number;
 
 export function _simpleModelPropSimpleUnionArrayOptionalSerializer(
   item: _SimpleModelPropSimpleUnionArrayOptional,
@@ -300,9 +313,6 @@ export function _simpleModelPropRecordOfSimpleUnionRecordSerializer(
   });
   return result;
 }
-
-/** Alias for _SimpleModelPropRecordOfSimpleUnion */
-export type _SimpleModelPropRecordOfSimpleUnion = string | boolean | number;
 
 export function _simpleModelPropRecordOfSimpleUnionSerializer(
   item: _SimpleModelPropRecordOfSimpleUnion,
@@ -330,9 +340,6 @@ export function _simpleModelPropRecordOfUnionArrayArraySerializer(
   });
 }
 
-/** Alias for _SimpleModelPropRecordOfUnionArray */
-export type _SimpleModelPropRecordOfUnionArray = string | boolean | number;
-
 export function _simpleModelPropRecordOfUnionArraySerializer(
   item: _SimpleModelPropRecordOfUnionArray,
 ): any {
@@ -358,9 +365,6 @@ export function _simpleModelPropRecordOfUnionArrayOptionalArraySerializer(
     return _simpleModelPropRecordOfUnionArrayOptionalSerializer(item);
   });
 }
-
-/** Alias for _SimpleModelPropRecordOfUnionArrayOptional */
-export type _SimpleModelPropRecordOfUnionArrayOptional = string | boolean | number;
 
 export function _simpleModelPropRecordOfUnionArrayOptionalSerializer(
   item: _SimpleModelPropRecordOfUnionArrayOptional,
@@ -388,9 +392,6 @@ export function _simpleModelPropArrayOfRecordOfUnionRecordSerializer(
   return result;
 }
 
-/** Alias for _SimpleModelPropArrayOfRecordOfUnion */
-export type _SimpleModelPropArrayOfRecordOfUnion = string | boolean | number;
-
 export function _simpleModelPropArrayOfRecordOfUnionSerializer(
   item: _SimpleModelPropArrayOfRecordOfUnion,
 ): any {
@@ -417,27 +418,14 @@ export function _simpleModelPropArrayOfRecordOfUnionOptionalRecordSerializer(
   return result;
 }
 
-/** Alias for _SimpleModelPropArrayOfRecordOfUnionOptional */
-export type _SimpleModelPropArrayOfRecordOfUnionOptional = string | boolean | number;
-
 export function _simpleModelPropArrayOfRecordOfUnionOptionalSerializer(
   item: _SimpleModelPropArrayOfRecordOfUnionOptional,
 ): any {
   return item;
 }
 
-/** model interface FOO */
-export interface FOO {
-  param?: Foobar;
-}
-
 export function fooSerializer(item: FOO): any {
   return { param: !item["param"] ? item["param"] : foobarSerializer(item["param"]) };
-}
-
-/** model interface Foobar */
-export interface Foobar {
-  name?: Record<string, NFVIsUnion[]>;
 }
 
 export function foobarSerializer(item: Foobar): any {
@@ -460,18 +448,9 @@ export function nfvIsUnionArraySerializer(result: Array<NFVIsUnion>): any[] {
   });
 }
 
-/** model interface NFVIs */
-export interface NFVIs {
-  name?: string;
-  nfviType: string;
-}
-
 export function nfvIsSerializer(item: NFVIs): any {
   return { name: item["name"], nfviType: item["nfviType"] };
 }
-
-/** Alias for NFVIsUnion */
-export type NFVIsUnion = AzureCoreNfviDetails | AzureArcK8SClusterNfviDetails | NFVIs;
 
 export function nfvIsUnionSerializer(item: NFVIsUnion): any {
   switch (item.nfviType) {
@@ -486,20 +465,8 @@ export function nfvIsUnionSerializer(item: NFVIsUnion): any {
   }
 }
 
-/** model interface AzureCoreNfviDetails */
-export interface AzureCoreNfviDetails extends NFVIs {
-  location?: string;
-  nfviType: "AzureCore";
-}
-
 export function azureCoreNfviDetailsSerializer(item: AzureCoreNfviDetails): any {
   return { name: item["name"], nfviType: item["nfviType"], location: item["location"] };
-}
-
-/** model interface AzureArcK8SClusterNfviDetails */
-export interface AzureArcK8SClusterNfviDetails extends NFVIs {
-  customLocationId?: string;
-  nfviType: "AzureArcKubernetes";
 }
 
 export function azureArcK8SClusterNfviDetailsSerializer(item: AzureArcK8SClusterNfviDetails): any {
@@ -517,4 +484,27 @@ export function nfvIsUnionRecordSerializer(item: Record<string, NFVIs>): Record<
   });
   return result;
 }
+
+/** Alias for _SimpleModelPropSimpleUnion */
+export type _SimpleModelPropSimpleUnion = string | boolean | number;
+/** Alias for _SimpleModelPropSimpleUnionOptional */
+export type _SimpleModelPropSimpleUnionOptional = string | boolean | number;
+/** Alias for _SimpleModelPropMixedTypeLiteral */
+export type _SimpleModelPropMixedTypeLiteral = "A" | false | 1;
+/** Alias for _SimpleModelPropSimpleUnionArray */
+export type _SimpleModelPropSimpleUnionArray = string | boolean | number;
+/** Alias for _SimpleModelPropSimpleUnionArrayOptional */
+export type _SimpleModelPropSimpleUnionArrayOptional = string | boolean | number;
+/** Alias for _SimpleModelPropRecordOfSimpleUnion */
+export type _SimpleModelPropRecordOfSimpleUnion = string | boolean | number;
+/** Alias for _SimpleModelPropRecordOfUnionArray */
+export type _SimpleModelPropRecordOfUnionArray = string | boolean | number;
+/** Alias for _SimpleModelPropRecordOfUnionArrayOptional */
+export type _SimpleModelPropRecordOfUnionArrayOptional = string | boolean | number;
+/** Alias for _SimpleModelPropArrayOfRecordOfUnion */
+export type _SimpleModelPropArrayOfRecordOfUnion = string | boolean | number;
+/** Alias for _SimpleModelPropArrayOfRecordOfUnionOptional */
+export type _SimpleModelPropArrayOfRecordOfUnionOptional = string | boolean | number;
+/** Alias for NFVIsUnion */
+export type NFVIsUnion = AzureCoreNfviDetails | AzureArcK8SClusterNfviDetails | NFVIs;
 ```

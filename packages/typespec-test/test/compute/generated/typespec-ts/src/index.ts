@@ -12,11 +12,9 @@ export { ComputeClient } from "./computeClient.js";
 export type { RestorePollerOptions } from "./restorePollerHelpers.js";
 export { restorePoller } from "./restorePollerHelpers.js";
 export type {
-  ResourceProvisioningState,
   TrackedResource,
   Resource,
   SystemData,
-  CreatedByType,
   ErrorResponse,
   ErrorDetail,
   ErrorAdditionalInfo,
@@ -24,6 +22,8 @@ export type {
   PrivateEndpointConnectionProperties,
   PrivateEndpoint,
   PrivateLinkServiceConnectionState,
+  ResourceProvisioningState,
+  CreatedByType,
   PrivateEndpointServiceConnectionStatus,
   PrivateEndpointConnectionProvisioningState,
 } from "./models/index.js";

@@ -23,6 +23,164 @@ export interface AnalyzeTextOptions {
   outputType?: AnalyzeTextOutputType;
 }
 
+/** The text analysis response. */
+export interface AnalyzeTextResult {
+  /** The blocklist match details. */
+  blocklistsMatch?: TextBlocklistMatch[];
+  /** Analysis result for categories. */
+  categoriesAnalysis: TextCategoriesAnalysis[];
+}
+
+/** The result of blocklist match. */
+export interface TextBlocklistMatch {
+  /** The name of the matched blocklist. */
+  blocklistName: string;
+  /** The ID of the matched item. */
+  blocklistItemId: string;
+  /** The content of the matched item. */
+  blocklistItemText: string;
+}
+
+/** Text analysis result. */
+export interface TextCategoriesAnalysis {
+  /** The text analysis category. */
+  category: TextCategory;
+  /** The value increases with the severity of the input content. The value of this field is determined by the output type specified in the request. The output type could be ‘FourSeverityLevels’ or ‘EightSeverity Levels’, and the output value can be 0, 2, 4, 6 or 0, 1, 2, 3, 4, 5, 6, or 7. */
+  severity?: number;
+}
+
+/** The request of analyzing potential direct or indirect injection attacks. */
+export interface ShieldPromptOptions {
+  /** The user prompt to be analyzed, which may contain direct injection attacks. */
+  userPrompt?: string;
+  /** The documents to be analyzed, which may contain direct or indirect injection attacks. */
+  documents?: string[];
+}
+
+/** The combined analysis results of potential direct or indirect injection attacks. */
+export interface ShieldPromptResult {
+  /** Direct injection attacks analysis result for the given user prompt. */
+  userPromptAnalysis?: UserPromptInjectionAnalysisResult;
+  /** Direct and indirect injection attacks analysis result for the given documents. */
+  documentsAnalysis?: DocumentInjectionAnalysisResult[];
+}
+
+/** The individual analysis result of potential injection attacks in the given user prompt. */
+export interface UserPromptInjectionAnalysisResult {
+  /** Whether a potential injection attack is detected or not. */
+  attackDetected: boolean;
+}
+
+/** The individual analysis result of potential injection attacks in the given documents. */
+export interface DocumentInjectionAnalysisResult {
+  /** Whether a potential injection attack is detected or not. */
+  attackDetected: boolean;
+}
+
+/** The request of detecting potential protected material present in the given text. */
+export interface DetectTextProtectedMaterialOptions {
+  /** The text to be analyzed, which may contain protected material. The characters will be counted in Unicode code points. */
+  text: string;
+}
+
+/** The combined detection results of potential protected material. */
+export interface DetectTextProtectedMaterialResult {
+  /** Analysis result for the given text. */
+  protectedMaterialAnalysis: TextProtectedMaterialAnalysisResult;
+}
+
+/** The individual detection result of potential protected material. */
+export interface TextProtectedMaterialAnalysisResult {
+  /** Whether potential protected material is detected or not. */
+  detected: boolean;
+}
+
+/** The image analysis request. */
+export interface AnalyzeImageOptions {
+  /** The image to be analyzed. */
+  image: ImageData;
+  /** The categories will be analyzed. If they are not assigned, a default set of analysis results for the categories will be returned. */
+  categories?: ImageCategory[];
+  /** This refers to the type of image analysis output. If no value is assigned, the default value will be "FourSeverityLevels". */
+  outputType?: AnalyzeImageOutputType;
+}
+
+/** The image can be either base64 encoded bytes or a blob URL. You can choose only one of these options. If both are provided, the request will be refused. The maximum image size is 2048 x 2048 pixels and should not exceed 4 MB, while the minimum image size is 50 x 50 pixels. */
+export interface ImageData {
+  /** The Base64 encoding of the image. */
+  content?: Uint8Array;
+  /** The blob url of the image. */
+  blobUrl?: string;
+}
+
+/** The image analysis response. */
+export interface AnalyzeImageResult {
+  /** Analysis result for categories. */
+  categoriesAnalysis: ImageCategoriesAnalysis[];
+}
+
+/** Image analysis result. */
+export interface ImageCategoriesAnalysis {
+  /** The image analysis category. */
+  category: ImageCategory;
+  /** The value increases with the severity of the input content. The value of this field is determined by the output type specified in the request. The output type could be ‘FourSeverityLevels’, and the output value can be 0, 2, 4, 6. */
+  severity?: number;
+}
+
+/** Text Blocklist. */
+export interface TextBlocklist {
+  /** Text blocklist name. */
+  blocklistName: string;
+  /** Text blocklist description. */
+  description?: string;
+}
+
+/** Paged collection of TextBlocklist items */
+export interface _PagedTextBlocklist {
+  /** The TextBlocklist items on this page */
+  value: TextBlocklist[];
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
+/** The request to add blocklistItems to a text blocklist. */
+export interface AddOrUpdateTextBlocklistItemsOptions {
+  /** Array of blocklistItems to add. */
+  blocklistItems: TextBlocklistItem[];
+}
+
+/** Item in a TextBlocklist. */
+export interface TextBlocklistItem {
+  /** The service will generate a BlocklistItemId, which will be a UUID. */
+  readonly blocklistItemId: string;
+  /** BlocklistItem description. */
+  description?: string;
+  /** BlocklistItem content. The length is counted using Unicode code point. */
+  text: string;
+  /** An optional properties indicating whether this item is to be matched as a regular expression. */
+  isRegex?: boolean;
+}
+
+/** The response of adding blocklistItems to the text blocklist. */
+export interface AddOrUpdateTextBlocklistItemsResult {
+  /** Array of blocklistItems have been added. */
+  blocklistItems: TextBlocklistItem[];
+}
+
+/** The request to remove blocklistItems from a text blocklist. */
+export interface RemoveTextBlocklistItemsOptions {
+  /** Array of blocklistItemIds to remove. */
+  blocklistItemIds: string[];
+}
+
+/** Paged collection of TextBlocklistItem items */
+export interface _PagedTextBlocklistItem {
+  /** The TextBlocklistItem items on this page */
+  value: TextBlocklistItem[];
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
 export function analyzeTextOptionsSerializer(item: AnalyzeTextOptions): any {
   return {
     text: item["text"],
@@ -41,19 +199,6 @@ export function analyzeTextOptionsSerializer(item: AnalyzeTextOptions): any {
   };
 }
 
-/** The harm category supported in Text content analysis. */
-export type TextCategory = "Hate" | "SelfHarm" | "Sexual" | "Violence";
-/** The type of text analysis output. */
-export type AnalyzeTextOutputType = "FourSeverityLevels" | "EightSeverityLevels";
-
-/** The text analysis response. */
-export interface AnalyzeTextResult {
-  /** The blocklist match details. */
-  blocklistsMatch?: TextBlocklistMatch[];
-  /** Analysis result for categories. */
-  categoriesAnalysis: TextCategoriesAnalysis[];
-}
-
 export function analyzeTextResultDeserializer(item: any): AnalyzeTextResult {
   return {
     blocklistsMatch: !item["blocklistsMatch"]
@@ -67,16 +212,6 @@ export function textBlocklistMatchArrayDeserializer(result: Array<TextBlocklistM
   return result.map((item) => {
     return textBlocklistMatchDeserializer(item);
   });
-}
-
-/** The result of blocklist match. */
-export interface TextBlocklistMatch {
-  /** The name of the matched blocklist. */
-  blocklistName: string;
-  /** The ID of the matched item. */
-  blocklistItemId: string;
-  /** The content of the matched item. */
-  blocklistItemText: string;
 }
 
 export function textBlocklistMatchDeserializer(item: any): TextBlocklistMatch {
@@ -95,27 +230,11 @@ export function textCategoriesAnalysisArrayDeserializer(
   });
 }
 
-/** Text analysis result. */
-export interface TextCategoriesAnalysis {
-  /** The text analysis category. */
-  category: TextCategory;
-  /** The value increases with the severity of the input content. The value of this field is determined by the output type specified in the request. The output type could be ‘FourSeverityLevels’ or ‘EightSeverity Levels’, and the output value can be 0, 2, 4, 6 or 0, 1, 2, 3, 4, 5, 6, or 7. */
-  severity?: number;
-}
-
 export function textCategoriesAnalysisDeserializer(item: any): TextCategoriesAnalysis {
   return {
     category: item["category"],
     severity: item["severity"],
   };
-}
-
-/** The request of analyzing potential direct or indirect injection attacks. */
-export interface ShieldPromptOptions {
-  /** The user prompt to be analyzed, which may contain direct injection attacks. */
-  userPrompt?: string;
-  /** The documents to be analyzed, which may contain direct or indirect injection attacks. */
-  documents?: string[];
 }
 
 export function shieldPromptOptionsSerializer(item: ShieldPromptOptions): any {
@@ -129,14 +248,6 @@ export function shieldPromptOptionsSerializer(item: ShieldPromptOptions): any {
   };
 }
 
-/** The combined analysis results of potential direct or indirect injection attacks. */
-export interface ShieldPromptResult {
-  /** Direct injection attacks analysis result for the given user prompt. */
-  userPromptAnalysis?: UserPromptInjectionAnalysisResult;
-  /** Direct and indirect injection attacks analysis result for the given documents. */
-  documentsAnalysis?: DocumentInjectionAnalysisResult[];
-}
-
 export function shieldPromptResultDeserializer(item: any): ShieldPromptResult {
   return {
     userPromptAnalysis: !item["userPromptAnalysis"]
@@ -146,12 +257,6 @@ export function shieldPromptResultDeserializer(item: any): ShieldPromptResult {
       ? item["documentsAnalysis"]
       : documentInjectionAnalysisResultArrayDeserializer(item["documentsAnalysis"]),
   };
-}
-
-/** The individual analysis result of potential injection attacks in the given user prompt. */
-export interface UserPromptInjectionAnalysisResult {
-  /** Whether a potential injection attack is detected or not. */
-  attackDetected: boolean;
 }
 
 export function userPromptInjectionAnalysisResultDeserializer(
@@ -170,12 +275,6 @@ export function documentInjectionAnalysisResultArrayDeserializer(
   });
 }
 
-/** The individual analysis result of potential injection attacks in the given documents. */
-export interface DocumentInjectionAnalysisResult {
-  /** Whether a potential injection attack is detected or not. */
-  attackDetected: boolean;
-}
-
 export function documentInjectionAnalysisResultDeserializer(
   item: any,
 ): DocumentInjectionAnalysisResult {
@@ -184,22 +283,10 @@ export function documentInjectionAnalysisResultDeserializer(
   };
 }
 
-/** The request of detecting potential protected material present in the given text. */
-export interface DetectTextProtectedMaterialOptions {
-  /** The text to be analyzed, which may contain protected material. The characters will be counted in Unicode code points. */
-  text: string;
-}
-
 export function detectTextProtectedMaterialOptionsSerializer(
   item: DetectTextProtectedMaterialOptions,
 ): any {
   return { text: item["text"] };
-}
-
-/** The combined detection results of potential protected material. */
-export interface DetectTextProtectedMaterialResult {
-  /** Analysis result for the given text. */
-  protectedMaterialAnalysis: TextProtectedMaterialAnalysisResult;
 }
 
 export function detectTextProtectedMaterialResultDeserializer(
@@ -212,28 +299,12 @@ export function detectTextProtectedMaterialResultDeserializer(
   };
 }
 
-/** The individual detection result of potential protected material. */
-export interface TextProtectedMaterialAnalysisResult {
-  /** Whether potential protected material is detected or not. */
-  detected: boolean;
-}
-
 export function textProtectedMaterialAnalysisResultDeserializer(
   item: any,
 ): TextProtectedMaterialAnalysisResult {
   return {
     detected: item["detected"],
   };
-}
-
-/** The image analysis request. */
-export interface AnalyzeImageOptions {
-  /** The image to be analyzed. */
-  image: ImageData;
-  /** The categories will be analyzed. If they are not assigned, a default set of analysis results for the categories will be returned. */
-  categories?: ImageCategory[];
-  /** This refers to the type of image analysis output. If no value is assigned, the default value will be "FourSeverityLevels". */
-  outputType?: AnalyzeImageOutputType;
 }
 
 export function analyzeImageOptionsSerializer(item: AnalyzeImageOptions): any {
@@ -248,30 +319,11 @@ export function analyzeImageOptionsSerializer(item: AnalyzeImageOptions): any {
   };
 }
 
-/** The image can be either base64 encoded bytes or a blob URL. You can choose only one of these options. If both are provided, the request will be refused. The maximum image size is 2048 x 2048 pixels and should not exceed 4 MB, while the minimum image size is 50 x 50 pixels. */
-export interface ImageData {
-  /** The Base64 encoding of the image. */
-  content?: Uint8Array;
-  /** The blob url of the image. */
-  blobUrl?: string;
-}
-
 export function imageDataSerializer(item: ImageData): any {
   return {
     content: !item["content"] ? item["content"] : uint8ArrayToString(item["content"], "base64"),
     blobUrl: item["blobUrl"],
   };
-}
-
-/** The harm category supported in Image content analysis. */
-export type ImageCategory = "Hate" | "SelfHarm" | "Sexual" | "Violence";
-/** The type of image analysis output. */
-export type AnalyzeImageOutputType = "FourSeverityLevels";
-
-/** The image analysis response. */
-export interface AnalyzeImageResult {
-  /** Analysis result for categories. */
-  categoriesAnalysis: ImageCategoriesAnalysis[];
 }
 
 export function analyzeImageResultDeserializer(item: any): AnalyzeImageResult {
@@ -288,27 +340,11 @@ export function imageCategoriesAnalysisArrayDeserializer(
   });
 }
 
-/** Image analysis result. */
-export interface ImageCategoriesAnalysis {
-  /** The image analysis category. */
-  category: ImageCategory;
-  /** The value increases with the severity of the input content. The value of this field is determined by the output type specified in the request. The output type could be ‘FourSeverityLevels’, and the output value can be 0, 2, 4, 6. */
-  severity?: number;
-}
-
 export function imageCategoriesAnalysisDeserializer(item: any): ImageCategoriesAnalysis {
   return {
     category: item["category"],
     severity: item["severity"],
   };
-}
-
-/** Text Blocklist. */
-export interface TextBlocklist {
-  /** Text blocklist name. */
-  blocklistName: string;
-  /** Text blocklist description. */
-  description?: string;
 }
 
 export function textBlocklistSerializer(item: TextBlocklist): any {
@@ -320,14 +356,6 @@ export function textBlocklistDeserializer(item: any): TextBlocklist {
     blocklistName: item["blocklistName"],
     description: item["description"],
   };
-}
-
-/** Paged collection of TextBlocklist items */
-export interface _PagedTextBlocklist {
-  /** The TextBlocklist items on this page */
-  value: TextBlocklist[];
-  /** The link to the next page of items */
-  nextLink?: string;
 }
 
 export function _pagedTextBlocklistDeserializer(item: any): _PagedTextBlocklist {
@@ -349,12 +377,6 @@ export function textBlocklistArrayDeserializer(result: Array<TextBlocklist>): an
   });
 }
 
-/** The request to add blocklistItems to a text blocklist. */
-export interface AddOrUpdateTextBlocklistItemsOptions {
-  /** Array of blocklistItems to add. */
-  blocklistItems: TextBlocklistItem[];
-}
-
 export function addOrUpdateTextBlocklistItemsOptionsSerializer(
   item: AddOrUpdateTextBlocklistItemsOptions,
 ): any {
@@ -373,18 +395,6 @@ export function textBlocklistItemArrayDeserializer(result: Array<TextBlocklistIt
   });
 }
 
-/** Item in a TextBlocklist. */
-export interface TextBlocklistItem {
-  /** The service will generate a BlocklistItemId, which will be a UUID. */
-  readonly blocklistItemId: string;
-  /** BlocklistItem description. */
-  description?: string;
-  /** BlocklistItem content. The length is counted using Unicode code point. */
-  text: string;
-  /** An optional properties indicating whether this item is to be matched as a regular expression. */
-  isRegex?: boolean;
-}
-
 export function textBlocklistItemSerializer(item: TextBlocklistItem): any {
   return { description: item["description"], text: item["text"], isRegex: item["isRegex"] };
 }
@@ -398,24 +408,12 @@ export function textBlocklistItemDeserializer(item: any): TextBlocklistItem {
   };
 }
 
-/** The response of adding blocklistItems to the text blocklist. */
-export interface AddOrUpdateTextBlocklistItemsResult {
-  /** Array of blocklistItems have been added. */
-  blocklistItems: TextBlocklistItem[];
-}
-
 export function addOrUpdateTextBlocklistItemsResultDeserializer(
   item: any,
 ): AddOrUpdateTextBlocklistItemsResult {
   return {
     blocklistItems: textBlocklistItemArrayDeserializer(item["blocklistItems"]),
   };
-}
-
-/** The request to remove blocklistItems from a text blocklist. */
-export interface RemoveTextBlocklistItemsOptions {
-  /** Array of blocklistItemIds to remove. */
-  blocklistItemIds: string[];
 }
 
 export function removeTextBlocklistItemsOptionsSerializer(
@@ -426,14 +424,6 @@ export function removeTextBlocklistItemsOptionsSerializer(
       return p;
     }),
   };
-}
-
-/** Paged collection of TextBlocklistItem items */
-export interface _PagedTextBlocklistItem {
-  /** The TextBlocklistItem items on this page */
-  value: TextBlocklistItem[];
-  /** The link to the next page of items */
-  nextLink?: string;
 }
 
 export function _pagedTextBlocklistItemDeserializer(item: any): _PagedTextBlocklistItem {
@@ -450,3 +440,12 @@ export enum KnownVersions {
   /** 2024-09-01 */
   V20240901 = "2024-09-01",
 }
+
+/** The harm category supported in Text content analysis. */
+export type TextCategory = "Hate" | "SelfHarm" | "Sexual" | "Violence";
+/** The type of text analysis output. */
+export type AnalyzeTextOutputType = "FourSeverityLevels" | "EightSeverityLevels";
+/** The harm category supported in Image content analysis. */
+export type ImageCategory = "Hate" | "SelfHarm" | "Sexual" | "Violence";
+/** The type of image analysis output. */
+export type AnalyzeImageOutputType = "FourSeverityLevels";

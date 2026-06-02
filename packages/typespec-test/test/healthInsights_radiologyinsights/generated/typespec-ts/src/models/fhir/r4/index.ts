@@ -17,11 +17,11 @@ export type {
   Identifier,
   Extendible,
   Observation,
-  ObservationStatusCodeType,
   Annotation,
   ObservationReferenceRange,
   ObservationComponent,
   DomainResource,
-  DomainResourceUnion,
   Narrative,
+  ObservationStatusCodeType,
+  DomainResourceUnion,
 } from "./models.js";

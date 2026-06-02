@@ -99,6 +99,12 @@ export enum KnownProvisioningState {
   Accepted = "Accepted",
 }
 
+/** The available API versions. */
+export enum KnownVersions {
+  /** 2021-10-01-preview version */
+  V20211001Preview = "2021-10-01-preview",
+}
+
 /**
  * The resource provisioning state. \
  * {@link KnownProvisioningState} can be used interchangeably with ProvisioningState,
@@ -113,10 +119,4 @@ export enum KnownProvisioningState {
  * **Accepted**: The resource create request has been accepted
  */
 export type ProvisioningState = string;
-
-/** The available API versions. */
-export enum KnownVersions {
-  /** 2021-10-01-preview version */
-  V20211001Preview = "2021-10-01-preview",
-}
 ```

@@ -53,6 +53,13 @@ export interface Solution {
   readonly contentPropertiesOptionalContent?: string;
 }
 
+/** model interface SolutionProperties */
+export interface SolutionProperties {
+  readonly solutionId?: string;
+  readonly title?: string;
+  readonly content?: string;
+}
+
 export function solutionSerializer(item: Solution): any {
   return {
     properties: _solutionPropertiesSerializer(item),
@@ -60,13 +67,6 @@ export function solutionSerializer(item: Solution): any {
       ? undefined
       : _solutionPropertiesOptionalSerializer(item),
   };
-}
-
-/** model interface SolutionProperties */
-export interface SolutionProperties {
-  readonly solutionId?: string;
-  readonly title?: string;
-  readonly content?: string;
 }
 
 export function solutionPropertiesSerializer(_item: SolutionProperties): any {
@@ -133,6 +133,13 @@ export interface Solution {
   readonly contentPropertiesOptionalContent?: string;
 }
 
+/** model interface SolutionProperties */
+export interface SolutionProperties {
+  solutionId?: string;
+  title?: string;
+  readonly content?: string;
+}
+
 export function solutionSerializer(item: Solution): any {
   return {
     properties: _solutionPropertiesSerializer(item),
@@ -140,13 +147,6 @@ export function solutionSerializer(item: Solution): any {
       ? undefined
       : _solutionPropertiesOptionalSerializer(item),
   };
-}
-
-/** model interface SolutionProperties */
-export interface SolutionProperties {
-  solutionId?: string;
-  title?: string;
-  readonly content?: string;
 }
 
 export function solutionPropertiesSerializer(item: SolutionProperties): any {

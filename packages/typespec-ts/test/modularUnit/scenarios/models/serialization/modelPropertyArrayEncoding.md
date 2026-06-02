@@ -164,6 +164,12 @@ export interface ContainerWidget {
   optionalNested?: NestedWidget;
 }
 
+/** model interface NestedWidget */
+export interface NestedWidget {
+  tags: string[];
+  categories?: string[];
+}
+
 export function containerWidgetSerializer(item: ContainerWidget): any {
   return {
     name: item["name"],
@@ -182,12 +188,6 @@ export function containerWidgetDeserializer(item: any): ContainerWidget {
       ? item["optionalNested"]
       : nestedWidgetDeserializer(item["optionalNested"]),
   };
-}
-
-/** model interface NestedWidget */
-export interface NestedWidget {
-  tags: string[];
-  categories?: string[];
 }
 
 export function nestedWidgetSerializer(item: NestedWidget): any {
@@ -335,9 +335,6 @@ export function widgetDeserializer(item: any): Widget {
   };
 }
 
-/** Type of Color */
-export type Color = "red" | "blue" | "green";
-
 /** Known values of {@link ColorsUnion} that the service accepts. */
 export enum KnownColorsUnion {
   /** red */
@@ -348,6 +345,8 @@ export enum KnownColorsUnion {
   Green = "green",
 }
 
+/** Type of Color */
+export type Color = "red" | "blue" | "green";
 /** Type of ColorsUnion */
 export type ColorsUnion = string;
 ```

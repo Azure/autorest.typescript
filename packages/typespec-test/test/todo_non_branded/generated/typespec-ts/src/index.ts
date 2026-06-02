@@ -15,11 +15,11 @@ export type {
   Standard4XXResponse,
   Standard5XXResponse,
   TodoItem,
-  TodoLabels,
   TodoLabelRecord,
   TodoAttachment,
   ToDoItemMultipartRequest,
   FileAttachmentMultipartRequest,
+  TodoLabels,
 } from "./models/index.js";
 export type {
   InvalidTodoItem,

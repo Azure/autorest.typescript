@@ -5,14 +5,14 @@ export { ChatProtocolClient } from "./chatProtocolClient.js";
 export type {
   StreamingChatCompletionOptionsRecord,
   ChatMessage,
-  ChatRole,
   ChatCompletionChunkRecord,
   ChoiceDeltaRecord,
   ChatMessageDelta,
-  FinishReason,
   ChatCompletionOptionsRecord,
   ChatCompletionRecord,
   ChatChoiceRecord,
+  ChatRole,
+  FinishReason,
 } from "./models/index.js";
 export { KnownAPIVersion } from "./models/index.js";
 export type {
