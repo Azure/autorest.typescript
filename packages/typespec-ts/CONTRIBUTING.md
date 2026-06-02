@@ -52,11 +52,11 @@ npm run smoke-test
 
 Whenever you work on adding a feature/fixing a bug, this would probably be your first step. You create a test case and then run it through the generator, see the result, modify the generator, run it again and so on, until you get the desired output.
 
-1. Pick up a typespec as your test input in cadl-ranch. Below are some examples
+1. Pick up a typespec as your test input in spector. Below are some examples
 
-   Let us say your test input is `authentication/api-key/main.tsp` in @azure-tools/cadl-ranch-specs.
+   Let us say your test input is `authentication/api-key/main.tsp` in @typespec/http-specs or @azure-tools/azure-http-specs.
 
-1. Now add an entry to the TypeSpecRanchConfig to the file [`cadl-ranch-list.ts`](./test/commands/cadl-ranch-list.ts). In the file, add the following to the array.
+1. Now add an entry to the TypeSpecRanchConfig to the file [`spector-list.js`](./test/commands/spector-list.js). In the file, add the following to the array.
 
    ```typescript
      {

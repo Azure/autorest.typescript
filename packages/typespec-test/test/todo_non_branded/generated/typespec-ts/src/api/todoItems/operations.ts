@@ -62,11 +62,17 @@ export async function _$deleteDeserialize(result: PathUncheckedResponse): Promis
     const error = createRestError(result);
     const statusCode = Number.parseInt(result.status);
     if (statusCode === 404) {
-      error.details = notFoundErrorResponseDeserializer(result.body);
+      if (result.body) {
+        error.details = notFoundErrorResponseDeserializer(result.body);
+      }
     } else if (statusCode >= 400 && statusCode <= 499) {
-      error.details = standard4XXResponseDeserializer(result.body);
+      if (result.body) {
+        error.details = standard4XXResponseDeserializer(result.body);
+      }
     } else if (statusCode >= 500 && statusCode <= 599) {
-      error.details = standard5XXResponseDeserializer(result.body);
+      if (result.body) {
+        error.details = standard5XXResponseDeserializer(result.body);
+      }
     }
     throw error;
   }
@@ -160,7 +166,9 @@ export async function _getDeserialize(result: PathUncheckedResponse): Promise<To
     const error = createRestError(result);
     const statusCode = Number.parseInt(result.status);
     if (statusCode === 404) {
-      error.details = notFoundErrorResponseDeserializer(result.body);
+      if (result.body) {
+        error.details = notFoundErrorResponseDeserializer(result.body);
+      }
     }
     throw error;
   }
@@ -198,11 +206,17 @@ export async function _createFormDeserialize(result: PathUncheckedResponse): Pro
     const error = createRestError(result);
     const statusCode = Number.parseInt(result.status);
     if (statusCode === 422) {
-      error.details = invalidTodoItemDeserializer(result.body);
+      if (result.body) {
+        error.details = invalidTodoItemDeserializer(result.body);
+      }
     } else if (statusCode >= 400 && statusCode <= 499) {
-      error.details = standard4XXResponseDeserializer(result.body);
+      if (result.body) {
+        error.details = standard4XXResponseDeserializer(result.body);
+      }
     } else if (statusCode >= 500 && statusCode <= 599) {
-      error.details = standard5XXResponseDeserializer(result.body);
+      if (result.body) {
+        error.details = standard5XXResponseDeserializer(result.body);
+      }
     }
     throw error;
   }
@@ -245,11 +259,17 @@ export async function _createJsonDeserialize(result: PathUncheckedResponse): Pro
     const error = createRestError(result);
     const statusCode = Number.parseInt(result.status);
     if (statusCode === 422) {
-      error.details = invalidTodoItemDeserializer(result.body);
+      if (result.body) {
+        error.details = invalidTodoItemDeserializer(result.body);
+      }
     } else if (statusCode >= 400 && statusCode <= 499) {
-      error.details = standard4XXResponseDeserializer(result.body);
+      if (result.body) {
+        error.details = standard4XXResponseDeserializer(result.body);
+      }
     } else if (statusCode >= 500 && statusCode <= 599) {
-      error.details = standard5XXResponseDeserializer(result.body);
+      if (result.body) {
+        error.details = standard5XXResponseDeserializer(result.body);
+      }
     }
     throw error;
   }
@@ -294,9 +314,13 @@ export async function _listDeserialize(result: PathUncheckedResponse): Promise<_
     const error = createRestError(result);
     const statusCode = Number.parseInt(result.status);
     if (statusCode >= 400 && statusCode <= 499) {
-      error.details = standard4XXResponseDeserializer(result.body);
+      if (result.body) {
+        error.details = standard4XXResponseDeserializer(result.body);
+      }
     } else if (statusCode >= 500 && statusCode <= 599) {
-      error.details = standard5XXResponseDeserializer(result.body);
+      if (result.body) {
+        error.details = standard5XXResponseDeserializer(result.body);
+      }
     }
     throw error;
   }

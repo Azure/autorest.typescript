@@ -27,8 +27,8 @@ export declare class PreviewVersionClient {
     listWidgets(options?: ListWidgetsOptionalParams): Promise<{
         widgets: Widget[];
     }>;
-    updateWidgetColor(id: string, colorUpdate: UpdateWidgetColorRequest, options?: UpdateWidgetColorOptionalParams): Promise<Widget>;
-    getWidget(id: string, options?: GetWidgetOptionalParams): Promise<Widget>;
+    updateWidgetColor(id: string, colorUpdate: UpdateWidgetColorRequest, options?: UpdateWidgetColorOptionalParams): Promise<Widget | undefined>;
+    getWidget(id: string, options?: GetWidgetOptionalParams): Promise<Widget | undefined>;
 }
 
 export declare interface PreviewVersionClientOptionalParams extends ClientOptions {

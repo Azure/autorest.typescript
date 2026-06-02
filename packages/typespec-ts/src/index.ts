@@ -57,6 +57,7 @@ import {
   buildTsSrcBrowserConfig,
   buildTsSrcReactNativeConfig,
   buildTsSrcCjsConfig,
+  buildTsLintConfig,
   buildTestBrowserTsConfig,
   buildTestNodeTsConfig,
   buildVitestConfig,
@@ -68,7 +69,7 @@ import {
   buildSampleEnvFile,
   buildSnippets,
   buildTsSampleConfig
-} from "@azure-tools/rlc-common";
+} from "./rlc-common/index.js";
 import {
   buildRootIndex,
   buildSubClientIndexFile
@@ -578,6 +579,9 @@ export async function $onEmit(context: EmitContext) {
         commonBuilders.push(buildTsSrcCjsConfig);
         if (option.generateSample) {
           commonBuilders.push(buildTsSampleConfig);
+        }
+        if (isAzureFlavor) {
+          commonBuilders.push(buildTsLintConfig);
         }
       }
 

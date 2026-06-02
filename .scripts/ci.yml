@@ -121,7 +121,7 @@ stages:
             inputs:
               artifactName: packages
               path: $(Build.ArtifactStagingDirectory)
-      - job: HLC_Generation
+      - job: AutoRest_Generation
         dependsOn: Build
         variables:
           - template: globals.yml
@@ -138,7 +138,7 @@ stages:
           - template: build.yml
           - script: npm run generate-swaggers
             workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
-            displayName: "Generate HLC Test Clients"
+            displayName: "Generate AutoRest Test Clients"
           - script: npm run check:tree
             workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
             displayName: "Check git Tree"
