@@ -631,6 +631,10 @@ export const azureModularTsps = [
     inputPath: "azure/client-generator-core/usage"
   },
   {
+    outputPath: "azure/client-generator-core/exact-name",
+    inputPath: "azure/client-generator-core/exact-name"
+  },
+  {
     outputPath: "parameters/body-optionality",
     inputPath: "parameters/body-optionality"
   },
