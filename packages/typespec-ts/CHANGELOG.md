@@ -1,3 +1,7 @@
+## 0.54.1 (2026-06-03)
+
+- [Feature] Add Azure_SpecialHeaders_ConditionalRequest azure-modular integration test. Please refer to [#3978](https://github.com/Azure/autorest.typescript/pull/3978)
+
 ## 0.54.0 (2026-06-01)
 
 - [Feature] Bump TypeSpec dependencies to latest stable and next pre-release versions. Please refer to [#4012](https://github.com/Azure/autorest.typescript/pull/4012)
