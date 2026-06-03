@@ -76,14 +76,16 @@ export function generateModelFiles(
         }
       ]);
     }
-    // Add NodeReadableStream import if binary types are used in models
+    // Add NodeReadableStream import if binary types are used in models.
+    // platform-types.ts is generated directly under src/ (no static-helpers/
+    // subdirectory) to match the RLC design where all output lives in src/.
     if (modelsFile.getFullText().includes("NodeReadableStream")) {
       const platformTypesModuleSpecifier = model.options?.azureSdkForJs
-        ? "#platform/static-helpers/platform-types.js"
+        ? "#platform/platform-types"
         : getImportModuleName(
             {
-              cjsName: `./static-helpers/platform-types`,
-              esModulesName: `./static-helpers/platform-types.js`
+              cjsName: `./platform-types`,
+              esModulesName: `./platform-types.js`
             },
             model
           );

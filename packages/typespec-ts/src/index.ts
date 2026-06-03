@@ -338,16 +338,17 @@ export async function $onEmit(context: EmitContext) {
     const project = useContext("outputProject");
     for (const helperFile of project.getSourceFiles()) {
       const filePath = helperFile.getFilePath();
-      // RLC builders (buildParameterTypes / buildSchemaType) only import
-      // platform-types from static-helpers; all other helpers (paging,
-      // polling, serialize) are generated directly by their own builders
-      // and do not live under static-helpers/.
+      // RLC builders (buildParameterTypes / buildSchemaType) only reference
+      // platform-types; emit those files directly under src/ (strip the
+      // static-helpers/ segment) to match the RLC design where all generated
+      // output lives in src/.
       if (!filePath.includes("platform-types")) {
         continue;
       }
+      const outputPath = filePath.replace(/\/static-helpers\//g, "/");
       await emitContentByBuilder(
         program,
-        () => ({ content: helperFile.getFullText(), path: filePath }),
+        () => ({ content: helperFile.getFullText(), path: outputPath }),
         rlcCodeModels[0]
       );
     }
