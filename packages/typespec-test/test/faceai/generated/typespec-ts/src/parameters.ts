@@ -15,6 +15,7 @@ import type {
   CreateLivenessSessionContent,
   CreateLivenessWithVerifySessionContent,
 } from "./models.js";
+import type { NodeReadableStream } from "#platform/platform-types";
 
 export interface DetectFromUrlBodyParam {
   body: { url: string };
@@ -75,7 +76,7 @@ export interface DetectBodyParam {
    *
    * Value may contain any sequence of octets
    */
-  body: string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream;
+  body: string | Uint8Array | ReadableStream<Uint8Array> | NodeReadableStream;
 }
 
 /** This is the wrapper object for the parameter `returnFaceAttributes` with explode set to false and style set to form. */
@@ -373,7 +374,7 @@ export interface AddFaceListFaceBodyParam {
    *
    * Value may contain any sequence of octets
    */
-  body: string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream;
+  body: string | Uint8Array | ReadableStream<Uint8Array> | NodeReadableStream;
 }
 
 /** This is the wrapper object for the parameter `targetFace` with explode set to false and style set to form. */
@@ -496,7 +497,7 @@ export interface AddLargeFaceListFaceBodyParam {
    *
    * Value may contain any sequence of octets
    */
-  body: string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream;
+  body: string | Uint8Array | ReadableStream<Uint8Array> | NodeReadableStream;
 }
 
 /** This is the wrapper object for the parameter `targetFace` with explode set to false and style set to form. */
@@ -669,7 +670,7 @@ export interface AddPersonGroupPersonFaceBodyParam {
    *
    * Value may contain any sequence of octets
    */
-  body: string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream;
+  body: string | Uint8Array | ReadableStream<Uint8Array> | NodeReadableStream;
 }
 
 /** This is the wrapper object for the parameter `targetFace` with explode set to false and style set to form. */
@@ -831,7 +832,7 @@ export interface AddLargePersonGroupPersonFaceBodyParam {
    *
    * Value may contain any sequence of octets
    */
-  body: string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream;
+  body: string | Uint8Array | ReadableStream<Uint8Array> | NodeReadableStream;
 }
 
 /** This is the wrapper object for the parameter `targetFace` with explode set to false and style set to form. */

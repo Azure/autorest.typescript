@@ -24,7 +24,7 @@ model FaceList is BaseCollection {
 @doc("Face list item for list face list.")
 model FaceListItem is BaseCollection {
   @doc("Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.")
-  faceListId: collectionId;
+  faceListId: Record<unknown>;
 }
 
 @parentResource(FaceList)

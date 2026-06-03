@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import type { NodeReadableStream } from "#platform/platform-types";
+
 /** Model for creating face collection. */
 export interface CreateCollectionRequest {
   /** User defined name, maximum length is 128. */
@@ -109,7 +111,7 @@ export interface CreateLivenessWithVerifySessionContentVerifyConfidenceThreshold
 
 export interface CreateLivenessWithVerifySessionContentVerifyImagePartDescriptor {
   name: "verifyImage";
-  body: string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream | File;
+  body: string | Uint8Array | ReadableStream<Uint8Array> | NodeReadableStream | File;
   filename?: string;
   contentType?: string;
 }
@@ -122,10 +124,10 @@ export type RecognitionModel = string;
 export type FaceAttributeType = string;
 /** Alias for FindSimilarMatchMode */
 export type FindSimilarMatchMode = string;
-/** Alias for LivenessOperationMode */
-export type LivenessOperationMode = string;
 /** Alias for LivenessModel */
 export type LivenessModel = string;
+/** Alias for LivenessOperationMode */
+export type LivenessOperationMode = string;
 /** Request of liveness with verify session creation. */
 export type CreateLivenessWithVerifySessionContent =
   | FormData

@@ -350,7 +350,51 @@ export interface FaceListItemOutput {
    */
   recognitionModel?: RecognitionModelOutput;
   /** Valid character is letter in lower case or digit or '-' or '_', maximum length is 64. */
-  faceListId: string;
+  faceListId: Record<string, any>;
+}
+
+/** The response body of detect liveness API call. */
+export interface LivenessResponseBodyOutput extends Record<string, any> {
+  /**
+   * The liveness classification for the target face.
+   *
+   * Possible values: "uncertain", "realface", "spoofface"
+   */
+  livenessDecision?: LivenessDecisionOutput;
+  /** Specific targets used for liveness classification. */
+  target?: LivenessOutputsTargetOutput;
+  /**
+   * The model version used for liveness classification.
+   *
+   * Possible values: "2024-11-15"
+   */
+  modelVersionUsed?: LivenessModelOutput;
+  /** The face verification output. Only available when the request is liveness with verify. */
+  verifyResult?: LivenessWithVerifyOutputsOutput;
+}
+
+/** The liveness classification for target face. */
+export interface LivenessOutputsTargetOutput {
+  /** The face region where the liveness classification was made on. */
+  faceRectangle: FaceRectangleOutput;
+  /** The file name which contains the face rectangle where the liveness classification was made on. */
+  fileName: string;
+  /** The time offset within the file of the frame which contains the face rectangle where the liveness classification was made on. */
+  timeOffsetWithinFile: number;
+  /**
+   * The image type which contains the face rectangle where the liveness classification was made on.
+   *
+   * Possible values: "Color", "Infrared", "Depth"
+   */
+  imageType: ImageTypeOutput;
+}
+
+/** The face verification output. */
+export interface LivenessWithVerifyOutputsOutput {
+  /** The target face liveness face and comparison image face verification confidence. */
+  matchConfidence: number;
+  /** Whether the target liveness face and comparison image face match. */
+  isIdentical: boolean;
 }
 
 /** Response body for adding face. */
@@ -693,14 +737,6 @@ export interface LivenessWithVerifyResultOutput {
   verifyImageHash?: string;
 }
 
-/** The face verification output. */
-export interface LivenessWithVerifyOutputsOutput {
-  /** The target face liveness face and comparison image face verification confidence. */
-  matchConfidence: number;
-  /** Whether the target liveness face and comparison image face match. */
-  isIdentical: boolean;
-}
-
 /** Alias for RecognitionModelOutput */
 export type RecognitionModelOutput = string;
 /** Alias for GlassesTypeOutput */
@@ -719,13 +755,13 @@ export type NoiseLevelOutput = string;
 export type MaskTypeOutput = string;
 /** Alias for QualityForRecognitionOutput */
 export type QualityForRecognitionOutput = string;
-/** Alias for OperationStatusOutput */
-export type OperationStatusOutput = string;
-/** Alias for LivenessModelOutput */
-export type LivenessModelOutput = string;
-/** Alias for OperationStateOutput */
-export type OperationStateOutput = string;
 /** Alias for LivenessDecisionOutput */
 export type LivenessDecisionOutput = string;
 /** Alias for ImageTypeOutput */
 export type ImageTypeOutput = string;
+/** Alias for LivenessModelOutput */
+export type LivenessModelOutput = string;
+/** Alias for OperationStatusOutput */
+export type OperationStatusOutput = string;
+/** Alias for OperationStateOutput */
+export type OperationStateOutput = string;
