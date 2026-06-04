@@ -472,9 +472,9 @@ export function getDeserializePrivateFunction(
       }
       if (deserializeFunctionName) {
         if (needsBodyGuard) {
-          // Use ternary form: return result.body ? deserializer(result.body) : void 0
+          // Use ternary form: return result.body ? deserializer(result.body) : void
           statements.push(
-            `return ${deserializedRoot} ? ${deserializeFunctionName}(${deserializedRoot})${multipartCastSuffix} : void 0`
+            `return ${deserializedRoot} ? ${deserializeFunctionName}(${deserializedRoot})${multipartCastSuffix} : void`
           );
         } else {
           statements.push(
