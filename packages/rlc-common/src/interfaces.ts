@@ -290,6 +290,12 @@ export interface RLCOptions {
    * Defaults to false. Only applicable when azureSdkForJs is true.
    */
   generateReactNativeTarget?: boolean;
+  /**
+   * When set to true, operations that can return either a body or a 204 empty body will have a
+   * return type of `model | void` and include a body guard in the deserializer.
+   * When false (default), the return type is just `model` and no body guard is emitted.
+   */
+  returnEmptyBody?: boolean;
 }
 
 export interface ServiceInfo {

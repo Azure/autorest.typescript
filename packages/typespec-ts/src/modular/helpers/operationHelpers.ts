@@ -230,12 +230,18 @@ export function getDeserializePrivateFunction(
       type: resolveReference(refkey(operation, "response"))
     };
   } else if (response.type) {
-    // When response.optional is true, some HTTP responses have no body (e.g. 204), so
-    // the return type must include undefined to reflect that possibility.
+    // When response.optional is true, some HTTP responses have no body (e.g. 204).
+    // If returnEmptyBody is enabled, the return type includes `| void` to reflect that
+    // possibility and a body guard is emitted. When disabled (default), the return type
+    // is just the model type with no guard.
     const baseType = getTypeExpression(context, response.type);
+    const returnEmptyBody = context.rlcOptions?.returnEmptyBody === true;
     returnType = {
       name: (response as any).name ?? "",
-      type: response.optional ? `${baseType} | undefined` : baseType
+      type:
+        response.optional && returnEmptyBody
+          ? `${baseType} | void`
+          : baseType
     };
   } else if (isHeadAsBooleanOperation(operation)) {
     returnType = { name: "", type: "boolean" };
@@ -308,8 +314,14 @@ export function getDeserializePrivateFunction(
     // guard all body deserialization so we return undefined instead of throwing.
     // This only applies to non-LRO, non-paging operations where the deserialized type
     // comes from response.type (not from LRO metadata or paging).
+    // The body guard is only emitted when returnEmptyBody is explicitly enabled.
+    const returnEmptyBody = context.rlcOptions?.returnEmptyBody === true;
     const needsBodyGuard =
-      response.optional && !isLroOnly && !isLroAndPaging && !isPagingOnly;
+      returnEmptyBody &&
+      response.optional &&
+      !isLroOnly &&
+      !isLroAndPaging &&
+      !isPagingOnly;
 
     const contentTypes = operation.operation.responses[0]?.contentTypes ?? [];
     const isXml = isXmlPayload(contentTypes);
@@ -1078,17 +1090,22 @@ export function getOperationFunction(
         type,
         responseHeaders
       );
+      const returnEmptyBodyComposite = context.rlcOptions?.returnEmptyBody === true;
       returnType = {
         name: (type as any).name ?? "",
-        type: response.optional
-          ? `${baseCompositeType} | undefined`
+        type: response.optional && returnEmptyBodyComposite
+          ? `${baseCompositeType} | void`
           : baseCompositeType
       };
     } else {
       const baseType = getTypeExpression(context, type!);
+      const returnEmptyBody = context.rlcOptions?.returnEmptyBody === true;
       returnType = {
         name: (type as any).name ?? "",
-        type: response.optional ? `${baseType} | undefined` : baseType
+        type:
+          response.optional && returnEmptyBody
+            ? `${baseType} | void`
+            : baseType
       };
     }
   } else if (hasHeaderOnlyResponse && isResponseHeadersEnabled) {

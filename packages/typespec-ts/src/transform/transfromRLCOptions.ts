@@ -98,6 +98,7 @@ function extractRLCOptions(
   const typespecTitleMap = emitterOptions["typespec-title-map"];
   const generateReactNativeTarget =
     emitterOptions["generate-react-native-target"] === true;
+  const returnEmptyBody = emitterOptions["return-empty-body"] === true;
   const hasSubscriptionId = getSubscriptionId(dpgContext);
   const ignoreNullableOnOptional = getIgnoreNullableOnOptional(
     emitterOptions,
@@ -144,7 +145,8 @@ function extractRLCOptions(
     isMultiService,
     enableStorageCompat,
     treatUnknownAsRecord,
-    generateReactNativeTarget
+    generateReactNativeTarget,
+    returnEmptyBody
   };
 }
 

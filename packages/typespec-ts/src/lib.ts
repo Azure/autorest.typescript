@@ -105,6 +105,12 @@ export interface EmitterOptions {
    * Only applicable when `azure-sdk-for-js` is `true`.
    */
   "generate-react-native-target"?: boolean;
+  /**
+   * When set to true, operations that can return either a body or a 204 empty body will have a
+   * return type of `model | void` and include a body guard in the deserializer.
+   * When false (default), the return type is just `model` and no body guard is emitted.
+   */
+  "return-empty-body"?: boolean;
 }
 
 export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
@@ -413,6 +419,12 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
       nullable: true,
       description:
         "When set to true, generates React Native build targets (tsconfig, warp target, package.json exports). Only applicable when azure-sdk-for-js is true. Defaults to `false`."
+    },
+    "return-empty-body": {
+      type: "boolean",
+      nullable: true,
+      description:
+        "When set to true, operations that can return either a body or a 204 empty body will have a return type of `model | void` and include a body guard in the deserializer. When false (default), the return type is just `model` and no body guard is emitted."
     }
   },
   required: []

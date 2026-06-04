@@ -596,6 +596,10 @@ export async function emitModularOperationsFromTypeSpec(
     dpgContext.rlcOptions!.treatUnknownAsRecord =
       options["treat-unknown-as-record"] === true;
   }
+  if (options["return-empty-body"] !== undefined) {
+    dpgContext.rlcOptions!.returnEmptyBody =
+      options["return-empty-body"] === true;
+  }
   const modularEmitterOptions = transformModularEmitterOptions(dpgContext, "", {
     casing: "camel"
   });
