@@ -1077,6 +1077,7 @@ export function getOperationFunction(
     bodyType = returnType.type;
   } else if (response.type) {
     const type = response.type;
+    const returnEmptyBody = context.rlcOptions?.returnEmptyBody === true;
 
     // If feature flag enabled, we'll append the response headers to the operation response type.
     if (
@@ -1090,16 +1091,14 @@ export function getOperationFunction(
         type,
         responseHeaders
       );
-      const returnEmptyBodyComposite = context.rlcOptions?.returnEmptyBody === true;
       returnType = {
         name: (type as any).name ?? "",
-        type: response.optional && returnEmptyBodyComposite
+        type: response.optional && returnEmptyBody
           ? `${baseCompositeType} | void`
           : baseCompositeType
       };
     } else {
       const baseType = getTypeExpression(context, type!);
-      const returnEmptyBody = context.rlcOptions?.returnEmptyBody === true;
       returnType = {
         name: (type as any).name ?? "",
         type:
