@@ -596,9 +596,9 @@ export async function emitModularOperationsFromTypeSpec(
     dpgContext.rlcOptions!.treatUnknownAsRecord =
       options["treat-unknown-as-record"] === true;
   }
-  if (options["return-empty-body"] !== undefined) {
-    dpgContext.rlcOptions!.returnEmptyBody =
-      options["return-empty-body"] === true;
+  if (options["enable-optional-response"] !== undefined) {
+    dpgContext.rlcOptions!.enableOptionalResponse =
+      options["enable-optional-response"] === true;
   }
   const modularEmitterOptions = transformModularEmitterOptions(dpgContext, "", {
     casing: "camel"

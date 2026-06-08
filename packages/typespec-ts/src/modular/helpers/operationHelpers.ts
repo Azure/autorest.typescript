@@ -231,15 +231,16 @@ export function getDeserializePrivateFunction(
     };
   } else if (response.type) {
     // When response.optional is true, some HTTP responses have no body (e.g. 204).
-    // If returnEmptyBody is enabled, the return type includes `| void` to reflect that
+    // If enableOptionalResponse is enabled, the return type includes `| void` to reflect that
     // possibility and a body guard is emitted. When disabled (default), the return type
     // is just the model type with no guard.
     const baseType = getTypeExpression(context, response.type);
-    const returnEmptyBody = context.rlcOptions?.returnEmptyBody === true;
+    const enableOptionalResponse =
+      context.rlcOptions?.enableOptionalResponse === true;
     returnType = {
       name: (response as any).name ?? "",
       type:
-        response.optional && returnEmptyBody
+        response.optional && enableOptionalResponse
           ? `${baseType} | void`
           : baseType
     };
@@ -314,10 +315,11 @@ export function getDeserializePrivateFunction(
     // guard all body deserialization so we return undefined instead of throwing.
     // This only applies to non-LRO, non-paging operations where the deserialized type
     // comes from response.type (not from LRO metadata or paging).
-    // The body guard is only emitted when returnEmptyBody is explicitly enabled.
-    const returnEmptyBody = context.rlcOptions?.returnEmptyBody === true;
+    // The body guard is only emitted when enableOptionalResponse is explicitly enabled.
+    const enableOptionalResponse =
+      context.rlcOptions?.enableOptionalResponse === true;
     const needsBodyGuard =
-      returnEmptyBody &&
+      enableOptionalResponse &&
       response.optional &&
       !isLroOnly &&
       !isLroAndPaging &&
@@ -1077,7 +1079,8 @@ export function getOperationFunction(
     bodyType = returnType.type;
   } else if (response.type) {
     const type = response.type;
-    const returnEmptyBody = context.rlcOptions?.returnEmptyBody === true;
+    const enableOptionalResponse =
+      context.rlcOptions?.enableOptionalResponse === true;
 
     // If feature flag enabled, we'll append the response headers to the operation response type.
     if (
@@ -1093,7 +1096,7 @@ export function getOperationFunction(
       );
       returnType = {
         name: (type as any).name ?? "",
-        type: response.optional && returnEmptyBody
+        type: response.optional && enableOptionalResponse
           ? `${baseCompositeType} | void`
           : baseCompositeType
       };
@@ -1102,7 +1105,7 @@ export function getOperationFunction(
       returnType = {
         name: (type as any).name ?? "",
         type:
-          response.optional && returnEmptyBody
+          response.optional && enableOptionalResponse
             ? `${baseType} | void`
             : baseType
       };

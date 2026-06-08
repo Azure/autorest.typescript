@@ -110,7 +110,7 @@ export interface EmitterOptions {
    * return type of `model | void` and include a body guard in the deserializer.
    * When false (default), the return type is just `model` and no body guard is emitted.
    */
-  "return-empty-body"?: boolean;
+  "enable-optional-response"?: boolean;
 }
 
 export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
@@ -420,7 +420,7 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
       description:
         "When set to true, generates React Native build targets (tsconfig, warp target, package.json exports). Only applicable when azure-sdk-for-js is true. Defaults to `false`."
     },
-    "return-empty-body": {
+    "enable-optional-response": {
       type: "boolean",
       nullable: true,
       description:

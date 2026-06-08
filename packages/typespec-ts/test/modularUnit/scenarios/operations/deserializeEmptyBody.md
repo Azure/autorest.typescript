@@ -2,7 +2,7 @@
 
 When an operation can return either a body response (200) or an empty body response (204),
 by default the generated deserializer returns just the model type (no body guard emitted).
-When `return-empty-body` is enabled, the return type includes `| void` and a body guard is emitted.
+When `enable-optional-response` is enabled, the return type includes `| void` and a body guard is emitted.
 
 ## TypeSpec
 
@@ -76,9 +76,9 @@ export async function deleteKeyValue(
 }
 ```
 
-# Success path deserializer handles empty body with return-empty-body enabled
+# Success path deserializer handles empty body with enable-optional-response enabled
 
-When `return-empty-body` is enabled, the return type includes `| void` and a body guard is emitted.
+When `enable-optional-response` is enabled, the return type includes `| void` and a body guard is emitted.
 
 ## TypeSpec
 
@@ -96,7 +96,7 @@ op deleteKeyValue(@path key: string): { @statusCode statusCode: 200; @body body:
 ```
 
 ```yaml
-return-empty-body: true
+enable-optional-response: true
 ```
 
 ## Operations
@@ -331,9 +331,9 @@ export async function deleteKeyValue(
 }
 ```
 
-# Both empty body response and error response with return-empty-body enabled
+# Both empty body response and error response with enable-optional-response enabled
 
-When `return-empty-body` is enabled, the generated deserializer must guard both the
+When `enable-optional-response` is enabled, the generated deserializer must guard both the
 success-path body (for 204) and the error-path body deserialization.
 
 ## TypeSpec
@@ -358,7 +358,7 @@ op deleteKeyValue(@path key: string): { @statusCode statusCode: 200; @body body:
 ```
 
 ```yaml
-return-empty-body: true
+enable-optional-response: true
 ```
 
 ## Operations
