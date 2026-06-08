@@ -474,9 +474,9 @@ export function getDeserializePrivateFunction(
       }
       if (deserializeFunctionName) {
         if (needsBodyGuard) {
-          // Use ternary form: return result.body ? deserializer(result.body) : void
+          // Use ternary form: return result.body ? deserializer(result.body) : void 0
           statements.push(
-            `return ${deserializedRoot} ? ${deserializeFunctionName}(${deserializedRoot})${multipartCastSuffix} : void`
+            `return ${deserializedRoot} ? ${deserializeFunctionName}(${deserializedRoot})${multipartCastSuffix} : void 0`
           );
         } else {
           statements.push(
@@ -1096,9 +1096,10 @@ export function getOperationFunction(
       );
       returnType = {
         name: (type as any).name ?? "",
-        type: response.optional && enableOptionalResponse
-          ? `${baseCompositeType} | void`
-          : baseCompositeType
+        type:
+          response.optional && enableOptionalResponse
+            ? `${baseCompositeType} | void`
+            : baseCompositeType
       };
     } else {
       const baseType = getTypeExpression(context, type!);

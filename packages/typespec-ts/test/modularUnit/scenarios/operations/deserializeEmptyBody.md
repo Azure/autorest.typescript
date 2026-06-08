@@ -143,7 +143,7 @@ export async function _deleteKeyValueDeserialize(
     throw createRestError(result);
   }
 
-  return result.body ? keyValueDeserializer(result.body) : void;
+  return result.body ? keyValueDeserializer(result.body) : void 0;
 }
 
 export async function deleteKeyValue(
@@ -410,7 +410,7 @@ export async function _deleteKeyValueDeserialize(
     throw error;
   }
 
-  return result.body ? keyValueDeserializer(result.body) : void;
+  return result.body ? keyValueDeserializer(result.body) : void 0;
 }
 
 export async function deleteKeyValue(
