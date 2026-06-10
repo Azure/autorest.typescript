@@ -45,4 +45,11 @@ describe("Usage Client", () => {
       .put({ body: { name: "name", desc: "desc" } });
     assert.strictEqual(result.status, "204");
   });
+
+  it("should put namespace model in operation", async () => {
+    const result = await client
+      .path("/azure/client-generator-core/usage/namespaceModelSerializable")
+      .put({ body: { name: "test" } });
+    assert.strictEqual(result.status, "204");
+  });
 });

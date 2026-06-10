@@ -660,6 +660,10 @@ export const azureModularTsps = [
     inputPath: "azure/special-headers/client-request-id"
   },
   {
+    outputPath: "azure/special-headers/conditional-request",
+    inputPath: "azure/special-headers/conditional-request"
+  },
+  {
     outputPath: "parameters/collection-format",
     inputPath: "parameters/collection-format"
   },
