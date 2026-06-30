@@ -2,6 +2,10 @@
 
 This repository is the code generator libraries for Azure TypeScript SDK and Azure TypeScript Rest Level Client libraries.
 
+## Archival Notice ⚠️
+
+This repository has been archived and the `@autorest/typescript` package should be considered unsupported. The `@azure-tools/typespec-ts` package has been migrated to https://github.com/Azure/typespec-azure/
+
 ## Packages
 
 | Name                                                                        | Changelog                                    | Latest                                                                                                                                               | Next                                                                            |
